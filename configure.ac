@@ -1,32 +1,34 @@
-AC_INIT(src/phone.h)
-AC_CANONICAL_SYSTEM
-AM_CONFIG_HEADER(src/twinkle_config.h)
+AC_INIT([twinkle],[1.4.2])
+AC_CANONICAL_TARGET
+AC_CONFIG_SRCDIR(src/phone.h)
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_HEADERS([src/twinkle_config.h])
 
 AC_ARG_ENABLE(qt-check, 
-	AC_HELP_STRING([--disable-qt-check], [do not check Qt installation]),
+	AS_HELP_STRING([--disable-qt-check],[do not check Qt installation]),
 	[ac_cv_qt_check=$enableval], [ac_cv_qt_check=yes])
 	
 AC_ARG_WITH(kde,
-	AC_HELP_STRING([--without-kde], [do not compile KDE features]),
+	AS_HELP_STRING([--without-kde],[do not compile KDE features]),
 	[ac_cv_kde=$withval], [ac_cv_kde=yes])
 	
 AC_ARG_WITH(ilbc,
-	AC_HELP_STRING([--without-ilbc], [do not compile iLBC]),
+	AS_HELP_STRING([--without-ilbc],[do not compile iLBC]),
 	[ac_cv_ilbc=$withval], [ac_cv_ilbc=yes])
 	
 AC_ARG_WITH(speex,
-	AC_HELP_STRING([--without-speex], [do not compile speex]),
+	AS_HELP_STRING([--without-speex],[do not compile speex]),
 	[ac_cv_speex=$withval], [ac_cv_speex=yes])
 
 AC_ARG_WITH(zrtp,
-	AC_HELP_STRING([--without-zrtp], [do not compile zrtp support]),
+	AS_HELP_STRING([--without-zrtp],[do not compile zrtp support]),
 	[ac_cv_zrtp=$withval], [ac_cv_zrtp=yes])	
 
 AC_ARG_ENABLE(ilbc-cpp,
-	AC_HELP_STRING([--enable-ilbc-cpp], [your ilbc library is built for C++ instead of C]),
+	AS_HELP_STRING([--enable-ilbc-cpp],[your ilbc library is built for C++ instead of C]),
 	[ac_cv_ilbc_cpp=$enableval], [ac_cv_ilbc_cpp=no])
 
-AM_INIT_AUTOMAKE(twinkle,"1.4.2")
 AC_DEFINE(VERSION_DATE,["February 25 2009"],[Version release date])
 AC_PROG_CC
 AC_PROG_CXX
@@ -329,12 +331,13 @@ dnl # Note: -Os is used on VIA C3 processor
 dnl PARSER_CXXFLAGS=`echo $CXXFLAGS | sed -e "s/\-O2//;s/\-Os//"`
 dnl AC_SUBST(PARSER_CXXFLAGS)
 
-AC_OUTPUT(Makefile src/Makefile src/audio/Makefile src/audio/gsm/Makefile \
+AC_CONFIG_FILES([Makefile src/Makefile src/audio/Makefile src/audio/gsm/Makefile \
 	src/audits/Makefile src/sdp/Makefile src/parser/Makefile \
 	src/sockets/Makefile src/stun/Makefile src/threads/Makefile \
 	src/gui/lang/Makefile src/mwi/Makefile src/im/Makefile \
 	src/patterns/Makefile src/utils/Makefile src/presence/Makefile \
-	twinkle.spec)
+	twinkle.spec])
+AC_OUTPUT
 	
 AC_MSG_RESULT([])
 AC_MSG_RESULT([Configured optional components:])
