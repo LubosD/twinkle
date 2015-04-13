@@ -26,7 +26,6 @@
 
 #include <string>
 #include <map>
-#include <cc++/config.h>
 #include "parser/sip_body.h"
 #include "sockets/url.h"
 

@@ -21,7 +21,6 @@
 #ifndef _AUDIO_DECODER_H
 #define _AUDIO_DECODER_H
 
-#include <cc++/config.h>
 #include "twinkle_config.h"
 #include "audio_codecs.h"
 #include "user.h"

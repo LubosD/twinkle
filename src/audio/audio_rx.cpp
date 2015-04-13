@@ -22,7 +22,6 @@
 #include <cstdlib>
 #include <sys/types.h>
 #include <sys/time.h>
-#include <cc++/config.h>
 
 #include "audio_rx.h"
 #include "log.h"

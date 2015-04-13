@@ -21,7 +21,6 @@
 
 #include <string>
 #include <fstream>
-#include <cc++/config.h>
 #include <sndfile.h>
 #include "sys_settings.h"
 #include "threads/mutex.h"

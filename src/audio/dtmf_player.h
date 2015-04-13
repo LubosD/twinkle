@@ -21,7 +21,6 @@
 #ifndef _DTMF_PLAYER_H
 #define _DTMF_PLAYER_H
 
-#include <cc++/config.h>
 #include "twinkle_config.h"
 #include "audio_encoder.h"
 #include "freq_gen.h"

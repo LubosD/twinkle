@@ -23,9 +23,9 @@
 #include "milenage.h"
 #include "audits/memman.h"
 #include <sstream>
-#include <cc++/digest.h>
+#include <ucommon/secure.h>
 
-using namespace ost;
+using namespace UCOMMON_NAMESPACE;
 
 // AKAv1-MD5 algorithm specific helpers
 
@@ -148,10 +148,10 @@ int b64_dec(const u8 * src, u8 * dst, int len)
 // authentication with AKAv1-MD5 algorithm (RFC 3310)
 
 bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
-	const string &username, const string &passwd, uint8 *op, uint8 *amf,
+	const std::string &username, const std::string &passwd, uint8 *op, uint8 *amf,
 	unsigned long nc,
-	const string &cnonce, const string &qop, string &resp, 
-	string &fail_reason) const
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
 {
 	u8 nonce64[B64_DEC_SZ(dchlg.nonce.size())];
 	int len = b64_dec((const u8 *)dchlg.nonce.c_str(), nonce64, dchlg.nonce.size());
@@ -183,7 +183,7 @@ bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
 	for (i=0; i < AKA_SQNLEN; i++)
     	sqn[i] = sqnxoraka[i] ^ ak[i];
 	
-	string res_str = string((char *)res, AKA_RESLEN);
+	std::string res_str = std::string((char *)res, AKA_RESLEN);
 	
 	return authorize_md5(dchlg, username, res_str, nc, cnonce, qop, 
 			resp, fail_reason);
@@ -192,11 +192,11 @@ bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
 // authentication with MD5 algorithm
 
 bool t_request::authorize_md5(const t_digest_challenge &dchlg,
-	const string &username, const string &passwd, unsigned long nc,
-	const string &cnonce, const string &qop, string &resp, 
-	string &fail_reason) const
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
 {
-	string A1, A2;
+	std::string A1, A2;
 	// RFC 2617 3.2.2.2
 	A1 = username + ":" + dchlg.realm + ":" + passwd;
 
@@ -207,60 +207,51 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 		A2 = method2str(method, unknown_method) + ":" + uri.encode();
 		A2 += ":";
 		if (body) {
-			MD5Digest MD5body;
-			MD5body << body->encode();
-			ostringstream os;
-			os << MD5body;
-			A2 += os.str();
+			digest_t MD5body = "md5";
+			MD5body.puts(body->encode().c_str());
+			A2 += std::string(MD5body.c_str());
 		} else {
-			MD5Digest MD5body;
-			MD5body << "";
-			ostringstream os;
-			os << MD5body;
-			A2 += os.str();
+			digest_t MD5body = "md5";
+			MD5body.puts("");
+			A2 += std::string(MD5body.c_str());
 		}
 	}
-
 	// RFC 2716 3.2.2.1
 	// Caculate digest
-	MD5Digest MD5A1;
-	MD5Digest MD5A2;
-	ostringstream HA1;
-	ostringstream HA2;
+	digest_t MD5A1 = "md5";
+	digest_t MD5A2 = "md5";
 
-	MD5A1 << A1;
-	MD5A2 << A2;
-	HA1 << MD5A1;
-	HA2 << MD5A2;
+	MD5A1.puts(A1.c_str());
+	MD5A2.puts(A2.c_str());
 
-	string x;
+	std::string x;
 
 	if (cmp_nocase(qop, QOP_AUTH) == 0 || cmp_nocase(qop, QOP_AUTH_INT) == 0) {
-		x = HA1.str() + ":";
+	        x = std::string(MD5A1.c_str());
+		x += ":";
 		x += dchlg.nonce + ":";
 		x += int2str(nc, "%08x") + ":";
 		x += cnonce + ":";
 		x += qop + ":";
-		x += HA2.str();
+		x += std::string(MD5A2.c_str());
 	} else {
-		x = HA1.str() + ":";
+                x = std::string(MD5A1.c_str());
+		x += ":";
 		x += dchlg.nonce + ":";
-		x += HA2.str();
+		x += std::string(MD5A2.c_str());
 	}
 
-	MD5Digest digest;
-	digest << x;
-	ostringstream dresp;
-	dresp << digest;
+	digest_t digest = "md5";
+	digest.puts(x.c_str());
 
-	resp = dresp.str();
+	resp = std::string(digest.c_str());
 
 	return true;
 }
 
 bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
-	const string &username, const string &passwd, unsigned long nc,
-	const string &cnonce, t_credentials &cr, string &fail_reason) const
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, t_credentials &cr, std::string &fail_reason) const
 {
 	// Only Digest authentication is supported
 	if (cmp_nocase(chlg.auth_scheme, AUTH_DIGEST) != 0) {
@@ -271,17 +262,17 @@ bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
 
 	const t_digest_challenge &dchlg = chlg.digest_challenge;
 	
-	string qop = "";
+	std::string qop = "";
 
 	// Determine QOP
 	// If both auth and auth-int are supported by the server, then
 	// choose auth to avoid problems with SIP ALGs. A SIP ALG rewrites
 	// the body of a message, thereby breaking auth-int authentication.
 	if (!dchlg.qop_options.empty()) {
-		const list<string>::const_iterator i = find(
+		const list<std::string>::const_iterator i = find(
 			dchlg.qop_options.begin(), dchlg.qop_options.end(),
 			QOP_AUTH_INT);
-		const list<string>::const_iterator j = find(
+		const list<std::string>::const_iterator j = find(
 			dchlg.qop_options.begin(), dchlg.qop_options.end(),
 			QOP_AUTH);
 		if (j != dchlg.qop_options.end())
@@ -297,7 +288,7 @@ bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
 	}
 
 	bool ret = false;
-	string resp;
+	std::string resp;
 
 	if (cmp_nocase(dchlg.algorithm, ALG_MD5) == 0) {
 		ret = authorize_md5(dchlg, username, passwd, nc, cnonce, 
@@ -359,15 +350,15 @@ t_request::t_request(const t_method m) : t_sip_message() {
 	method = m;
 }
 
-void t_request::set_method(const string &s) {
+void t_request::set_method(const std::string &s) {
 	method = str2method(s);
 	if (method == METHOD_UNKNOWN) {
 		unknown_method = s;
 	}
 }
 
-string t_request::encode(bool add_content_length) {
-	string s;
+std::string t_request::encode(bool add_content_length) {
+	std::string s;
 
 	s = method2str(method, unknown_method) + ' ' + uri.encode();
 	s += " SIP/";
@@ -377,9 +368,9 @@ string t_request::encode(bool add_content_length) {
 	return s;
 }
 
-list<string> t_request::encode_env(void) {
-	string s;
-	list<string> l = t_sip_message::encode_env();
+list<std::string> t_request::encode_env(void) {
+	std::string s;
+	list<std::string> l = t_sip_message::encode_env();
 	
 	s = "SIPREQUEST_METHOD=";
 	s += method2str(method, unknown_method);
@@ -431,7 +422,7 @@ void t_request::set_route(const t_url &target_uri, const list<t_route> &route_se
         }
 }
 
-t_response *t_request::create_response(int code, string reason) const
+t_response *t_request::create_response(int code, std::string reason) const
 {
 	t_response *r;
 
@@ -458,7 +449,7 @@ t_response *t_request::create_response(int code, string reason) const
 	return r;
 }
 
-bool t_request::is_valid(bool &fatal, string &reason) const {
+bool t_request::is_valid(bool &fatal, std::string &reason) const {
 	if (!t_sip_message::is_valid(fatal, reason)) return false;
 
 	fatal = false;
@@ -702,8 +693,8 @@ void t_request::set_destination(const t_ip_port &ip_port) {
 }
 
 bool t_request::www_authorize(const t_challenge &chlg, t_user *user_config, 
-	       const string &username, const string &passwd, unsigned long nc,
-	       const string &cnonce, t_credentials &cr, string &fail_reason)
+	       const std::string &username, const std::string &passwd, unsigned long nc,
+	       const std::string &cnonce, t_credentials &cr, std::string &fail_reason)
 {
 	if (!authorize(chlg, user_config, username, passwd, nc, cnonce, cr, fail_reason)) {
 		return false;
@@ -715,8 +706,8 @@ bool t_request::www_authorize(const t_challenge &chlg, t_user *user_config,
 }
 
 bool t_request::proxy_authorize(const t_challenge &chlg, t_user *user_config,
-	       const string &username, const string &passwd, unsigned long nc,
-	       const string &cnonce, t_credentials &cr, string &fail_reason)
+	       const std::string &username, const std::string &passwd, unsigned long nc,
+	       const std::string &cnonce, t_credentials &cr, std::string &fail_reason)
 {
 	if (!authorize(chlg, user_config, username, passwd, nc, cnonce, cr, fail_reason)) {
 		return false;

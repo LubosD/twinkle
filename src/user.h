@@ -25,7 +25,6 @@
 
 #include <string>
 #include <list>
-#include <cc++/config.h>
 #include "protocol.h"
 #include "sys_settings.h"
 #include "audio/audio_codecs.h"

@@ -26,7 +26,7 @@
 #define _FREQ_GEN_H
 
 #include <vector>
-#include <cc++/config.h>
+#include <commoncpp/config.h>
 
 using namespace std;
 

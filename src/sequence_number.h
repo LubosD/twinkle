@@ -24,7 +24,6 @@
 #ifndef _SEQUENCE_NUMBER_H
 #define _SEQUENCE_NUMBER_H
 
-#include <cc++/config.h>
 
 /**
  * Sequence numbers.

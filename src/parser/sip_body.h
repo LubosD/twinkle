@@ -20,7 +20,7 @@
 #ifndef _H_SIP_BODY
 #define _H_SIP_BODY
 
-#include <cc++/config.h>
+#include <commoncpp/config.h>
 #include <string>
 #include <libxml/tree.h>
 

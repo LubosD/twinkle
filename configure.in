@@ -45,10 +45,6 @@ AC_CHECK_HEADERS([linux/errqueue.h],[],[],[
 	#include <linux/types.h>
 	#endif])
 
-# Check version of the Common C++ library.
-# This also sets the cc++2 include directory in CXXFLAGS
-OST_CCXX2_VERSION(1.6.0,,exit)
-
 # Temporarily add some default directories to PKG_CONFIG_PATH such that
 # the user will not be burdened with setting PKG_CONFIG_PATH
 OLD_PKG_CONFIG_PATH=$PKG_CONFIG_PATH
@@ -66,7 +62,9 @@ fi
 
 export PKG_CONFIG_PATH
 
-PKG_CHECK_MODULES(CCRTP, libccrtp1 >= 1.6.0)
+PKG_CHECK_MODULES(CCRTP, libccrtp >= 2.0.0)
+PKG_CHECK_MODULES(UCOMMON, ucommon >= 5.0.0)
+CCRTP_LIBS="$CCRTP_LIBS $UCOMMON_LIBS"
 
 PKG_CHECK_MODULES(XML2, libxml-2.0)
 # AC_CHECK_HEADER(libxml/tree.h, [],
@@ -136,7 +134,7 @@ done
 #echo "INCLUDEPATH += `$CCGNU2_CONFIG --includes`" | sed -e s/-I//g > $QT_INCL_PRO
 # libccrtp1(ccrtp) depend from libccgnu2(commoncpp2) and
 # should include above flags !
-echo "INCLUDEPATH += `$PKG_CONFIG --cflags-only-I libccrtp1`" | sed -e s/-I//g >> $QT_INCL_PRO
+echo "INCLUDEPATH += `$PKG_CONFIG --cflags-only-I libccrtp`" | sed -e s/-I//g >> $QT_INCL_PRO
 echo "INCLUDEPATH += `$PKG_CONFIG --cflags-only-I libxml-2.0`" | sed -e s/-I//g >> $QT_INCL_PRO
 
 # get libraries specified on command line
@@ -144,6 +142,7 @@ echo $LDFLAGS | xargs echo LIBS += >> $QT_INCL_PRO
 
 echo "LIBS += `$CCGNU2_CONFIG --stdlibs`" >> $QT_INCL_PRO
 echo "LIBS += $CCRTP_LIBS" >> $QT_INCL_PRO
+echo "LIBS += $UCOMMON_LIBS" >> $QT_INCL_PRO
 echo "LIBS += $XML2_LIBS" >> $QT_INCL_PRO
 
 # Check if KDE is available
@@ -264,7 +263,7 @@ fi
 # Check if zrtp is available
 if test "x$ac_cv_zrtp" = "xyes"
 then
-	PKG_CHECK_MODULES(ZRTP, libzrtpcpp >= 1.3.0)
+	PKG_CHECK_MODULES(ZRTP, libzrtpcpp >= 2.0.0)
 	AC_CHECK_LIB(zrtpcpp, main, [
 		AC_CHECK_HEADER(libzrtpcpp/ZrtpQueue.h, [],
 			[AC_MSG_ERROR([zrtp header files missing])])

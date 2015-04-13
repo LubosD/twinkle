@@ -26,7 +26,7 @@
 
 #include <vector>
 #include <string>
-#include <cc++/config.h>
+#include <commoncpp/config.h>
 
 using namespace std;
 

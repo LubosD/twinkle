@@ -65,7 +65,6 @@
 
 #include <vector>
 #include <string>
-#include <cc++/config.h>
 #include "user.h"
 #include "parser/request.h"
 
