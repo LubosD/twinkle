@@ -1,0 +1,270 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>TransferForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>TransferForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>532</width>
+            <height>251</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Transfer</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>transferGroupBox</cstring>
+            </property>
+            <property name="title">
+                <string>Transfer call to</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>toLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;To:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>toLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>toLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The address of the person you want to transfer the call to. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
+                    </property>
+                </widget>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>addressToolButton</cstring>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>TabFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="accel">
+                        <string>F10</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>kontact_contacts.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Address book</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Select an address from the address book.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QButtonGroup">
+            <property name="name">
+                <cstring>typeButtonGroup2</cstring>
+            </property>
+            <property name="title">
+                <string>Type of transfer</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QRadioButton">
+                    <property name="name">
+                        <cstring>basicRadioButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Blind transfer</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+B</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Transfer the call to a third party without contacting that third party yourself.</string>
+                    </property>
+                </widget>
+                <widget class="QRadioButton">
+                    <property name="name">
+                        <cstring>consultRadioButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>T&amp;ransfer with consultation</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+R</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Before transferring the call to a third party, first consult the party yourself.</string>
+                    </property>
+                </widget>
+                <widget class="QRadioButton">
+                    <property name="name">
+                        <cstring>otherLineRadioButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Transfer to other &amp;line</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+L</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Connect the remote party on the active line with the remote party on the other line.</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer24</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout28</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer23</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>121</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TransferForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TransferForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>addressToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TransferForm</receiver>
+        <slot>showAddressBook()</slot>
+    </connection>
+    <connection>
+        <sender>otherLineRadioButton</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>TransferForm</receiver>
+        <slot>setOtherLineAddress(bool)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in declaration">qstring.h</include>
+    <include location="local" impldecl="in declaration">sockets/url.h</include>
+    <include location="local" impldecl="in declaration">getaddressform.h</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">protocol.h</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in implementation">transferform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone</forward>
+</forwards>
+<variables>
+    <variable access="private">int consult_line;</variable>
+    <variable access="private">t_user *user_config;</variable>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+    <variable access="private">QString previousAddress;</variable>
+</variables>
+<signals>
+    <signal>destination(const t_display_url&amp;, t_transfer_type)</signal>
+</signals>
+<slots>
+    <slot>initTransferOptions()</slot>
+    <slot>show( t_user * user )</slot>
+    <slot>show( t_user * user, const string &amp; dest, t_transfer_type transfer_type )</slot>
+    <slot>hide()</slot>
+    <slot>reject()</slot>
+    <slot>validate()</slot>
+    <slot>closeEvent( QCloseEvent * )</slot>
+    <slot>showAddressBook()</slot>
+    <slot>selectedAddress( const QString &amp; address )</slot>
+    <slot>setOtherLineAddress( bool on )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -1,0 +1,819 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SrvRedirectForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SrvRedirectForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>648</width>
+            <height>315</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Call Redirection</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout114</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>userTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>User:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>userComboBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox">
+                    <property name="name">
+                        <cstring>userComboBox</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>cfTabWidget</cstring>
+            </property>
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>There are 3 redirect services:&lt;p&gt;
+&lt;b&gt;Unconditional:&lt;/b&gt; redirect all calls
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;Busy:&lt;/b&gt; redirect a call if both lines are busy
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;No answer:&lt;/b&gt; redirect a call when the no-answer timer expires
+&lt;/p&gt;</string>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;Unconditional</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QCheckBox" row="0" column="0">
+                        <property name="name">
+                            <cstring>cfAlwaysCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&amp;Redirect all calls</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+R</string>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>Activate the unconditional redirection service.</string>
+                        </property>
+                    </widget>
+                    <widget class="QGroupBox" row="1" column="0">
+                        <property name="name">
+                            <cstring>cfAlwaysGroupBox</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="title">
+                            <string>Redirect to</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst1LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst2LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst3TextLabel</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;3rd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst3LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="1">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst3LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst2TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;2nd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst2LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>cfAlwaysDst1TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;1st choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst1LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>addrAlways1ToolButton</cstring>
+                                </property>
+                                <property name="focusPolicy">
+                                    <enum>TabFocus</enum>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="accel">
+                                    <string>F10</string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="1" column="2">
+                                <property name="name">
+                                    <cstring>addrAlways2ToolButton</cstring>
+                                </property>
+                                <property name="focusPolicy">
+                                    <enum>TabFocus</enum>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="accel">
+                                    <string>F11</string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="2" column="2">
+                                <property name="name">
+                                    <cstring>addrAlways3ToolButton</cstring>
+                                </property>
+                                <property name="focusPolicy">
+                                    <enum>TabFocus</enum>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="accel">
+                                    <string>F12</string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;Busy</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QCheckBox" row="0" column="0">
+                        <property name="name">
+                            <cstring>cfBusyCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&amp;Redirect calls when I am busy</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+R</string>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>Activate the redirection when busy service.</string>
+                        </property>
+                    </widget>
+                    <widget class="QGroupBox" row="1" column="0">
+                        <property name="name">
+                            <cstring>cfBusyGroupBox</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="title">
+                            <string>Redirect to</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>cfBusyDst2LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>cfBusyDst3TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;3rd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst3LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="1">
+                                <property name="name">
+                                    <cstring>cfBusyDst3LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>cfBusyDst2TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;2nd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst2LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>cfBusyDst1TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;1st choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst1LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>cfBusyDst1LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>addrBusy1ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="1" column="2">
+                                <property name="name">
+                                    <cstring>addrBusy2ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="2" column="2">
+                                <property name="name">
+                                    <cstring>addrBusy3ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;No answer</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QCheckBox" row="0" column="0">
+                        <property name="name">
+                            <cstring>cfNoanswerCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&amp;Redirect calls when I do not answer</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+R</string>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>Activate the redirection on no answer service.</string>
+                        </property>
+                    </widget>
+                    <widget class="QGroupBox" row="1" column="0">
+                        <property name="name">
+                            <cstring>cfNoanswerGroupBox</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="title">
+                            <string>Redirect to</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst2LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst3TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;3rd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst3LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst2TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;2nd choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst2LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst1TextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;1st choice destination:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>cfAlwaysDst1LineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst1LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="1">
+                                <property name="name">
+                                    <cstring>cfNoanswerDst3LineEdit</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>You can specify up to 3 destinations to which you want to redirect the call. If the first destination does not answer the call, the second destination will be tried and so on.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>addrNoanswer1ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="1" column="2">
+                                <property name="name">
+                                    <cstring>addrNoanswer2ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QToolButton" row="2" column="2">
+                                <property name="name">
+                                    <cstring>addrNoanswer3ToolButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>kontact_contacts.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Address book</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Select an address from the address book.</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer14</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout23</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer13</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>261</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Accept and save all changes.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Undo your changes and close the window.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cfAlwaysCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>toggleAlways(bool)</slot>
+    </connection>
+    <connection>
+        <sender>cfBusyCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>toggleBusy(bool)</slot>
+    </connection>
+    <connection>
+        <sender>cfNoanswerCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>toggleNoanswer(bool)</slot>
+    </connection>
+    <connection>
+        <sender>addrAlways1ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook1()</slot>
+    </connection>
+    <connection>
+        <sender>addrAlways2ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook2()</slot>
+    </connection>
+    <connection>
+        <sender>addrAlways3ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook3()</slot>
+    </connection>
+    <connection>
+        <sender>addrBusy1ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook4()</slot>
+    </connection>
+    <connection>
+        <sender>addrBusy2ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook5()</slot>
+    </connection>
+    <connection>
+        <sender>addrBusy3ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook6()</slot>
+    </connection>
+    <connection>
+        <sender>addrNoanswer1ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook7()</slot>
+    </connection>
+    <connection>
+        <sender>addrNoanswer2ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook8()</slot>
+    </connection>
+    <connection>
+        <sender>addrNoanswer3ToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>showAddressBook9()</slot>
+    </connection>
+    <connection>
+        <sender>userComboBox</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>SrvRedirectForm</receiver>
+        <slot>changedUser(const QString&amp;)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>cfTabWidget</tabstop>
+    <tabstop>cfAlwaysCheckBox</tabstop>
+    <tabstop>cfAlwaysDst1LineEdit</tabstop>
+    <tabstop>cfAlwaysDst2LineEdit</tabstop>
+    <tabstop>cfAlwaysDst3LineEdit</tabstop>
+    <tabstop>cfBusyCheckBox</tabstop>
+    <tabstop>cfBusyDst1LineEdit</tabstop>
+    <tabstop>cfBusyDst2LineEdit</tabstop>
+    <tabstop>cfBusyDst3LineEdit</tabstop>
+    <tabstop>cfNoanswerCheckBox</tabstop>
+    <tabstop>cfNoanswerDst1LineEdit</tabstop>
+    <tabstop>cfNoanswerDst2LineEdit</tabstop>
+    <tabstop>cfNoanswerDst3LineEdit</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">phone.h</include>
+    <include location="local" impldecl="in implementation">qgroupbox.h</include>
+    <include location="local" impldecl="in implementation">qcheckbox.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in declaration">sockets/url.h</include>
+    <include location="global" impldecl="in declaration">list</include>
+    <include location="local" impldecl="in declaration">qlineedit.h</include>
+    <include location="local" impldecl="in declaration">getaddressform.h</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in implementation">srvredirectform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<variables>
+    <variable access="private">int nrAddressBook;</variable>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+    <variable access="private">t_user *current_user;</variable>
+    <variable access="private">int current_user_idx;</variable>
+</variables>
+<signals>
+    <signal>destinations(t_user *, const list&lt;t_display_url&gt; &amp;always, const list&lt;t_display_url&gt; &amp;busy, const list&lt;t_display_url&gt; &amp;noanswer)</signal>
+</signals>
+<slots>
+    <slot>show()</slot>
+    <slot>populate()</slot>
+    <slot>validate()</slot>
+    <slot>toggleAlways( bool on )</slot>
+    <slot>toggleBusy( bool on )</slot>
+    <slot>toggleNoanswer( bool on )</slot>
+    <slot>changedUser( const QString &amp; user_display_uri )</slot>
+    <slot>showAddressBook()</slot>
+    <slot>showAddressBook1()</slot>
+    <slot>showAddressBook2()</slot>
+    <slot>showAddressBook3()</slot>
+    <slot>showAddressBook4()</slot>
+    <slot>showAddressBook5()</slot>
+    <slot>showAddressBook6()</slot>
+    <slot>showAddressBook7()</slot>
+    <slot>showAddressBook8()</slot>
+    <slot>showAddressBook9()</slot>
+    <slot>selectedAddress( const QString &amp; address )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function returnType="bool">validateValues()</function>
+    <function returnType="bool">validate( bool cf_active, QLineEdit * dst1, QLineEdit * dst2, QLineEdit * dst3, list&lt;t_display_url&gt; &amp; dest_list )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

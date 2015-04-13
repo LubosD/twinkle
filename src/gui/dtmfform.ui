@@ -1,0 +1,509 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DtmfForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>DtmfForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>350</width>
+            <height>302</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Twinkle - DTMF</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>keypadGroupBox</cstring>
+            </property>
+            <property name="title">
+                <string>Keypad</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QPushButton" row="0" column="1">
+                    <property name="name">
+                        <cstring>twoPushButton</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>10</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-2.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>2</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="2">
+                    <property name="name">
+                        <cstring>threePushButton</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>10</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-3.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>3</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="3">
+                    <property name="name">
+                        <cstring>aPushButton</cstring>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-a.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Over decadic A. Normally not needed.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="0">
+                    <property name="name">
+                        <cstring>fourPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-4.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>4</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>fivePushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-5.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>5</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="2">
+                    <property name="name">
+                        <cstring>sixPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-6.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>6</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="3">
+                    <property name="name">
+                        <cstring>bPushButton</cstring>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-b.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Over decadic B. Normally not needed.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="0">
+                    <property name="name">
+                        <cstring>sevenPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-7.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>7</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="1">
+                    <property name="name">
+                        <cstring>eightPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-8.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>8</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="2">
+                    <property name="name">
+                        <cstring>ninePushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-9.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>9</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="3">
+                    <property name="name">
+                        <cstring>cPushButton</cstring>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-c.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Over decadic C. Normally not needed.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="0">
+                    <property name="name">
+                        <cstring>starPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-star.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Star (*)</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="1">
+                    <property name="name">
+                        <cstring>zeroPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-0.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>0</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="2">
+                    <property name="name">
+                        <cstring>poundPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-pound.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Pound (#)</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="3">
+                    <property name="name">
+                        <cstring>dPushButton</cstring>
+                    </property>
+                    <property name="paletteBackgroundColor">
+                        <color>
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                        </color>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-d.png</pixmap>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Over decadic D. Normally not needed.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="0">
+                    <property name="name">
+                        <cstring>onePushButton</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <pointsize>10</pointsize>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>dtmf-1.png</pixmap>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>1</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout24</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer20</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>291</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>closePushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Close</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>closePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>onePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf1()</slot>
+    </connection>
+    <connection>
+        <sender>twoPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf2()</slot>
+    </connection>
+    <connection>
+        <sender>threePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf3()</slot>
+    </connection>
+    <connection>
+        <sender>fourPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf4()</slot>
+    </connection>
+    <connection>
+        <sender>fivePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf5()</slot>
+    </connection>
+    <connection>
+        <sender>sixPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf6()</slot>
+    </connection>
+    <connection>
+        <sender>sevenPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf7()</slot>
+    </connection>
+    <connection>
+        <sender>eightPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf8()</slot>
+    </connection>
+    <connection>
+        <sender>ninePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf9()</slot>
+    </connection>
+    <connection>
+        <sender>zeroPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmf0()</slot>
+    </connection>
+    <connection>
+        <sender>starPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfStar()</slot>
+    </connection>
+    <connection>
+        <sender>poundPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfPound()</slot>
+    </connection>
+    <connection>
+        <sender>aPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfA()</slot>
+    </connection>
+    <connection>
+        <sender>bPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfB()</slot>
+    </connection>
+    <connection>
+        <sender>cPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfC()</slot>
+    </connection>
+    <connection>
+        <sender>dPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DtmfForm</receiver>
+        <slot>dtmfD()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>onePushButton</tabstop>
+    <tabstop>twoPushButton</tabstop>
+    <tabstop>threePushButton</tabstop>
+    <tabstop>aPushButton</tabstop>
+    <tabstop>fourPushButton</tabstop>
+    <tabstop>fivePushButton</tabstop>
+    <tabstop>sixPushButton</tabstop>
+    <tabstop>bPushButton</tabstop>
+    <tabstop>sevenPushButton</tabstop>
+    <tabstop>eightPushButton</tabstop>
+    <tabstop>ninePushButton</tabstop>
+    <tabstop>cPushButton</tabstop>
+    <tabstop>starPushButton</tabstop>
+    <tabstop>zeroPushButton</tabstop>
+    <tabstop>poundPushButton</tabstop>
+    <tabstop>dPushButton</tabstop>
+    <tabstop>closePushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">qvalidator.h</include>
+    <include location="local" impldecl="in implementation">qlineedit.h</include>
+    <include location="local" impldecl="in implementation">dtmfform.ui.h</include>
+</includes>
+<signals>
+    <signal>digits(const QString &amp;)</signal>
+</signals>
+<slots>
+    <slot>dtmf1()</slot>
+    <slot>dtmf2()</slot>
+    <slot>dtmf3()</slot>
+    <slot>dtmf4()</slot>
+    <slot>dtmf5()</slot>
+    <slot>dtmf6()</slot>
+    <slot>dtmf7()</slot>
+    <slot>dtmf8()</slot>
+    <slot>dtmf9()</slot>
+    <slot>dtmf0()</slot>
+    <slot>dtmfStar()</slot>
+    <slot>dtmfPound()</slot>
+    <slot>dtmfA()</slot>
+    <slot>dtmfB()</slot>
+    <slot>dtmfC()</slot>
+    <slot>dtmfD()</slot>
+    <slot>keyPressEvent( QKeyEvent * e )</slot>
+</slots>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

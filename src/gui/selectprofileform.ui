@@ -1,0 +1,414 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SelectProfileForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SelectProfileForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>501</width>
+            <height>513</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Select user profile</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>selectTextLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Select user profile(s) to run:</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QListView" row="1" column="0">
+            <column>
+                <property name="text">
+                    <string>User profile</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <property name="name">
+                <cstring>profileListView</cstring>
+            </property>
+            <property name="resizeMode">
+                <enum>LastColumn</enum>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>Tick the check boxes of the user profiles that you want to run and press run.</string>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
+            <property name="name">
+                <cstring>layout78</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer17</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>newProfileGroupBox</cstring>
+                    </property>
+                    <property name="title">
+                        <string>Create profile</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>newPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Ed&amp;itor</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+I</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Create a new profile with the profile editor.</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>wizardPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Wizard</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+W</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Create a new profile with the wizard.</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>diamondcardPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Dia&amp;mondcard</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+M</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Create a profile for a Diamondcard account. With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages.</string>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>modifyProfileGroupBox</cstring>
+                    </property>
+                    <property name="title">
+                        <string>Modify profile</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>editPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Edit</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+E</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Edit the highlighted profile.</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>deletePushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Delete</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+D</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Delete the highlighted profile.</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>renamePushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Ren&amp;ame</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+A</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Rename the highlighted profile.</string>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>startupProfileGroupBox</cstring>
+                    </property>
+                    <property name="title">
+                        <string>Startup profile</string>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>defaultPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Set as default</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+S</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Make the selected profiles the default profiles. The next time you start Twinkle, these profiles will be automatically run.</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>runPushButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Run</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+R</string>
+                            </property>
+                            <property name="default">
+                                <bool>true</bool>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Run Twinkle with the selected profiles.</string>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>sysPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>S&amp;ystem settings</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+Y</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Edit the system settings.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>runPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>runProfile()</slot>
+    </connection>
+    <connection>
+        <sender>editPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>editProfile()</slot>
+    </connection>
+    <connection>
+        <sender>newPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>newProfile()</slot>
+    </connection>
+    <connection>
+        <sender>deletePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>deleteProfile()</slot>
+    </connection>
+    <connection>
+        <sender>renamePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>renameProfile()</slot>
+    </connection>
+    <connection>
+        <sender>wizardPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>wizardProfile()</slot>
+    </connection>
+    <connection>
+        <sender>defaultPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>setAsDefault()</slot>
+    </connection>
+    <connection>
+        <sender>sysPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>sysSettings()</slot>
+    </connection>
+    <connection>
+        <sender>profileListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>toggleItem(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>diamondcardPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectProfileForm</receiver>
+        <slot>diamondcardProfile()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>profileListView</tabstop>
+    <tabstop>newPushButton</tabstop>
+    <tabstop>wizardPushButton</tabstop>
+    <tabstop>diamondcardPushButton</tabstop>
+    <tabstop>editPushButton</tabstop>
+    <tabstop>deletePushButton</tabstop>
+    <tabstop>renamePushButton</tabstop>
+    <tabstop>defaultPushButton</tabstop>
+    <tabstop>runPushButton</tabstop>
+    <tabstop>sysPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">list</include>
+    <include location="global" impldecl="in declaration">string</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in declaration">qmainwindow.h</include>
+    <include location="local" impldecl="in implementation">qdir.h</include>
+    <include location="local" impldecl="in implementation">user.h</include>
+    <include location="local" impldecl="in implementation">qstringlist.h</include>
+    <include location="local" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">protocol.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">userprofileform.h</include>
+    <include location="local" impldecl="in implementation">getprofilenameform.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in implementation">wizardform.h</include>
+    <include location="local" impldecl="in implementation">syssettingsform.h</include>
+    <include location="local" impldecl="in implementation">qlistview.h</include>
+    <include location="global" impldecl="in implementation">cstring</include>
+    <include location="local" impldecl="in implementation">service.h</include>
+    <include location="local" impldecl="in implementation">presence/buddy.h</include>
+    <include location="local" impldecl="in implementation">diamondcardprofileform.h</include>
+    <include location="local" impldecl="in implementation">selectprofileform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<variables>
+    <variable access="public">std::list&lt;std::string&gt; selectedProfiles;</variable>
+    <variable access="private">bool defaultSet;</variable>
+    <variable access="private">t_user *user_config;</variable>
+    <variable access="private">QMainWindow *mainWindow;</variable>
+</variables>
+<signals>
+    <signal>selection(const list&lt;string&gt; &amp;)</signal>
+    <signal>profileRenamed()</signal>
+</signals>
+<slots>
+    <slot>showForm( QMainWindow * _mainWindow )</slot>
+    <slot>runProfile()</slot>
+    <slot>editProfile()</slot>
+    <slot>newProfile()</slot>
+    <slot>newProfile( bool exec_mode )</slot>
+    <slot>newProfileCreated()</slot>
+    <slot>deleteProfile()</slot>
+    <slot>renameProfile()</slot>
+    <slot>setAsDefault()</slot>
+    <slot>wizardProfile()</slot>
+    <slot>wizardProfile( bool exec_mode )</slot>
+    <slot>diamondcardProfile()</slot>
+    <slot>diamondcardProfile( bool exec_mode )</slot>
+    <slot>sysSettings()</slot>
+    <slot>fillProfileListView( const QStringList &amp; profiles )</slot>
+    <slot>toggleItem( QListViewItem * item )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function returnType="int">execForm()</function>
+    <function specifier="static" returnType="bool">getUserProfiles( QStringList &amp; profiles, QString &amp; error )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

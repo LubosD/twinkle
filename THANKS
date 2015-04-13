@@ -1,0 +1,16 @@
+Thanks to the following people for testing and finding all
+those lovely bugs:
+
+Richard Bos
+Schelte Bron
+Ruud Linders
+John van der Ploeg
+Marco van Zijl
+
+Thanks to Richard Bos for RPM building and advertising.
+
+Thanks to Joerg Reisenweber for his excellent testing and debugging.
+
+Thanks to Treeve Jelbert for helping me catching build errors in release 0.4
+
+Thanks to James Le Cuirot for helping me debug several ALSA and RTP problems.

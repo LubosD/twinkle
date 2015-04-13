@@ -1,0 +1,307 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DiamondcardProfileForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>DiamondcardProfileForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>541</width>
+            <height>433</height>
+        </rect>
+    </property>
+    <property name="cursor">
+        <cursor>0</cursor>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Diamondcard User Profile</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>explainTextLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the "sign up" link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
+&lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the "sign up" link.&lt;/p&gt;</string>
+            </property>
+            <property name="textFormat">
+                <enum>RichText</enum>
+            </property>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer35</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout193</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLineEdit" row="1" column="1">
+                    <property name="name">
+                        <cstring>accountIdLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Your Diamondcard account ID.</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="0" column="1">
+                    <property name="name">
+                        <cstring>nameLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>accountIdTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Account ID:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>accountIdLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>pinCodeTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;PIN code:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>pinCodeLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>nameTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Your name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>nameLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="1">
+                    <property name="name">
+                        <cstring>pinCodeLineEdit</cstring>
+                    </property>
+                    <property name="echoMode">
+                        <enum>Password</enum>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Your Diamondcard PIN code.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer27</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout63</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>signUpTextLabel</cstring>
+                    </property>
+                    <property name="backgroundMode">
+                        <enum>PaletteBackground</enum>
+                    </property>
+                    <property name="paletteForegroundColor">
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>205</blue>
+                        </color>
+                    </property>
+                    <property name="cursor">
+                        <cursor>13</cursor>
+                    </property>
+                    <property name="text">
+                        <string>&lt;p align="center"&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter</set>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer28</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout64</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer21</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>61</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DiamondcardProfileForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DiamondcardProfileForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>nameLineEdit</tabstop>
+    <tabstop>accountIdLineEdit</tabstop>
+    <tabstop>pinCodeLineEdit</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">qvalidator.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">diamondcard.h</include>
+    <include location="local" impldecl="in implementation">getprofilenameform.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in implementation">diamondcardprofileform.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">t_user *user_config;</variable>
+    <variable access="private">bool destroy_user_config;</variable>
+</variables>
+<signals>
+    <signal>success()</signal>
+    <signal>newDiamondcardProfile(const QString&amp;)</signal>
+</signals>
+<slots>
+    <slot>destroyOldUserConfig()</slot>
+    <slot>show( t_user * user )</slot>
+    <slot>validate()</slot>
+    <slot>mouseReleaseEvent( QMouseEvent * e )</slot>
+    <slot>processLeftMouseButtonRelease( QMouseEvent * e )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function returnType="int">exec( t_user * user )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

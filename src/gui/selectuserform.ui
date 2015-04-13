@@ -1,0 +1,206 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SelectUserForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SelectUserForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>584</width>
+            <height>228</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Select user</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QPushButton" row="1" column="4">
+            <property name="name">
+                <cstring>cancelPushButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Cancel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="1" column="0">
+            <property name="name">
+                <cstring>selectPushButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Select all</string>
+            </property>
+            <property name="accel">
+                <string>Alt+S</string>
+            </property>
+        </widget>
+        <spacer row="1" column="2">
+            <property name="name">
+                <cstring>spacer47</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>41</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QPushButton" row="1" column="3">
+            <property name="name">
+                <cstring>okPushButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;OK</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+            <property name="default">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="1" column="1">
+            <property name="name">
+                <cstring>clearPushButton</cstring>
+            </property>
+            <property name="text">
+                <string>C&amp;lear all</string>
+            </property>
+            <property name="accel">
+                <string>Alt+L</string>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="0" column="0" rowspan="1" colspan="5">
+            <property name="name">
+                <cstring>layout100</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>purposeTextLabel</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>purpose</string>
+                        <comment>No need to translate</comment>
+                    </property>
+                </widget>
+                <widget class="QListView">
+                    <column>
+                        <property name="text">
+                            <string>User</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <property name="name">
+                        <cstring>userListView</cstring>
+                    </property>
+                    <property name="resizePolicy">
+                        <enum>Manual</enum>
+                    </property>
+                    <property name="selectionMode">
+                        <enum>NoSelection</enum>
+                    </property>
+                    <property name="resizeMode">
+                        <enum>LastColumn</enum>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectUserForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectUserForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>selectPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectUserForm</receiver>
+        <slot>selectAll()</slot>
+    </connection>
+    <connection>
+        <sender>clearPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectUserForm</receiver>
+        <slot>clearAll()</slot>
+    </connection>
+    <connection>
+        <sender>userListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>SelectUserForm</receiver>
+        <slot>toggle(QListViewItem*)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>userListView</tabstop>
+    <tabstop>selectPushButton</tabstop>
+    <tabstop>clearPushButton</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in declaration">gui.h</include>
+    <include location="global" impldecl="in implementation">cassert</include>
+    <include location="local" impldecl="in implementation">qlistview.h</include>
+    <include location="local" impldecl="in implementation">selectuserform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<signals>
+    <signal>selection(list&lt;t_user *&gt;)</signal>
+    <signal>not_selected(list&lt;t_user*&gt;)</signal>
+</signals>
+<slots>
+    <slot>show( t_select_purpose purpose )</slot>
+    <slot>validate()</slot>
+    <slot>selectAll()</slot>
+    <slot>clearAll()</slot>
+    <slot>toggle( QListViewItem * item )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

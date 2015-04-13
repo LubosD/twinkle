@@ -1,0 +1,6 @@
+# provider;domain;sip proxy;stun server
+FreeWorld Dialup;fwd.pulver.com;;stun.fwdnet.net
+sipgate.at;sipgate.at;;sipgate.at
+sipgate.co.uk;sipgate.co.uk;;sipgate.co.uk
+sipgate.de;sipgate.de;;sipgate.de
+SIPphone!;proxy01.sipphone.com;;stun01.sipphone.com

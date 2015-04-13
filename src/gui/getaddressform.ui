@@ -1,0 +1,476 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GetAddressForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>GetAddressForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>655</width>
+            <height>474</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Select address</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>addressTabWidget</cstring>
+            </property>
+            <property name="tabShape">
+                <enum>Rounded</enum>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tabKABC</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;KAddressBook</string>
+                </attribute>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QListView">
+                        <column>
+                            <property name="text">
+                                <string>Name</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Type</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Phone</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>addressListView</cstring>
+                        </property>
+                        <property name="resizePolicy">
+                            <enum>Manual</enum>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="showSortIndicator">
+                            <bool>true</bool>
+                        </property>
+                        <property name="itemMargin">
+                            <number>1</number>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>LastColumn</enum>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</string>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout17</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>sipOnlyCheckBox</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Show only SIP addresses</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+S</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Check this option when you only want to see contacts with SIP addresses, i.e. starting with "&lt;b&gt;sip:&lt;/b&gt;".</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer16</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>201</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout69</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>reloadPushButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Reload</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+R</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Reload the list of addresses from KAddressbook.</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer59</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>491</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tabLocal</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;Local address book</string>
+                </attribute>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QListView">
+                        <column>
+                            <property name="text">
+                                <string>Name</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Phone</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Remark</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>localListView</cstring>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="showSortIndicator">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>LastColumn</enum>
+                        </property>
+                        <property name="whatsThis" stdset="0">
+                            <string>Contacts in the local address book of Twinkle.</string>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout67</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>addPushButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Add</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+A</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Add a new contact to the local address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>deletePushButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Delete</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+D</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Delete a contact from the local address book.</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>editPushButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Edit</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+E</string>
+                                </property>
+                                <property name="whatsThis" stdset="0">
+                                    <string>Edit a contact from the local address book.</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer97</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>161</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </hbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout68</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>378</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>selectAddress()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>addressListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>selectKABCAddress()</slot>
+    </connection>
+    <connection>
+        <sender>sipOnlyCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>toggleSipOnly(bool)</slot>
+    </connection>
+    <connection>
+        <sender>reloadPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>reload()</slot>
+    </connection>
+    <connection>
+        <sender>localListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>selectLocalAddress()</slot>
+    </connection>
+    <connection>
+        <sender>addPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>addLocalAddress()</slot>
+    </connection>
+    <connection>
+        <sender>deletePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>deleteLocalAddress()</slot>
+    </connection>
+    <connection>
+        <sender>editPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>GetAddressForm</receiver>
+        <slot>editLocalAddress()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>addressListView</tabstop>
+    <tabstop>sipOnlyCheckBox</tabstop>
+    <tabstop>reloadPushButton</tabstop>
+    <tabstop>addressTabWidget</tabstop>
+    <tabstop>localListView</tabstop>
+    <tabstop>addPushButton</tabstop>
+    <tabstop>deletePushButton</tabstop>
+    <tabstop>editPushButton</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in implementation">qlistview.h</include>
+    <include location="local" impldecl="in implementation">qstring.h</include>
+    <include location="local" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">protocol.h</include>
+    <include location="local" impldecl="in implementation">sys_settings.h</include>
+    <include location="local" impldecl="in implementation">util.h</include>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">sockets/url.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">address_book.h</include>
+    <include location="local" impldecl="in implementation">addresslistviewitem.h</include>
+    <include location="local" impldecl="in implementation">addresscardform.h</include>
+    <include location="local" impldecl="in implementation">getaddressform.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">void *addrBook;</variable>
+</variables>
+<signals>
+    <signal>address(const QString &amp;, const QString &amp;)</signal>
+    <signal>address(const QString &amp;)</signal>
+</signals>
+<slots>
+    <slot>reload()</slot>
+    <slot>show()</slot>
+    <slot>loadAddresses()</slot>
+    <slot>loadLocalAddresses()</slot>
+    <slot>selectAddress()</slot>
+    <slot>selectKABCAddress()</slot>
+    <slot>selectLocalAddress()</slot>
+    <slot>toggleSipOnly( bool on )</slot>
+    <slot>addLocalAddress()</slot>
+    <slot>deleteLocalAddress()</slot>
+    <slot>editLocalAddress()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

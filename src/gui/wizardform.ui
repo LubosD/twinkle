@@ -1,0 +1,367 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>WizardForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>WizardForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>596</width>
+            <height>321</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Wizard</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout15</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLineEdit" row="8" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>stunServerLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The hostname, domain name or IP address of the STUN server.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="8" column="0">
+                    <property name="name">
+                        <cstring>stunServerTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>S&amp;TUN server:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>stunServerLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>usernameLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The SIP user name given to you by your provider. It is the user part in your SIP address, &lt;b&gt;username&lt;/b&gt;@domain.com This could be a telephone number.
+&lt;br&gt;&lt;br&gt;
+This field is mandatory.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>domainTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Domain*:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>domainLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1">
+                    <property name="name">
+                        <cstring>serviceProviderComboBox</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Choose your SIP service provider. If your SIP service provider is not in the list, then select &lt;b&gt;Other&lt;/b&gt; and fill in the settings you received from your provider.&lt;br&gt;&lt;br&gt;
+If you select one of the predefined SIP service providers then you only have to fill in your name, user name, authentication name and password.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>authNameTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Authentication name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>authNameLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>dislpayTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Your name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>displayLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="4" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>authNameLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</string>
+                    </property>
+                </widget>
+                <spacer row="0" column="2">
+                    <property name="name">
+                        <cstring>spacer22</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>206</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLineEdit" row="3" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>domainLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The domain part of your SIP address, username@&lt;b&gt;domain.com&lt;/b&gt;. Instead of a real domain this could also be the hostname or IP address of your &lt;b&gt;SIP proxy&lt;/b&gt;. If you want direct IP phone to IP phone communications then you fill in the hostname or IP address of your computer.
+&lt;br&gt;&lt;br&gt;
+This field is mandatory.</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>displayLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="6" column="0" rowspan="2" colspan="1">
+                    <property name="name">
+                        <cstring>proxyTextLabel</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>SIP pro&amp;xy:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>proxyLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="7" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>proxyLineEdit</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The hostname, domain name or IP address of your SIP proxy. If this is the same value as your domain, you may leave this field empty.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>serviceProviderTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;SIP service provider:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>serviceProviderComboBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="5" column="0">
+                    <property name="name">
+                        <cstring>authPasswordTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Password:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>authPasswordLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>usernameTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;User name*:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>usernameLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="5" column="1" rowspan="2" colspan="2">
+                    <property name="name">
+                        <cstring>authPasswordLineEdit</cstring>
+                    </property>
+                    <property name="echoMode">
+                        <enum>Password</enum>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Your password for authentication.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer23</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout14</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer20</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>371</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>WizardForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>WizardForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>usernameLineEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>WizardForm</receiver>
+        <slot>updateAuthName(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>serviceProviderComboBox</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>WizardForm</receiver>
+        <slot>update(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>authNameLineEdit</sender>
+        <signal>lostFocus()</signal>
+        <receiver>WizardForm</receiver>
+        <slot>disableSuggestAuthName()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>serviceProviderComboBox</tabstop>
+    <tabstop>displayLineEdit</tabstop>
+    <tabstop>usernameLineEdit</tabstop>
+    <tabstop>domainLineEdit</tabstop>
+    <tabstop>authNameLineEdit</tabstop>
+    <tabstop>authPasswordLineEdit</tabstop>
+    <tabstop>proxyLineEdit</tabstop>
+    <tabstop>stunServerLineEdit</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">map</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">qlineedit.h</include>
+    <include location="local" impldecl="in implementation">qlabel.h</include>
+    <include location="local" impldecl="in implementation">qvalidator.h</include>
+    <include location="local" impldecl="in implementation">qcombobox.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">qfile.h</include>
+    <include location="local" impldecl="in implementation">wizardform.ui.h</include>
+</includes>
+<forwards>
+    <forward>struct t_provider;</forward>
+</forwards>
+<variables>
+    <variable access="private">bool suggestAuthName;</variable>
+    <variable access="private">std::map&lt;QString, t_provider&gt; mapProviders;</variable>
+    <variable access="private">t_user *user_config;</variable>
+</variables>
+<signals>
+    <signal>success()</signal>
+</signals>
+<slots>
+    <slot>initProviders()</slot>
+    <slot returnType="int">exec( t_user * user )</slot>
+    <slot>update( const QString &amp; item )</slot>
+    <slot>updateAuthName( const QString &amp; s )</slot>
+    <slot>disableSuggestAuthName()</slot>
+    <slot>validate()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function>show( t_user * user )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -1,0 +1,1594 @@
+/*
+    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+%{
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include "media_type.h"
+#include "parameter.h"
+#include "parse_ctrl.h"
+#include "request.h"
+#include "response.h"
+#include "util.h"
+#include "audits/memman.h"
+
+using namespace std;
+
+extern int yylex(void);
+void yyerror(const char *s);
+%}
+
+// The %debug option causes a problem with the %destructor options later on.
+// The bison compilor generates undefined symbols:
+//
+//   parser.y: In function `void yysymprint(FILE*, int, yystype)':
+//   parser.y:0: error: `null' undeclared (first use this function)
+//
+// So if you need to debug, then outcomment the %destructor first. This will
+// do no harm to your debugging, it only will cause memory leaks during
+// error handling.
+//
+// %debug
+
+%union {
+	int			yyt_int;
+	ulong			yyt_ulong;
+	float			yyt_float;
+	string			*yyt_str;
+	t_parameter		*yyt_param;
+	list<t_parameter>	*yyt_params;
+	t_media			*yyt_media;
+	t_coding		*yyt_coding;
+	t_language		*yyt_language;
+	t_alert_param		*yyt_alert_param;
+	t_info_param		*yyt_info_param;
+	list<t_contact_param>	*yyt_contacts;
+	t_contact_param		*yyt_contact;
+	t_error_param		*yyt_error_param;
+	t_identity		*yyt_from_addr;
+	t_route			*yyt_route;
+	t_server		*yyt_server;
+	t_via			*yyt_via;
+	t_warning		*yyt_warning;
+	t_digest_response	*yyt_dig_resp;
+	t_credentials		*yyt_credentials;
+	t_digest_challenge	*yyt_dig_chlg;
+	t_challenge		*yyt_challenge;
+}
+
+%token <yyt_ulong>	T_NUM
+%token <yyt_str>	T_TOKEN
+%token <yyt_str>	T_QSTRING
+%token <yyt_str>	T_COMMENT
+%token <yyt_str>	T_LINE
+%token <yyt_str>	T_URI
+%token			T_URI_WILDCARD
+%token <yyt_str>	T_DISPLAY
+%token <yyt_str>	T_LANG
+%token <yyt_str>	T_WORD
+%token <yyt_int>	T_WKDAY
+%token <yyt_int>	T_MONTH
+%token			T_GMT
+%token			T_SIP
+%token <yyt_str>	T_METHOD
+%token			T_AUTH_DIGEST
+%token <yyt_str>	T_AUTH_OTHER
+%token <yyt_str>	T_IPV6ADDR
+%token <yyt_str>	T_PARAMVAL
+
+%token			T_HDR_ACCEPT
+%token			T_HDR_ACCEPT_ENCODING
+%token			T_HDR_ACCEPT_LANGUAGE
+%token			T_HDR_ALERT_INFO
+%token			T_HDR_ALLOW
+%token			T_HDR_ALLOW_EVENTS
+%token			T_HDR_AUTHENTICATION_INFO
+%token			T_HDR_AUTHORIZATION
+%token			T_HDR_CALL_ID
+%token			T_HDR_CALL_INFO
+%token			T_HDR_CONTACT
+%token			T_HDR_CONTENT_DISP
+%token			T_HDR_CONTENT_ENCODING
+%token			T_HDR_CONTENT_LANGUAGE
+%token			T_HDR_CONTENT_LENGTH
+%token			T_HDR_CONTENT_TYPE
+%token			T_HDR_CSEQ
+%token			T_HDR_DATE
+%token			T_HDR_ERROR_INFO
+%token			T_HDR_EVENT
+%token			T_HDR_EXPIRES
+%token			T_HDR_FROM
+%token			T_HDR_IN_REPLY_TO
+%token			T_HDR_MAX_FORWARDS
+%token			T_HDR_MIN_EXPIRES
+%token			T_HDR_MIME_VERSION
+%token			T_HDR_ORGANIZATION
+%token			T_HDR_P_ASSERTED_IDENTITY
+%token			T_HDR_P_PREFERRED_IDENTITY
+%token			T_HDR_PRIORITY
+%token			T_HDR_PRIVACY
+%token			T_HDR_PROXY_AUTHENTICATE
+%token			T_HDR_PROXY_AUTHORIZATION
+%token			T_HDR_PROXY_REQUIRE
+%token			T_HDR_RACK
+%token			T_HDR_RECORD_ROUTE
+%token			T_HDR_SERVICE_ROUTE
+%token			T_HDR_REFER_SUB
+%token			T_HDR_REFER_TO
+%token			T_HDR_REFERRED_BY
+%token			T_HDR_REPLACES
+%token			T_HDR_REPLY_TO
+%token			T_HDR_REQUIRE
+%token			T_HDR_REQUEST_DISPOSITION
+%token			T_HDR_RETRY_AFTER
+%token			T_HDR_ROUTE
+%token			T_HDR_RSEQ
+%token			T_HDR_SERVER
+%token			T_HDR_SIP_ETAG
+%token			T_HDR_SIP_IF_MATCH
+%token			T_HDR_SUBJECT
+%token			T_HDR_SUBSCRIPTION_STATE
+%token			T_HDR_SUPPORTED
+%token			T_HDR_TIMESTAMP
+%token			T_HDR_TO
+%token			T_HDR_UNSUPPORTED
+%token			T_HDR_USER_AGENT
+%token			T_HDR_VIA
+%token			T_HDR_WARNING
+%token			T_HDR_WWW_AUTHENTICATE
+%token <yyt_str>	T_HDR_UNKNOWN
+
+%token			T_CRLF
+
+%token			T_ERROR
+
+// The token T_NULL is never returned by the scanner.
+%token			T_NULL
+
+%destructor { MEMMAN_DELETE($$); delete $$; } 	T_TOKEN;
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_QSTRING
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_COMMENT
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_LINE
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_URI
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_DISPLAY
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_LANG
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_WORD
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_METHOD
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_AUTH_OTHER
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_IPV6ADDR
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_PARAMVAL
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_HDR_UNKNOWN
+
+%type <yyt_alert_param>	alert_param
+%type <yyt_params>	auth_params
+%type <yyt_str>		call_id
+%type <yyt_challenge>	challenge
+%type <yyt_str>		comment
+%type <yyt_contact>	contact_addr
+%type <yyt_contact>	contact_param
+%type <yyt_contacts>	contacts
+%type <yyt_coding>	content_coding
+%type <yyt_credentials>	credentials
+%type <yyt_float>	delay
+%type <yyt_dig_chlg>	digest_challenge
+%type <yyt_dig_resp>	digest_response
+%type <yyt_str>		display_name
+%type <yyt_error_param>	error_param
+%type <yyt_from_addr>	from_addr
+%type <yyt_str>		hdr_unknown
+%type <yyt_via>		host
+%type <yyt_str>		ipv6reference
+%type <yyt_info_param>	info_param
+%type <yyt_language>	language
+%type <yyt_media>	media_range
+%type <yyt_param>	parameter
+%type <yyt_str>		parameter_val
+%type <yyt_params>	parameters
+%type <yyt_float>	q_factor
+%type <yyt_route>	rec_route
+%type <yyt_via>		sent_protocol
+%type <yyt_server>	server
+%type <yyt_str>		sip_version
+%type <yyt_float>	timestamp
+%type <yyt_via>		via_parm
+%type <yyt_warning>	warning
+
+%destructor { MEMMAN_DELETE($$); delete $$; }	alert_param
+%destructor { MEMMAN_DELETE($$); delete $$; }	auth_params
+%destructor { MEMMAN_DELETE($$); delete $$; }	call_id
+%destructor { MEMMAN_DELETE($$); delete $$; }	challenge
+%destructor { MEMMAN_DELETE($$); delete $$; }	comment
+%destructor { MEMMAN_DELETE($$); delete $$; }	contact_addr
+%destructor { MEMMAN_DELETE($$); delete $$; }	contact_param
+%destructor { MEMMAN_DELETE($$); delete $$; }	contacts
+%destructor { MEMMAN_DELETE($$); delete $$; }	content_coding
+%destructor { MEMMAN_DELETE($$); delete $$; }	credentials
+%destructor { MEMMAN_DELETE($$); delete $$; }	digest_challenge
+%destructor { MEMMAN_DELETE($$); delete $$; }	digest_response
+%destructor { MEMMAN_DELETE($$); delete $$; }	display_name
+%destructor { MEMMAN_DELETE($$); delete $$; }	error_param
+%destructor { MEMMAN_DELETE($$); delete $$; }	from_addr
+%destructor { MEMMAN_DELETE($$); delete $$; }	hdr_unknown
+%destructor { MEMMAN_DELETE($$); delete $$; }	host
+%destructor { MEMMAN_DELETE($$); delete $$; }	ipv6reference
+%destructor { MEMMAN_DELETE($$); delete $$; }	info_param
+%destructor { MEMMAN_DELETE($$); delete $$; }	language
+%destructor { MEMMAN_DELETE($$); delete $$; }	media_range
+%destructor { MEMMAN_DELETE($$); delete $$; }	parameter
+%destructor { MEMMAN_DELETE($$); delete $$; }	parameter_val
+%destructor { MEMMAN_DELETE($$); delete $$; }	parameters
+%destructor { MEMMAN_DELETE($$); delete $$; }	rec_route
+%destructor { MEMMAN_DELETE($$); delete $$; }	sent_protocol
+%destructor { MEMMAN_DELETE($$); delete $$; }	server
+%destructor { MEMMAN_DELETE($$); delete $$; }	sip_version
+%destructor { MEMMAN_DELETE($$); delete $$; }	via_parm
+%destructor { MEMMAN_DELETE($$); delete $$; }	warning
+
+%%
+sip_message:	{ CTXT_NEW; } sip_message2
+;
+
+sip_message2:	  request
+		| response
+		| error T_NULL {
+			/* KLUDGE to work around a memory leak in bison.
+			 * T_NULL does never match, so the parser never
+			 * gets here. The error keyword causes bison
+			 * to eat all input and destroy all tokens returned
+			 * by the parser.
+			 * Without this workaround the following input causes
+			 * the parser to leak:
+			 *
+			 *   INVITE INVITE ....
+			 *
+			 * In request_line a T_METHOD is returned as look ahead
+			 * token when bison tries to match sip_version.
+			 * This does not match, but the look ahead token is
+			 * never destructed by Bison.
+			 */
+			YYABORT;
+		}
+;
+
+request:	  request_line headers T_CRLF {
+		  	/* Parsing stops here. Remaining text is
+			 * not parsed.
+			 */
+		  	YYACCEPT; }
+;
+
+// KLUDGE: The use of CTXT_NEW is a kludge, to get the T_SIP symbol
+//         for the SIP version
+request_line:	  T_METHOD { CTXT_URI; } T_URI { CTXT_NEW; }
+		  sip_version T_CRLF {
+		  	MSG = new t_request();
+			MEMMAN_NEW(MSG);
+			((t_request *)MSG)->set_method(*$1);
+			((t_request *)MSG)->uri.set_url(*$3);
+			MSG->version = *$5;
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($5); delete $5;
+
+			if (!((t_request *)MSG)->uri.is_valid()) {
+				MEMMAN_DELETE(MSG); delete MSG;
+				MSG = NULL;
+				YYABORT;
+			} }
+;
+
+sip_version:	  T_SIP { CTXT_INITIAL; } '/' T_TOKEN {
+			$$ = $4; }
+;
+
+response:	  status_line headers T_CRLF {
+		  	/* Parsing stops here. Remaining text is
+			 * not parsed.
+			 */
+		  	YYACCEPT; }
+;
+
+status_line:	  sip_version { CTXT_NUM; } T_NUM { CTXT_LINE; } T_LINE
+		  { CTXT_INITIAL; } T_CRLF {
+			MSG = new t_response();
+			MEMMAN_NEW(MSG);
+		  	MSG->version = *$1;
+			((t_response *)MSG)->code = $3;
+			((t_response *)MSG)->reason = trim(*$5);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+headers:	  /* empty */
+		| headers header
+;
+
+header:		  hd_accept hdr_accept T_CRLF
+		| hd_accept_encoding hdr_accept_encoding T_CRLF
+		| hd_accept_language hdr_accept_language T_CRLF
+		| hd_alert_info hdr_alert_info T_CRLF
+		| hd_allow hdr_allow T_CRLF
+		| hd_allow_events hdr_allow_events T_CRLF
+		| hd_authentication_info hdr_authentication_info T_CRLF
+		| hd_authorization hdr_authorization T_CRLF
+		| hd_call_id hdr_call_id T_CRLF
+		| hd_call_info hdr_call_info T_CRLF
+		| hd_contact hdr_contact T_CRLF
+		| hd_content_disp hdr_content_disp T_CRLF
+		| hd_content_encoding hdr_content_encoding T_CRLF
+		| hd_content_language hdr_content_language T_CRLF
+		| hd_content_length hdr_content_length T_CRLF
+		| hd_content_type hdr_content_type T_CRLF
+		| hd_cseq hdr_cseq T_CRLF
+		| hd_date hdr_date T_CRLF
+		| hd_event hdr_event T_CRLF
+		| hd_error_info hdr_error_info T_CRLF
+		| hd_expires hdr_expires T_CRLF
+		| hd_from hdr_from T_CRLF
+		| hd_in_reply_to hdr_in_reply_to T_CRLF
+		| hd_max_forwards hdr_max_forwards T_CRLF
+		| hd_min_expires hdr_min_expires T_CRLF
+		| hd_mime_version hdr_mime_version T_CRLF
+		| hd_organization hdr_organization T_CRLF
+		| hd_p_asserted_identity hdr_p_asserted_identity T_CRLF
+		| hd_p_preferred_identity hdr_p_preferred_identity T_CRLF
+		| hd_priority hdr_priority T_CRLF
+		| hd_privacy hdr_privacy T_CRLF
+		| hd_proxy_authenticate hdr_proxy_authenticate T_CRLF
+		| hd_proxy_authorization hdr_proxy_authorization T_CRLF
+		| hd_proxy_require hdr_proxy_require T_CRLF
+		| hd_rack hdr_rack T_CRLF
+		| hd_record_route hdr_record_route T_CRLF
+		| hd_refer_sub hdr_refer_sub T_CRLF
+		| hd_refer_to hdr_refer_to T_CRLF
+		| hd_referred_by hdr_referred_by T_CRLF
+		| hd_replaces hdr_replaces T_CRLF
+		| hd_reply_to hdr_reply_to T_CRLF
+		| hd_require hdr_require T_CRLF
+		| hd_request_disposition hdr_request_disposition T_CRLF
+		| hd_retry_after hdr_retry_after T_CRLF
+		| hd_route hdr_route T_CRLF
+		| hd_rseq hdr_rseq T_CRLF
+		| hd_server hdr_server T_CRLF
+		| hd_service_route hdr_service_route T_CRLF
+		| hd_sip_etag hdr_sip_etag T_CRLF
+		| hd_sip_if_match hdr_sip_if_match T_CRLF
+		| hd_subject hdr_subject T_CRLF
+		| hd_subscription_state hdr_subscription_state T_CRLF
+		| hd_supported hdr_supported T_CRLF
+		| hd_timestamp hdr_timestamp T_CRLF
+		| hd_to hdr_to T_CRLF
+		| hd_unsupported hdr_unsupported T_CRLF
+		| hd_user_agent hdr_user_agent T_CRLF
+		| hd_via hdr_via T_CRLF
+		| hd_warning hdr_warning T_CRLF
+		| hd_www_authenticate hdr_www_authenticate T_CRLF
+		| T_HDR_UNKNOWN ':' hdr_unknown T_CRLF {
+			MSG->add_unknown_header(*$1, trim(*$3));
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3; }
+		| hd_accept error T_CRLF
+			{ PARSE_ERROR("Accept"); }
+		| hd_accept_encoding error T_CRLF
+			{ PARSE_ERROR("Accept-Encoding"); }
+		| hd_accept_language error T_CRLF
+			{ PARSE_ERROR("Accept-Language"); }
+		| hd_alert_info error T_CRLF
+			{ PARSE_ERROR("Alert-Info"); }
+		| hd_allow error T_CRLF
+			{ PARSE_ERROR("Allow"); }
+		| hd_allow_events error T_CRLF
+			{ PARSE_ERROR("Allow-Events"); }
+		| hd_authentication_info error T_CRLF
+			{ PARSE_ERROR("Authentication-Info"); }
+		| hd_authorization error T_CRLF
+			{ PARSE_ERROR("Authorization"); }
+		| hd_call_id error T_CRLF
+			{ PARSE_ERROR("Call-ID"); }
+		| hd_call_info error T_CRLF
+			{ PARSE_ERROR("Call-Info"); }
+		| hd_contact error T_CRLF
+			{ PARSE_ERROR("Contact"); }
+		| hd_content_disp error T_CRLF
+			{ PARSE_ERROR("Content-Disposition"); }
+		| hd_content_encoding error T_CRLF
+			{ PARSE_ERROR("Content-Encoding"); }
+		| hd_content_language error T_CRLF
+			{ PARSE_ERROR("Content-Language"); }
+		| hd_content_length 	error T_CRLF
+			{ PARSE_ERROR("Content-Length"); }
+		| hd_content_type error T_CRLF
+			{ PARSE_ERROR("Content-Type"); }
+		| hd_cseq error T_CRLF
+			{ PARSE_ERROR("CSeq"); }
+		| hd_date error T_CRLF
+			{ PARSE_ERROR("Date"); }
+		| hd_error_info error T_CRLF
+			{ PARSE_ERROR("Error-Info"); }
+		| hd_event error T_CRLF
+			{ PARSE_ERROR("Event"); }
+		| hd_expires error T_CRLF
+			{ PARSE_ERROR("Expires"); }
+		| hd_from error T_CRLF
+			{ PARSE_ERROR("From"); }
+		| hd_in_reply_to error T_CRLF
+			{ PARSE_ERROR("In-Reply-To"); }
+		| hd_max_forwards error T_CRLF
+			{ PARSE_ERROR("Max-Forwards"); }
+		| hd_min_expires error T_CRLF
+			{ PARSE_ERROR("Min-Expires"); }
+		| hd_mime_version error T_CRLF
+			{ PARSE_ERROR("MIME-Version"); }
+		| hd_organization error T_CRLF
+			{ PARSE_ERROR("Organization"); }
+		| hd_p_asserted_identity error T_CRLF
+			{ PARSE_ERROR("P-Asserted-Identity"); }
+		| hd_p_preferred_identity error T_CRLF
+			{ PARSE_ERROR("P-Preferred-Identity"); }
+		| hd_priority error T_CRLF
+			{ PARSE_ERROR("Priority"); }
+		| hd_privacy error T_CRLF
+			{ PARSE_ERROR("Privacy"); }
+		| hd_proxy_authenticate error T_CRLF
+			{ PARSE_ERROR("Proxy-Authenticate"); }
+		| hd_proxy_authorization error T_CRLF
+			{ PARSE_ERROR("Proxy-Authorization"); }
+		| hd_proxy_require error T_CRLF
+			{ PARSE_ERROR("Proxy-Require"); }
+		| hd_rack error T_CRLF
+			{ PARSE_ERROR("RAck"); }
+		| hd_record_route error T_CRLF
+			{ PARSE_ERROR("Record-Route"); }
+		| hd_refer_sub error T_CRLF
+			{ PARSE_ERROR("Refer-Sub"); }
+		| hd_refer_to error T_CRLF
+			{ PARSE_ERROR("Refer-To"); }
+		| hd_referred_by error T_CRLF
+			{ PARSE_ERROR("Referred-By"); }
+		| hd_replaces error T_CRLF
+			{ PARSE_ERROR("Replaces"); }
+		| hd_reply_to error T_CRLF
+			{ PARSE_ERROR("Reply-To"); }
+		| hd_require error T_CRLF
+			{ PARSE_ERROR("Require"); }
+		| hd_request_disposition error T_CRLF
+			{ PARSE_ERROR("Request-Disposition"); }
+		| hd_retry_after error T_CRLF
+			{ PARSE_ERROR("Retry-After"); }
+		| hd_route error T_CRLF
+			{ PARSE_ERROR("Route"); }
+		| hd_rseq error T_CRLF
+			{ PARSE_ERROR("RSeq"); }
+		| hd_server error T_CRLF
+			{ PARSE_ERROR("Server"); }
+		| hd_service_route error T_CRLF
+			{ PARSE_ERROR("Service-Route"); }
+		| hd_sip_etag error T_CRLF
+			{ PARSE_ERROR("SIP-ETag"); }
+		| hd_sip_if_match error T_CRLF
+			{ PARSE_ERROR("SIP-If-Match"); }
+		| hd_subject error T_CRLF
+			{ PARSE_ERROR("Subject"); }
+		| hd_subscription_state error T_CRLF
+			{ PARSE_ERROR("Subscription-State"); }
+		| hd_supported error T_CRLF
+			{ PARSE_ERROR("Supported"); }
+		| hd_timestamp error T_CRLF
+			{ PARSE_ERROR("Timestamp"); }
+		| hd_to error T_CRLF
+			{ PARSE_ERROR("To"); }
+		| hd_unsupported error T_CRLF
+			{ PARSE_ERROR("Unsupported"); }
+		| hd_user_agent error T_CRLF
+			{ PARSE_ERROR("User-Agent"); }
+		| hd_via error T_CRLF
+			{ PARSE_ERROR("Via"); }
+		| hd_warning error T_CRLF
+			{ PARSE_ERROR("Warning"); }
+		| hd_www_authenticate error T_CRLF
+			{ PARSE_ERROR("WWW-Authenticate"); }
+;
+
+
+// KLUDGE
+// These rules are needed to get the error recovery working.
+// Many header rules start with a context change. As Bison uses
+// one token look ahead to determine a matching rule, the context
+// change must be done before Bison tries to match the error rule.
+// Changing the context header and once again at the header rule
+// does no harm as the context change operator is idem-potent.
+
+hd_accept:		T_HDR_ACCEPT ':'
+;
+hd_accept_encoding:	T_HDR_ACCEPT_ENCODING ':'
+;
+hd_accept_language:	T_HDR_ACCEPT_LANGUAGE ':' { CTXT_LANG; }
+;
+hd_alert_info:		T_HDR_ALERT_INFO ':'
+;
+hd_allow:		T_HDR_ALLOW ':'
+;
+hd_allow_events:	T_HDR_ALLOW_EVENTS ':'
+;
+hd_authentication_info:	T_HDR_AUTHENTICATION_INFO ':'
+;
+hd_authorization:	T_HDR_AUTHORIZATION ':' { CTXT_AUTH_SCHEME; }
+;
+hd_call_id:		T_HDR_CALL_ID ':' { CTXT_WORD; }
+;
+hd_call_info:		T_HDR_CALL_INFO ':'
+;
+hd_contact:		T_HDR_CONTACT ':' { CTXT_URI_SPECIAL; }
+;
+hd_content_disp:	T_HDR_CONTENT_DISP ':'
+;
+hd_content_encoding:	T_HDR_CONTENT_ENCODING ':'
+;
+hd_content_language:	T_HDR_CONTENT_LANGUAGE ':' { CTXT_LANG; }
+;
+hd_content_length:	T_HDR_CONTENT_LENGTH ':' { CTXT_NUM; }
+;
+hd_content_type:	T_HDR_CONTENT_TYPE ':'
+;
+hd_cseq:		T_HDR_CSEQ ':' { CTXT_NUM; }
+;
+hd_date:		T_HDR_DATE ':' { CTXT_DATE;}
+;
+hd_error_info:		T_HDR_ERROR_INFO ':'
+;
+hd_event:		T_HDR_EVENT ':'
+;
+hd_expires:		T_HDR_EXPIRES ':' { CTXT_NUM; }
+;
+hd_from:		T_HDR_FROM ':' { CTXT_URI_SPECIAL; }
+;
+hd_in_reply_to:		T_HDR_IN_REPLY_TO ':' { CTXT_WORD; }
+;
+hd_max_forwards:	T_HDR_MAX_FORWARDS ':' { CTXT_NUM; }
+;
+hd_min_expires:		T_HDR_MIN_EXPIRES ':' { CTXT_NUM; }
+;
+hd_mime_version:	T_HDR_MIME_VERSION ':'
+;
+hd_organization:	T_HDR_ORGANIZATION ':' { CTXT_LINE; }
+;
+hd_p_asserted_identity:	T_HDR_P_ASSERTED_IDENTITY ':' { CTXT_URI_SPECIAL; }
+;
+hd_p_preferred_identity: T_HDR_P_PREFERRED_IDENTITY ':' { CTXT_URI_SPECIAL; }
+;
+hd_priority:		T_HDR_PRIORITY ':'
+;
+hd_privacy:		T_HDR_PRIVACY ':'
+;
+hd_proxy_authenticate:	T_HDR_PROXY_AUTHENTICATE ':' { CTXT_AUTH_SCHEME; }
+;
+hd_proxy_authorization:	T_HDR_PROXY_AUTHORIZATION ':' { CTXT_AUTH_SCHEME; }
+;
+hd_proxy_require:	T_HDR_PROXY_REQUIRE ':'
+;
+hd_rack:		T_HDR_RACK ':' { CTXT_NUM; }
+;
+hd_record_route:	T_HDR_RECORD_ROUTE ':' { CTXT_URI; }
+;
+hd_refer_sub:		T_HDR_REFER_SUB ':'
+;
+hd_refer_to:		T_HDR_REFER_TO ':' { CTXT_URI_SPECIAL; }
+;
+hd_referred_by:		T_HDR_REFERRED_BY ':' { CTXT_URI_SPECIAL; }
+;
+hd_replaces:		T_HDR_REPLACES ':' { CTXT_WORD; }
+;
+hd_reply_to:		T_HDR_REPLY_TO ':' { CTXT_URI_SPECIAL; }
+;
+hd_require:		T_HDR_REQUIRE ':'
+;
+hd_request_disposition:	T_HDR_REQUEST_DISPOSITION ':'
+;
+hd_retry_after:		T_HDR_RETRY_AFTER ':' { CTXT_NUM; }
+;
+hd_route:		T_HDR_ROUTE ':' { CTXT_URI; }
+;
+hd_rseq:		T_HDR_RSEQ ':' { CTXT_NUM; }
+;
+hd_server:		T_HDR_SERVER ':'
+;
+hd_service_route:	T_HDR_SERVICE_ROUTE ':' { CTXT_URI; }
+;
+hd_sip_etag:		T_HDR_SIP_ETAG ':'
+;
+hd_sip_if_match:	T_HDR_SIP_IF_MATCH ':'
+;
+hd_subject:		T_HDR_SUBJECT ':' { CTXT_LINE; }
+;
+hd_subscription_state:	T_HDR_SUBSCRIPTION_STATE ':'
+;
+hd_supported:		T_HDR_SUPPORTED ':'
+;
+hd_timestamp:		T_HDR_TIMESTAMP ':' { CTXT_NUM; }
+;
+hd_to:			T_HDR_TO ':' { CTXT_URI_SPECIAL; }
+;
+hd_unsupported:		T_HDR_UNSUPPORTED ':'
+;
+hd_user_agent:		T_HDR_USER_AGENT ':'
+;
+hd_via:			T_HDR_VIA ':'
+;
+hd_warning:		T_HDR_WARNING ':' { CTXT_NUM; }
+;
+hd_www_authenticate:	T_HDR_WWW_AUTHENTICATE ':' { CTXT_AUTH_SCHEME; }
+;
+
+hdr_accept:	  /* empty */
+		| media_range parameters {
+			$1->add_params(*$2);
+			MSG->hdr_accept.add_media(*$1);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+		| hdr_accept ',' media_range parameters {
+			$3->add_params(*$4);
+			MSG->hdr_accept.add_media(*$3);
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+media_range:	  T_TOKEN '/' T_TOKEN { $$ = new t_media(tolower(*$1), tolower(*$3));
+					MEMMAN_NEW($$);
+					MEMMAN_DELETE($1); delete $1;
+					MEMMAN_DELETE($3); delete $3; }
+;
+
+parameters:	  /* empty */	{ $$ = new list<t_parameter>; MEMMAN_NEW($$); }
+		| parameters ';' parameter {
+			$1->push_back(*$3);
+			$$ = $1;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+parameter:	  T_TOKEN {
+			$$ = new t_parameter(tolower(*$1));
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; }
+		| T_TOKEN '=' { CTXT_PARAMVAL; } parameter_val { CTXT_INITIAL; } {
+			$$ = new t_parameter(tolower(*$1), *$4);
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+parameter_val:	  T_PARAMVAL {
+			$$ = $1; }
+		| T_QSTRING {
+			$$ = $1; }
+;
+
+hdr_accept_encoding: content_coding {
+			MSG->hdr_accept_encoding.add_coding(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		   | hdr_accept_encoding ',' content_coding {
+			MSG->hdr_accept_encoding.add_coding(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+content_coding:	  T_TOKEN {
+			$$ = new t_coding(tolower(*$1));
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; }
+		| T_TOKEN q_factor {
+			$$ = new t_coding(tolower(*$1));
+			MEMMAN_NEW($$);
+			$$->q = $2;
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+q_factor:	  ';' parameter {
+			if ($2->name != "q") YYERROR;
+			$$ = atof($2->value.c_str());
+			MEMMAN_DELETE($2); delete $2;
+			}
+;
+
+hdr_accept_language: { CTXT_LANG; } language {
+			MSG->hdr_accept_language.add_language(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+		   | hdr_accept_language ',' { CTXT_LANG; } language {
+			MSG->hdr_accept_language.add_language(*$4);
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+language:	  T_LANG {
+			CTXT_INITIAL;
+		  	$$ = new t_language(tolower(*$1));
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; }
+		| T_LANG { CTXT_INITIAL; } q_factor {
+			$$ = new t_language(tolower(*$1));
+			MEMMAN_NEW($$);
+			$$->q = $3;
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+hdr_alert_info:	  alert_param {
+			MSG->hdr_alert_info.add_param(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_alert_info ',' alert_param {
+			MSG->hdr_alert_info.add_param(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+alert_param:	  '<' { CTXT_URI; } T_URI { CTXT_INITIAL; } '>' parameters {
+		  	$$ = new t_alert_param();
+			MEMMAN_NEW($$);
+			$$->uri.set_url(*$3);
+			$$->parameter_list = *$6;
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			 
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($6); delete $6; }
+;
+
+hdr_allow:	  T_TOKEN {
+			MSG->hdr_allow.add_method(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_allow ',' T_TOKEN {
+			MSG->hdr_allow.add_method(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_call_id:	  { CTXT_WORD; } call_id { CTXT_INITIAL; } {
+			MSG->hdr_call_id.set_call_id(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+call_id:	  T_WORD { $$ = $1; }
+		| T_WORD '@' T_WORD {
+			$$ = new string(*$1 + '@' + *$3);
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_call_info:	  info_param {
+			MSG->hdr_call_info.add_param(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_call_info ',' info_param {
+			MSG->hdr_call_info.add_param(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+info_param:	  '<' { CTXT_URI; } T_URI { CTXT_INITIAL; } '>' parameters {
+		  	$$ = new t_info_param();
+			MEMMAN_NEW($$);
+			$$->uri.set_url(*$3);
+			$$->parameter_list = *$6;
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($6); delete $6; }
+;
+
+hdr_contact:	  { CTXT_URI_SPECIAL; } T_URI_WILDCARD { CTXT_INITIAL; } {
+			MSG->hdr_contact.set_any(); }
+		| contacts {
+			MSG->hdr_contact.add_contacts(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+contacts:	  contact_param {
+			$$ = new list<t_contact_param>;
+			MEMMAN_NEW($$);
+			$$->push_back(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| contacts ',' contact_param {
+			$1->push_back(*$3);
+			$$ = $1;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+contact_param:	  contact_addr parameters {
+			$$ = $1;
+			list<t_parameter>::const_iterator i;
+			for (i = $2->begin(); i != $2->end(); i++) {
+				if (i->name == "q") {
+					$$->set_qvalue(atof(i->value.c_str()));
+				} else if (i->name == "expires") {
+					$$->set_expires(strtoul(
+						i->value.c_str(), NULL, 10));
+				} else {
+					$$->add_extension(*i);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+contact_addr:	  { CTXT_URI_SPECIAL; } T_URI { CTXT_INITIAL; } {
+			$$ = new t_contact_param();
+			MEMMAN_NEW($$);
+			$$->uri.set_url(*$2);
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			
+			MEMMAN_DELETE($2); delete $2; }
+		| { CTXT_URI_SPECIAL; } display_name '<' { CTXT_URI; } T_URI { CTXT_INITIAL; } '>' {
+			$$ = new t_contact_param();
+			MEMMAN_NEW($$);
+			$$->display = *$2;
+			$$->uri.set_url(*$5);
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			 
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+display_name:	  /* empty */ { $$ = new string(); MEMMAN_NEW($$); }
+		| T_DISPLAY {
+			$$ = new string(rtrim(*$1));
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; }
+		| T_QSTRING { $$ = $1; }
+;
+
+hdr_content_disp: T_TOKEN parameters {
+			MSG->hdr_content_disp.set_type(tolower(*$1));
+			
+			list<t_parameter>::const_iterator i;
+			for (i = $2->begin(); i != $2->end(); i++) {
+				if (i->name == "filename") {
+					MSG->hdr_content_disp.set_filename(i->value);
+				} else {
+					MSG->hdr_content_disp.add_param(*i);
+				}
+			}
+
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_content_encoding: content_coding {
+			MSG->hdr_content_encoding.add_coding(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		    | hdr_content_encoding ',' content_coding {
+			MSG->hdr_content_encoding.add_coding(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_content_language: { CTXT_LANG; } language {
+			MSG->hdr_content_language.add_language(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+		    | hdr_content_language ',' { CTXT_LANG; } language {
+			MSG->hdr_content_language.add_language(*$4);
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_content_length: { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			MSG->hdr_content_length.set_length($2); }
+;
+
+hdr_content_type:  media_range parameters {
+			$1->add_params(*$2);
+			MSG->hdr_content_type.set_media(*$1);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_cseq: 	{ CTXT_NUM; } T_NUM { CTXT_INITIAL; } T_TOKEN {
+			MSG->hdr_cseq.set_seqnr($2);
+			MSG->hdr_cseq.set_method(*$4);
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_date:	{ CTXT_DATE;}
+		  T_WKDAY ',' T_NUM T_MONTH T_NUM
+		  T_NUM ':' T_NUM ':' T_NUM T_GMT
+		{ CTXT_INITIAL; } {
+			struct tm t;
+			t.tm_mday = $4;
+			t.tm_mon = $5;
+			t.tm_year = $6 - 1900;
+			t.tm_hour = $7;
+			t.tm_min = $9;
+			t.tm_sec = $11;
+			MSG->hdr_date.set_date_gm(&t); }
+;
+
+hdr_error_info:	  error_param {
+			MSG->hdr_error_info.add_param(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_error_info ',' error_param {
+			MSG->hdr_error_info.add_param(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+error_param:	  '<' { CTXT_URI; } T_URI { CTXT_INITIAL; } '>' parameters {
+		  	$$ = new t_error_param();
+			MEMMAN_NEW($$);
+			$$->uri.set_url(*$3);
+			$$->parameter_list = *$6;
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($6); delete $6; }
+;
+
+hdr_expires:	{ CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			MSG->hdr_expires.set_time($2); }
+;
+
+hdr_from:	  { CTXT_URI_SPECIAL; } from_addr parameters {
+			MSG->hdr_from.set_display($2->display);
+			MSG->hdr_from.set_uri($2->uri);
+			list<t_parameter>::const_iterator i;
+			for (i = $3->begin(); i != $3->end(); i++) {
+				if (i->name == "tag") {
+					MSG->hdr_from.set_tag(i->value);
+				} else {
+					MSG->hdr_from.add_param(*i);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+from_addr:	  T_URI { CTXT_INITIAL; } {
+			$$ = new t_identity();
+			MEMMAN_NEW($$);
+			$$->set_uri(*$1);
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			
+			MEMMAN_DELETE($1); delete $1; }
+		| display_name '<' { CTXT_URI; } T_URI { CTXT_INITIAL; } '>' {
+			$$ = new t_identity();
+			MEMMAN_NEW($$);
+			$$->set_display(*$1);
+			$$->set_uri(*$4);
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_in_reply_to:  { CTXT_WORD; } call_id { CTXT_INITIAL; } {
+			MSG->hdr_in_reply_to.add_call_id(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+		| hdr_in_reply_to ',' { CTXT_WORD; } call_id { CTXT_INITIAL; } {
+			MSG->hdr_in_reply_to.add_call_id(*$4);
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_max_forwards: { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			MSG->hdr_max_forwards.set_max_forwards($2); }
+;
+
+hdr_min_expires:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			MSG->hdr_min_expires.set_time($2); }
+;
+
+hdr_mime_version: T_TOKEN {
+			MSG->hdr_mime_version.set_version(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+hdr_organization: { CTXT_LINE; } T_LINE { CTXT_INITIAL; } {
+			MSG->hdr_organization.set_name(trim(*$2));
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_p_asserted_identity:  { CTXT_URI_SPECIAL; } from_addr {
+				MSG->hdr_p_asserted_identity.add_identity(*$2);
+				MEMMAN_DELETE($2); delete $2; }	
+			| hdr_p_asserted_identity ',' from_addr {
+				MSG->hdr_p_asserted_identity.add_identity(*$3);
+				MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_p_preferred_identity: { CTXT_URI_SPECIAL; } from_addr {
+				MSG->hdr_p_preferred_identity.add_identity(*$2);
+				MEMMAN_DELETE($2); delete $2; }	
+			| hdr_p_preferred_identity ',' from_addr {
+				MSG->hdr_p_preferred_identity.add_identity(*$3);
+				MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_priority:	  T_TOKEN {
+			MSG->hdr_priority.set_priority(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+hdr_privacy:	  T_TOKEN {
+			MSG->hdr_privacy.add_privacy(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_privacy ';' T_TOKEN {
+			MSG->hdr_privacy.add_privacy(tolower(*$3));
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_proxy_require:   T_TOKEN {
+			MSG->hdr_proxy_require.add_feature(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+		   | hdr_proxy_require ',' T_TOKEN {
+			MSG->hdr_proxy_require.add_feature(tolower(*$3));
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_record_route:   rec_route {
+			MSG->hdr_record_route.add_route(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		  | hdr_record_route ',' rec_route {
+		  	MSG->hdr_record_route.add_route(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+rec_route:	{ CTXT_URI; } display_name '<' T_URI { CTXT_INITIAL; } '>'
+		parameters {
+			$$ = new t_route;
+			MEMMAN_NEW($$);
+			$$->display = *$2;
+			$$->uri.set_url(*$4);
+			$$->set_params(*$7);
+
+			if (!$$->uri.is_valid()) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			 
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($4); delete $4;
+			MEMMAN_DELETE($7); delete $7; }
+;
+
+hdr_service_route:  rec_route {
+			MSG->hdr_service_route.add_route(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		  | hdr_service_route ',' rec_route {
+		  	MSG->hdr_service_route.add_route(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_replaces:	  { CTXT_WORD; } call_id { CTXT_INITIAL; } parameters {
+			MSG->hdr_replaces.set_call_id(*$2);
+			
+			list<t_parameter>::const_iterator i;
+			for (i = $4->begin(); i != $4->end(); i++) {
+				if (i->name == "to-tag") {
+					MSG->hdr_replaces.set_to_tag(i->value);
+				} else if (i->name == "from-tag") {
+					MSG->hdr_replaces.set_from_tag(i->value);
+				} else if (i->name == "early-only") {
+					MSG->hdr_replaces.set_early_only(true);
+				} else {
+					MSG->hdr_replaces.add_param(*i);
+				}
+			}
+			
+			if (!MSG->hdr_replaces.is_valid()) YYERROR;
+			
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_reply_to:  { CTXT_URI_SPECIAL; } from_addr parameters {
+			MSG->hdr_reply_to.set_display($2->display);
+			MSG->hdr_reply_to.set_uri($2->uri);
+			MSG->hdr_reply_to.set_params(*$3);
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_require:	  T_TOKEN {
+			MSG->hdr_require.add_feature(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_proxy_require ',' T_TOKEN {
+			MSG->hdr_require.add_feature(tolower(*$3));
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_retry_after:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } comment parameters {
+			MSG->hdr_retry_after.set_time($2);
+			MSG->hdr_retry_after.set_comment(*$4);
+			list<t_parameter>::const_iterator i;
+			for (i = $5->begin(); i != $5->end(); i++) {
+				if (i->name == "duration") {
+					int d = strtoul(i->value.c_str(), NULL, 10);
+					MSG->hdr_retry_after.set_duration(d);
+				} else {
+					MSG->hdr_retry_after.add_param(*i);
+				}
+			}
+			MEMMAN_DELETE($4); delete $4;
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+comment:	  /* empty */ { $$ = new string(); MEMMAN_NEW($$); }
+		| '(' { CTXT_COMMENT; } T_COMMENT { CTXT_INITIAL; } ')' {
+			$$ = $3; }
+;
+
+hdr_route:	  rec_route {
+			MSG->hdr_route.add_route(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_route ',' rec_route {
+		  	MSG->hdr_route.add_route(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_server:	  server {
+			MSG->hdr_server.add_server(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_server server {
+			MSG->hdr_server.add_server(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+server:		  comment {
+			$$ = new t_server();
+			MEMMAN_NEW($$);
+			$$->comment = *$1;
+			MEMMAN_DELETE($1); delete $1; }
+		| T_TOKEN comment {
+			$$ = new t_server();
+			MEMMAN_NEW($$);
+			$$->product = *$1;
+			$$->comment = *$2;
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+		| T_TOKEN '/' T_TOKEN comment {
+			$$ = new t_server();
+			MEMMAN_NEW($$);
+			$$->product = *$1;
+			$$->version = *$3;
+			$$->comment = *$4;
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_subject:	{ CTXT_LINE; } T_LINE { CTXT_INITIAL; } {
+			MSG->hdr_subject.set_subject(trim(*$2));
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_supported:	  /* empty */ {
+			MSG->hdr_supported.set_empty(); }
+		| T_TOKEN {
+			MSG->hdr_supported.add_feature(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_supported ',' T_TOKEN {
+			MSG->hdr_supported.add_feature(tolower(*$3));
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_timestamp:	  { CTXT_NUM; } hdr_timestamp1 { CTXT_INITIAL; }
+;
+
+hdr_timestamp1:	  timestamp {
+			MSG->hdr_timestamp.set_timestamp($1); }
+		| timestamp delay {
+			MSG->hdr_timestamp.set_timestamp($1);
+			MSG->hdr_timestamp.set_delay($2); }
+;
+
+timestamp:	  T_NUM { $$ = $1; }
+		| T_NUM '.' T_NUM {
+			string s = int2str($1) + '.' + int2str($3);
+			$$ = atof(s.c_str()); }
+;
+
+delay:	  	  T_NUM { $$ = $1; }
+		| T_NUM '.' T_NUM {
+			string s = int2str($1) + '.' + int2str($3);
+			$$ = atof(s.c_str()); }
+;
+
+hdr_to:		  { CTXT_URI_SPECIAL; } from_addr parameters {
+			MSG->hdr_to.set_display($2->display);
+			MSG->hdr_to.set_uri($2->uri);
+			list<t_parameter>::const_iterator i;
+			for (i = $3->begin(); i != $3->end(); i++) {
+				if (i->name == "tag") {
+					MSG->hdr_to.set_tag(i->value);
+				} else {
+					MSG->hdr_to.add_param(*i);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_unsupported:  T_TOKEN {
+			MSG->hdr_unsupported.add_feature(tolower(*$1));
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_unsupported ',' T_TOKEN {
+			MSG->hdr_unsupported.add_feature(tolower(*$3));
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_user_agent:	  server {
+			MSG->hdr_user_agent.add_server(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_user_agent server {
+			MSG->hdr_user_agent.add_server(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_via:	  via_parm {
+			MSG->hdr_via.add_via(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_via ',' via_parm {
+			MSG->hdr_via.add_via(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+via_parm:	  sent_protocol host parameters {
+			$$ = $1;
+			$$->host = $2->host;
+			$$->port = $2->port;
+			list<t_parameter>::const_iterator i;
+			for (i = $3->begin(); i != $3->end(); i++) {
+				if (i->name == "ttl") {
+					$$->ttl = atoi(i->value.c_str());
+				} else if (i->name == "maddr") {
+					$$->maddr = i->value;
+				} else if (i->name == "received") {
+					$$->received = i->value;
+				} else if (i->name == "branch") {
+					$$->branch = i->value;
+				} else if (i->name == "rport") {
+					$$->rport_present = true;
+					if (i->type == t_parameter::VALUE) {
+						$$->rport =
+							atoi(i->value.c_str());
+					}
+				} else {
+					$$->add_extension(*i);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+sent_protocol:	  T_TOKEN '/' T_TOKEN '/' T_TOKEN {
+			$$ = new t_via();
+			MEMMAN_NEW($$);
+			$$->protocol_name = toupper(*$1);
+			$$->protocol_version = *$3;
+			$$->transport = toupper(*$5);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+host:		  T_TOKEN {
+			$$ = new t_via();
+			MEMMAN_NEW($$);
+			$$->host = *$1;
+			MEMMAN_DELETE($1); delete $1; }
+		| T_TOKEN ':' { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			if ($4 > 65535) YYERROR;
+			
+			$$ = new t_via();
+			MEMMAN_NEW($$);
+			$$->host = *$1;
+			$$->port = $4;
+			MEMMAN_DELETE($1); delete $1; }
+		| ipv6reference {
+			$$ = new t_via();
+			MEMMAN_NEW($$);
+			$$->host = *$1;
+			MEMMAN_DELETE($1); delete $1; }
+		| ipv6reference ':' { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			$$ = new t_via();
+			MEMMAN_NEW($$);
+			$$->host = *$1;
+			$$->port = $4;
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+ipv6reference:	 '[' { CTXT_IPV6ADDR; } T_IPV6ADDR { CTXT_INITIAL; } ']' {
+			// TODO: check correct format of IPv6 address
+			$$ = new string('[' + *$3 + ']');
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($3); }
+;
+
+hdr_warning:	  warning {
+			MSG->hdr_warning.add_warning(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_warning ',' warning {
+			MSG->hdr_warning.add_warning(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+warning:	  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } host T_QSTRING {
+			$$ = new t_warning();
+			MEMMAN_NEW($$);
+			$$->code = $2;
+			$$->host = $4->host;
+			$$->port = $4->port;
+			$$->text = *$5;
+			MEMMAN_DELETE($4); delete $4;
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+hdr_unknown:	  { CTXT_LINE; } T_LINE { CTXT_INITIAL; } { $$ = $2; }
+;
+
+ainfo:		  parameter {
+			if ($1->name == "nextnonce")
+				MSG->hdr_auth_info.set_next_nonce($1->value);
+		 	else if ($1->name == "qop")
+				MSG->hdr_auth_info.set_message_qop($1->value);
+			else if ($1->name == "rspauth")
+				MSG->hdr_auth_info.set_response_auth($1->value);
+			else if ($1->name == "cnonce")
+				MSG->hdr_auth_info.set_cnonce($1->value);
+			else if ($1->name == "nc") {
+				MSG->hdr_auth_info.set_nonce_count(
+							hex2int($1->value));
+			}
+			else {
+				YYERROR;
+			}
+
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+hdr_authentication_info:  ainfo
+			| hdr_authentication_info ',' ainfo
+;
+
+digest_response:  parameter {
+			$$ = new t_digest_response();
+			MEMMAN_NEW($$);
+			if (!$$->set_attr(*$1)) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			MEMMAN_DELETE($1); delete $1; }
+		| digest_response ',' parameter {
+			$$ = $1;
+			if (!$$->set_attr(*$3)) {
+				YYERROR;
+			}
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+auth_params:	  parameter {
+			$$ = new list<t_parameter>;
+			MEMMAN_NEW($$);
+			$$->push_back(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| auth_params ',' parameter {
+			$$ = $1;
+			$$->push_back(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+credentials:	  T_AUTH_DIGEST { CTXT_INITIAL; } digest_response {
+			$$ = new t_credentials;
+			MEMMAN_NEW($$);
+			$$->auth_scheme = AUTH_DIGEST;
+			$$->digest_response = *$3;
+			MEMMAN_DELETE($3); delete $3; }
+		| T_AUTH_OTHER { CTXT_INITIAL; } auth_params {
+			$$ = new t_credentials;
+			MEMMAN_NEW($$);
+			$$->auth_scheme = *$1;
+			$$->auth_params = *$3;
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_authorization:  { CTXT_AUTH_SCHEME; } credentials {
+			MSG->hdr_authorization.add_credentials(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+digest_challenge: parameter {
+			$$ = new t_digest_challenge();
+			MEMMAN_NEW($$);
+			if (!$$->set_attr(*$1)) {
+				MEMMAN_DELETE($$); delete $$;
+				YYERROR;
+			}
+			MEMMAN_DELETE($1); delete $1; }
+		| digest_challenge ',' parameter {
+			$$ = $1;
+			if (!$$->set_attr(*$3)) {
+				YYERROR;
+			}
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+challenge:	  T_AUTH_DIGEST { CTXT_INITIAL; } digest_challenge {
+			$$ = new t_challenge;
+			MEMMAN_NEW($$);
+			$$->auth_scheme = AUTH_DIGEST;
+			$$->digest_challenge = *$3;
+			MEMMAN_DELETE($3); delete $3; }
+		| T_AUTH_OTHER { CTXT_INITIAL; } auth_params {
+			$$ = new t_challenge;
+			MEMMAN_NEW($$);
+			$$->auth_scheme = *$1;
+			$$->auth_params = *$3;
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_proxy_authenticate:	{ CTXT_AUTH_SCHEME; } challenge {
+				MSG->hdr_proxy_authenticate.set_challenge(*$2);
+				MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_proxy_authorization: { CTXT_AUTH_SCHEME; } credentials {
+				MSG->hdr_proxy_authorization.
+							add_credentials(*$2);
+				MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_www_authenticate:	{ CTXT_AUTH_SCHEME; } challenge {
+				MSG->hdr_www_authenticate.set_challenge(*$2);
+				MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_rseq: 	{ CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
+			MSG->hdr_rseq.set_resp_nr($2); }
+;
+
+hdr_rack: 	{ CTXT_NUM; } T_NUM T_NUM { CTXT_INITIAL; } T_TOKEN {
+			MSG->hdr_rack.set_resp_nr($2);
+			MSG->hdr_rack.set_cseq_nr($3);
+			MSG->hdr_rack.set_method(*$5);
+			MEMMAN_DELETE($5); delete $5; }
+;
+
+hdr_event:	T_TOKEN parameters {
+			MSG->hdr_event.set_event_type(tolower(*$1));
+			list<t_parameter>::const_iterator i;
+			for (i = $2->begin(); i != $2->end(); i++) {
+				if (i->name == "id") {
+					MSG->hdr_event.set_id(i->value);
+				} else {
+					MSG->hdr_event.add_event_param(*i);
+				}
+			}
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_allow_events:	T_TOKEN {
+				MSG->hdr_allow_events.add_event_type(tolower(*$1));
+				MEMMAN_DELETE($1); delete $1; }
+		      | hdr_allow_events ',' T_TOKEN {
+		      		MSG->hdr_allow_events.add_event_type(tolower(*$3));
+				MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_subscription_state:	T_TOKEN parameters {
+				MSG->hdr_subscription_state.set_substate(tolower(*$1));
+				list<t_parameter>::const_iterator i;
+				for (i = $2->begin(); i != $2->end(); i++) {
+					if (i->name == "reason") {
+						MSG->hdr_subscription_state.
+							set_reason(tolower(i->value));
+					} else if (i->name == "expires") {
+						MSG->hdr_subscription_state.
+							set_expires(strtoul(
+							  i->value.c_str(),
+							  NULL, 10));
+					} else if (i->name == "retry-after") {
+						MSG->hdr_subscription_state.
+							set_retry_after(strtoul(
+							  i->value.c_str(),
+							  NULL, 10));
+					} else {
+						MSG->hdr_subscription_state.
+							add_extension(*i);
+					}
+				}
+				MEMMAN_DELETE($1); delete $1;
+				MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_refer_to:	  { CTXT_URI_SPECIAL; } from_addr parameters {
+			MSG->hdr_refer_to.set_display($2->display);
+			MSG->hdr_refer_to.set_uri($2->uri);
+			MSG->hdr_refer_to.set_params(*$3);
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_referred_by:  { CTXT_URI_SPECIAL; } from_addr parameters {
+			MSG->hdr_referred_by.set_display($2->display);
+			MSG->hdr_referred_by.set_uri($2->uri);
+			list<t_parameter>::const_iterator i;
+			for (i = $3->begin(); i != $3->end(); i++) {
+				if (i->name == "cid") {
+					MSG->hdr_referred_by.set_cid(i->value);
+				} else {
+					MSG->hdr_referred_by.add_param(*i);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_refer_sub:	  T_TOKEN parameters {
+			string value(tolower(*$1));
+			if (value != "true" && value != "false") {
+				YYERROR;
+			}
+			MSG->hdr_refer_sub.set_create_refer_sub(value == "true");
+			MSG->hdr_refer_sub.set_extensions(*$2);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+hdr_sip_etag:	  T_TOKEN {
+			MSG->hdr_sip_etag.set_etag(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+;
+			
+hdr_sip_if_match: T_TOKEN {
+			MSG->hdr_sip_if_match.set_etag(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+hdr_request_disposition:  T_TOKEN {
+				bool ret = MSG->hdr_request_disposition.set_directive(*$1);
+				if (!ret) YYERROR;
+				MEMMAN_DELETE($1); delete $1; }
+			| hdr_request_disposition ',' T_TOKEN {
+				bool ret = MSG->hdr_request_disposition.set_directive(*$3);
+				if (!ret) YYERROR;
+				MEMMAN_DELETE($3); delete $3; }
+
+%%
+
+void
+yyerror (const char *s)  /* Called by yyparse on error */
+{
+  // printf ("%s\n", s);
+}

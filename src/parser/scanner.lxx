@@ -1,0 +1,333 @@
+/*
+    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+%{
+#include <cstdio>
+#include <cstring>
+#include <math.h>
+#include <string>
+#include "parse_ctrl.h"
+#include "parser.h"
+#include "util.h"
+#include "audits/memman.h"
+
+using namespace std;
+%}
+
+%option noyywrap
+%option stack
+
+DIGIT		[0-9]
+HEXDIG		[0-9a-fA-F]
+ALPHA		[a-zA-Z]
+CAPITALS	[A-Z]
+ALNUM		[a-zA-Z0-9]
+TOKEN_SYM	[[:alnum:]\-\.!%\*_\+\`\'~]
+WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
+
+%x C_URI
+%x C_URI_SPECIAL
+%x C_QSTRING
+%x C_LANG
+%x C_WORD
+%x C_NUM
+%x C_DATE
+%x C_LINE
+%x C_COMMENT
+%x C_NEW
+%x C_AUTH_SCHEME
+%x C_RPAREN
+%x C_IPV6ADDR
+%x C_PARAMVAL
+
+%%
+	switch (t_parser::context) {
+	case t_parser::X_URI:		BEGIN(C_URI); break;
+	case t_parser::X_URI_SPECIAL:	BEGIN(C_URI_SPECIAL); break;
+	case t_parser::X_LANG:		BEGIN(C_LANG); break;
+	case t_parser::X_WORD:		BEGIN(C_WORD); break;
+	case t_parser::X_NUM:		BEGIN(C_NUM); break;
+	case t_parser::X_DATE:		BEGIN(C_DATE); break;
+	case t_parser::X_LINE:		BEGIN(C_LINE); break;
+	case t_parser::X_COMMENT:	BEGIN(C_COMMENT); break;
+	case t_parser::X_NEW:		BEGIN(C_NEW); break;
+	case t_parser::X_AUTH_SCHEME:	BEGIN(C_AUTH_SCHEME); break;
+	case t_parser::X_IPV6ADDR:	BEGIN(C_IPV6ADDR); break;
+	case t_parser::X_PARAMVAL:	BEGIN(C_PARAMVAL); break;
+	default:			BEGIN(INITIAL);
+	}
+
+	/* Headers */
+^Accept			{ return T_HDR_ACCEPT; }
+^Accept-Encoding	{ return T_HDR_ACCEPT_ENCODING; }
+^Accept-Language	{ return T_HDR_ACCEPT_LANGUAGE; }
+^Alert-Info		{ return T_HDR_ALERT_INFO; }
+^Allow			{ return T_HDR_ALLOW; }
+^(Allow-Events)|u	{ return T_HDR_ALLOW_EVENTS; }
+^Authentication-Info	{ return T_HDR_AUTHENTICATION_INFO; }
+^Authorization		{ return T_HDR_AUTHORIZATION; }
+^(Call-ID)|i		{ return T_HDR_CALL_ID; }
+^Call-Info		{ return T_HDR_CALL_INFO; }
+^(Contact)|m		{ return T_HDR_CONTACT; }
+^Content-Disposition	{ return T_HDR_CONTENT_DISP; }
+^(Content-Encoding)|e	{ return T_HDR_CONTENT_ENCODING; }
+^Content-Language	{ return T_HDR_CONTENT_LANGUAGE; }
+^(Content-Length)|l	{ return T_HDR_CONTENT_LENGTH; }
+^(Content-Type)|c	{ return T_HDR_CONTENT_TYPE; }
+^CSeq			{ return T_HDR_CSEQ; }
+^Date			{ return T_HDR_DATE; }
+^Error-Info		{ return T_HDR_ERROR_INFO; }
+^(Event)|o		{ return T_HDR_EVENT; }
+^Expires		{ return T_HDR_EXPIRES; }
+^(From|f)		{ return T_HDR_FROM; }
+^In-Reply-To		{ return T_HDR_IN_REPLY_TO; }
+^Max-Forwards		{ return T_HDR_MAX_FORWARDS; }
+^Min-Expires		{ return T_HDR_MIN_EXPIRES; }
+^MIME-Version		{ return T_HDR_MIME_VERSION; }
+^Organization		{ return T_HDR_ORGANIZATION; }
+^P-Asserted-Identity	{ return T_HDR_P_ASSERTED_IDENTITY; }
+^P-Preferred-Identity	{ return T_HDR_P_PREFERRED_IDENTITY; }
+^Priority		{ return T_HDR_PRIORITY; }
+^Privacy		{ return T_HDR_PRIVACY; }
+^Proxy-Authenticate	{ return T_HDR_PROXY_AUTHENTICATE; }
+^Proxy-Authorization	{ return T_HDR_PROXY_AUTHORIZATION; }
+^Proxy-Require		{ return T_HDR_PROXY_REQUIRE; }
+^RAck			{ return T_HDR_RACK; }
+^Record-Route		{ return T_HDR_RECORD_ROUTE; }
+^Service-Route		{ return T_HDR_SERVICE_ROUTE; }
+^Refer-Sub		{ return T_HDR_REFER_SUB; }
+^(Refer-To)|r		{ return T_HDR_REFER_TO; }
+^(Referred-By)|b	{ return T_HDR_REFERRED_BY; }
+^Replaces		{ return T_HDR_REPLACES; }
+^Reply-To		{ return T_HDR_REPLY_TO; }
+^Require		{ return T_HDR_REQUIRE; }
+^(Request-Disposition)|d {return T_HDR_REQUEST_DISPOSITION; }
+^Retry-After		{ return T_HDR_RETRY_AFTER; }
+^Route			{ return T_HDR_ROUTE; }
+^RSeq			{ return T_HDR_RSEQ; }
+^Server			{ return T_HDR_SERVER; }
+^SIP-ETag		{ return T_HDR_SIP_ETAG; }
+^SIP-If-Match		{ return T_HDR_SIP_IF_MATCH; }
+^(Subject)|s		{ return T_HDR_SUBJECT; }
+^Subscription-State	{ return T_HDR_SUBSCRIPTION_STATE; }
+^(Supported)|k		{ return T_HDR_SUPPORTED; }
+^Timestamp		{ return T_HDR_TIMESTAMP; }
+^(To)|t			{ return T_HDR_TO; }
+^unsupported		{ return T_HDR_UNSUPPORTED; }
+^User-Agent		{ return T_HDR_USER_AGENT; }
+^(Via)|v		{ return T_HDR_VIA; }
+^Warning		{ return T_HDR_WARNING; }
+^WWW-Authenticate	{ return T_HDR_WWW_AUTHENTICATE; }
+^{TOKEN_SYM}+		{ yylval.yyt_str = new string(yytext);
+			  MEMMAN_NEW(yylval.yyt_str);
+			  return T_HDR_UNKNOWN; }
+
+	/* Token as define in RFC 3261 */
+{TOKEN_SYM}+ 	{ yylval.yyt_str = new string(yytext);
+		  MEMMAN_NEW(yylval.yyt_str);
+		  return T_TOKEN; }
+
+	/* Switch to quoted string context */
+\"		{ yy_push_state(C_QSTRING); }
+
+	/* End of line */
+\r\n		{ return T_CRLF; }
+\n		{ return T_CRLF; }
+
+[[:blank:]]	/* Skip white space */
+
+	/* Single character token */
+.		{ return yytext[0]; }
+
+	/* URI. 
+	   This context scans a URI including parameters.
+	   The syntax of a URI will be checked outside the scanner 
+	 */
+<C_URI>\"		{ yy_push_state(C_QSTRING); }
+<C_URI>{TOKEN_SYM}({TOKEN_SYM}|[[:blank:]])*/< {
+			yylval.yyt_str = new string(yytext);
+			MEMMAN_NEW(yylval.yyt_str);
+			return T_DISPLAY; }
+<C_URI>[^[:blank:]<>\r\n]+/[[:blank:]]*> {
+			yylval.yyt_str = new string(yytext);
+			MEMMAN_NEW(yylval.yyt_str);
+			return T_URI; }
+<C_URI>\*		{ return T_URI_WILDCARD; }
+<C_URI>[^[:blank:]<>\"\r\n]+ {
+			yylval.yyt_str = new string(yytext);
+			MEMMAN_NEW(yylval.yyt_str);
+			return T_URI; }
+<C_URI>[[:blank:]]	 /* Skip white space */
+<C_URI>.		 { return yytext[0]; }
+<C_URI>\n		 { return T_ERROR; }
+
+	/* URI special case.
+	   In several headers (eg. From, To, Contact, Reply-To) the URI
+	   can be enclosed by < and >
+	   If it is enclosed then parameters belong to the URI, if it
+	   is not enclosed then parameters belong to the header.
+	   Parameters are seperated by a semi-colon. 
+	   For the URI special case, parameters belong to the header.
+	   If the parser receives a < from the scanner, then the parser
+	   will switch to the normal URI case.
+	   The syntax of a URI will be checked outside the scanner 
+	 */
+<C_URI_SPECIAL>\"	{ yy_push_state(C_QSTRING); }
+<C_URI_SPECIAL>{TOKEN_SYM}({TOKEN_SYM}|[[:blank:]])*/< {
+			yylval.yyt_str = new string(yytext);
+			MEMMAN_NEW(yylval.yyt_str);
+			return T_DISPLAY; }
+<C_URI_SPECIAL>\*		{ return T_URI_WILDCARD; }
+<C_URI_SPECIAL>[^[:blank:]<>;\"\r\n]+ {
+			yylval.yyt_str = new string(yytext);
+			MEMMAN_NEW(yylval.yyt_str);
+			return T_URI; }
+<C_URI_SPECIAL>[[:blank:]]	 /* Skip white space */
+<C_URI_SPECIAL>.		 { return yytext[0]; }
+<C_URI_SPECIAL>\n		 { return T_ERROR; }
+
+	/* Quoted string (starting after open quote, closing quote
+	   will be consumed but not returned. */
+<C_QSTRING>\\			{ yymore(); }
+<C_QSTRING>[^\"\\\r\n]*\\\"	{ yymore(); }
+<C_QSTRING>[^\"\\\r\n]*\"	{ yy_pop_state();
+			  	  yytext[strlen(yytext)-1] = '\0';
+			  	  yylval.yyt_str = new string(unescape(string(yytext)));
+				  MEMMAN_NEW(yylval.yyt_str);
+			  	  return T_QSTRING; }
+<C_QSTRING>[^\"\\\n]*\n		{ yy_pop_state(); return T_ERROR; }
+<C_QSTRING>.			{ yy_pop_state(); return T_ERROR; }
+
+	/* Comment (starting after LPAREN till RPAREN) */
+<C_COMMENT>\\			{ yymore(); }
+<C_COMMENT>[^\(\)\\\r\n]*\\\)	{ yymore(); }
+<C_COMMENT>[^\(\)\\\r\n]*\\\(	{ yymore(); }
+<C_COMMENT>[^\(\)\\\r\n]*\(	{ t_parser::inc_comment_level(); yymore(); }
+<C_COMMENT>[^\(\)\\\r\n]*/\)	{ if (t_parser::dec_comment_level()) {
+					BEGIN(C_RPAREN);
+					yymore();
+				  } else {
+				  	yylval.yyt_str = new string(yytext);
+					MEMMAN_NEW(yylval.yyt_str);
+			  	  	return T_COMMENT;
+				  }
+				}
+<C_COMMENT>[^\(\)\\\n]*\n	{ return T_ERROR; }
+<C_COMMENT>.			{ return T_ERROR; }
+<C_RPAREN>\)			{ BEGIN(C_COMMENT); yymore(); }
+
+	/* Language tag */
+<C_LANG>{ALPHA}{1,8}(\-{ALPHA}{1,8})*	{ yylval.yyt_str = new string(yytext);
+					  MEMMAN_NEW(yylval.yyt_str);
+					  return T_LANG; }
+<C_LANG>[[:blank:]]			/* Skip white space */
+<C_LANG>.				{ return yytext[0]; }
+<C_LANG>\r\n				{ return T_CRLF; }
+<C_LANG>\n				{ return T_CRLF; }
+
+	/* Word */
+<C_WORD>{WORD_SYM}+	{ yylval.yyt_str = new string(yytext);
+			  MEMMAN_NEW(yylval.yyt_str);
+			  return T_WORD; }
+<C_WORD>[[:blank:]]	/* Skip white space */
+<C_WORD>.		{ return yytext[0]; }
+<C_WORD>\r\n				{ return T_CRLF; }
+<C_WORD>\n				{ return T_CRLF; }
+
+	/* Number */
+<C_NUM>{DIGIT}+		{ yylval.yyt_ulong = strtoul(yytext, NULL, 10); return T_NUM; }
+<C_NUM>[[:blank:]]	/* Skip white space */
+<C_NUM>.		{ return yytext[0]; }
+<C_NUM>\r\n		{ return T_CRLF; }
+<C_NUM>\n		{ return T_CRLF; }
+
+	/* Date */
+<C_DATE>Mon		{ yylval.yyt_int = 1; return T_WKDAY; }
+<C_DATE>Tue		{ yylval.yyt_int = 2; return T_WKDAY; }
+<C_DATE>Wed		{ yylval.yyt_int = 3; return T_WKDAY; }
+<C_DATE>Thu		{ yylval.yyt_int = 4; return T_WKDAY; }
+<C_DATE>Fri		{ yylval.yyt_int = 5; return T_WKDAY; }
+<C_DATE>Sat		{ yylval.yyt_int = 6; return T_WKDAY; }
+<C_DATE>Sun		{ yylval.yyt_int = 0; return T_WKDAY; }
+<C_DATE>Jan		{ yylval.yyt_int = 0; return T_MONTH; }
+<C_DATE>Feb		{ yylval.yyt_int = 1; return T_MONTH; }
+<C_DATE>Mar		{ yylval.yyt_int = 2; return T_MONTH; }
+<C_DATE>Apr		{ yylval.yyt_int = 3; return T_MONTH; }
+<C_DATE>May		{ yylval.yyt_int = 4; return T_MONTH; }
+<C_DATE>Jun		{ yylval.yyt_int = 5; return T_MONTH; }
+<C_DATE>Jul		{ yylval.yyt_int = 6; return T_MONTH; }
+<C_DATE>Aug		{ yylval.yyt_int = 7; return T_MONTH; }
+<C_DATE>Sep		{ yylval.yyt_int = 8; return T_MONTH; }
+<C_DATE>Oct		{ yylval.yyt_int = 9; return T_MONTH; }
+<C_DATE>Nov		{ yylval.yyt_int = 10; return T_MONTH; }
+<C_DATE>Dec		{ yylval.yyt_int = 11; return T_MONTH; }
+<C_DATE>GMT		{ return T_GMT; }
+<C_DATE>{DIGIT}+	{ yylval.yyt_ulong = strtoul(yytext, NULL, 10); return T_NUM; }
+<C_DATE>[[:blank:]]	/* Skip white space */
+<C_DATE>.		{ return yytext[0]; }
+<C_DATE>\r\n		{ return T_CRLF; }
+<C_DATE>\n		{ return T_CRLF; }
+
+	/* Get all text till end of line */
+<C_LINE>[^\r\n]+	{ yylval.yyt_str = new string(yytext);
+			  MEMMAN_NEW(yylval.yyt_str);
+			  return T_LINE; }
+<C_LINE>\r\n		{ return T_CRLF; }
+<C_LINE>\n		{ return T_CRLF; }
+<C_LINE>\r		{ return T_CRLF; }
+
+	/* Start of a new message */
+<C_NEW>SIP		{ return T_SIP; }
+<C_NEW>{CAPITALS}+	{ yylval.yyt_str = new string(yytext);
+			  MEMMAN_NEW(yylval.yyt_str);
+			  return T_METHOD; }
+<C_NEW>[[:blank:]]	/* Skip white space */
+<C_NEW>.		{ return T_ERROR; }
+<C_NEW>\r\n		{ return T_CRLF; }
+<C_NEW>\n		{ return T_CRLF; }
+
+	/* Authorization scheme */
+<C_AUTH_SCHEME>Digest		{ return T_AUTH_DIGEST; }
+<C_AUTH_SCHEME>{TOKEN_SYM}+ 	{ yylval.yyt_str = new string(yytext);
+			 	  MEMMAN_NEW(yylval.yyt_str);
+				  return T_AUTH_OTHER; }
+<C_AUTH_SCHEME>[[:blank:]]	/* Skip white space */
+<C_AUTH_SCHEME>.		{ return T_ERROR; }
+<C_AUTH_SCHEME>\r\n		{ return T_CRLF; }
+<C_AUTH_SCHEME>\n		{ return T_CRLF; }
+
+	/* IPv6 address
+	 * NOTE: the validity of the format is not checked here.
+	 */
+<C_IPV6ADDR>({HEXDIG}|[:\.])+	{ yylval.yyt_str = new string(yytext);
+				  MEMMAN_NEW(yylval.yyt_str);
+				  return T_IPV6ADDR; }
+<C_IPV6ADDR>[[:blank:]]	/* Skip white space */
+<C_IPV6ADDR>.		{ return T_ERROR; }
+<C_IPV6ADDR>\r\n	{ return T_CRLF; }
+<C_IPV6ADDR>\n		{ return T_CRLF; }
+
+	/* Parameter values may contain an IPv6 address or reference. */
+<C_PARAMVAL>({TOKEN_SYM}|[:\[\]])+ { yylval.yyt_str = new string(yytext);
+				     MEMMAN_NEW(yylval.yyt_str);
+				     return T_PARAMVAL; }
+<C_PARAMVAL>\"		{ yy_push_state(C_QSTRING); }
+<C_PARAMVAL>[[:blank:]]	/* Skip white space */
+<C_PARAMVAL>.		{ return T_ERROR; }
+<C_PARAMVAL>\r\n	{ return T_CRLF; }
+<C_PARAMVAL>\n		{ return T_CRLF; }

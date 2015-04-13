@@ -1,0 +1,2851 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>MphoneForm</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>MphoneForm</cstring>
+    </property>
+    <property name="enabled">
+        <bool>true</bool>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>739</width>
+            <height>693</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>714</width>
+            <height>693</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>Twinkle</string>
+    </property>
+    <property name="icon">
+        <pixmap>twinkle16.png</pixmap>
+    </property>
+    <property name="rightJustification">
+        <bool>false</bool>
+    </property>
+    <property name="usesBigPixmaps">
+        <bool>false</bool>
+    </property>
+    <property name="usesTextLabel">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QSplitter" row="0" column="0">
+            <property name="name">
+                <cstring>splitter2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Buddy list</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>false</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>false</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>buddyListView</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>7</hsizetype>
+                        <vsizetype>7</vsizetype>
+                        <horstretch>150</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>0</height>
+                    </size>
+                </property>
+                <property name="rootIsDecorated">
+                    <bool>true</bool>
+                </property>
+                <property name="resizeMode">
+                    <enum>LastColumn</enum>
+                </property>
+                <property name="whatsThis" stdset="0">
+                    <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
+                </property>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout13</cstring>
+                </property>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout76</cstring>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>callTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Call:</string>
+                                    <comment>Label in front of combobox to enter address</comment>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>callComboBox</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLayoutWidget" row="1" column="1">
+                                <property name="name">
+                                    <cstring>layout71</cstring>
+                                </property>
+                                <hbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QComboBox">
+                                        <property name="name">
+                                            <cstring>callComboBox</cstring>
+                                        </property>
+                                        <property name="sizePolicy">
+                                            <sizepolicy>
+                                                <hsizetype>3</hsizetype>
+                                                <vsizetype>0</vsizetype>
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
+                                        </property>
+                                        <property name="editable">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property name="maxCount">
+                                            <number>10</number>
+                                        </property>
+                                        <property name="insertionPolicy">
+                                            <enum>NoInsertion</enum>
+                                        </property>
+                                        <property name="autoCompletion">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property name="whatsThis" stdset="0">
+                                            <string>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QToolButton">
+                                        <property name="name">
+                                            <cstring>addressToolButton</cstring>
+                                        </property>
+                                        <property name="focusPolicy">
+                                            <enum>TabFocus</enum>
+                                        </property>
+                                        <property name="text">
+                                            <string></string>
+                                        </property>
+                                        <property name="accel">
+                                            <string>F10</string>
+                                        </property>
+                                        <property name="iconSet">
+                                            <iconset>kontact_contacts.png</iconset>
+                                        </property>
+                                        <property name="toolTip" stdset="0">
+                                            <string>Address book</string>
+                                        </property>
+                                        <property name="whatsThis" stdset="0">
+                                            <string>Select an address from the address book.</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QPushButton">
+                                        <property name="name">
+                                            <cstring>callPushButton</cstring>
+                                        </property>
+                                        <property name="text">
+                                            <string>Dial</string>
+                                        </property>
+                                        <property name="default">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property name="whatsThis" stdset="0">
+                                            <string>Dial the address.</string>
+                                        </property>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>userLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;User:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>userComboBox</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLayoutWidget" row="0" column="1">
+                                <property name="name">
+                                    <cstring>layout75</cstring>
+                                </property>
+                                <hbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QComboBox">
+                                        <property name="name">
+                                            <cstring>userComboBox</cstring>
+                                        </property>
+                                        <property name="sizePolicy">
+                                            <sizepolicy>
+                                                <hsizetype>3</hsizetype>
+                                                <vsizetype>0</vsizetype>
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
+                                        </property>
+                                        <property name="whatsThis" stdset="0">
+                                            <string>The user that will make the call.</string>
+                                        </property>
+                                    </widget>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout74</cstring>
+                                        </property>
+                                        <hbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statAaLabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="frameShadow">
+                                                    <enum>Plain</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>auto_answer.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Auto answer indication.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statCfLabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>cf.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Call redirect indication.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statDndLabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>cancel.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Do not disturb indication.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statMWILabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="frameShadow">
+                                                    <enum>Plain</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>mwi_none16.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Message waiting indication.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statMissedLabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>missed.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Missed call indication.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>statRegLabel</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="cursor">
+                                                    <cursor>13</cursor>
+                                                </property>
+                                                <property name="text">
+                                                    <string></string>
+                                                </property>
+                                                <property name="pixmap">
+                                                    <pixmap>twinkle16.png</pixmap>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Registration status.</string>
+                                                </property>
+                                            </widget>
+                                        </hbox>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QGroupBox">
+                        <property name="name">
+                            <cstring>displayGroupBox</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>Display</string>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QTextEdit">
+                                <property name="name">
+                                    <cstring>displayTextEdit</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>7</hsizetype>
+                                        <vsizetype>3</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="vScrollBarMode">
+                                    <enum>AlwaysOn</enum>
+                                </property>
+                                <property name="textFormat">
+                                    <enum>PlainText</enum>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="wordWrap">
+                                    <enum>NoWrap</enum>
+                                </property>
+                                <property name="readOnly">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="autoFormatting">
+                                    <set>AutoAll</set>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                    <widget class="QButtonGroup">
+                        <property name="name">
+                            <cstring>lineButtonGroup</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>Line status</string>
+                        </property>
+                        <property name="exclusive">
+                            <bool>true</bool>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLayoutWidget">
+                                <property name="name">
+                                    <cstring>layout20</cstring>
+                                </property>
+                                <hbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout27</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="QRadioButton">
+                                                <property name="name">
+                                                    <cstring>line1RadioButton</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Line &amp;1:</string>
+                                                </property>
+                                                <property name="accel">
+                                                    <string>Alt+1</string>
+                                                </property>
+                                                <property name="checked">
+                                                    <bool>true</bool>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Click to switch to line 1.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>fromhead1Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>From:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>tohead1Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>To:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>subjecthead1Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Subject:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout19</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="QLayoutWidget">
+                                                <property name="name">
+                                                    <cstring>layout17</cstring>
+                                                </property>
+                                                <hbox>
+                                                    <property name="name">
+                                                        <cstring>unnamed</cstring>
+                                                    </property>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1StatLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_ringing.png</pixmap>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Visual indication of line state.</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>status1TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>5</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="paletteForegroundColor">
+                                                            <color>
+                                                                <red>85</red>
+                                                                <green>0</green>
+                                                                <blue>255</blue>
+                                                            </color>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>idle</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="textFormat">
+                                                            <enum>RichText</enum>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1HoldLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>hold.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Call is on hold</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1MuteLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_mute.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Voice is muted</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1ConfLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_conference.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Conference call</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1ReferLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>cf.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Transferring call</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>crypt1Label</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>13</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>Panel</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Raised</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>encrypted.png</pixmap>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>&lt;p&gt;
+The padlock indicates that your voice is encrypted during transport over the network.
+&lt;/p&gt;
+&lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
+&lt;p&gt;
+Both ends of an encrypted voice channel receive the same SAS on the first call. If the SAS is different at each end, your voice channel may be compromised by a man-in-the-middle attack (MitM).
+&lt;/p&gt;
+&lt;p&gt;
+If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don't have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
+&lt;/p&gt;</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line1SasLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>sas</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Short authentication string</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>codec1TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="paletteForegroundColor">
+                                                            <color>
+                                                                <red>0</red>
+                                                                <green>170</green>
+                                                                <blue>127</blue>
+                                                            </color>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>g711a/g711a</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="alignment">
+                                                            <set>AlignVCenter|AlignRight</set>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Audio codec</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>timer1TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <family>Courier New</family>
+                                                            </font>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>0:00:00</string>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Call duration</string>
+                                                        </property>
+                                                    </widget>
+                                                </hbox>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>from1Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>sip:from</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="alignment">
+                                                    <set>AlignAuto</set>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>to1Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>sip:to</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>subject1Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>subject</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget class="QLabel">
+                                        <property name="name">
+                                            <cstring>photo1Label</cstring>
+                                        </property>
+                                        <property name="sizePolicy">
+                                            <sizepolicy>
+                                                <hsizetype>0</hsizetype>
+                                                <vsizetype>0</vsizetype>
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
+                                        </property>
+                                        <property name="minimumSize">
+                                            <size>
+                                                <width>70</width>
+                                                <height>98</height>
+                                            </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                            <size>
+                                                <width>70</width>
+                                                <height>98</height>
+                                            </size>
+                                        </property>
+                                        <property name="frameShape">
+                                            <enum>Box</enum>
+                                        </property>
+                                        <property name="text">
+                                            <string>photo</string>
+                                            <comment>No need to translate</comment>
+                                        </property>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                            <widget class="QLayoutWidget">
+                                <property name="name">
+                                    <cstring>layout22</cstring>
+                                </property>
+                                <hbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout31</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="QRadioButton">
+                                                <property name="name">
+                                                    <cstring>line2RadioButton</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Line &amp;2:</string>
+                                                </property>
+                                                <property name="accel">
+                                                    <string>Alt+2</string>
+                                                </property>
+                                                <property name="whatsThis" stdset="0">
+                                                    <string>Click to switch to line 2.</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>fromhead2Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>From:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>tohead2Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>To:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLabel">
+                                                <property name="name">
+                                                    <cstring>subjecthead2Label</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>0</hsizetype>
+                                                        <vsizetype>5</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>Subject:</string>
+                                                </property>
+                                                <property name="indent">
+                                                    <number>21</number>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout21</cstring>
+                                        </property>
+                                        <vbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="QLayoutWidget">
+                                                <property name="name">
+                                                    <cstring>layout18</cstring>
+                                                </property>
+                                                <hbox>
+                                                    <property name="name">
+                                                        <cstring>unnamed</cstring>
+                                                    </property>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2StatLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_ringing.png</pixmap>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Visual indication of line state.</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>status2TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>5</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="paletteForegroundColor">
+                                                            <color>
+                                                                <red>85</red>
+                                                                <green>0</green>
+                                                                <blue>255</blue>
+                                                            </color>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>idle</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="textFormat">
+                                                            <enum>RichText</enum>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2HoldLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>hold.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Call is on hold</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2MuteLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_mute.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Voice is muted</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2ConfLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>stat_conference.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Conference call</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2ReferLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>0</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>NoFrame</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Plain</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>cf.png</pixmap>
+                                                        </property>
+                                                        <property name="toolTip" stdset="0">
+                                                            <string>Transferring call</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>crypt2Label</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="cursor">
+                                                            <cursor>13</cursor>
+                                                        </property>
+                                                        <property name="frameShape">
+                                                            <enum>Panel</enum>
+                                                        </property>
+                                                        <property name="frameShadow">
+                                                            <enum>Raised</enum>
+                                                        </property>
+                                                        <property name="lineWidth">
+                                                            <number>1</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string></string>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap>encrypted.png</pixmap>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>&lt;p&gt;
+The padlock indicates that your voice is encrypted during transport over the network.
+&lt;/p&gt;
+&lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
+&lt;p&gt;
+Both ends of an encrypted voice channel receive the same SAS on the first call. If the SAS is different at each end, your voice channel may be compromised by a man-in-the-middle attack (MitM).
+&lt;/p&gt;
+&lt;p&gt;
+If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don't have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
+&lt;/p&gt;</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>line2SasLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>sas</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Short authentication string</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>codec2TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="paletteForegroundColor">
+                                                            <color>
+                                                                <red>0</red>
+                                                                <green>170</green>
+                                                                <blue>127</blue>
+                                                            </color>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>g711a/g711a</string>
+                                                            <comment>No need to translate</comment>
+                                                        </property>
+                                                        <property name="alignment">
+                                                            <set>AlignVCenter|AlignRight</set>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Audio codec</string>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel">
+                                                        <property name="name">
+                                                            <cstring>timer2TextLabel</cstring>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy>
+                                                                <hsizetype>0</hsizetype>
+                                                                <vsizetype>5</vsizetype>
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <family>Courier New</family>
+                                                            </font>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>0:00:00</string>
+                                                        </property>
+                                                        <property name="whatsThis" stdset="0">
+                                                            <string>Call duration</string>
+                                                        </property>
+                                                    </widget>
+                                                </hbox>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>from2Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>sip:from</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>to2Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>sip:to</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                            <widget class="QLineEdit">
+                                                <property name="name">
+                                                    <cstring>subject2Label</cstring>
+                                                </property>
+                                                <property name="paletteForegroundColor">
+                                                    <color>
+                                                        <red>85</red>
+                                                        <green>0</green>
+                                                        <blue>255</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="paletteBackgroundColor">
+                                                    <color>
+                                                        <red>238</red>
+                                                        <green>234</green>
+                                                        <blue>238</blue>
+                                                    </color>
+                                                </property>
+                                                <property name="focusPolicy">
+                                                    <enum>NoFocus</enum>
+                                                </property>
+                                                <property name="frameShape">
+                                                    <enum>NoFrame</enum>
+                                                </property>
+                                                <property name="text">
+                                                    <string>subject</string>
+                                                    <comment>No need to translate</comment>
+                                                </property>
+                                                <property name="readOnly">
+                                                    <bool>true</bool>
+                                                </property>
+                                            </widget>
+                                        </vbox>
+                                    </widget>
+                                    <widget class="QLabel">
+                                        <property name="name">
+                                            <cstring>photo2Label</cstring>
+                                        </property>
+                                        <property name="sizePolicy">
+                                            <sizepolicy>
+                                                <hsizetype>0</hsizetype>
+                                                <vsizetype>0</vsizetype>
+                                                <horstretch>0</horstretch>
+                                                <verstretch>0</verstretch>
+                                            </sizepolicy>
+                                        </property>
+                                        <property name="minimumSize">
+                                            <size>
+                                                <width>70</width>
+                                                <height>98</height>
+                                            </size>
+                                        </property>
+                                        <property name="maximumSize">
+                                            <size>
+                                                <width>70</width>
+                                                <height>98</height>
+                                            </size>
+                                        </property>
+                                        <property name="frameShape">
+                                            <enum>Box</enum>
+                                        </property>
+                                        <property name="text">
+                                            <string>photo</string>
+                                            <comment>No need to translate</comment>
+                                        </property>
+                                    </widget>
+                                </hbox>
+                            </widget>
+                        </vbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>menubar</cstring>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="fileChangeUserAction"/>
+        <separator/>
+        <action name="fileExitAction"/>
+    </item>
+    <item text="&amp;Edit" name="Edit">
+        <action name="editUserProfileAction"/>
+        <action name="editSysSettingsAction"/>
+    </item>
+    <item text="C&amp;all" name="Call">
+        <action name="callInvite"/>
+        <action name="callAnswer"/>
+        <action name="callBye"/>
+        <action name="callReject"/>
+        <action name="callRedirect"/>
+        <action name="callTransfer"/>
+        <action name="callHold"/>
+        <action name="callConference"/>
+        <action name="callMute"/>
+        <action name="callDTMF"/>
+        <action name="callRedial"/>
+        <separator/>
+        <action name="callTermCap"/>
+        <action name="callActivate_LineAction"/>
+        <item text="Activate line" name="popupMenu_19" accel="">
+            <action name="actionLine1"/>
+            <action name="actionLine2"/>
+        </item>
+    </item>
+    <item text="&amp;Message" name="Message">
+        <action name="actionSendMsg"/>
+    </item>
+    <item text="&amp;Registration" name="PopupMenu_2">
+        <action name="regRegister"/>
+        <action name="regDeregister"/>
+        <action name="regDeregisterAll"/>
+        <action name="regShow"/>
+    </item>
+    <item text="&amp;Services" name="PopupMenu_3">
+        <action name="serviceDnd"/>
+        <action name="serviceRedirection"/>
+        <action name="serviceAutoAnswer"/>
+        <action name="servicesVoice_mailAction"/>
+    </item>
+    <item text="&amp;View" name="View">
+        <action name="viewCall_HistoryAction"/>
+        <action name="viewLogAction"/>
+        <action name="viewDisplayAction"/>
+        <action name="viewBuddyListAction"/>
+    </item>
+    <item text="Diamondcard" name="Diamondcard">
+        <action name="diamondcardSign_upAction"/>
+    </item>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="helpWhats_ThisAction"/>
+        <separator/>
+        <action name="helpManualAction"/>
+        <action name="helpAboutAction"/>
+        <action name="helpAboutQtAction"/>
+    </item>
+    <separator/>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>callToolbar</cstring>
+        </property>
+        <property name="resizeEnabled">
+            <bool>false</bool>
+        </property>
+        <property name="movingEnabled">
+            <bool>true</bool>
+        </property>
+        <property name="horizontallyStretchable">
+            <bool>true</bool>
+        </property>
+        <property name="verticallyStretchable">
+            <bool>true</bool>
+        </property>
+        <property name="label">
+            <string>Call Toolbar</string>
+        </property>
+        <action name="callInvite"/>
+        <action name="callAnswer"/>
+        <action name="callBye"/>
+        <action name="callReject"/>
+        <action name="callRedirect"/>
+        <action name="callTransfer"/>
+        <action name="callHold"/>
+        <action name="callConference"/>
+        <action name="callMute"/>
+        <action name="callDTMF"/>
+        <action name="callRedial"/>
+        <action name="actionSendMsg"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>fileExitAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>exit.png</iconset>
+        </property>
+        <property name="text">
+            <string>Quit</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Quit</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Q</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>twinkle16.png</iconset>
+        </property>
+        <property name="text">
+            <string>About Twinkle</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About Twinkle</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callInvite</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>invite.png</iconset>
+        </property>
+        <property name="text">
+            <string>Call</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Call...</string>
+            <comment>call menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Call someone</string>
+        </property>
+        <property name="accel">
+            <string>F5</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callAnswer</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>answer.png</iconset>
+        </property>
+        <property name="text">
+            <string>Answer</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Answer</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Answer incoming call</string>
+        </property>
+        <property name="accel">
+            <string>F6</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callBye</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>bye.png</iconset>
+        </property>
+        <property name="text">
+            <string>Bye</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Bye</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Release call</string>
+        </property>
+        <property name="accel">
+            <string>Esc</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callReject</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>reject.png</iconset>
+        </property>
+        <property name="text">
+            <string>Reject</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Reject</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Reject incoming call</string>
+        </property>
+        <property name="accel">
+            <string>F8</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callHold</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>hold.png</iconset>
+        </property>
+        <property name="text">
+            <string>Hold</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Hold</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Put a call on hold, or retrieve a held call</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callRedirect</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>redirect.png</iconset>
+        </property>
+        <property name="text">
+            <string>Redirect</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>R&amp;edirect...</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Redirect incoming call without answering</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callDTMF</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>dtmf.png</iconset>
+        </property>
+        <property name="text">
+            <string>Dtmf</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Dtmf...</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Open keypad to enter digits for voice menu's</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>regRegister</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>twinkle16.png</iconset>
+        </property>
+        <property name="text">
+            <string>Register</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Register</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>regDeregister</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>twinkle16-disabled.png</iconset>
+        </property>
+        <property name="text">
+            <string>Deregister</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Deregister</string>
+        </property>
+        <property name="toolTip">
+            <string>Deregister this device</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>regShow</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>reg-query.png</iconset>
+        </property>
+        <property name="text">
+            <string>Show registrations</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Show registrations</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callTermCap</cstring>
+        </property>
+        <property name="text">
+            <string>Terminal capabilities</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Terminal capabilities...</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Request terminal capabilities from someone</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>serviceDnd</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>cancel.png</iconset>
+        </property>
+        <property name="text">
+            <string>Do not disturb</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Do not disturb</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>serviceRedirection</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>cf.png</iconset>
+        </property>
+        <property name="text">
+            <string>Call redirection</string>
+        </property>
+        <property name="menuText">
+            <string>Call &amp;redirection...</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callRedial</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>redial.png</iconset>
+        </property>
+        <property name="text">
+            <string>Redial</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Redial</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Repeat last call</string>
+        </property>
+        <property name="accel">
+            <string>F12</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpAboutQtAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>qt-logo.png</iconset>
+        </property>
+        <property name="text">
+            <string>About Qt</string>
+        </property>
+        <property name="menuText">
+            <string>About &amp;Qt</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editUserProfileAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>penguin-small.png</iconset>
+        </property>
+        <property name="text">
+            <string>User profile</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;User profile...</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callConference</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>conf.png</iconset>
+        </property>
+        <property name="text">
+            <string>Conf</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Conference</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Join two calls in a 3-way conference</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callMute</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>mute.png</iconset>
+        </property>
+        <property name="text">
+            <string>Mute</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>&amp;Mute</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Mute a call</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>callTransfer</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>transfer.png</iconset>
+        </property>
+        <property name="text">
+            <string>Xfer</string>
+            <comment>toolbar text</comment>
+        </property>
+        <property name="menuText">
+            <string>Trans&amp;fer...</string>
+            <comment>menu text</comment>
+        </property>
+        <property name="toolTip">
+            <string>Transfer call</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>editSysSettingsAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>settings.png</iconset>
+        </property>
+        <property name="text">
+            <string>System settings</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;System settings...</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>registrationAction</cstring>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+        <property name="menuText">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>regDeregisterAll</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>twinkle16-disabled.png</iconset>
+        </property>
+        <property name="text">
+            <string>Deregister all</string>
+        </property>
+        <property name="menuText">
+            <string>Deregister &amp;all</string>
+        </property>
+        <property name="toolTip">
+            <string>Deregister all your registered devices</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>serviceAutoAnswer</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>auto_answer.png</iconset>
+        </property>
+        <property name="text">
+            <string>Auto answer</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Auto answer</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>viewLogAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>log_small.png</iconset>
+        </property>
+        <property name="text">
+            <string>Log</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Log...</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>viewCall_HistoryAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>missed.png</iconset>
+        </property>
+        <property name="text">
+            <string>Call history</string>
+        </property>
+        <property name="menuText">
+            <string>Call &amp;history...</string>
+        </property>
+        <property name="accel">
+            <string>F9</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>fileChangeUserAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>penguin-small.png</iconset>
+        </property>
+        <property name="text">
+            <string>Change user ...</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Change user ...</string>
+        </property>
+        <property name="toolTip">
+            <string>Activate or de-activate users</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpWhats_ThisAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>contexthelp.png</iconset>
+        </property>
+        <property name="text">
+            <string>What's This?</string>
+        </property>
+        <property name="menuText">
+            <string>What's &amp;This?</string>
+        </property>
+        <property name="accel">
+            <string>Shift+F1</string>
+        </property>
+    </action>
+    <actiongroup>
+        <property name="name">
+            <cstring>actgrActivateLine</cstring>
+        </property>
+        <property name="on">
+            <bool>false</bool>
+        </property>
+        <property name="text">
+            <string>Activate line</string>
+        </property>
+        <property name="usesDropDown">
+            <bool>false</bool>
+        </property>
+        <action>
+            <property name="name">
+                <cstring>actionLine1</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="on">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Line 1</string>
+            </property>
+        </action>
+        <action>
+            <property name="name">
+                <cstring>actionLine2</cstring>
+            </property>
+            <property name="toggleAction">
+                <bool>true</bool>
+            </property>
+            <property name="text">
+                <string>Line 2</string>
+            </property>
+        </action>
+    </actiongroup>
+    <action>
+        <property name="name">
+            <cstring>callActivate_LineAction</cstring>
+        </property>
+        <property name="on">
+            <bool>false</bool>
+        </property>
+        <property name="text">
+            <string>Activate line</string>
+        </property>
+        <property name="menuText">
+            <string>Activate line</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>viewDisplayAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="on">
+            <bool>true</bool>
+        </property>
+        <property name="text">
+            <string>Display</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Display</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>servicesVoice_mailAction</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>mwi_none16.png</iconset>
+        </property>
+        <property name="text">
+            <string>Voice mail</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Voice mail</string>
+        </property>
+        <property name="toolTip">
+            <string>Access voice mail</string>
+        </property>
+        <property name="accel">
+            <string>F11</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>actionSendMsg</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>message.png</iconset>
+        </property>
+        <property name="text">
+            <string>Msg</string>
+        </property>
+        <property name="menuText">
+            <string>Instant &amp;message...</string>
+        </property>
+        <property name="toolTip">
+            <string>Instant message</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>viewBuddyListAction</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="on">
+            <bool>true</bool>
+        </property>
+        <property name="text">
+            <string>Buddy list</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Buddy list</string>
+        </property>
+        <property name="toolTip">
+            <string>Buddy list</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>helpManualAction</cstring>
+        </property>
+        <property name="text">
+            <string>Manual</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Manual</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>diamondcardSign_upAction</cstring>
+        </property>
+        <property name="text">
+            <string>Sign up</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Sign up...</string>
+        </property>
+        <property name="toolTip">
+            <string>Sign up</string>
+        </property>
+    </action>
+</actions>
+<connections>
+    <connection>
+        <sender>helpWhats_ThisAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>whatsThis()</slot>
+    </connection>
+    <connection>
+        <sender>addressToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>showAddressBook()</slot>
+    </connection>
+    <connection>
+        <sender>callPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>quickCall()</slot>
+    </connection>
+    <connection>
+        <sender>fileChangeUserAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>selectProfile()</slot>
+    </connection>
+    <connection>
+        <sender>viewCall_HistoryAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>viewHistory()</slot>
+    </connection>
+    <connection>
+        <sender>viewLogAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>viewLog()</slot>
+    </connection>
+    <connection>
+        <sender>regDeregisterAll</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneDeregisterAll()</slot>
+    </connection>
+    <connection>
+        <sender>editSysSettingsAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>editSysSettings()</slot>
+    </connection>
+    <connection>
+        <sender>callMute</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneMute(bool)</slot>
+    </connection>
+    <connection>
+        <sender>callConference</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneConference()</slot>
+    </connection>
+    <connection>
+        <sender>editUserProfileAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>editUserProfile()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutQtAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>aboutQt()</slot>
+    </connection>
+    <connection>
+        <sender>helpAboutAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>about()</slot>
+    </connection>
+    <connection>
+        <sender>callRedial</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneRedial()</slot>
+    </connection>
+    <connection>
+        <sender>serviceRedirection</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>srvRedirect()</slot>
+    </connection>
+    <connection>
+        <sender>regShow</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneShowRegistrations()</slot>
+    </connection>
+    <connection>
+        <sender>regDeregister</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneDeregister()</slot>
+    </connection>
+    <connection>
+        <sender>regRegister</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneRegister()</slot>
+    </connection>
+    <connection>
+        <sender>callHold</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneHold(bool)</slot>
+    </connection>
+    <connection>
+        <sender>callReject</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneReject()</slot>
+    </connection>
+    <connection>
+        <sender>callRedirect</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneRedirect()</slot>
+    </connection>
+    <connection>
+        <sender>callInvite</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneInvite()</slot>
+    </connection>
+    <connection>
+        <sender>callDTMF</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneDTMF()</slot>
+    </connection>
+    <connection>
+        <sender>callBye</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneBye()</slot>
+    </connection>
+    <connection>
+        <sender>callAnswer</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneAnswer()</slot>
+    </connection>
+    <connection>
+        <sender>callTermCap</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneTermCap()</slot>
+    </connection>
+    <connection>
+        <sender>line2RadioButton</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>line2rbChangedState(bool)</slot>
+    </connection>
+    <connection>
+        <sender>line1RadioButton</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>line1rbChangedState(bool)</slot>
+    </connection>
+    <connection>
+        <sender>fileExitAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>fileExit()</slot>
+    </connection>
+    <connection>
+        <sender>actionLine1</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>actionLine1Toggled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>actionLine2</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>actionLine2Toggled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>viewDisplayAction</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>showDisplay(bool)</slot>
+    </connection>
+    <connection>
+        <sender>callTransfer</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>phoneTransfer()</slot>
+    </connection>
+    <connection>
+        <sender>servicesVoice_mailAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>popupMenuVoiceMail()</slot>
+    </connection>
+    <connection>
+        <sender>actionSendMsg</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>startMessageSession()</slot>
+    </connection>
+    <connection>
+        <sender>buddyListView</sender>
+        <signal>rightButtonPressed(QListViewItem*,const QPoint&amp;,int)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>showBuddyListPopupMenu(QListViewItem*,const QPoint&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>buddyListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>doMessageBuddy(QListViewItem*)</slot>
+    </connection>
+    <connection>
+        <sender>viewBuddyListAction</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>showBuddyList(bool)</slot>
+    </connection>
+    <connection>
+        <sender>helpManualAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>manual()</slot>
+    </connection>
+    <connection>
+        <sender>diamondcardSign_upAction</sender>
+        <signal>activated()</signal>
+        <receiver>MphoneForm</receiver>
+        <slot>DiamondcardSignUp()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>callComboBox</tabstop>
+    <tabstop>addressToolButton</tabstop>
+    <tabstop>callPushButton</tabstop>
+    <tabstop>displayTextEdit</tabstop>
+    <tabstop>line1RadioButton</tabstop>
+    <tabstop>line2RadioButton</tabstop>
+    <tabstop>userComboBox</tabstop>
+    <tabstop>from1Label</tabstop>
+    <tabstop>subject1Label</tabstop>
+    <tabstop>to1Label</tabstop>
+    <tabstop>subject2Label</tabstop>
+    <tabstop>from2Label</tabstop>
+    <tabstop>to2Label</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in declaration">dtmfform.h</include>
+    <include location="local" impldecl="in declaration">inviteform.h</include>
+    <include location="local" impldecl="in declaration">redirectform.h</include>
+    <include location="local" impldecl="in declaration">termcapform.h</include>
+    <include location="local" impldecl="in declaration">srvredirectform.h</include>
+    <include location="local" impldecl="in declaration">userprofileform.h</include>
+    <include location="local" impldecl="in declaration">transferform.h</include>
+    <include location="local" impldecl="in declaration">syssettingsform.h</include>
+    <include location="local" impldecl="in declaration">logviewform.h</include>
+    <include location="local" impldecl="in declaration">historyform.h</include>
+    <include location="local" impldecl="in declaration">selectuserform.h</include>
+    <include location="local" impldecl="in declaration">selectprofileform.h</include>
+    <include location="local" impldecl="in declaration">qevent.h</include>
+    <include location="local" impldecl="in declaration">twinklesystray.h</include>
+    <include location="local" impldecl="in declaration">im/msg_session.h</include>
+    <include location="local" impldecl="in declaration">messageformview.h</include>
+    <include location="local" impldecl="in declaration">buddylistview.h</include>
+    <include location="local" impldecl="in declaration">diamondcard.h</include>
+    <include location="local" impldecl="in implementation">user.h</include>
+    <include location="local" impldecl="in implementation">qtextedit.h</include>
+    <include location="local" impldecl="in implementation">qcheckbox.h</include>
+    <include location="local" impldecl="in implementation">qapplication.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">qpixmap.h</include>
+    <include location="local" impldecl="in implementation">qiconset.h</include>
+    <include location="local" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in implementation">line.h</include>
+    <include location="local" impldecl="in implementation">stun/stun_transaction.h</include>
+    <include location="local" impldecl="in implementation">log.h</include>
+    <include location="local" impldecl="in implementation">qprogressdialog.h</include>
+    <include location="local" impldecl="in implementation">util.h</include>
+    <include location="local" impldecl="in implementation">qtimer.h</include>
+    <include location="global" impldecl="in implementation">sys/time.h</include>
+    <include location="local" impldecl="in implementation">qframe.h</include>
+    <include location="local" impldecl="in implementation">qcursor.h</include>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">qvalidator.h</include>
+    <include location="local" impldecl="in implementation">buddyform.h</include>
+    <include location="local" impldecl="in implementation">diamondcardprofileform.h</include>
+    <include location="local" impldecl="in implementation">mphoneform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<variables>
+    <variable access="private">QTimer tmrFlashMWI;</variable>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+    <variable access="private">SelectProfileForm *selectProfileForm;</variable>
+    <variable access="private">SelectUserForm *selectUserForm;</variable>
+    <variable access="private">HistoryForm *historyForm;</variable>
+    <variable access="private">TransferForm *transferForm;</variable>
+    <variable access="private">UserProfileForm *userProfileForm;</variable>
+    <variable access="private">SrvRedirectForm *srvRedirectForm;</variable>
+    <variable access="private">TermCapForm *termCapForm;</variable>
+    <variable access="private">RedirectForm *redirectForm;</variable>
+    <variable access="private">InviteForm *inviteForm;</variable>
+    <variable access="private">DtmfForm *dtmfForm;</variable>
+    <variable access="private">SysSettingsForm *sysSettingsForm;</variable>
+    <variable access="private">QStringList displayContents;</variable>
+    <variable access="private">LogViewForm *logViewForm;</variable>
+    <variable access="private">t_twinkle_sys_tray *sysTray;</variable>
+    <variable access="private">QTimer *lineTimer1;</variable>
+    <variable access="private">QTimer *lineTimer2;</variable>
+    <variable access="private">QTimer *hideLineTimer1;</variable>
+    <variable access="private">QTimer *hideLineTimer2;</variable>
+    <variable access="private">bool viewDisplay;</variable>
+    <variable access="private">bool viewCompactLineStatus;</variable>
+    <variable access="private">bool mwiFlashStatus;</variable>
+    <variable access="private">QPopupMenu *buddyPopupMenu;</variable>
+    <variable access="private">QPopupMenu *buddyListPopupMenu;</variable>
+    <variable access="private">QPopupMenu *changeAvailabilityPopupMenu;</variable>
+    <variable access="private">QToolTip *buddyToolTip;</variable>
+    <variable access="private">bool viewBuddyList;</variable>
+</variables>
+<slots>
+    <slot>closeEvent( QCloseEvent * e )</slot>
+    <slot>fileExit()</slot>
+    <slot>display( const QString &amp; s )</slot>
+    <slot>displayHeader()</slot>
+    <slot>showLineTimer( int line )</slot>
+    <slot>showLineTimer1()</slot>
+    <slot>showLineTimer2()</slot>
+    <slot>updateLineTimer( int line )</slot>
+    <slot>updateLineEncryptionState( int line )</slot>
+    <slot>updateLineStatus( int line )</slot>
+    <slot>updateState()</slot>
+    <slot>updateRegStatus()</slot>
+    <slot>flashMWI()</slot>
+    <slot>updateMwi()</slot>
+    <slot>updateServicesStatus()</slot>
+    <slot>updateMissedCallStatus( int num_missed_calls )</slot>
+    <slot>updateSysTrayStatus()</slot>
+    <slot>updateMenuStatus()</slot>
+    <slot>updateDiamondcardMenu()</slot>
+    <slot>removeDiamondcardAction( int &amp; id )</slot>
+    <slot>removeDiamondcardMenu( QPopupMenu * &amp; menu )</slot>
+    <slot>phoneRegister()</slot>
+    <slot>do_phoneRegister( list&lt;t_user *&gt; user_list )</slot>
+    <slot>phoneDeregister()</slot>
+    <slot>do_phoneDeregister( list&lt;t_user *&gt; user_list )</slot>
+    <slot>phoneDeregisterAll()</slot>
+    <slot>do_phoneDeregisterAll( list&lt;t_user *&gt; user_list )</slot>
+    <slot>phoneShowRegistrations()</slot>
+    <slot>phoneInvite( t_user * user_config, const QString &amp; dest, const QString &amp; subject, bool anonymous )</slot>
+    <slot>phoneInvite( const QString &amp; dest, const QString &amp; subject, bool anonymous )</slot>
+    <slot>phoneInvite()</slot>
+    <slot>do_phoneInvite( t_user * user_config, const QString &amp; display, const t_url &amp; destination, const QString &amp; subject, bool anonymous )</slot>
+    <slot>phoneRedial( void )</slot>
+    <slot>phoneAnswer()</slot>
+    <slot>phoneAnswerFromSystrayPopup()</slot>
+    <slot>phoneBye()</slot>
+    <slot>phoneReject()</slot>
+    <slot>phoneRejectFromSystrayPopup()</slot>
+    <slot>phoneRedirect( const list&lt;string&gt; &amp; contacts )</slot>
+    <slot>phoneRedirect()</slot>
+    <slot>do_phoneRedirect( const list&lt;t_display_url&gt; &amp; destinations )</slot>
+    <slot>phoneTransfer( const string &amp; dest, t_transfer_type transfer_type )</slot>
+    <slot>phoneTransfer()</slot>
+    <slot>do_phoneTransfer( const t_display_url &amp; destination, t_transfer_type transfer_type )</slot>
+    <slot>do_phoneTransferLine()</slot>
+    <slot>phoneHold( bool on )</slot>
+    <slot>phoneConference()</slot>
+    <slot>phoneMute( bool on )</slot>
+    <slot>phoneTermCap( const QString &amp; dest )</slot>
+    <slot>phoneTermCap()</slot>
+    <slot>do_phoneTermCap( t_user * user_config, const t_url &amp; destination )</slot>
+    <slot>phoneDTMF()</slot>
+    <slot>sendDTMF( const QString &amp; digits )</slot>
+    <slot>startMessageSession( void )</slot>
+    <slot>startMessageSession( t_buddy * buddy )</slot>
+    <slot>phoneConfirmZrtpSas( int line )</slot>
+    <slot>phoneConfirmZrtpSas()</slot>
+    <slot>phoneResetZrtpSasConfirmation( int line )</slot>
+    <slot>phoneResetZrtpSasConfirmation()</slot>
+    <slot>phoneEnableZrtp( bool on )</slot>
+    <slot>phoneZrtpGoClearOk( unsigned short line )</slot>
+    <slot>line1rbChangedState( bool on )</slot>
+    <slot>line2rbChangedState( bool on )</slot>
+    <slot>actionLine1Toggled( bool on )</slot>
+    <slot>actionLine2Toggled( bool on )</slot>
+    <slot>srvDnd( bool on )</slot>
+    <slot>srvDnd()</slot>
+    <slot>do_srvDnd_enable( list&lt;t_user *&gt; user_list )</slot>
+    <slot>do_srvDnd_disable( list&lt;t_user *&gt; user_list )</slot>
+    <slot>srvAutoAnswer( bool on )</slot>
+    <slot>srvAutoAnswer()</slot>
+    <slot>do_srvAutoAnswer_enable( list&lt;t_user *&gt; user_list )</slot>
+    <slot>do_srvAutoAnswer_disable( list&lt;t_user *&gt; user_list )</slot>
+    <slot>srvRedirect()</slot>
+    <slot>do_srvRedirect( t_user * user_config, const list&lt;t_display_url&gt; &amp; always, const list&lt;t_display_url&gt; &amp; busy, const list&lt;t_display_url&gt; &amp; noanswer )</slot>
+    <slot>about()</slot>
+    <slot>aboutQt()</slot>
+    <slot>manual()</slot>
+    <slot>editUserProfile()</slot>
+    <slot>editSysSettings()</slot>
+    <slot>selectProfile()</slot>
+    <slot>newUsers( const list&lt;string&gt; &amp; profiles )</slot>
+    <slot>updateUserComboBox()</slot>
+    <slot>updateSipUdpPort()</slot>
+    <slot>updateRtpPorts()</slot>
+    <slot>updateStunSettings( t_user * user_config )</slot>
+    <slot>updateAuthCache( t_user * user_config, const string &amp; realm )</slot>
+    <slot>unsubscribeMWI( t_user * user_config )</slot>
+    <slot>subscribeMWI( t_user * user_config )</slot>
+    <slot>viewLog()</slot>
+    <slot>updateLog( bool log_zapped )</slot>
+    <slot>viewHistory()</slot>
+    <slot>updateCallHistory()</slot>
+    <slot>quickCall()</slot>
+    <slot>addToCallComboBox( const QString &amp; destination )</slot>
+    <slot>showAddressBook()</slot>
+    <slot>selectedAddress( const QString &amp; address )</slot>
+    <slot>enableCallOptions( bool enable )</slot>
+    <slot>keyPressEvent( QKeyEvent * e )</slot>
+    <slot>mouseReleaseEvent( QMouseEvent * e )</slot>
+    <slot>processLeftMouseButtonRelease( QMouseEvent * e )</slot>
+    <slot>processRightMouseButtonRelease( QMouseEvent * e )</slot>
+    <slot>processCryptLabelClick( int line )</slot>
+    <slot>popupMenuVoiceMail( const QPoint &amp; pos )</slot>
+    <slot>popupMenuVoiceMail( void )</slot>
+    <slot>showDisplay( bool on )</slot>
+    <slot>showBuddyList( bool on )</slot>
+    <slot>showCompactLineStatus( bool on )</slot>
+    <slot>populateBuddyList()</slot>
+    <slot>showBuddyListPopupMenu( QListViewItem * item, const QPoint &amp; pos )</slot>
+    <slot>doCallBuddy()</slot>
+    <slot>doMessageBuddy( QListViewItem * qitem )</slot>
+    <slot>doMessageBuddy()</slot>
+    <slot>doEditBuddy()</slot>
+    <slot>doDeleteBuddy()</slot>
+    <slot>doAddBuddy()</slot>
+    <slot>doAvailabilityOffline()</slot>
+    <slot>doAvailabilityOnline()</slot>
+    <slot>DiamondcardSignUp()</slot>
+    <slot>newDiamondcardUser( const QString &amp; filename )</slot>
+    <slot>DiamondcardAction( t_dc_action action, int userIdx )</slot>
+    <slot>DiamondcardRecharge( int userIdx )</slot>
+    <slot>DiamondcardBalanceHistory( int userIdx )</slot>
+    <slot>DiamondcardCallHistory( int userIdx )</slot>
+    <slot>DiamondcardAdminCenter( int userIdx )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function access="private" returnType="QString">lineSubstate2str( int line )</function>
+    <function returnType="QString">getMWIStatus( const t_mwi &amp; mwi, bool &amp; msg_waiting ) const</function>
+    <function returnType="t_twinkle_sys_tray *">getSysTray()</function>
+    <function returnType="bool">getViewDisplay()</function>
+    <function returnType="bool">getViewBuddyList()</function>
+    <function returnType="bool">getViewCompactLineStatus()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

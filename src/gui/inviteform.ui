@@ -1,0 +1,369 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>InviteForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>InviteForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>592</width>
+            <height>203</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Call</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout40</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>inviteTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;To:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>inviteComboBox</cstring>
+                    </property>
+                </widget>
+                <spacer row="2" column="2">
+                    <property name="name">
+                        <cstring>spacer3</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>23</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QLineEdit" row="2" column="1">
+                    <property name="name">
+                        <cstring>subjectLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Optionally you can provide a subject here. This might be shown to the callee.</string>
+                    </property>
+                </widget>
+                <widget class="QToolButton" row="1" column="2">
+                    <property name="name">
+                        <cstring>addressToolButton</cstring>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>TabFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="accel">
+                        <string>F10</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>kontact_contacts.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Address book</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Select an address from the address book.</string>
+                    </property>
+                </widget>
+                <spacer row="0" column="2">
+                    <property name="name">
+                        <cstring>spacer24</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QComboBox" row="1" column="1">
+                    <property name="name">
+                        <cstring>inviteComboBox</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="maxCount">
+                        <number>10</number>
+                    </property>
+                    <property name="insertionPolicy">
+                        <enum>NoInsertion</enum>
+                    </property>
+                    <property name="autoCompletion">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1">
+                    <property name="name">
+                        <cstring>fromComboBox</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The user that will make the call.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>subjectTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Subject:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>subjectLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>fromTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;From:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>fromComboBox</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout13</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>hideUserCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Hide identity</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+H</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>&lt;p&gt;
+With this option you request your SIP provider to hide your identity from the called party. This will only hide your identity, e.g. your SIP address, telephone number. It does &lt;b&gt;not&lt;/b&gt; hide your IP address.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;Warning:&lt;/b&gt; not all providers support identity hiding.
+&lt;/p&gt;</string>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>181</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </hbox>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer12</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout20</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer11</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>91</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>InviteForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>InviteForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>addressToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>InviteForm</receiver>
+        <slot>showAddressBook()</slot>
+    </connection>
+    <connection>
+        <sender>hideUserCheckBox</sender>
+        <signal>clicked()</signal>
+        <receiver>InviteForm</receiver>
+        <slot>warnHideUser()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>inviteComboBox</tabstop>
+    <tabstop>subjectLineEdit</tabstop>
+    <tabstop>hideUserCheckBox</tabstop>
+    <tabstop>addressToolButton</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+    <tabstop>fromComboBox</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">qstring.h</include>
+    <include location="local" impldecl="in declaration">sockets/url.h</include>
+    <include location="local" impldecl="in declaration">getaddressform.h</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">util.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in implementation">sys_settings.h</include>
+    <include location="local" impldecl="in implementation">qregexp.h</include>
+    <include location="local" impldecl="in implementation">qvalidator.h</include>
+    <include location="local" impldecl="in implementation">inviteform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<variables>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+</variables>
+<signals>
+    <signal>destination(t_user *, const QString &amp;, const t_url &amp;, const QString &amp;, bool)</signal>
+    <signal>raw_destination(const QString &amp;)</signal>
+</signals>
+<slots>
+    <slot>clear()</slot>
+    <slot>show( t_user * user_config, const QString &amp; dest, const QString &amp; subject, bool anonymous )</slot>
+    <slot>validate()</slot>
+    <slot>addToInviteComboBox( const QString &amp; destination )</slot>
+    <slot>reject()</slot>
+    <slot>closeEvent( QCloseEvent * )</slot>
+    <slot>showAddressBook()</slot>
+    <slot>selectedAddress( const QString &amp; address )</slot>
+    <slot>warnHideUser( void )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

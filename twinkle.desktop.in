@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Twinkle
+GenericName=A SIP softphone
+Comment=A SIP softphone
+Type=Application
+Exec=twinkle
+Icon=@datadir@/twinkle48.png
+StartupNotify=true
+Terminal=false
+Categories=Qt;KDE;Network;Telephony;

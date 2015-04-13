@@ -1,0 +1,95 @@
+/*
+    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+%{
+#include <string>
+#include "sdp_parse_ctrl.h"
+#include "sdp_parser.h"
+#include "audits/memman.h"
+
+using namespace std;
+%}
+
+%option noyywrap
+%option stack
+
+DIGIT		[0-9]
+ALPHA		[a-zA-Z]
+ALNUM		[a-zA-Z0-9]
+TOKEN_SYM	[[:alnum:]\-\.!%\*_\+\'~]
+SAFE_SYM	[[:alnum:]'`\-\.\/:\?\"#\$&\*;=@\[\]\^_\{|\}\+~\"]
+
+%x C_NUM
+%x C_LINE
+%x C_SAFE
+
+%%
+	switch (t_sdp_parser::context) {
+	case t_sdp_parser::X_NUM:	BEGIN(C_NUM); break;
+	case t_sdp_parser::X_LINE:	BEGIN(C_LINE); break;
+	case t_sdp_parser::X_SAFE:	BEGIN(C_SAFE); break;
+	default:			BEGIN(INITIAL);
+	}
+
+	/* SDP lines */
+^v=		{ return T_LINE_VERSION; }
+^o=		{ return T_LINE_ORIGIN; }
+^s=		{ return T_LINE_SESSION_NAME; }
+^c=		{ return T_LINE_CONNECTION; }
+^a=		{ return T_LINE_ATTRIBUTE; }
+^m=		{ return T_LINE_MEDIA; }
+^{ALPHA}=	{ return T_LINE_UNKNOWN; }
+
+	/* Token as define in RFC 3261 */
+{TOKEN_SYM}+ 	{ yysdplval.yysdpt_str = new string(yysdptext);
+		  MEMMAN_NEW(yysdplval.yysdpt_str);
+		  return T_TOKEN; }
+
+	/* End of line */
+\r\n		{ return T_CRLF; }
+\n		{ return T_CRLF; }
+
+[[:blank:]]	/* Skip white space */
+
+	/* Single character token */
+.		{ return yysdptext[0]; }
+
+	/* Number */
+<C_NUM>{DIGIT}+		{ yysdplval.yysdpt_int = atoi(yysdptext);
+			  return T_NUM; }
+<C_NUM>[[:blank:]]	/* Skip white space */
+<C_NUM>.		{ return yysdptext[0]; }
+<C_NUM>\r\n		{ return T_CRLF; }
+<C_NUM>\n		{ return T_CRLF; }
+
+	/* Safe */
+<C_SAFE>{SAFE_SYM}+	{ yysdplval.yysdpt_str = new string(yysdptext);
+			  MEMMAN_NEW(yysdplval.yysdpt_str);
+			  return T_SAFE; }
+<C_SAFE>[[:blank:]]	/* Skip white space */
+<C_SAFE>.		{ return yysdptext[0]; }
+<C_SAFE>\r\n		{ return T_CRLF; }
+<C_SAFE>\n		{ return T_CRLF; }
+
+	/* Get all text till end of line */
+<C_LINE>[^\r\n]+	{ yysdplval.yysdpt_str = new string(yysdptext);
+			  MEMMAN_NEW(yysdplval.yysdpt_str);
+			  return T_LINE; }
+<C_LINE>\r\n		{ return T_CRLF; }
+<C_LINE>\n		{ return T_CRLF; }
+<C_LINE>\r		{ return T_CRLF; }

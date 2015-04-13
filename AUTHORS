@@ -1,0 +1,35 @@
+Author of Twinkle:
+
+Michel de Boer <michel@twinklephone.com> designed and implemented Twinkle.
+
+Contributions:
+* Werner Dittmann (ZRTP/SRTP)
+* Bogdan Harjoc (AKAv1-MD5, Service-Route)
+* Roman Imankulov (command line editing)
+* Ondrej Moris (codec preprocessing)
+* Rickard Petzall (ALSA)
+
+Twinkle contains the following 3rd party software packages:
+- GSM codec from Jutta Degener and Carsten Bormann
+	see directory src/audio/gsm for more info
+- G.711/G.726 codec from Sun Microsystems
+	see src/audio/README_G711 for more info
+- iLBC implementation from RFC 3951 (www.ilbcfreeware.org)
+- Parts of the STUN project from sourceforge
+	http://sourceforge.net/projects/stun
+- Parts of libsrv at http://libsrv.sourceforge.net/
+
+Dynamic linked libraries:
+- RTP, ZRTP and SRTP functionality is provided by the
+  GNU ccRTP stack: http://www.gnu.org/software/ccrtp
+
+Translators:
+Czech   Marek Straka
+Dutch	Michel de Boer
+German  Joerg Reisenweber
+French  Olivier Aufrere
+Russian Michail Chodorenko
+Swedish Daniel Nylander
+
+Michel de Boer
+www.twinklephone.com

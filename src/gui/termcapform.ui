@@ -1,0 +1,241 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>TermCapForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>TermCapForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>581</width>
+            <height>168</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Terminal Capabilities</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout53</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>fromTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;From:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>fromComboBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox">
+                    <property name="name">
+                        <cstring>fromComboBox</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>termCapGroupBox</cstring>
+            </property>
+            <property name="title">
+                <string>Get terminal capabilities of</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>partyTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;To:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>partyLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>partyLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The address that you want to query for capabilities (OPTION request). This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
+                    </property>
+                </widget>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>addressToolButton</cstring>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>TabFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="accel">
+                        <string>F10</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>kontact_contacts.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Address book</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Select an address from the address book.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer13</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout15</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer12</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>131</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TermCapForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TermCapForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>addressToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TermCapForm</receiver>
+        <slot>showAddressBook()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>partyLineEdit</tabstop>
+    <tabstop>addressToolButton</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+    <tabstop>fromComboBox</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in declaration">sockets/url.h</include>
+    <include location="local" impldecl="in declaration">getaddressform.h</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">phone.h</include>
+    <include location="local" impldecl="in implementation">termcapform.ui.h</include>
+</includes>
+<forwards>
+    <forward>extern t_phone *phone;</forward>
+</forwards>
+<variables>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+</variables>
+<signals>
+    <signal>destination(t_user *, const t_url &amp;)</signal>
+</signals>
+<slots>
+    <slot>show( t_user * user_config, const QString &amp; dest )</slot>
+    <slot>validate()</slot>
+    <slot>showAddressBook()</slot>
+    <slot>selectedAddress( const QString &amp; address )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

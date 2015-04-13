@@ -1,0 +1,255 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>BuddyForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>BuddyForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>484</width>
+            <height>154</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Buddy</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout12</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer row="1" column="2" rowspan="2" colspan="1">
+                    <property name="name">
+                        <cstring>spacer25</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>47</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QToolButton" row="0" column="2">
+                    <property name="name">
+                        <cstring>addressToolButton</cstring>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>TabFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>kontact_contacts.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Address book</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Select an address from the address book.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>phoneTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Phone:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>phoneLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="0" column="1">
+                    <property name="name">
+                        <cstring>nameLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Name of your buddy.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>subscribeCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Show availability</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+S</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Check this option if you want to see the availability of your buddy. This will only work if your provider offers a presence agent.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>nameTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>nameLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="1">
+                    <property name="name">
+                        <cstring>phoneLineEdit</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>SIP address your buddy.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <spacer>
+            <property name="name">
+                <cstring>spacer14</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout54</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer13</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>131</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>BuddyForm</receiver>
+        <slot>validate()</slot>
+    </connection>
+    <connection>
+        <sender>cancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>BuddyForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>addressToolButton</sender>
+        <signal>clicked()</signal>
+        <receiver>BuddyForm</receiver>
+        <slot>showAddressBook()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>nameLineEdit</tabstop>
+    <tabstop>phoneLineEdit</tabstop>
+    <tabstop>subscribeCheckBox</tabstop>
+    <tabstop>addressToolButton</tabstop>
+    <tabstop>okPushButton</tabstop>
+    <tabstop>cancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in declaration">presence/buddy.h</include>
+    <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">qlistview.h</include>
+    <include location="local" impldecl="in declaration">getaddressform.h</include>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">sockets/url.h</include>
+    <include location="local" impldecl="in implementation">buddylistview.h</include>
+    <include location="local" impldecl="in implementation">audits/memman.h</include>
+    <include location="local" impldecl="in implementation">buddyform.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">GetAddressForm *getAddressForm;</variable>
+    <variable access="private">t_user *user_config;</variable>
+    <variable access="private">bool edit_mode;</variable>
+    <variable access="private">t_buddy_list *buddy_list;</variable>
+    <variable access="private">t_buddy *edit_buddy;</variable>
+    <variable access="private">QListViewItem *profileItem;</variable>
+</variables>
+<slots>
+    <slot>showNew( t_buddy_list &amp; _buddy_list, QListViewItem * _profileItem )</slot>
+    <slot>showEdit( t_buddy &amp; buddy )</slot>
+    <slot>validate()</slot>
+    <slot>showAddressBook()</slot>
+    <slot>selectedAddress( const QString &amp; name, const QString &amp; phone )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

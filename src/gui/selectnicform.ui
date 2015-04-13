@@ -1,0 +1,212 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>SelectNicForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>SelectNicForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>482</width>
+            <height>144</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Twinkle - Select NIC</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>nicIconTextLabel</cstring>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+            <property name="pixmap">
+                <pixmap>kcmpci.png</pixmap>
+            </property>
+        </widget>
+        <spacer row="1" column="0" rowspan="2" colspan="1">
+            <property name="name">
+                <cstring>spacer53</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>41</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget" row="0" column="1">
+            <property name="name">
+                <cstring>layout42</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>selectTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Select the network interface/IP address that you want to use:</string>
+                    </property>
+                    <property name="alignment">
+                        <set>WordBreak|AlignTop</set>
+                    </property>
+                </widget>
+                <widget class="QListBox">
+                    <property name="name">
+                        <cstring>nicListBox</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>You have multiple IP addresses. Here you must select which IP address should be used. This IP address will be used inside the SIP messages.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <spacer row="1" column="1">
+            <property name="name">
+                <cstring>spacer9</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget" row="2" column="1">
+            <property name="name">
+                <cstring>layout11</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer7</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>40</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>defaultIpPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Set as default &amp;IP</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+I</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Make the selected IP address the default IP address. The next time you start Twinkle, this IP address will be automatically selected.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>defaultNicPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Set as default &amp;NIC</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+N</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Make the selected network interface the default interface. The next time you start Twinkle, this interface will be automatically selected.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>okPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectNicForm</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>nicListBox</sender>
+        <signal>selected(const QString&amp;)</signal>
+        <receiver>SelectNicForm</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>defaultIpPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectNicForm</receiver>
+        <slot>setAsDefaultIp()</slot>
+    </connection>
+    <connection>
+        <sender>defaultNicPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SelectNicForm</receiver>
+        <slot>setAsDefaultNic()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">gui.h</include>
+    <include location="local" impldecl="in implementation">qmessagebox.h</include>
+    <include location="local" impldecl="in implementation">sys_settings.h</include>
+    <include location="local" impldecl="in implementation">selectnicform.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">int idxDefault;</variable>
+</variables>
+<slots>
+    <slot>setAsDefault( bool setIp )</slot>
+    <slot>setAsDefaultIp()</slot>
+    <slot>setAsDefaultNic()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

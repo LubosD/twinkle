@@ -1,0 +1,294 @@
+/*
+    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+%{
+#include <algorithm>
+#include <cstdio>
+#include <string>
+#include "sdp_parse_ctrl.h"
+#include "sdp.h"
+#include "util.h"
+#include "audits/memman.h"
+
+using namespace std;
+
+extern int yysdplex(void);
+void yysdperror(const char *s);
+%}
+
+// The %debug option causes a problem with the %destructor options later on.
+// The bison compilor generates undefined symbols:
+//
+//   parser.y: In function `void yysymprint(FILE*, int, yystype)':
+//   parser.y:0: error: `null' undeclared (first use this function)
+//
+// So if you need to debug, then outcomment the %destructor first. This will
+// do no harm to your debugging, it only will cause memory leaks during
+// error handling.
+//
+// %debug
+
+
+%expect 2
+/* See below for the expected shift/reduce conflicts. */
+
+%union {
+	int			yysdpt_int;
+	string			*yysdpt_str;
+	t_sdp_ntwk_type		yysdpt_ntwk_type;
+	t_sdp_addr_type		yysdpt_addr_type;
+	t_sdp_connection	*yysdpt_connection;
+	list<t_sdp_attr>	*yysdpt_attributes;
+	t_sdp_attr		*yysdpt_attribute;
+	t_sdp_media		*yysdpt_media;
+	list<string>		*yysdpt_token_list;
+}
+
+%token <yysdpt_int>	T_NUM
+%token <yysdpt_str>	T_TOKEN
+%token <yysdpt_str>	T_SAFE
+%token <yysdpt_str>	T_LINE
+
+%token			T_CRLF
+
+%token			T_LINE_VERSION
+%token			T_LINE_ORIGIN
+%token			T_LINE_SESSION_NAME
+%token			T_LINE_CONNECTION
+%token			T_LINE_ATTRIBUTE
+%token			T_LINE_MEDIA
+%token			T_LINE_UNKNOWN
+
+// The token T_NULL is never returned by the scanner.
+%token			T_NULL
+
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_TOKEN
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_SAFE
+%destructor { MEMMAN_DELETE($$); delete $$; }	T_LINE
+
+%type <yysdpt_addr_type>	address_type
+%type <yysdpt_connection>	connection
+%type <yysdpt_ntwk_type>	network_type
+%type <yysdpt_attributes>	attributes
+%type <yysdpt_attribute>	attribute
+%type <yysdpt_attribute>	attribute2
+%type <yysdpt_media>		media
+%type <yysdpt_str>		transport
+%type <yysdpt_token_list>	formats
+
+%destructor { MEMMAN_DELETE($$); delete $$; }	connection
+%destructor { MEMMAN_DELETE($$); delete $$; }	attributes
+%destructor { MEMMAN_DELETE($$); delete $$; }	attribute
+%destructor { MEMMAN_DELETE($$); delete $$; }	attribute2
+%destructor { MEMMAN_DELETE($$); delete $$; }	media
+%destructor { MEMMAN_DELETE($$); delete $$; }	transport
+%destructor { MEMMAN_DELETE($$); delete $$; }	formats
+
+%%
+
+/* The unknown_lines cause an expected shift/reduce conflict */
+sdp_body:	  version
+		  origin
+		  session_name
+		  unknown_lines
+		  sess_connection
+		  unknown_lines
+		  sess_attributes
+		  media_list {
+		  	/* Parsing stops here. Remaining text is
+			 * not parsed.
+			 */
+		  	YYACCEPT; }
+		| error T_NULL {
+			/* KLUDGE to avoid memory leak in bison.
+			 * See the SIP parser for an explanation.
+			 */
+			YYABORT;
+		}
+;
+
+version:	  T_LINE_VERSION { CTX_NUM; } T_NUM { CTX_INITIAL; }
+		  T_CRLF {
+			SDP->version = $3; }
+;
+
+origin:		  T_LINE_ORIGIN { CTX_SAFE; } T_SAFE { CTX_INITIAL; }
+		  T_TOKEN T_TOKEN network_type address_type T_TOKEN T_CRLF {
+			SDP->origin.username = *$3;
+			SDP->origin.session_id = *$5;
+			SDP->origin.session_version = *$6;
+			SDP->origin.network_type = $7;
+			SDP->origin.address_type = $8;
+			SDP->origin.address = *$9;
+			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($5); delete $5;
+			MEMMAN_DELETE($6); delete $6;
+			MEMMAN_DELETE($9); delete $9; }
+;
+
+network_type:	  T_TOKEN { try {
+				$$ = str2sdp_ntwk_type(*$1);
+				MEMMAN_DELETE($1); delete $1;
+			    }
+			    catch (t_sdp_syntax_error) {
+			    	// Invalid network type.
+				// Set network type to NULL. This way the message
+				// will not be discarded and the error can be
+				// handled on the SIP level (error response or
+				// call tear down).
+			    	MEMMAN_DELETE($1); delete $1;
+				$$ = SDP_NTWK_NULL;
+			    } }
+;
+
+address_type:	  T_TOKEN { try {
+				$$ = str2sdp_addr_type(*$1);
+				MEMMAN_DELETE($1); delete $1;
+			    }
+			    catch (t_sdp_syntax_error) {
+			    	// Invalid address type
+			    	MEMMAN_DELETE($1); delete $1;
+				$$ = SDP_ADDR_NULL;
+			    } }
+;
+
+session_name:	  T_LINE_SESSION_NAME { CTX_LINE; } T_LINE
+		  { CTX_INITIAL; } T_CRLF {
+			SDP->session_name = *$3;
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+sess_connection:  connection {
+			SDP->connection = *$1;
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+connection:	  /* empty */	{ $$ = new t_sdp_connection(); MEMMAN_NEW($$); }
+		| T_LINE_CONNECTION network_type address_type T_TOKEN
+		  T_CRLF {
+			$$ = new t_sdp_connection();
+			MEMMAN_NEW($$);
+			$$->network_type = $2;
+			$$->address_type = $3;
+			$$->address = *$4;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+sess_attributes:  attributes {
+			SDP->attributes = *$1;
+			MEMMAN_DELETE($1); delete $1; }
+;
+
+attributes:	  /* emtpy */	{ $$ = new list<t_sdp_attr>; MEMMAN_NEW($$); }
+		| attributes attribute {
+			$$->push_back(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+attribute:	  T_LINE_ATTRIBUTE attribute2 T_CRLF {
+			$$ = $2; }
+;
+
+attribute2:	  T_TOKEN {
+			$$ = new t_sdp_attr(*$1);
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; }
+		| T_TOKEN ':' { CTX_LINE; } T_LINE { CTX_INITIAL; } {
+			$$ = new t_sdp_attr(*$1, *$4);
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+media_list:	  /* empty */
+		| media_list media {
+			SDP->media.push_back(*$2);
+			MEMMAN_DELETE($2); delete $2; }
+;
+
+/* The unknown_lines cause an expected shift/reduce conflict */
+media:		  T_LINE_MEDIA T_TOKEN { CTX_NUM; } T_NUM { CTX_INITIAL; }
+		  transport formats T_CRLF unknown_lines connection
+		  unknown_lines attributes {
+		  	$$ = new t_sdp_media();
+			MEMMAN_NEW($$);
+			
+			if ($4 > 65535) YYERROR;
+			
+			$$->media_type = tolower(*$2);
+			$$->port = $4;
+			$$->transport = *$6;
+			
+			/* The format depends on the media type */
+			switch($$->get_media_type()) {
+			case SDP_AUDIO:
+			case SDP_VIDEO:
+				/* Numeric format */
+				for (list<string>::const_iterator it = $7->begin(); it != $7->end(); ++it) {
+					if (is_number(*it)) $$->formats.push_back(atoi(it->c_str()));
+				}
+				
+				break;
+			default:
+				/* Alpha numeric format */
+				$$->alpha_num_formats = *$7;
+			}
+			
+			$$->connection = *$10;
+			$$->attributes = *$12;
+			MEMMAN_DELETE($2); delete $2;
+			MEMMAN_DELETE($6); delete $6;
+			MEMMAN_DELETE($7); delete $7;
+			MEMMAN_DELETE($10); delete $10;
+			MEMMAN_DELETE($12); delete $12; }
+;
+
+transport:	  T_TOKEN { 
+			$$ = $1; }
+		| T_TOKEN '/' T_TOKEN {
+			$$ = new string(*$1 + '/' + *$3); 
+			MEMMAN_NEW($$);
+			MEMMAN_DELETE($1); delete $1; 
+			MEMMAN_DELETE($3); delete $3; }
+
+// For RTP/AVP a format is a number. For other transport protocols,
+// non-numerical formats are possible.
+formats:	  /* empty */	{ $$ = new list<string>; MEMMAN_NEW($$); }
+		| formats T_TOKEN {
+			$$->push_back(*$2);
+			MEMMAN_DELETE($2);
+			delete $2; }
+;
+
+/* Skip unknown lines */
+unknown_lines:	  /* empty */
+		| unknown_lines unknown_line
+;
+
+unknown_line:	  T_LINE_UNKNOWN { CTX_LINE; } T_LINE { CTX_INITIAL; }
+		  T_CRLF {
+		  	MEMMAN_DELETE($3); delete $3; }
+;
+
+%%
+
+void
+yysdperror (const char *s)  /* Called by yysdpparse on error */
+{
+  // printf ("%s\n", s);
+}
