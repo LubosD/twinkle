@@ -162,7 +162,7 @@ void t_log::write_header(const string &func_name, t_log_class log_class,
 
 	gettimeofday(&t, NULL);
 	date = t.tv_sec;
-	localtime_r(&date, &tm);
+	::localtime_r(&date, &tm);
 
 	*log_stream << "+++ ";
 	*log_stream << tm.tm_mday;
