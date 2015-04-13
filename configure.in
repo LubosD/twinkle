@@ -163,7 +163,7 @@ then
 		[AC_MSG_ERROR([kde header files missing (kdelibs3-devel package)])])
 	AC_DEFINE(HAVE_KDE, 1, [Define to 1 if you have KDE.])
 	echo "INCLUDEPATH += ${kde_includes}" >> $QT_INCL_PRO
-	echo "LIBS += -L${kde_libraries} -lkdecore -lkdeui" >> $QT_INCL_PRO
+	echo "LIBS += -L${kde_libraries} -lkdecore -lkdeui -lkio" >> $QT_INCL_PRO
 	echo "LIBS += -L${TWINKLE_KDE_PREFIX}/lib -lkabc" >> $QT_INCL_PRO
 else
 	include_x11_FALSE="yes"
