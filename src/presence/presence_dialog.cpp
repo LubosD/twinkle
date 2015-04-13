@@ -32,4 +32,5 @@ t_presence_dialog::t_presence_dialog(t_phone_user *_phone_user, t_presence_state
 t_presence_dialog *t_presence_dialog::copy(void) {
 	// Copy is not needed.
 	assert(false);
+	return NULL;
 }

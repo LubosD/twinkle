@@ -40,6 +40,7 @@ void *main_logview(void *arg) {
 		// TODO: handle situation where log file was zapped.
 		if (ui) ui->cb_log_updated(false);
 	}
+	return NULL;
 }
 
 bool t_log::move_current_to_old(void) {

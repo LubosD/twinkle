@@ -32,4 +32,5 @@ t_mwi_dialog::t_mwi_dialog(t_phone_user *_phone_user) :
 t_mwi_dialog *t_mwi_dialog::copy(void) {
 	// Copy is not needed.
 	assert(false);
+	return NULL;
 }

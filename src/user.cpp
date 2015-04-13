@@ -225,6 +225,7 @@ string t_user::bit_rate_type2str(t_bit_rate_type b) const {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_dtmf_transport t_user::str2dtmf_transport(const string &s) const {
@@ -244,6 +245,7 @@ string t_user::dtmf_transport2str(t_dtmf_transport d) const {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_g726_packing t_user::str2g726_packing(const string &s) const {
@@ -259,6 +261,7 @@ string t_user::g726_packing2str(t_g726_packing packing) const {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_sip_transport t_user::str2sip_transport(const string &s) const {
@@ -276,6 +279,7 @@ string t_user::sip_transport2str(t_sip_transport transport) const {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 string t_user::expand_filename(const string &filename) {

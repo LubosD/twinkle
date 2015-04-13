@@ -38,6 +38,7 @@ string method2str(const t_method &m, const string &unknown) {
 	case METHOD_UNKNOWN:	return unknown;
 	default:		assert(false);
 	}
+	return unknown;
 }
 
 t_method str2method(const string &s) {

@@ -37,6 +37,7 @@ string sdp_ntwk_type2str(t_sdp_ntwk_type n) {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_sdp_ntwk_type str2sdp_ntwk_type(string s) {
@@ -53,6 +54,7 @@ string sdp_addr_type2str(t_sdp_addr_type a) {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_sdp_addr_type str2sdp_addr_type(string s) {
@@ -69,6 +71,7 @@ string sdp_transport2str(t_sdp_transport t) {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 t_sdp_transport str2sdp_transport(string s) {
@@ -92,6 +95,7 @@ string sdp_media_type2str(t_sdp_media_type m) {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 string get_rtpmap(unsigned format, t_audio_codec codec) {
@@ -153,6 +157,7 @@ string sdp_media_direction2str(t_sdp_media_direction d) {
 	default:
 		assert(false);
 	}
+	return "";
 }
 
 ///////////////////////////////////

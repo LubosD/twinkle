@@ -782,4 +782,5 @@ void *timekeeper_sigwait(void *arg) {
 		if (sigwait(&sigset, &sig) == EINTR) continue;
 		evq_timekeeper->interrupt();
 	}
+	return NULL;
 }
