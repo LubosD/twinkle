@@ -2707,7 +2707,6 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <variable access="private">QPopupMenu *buddyPopupMenu;</variable>
     <variable access="private">QPopupMenu *buddyListPopupMenu;</variable>
     <variable access="private">QPopupMenu *changeAvailabilityPopupMenu;</variable>
-    <variable access="private">QToolTip *buddyToolTip;</variable>
     <variable access="private">bool viewBuddyList;</variable>
 </variables>
 <slots>

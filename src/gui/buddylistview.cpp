@@ -246,33 +246,3 @@ t_presence_epa *BLViewUserItem::get_presence_epa(void) {
 	return presence_epa;
 }
 
-
-BuddyListViewTip::BuddyListViewTip(Q3ListView *parent) :
-		QToolTip(parent->viewport()),
-		parentListView(parent)
-{}
-
-void BuddyListViewTip::maybeTip ( const QPoint & p ) {
-	Q3ListView *listView = parentListView;
-	
-	Q3ListViewItem *item = listView->itemAt(p);
-	if (!item) return;
-	
-	AbstractBLVItem *bitem = dynamic_cast<AbstractBLVItem *>(item);
-	if (!bitem) return;
-	
-	int x = listView->header()->sectionPos( listView->header()->mapToIndex( 0 ) ) +
-	     listView->treeStepSize() * ( item->depth() + ( listView->rootIsDecorated() ? 1 : 0) ) + 
-	     listView->itemMargin();
-	     
-	if ( p.x() > x ||
-	     p.x() < listView->header()->sectionPos( listView->header()->mapToIndex( 0 ) ) ) 
-	{
-		// p is not on root decoration
-		QRect tipRect = listView->itemRect(item);
-		
-		// Shrink rect to exclude root decoration
-		tipRect.setX(x);
-		tip(tipRect, bitem->get_tip());
-	}
-}

@@ -89,9 +89,7 @@ void MphoneForm::init()
 				       changeAvailabilityPopupMenu);
 	buddyListPopupMenu->insertItem(addIcon, tr("&Add buddy..."), this, SLOT(doAddBuddy()));
 	
-	// Tool tip for buddy list
-	buddyToolTip = new BuddyListViewTip(buddyListView);
-	MEMMAN_NEW(buddyToolTip);
+	// ToDo: Tool tip for buddy list
 	
 	// Line timers
 	lineTimer1 = 0;
@@ -288,8 +286,6 @@ void MphoneForm::destroy()
 	delete changeAvailabilityPopupMenu;
 	MEMMAN_DELETE(buddyListPopupMenu);
 	delete buddyListPopupMenu;
-	MEMMAN_DELETE(buddyToolTip);
-	delete buddyToolTip;
 }
 
 QString MphoneForm::lineSubstate2str( int line) {

@@ -79,14 +79,4 @@ public:
 	t_presence_epa *get_presence_epa(void);
 };
 
-class BuddyListViewTip : public QToolTip {
-private:
-	Q3ListView *parentListView;
-	
-public:
-	BuddyListViewTip(Q3ListView *parent);
-	virtual ~BuddyListViewTip() {};
-	void maybeTip ( const QPoint & p );
-};
-
 #endif
