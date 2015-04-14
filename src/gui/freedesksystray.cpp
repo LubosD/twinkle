@@ -22,6 +22,7 @@
 
 #include "freedesksystray.h"
 //Added by qt3to4:
+#include <q3mimefactory.h>
 #include <QPixmap>
 #include <QLabel>
 #include <QMouseEvent>
@@ -40,7 +41,7 @@ void FreeDeskSysTray::dock ()
   trayMenu->insertSeparator();
   trayMenu->insertItem(tr("Show/Hide"), this, SLOT(slotMenuItemShow())) ;
   
-  QIcon quitIcon(QPixmap::fromMimeSource("exit.png"));
+  QIcon quitIcon(qPixmapFromMimeSource("exit.png"));
   trayMenu->insertItem(quitIcon, tr("Quit"), this, SLOT(slotMenuItemQuit())) ;
   
   Display *dpy = QPaintDevice::x11AppDisplay();

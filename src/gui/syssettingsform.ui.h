@@ -42,11 +42,11 @@ void SysSettingsForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
+	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	i = openRingbackToolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
+	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingbackToolButton->setIconSet(i);
 	
@@ -257,7 +257,7 @@ void SysSettingsForm::populate()
 		profile.truncate(profile.length() - 4);
 		Q3CheckListItem *item = new Q3CheckListItem(profileListView,
 					profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
+		item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
 		
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(), l.end(), profile.ascii()) != l.end())

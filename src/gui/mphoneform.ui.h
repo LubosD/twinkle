@@ -59,10 +59,10 @@ void MphoneForm::init()
 	sysTray = 0;
 	
 	// Popup menu for a single buddy
-	QIcon inviteIcon(QPixmap::fromMimeSource("invite.png"));
-	QIcon messageIcon(QPixmap::fromMimeSource("message.png"));
-	QIcon editIcon(QPixmap::fromMimeSource("edit16.png"));
-	QIcon deleteIcon(QPixmap::fromMimeSource("editdelete.png"));
+	QIcon inviteIcon(qPixmapFromMimeSource("invite.png"));
+	QIcon messageIcon(qPixmapFromMimeSource("message.png"));
+	QIcon editIcon(qPixmapFromMimeSource("edit16.png"));
+	QIcon deleteIcon(qPixmapFromMimeSource("editdelete.png"));
 	buddyPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(buddyPopupMenu);
 	buddyPopupMenu->insertItem(inviteIcon, tr("&Call..."), this, SLOT(doCallBuddy()));
@@ -73,16 +73,16 @@ void MphoneForm::init()
 	// Change availibility sub popup menu
 	changeAvailabilityPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(changeAvailabilityPopupMenu);
-	QIcon availOnlineIcon(QPixmap::fromMimeSource("presence_online.png"));
-	QIcon availOfflineIcon(QPixmap::fromMimeSource("presence_offline.png"));
+	QIcon availOnlineIcon(qPixmapFromMimeSource("presence_online.png"));
+	QIcon availOfflineIcon(qPixmapFromMimeSource("presence_offline.png"));
 	changeAvailabilityPopupMenu->insertItem(availOfflineIcon, tr("O&ffline"), this, 
 						SLOT(doAvailabilityOffline()));
 	changeAvailabilityPopupMenu->insertItem(availOnlineIcon, tr("&Online"), this, 
 						SLOT(doAvailabilityOnline()));
 	
 	// Popup menu for a buddy list (click on profile name)
-	QIcon changeAvailabilityIcon(QPixmap::fromMimeSource("presence_online.png"));
-	QIcon addIcon(QPixmap::fromMimeSource("buddy.png"));
+	QIcon changeAvailabilityIcon(qPixmapFromMimeSource("presence_online.png"));
+	QIcon addIcon(qPixmapFromMimeSource("buddy.png"));
 	buddyListPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(buddyListPopupMenu);
 	buddyListPopupMenu->insertItem(changeAvailabilityIcon, tr("&Change availability"), 
@@ -147,7 +147,7 @@ void MphoneForm::init()
 		sysTray = new t_twinkle_sys_tray(this, "twinkle_sys_tray");
 		MEMMAN_NEW(sysTray);
 		sysTray->setPixmap(
-				QPixmap::fromMimeSource("sys_idle_dis.png"));
+				qPixmapFromMimeSource("sys_idle_dis.png"));
 		sysTray->setCaption(PRODUCT_NAME);
 		QToolTip::add(sysTray, PRODUCT_NAME);
 		
@@ -504,12 +504,12 @@ void MphoneForm::updateLineEncryptionState(int line)
 			toolTip.append("\n").append(tr("Click to confirm SAS."));
 			cryptLabel->setFrameStyle(Q3Frame::Panel | Q3Frame::Raised);
 			cryptLabel->setPixmap(
-				QPixmap::fromMimeSource("encrypted.png"));
+				qPixmapFromMimeSource("encrypted.png"));
 		} else {
 			toolTip.append("\n").append(tr("Click to clear SAS verification."));
 			cryptLabel->setFrameStyle(Q3Frame::NoFrame);
 			cryptLabel->setPixmap(
-				QPixmap::fromMimeSource("encrypted_verified.png"));
+				qPixmapFromMimeSource("encrypted_verified.png"));
 		}
 
 		QToolTip::add(cryptLabel, toolTip);
@@ -578,11 +578,11 @@ void MphoneForm::updateLineStatus(int line)
 		referLabel->show();
 		if (is_transfer_consult) {
 			referLabel->setPixmap(
-				QPixmap::fromMimeSource("consult-xfer.png"));
+				qPixmapFromMimeSource("consult-xfer.png"));
 			toolTip = tr("Transfer consultation");
 		} else {
 			referLabel->setPixmap(
-				QPixmap::fromMimeSource("cf.png"));
+				qPixmapFromMimeSource("cf.png"));
 			toolTip = tr("Transferring call");
 		}
 		QToolTip::add(referLabel, toolTip);
@@ -601,29 +601,29 @@ void MphoneForm::updateLineStatus(int line)
 		break;
 	case LSSUB_SEIZED:
 	case LSSUB_OUTGOING_PROGRESS:
-		statLabel->setPixmap(QPixmap::fromMimeSource("stat_outgoing.png"));
+		statLabel->setPixmap(qPixmapFromMimeSource("stat_outgoing.png"));
 		statLabel->show();
 		break;
 	case LSSUB_INCOMING_PROGRESS:
-		statLabel->setPixmap(QPixmap::fromMimeSource("stat_ringing.png"));
+		statLabel->setPixmap(qPixmapFromMimeSource("stat_ringing.png"));
 		statLabel->show();
 		break;
 	case LSSUB_ANSWERING:
-		statLabel->setPixmap(QPixmap::fromMimeSource("gear.png"));
+		statLabel->setPixmap(qPixmapFromMimeSource("gear.png"));
 		statLabel->show();
 		break;
 	case LSSUB_ESTABLISHED:
 		if (phone->has_line_media(line)) {
-			statLabel->setPixmap(QPixmap::fromMimeSource(
+			statLabel->setPixmap(qPixmapFromMimeSource(
 					"stat_established.png"));
 		} else {
-			statLabel->setPixmap(QPixmap::fromMimeSource(
+			statLabel->setPixmap(qPixmapFromMimeSource(
 					"stat_established_nomedia.png"));
 		}
 		statLabel->show();
 		break;
 	case LSSUB_RELEASING:
-		statLabel->setPixmap(QPixmap::fromMimeSource("gear.png"));
+		statLabel->setPixmap(qPixmapFromMimeSource("gear.png"));
 		statLabel->show();
 		break;
 	default:
@@ -918,20 +918,20 @@ void MphoneForm::updateRegStatus()
 	// Set registration status
 	if (num_registered == user_list.size()) {
 		// All users are registered
-		statRegLabel->setPixmap(QPixmap::fromMimeSource("twinkle16.png"));
+		statRegLabel->setPixmap(qPixmapFromMimeSource("twinkle16.png"));
 	} else if (num_failed == user_list.size()) {
 		// All users failed to register
-		statRegLabel->setPixmap(QPixmap::fromMimeSource("reg_failed.png"));
+		statRegLabel->setPixmap(qPixmapFromMimeSource("reg_failed.png"));
 	} else if (num_registered > 0) {
 		// Some users are registered
-		statRegLabel->setPixmap(QPixmap::fromMimeSource(
+		statRegLabel->setPixmap(qPixmapFromMimeSource(
 				"twinkle16.png"));
 	} else if (num_failed > 0) {
 		// Some users failed, none are registered
-		statRegLabel->setPixmap(QPixmap::fromMimeSource("reg_failed.png"));
+		statRegLabel->setPixmap(qPixmapFromMimeSource("reg_failed.png"));
 	} else {
 		// No users are registered, no users failed
-		statRegLabel->setPixmap(QPixmap::fromMimeSource("twinkle16-disabled.png"));
+		statRegLabel->setPixmap(qPixmapFromMimeSource("twinkle16-disabled.png"));
 	}
 	
 	// Set tool tip with detailed info.
@@ -997,11 +997,11 @@ void MphoneForm::flashMWI()
 {
 	if (mwiFlashStatus) {
 		mwiFlashStatus = false;
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 				"mwi_none16.png"));
 	} else {
 		mwiFlashStatus = true;
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 				"mwi_new16.png"));
 	}
 }
@@ -1066,7 +1066,7 @@ void MphoneForm::updateMwi()
 	
 	// Set MWI icon
 	if (mwi_new_msgs) {
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 			"mwi_new16.png"));
 		mwiFlashStatus = true;
 		
@@ -1074,15 +1074,15 @@ void MphoneForm::updateMwi()
 		tmrFlashMWI.start(1000);
 	} else if (mwi_failure) {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 			"mwi_failure16.png"));
 	} else if (mwi_known) {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 			"mwi_none16.png"));
 	} else {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(QPixmap::fromMimeSource(
+		statMWILabel->setPixmap(qPixmapFromMimeSource(
 			"mwi_none16_dis.png"));
 	}
 	
@@ -1147,36 +1147,36 @@ void MphoneForm::updateServicesStatus()
 	// Set service status
 	if (num_dnd == user_list.size()) {
 		// All users enabled dnd
-		statDndLabel->setPixmap(QPixmap::fromMimeSource("cancel.png"));
+		statDndLabel->setPixmap(qPixmapFromMimeSource("cancel.png"));
 	} else if (num_dnd > 0) {
 		// Some users enabled dnd
-		statDndLabel->setPixmap(QPixmap::fromMimeSource("cancel.png"));
+		statDndLabel->setPixmap(qPixmapFromMimeSource("cancel.png"));
 	} else {
 		// No users enabeld dnd
-		statDndLabel->setPixmap(QPixmap::fromMimeSource("cancel-disabled.png"));
+		statDndLabel->setPixmap(qPixmapFromMimeSource("cancel-disabled.png"));
 	}
 	
 	if (num_cf == user_list.size()) {
 		// All users enabled redirecton
-		statCfLabel->setPixmap(QPixmap::fromMimeSource("cf.png"));
+		statCfLabel->setPixmap(qPixmapFromMimeSource("cf.png"));
 	} else if (num_cf > 0) {
 		// Some users enabled redirection
-		statCfLabel->setPixmap(QPixmap::fromMimeSource("cf.png"));
+		statCfLabel->setPixmap(qPixmapFromMimeSource("cf.png"));
 	} else {
 		// No users enabled redirection
-		statCfLabel->setPixmap(QPixmap::fromMimeSource("cf-disabled.png"));
+		statCfLabel->setPixmap(qPixmapFromMimeSource("cf-disabled.png"));
 	}
 	
 	if (num_auto_answer == user_list.size()) {
 		// All users enabled auto answer
-		statAaLabel->setPixmap(QPixmap::fromMimeSource("auto_answer.png"));
+		statAaLabel->setPixmap(qPixmapFromMimeSource("auto_answer.png"));
 	} else if (num_auto_answer > 0) {
 		// Some users enabled auto answer
-		statAaLabel->setPixmap(QPixmap::fromMimeSource(
+		statAaLabel->setPixmap(qPixmapFromMimeSource(
 				"auto_answer.png"));
 	} else {
 		// No users enabeld auto answer
-		statAaLabel->setPixmap(QPixmap::fromMimeSource(
+		statAaLabel->setPixmap(qPixmapFromMimeSource(
 				"auto_answer-disabled.png"));
 	}
 	
@@ -1229,7 +1229,7 @@ void MphoneForm::updateMissedCallStatus(int num_missed_calls)
 	clickDetails += tr("Click to see call history for details.").replace(' ', "&nbsp;");
 	clickDetails += "</i>";
 	if (num_missed_calls == 0) {
-		statMissedLabel->setPixmap(QPixmap::fromMimeSource("missed-disabled.png"));
+		statMissedLabel->setPixmap(qPixmapFromMimeSource("missed-disabled.png"));
 		QString status("<p>");
 		status += tr("You have no missed calls.").replace(' ', "&nbsp;");
 		status += "</p>";
@@ -1237,7 +1237,7 @@ void MphoneForm::updateMissedCallStatus(int num_missed_calls)
 		QToolTip::add(statMissedLabel, status);
 	} else {
 		statMissedLabel->setPixmap(
-			QPixmap::fromMimeSource("missed.png"));
+			qPixmapFromMimeSource("missed.png"));
 		
 		QString tip("<p>");
 		if (num_missed_calls == 1) {
@@ -1367,7 +1367,7 @@ void MphoneForm::updateSysTrayStatus()
 		icon_name += "_dis.png";
 	}
 	
-	sysTray->setPixmap(QPixmap::fromMimeSource(icon_name));
+	sysTray->setPixmap(qPixmapFromMimeSource(icon_name));
 }
 
 // Update menu status based on the number of active users
@@ -2191,7 +2191,7 @@ void MphoneForm::about()
 		    QMessageBox::Information, 
 		    QMessageBox::Ok | QMessageBox::Default,
 		    QMessageBox::NoButton, QMessageBox::NoButton);
-	mbAbout.setIconPixmap(QPixmap::fromMimeSource("twinkle48.png"));
+	mbAbout.setIconPixmap(qPixmapFromMimeSource("twinkle48.png"));
 	mbAbout.exec();
 }
 
@@ -2767,8 +2767,8 @@ void MphoneForm::processCryptLabelClick(int line)
 void MphoneForm::popupMenuVoiceMail(const QPoint &pos)
 {
 	Q3PopupMenu menu(this);
-	QIcon vmIcon(QPixmap::fromMimeSource("mwi_none16.png"));
-	vmIcon.setPixmap(QPixmap::fromMimeSource("mwi_none16_dis.png"),
+	QIcon vmIcon(qPixmapFromMimeSource("mwi_none16.png"));
+	vmIcon.setPixmap(qPixmapFromMimeSource("mwi_none16_dis.png"),
 		       QIcon::Automatic, QIcon::Disabled);
 	
 	list<t_user *>user_list = phone->ref_users();

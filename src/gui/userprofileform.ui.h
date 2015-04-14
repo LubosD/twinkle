@@ -149,7 +149,7 @@ void UserProfileForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
+	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	openRingbackToolButton->setIconSet(i);

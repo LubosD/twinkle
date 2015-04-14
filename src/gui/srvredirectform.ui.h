@@ -41,7 +41,7 @@ void SrvRedirectForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = addrAlways1ToolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource("kontact_contacts-disabled.png"), 
+	i.setPixmap(qPixmapFromMimeSource("kontact_contacts-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	addrAlways1ToolButton->setIconSet(i);
 	addrAlways2ToolButton->setIconSet(i);

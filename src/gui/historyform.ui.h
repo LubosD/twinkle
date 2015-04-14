@@ -48,8 +48,8 @@ void HistoryForm::init()
 	
 	timeLastViewed = phone->get_startup_time();
 	
-	QIcon inviteIcon(QPixmap::fromMimeSource("invite.png"));
-	QIcon deleteIcon(QPixmap::fromMimeSource("editdelete.png"));
+	QIcon inviteIcon(qPixmapFromMimeSource("invite.png"));
+	QIcon deleteIcon(qPixmapFromMimeSource("editdelete.png"));
 	histPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(histPopupMenu);
 	

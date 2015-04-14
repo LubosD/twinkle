@@ -1594,7 +1594,7 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		QPixmap pm;
 		Q3Frame::Shape photoFrameShape = Q3Frame::NoFrame;
 		if (photo.isNull()) {
-			pm = QPixmap::fromMimeSource("twinkle32.png");
+			pm = qPixmapFromMimeSource("twinkle32.png");
 		} else {
 			pm.convertFromImage(photo);
 			photoFrameShape = Q3Frame::Box;
@@ -1648,12 +1648,12 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		// Answer and reject buttons
 		
 		Q3HBox *buttonBox = new Q3HBox(vb);
-		QIcon iconAnswer(QPixmap::fromMimeSource("answer.png"));
+		QIcon iconAnswer(qPixmapFromMimeSource("answer.png"));
 		QPushButton *pbAnswer = new QPushButton(iconAnswer, 
 			qApp->translate("SysTrayPopup", "Answer"), buttonBox);
 		QObject::connect(pbAnswer, SIGNAL(clicked()), 
 				 mainWindow, SLOT(phoneAnswerFromSystrayPopup()));
-		QIcon iconReject(QPixmap::fromMimeSource("reject.png"));
+		QIcon iconReject(qPixmapFromMimeSource("reject.png"));
 		QPushButton *pbReject = new QPushButton(iconReject, 
 			qApp->translate("SysTrayPopup", "Reject"), buttonBox);
 		QObject::connect(pbReject, SIGNAL(clicked()), 

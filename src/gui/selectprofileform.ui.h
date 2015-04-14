@@ -152,7 +152,7 @@ void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(),  l.end(), profile.ascii()) != l.end())
 		{
-			item->setPixmap(0, QPixmap::fromMimeSource("twinkle16.png"));
+			item->setPixmap(0, qPixmapFromMimeSource("twinkle16.png"));
 			defaultSet = true;
 		}
 		
@@ -296,7 +296,7 @@ void SelectProfileForm::newProfileCreated()
 	Q3CheckListItem *item = new Q3CheckListItem(profileListView,
 				user_config->get_profile_name().c_str(), 
 				Q3CheckListItem::CheckBox);
-	item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
+	item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
 		
 	// Make the new profile the selected profile
 	// Do not change this without changing the exec method.
@@ -493,7 +493,7 @@ void SelectProfileForm::setAsDefault()
 	// Restore all pixmaps
 	Q3ListViewItemIterator i(profileListView);
 	while (i.current()) {
-		i.current()->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
+		i.current()->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
 		i++;
 	}
 	
@@ -503,7 +503,7 @@ void SelectProfileForm::setAsDefault()
 	Q3ListViewItemIterator j(profileListView, Q3ListViewItemIterator::Checked);
 	while (j.current()) {
 		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
-		item->setPixmap(0, QPixmap::fromMimeSource("twinkle16.png"));
+		item->setPixmap(0, qPixmapFromMimeSource("twinkle16.png"));
 		l.push_back(item->text().ascii());
 		j++;
 	}
@@ -618,7 +618,7 @@ void SelectProfileForm::fillProfileListView(const QStringList &profiles)
 		profile.truncate(profile.length() - strlen(USER_FILE_EXT));
 		Q3CheckListItem *item = new Q3CheckListItem(
 				profileListView, profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
+		item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
 	}
 	
 	// Highlight the first profile

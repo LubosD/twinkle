@@ -35,7 +35,7 @@ void TransferForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = addressToolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource("kontact_contacts-disabled.png"), 
+	i.setPixmap(qPixmapFromMimeSource("kontact_contacts-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	addressToolButton->setIconSet(i);
 }

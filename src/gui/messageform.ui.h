@@ -443,7 +443,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	
 	attachmentPopupMenu->clear();
 	
-	QIcon saveIcon(QPixmap::fromMimeSource("save_as.png"));
+	QIcon saveIcon(qPixmapFromMimeSource("save_as.png"));
 	attachmentPopupMenu->insertItem(saveIcon, "Save as...", id++);
 	
 #ifdef HAVE_KDE
@@ -465,7 +465,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 		attachmentPopupMenu->insertItem(iconSet, menuText, id++);
 	}
 	
-	QIcon openIcon(QPixmap::fromMimeSource("fileopen.png"));
+	QIcon openIcon(qPixmapFromMimeSource("fileopen.png"));
 	attachmentPopupMenu->insertItem(openIcon, tr("Open with..."), id++);
 #endif
 	
