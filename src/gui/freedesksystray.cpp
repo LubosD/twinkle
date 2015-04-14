@@ -117,25 +117,6 @@ void FreeDeskSysTray::mousePressEvent ( QMouseEvent *pMouseEvent )
   }
 }
 
-void FreeDeskSysTray::setPixmapOverlay ( const QPixmap& pmOverlay )
-{
-  QWidget *pParent = parentWidget();
-  if (pParent == 0)
-    return;
-
-  // Get base pixmap from parent widget.
-  QPixmap pm;
-  pm.convertFromImage(pParent->icon()->convertToImage().smoothScale(22, 22), 0);
-
-  // Merge with the overlay pixmap.
-  QBitmap bmMask(*pm.mask());
-  bitBlt(&bmMask, 0, 0, pmOverlay.mask(), 0, 0, -1, -1, Qt::OrROP);
-  pm.setMask(bmMask);
-  bitBlt(&pm, 0, 0, &pmOverlay);
-
-  QLabel::setPixmap(pm);
-}
-
 Q3PopupMenu *FreeDeskSysTray::contextMenu()
 {
 	return trayMenu;

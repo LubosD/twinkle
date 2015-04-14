@@ -62,7 +62,6 @@ public:
     FreeDeskSysTray(QWidget *pParent = 0, const char *pszName = 0);
     ~FreeDeskSysTray();
 
-    void setPixmapOverlay(const QPixmap& pmOverlay);
     void showContextMenu(const QPoint& position);
     void dock ();
     void undock ();
