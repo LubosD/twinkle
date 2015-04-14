@@ -2383,7 +2383,7 @@ void MphoneForm::newUsers(const list<string> &profiles)
 				error_msg += "\n";
 				error_msg += dup_user->get_profile_name();
 				error_msg += "\n\n";
-				error_msg += tr("You can only run multiple profiles for different users.");
+				error_msg += tr("You can only run multiple profiles for different users.").ascii();
 				
 				log_file->write_report(error_msg,
 					"MphoneForm::newUsers", 

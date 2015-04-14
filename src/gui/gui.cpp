@@ -826,7 +826,7 @@ void t_gui::restore_session_state(void) {
 	
 	t_win_geometry geometry = sys_config->get_ui_session_main_geometry();
 	mainWindow->setGeometry(geometry.x, geometry.y, geometry.width, geometry.height);
-	mainWindow->setWindowState(sys_config->get_ui_session_main_state());
+	mainWindow->setWindowState(Qt::WindowStates(sys_config->get_ui_session_main_state()));
 	mainWindow->setHidden(sys_config->get_ui_session_main_hidden());
 	
 	unlock();
@@ -2474,7 +2474,7 @@ bool t_gui::cb_message_request(t_user *user_config, t_request *r) {
 			// Try to decode the text
 			QTextCodec *c = QTextCodec::codecForName(charset.c_str());
 			if (c) {
-				text = c->toUnicode(text.c_str());
+				text = c->toUnicode(text.c_str()).ascii();
 			} else {
 				log_file->write_header(
 						"t_gui::cb_message_request",

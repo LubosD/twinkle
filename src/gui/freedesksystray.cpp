@@ -28,7 +28,8 @@
 #include <Q3PopupMenu>
 
 FreeDeskSysTray::FreeDeskSysTray ( QWidget *pParent , const char *pszName )
-    : QLabel(pParent, pszName, WMouseNoMask | WRepaintNoErase | WType_TopLevel | WStyle_Customize | WStyle_NoBorder | WStyle_StaysOnTop)
+    : QLabel(pParent, pszName, Qt::WMouseNoMask | Qt::WRepaintNoErase | Qt::WType_TopLevel |
+                               Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_StaysOnTop)
 {
   mainWindow = pParent;
   trayMenu = new Q3PopupMenu(this);

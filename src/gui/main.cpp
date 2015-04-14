@@ -288,7 +288,7 @@ void parse_main_args(int argc, char **argv, bool &cli_mode, bool &override_lock_
 		} else if (strcmp(argv[i], "--version") == 0) {
 			// Get version
 			QString s = sys_config->about(false).c_str();
-			cout << s;
+			cout << s.ascii();
 			exit(0);
 		} else if (strcmp(argv[i], "-c") == 0) {
 			// CLI mode
@@ -775,15 +775,15 @@ int main( int argc, char ** argv )
 					if (cli_mode) {
 						error_msg += QString("You can only run multiple profiles for different users.").ascii();
 						error_msg += "\n";
-						error_msg += QString("If these are users for different domains, then enable the following option in your user profile (SIP protocol):");
+						error_msg += QString("If these are users for different domains, then enable the following option in your user profile (SIP protocol):").ascii();
 						error_msg += "\n";
-						error_msg += QString("Use domain name to create a unique contact header");
+						error_msg += QString("Use domain name to create a unique contact header").ascii();
 					} else {
 						error_msg += qApp->translate("GUI", "You can only run multiple profiles for different users.").ascii();
 						error_msg += "\n";
-						error_msg += qApp->translate("GUI", "If these are users for different domains, then enable the following option in your user profile (SIP protocol)");
+						error_msg += qApp->translate("GUI", "If these are users for different domains, then enable the following option in your user profile (SIP protocol)").ascii();
 						error_msg += ":\n";
-						error_msg += qApp->translate("GUI", "Use domain name to create a unique contact header");
+						error_msg += qApp->translate("GUI", "Use domain name to create a unique contact header").ascii();
 					}
 					ui->cb_show_msg(error_msg, MSG_CRITICAL);
 					profile_selected = false;
