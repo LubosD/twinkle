@@ -28,6 +28,8 @@
 #include <QMouseEvent>
 #include <Q3PopupMenu>
 
+#include <QtGui/QX11Info>
+
 FreeDeskSysTray::FreeDeskSysTray ( QWidget *pParent , const char *pszName )
     : QLabel(pParent, pszName, Qt::WMouseNoMask | Qt::WRepaintNoErase | Qt::WType_TopLevel |
                                Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_StaysOnTop)
@@ -73,8 +75,7 @@ void FreeDeskSysTray::dock ()
   XSync(dpy, false);
 
   Atom trayAtom;
-  // KDE 3
-  WId forWin = mainWindow ? mainWindow->topLevelWidget()->winId() : qt_xrootwin();
+  WId forWin = mainWindow ? mainWindow->topLevelWidget()->winId() : QX11Info::appRootWindow();
   trayAtom = XInternAtom(dpy, "_KDE_NET_WM_SYSTEM_TRAY_WINDOW_FOR", false);
   XChangeProperty(dpy, trayWin, trayAtom, XA_WINDOW, 32, PropModeReplace, (unsigned char *) &forWin, 1);
   
