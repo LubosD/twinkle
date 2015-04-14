@@ -20,19 +20,19 @@ EXTRA_DIST = \
 	twinkle_xx.ts
 
 twinkle_nl.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_nl.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_nl.ts -qm $@
 
 twinkle_de.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_de.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_de.ts -qm $@
 
 twinkle_cs.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_cs.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_cs.ts -qm $@
 
 twinkle_fr.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_fr.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_fr.ts -qm $@
 
 twinkle_ru.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_ru.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_ru.ts -qm $@
 
 twinkle_sv.qm: $(top_builddir)/src/gui/twinkle $(top_srcdir)/src/gui/twinkle.pro
-	lrelease $(LRELEASEOPTION) $(srcdir)/twinkle_sv.ts -qm $@
+	lrelease -compress $(srcdir)/twinkle_sv.ts -qm $@

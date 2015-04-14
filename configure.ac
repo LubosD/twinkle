@@ -74,7 +74,7 @@ PKG_CHECK_MODULES(XML2, libxml-2.0)
 
 if test "x$ac_cv_qt_check" = "xyes"
 then
-	PKG_CHECK_MODULES(QT, qt-mt >= 3.3.0 qt-mt < 4.0)
+	PKG_CHECK_MODULES(QT, QtCore >= 4.0 QtCore < 6.0)
 fi
 
 # Restore the original value of PKG_CONFIG_PATH
@@ -100,14 +100,13 @@ else
 	AC_MSG_ERROR([Cannot find qmake in \$QTDIR/bin. \$QTDIR is incorrect.])
 fi
 
-# Without this macro, compiling on non-kde systems does not work
-AC_PATH_QT
+PKG_CHECK_MODULES([QT], [QtCore QtGui Qt3Support])
 
 # Check if lrelease is available
 AC_CHECK_PROG(have_lrelease, lrelease, yes, no)
 if test "x$have_lrelease" = "xno"
 then
-	AC_MSG_ERROR([lrelease is missing (qt3-devel-tools package)])
+	AC_MSG_ERROR([lrelease is missing (part of Qt devel package)])
 fi
 
 dnl Create a Qt include project file for platform dependend variables
@@ -150,7 +149,7 @@ echo "LIBS += $XML2_LIBS" >> $QT_INCL_PRO
 # Check if KDE is available
 if test "x$ac_cv_kde" = "xyes"
 then
-	AC_CHECK_PROG(have_kde, kde-config, yes, no)
+	AC_CHECK_PROG(have_kde, kde4-config, yes, no)
 else
 	have_kde="no"
 fi
@@ -158,7 +157,6 @@ fi
 if test "x$have_kde" = "xyes"
 then
 	KDE_SET_PREFIX
-	AC_PATH_KDE
 
 	AC_CHECK_FILES(${kde_includes}/kapplication.h,
 		[], 
@@ -296,8 +294,6 @@ AC_CHECK_LIB(boost_regex, main, [
 		LIBS="-lboost_regex-gcc $LIBS"
 		echo "LIBS += -lboost_regex-gcc" >> $QT_INCL_PRO],
 		[AC_MSG_ERROR([libboost_regex library is missing (boost package).])])])
-
-ms_CHECK_LRELEASE()
 	
 dnl $QTDIR/bin/qmake -o src/gui/Makefile src/gui/twinkle.pro
 dnl Command above is incorrect because srcdir may differ from builddir
