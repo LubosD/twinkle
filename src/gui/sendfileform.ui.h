@@ -34,7 +34,7 @@
 
 void SendFileForm::init()
 {
-	setWFlags(getWFlags() | Qt::WDestructiveClose);
+	setWindowFlags(windowFlags() | Qt::WDestructiveClose);
 	_chooseFileDialog = NULL;
 }
 

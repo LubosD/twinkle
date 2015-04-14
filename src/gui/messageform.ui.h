@@ -57,7 +57,7 @@ using namespace utils;
 
 void MessageForm::init()
 {
-	setWFlags(getWFlags() | Qt::WDestructiveClose);
+	setWindowFlags(windowFlags() | Qt::WDestructiveClose);
 	
 	_getAddressForm = 0;
 	_remotePartyComplete = false;
