@@ -28,7 +28,7 @@
 #include "freedesksystray.h"
 #endif
 
-#include "qpopupmenu.h"
+#include "q3popupmenu.h"
 #include "qwidget.h"
 
 #ifdef HAVE_KDE

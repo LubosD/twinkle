@@ -1,3 +1,6 @@
+//Added by qt3to4:
+#include <QEvent>
+#include <QMouseEvent>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **

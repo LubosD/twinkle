@@ -21,6 +21,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <qapplication.h>
+//Added by qt3to4:
+#include <q3mimefactory.h>
+#include <Q3Frame>
 
 #ifdef HAVE_KDE
 #include <kmimetype.h>
@@ -59,22 +62,22 @@
 #include "im/msg_session.h"
 
 #include "qcombobox.h"
-#include "qhbox.h"
+#include "q3hbox.h"
 #include "qlabel.h"
 #include "qlayout.h"
-#include "qlistbox.h"
+#include "q3listbox.h"
 #include "qmessagebox.h"
 #include "qpixmap.h"
-#include "qprocess.h"
+#include "q3process.h"
 #include "qpushbutton.h"
 #include "qsize.h"
 #include "qsizepolicy.h"
 #include "qstring.h"
 #include "qtextcodec.h"
-#include "qtextedit.h"
-#include "qtoolbar.h"
+#include "q3textedit.h"
+#include "q3toolbar.h"
 #include "qtooltip.h"
-#include "qvbox.h"
+#include "q3vbox.h"
 
 extern string user_host;
 extern pthread_t thread_id_main;
@@ -94,16 +97,16 @@ QString str2html(const QString &s)
 }
 
 void setDisabledIcon(QAction *action, const QString &icon) {
-	QIconSet i = action->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource(icon), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+	QIcon i = action->iconSet();
+	i.setPixmap(qPixmapFromMimeSource(icon),
+		    QIcon::Automatic, QIcon::Disabled);
 	action->setIconSet(i);
 }
 
 void setDisabledIcon(QToolButton *toolButton, const QString &icon) {
-	QIconSet i = toolButton->iconSet();
-	i.setPixmap(QPixmap::fromMimeSource(icon), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+	QIcon i = toolButton->iconSet();
+	i.setPixmap(qPixmapFromMimeSource(icon),
+		    QIcon::Automatic, QIcon::Disabled);
 	toolButton->setIconSet(i);
 }
 
@@ -203,7 +206,7 @@ void t_gui::displayPhoto(const QImage &photo) {
 	} else {
 		QPixmap pm;
 		pm.convertFromImage(photo.smoothScale(
-			photoLabel->width(), photoLabel->height(), QImage::ScaleMin));
+			photoLabel->width(), photoLabel->height(), Qt::KeepAspectRatio));
 		photoLabel->setPixmap(pm);
 		photoLabel->show();
 	}
@@ -880,7 +883,7 @@ string t_gui::select_network_intf(void) {
 			item = i->name.c_str();
 			item.append(':').append(i->get_ip_addr().c_str());
 			sf->nicListBox->insertItem(
-					QPixmap::fromMimeSource("kcmpci16.png"), 
+					qPixmapFromMimeSource("kcmpci16.png"),
 					item);
 		}
 		
@@ -1504,12 +1507,12 @@ void t_gui::cb_register_inprog(t_user *user_config, t_register_type register_typ
 		// Do not report registration refreshments
 		if (phone->get_is_registered(user_config)) break;
 		mainWindow->statRegLabel->setPixmap(
-				QPixmap::fromMimeSource("gear.png"));
+				qPixmapFromMimeSource("gear.png"));
 		break;
 	case REG_DEREGISTER:
 	case REG_DEREGISTER_ALL:
 		mainWindow->statRegLabel->setPixmap(
-				QPixmap::fromMimeSource("gear.png"));
+				qPixmapFromMimeSource("gear.png"));
 		break;
 	case REG_QUERY:
 		mainWindow->displayHeader();
@@ -1589,12 +1592,12 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		// Create photo pixmap. If no photo is available, then use
 		// the Twinkle icon.
 		QPixmap pm;
-		QFrame::Shape photoFrameShape = QFrame::NoFrame;
+		Q3Frame::Shape photoFrameShape = Q3Frame::NoFrame;
 		if (photo.isNull()) {
 			pm = QPixmap::fromMimeSource("twinkle32.png");
 		} else {
 			pm.convertFromImage(photo);
-			photoFrameShape = QFrame::Box;
+			photoFrameShape = Q3Frame::Box;
 		}
 		
 		// Create the popup view.
@@ -1602,13 +1605,13 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		MEMMAN_NEW(sys_tray_popup);
 		sys_tray_popup->setAutoDelete(false);
 		sys_tray_popup->setTimeout(0);
-		QVBox *popup_view = new QVBox(sys_tray_popup);
-		QHBox *hb = new QHBox(popup_view);
+		Q3VBox *popup_view = new Q3VBox(sys_tray_popup);
+		Q3HBox *hb = new Q3HBox(popup_view);
 		hb->setSpacing(5);
 		QLabel *lblPhoto = new QLabel(hb);
 		lblPhoto->setPixmap(pm);
 		lblPhoto->setFrameShape(photoFrameShape);
-		QVBox *vb = new QVBox(hb);
+		Q3VBox *vb = new Q3VBox(hb);
 		QString captionText("<H2>");
 		captionText += qApp->translate("SysTrayPopup", "Incoming Call");
 		captionText += "</H2>";
@@ -1644,13 +1647,13 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		
 		// Answer and reject buttons
 		
-		QHBox *buttonBox = new QHBox(vb);
-		QIconSet iconAnswer(QPixmap::fromMimeSource("answer.png"));
+		Q3HBox *buttonBox = new Q3HBox(vb);
+		QIcon iconAnswer(QPixmap::fromMimeSource("answer.png"));
 		QPushButton *pbAnswer = new QPushButton(iconAnswer, 
 			qApp->translate("SysTrayPopup", "Answer"), buttonBox);
 		QObject::connect(pbAnswer, SIGNAL(clicked()), 
 				 mainWindow, SLOT(phoneAnswerFromSystrayPopup()));
-		QIconSet iconReject(QPixmap::fromMimeSource("reject.png"));
+		QIcon iconReject(QPixmap::fromMimeSource("reject.png"));
 		QPushButton *pbReject = new QPushButton(iconReject, 
 			qApp->translate("SysTrayPopup", "Reject"), buttonBox);
 		QObject::connect(pbReject, SIGNAL(clicked()), 
@@ -2288,7 +2291,7 @@ void  t_gui::cb_missed_call(int num_missed_calls) {
 }
 
 void t_gui::cb_nat_discovery_progress_start(int num_steps) {
-	natDiscoveryProgressDialog = new QProgressDialog(
+	natDiscoveryProgressDialog = new Q3ProgressDialog(
 			qApp->translate("GUI", "Firewall / NAT discovery..."), 
 			qApp->translate("GUI", "Abort"), 
 			num_steps, NULL,
@@ -3029,7 +3032,7 @@ void t_gui::open_url_in_browser(const QString &url) {
 		}
 	}
 #endif
-	QProcess process;
+	Q3Process process;
 	bool process_started = false;
 	
 	QStringList browsers;

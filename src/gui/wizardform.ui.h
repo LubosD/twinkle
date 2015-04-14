@@ -1,3 +1,5 @@
+//Added by qt3to4:
+#include <Q3TextStream>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -59,8 +61,8 @@ void WizardForm::initProviders()
 	QString fname = sys_config->get_dir_share().c_str();
 	fname.append("/").append(FILE_PROVIDERS);
 	QFile providersFile(fname);
-	if (providersFile.open(IO_ReadOnly)) {
-		QTextStream providersStream(&providersFile);
+	if (providersFile.open(QIODevice::ReadOnly)) {
+		Q3TextStream providersStream(&providersFile);
 		QString entry;
 		while ((entry = providersStream.readLine()) != QString::null) {
 			// Skip comment

@@ -119,13 +119,13 @@ void GetAddressForm::loadAddresses()
 			if (!sys_config->get_ab_show_sip_only() ||
 			    phone.startsWith("sip:"))
 			{
-				new QListViewItem(addressListView, i->realName(), 
+				new Q3ListViewItem(addressListView, i->realName(),
 					  (*j).typeLabel(), phone);
 			}
 		}
 	}
 	
-	QListViewItem *first = addressListView->firstChild();
+	Q3ListViewItem *first = addressListView->firstChild();
 	if (first) addressListView->setSelected(first, true);
 #endif
 }
@@ -140,7 +140,7 @@ void GetAddressForm::loadLocalAddresses()
 		new AddressListViewItem(localListView, *i);
 	}
 	
-	QListViewItem *first = localListView->firstChild();
+	Q3ListViewItem *first = localListView->firstChild();
 	if (first) localListView->setSelected(first, true);
 }
 
@@ -156,7 +156,7 @@ void GetAddressForm::selectAddress()
 void GetAddressForm::selectKABCAddress()
 {
 #ifdef HAVE_KDE
-	QListViewItem *item = addressListView->selectedItem();
+	Q3ListViewItem *item = addressListView->selectedItem();
 	if (item) {
 		QString name(item->text(AB_COL_NAME));
 		QString phone(item->text(AB_COL_PHONE));

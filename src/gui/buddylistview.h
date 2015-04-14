@@ -19,14 +19,14 @@
 #ifndef BUDDYLISTVIEW_H
 #define BUDDYLISTVIEW_H
 
-#include "qlistview.h"
+#include "q3listview.h"
 #include "qpainter.h"
 #include "qtooltip.h"
 #include "presence/buddy.h"
 #include "presence/presence_epa.h"
 #include "patterns/observer.h"
 
-class AbstractBLVItem : public QListViewItem {
+class AbstractBLVItem : public Q3ListViewItem {
 protected:
 	// Text to show as a tool tip.
 	QString		tip;
@@ -35,8 +35,8 @@ protected:
 	virtual void set_icon(t_presence_state::t_basic_state state);
 	
 public:
-	AbstractBLVItem(QListViewItem *parent, const QString &text);
-	AbstractBLVItem(QListView *parent, const QString &text);
+	AbstractBLVItem(Q3ListViewItem *parent, const QString &text);
+	AbstractBLVItem(Q3ListView *parent, const QString &text);
 	virtual ~AbstractBLVItem();
 	virtual QString get_tip(void);
 };
@@ -50,7 +50,7 @@ private:
 	void set_icon(void);
 	
 public:
-	BuddyListViewItem(QListViewItem *parent, t_buddy *_buddy);
+	BuddyListViewItem(Q3ListViewItem *parent, t_buddy *_buddy);
 	virtual ~BuddyListViewItem();
 	
 	virtual void update(void);
@@ -67,7 +67,7 @@ private:
 	void set_icon(void);
 	
 public:
-	BLViewUserItem(QListView *parent, t_presence_epa *_presence_epa);
+	BLViewUserItem(Q3ListView *parent, t_presence_epa *_presence_epa);
 	virtual ~BLViewUserItem();
 	
 	void paintCell(QPainter *painter, const QColorGroup &cg, 
@@ -81,10 +81,10 @@ public:
 
 class BuddyListViewTip : public QToolTip {
 private:
-	QListView *parentListView;
+	Q3ListView *parentListView;
 	
 public:
-	BuddyListViewTip(QListView *parent);
+	BuddyListViewTip(Q3ListView *parent);
 	virtual ~BuddyListViewTip() {};
 	void maybeTip ( const QPoint & p );
 };

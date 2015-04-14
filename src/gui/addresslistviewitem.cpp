@@ -23,8 +23,8 @@
 #define COL_ADDR_PHONE	1
 #define COL_ADDR_REMARK	2
 
-AddressListViewItem::AddressListViewItem(QListView *parent, const t_address_card &card) :
-		QListViewItem(parent, card.get_display_name().c_str(), 
+AddressListViewItem::AddressListViewItem(Q3ListView *parent, const t_address_card &card) :
+		Q3ListViewItem(parent, card.get_display_name().c_str(),
 			      card.sip_address.c_str(), card.remark.c_str()),
 		address_card(card)
 {}

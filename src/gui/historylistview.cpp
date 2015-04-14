@@ -21,9 +21,11 @@
 #include "userintf.h"
 
 #include "qpixmap.h"
+//Added by qt3to4:
+#include <q3mimefactory.h>
 
-HistoryListViewItem::HistoryListViewItem( QListView * parent, const t_call_record &cr, t_user *user_config, time_t _last_viewed) :
-		QListViewItem(parent,
+HistoryListViewItem::HistoryListViewItem( Q3ListView * parent, const t_call_record &cr, t_user *user_config, time_t _last_viewed) :
+		Q3ListViewItem(parent,
 			      time2str(cr.time_start,  "%d %b %Y %H:%M:%S").c_str(),
 			      cr.get_direction().c_str(),
 			      (cr.direction == t_call_record::DIR_IN ?
@@ -39,13 +41,13 @@ HistoryListViewItem::HistoryListViewItem( QListView * parent, const t_call_recor
 	
 	// Set direction icon
 	setPixmap(HISTCOL_DIRECTION, (cr.direction == t_call_record::DIR_IN ?
-			    QPixmap::fromMimeSource("1leftarrow-yellow.png") :
-			    QPixmap::fromMimeSource("1rightarrow.png")));
+			    qPixmapFromMimeSource("1leftarrow-yellow.png") :
+			    qPixmapFromMimeSource("1rightarrow.png")));
 		
 	// Set status icon
 	setPixmap(HISTCOL_STATUS, (cr.invite_resp_code < 300 ?
-			    QPixmap::fromMimeSource("ok.png") :
-			    QPixmap::fromMimeSource("cancel.png")));
+			    qPixmapFromMimeSource("ok.png") :
+			    qPixmapFromMimeSource("cancel.png")));
 }
 
 void HistoryListViewItem::paintCell(QPainter *painter, const QColorGroup &cg, 
@@ -60,14 +62,14 @@ void HistoryListViewItem::paintCell(QPainter *painter, const QColorGroup &cg,
 		// Highlight missed calls since last view
 		grp.setColor(QColorGroup::Base, QColor("yellow"));
 	}
-	QListViewItem::paintCell(painter, grp, column, width, align);
+	Q3ListViewItem::paintCell(painter, grp, column, width, align);
 	painter->restore();
 }
 
-int HistoryListViewItem::compare ( QListViewItem * i, int col, bool ascending ) const
+int HistoryListViewItem::compare ( Q3ListViewItem * i, int col, bool ascending ) const
 {
 	if (col != HISTCOL_TIMESTAMP) {
-		return QListViewItem::compare(i, col, ascending);
+		return Q3ListViewItem::compare(i, col, ascending);
 	}
 	if (call_record.time_start < ((HistoryListViewItem *)i)->get_time_start()) {
 		return -1;

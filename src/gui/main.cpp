@@ -26,7 +26,7 @@
 #include <qapplication.h>
 #include <qtranslator.h>
 #include <qmime.h>
-#include <qprogressdialog.h>
+#include <q3progressdialog.h>
 #include <qtextcodec.h>
 
 #include "mphoneform.h"
@@ -486,7 +486,7 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		// Store the defualt mime source factory for the embedded icons.
 		// This is created by Qt. The KApplication constructor seems to destroy
 		// this default.
-		QMimeSourceFactory *factory_qt = QMimeSourceFactory::takeDefaultFactory();
+		Q3MimeSourceFactory *factory_qt = Q3MimeSourceFactory::takeDefaultFactory();
 		
 		// Initialize the KApplication
 		KCmdLineArgs::init(argc, argv, "twinkle", PRODUCT_NAME, "Soft phone",
@@ -495,13 +495,13 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		MEMMAN_NEW(qa);
 		
 		// Store the KDE mime source factory
-		QMimeSourceFactory *factory_kde = QMimeSourceFactory::takeDefaultFactory();
+		Q3MimeSourceFactory *factory_kde = Q3MimeSourceFactory::takeDefaultFactory();
 		
 		// Make the Qt factory the default to make the embedded icons work.
-		QMimeSourceFactory::setDefaultFactory(factory_qt);
+		Q3MimeSourceFactory::setDefaultFactory(factory_qt);
 		
 		// Add the KDE factory
-		QMimeSourceFactory::addFactory(factory_kde);
+		Q3MimeSourceFactory::addFactory(factory_kde);
 #else
 		int tmp = argc;
 		qa = new t_twinkle_application(tmp, argv);

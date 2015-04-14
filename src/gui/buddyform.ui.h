@@ -41,7 +41,7 @@ void BuddyForm::destroy()
 	}
 }
 
-void BuddyForm::showNew(t_buddy_list &_buddy_list, QListViewItem *_profileItem) 
+void BuddyForm::showNew(t_buddy_list &_buddy_list, Q3ListViewItem *_profileItem)
 {
 	user_config = _buddy_list.get_user_profile();
 	edit_mode = false;

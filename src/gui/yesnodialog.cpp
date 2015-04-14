@@ -20,6 +20,10 @@
 
 #include "qlabel.h"
 #include "qlayout.h"
+//Added by qt3to4:
+#include <Q3VBoxLayout>
+#include <Q3BoxLayout>
+#include <Q3HBoxLayout>
 
 #include "userintf.h"
 
@@ -41,10 +45,10 @@ YesNoDialog::YesNoDialog(QWidget *parent, const QString &caption, const QString 
 		QDialog(parent, NULL, true, Qt::WDestructiveClose)
 {
 	setCaption(caption);
-	QBoxLayout *vb = new QVBoxLayout(this, 11, 6);
+	Q3BoxLayout *vb = new Q3VBoxLayout(this, 11, 6);
 	QLabel *lblQuestion = new QLabel(text, this);
 	vb->addWidget(lblQuestion);
-	QHBoxLayout *hb = new QHBoxLayout(NULL, 0, 6);
+	Q3HBoxLayout *hb = new Q3HBoxLayout(NULL, 0, 6);
 	QSpacerItem *spacer1 = new QSpacerItem(1, 1, QSizePolicy::Expanding, 
 					       QSizePolicy::Minimum );
 	hb->addItem(spacer1);

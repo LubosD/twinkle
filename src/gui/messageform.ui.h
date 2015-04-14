@@ -36,6 +36,13 @@
 #include <kuserprofile.h>
 #else
 #include "utils/mime_database.h"
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <QLabel>
+#include <QPixmap>
+#include <Q3Frame>
+#include <Q3PopupMenu>
+#include <QCloseEvent>
 #endif
 
 using namespace utils;
@@ -63,7 +70,7 @@ void MessageForm::init()
 	// Set toolbutton icons for disabled options.
 	setDisabledIcon(addressToolButton, "kontact_contacts-disabled.png");
 	
-	attachmentPopupMenu = new QPopupMenu(this);
+	attachmentPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(attachmentPopupMenu);
 	
 	connect(attachmentPopupMenu, SIGNAL(activated(int)), 
@@ -112,7 +119,7 @@ void MessageForm::destroy()
 void MessageForm::closeEvent(QCloseEvent *e)
 {
 	MEMMAN_DELETE(this); // destructive close
-	QMainWindow::closeEvent(e);
+	Q3MainWindow::closeEvent(e);
 }
 
 
@@ -131,7 +138,7 @@ void MessageForm::show()
 		msgLineEdit->setFocus();
 	}
 	
-	QMainWindow::show();
+	Q3MainWindow::show();
 }
 
 void MessageForm::selectUserConfig(t_user *user_config)
@@ -279,7 +286,7 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 	// Timestamp and name of sender
 	if (msg.direction == im::MSG_DIR_IN) s += "<font color=\"blue\">";
 	s += time2str(msg.timestamp, "%H:%M:%S ").c_str();
-	s += QStyleSheet::escape(name);
+	s += Q3StyleSheet::escape(name);
 	if (msg.direction == im::MSG_DIR_IN) s += "</font>";
 	s += "</b>";
 	
@@ -298,7 +305,7 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 		if (msg.format == im::TXT_HTML) {
 			s += msg.message.c_str();
 		} else {
-			s += QStyleSheet::escape(msg.message.c_str());
+			s += Q3StyleSheet::escape(msg.message.c_str());
 		}
 	}
 	
@@ -389,7 +396,7 @@ void MessageForm::displayError(const QString &errorMsg)
 	s += "<b>";
 	s += tr("Delivery failure").ascii();
 	s += ": </b>";
-	s += QStyleSheet::escape(errorMsg);
+	s += Q3StyleSheet::escape(errorMsg);
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -401,7 +408,7 @@ void MessageForm::displayDeliveryNotification(const QString &notification)
 	s += "<b>";
 	s += tr("Delivery notification").ascii();
 	s += ": </b>";
-	s += QStyleSheet::escape(notification);
+	s += Q3StyleSheet::escape(notification);
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -436,7 +443,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	
 	attachmentPopupMenu->clear();
 	
-	QIconSet saveIcon(QPixmap::fromMimeSource("save_as.png"));
+	QIcon saveIcon(QPixmap::fromMimeSource("save_as.png"));
 	attachmentPopupMenu->insertItem(saveIcon, "Save as...", id++);
 	
 #ifdef HAVE_KDE
@@ -453,12 +460,12 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 		serviceMap->push_back(service);
 		QString menuText = tr("Open with %1...").arg(service->name());
 		QPixmap pixmap = service->pixmap(KIcon::Small);
-		QIconSet iconSet;
-		iconSet.setPixmap(pixmap, QIconSet::Small);
+		QIcon iconSet;
+		iconSet.setPixmap(pixmap, QIcon::Small);
 		attachmentPopupMenu->insertItem(iconSet, menuText, id++);
 	}
 	
-	QIconSet openIcon(QPixmap::fromMimeSource("fileopen.png"));
+	QIcon openIcon(QPixmap::fromMimeSource("fileopen.png"));
 	attachmentPopupMenu->insertItem(openIcon, tr("Open with..."), id++);
 #endif
 	
@@ -480,9 +487,9 @@ void MessageForm::attachmentPopupActivated(int id) {
 		connect(d, SIGNAL(okClicked()), this,
 			SLOT(saveAttachment()));
 #else
-		QFileDialog *d = new QFileDialog(QString::null, QString::null, this, 0, true);
+		Q3FileDialog *d = new Q3FileDialog(QString::null, QString::null, this, 0, true);
 		MEMMAN_NEW(d);
-		d->setMode(QFileDialog::AnyFile);
+		d->setMode(Q3FileDialog::AnyFile);
 		
 		connect(d, SIGNAL(fileSelected(const QString &)), this,
 			SLOT(saveAttachment()));
@@ -514,7 +521,7 @@ void MessageForm::saveAttachment() {
 #ifdef HAVE_KDE
 	KFileDialog *d = dynamic_cast<KFileDialog *>(_saveAsDialog);
 #else
-	QFileDialog *d = dynamic_cast<QFileDialog *>(_saveAsDialog);
+	Q3FileDialog *d = dynamic_cast<Q3FileDialog *>(_saveAsDialog);
 #endif
 	QString filename = d->selectedFile();
 	
@@ -560,7 +567,7 @@ void MessageForm::setComposingIndication(const QString &name)
 		MEMMAN_NEW(_isComposingLabel);
 		
 		_isComposingLabel->setText(tr("%1 is typing a message.").arg(name));
-		_isComposingLabel->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
+		_isComposingLabel->setFrameStyle(Q3Frame::NoFrame | Q3Frame::Plain);
 		statusBar()->addWidget(_isComposingLabel);
 	}
 }

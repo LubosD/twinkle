@@ -1,3 +1,6 @@
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3ValueList>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -144,10 +147,10 @@ void UserProfileForm::init()
 #endif
 	
 	// Set toolbutton icons for disabled options.
-	QIconSet i;
+	QIcon i;
 	i = openRingtoneToolButton->iconSet();
 	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	openRingbackToolButton->setIconSet(i);
 	openIncomingCallScriptToolButton->setIconSet(i);
@@ -543,7 +546,7 @@ void UserProfileForm::populate()
 	list<t_number_conversion> conversions = current_profile->get_number_conversions();
 	for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++)
 	{
-		new QListViewItem(conversionListView, i->re.str().c_str(), i->fmt.c_str());
+		new Q3ListViewItem(conversionListView, i->re.str().c_str(), i->fmt.c_str());
 	}
 	
 	// TIMERS
@@ -623,8 +626,8 @@ int UserProfileForm::exec(list<t_user *> profiles, QString show_profile)
 	return QDialog::exec();
 }
 
-bool UserProfileForm::check_dynamic_payload(QSpinBox *spb, 
-					    QValueList<int> &checked_list) 
+bool UserProfileForm::check_dynamic_payload(QSpinBox *spb,
+					    Q3ValueList<int> &checked_list)
 {
 	if (checked_list.contains(spb->value())) {
 		categoryListBox->setSelected(idxCatRtpAudio, true);
@@ -642,9 +645,9 @@ bool UserProfileForm::check_dynamic_payload(QSpinBox *spb,
 list<t_number_conversion> UserProfileForm::get_number_conversions()
 {
 	list<t_number_conversion> conversions;
-	QListViewItemIterator it(conversionListView);
+	Q3ListViewItemIterator it(conversionListView);
 	while (it.current()) {
-		QListViewItem *item = it.current();
+		Q3ListViewItem *item = it.current();
 		t_number_conversion c;
 		
 		try {
@@ -813,7 +816,7 @@ bool UserProfileForm::validateValues()
 	}
 	
 	// Check for double RTP dynamic payload types
-	QValueList<int> checked_types;
+	Q3ValueList<int> checked_types;
 	if (!check_dynamic_payload(spxNbPayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(spxWbPayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(spxUwbPayloadSpinBox, checked_types))
@@ -1236,7 +1239,7 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 
 void UserProfileForm::chooseFile(QLineEdit *qle, const QString &filter, const QString &caption) 
 {
-	QString file = QFileDialog::getOpenFileName(
+	QString file = Q3FileDialog::getOpenFileName(
 			((t_gui *)ui)->get_last_file_browse_path(),
 			filter, this, "open file dialog",
 			caption);
@@ -1321,7 +1324,7 @@ void UserProfileForm::removeCodec() {
 }
 
 void UserProfileForm::upCodec() {
-	QListBoxItem *lbi = activeCodecListBox->selectedItem();
+	Q3ListBoxItem *lbi = activeCodecListBox->selectedItem();
 	if (!lbi) return;
 	
 	int idx = activeCodecListBox->index(lbi);
@@ -1334,7 +1337,7 @@ void UserProfileForm::upCodec() {
 }
 
 void UserProfileForm::downCodec() {
-	QListBoxItem *lbi = activeCodecListBox->selectedItem();
+	Q3ListBoxItem *lbi = activeCodecListBox->selectedItem();
 	if (!lbi) return;
 	
 	size_t idx = activeCodecListBox->index(lbi);
@@ -1347,13 +1350,13 @@ void UserProfileForm::downCodec() {
 }
 
 void UserProfileForm::upConversion() {
-	QListViewItem *lvi = conversionListView->selectedItem();
+	Q3ListViewItem *lvi = conversionListView->selectedItem();
 	if (!lvi) return;
 	
-	QListViewItem *above = lvi->itemAbove();
+	Q3ListViewItem *above = lvi->itemAbove();
 	if (!above) return;
 	
-	QListViewItem *newAbove = above->itemAbove();
+	Q3ListViewItem *newAbove = above->itemAbove();
 	
 	if (newAbove) {
 		lvi->moveItem(newAbove);
@@ -1365,10 +1368,10 @@ void UserProfileForm::upConversion() {
 }
 
 void UserProfileForm::downConversion() {
-	QListViewItem *lvi = conversionListView->selectedItem();
+	Q3ListViewItem *lvi = conversionListView->selectedItem();
 	if (!lvi) return;
 	
-	QListViewItem *below = lvi->itemBelow();
+	Q3ListViewItem *below = lvi->itemBelow();
 	if (!below) return;
 	
 	lvi->moveItem(below);
@@ -1381,17 +1384,17 @@ void UserProfileForm::addConversion() {
 	
 	NumberConversionForm f;
 	if (f.exec(expr, replace) == QDialog::Accepted) {
-		QListViewItem *last = conversionListView->lastItem();
+		Q3ListViewItem *last = conversionListView->lastItem();
 		if (last) {
-			new QListViewItem(conversionListView, last, expr, replace);
+			new Q3ListViewItem(conversionListView, last, expr, replace);
 		} else {
-			new QListViewItem(conversionListView, expr, replace);
+			new Q3ListViewItem(conversionListView, expr, replace);
 		}
 	}
 }
 
 void UserProfileForm::editConversion() {
-	QListViewItem *lvi = conversionListView->selectedItem();
+	Q3ListViewItem *lvi = conversionListView->selectedItem();
 	if (!lvi) return;
 	 
 	QString expr = lvi->text(colExpr);
@@ -1405,7 +1408,7 @@ void UserProfileForm::editConversion() {
 }
 
 void UserProfileForm::removeConversion() {
-	QListViewItem *lvi = conversionListView->selectedItem();
+	Q3ListViewItem *lvi = conversionListView->selectedItem();
 	if (!lvi) return;
 	delete lvi;
 }

@@ -1,3 +1,5 @@
+//Added by qt3to4:
+#include <QPixmap>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -38,14 +40,14 @@
 void SysSettingsForm::init()
 {
 	// Set toolbutton icons for disabled options.
-	QIconSet i;
+	QIcon i;
 	i = openRingtoneToolButton->iconSet();
 	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	i = openRingbackToolButton->iconSet();
 	i.setPixmap(QPixmap::fromMimeSource("fileopen-disabled.png"), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+		    QIcon::Automatic, QIcon::Disabled);
 	openRingbackToolButton->setIconSet(i);
 	
 	QRegExp rxNumber("[0-9]+");
@@ -253,8 +255,8 @@ void SysSettingsForm::populate()
 		// Strip off the .cfg suffix
 		QString profile = *i;
 		profile.truncate(profile.length() - 4);
-		QCheckListItem *item = new QCheckListItem(profileListView, 
-					profile, QCheckListItem::CheckBox);
+		Q3CheckListItem *item = new Q3CheckListItem(profileListView,
+					profile, Q3CheckListItem::CheckBox);
 		item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
 		
 		list<string> l = sys_config->get_start_user_profiles();
@@ -354,9 +356,9 @@ void SysSettingsForm::validate()
 				   guiUseSystrayCheckBox->isChecked());
 	
 	list<string> start_user_profiles;
-	QListViewItemIterator i(profileListView, QListViewItemIterator::Checked);
+	Q3ListViewItemIterator i(profileListView, Q3ListViewItemIterator::Checked);
 	while (i.current()) {
-		QCheckListItem *item = (QCheckListItem *)i.current();
+		Q3CheckListItem *item = (Q3CheckListItem *)i.current();
 		start_user_profiles.push_back(item->text().ascii());
 		i++;
 	}
@@ -432,7 +434,7 @@ int SysSettingsForm::exec()
 
 void SysSettingsForm::chooseRingtone()
 {
-	QString file = QFileDialog::getOpenFileName(
+	QString file = Q3FileDialog::getOpenFileName(
 			((t_gui *)ui)->get_last_file_browse_path(),
 			tr("Ring tones", "Description of .wav files in file dialog").append(" (*.wav)"), this, "ring tone file dialog",
 			tr("Choose ring tone"));
@@ -444,7 +446,7 @@ void SysSettingsForm::chooseRingtone()
 
 void SysSettingsForm::chooseRingback()
 {
-	QString file = QFileDialog::getOpenFileName(
+	QString file = Q3FileDialog::getOpenFileName(
 			((t_gui *)ui)->get_last_file_browse_path(),
 			tr("Ring back tones", "Description of .wav files in file dialog").append(" (*.wav)"), this, "ring back file dialog",
 			tr("Choose ring back tone"));

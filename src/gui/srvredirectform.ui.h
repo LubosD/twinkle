@@ -1,3 +1,5 @@
+//Added by qt3to4:
+#include <QPixmap>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -37,10 +39,10 @@ void SrvRedirectForm::init()
 	getAddressForm = 0;
 	
 	// Set toolbutton icons for disabled options.
-	QIconSet i;
+	QIcon i;
 	i = addrAlways1ToolButton->iconSet();
 	i.setPixmap(QPixmap::fromMimeSource("kontact_contacts-disabled.png"), 
-		    QIconSet::Automatic, QIconSet::Disabled);
+		    QIcon::Automatic, QIcon::Disabled);
 	addrAlways1ToolButton->setIconSet(i);
 	addrAlways2ToolButton->setIconSet(i);
 	addrAlways3ToolButton->setIconSet(i);

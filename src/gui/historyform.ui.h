@@ -1,3 +1,7 @@
+//Added by qt3to4:
+#include <QCloseEvent>
+#include <QPixmap>
+#include <Q3PopupMenu>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -31,9 +35,9 @@
 void HistoryForm::init()
 {
 	historyListView->setSorting(HISTCOL_TIMESTAMP, false);
-	historyListView->setColumnWidthMode(HISTCOL_FROMTO, QListView::Manual);
+	historyListView->setColumnWidthMode(HISTCOL_FROMTO, Q3ListView::Manual);
 	historyListView->setColumnWidth(HISTCOL_FROMTO, 200);
-	historyListView->setColumnWidthMode(HISTCOL_SUBJECT, QListView::Manual);
+	historyListView->setColumnWidthMode(HISTCOL_SUBJECT, Q3ListView::Manual);
 	historyListView->setColumnWidth(HISTCOL_SUBJECT, 200);
 	
 	inCheckBox->setChecked(true);
@@ -44,9 +48,9 @@ void HistoryForm::init()
 	
 	timeLastViewed = phone->get_startup_time();
 	
-	QIconSet inviteIcon(QPixmap::fromMimeSource("invite.png"));
-	QIconSet deleteIcon(QPixmap::fromMimeSource("editdelete.png"));
-	histPopupMenu = new QPopupMenu(this);
+	QIcon inviteIcon(QPixmap::fromMimeSource("invite.png"));
+	QIcon deleteIcon(QPixmap::fromMimeSource("editdelete.png"));
+	histPopupMenu = new Q3PopupMenu(this);
 	MEMMAN_NEW(histPopupMenu);
 	
 	itemCall = histPopupMenu->insertItem(inviteIcon, tr("Call..."), this, SLOT(call()));
@@ -126,7 +130,7 @@ void HistoryForm::loadHistory()
 	totalDurationValueTextLabel->setText(durationText);
 	
 	// Make the first entry the selected entry.
-	QListViewItem *first = historyListView->firstChild();
+	Q3ListViewItem *first = historyListView->firstChild();
 	if (first) {
 		historyListView->setSelected(first, true);
 		showCallDetails(first);
@@ -173,7 +177,7 @@ void HistoryForm::closeEvent( QCloseEvent *e )
 	QDialog::closeEvent(e);
 }
 
-void HistoryForm::showCallDetails(QListViewItem *item)
+void HistoryForm::showCallDetails(Q3ListViewItem *item)
 {
 	QString s;
 	
@@ -272,7 +276,7 @@ void HistoryForm::showCallDetails(QListViewItem *item)
 	cdrTextEdit->setText(s);
 }
 
-void HistoryForm::popupMenu(QListViewItem *item, const QPoint &pos)
+void HistoryForm::popupMenu(Q3ListViewItem *item, const QPoint &pos)
 {
 	if (!item) return;
 	
@@ -289,7 +293,7 @@ void HistoryForm::popupMenu(QListViewItem *item, const QPoint &pos)
 	histPopupMenu->popup(pos);
 }
 
-void HistoryForm::call(QListViewItem *item)
+void HistoryForm::call(Q3ListViewItem *item)
 {
 	if (!item) return;
 	
@@ -339,13 +343,13 @@ void HistoryForm::call(QListViewItem *item)
 
 void HistoryForm::call(void)
 {
-	QListViewItem *item = historyListView->currentItem();
+	Q3ListViewItem *item = historyListView->currentItem();
 	if (item) call(item);
 }
 
 void HistoryForm::deleteEntry(void)
 {
-	QListViewItem *item = historyListView->currentItem();
+	Q3ListViewItem *item = historyListView->currentItem();
 	HistoryListViewItem *histItem = dynamic_cast<HistoryListViewItem *>(item);
 	if (!histItem) return;
 	

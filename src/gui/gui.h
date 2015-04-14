@@ -31,7 +31,7 @@
 #include "qcombobox.h"
 #include "qlabel.h"
 #include "qlineedit.h"
-#include "qprogressdialog.h"
+#include "q3progressdialog.h"
 #include "qtimer.h"
 #include "qtoolbutton.h"
 #include "qwidget.h"
@@ -74,7 +74,7 @@ private:
 	QTimer *timerUpdateMessageSessions;
 	
 	// Progress dialog for FW/NAT discovery progress bar
-	QProgressDialog	*natDiscoveryProgressDialog;
+	Q3ProgressDialog	*natDiscoveryProgressDialog;
 	
 	// Pointers to line information fields to display information
 	QLineEdit	*fromLabel;

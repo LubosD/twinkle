@@ -20,14 +20,14 @@
 #define _ADDRESSLISTVIEWITEM_H
 
 #include "address_book.h"
-#include "qlistview.h"
+#include "q3listview.h"
 
-class AddressListViewItem : public QListViewItem {
+class AddressListViewItem : public Q3ListViewItem {
 private:
 	t_address_card	address_card;
 	
 public:
-	AddressListViewItem(QListView *parent, const t_address_card &card);
+	AddressListViewItem(Q3ListView *parent, const t_address_card &card);
 	t_address_card getAddressCard(void) const;
 	void update(const t_address_card &card);
 };

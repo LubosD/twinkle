@@ -71,7 +71,7 @@ void SendFileForm::chooseFile()
 	d->setOperationMode(KFileDialog::Other);
 	connect(d, SIGNAL(okClicked()), this, SLOT(setFilename()));
 #else
-	QFileDialog *d = new QFileDialog(QString::null, QString::null, this, 0, true);
+	Q3FileDialog *d = new Q3FileDialog(QString::null, QString::null, this, 0, true);
 	MEMMAN_NEW(d);
 	
 	connect(d, SIGNAL(fileSelected(const QString &)), this, SLOT(setFilename()));
@@ -98,7 +98,7 @@ void SendFileForm::setFilename()
 	KFileDialog *d = dynamic_cast<KFileDialog *>(_chooseFileDialog);
 	filename = d->selectedFile();
 #else
-	QFileDialog *d = dynamic_cast<QFileDialog *>(_chooseFileDialog);
+	Q3FileDialog *d = dynamic_cast<Q3FileDialog *>(_chooseFileDialog);
 	filename = d->selectedFile();
 #endif
 	

@@ -71,8 +71,8 @@ void SelectUserForm::show(t_select_purpose purpose)
 	// Fill list view
 	list<t_user *> user_list = phone->ref_users();
 	for (list<t_user *>::reverse_iterator i = user_list.rbegin(); i != user_list.rend(); i++) {
-		QCheckListItem *item = new QCheckListItem(userListView,
-			(*i)->get_profile_name().c_str(), QCheckListItem::CheckBox);
+		Q3CheckListItem *item = new Q3CheckListItem(userListView,
+			(*i)->get_profile_name().c_str(), Q3CheckListItem::CheckBox);
 		
 		switch (purpose) {
 		case SELECT_DND:
@@ -93,9 +93,9 @@ void SelectUserForm::validate()
 {
 	list<t_user *> selected_list, not_selected_list;
 	
-	QListViewItemIterator i(userListView);
+	Q3ListViewItemIterator i(userListView);
 	while (i.current()) {
-		QCheckListItem *item = (QCheckListItem *)(i.current());
+		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
 		if (item->isOn()) {
 			selected_list.push_back(phone->
 				ref_user_profile(item->text().ascii()));
@@ -113,9 +113,9 @@ void SelectUserForm::validate()
 
 void SelectUserForm::selectAll()
 {
-	QListViewItemIterator i(userListView);
+	Q3ListViewItemIterator i(userListView);
 	while (i.current()) {
-		QCheckListItem *item = (QCheckListItem *)(i.current());
+		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
 		item->setOn(true);
 		i++;
 	}
@@ -123,16 +123,16 @@ void SelectUserForm::selectAll()
 
 void SelectUserForm::clearAll()
 {
-	QListViewItemIterator i(userListView);
+	Q3ListViewItemIterator i(userListView);
 	while (i.current()) {
-		QCheckListItem *item = (QCheckListItem *)(i.current());
+		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
 		item->setOn(false);
 		i++;
 	}
 }
 
-void SelectUserForm::toggle(QListViewItem *item) 
+void SelectUserForm::toggle(Q3ListViewItem *item)
 {
-	QCheckListItem *checkItem = (QCheckListItem *)item;
+	Q3CheckListItem *checkItem = (Q3CheckListItem *)item;
 	checkItem->setOn(!checkItem->isOn());
 }

@@ -20,7 +20,7 @@
 #define _HISTORYLISTVIEW_H
 
 #include <sys/time.h>
-#include "qlistview.h"
+#include "q3listview.h"
 #include "qpainter.h"
 #include "call_history.h"
 #include "user.h"
@@ -32,18 +32,18 @@
 #define HISTCOL_SUBJECT	3
 #define HISTCOL_STATUS		4
 
-class HistoryListViewItem : public QListViewItem {
+class HistoryListViewItem : public Q3ListViewItem {
 private:
 	t_call_record	call_record;
 	time_t		last_viewed;
 	
 public:
-	HistoryListViewItem( QListView * parent, const t_call_record &cr, t_user *user_config,
+	HistoryListViewItem( Q3ListView * parent, const t_call_record &cr, t_user *user_config,
 			     time_t _last_viewed);
 	
 	void paintCell(QPainter *painter, const QColorGroup &cg, 
 				    int column, int width, int align);
-	int compare ( QListViewItem * i, int col, bool ascending ) const;
+	int compare ( Q3ListViewItem * i, int col, bool ascending ) const;
 	time_t get_time_start(void) const;
 	t_call_record get_call_record(void) const;
 };

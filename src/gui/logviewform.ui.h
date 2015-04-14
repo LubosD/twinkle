@@ -1,3 +1,6 @@
+//Added by qt3to4:
+#include <Q3TextStream>
+#include <QCloseEvent>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -39,8 +42,8 @@ void LogViewForm::show()
 	logfile = new QFile(fname);
 	MEMMAN_NEW(logfile);
 	logstream = NULL;
-	if (logfile->open(IO_ReadOnly)) {
-		logstream = new QTextStream(logfile);
+	if (logfile->open(QIODevice::ReadOnly)) {
+		logstream = new Q3TextStream(logfile);
 		MEMMAN_NEW(logstream);
 		logTextEdit->setText(logstream->read());
 		

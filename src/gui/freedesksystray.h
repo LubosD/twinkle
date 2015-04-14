@@ -25,7 +25,7 @@
 
 #include <qlabel.h>
 #include <qpixmap.h>
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <qwidget.h>
 #include <qapplication.h>
 #include <qpoint.h>
@@ -35,6 +35,8 @@
 #include <qimage.h>
 #include <qtimer.h>
 #include <qrect.h>
+//Added by qt3to4:
+#include <QMouseEvent>
 
 #include <string.h>
 #include <stdlib.h>
@@ -64,13 +66,13 @@ public:
     void showContextMenu(const QPoint& position);
     void dock ();
     void undock ();
-    QPopupMenu *contextMenu();
+    Q3PopupMenu *contextMenu();
     void setPixmap(const QPixmap& pixmap);
 
 public:
 
     QWidget * mainWindow;
-    QPopupMenu * trayMenu;
+    Q3PopupMenu * trayMenu;
     
 protected:
 

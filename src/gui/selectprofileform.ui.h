@@ -1,3 +1,5 @@
+//Added by qt3to4:
+#include <QPixmap>
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -94,7 +96,7 @@ int SelectProfileForm::execForm()
 		}
 		
 		// Select the created profile
-		QCheckListItem *item = (QCheckListItem *)profileListView->currentItem();
+		Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
 		QString profile = item->text();
 		profile.append(USER_FILE_EXT);
 		selectedProfiles.clear();
@@ -125,7 +127,7 @@ int SelectProfileForm::execForm()
 // The execForm() method cannot be used as it will block the Qt event loop.
 // NOTE: the method show() is not re-implemented as Qt calls this method
 //   from exec() internally.
-void SelectProfileForm::showForm(QMainWindow *_mainWindow)
+void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
 {
 	mainWindow = _mainWindow;
 	profileListView->clear();
@@ -141,9 +143,9 @@ void SelectProfileForm::showForm(QMainWindow *_mainWindow)
 	
 	// Initialize profile list view
 	fillProfileListView(profiles);
-	QListViewItemIterator j(profileListView);
+	Q3ListViewItemIterator j(profileListView);
 	while (j.current()) {
-		QCheckListItem *item = (QCheckListItem *)j.current();
+		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
 		QString profile = item->text();
 		
 		// Set pixmap of default profile
@@ -171,9 +173,9 @@ void SelectProfileForm::showForm(QMainWindow *_mainWindow)
 void SelectProfileForm::runProfile()
 {
 	selectedProfiles.clear();
-	QListViewItemIterator i(profileListView, QListViewItemIterator::Checked);
+	Q3ListViewItemIterator i(profileListView, Q3ListViewItemIterator::Checked);
 	while (i.current()) {
-		QCheckListItem *item = (QCheckListItem *)i.current();
+		Q3CheckListItem *item = (Q3CheckListItem *)i.current();
 		QString profile =item->text();
 		profile.append(USER_FILE_EXT);
 		selectedProfiles.push_back(profile.ascii());
@@ -196,7 +198,7 @@ void SelectProfileForm::runProfile()
 
 void SelectProfileForm::editProfile()
 {
-	QCheckListItem *item = (QCheckListItem *)profileListView->currentItem();
+	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
 	QString profile = item->text();
 	
 	// If the profile to edit is currently active, then edit the in-memory
@@ -291,9 +293,9 @@ void SelectProfileForm::newProfileCreated()
 {
 	// New profile created
 	// Add the new profile to the profile list box
-	QCheckListItem *item = new QCheckListItem(profileListView,
+	Q3CheckListItem *item = new Q3CheckListItem(profileListView,
 				user_config->get_profile_name().c_str(), 
-				QCheckListItem::CheckBox);
+				Q3CheckListItem::CheckBox);
 	item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
 		
 	// Make the new profile the selected profile
@@ -312,7 +314,7 @@ void SelectProfileForm::newProfileCreated()
 
 void SelectProfileForm::deleteProfile()
 {
-	QCheckListItem *item = (QCheckListItem *)profileListView->currentItem();
+	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
 	QString profile = item->text();
 	QString msg = tr("Are you sure you want to delete profile '%1'?").arg(profile);
 	QMessageBox *mb = new QMessageBox(tr("Delete profile"), msg,
@@ -363,7 +365,7 @@ void SelectProfileForm::deleteProfile()
 			}
 			
 			// Delete profile from profile list box
-			QCheckListItem *item = (QCheckListItem *)profileListView->
+			Q3CheckListItem *item = (Q3CheckListItem *)profileListView->
 					       currentItem();
 			delete item;
 			if (profileListView->childCount() == 0) {
@@ -387,7 +389,7 @@ void SelectProfileForm::deleteProfile()
 
 void SelectProfileForm::renameProfile()
 {
-	QCheckListItem *item = (QCheckListItem *)profileListView->currentItem();
+	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
 	QString oldProfile = item->text();
 	
 	// Ask user for a new profile name
@@ -468,7 +470,7 @@ void SelectProfileForm::renameProfile()
 		emit profileRenamed();
 		
 		// Change profile name in the list box
-		QCheckListItem *item = (QCheckListItem *)profileListView->currentItem();
+		Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
 		item->setText(0, newProfile);
 	}
 }
@@ -489,7 +491,7 @@ void SelectProfileForm::setAsDefault()
 	defaultSet = true;
 	
 	// Restore all pixmaps
-	QListViewItemIterator i(profileListView);
+	Q3ListViewItemIterator i(profileListView);
 	while (i.current()) {
 		i.current()->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
 		i++;
@@ -498,9 +500,9 @@ void SelectProfileForm::setAsDefault()
 	// Set pixmap of the default profiles.
 	// Set default profiles in system settings.
 	list<string> l;
-	QListViewItemIterator j(profileListView, QListViewItemIterator::Checked);
+	Q3ListViewItemIterator j(profileListView, Q3ListViewItemIterator::Checked);
 	while (j.current()) {
-		QCheckListItem *item = (QCheckListItem *)j.current();
+		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
 		item->setPixmap(0, QPixmap::fromMimeSource("twinkle16.png"));
 		l.push_back(item->text().ascii());
 		j++;
@@ -614,8 +616,8 @@ void SelectProfileForm::fillProfileListView(const QStringList &profiles)
 		// Strip off the user file extension
 		QString profile = *i;
 		profile.truncate(profile.length() - strlen(USER_FILE_EXT));
-		QCheckListItem *item = new QCheckListItem(
-				profileListView, profile, QCheckListItem::CheckBox);
+		Q3CheckListItem *item = new Q3CheckListItem(
+				profileListView, profile, Q3CheckListItem::CheckBox);
 		item->setPixmap(0, QPixmap::fromMimeSource("penguin-small.png"));
 	}
 	
@@ -623,9 +625,9 @@ void SelectProfileForm::fillProfileListView(const QStringList &profiles)
 	profileListView->setSelected(profileListView->firstChild(), true);
 }
 
-void SelectProfileForm::toggleItem(QListViewItem *item)
+void SelectProfileForm::toggleItem(Q3ListViewItem *item)
 {
-	QCheckListItem *checkItem = (QCheckListItem *)item;
+	Q3CheckListItem *checkItem = (Q3CheckListItem *)item;
 	checkItem->setOn(!checkItem->isOn());
 }
 

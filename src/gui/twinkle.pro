@@ -36,7 +36,8 @@ SOURCES	+= main.cpp \
 	buddylistview.cpp \
 	twinkleapplication.cpp
 
-FORMS	= mphoneform.ui \
+#The following line was changed from FORMS to FORMS3 by qt3to4
+FORMS3	= mphoneform.ui \
 	inviteform.ui \
 	deregisterform.ui \
 	redirectform.ui \
@@ -235,3 +236,7 @@ unix {
 }
 
 include( ../../qtccxxincl.pro )
+#The following line was inserted by qt3to4
+QT +=  qt3support
+#The following line was inserted by qt3to4
+CONFIG += uic3
