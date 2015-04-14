@@ -274,6 +274,8 @@
 </tabstops>
 <includes>
     <include location="local" impldecl="in declaration">user.h</include>
+    <include location="local" impldecl="in declaration">QLabel</include>
+    <include location="local" impldecl="in declaration">QLineEdit</include>
     <include location="local" impldecl="in implementation">qregexp.h</include>
     <include location="local" impldecl="in implementation">qvalidator.h</include>
     <include location="local" impldecl="in implementation">gui.h</include>
@@ -285,6 +287,10 @@
 <variables>
     <variable access="private">t_user *user_config;</variable>
     <variable access="private">bool destroy_user_config;</variable>
+    <variable access="private">QLineEdit *accountIdLineEdit;</variable>
+    <variable access="private">QLineEdit *pinCodeLineEdit;</variable>
+    <variable access="private">QLineEdit *nameLineEdit;</variable>
+    <variable access="private">QLabel *signUpTextLabel;</variable>
 </variables>
 <signals>
     <signal>success()</signal>
