@@ -12,9 +12,9 @@
             <height>433</height>
         </rect>
     </property>
-    <property name="cursor">
+    <!--<property name="cursor">
         <cursor>0</cursor>
-    </property>
+    </property>-->
     <property name="caption">
         <string>Twinkle - Diamondcard User Profile</string>
     </property>
@@ -168,9 +168,9 @@
                             <blue>205</blue>
                         </color>
                     </property>
-                    <property name="cursor">
+                    <!--<property name="cursor">
                         <cursor>13</cursor>
-                    </property>
+                    </property>-->
                     <property name="text">
                         <string>&lt;p align="center"&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</string>
                     </property>

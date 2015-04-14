@@ -252,9 +252,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="frameShadow">
                                                     <enum>Plain</enum>
                                                 </property>
@@ -280,9 +280,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="text">
                                                     <string></string>
                                                 </property>
@@ -305,9 +305,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="text">
                                                     <string></string>
                                                 </property>
@@ -330,9 +330,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="frameShadow">
                                                     <enum>Plain</enum>
                                                 </property>
@@ -358,9 +358,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="text">
                                                     <string></string>
                                                 </property>
@@ -383,9 +383,9 @@
                                                         <verstretch>0</verstretch>
                                                     </sizepolicy>
                                                 </property>
-                                                <property name="cursor">
+                                                <!--<property name="cursor">
                                                     <cursor>13</cursor>
-                                                </property>
+                                                </property>-->
                                                 <property name="text">
                                                     <string></string>
                                                 </property>
@@ -604,9 +604,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -665,9 +665,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -699,9 +699,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -733,9 +733,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -767,9 +767,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -801,9 +801,9 @@
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>13</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>Panel</enum>
                                                         </property>
@@ -1168,9 +1168,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -1229,9 +1229,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -1263,9 +1263,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -1297,9 +1297,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -1331,9 +1331,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>0</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>NoFrame</enum>
                                                         </property>
@@ -1365,9 +1365,9 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
                                                                 <verstretch>0</verstretch>
                                                             </sizepolicy>
                                                         </property>
-                                                        <property name="cursor">
+                                                        <!--<property name="cursor">
                                                             <cursor>13</cursor>
-                                                        </property>
+                                                        </property>-->
                                                         <property name="frameShape">
                                                             <enum>Panel</enum>
                                                         </property>
