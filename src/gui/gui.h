@@ -389,6 +389,8 @@ signals:
 	void update_reg_status();
 	void update_mwi();
 	void update_state();
+	void mw_display(const QString& s);
+	void mw_display_header();
 	
 private slots:
 	/** 
