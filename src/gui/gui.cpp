@@ -650,6 +650,9 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	
 	MEMMAN_NEW(mainWindow);
 	qApp->setMainWidget(mainWindow);
+	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()));
+	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()));
+	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()));
 }
 
 t_gui::~t_gui() {
@@ -1130,7 +1133,7 @@ void t_gui::cb_provisional_resp_invite(int line, const t_response *r) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
-	mainWindow->updateState();
+	emit update_state();
 	unlock();
 }
 
@@ -1375,7 +1378,7 @@ void  t_gui::cb_invalid_reg_resp(t_user *user_config, const t_response *r, const
 	mainWindow->display(s);
 	mainWindow->display(reason.c_str());
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1393,7 +1396,7 @@ void t_gui::cb_register_success(t_user *user_config, const t_response *r, unsign
 		mainWindow->display(s);
 	}
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1410,7 +1413,7 @@ void t_gui::cb_register_failed(t_user *user_config, const t_response *r, bool fi
 		mainWindow->display(s);
 	}
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1425,7 +1428,7 @@ void t_gui::cb_register_stun_failed(t_user *user_config, bool first_failure) {
 		mainWindow->display(s);
 	}
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1440,7 +1443,7 @@ void t_gui::cb_deregister_success(t_user *user_config, const t_response *r) {
 	    .arg(r->reason.c_str());
 	mainWindow->display(s);
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1455,7 +1458,7 @@ void t_gui::cb_deregister_failed(t_user *user_config, const t_response *r) {
 	    .arg(r->reason.c_str());
 	mainWindow->display(s);
 	
-	mainWindow->updateRegStatus();
+	emit update_reg_status();
 	unlock();
 }
 
@@ -1756,13 +1759,13 @@ void t_gui::cb_dtmf_supported(int line) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
-	mainWindow->updateState();
+	emit update_state();
 	unlock();
 }
 
 void t_gui::cb_line_state_changed(void) {
 	lock();
-	mainWindow->updateState();
+	emit update_state();
 	unlock();
 }
 
@@ -1825,7 +1828,7 @@ void t_gui::cb_refer_failed(int line, const t_response *r) {
 	mainWindow->display(s);
 	
 	// The refer state has changed, so update the main window.
-	mainWindow->updateState();
+	emit update_state();
 	
 	unlock();
 }
@@ -1841,7 +1844,7 @@ void t_gui::cb_refer_result_success(int line) {
 	mainWindow->display(s);
 	
 	// The refer state has changed, so update the main window.
-	mainWindow->updateState();
+	emit update_state();
 	
 	unlock();
 }
@@ -1857,7 +1860,7 @@ void t_gui::cb_refer_result_failed(int line) {
 	mainWindow->display(s);
 	
 	// The refer state has changed, so update the main window.
-	mainWindow->updateState();
+	emit update_state();
 	
 	unlock();
 }
@@ -1876,7 +1879,7 @@ void t_gui::cb_refer_result_inprog(int line) {
 	mainWindow->display(s);
 	
 	// The refer state has changed, so update the main window.
-	mainWindow->updateState();
+	emit update_state();
 	
 	unlock();
 }
@@ -2382,7 +2385,7 @@ void t_gui::cb_zrtp_sas_confirmation_reset(int line) {
 
 void t_gui::cb_update_mwi(void) {
 	lock();
-	mainWindow->updateMwi();
+	emit update_mwi();
 	unlock();
 }
 

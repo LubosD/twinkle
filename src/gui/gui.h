@@ -384,6 +384,11 @@ public:
 	  * @param url [in] URL to open.
              */
 	void open_url_in_browser(const QString &url);
+
+signals:
+	void update_reg_status();
+	void update_mwi();
+	void update_state();
 	
 private slots:
 	/** 

@@ -26,6 +26,7 @@
 
 class MessageFormView : public MessageForm, patterns::t_observer
 {	
+	Q_OBJECT
 private:
 	bool _destructing; /**< Indicates if object is being destructed. */
 public:
@@ -38,6 +39,12 @@ public:
 	
 	virtual void subject_destroyed(void);
 	virtual void show(void);
+
+signals:
+	void update_signal();
+
+private slots:
+	void update_slot();
 };
 
 #endif

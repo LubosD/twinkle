@@ -29,6 +29,8 @@ MessageFormView::MessageFormView(QWidget *parent, im::t_msg_session *s) :
 	_msgSession = s;
 	_msgSession->attach(this);
 	_destructing = false;
+
+	connect(this, SIGNAL(update_signal()), this, SLOT(update_slot()));
 }
 
 MessageFormView::~MessageFormView()
@@ -54,7 +56,7 @@ void MessageFormView::updatePartyInfo(void)
 	}
 }
 
-void MessageFormView::update(void) {
+void MessageFormView::update_slot(void) {
 	// Called directly from core, so lock GUI
 	ui->lock();
 	
@@ -142,6 +144,10 @@ void MessageFormView::update(void) {
 	}
 	
 	ui->unlock();
+}
+
+void MessageFormView::update(void) {
+	emit update_signal();
 }
 
 void MessageFormView::subject_destroyed()

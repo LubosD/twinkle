@@ -124,13 +124,14 @@ BuddyListViewItem::BuddyListViewItem(Q3ListViewItem *parent, t_buddy *_buddy) :
 {
 	set_icon();
 	buddy->attach(this);
+	QObject::connect(this, SIGNAL(update_signal()), this, SLOT(update_slot()));
 }
 
 BuddyListViewItem::~BuddyListViewItem() {
 	buddy->detach(this);
 }
 
-void BuddyListViewItem::update(void) {
+void BuddyListViewItem::update_slot(void) {
 	// This method is called directly from the core, so lock the GUI
 	ui->lock();
 	set_icon();
@@ -140,6 +141,10 @@ void BuddyListViewItem::update(void) {
 		Q3ListViewItem::parent()->sort();
 	}
 	ui->unlock();
+}
+
+void BuddyListViewItem::update(void) {
+	emit update_signal();
 }
 
 void BuddyListViewItem::subject_destroyed(void) {
@@ -209,6 +214,7 @@ BLViewUserItem::BLViewUserItem(Q3ListView *parent, t_presence_epa *_presence_epa
 {
 	set_icon();
 	presence_epa->attach(this);
+	QObject::connect(this, SIGNAL(update_signal()), this, SLOT(update_slot()));
 }
 
 BLViewUserItem::~BLViewUserItem() {
@@ -226,7 +232,7 @@ void BLViewUserItem::paintCell(QPainter *painter, const QColorGroup &cg,
 	painter->restore();
 }
 
-void BLViewUserItem::update(void) {
+void BLViewUserItem::update_slot(void) {
 	// This method is called directly from the core, so lock the GUI
 	ui->lock();
 	set_icon();
@@ -236,6 +242,10 @@ void BLViewUserItem::update(void) {
 		Q3ListViewItem::listView()->sort();
 	}
 	ui->unlock();
+}
+
+void BLViewUserItem::update(void) {
+	emit update_signal();
 }
 
 void BLViewUserItem::subject_destroyed(void) {

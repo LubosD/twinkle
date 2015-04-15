@@ -42,7 +42,8 @@ public:
 };
 
 // List view item representing a buddy.
-class BuddyListViewItem : public AbstractBLVItem, public patterns::t_observer {
+class BuddyListViewItem : public QObject, public AbstractBLVItem, public patterns::t_observer {
+	Q_OBJECT
 private:
 	t_buddy		*buddy;
 	
@@ -57,10 +58,17 @@ public:
 	virtual void subject_destroyed(void);
 	
 	t_buddy *get_buddy(void);
+
+signals:
+	void update_signal();
+
+private slots:
+	void update_slot();
 };
 
 // List view item representing a user
-class BLViewUserItem : public AbstractBLVItem, public patterns::t_observer {
+class BLViewUserItem : public QObject, public AbstractBLVItem, public patterns::t_observer {
+	Q_OBJECT
 private:
 	t_presence_epa *presence_epa;
 	
@@ -77,6 +85,12 @@ public:
 	virtual void subject_destroyed(void);
 	
 	t_presence_epa *get_presence_epa(void);
+
+signals:
+	void update_signal();
+
+private slots:
+	void update_slot();
 };
 
 #endif
