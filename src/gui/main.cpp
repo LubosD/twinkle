@@ -503,7 +503,7 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		// Add the KDE factory
 		Q3MimeSourceFactory::addFactory(factory_kde);
 #else
-		int tmp = argc;
+		static int tmp = argc;
 		qa = new t_twinkle_application(tmp, argv);
 		MEMMAN_NEW(qa);
 #endif
