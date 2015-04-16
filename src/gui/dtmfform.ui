@@ -26,7 +26,7 @@
     </property>
     <layout class="QVBoxLayout">
       <item>
-        <widget class="Q3GroupBox" name="keypadGroupBox">
+        <widget class="QGroupBox" name="keypadGroupBox">
           <property name="title">
             <string>Keypad</string>
           </property>
@@ -42,7 +42,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-2.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-2.png</normaloff>:/icons/images/dtmf-2.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>2</string>
@@ -60,7 +67,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-3.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-3.png</normaloff>:/icons/images/dtmf-3.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>3</string>
@@ -73,10 +87,54 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-a.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-a.png</normaloff>:/icons/images/dtmf-a.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Over decadic A. Normally not needed.</string>
+                </property>
+                <property name="palette">
+                  <palette>
+                    <active>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </active>
+                    <inactive>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </inactive>
+                    <disabled>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </disabled>
+                  </palette>
                 </property>
               </widget>
             </item>
@@ -86,7 +144,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-4.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-4.png</normaloff>:/icons/images/dtmf-4.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>4</string>
@@ -99,7 +164,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-5.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-5.png</normaloff>:/icons/images/dtmf-5.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>5</string>
@@ -112,7 +184,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-6.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-6.png</normaloff>:/icons/images/dtmf-6.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>6</string>
@@ -125,10 +204,54 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-b.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-b.png</normaloff>:/icons/images/dtmf-b.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Over decadic B. Normally not needed.</string>
+                </property>
+                <property name="palette">
+                  <palette>
+                    <active>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </active>
+                    <inactive>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </inactive>
+                    <disabled>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </disabled>
+                  </palette>
                 </property>
               </widget>
             </item>
@@ -138,7 +261,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-7.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-7.png</normaloff>:/icons/images/dtmf-7.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>7</string>
@@ -151,7 +281,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-8.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-8.png</normaloff>:/icons/images/dtmf-8.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>8</string>
@@ -164,7 +301,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-9.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-9.png</normaloff>:/icons/images/dtmf-9.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>9</string>
@@ -177,10 +321,54 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-c.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-c.png</normaloff>:/icons/images/dtmf-c.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Over decadic C. Normally not needed.</string>
+                </property>
+                <property name="palette">
+                  <palette>
+                    <active>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </active>
+                    <inactive>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </inactive>
+                    <disabled>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </disabled>
+                  </palette>
                 </property>
               </widget>
             </item>
@@ -190,7 +378,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-star.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-star.png</normaloff>:/icons/images/dtmf-star.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Star (*)</string>
@@ -203,7 +398,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-0.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-0.png</normaloff>:/icons/images/dtmf-0.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>0</string>
@@ -216,7 +418,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-pound.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-pound.png</normaloff>:/icons/images/dtmf-pound.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Pound (#)</string>
@@ -229,10 +438,54 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-d.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-d.png</normaloff>:/icons/images/dtmf-d.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="whatsThis" stdset="0">
                   <string>Over decadic D. Normally not needed.</string>
+                </property>
+                <property name="palette">
+                  <palette>
+                    <active>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </active>
+                    <inactive>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </inactive>
+                    <disabled>
+                      <colorrole role="Button">
+                        <brush brushstyle="SolidPattern">
+                          <color alpha="255">
+                            <red>194</red>
+                            <green>202</green>
+                            <blue>210</blue>
+                          </color>
+                        </brush>
+                      </colorrole>
+                    </disabled>
+                  </palette>
                 </property>
               </widget>
             </item>
@@ -247,7 +500,14 @@
                   <string/>
                 </property>
                 <property name="icon">
-                  <pixmap>dtmf-1.png</pixmap>
+                  <iconset resource="icons.qrc">
+                    <normaloff>:/icons/images/dtmf-1.png</normaloff>:/icons/images/dtmf-1.png</iconset>
+                </property>
+                <property name="iconSize">
+                  <size>
+                    <width>22</width>
+                    <height>22</height>
+                  </size>
                 </property>
                 <property name="autoDefault">
                   <bool>true</bool>
@@ -296,7 +556,6 @@
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
   <tabstops>
     <tabstop>onePushButton</tabstop>
     <tabstop>twoPushButton</tabstop>
@@ -316,6 +575,9 @@
     <tabstop>dPushButton</tabstop>
     <tabstop>closePushButton</tabstop>
   </tabstops>
+  <resources>
+    <include location="icons.qrc"/>
+  </resources>
   <connections>
     <connection>
       <sender>closePushButton</sender>
