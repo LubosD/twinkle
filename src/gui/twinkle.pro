@@ -10,6 +10,7 @@ DEFINES	+= QT_NO_STL
 INCLUDEPATH	+= ..
 
 HEADERS	+= gui.h \
+	dtmfform.h \
 	historylistview.h \
 	freedesksystray.h \
 	twinklesystray.h \
@@ -26,6 +27,7 @@ HEADERS	+= gui.h \
 
 SOURCES	+= main.cpp \
 	gui.cpp \
+	dtmfform.cpp \
 	historylistview.cpp \
 	freedesksystray.cpp \
 	twinklesystray.cpp \
@@ -36,13 +38,14 @@ SOURCES	+= main.cpp \
 	buddylistview.cpp \
 	twinkleapplication.cpp
 
+FORMS	= dtmfform.ui
+
 #The following line was changed from FORMS to FORMS3 by qt3to4
 FORMS3	= mphoneform.ui \
 	inviteform.ui \
 	deregisterform.ui \
 	redirectform.ui \
 	termcapform.ui \
-	dtmfform.ui \
 	selectnicform.ui \
 	srvredirectform.ui \
 	authenticationform.ui \
