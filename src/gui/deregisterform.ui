@@ -1,105 +1,90 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
-<class>DeregisterForm</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>DeregisterForm</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0" stdsetdef="1">
+  <author></author>
+  <comment></comment>
+  <exportmacro></exportmacro>
+  <class>DeregisterForm</class>
+  <widget class="QDialog" name="DeregisterForm">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>287</width>
-            <height>82</height>
-        </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>287</width>
+        <height>82</height>
+      </rect>
     </property>
     <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>0</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
+      <sizepolicy>
+        <hsizetype>0</hsizetype>
+        <vsizetype>0</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+      </sizepolicy>
     </property>
-    <property name="caption">
-        <string>Twinkle - Deregister</string>
+    <property name="windowTitle">
+      <string>Twinkle - Deregister</string>
     </property>
-    <vbox>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>deregAllCheckBox</cstring>
-            </property>
-            <property name="text">
-                <string>deregister all devices</string>
-            </property>
+    <layout class="QVBoxLayout">
+      <item>
+        <widget class="QCheckBox" name="deregAllCheckBox">
+          <property name="text">
+            <string>deregister all devices</string>
+          </property>
         </widget>
-        <widget class="QLayoutWidget">
-            <property name="name">
-                <cstring>layout21</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer13</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>111</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>okPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;OK</string>
-                    </property>
-                    <property name="default">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>cancelPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Cancel</string>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-    </vbox>
-</widget>
-<connections>
+      </item>
+      <item>
+        <layout class="QHBoxLayout">
+          <item>
+            <spacer name="spacer13">
+              <property name="sizeHint">
+                <size>
+                  <width>111</width>
+                  <height>20</height>
+                </size>
+              </property>
+              <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+              </property>
+            </spacer>
+          </item>
+          <item>
+            <widget class="QPushButton" name="okPushButton">
+              <property name="text">
+                <string>&amp;OK</string>
+              </property>
+              <property name="default">
+                <bool>true</bool>
+              </property>
+            </widget>
+          </item>
+          <item>
+            <widget class="QPushButton" name="cancelPushButton">
+              <property name="text">
+                <string>&amp;Cancel</string>
+              </property>
+            </widget>
+          </item>
+        </layout>
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="11"/>
+  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <connections>
     <connection>
-        <sender>okPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>DeregisterForm</receiver>
-        <slot>accept()</slot>
+      <sender>okPushButton</sender>
+      <signal>clicked()</signal>
+      <receiver>DeregisterForm</receiver>
+      <slot>accept()</slot>
     </connection>
     <connection>
-        <sender>cancelPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>DeregisterForm</receiver>
-        <slot>reject()</slot>
+      <sender>cancelPushButton</sender>
+      <signal>clicked()</signal>
+      <receiver>DeregisterForm</receiver>
+      <slot>reject()</slot>
     </connection>
-</connections>
-<includes>
-    <include location="local" impldecl="in implementation">deregisterform.ui.h</include>
-</includes>
-<pixmapinproject/>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+  </connections>
+</ui>
