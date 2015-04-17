@@ -1,5 +1,6 @@
 #include "logviewform.h"
 
+#include <QScrollBar>
 #include "audits/memman.h"
 #include "log.h"
 
@@ -24,6 +25,12 @@ LogViewForm::~LogViewForm()
 	// no need to delete child widgets, Qt does it all for us
 }
 
+void LogViewForm::scrollToBottom()
+{
+	QScrollBar* vsb = logTextEdit->verticalScrollBar();
+	vsb->setValue(vsb->maximum());
+}
+
 void LogViewForm::show()
 {
 	if (isShown()) {
@@ -36,17 +43,14 @@ void LogViewForm::show()
 	MEMMAN_NEW(logfile);
 	logstream = NULL;
 	if (logfile->open(QIODevice::ReadOnly)) {
-		logstream = new Q3TextStream(logfile);
+		logstream = new QTextStream(logfile);
 		MEMMAN_NEW(logstream);
-		logTextEdit->setText(logstream->read());
-
-		// Set cursor position at the end of text
-		logTextEdit->scrollToBottom();
+		logTextEdit->setPlainText(logstream->read());
 	}
-
 	log_file->enable_inform_user(true);
 
 	QDialog::show();
+	scrollToBottom();
 	raise();
 }
 
@@ -82,7 +86,7 @@ void LogViewForm::update(bool log_zapped)
 	if (logstream) {
 		QString s = logstream->read();
 		if (!s.isNull() && !s.isEmpty()) {
-			logTextEdit->append(s);
+			logTextEdit->appendPlainText(s);
 		}
 	}
 }

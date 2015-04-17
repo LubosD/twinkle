@@ -18,12 +18,9 @@
     </property>
     <layout class="QGridLayout">
       <item row="0" column="0" rowspan="1" colspan="3">
-        <widget class="Q3TextEdit" name="logTextEdit">
-          <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-          </property>
-          <property name="wordWrap">
-            <enum>Q3TextEdit::NoWrap</enum>
+        <widget class="QPlainTextEdit" name="logTextEdit">
+          <property name="lineWrapMode">
+            <enum>QPlainTextEdit::NoWrap</enum>
           </property>
           <property name="readOnly">
             <bool>true</bool>

@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QCloseEvent>
-#include <Q3TextStream>
+#include <QTextStream>
 
 #include "ui_logviewform.h"
 
@@ -13,7 +13,9 @@ class LogViewForm : public QDialog, protected Ui::LogViewForm
 
 private:
     QFile* logfile;
-    Q3TextStream* logstream;
+    QTextStream* logstream;
+
+    void scrollToBottom();
 
 public:
     LogViewForm(QWidget* parent = 0);
