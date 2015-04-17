@@ -1,0 +1,29 @@
+* finish conversion to native Qt4 classes
+
+	Most forms still use classes from Qt3Support module which has been
+	dropped in Qt5. Most of the time the migration is simple but still
+	tedious enough. The ultimate goal is allow twinkle to be built against
+	either of Qt4 and Qt5.
+
+* make KDE support work again
+
+	After cleaning up the autotools config, twinkle only builds with
+	--without-kde. This is only temporary, the goal is to allow building
+	against KDE4 libraries (and, preferrably, also KDE5).
+
+* IPv6 support
+
+	Still missing, AFAIK.
+
+* t_gui locking
+
+	Dirty workaround for (mostly) calling GUI related methods from non-GUI
+	threads. Doesn't actually work with Qt4, causing segfaults. Analyze
+	the remaining uses and get rid off it.
+
+* MEMMAN_* tracking macros
+
+	Ugly and unreliable (too easy to forget adding them). Either replace
+	them with overloaded new and delete operators or kill them completely
+	and rely on valgrind.
+
