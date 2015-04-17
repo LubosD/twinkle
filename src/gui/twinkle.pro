@@ -12,6 +12,7 @@ INCLUDEPATH	+= ..
 HEADERS	+= gui.h \
 	dtmfform.h \
 	deregisterform.h \
+	logviewform.h \
 	historylistview.h \
 	freedesksystray.h \
 	twinklesystray.h \
@@ -30,6 +31,7 @@ SOURCES	+= main.cpp \
 	gui.cpp \
 	dtmfform.cpp \
 	deregisterform.cpp \
+	logviewform.cpp \
 	historylistview.cpp \
 	freedesksystray.cpp \
 	twinklesystray.cpp \
@@ -41,7 +43,8 @@ SOURCES	+= main.cpp \
 	twinkleapplication.cpp
 
 FORMS	= dtmfform.ui \
-	deregisterform.ui
+	deregisterform.ui \
+	logviewform.ui
 
 #The following line was changed from FORMS to FORMS3 by qt3to4
 FORMS3	= mphoneform.ui \
@@ -56,7 +59,6 @@ FORMS3	= mphoneform.ui \
 	getprofilenameform.ui \
 	transferform.ui \
 	syssettingsform.ui \
-	logviewform.ui \
 	wizardform.ui \
 	getaddressform.ui \
 	historyform.ui \
