@@ -23,7 +23,7 @@
             <string/>
           </property>
           <property name="pixmap">
-            <pixmap>penguin_big.png</pixmap>
+            <pixmap resource="icons.qrc">:/icons/images/penguin_big.png</pixmap>
           </property>
           <property name="wordWrap">
             <bool>false</bool>
@@ -114,7 +114,6 @@ To remember your profiles easily you could use your SIP user name as a profile n
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
   <tabstops>
     <tabstop>profileLineEdit</tabstop>
     <tabstop>okPushButton</tabstop>
