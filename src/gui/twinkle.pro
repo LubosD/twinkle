@@ -14,6 +14,7 @@ HEADERS	+= gui.h \
 	deregisterform.h \
 	logviewform.h \
 	numberconversionform.h \
+	getprofilenameform.h \
 	historylistview.h \
 	freedesksystray.h \
 	twinklesystray.h \
@@ -34,6 +35,7 @@ SOURCES	+= main.cpp \
 	deregisterform.cpp \
 	logviewform.cpp \
 	numberconversionform.cpp \
+	getprofilenameform.cpp \
 	historylistview.cpp \
 	freedesksystray.cpp \
 	twinklesystray.cpp \
@@ -47,7 +49,8 @@ SOURCES	+= main.cpp \
 FORMS	= dtmfform.ui \
 	deregisterform.ui \
 	logviewform.ui \
-	numberconversionform.ui
+	numberconversionform.ui \
+	getprofilenameform.ui
 
 #The following line was changed from FORMS to FORMS3 by qt3to4
 FORMS3	= mphoneform.ui \
@@ -59,7 +62,6 @@ FORMS3	= mphoneform.ui \
 	authenticationform.ui \
 	userprofileform.ui \
 	selectprofileform.ui \
-	getprofilenameform.ui \
 	transferform.ui \
 	syssettingsform.ui \
 	wizardform.ui \
