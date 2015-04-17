@@ -655,6 +655,9 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()));
 	connect(this, SIGNAL(mw_display(const QString&)), mainWindow, SLOT(display(const QString&)));
 	connect(this, SIGNAL(mw_display_header()), mainWindow, SLOT(displayHeader()));
+	connect(this, SIGNAL(mw_update_log(bool)), mainWindow, SLOT(updateLog(bool)));
+	connect(this, SIGNAL(mw_update_call_history()), mainWindow, SLOT(updateCallHistory()));
+	connect(this, SIGNAL(mw_update_missed_call_status(int)), mainWindow, SLOT(updateMissedCallStatus(int)));
 }
 
 t_gui::~t_gui() {
@@ -2278,21 +2281,15 @@ void t_gui::cb_display_msg(const string &msg, t_msg_priority prio) {
 }
 
 void t_gui::cb_log_updated(bool log_zapped) {
-	lock();
-	mainWindow->updateLog(log_zapped);
-	unlock();
+	emit mw_update_log(log_zapped);
 }
 
 void t_gui::cb_call_history_updated(void) {
-	lock();
-	mainWindow->updateCallHistory();
-	unlock();
+	emit mw_update_call_history();
 }
 
 void  t_gui::cb_missed_call(int num_missed_calls) {
-	lock();
-	mainWindow->updateMissedCallStatus(num_missed_calls);
-	unlock();
+	emit mw_update_missed_call_status(num_missed_calls);
 }
 
 void t_gui::cb_nat_discovery_progress_start(int num_steps) {

@@ -391,6 +391,9 @@ signals:
 	void update_state();
 	void mw_display(const QString& s);
 	void mw_display_header();
+	void mw_update_log(bool log_zapped);
+	void mw_update_call_history();
+	void mw_update_missed_call_status(int num_missed_calls);
 	
 private slots:
 	/** 
