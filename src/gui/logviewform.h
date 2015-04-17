@@ -15,6 +15,7 @@ private:
     QFile* logfile;
     QTextStream* logstream;
 
+    bool isOnBottom() const;
     void scrollToBottom();
 
 public:

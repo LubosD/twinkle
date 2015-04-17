@@ -25,6 +25,12 @@ LogViewForm::~LogViewForm()
 	// no need to delete child widgets, Qt does it all for us
 }
 
+bool LogViewForm::isOnBottom() const
+{
+	const QScrollBar* vsb = logTextEdit->verticalScrollBar();
+	return (vsb->value() == vsb->maximum());
+}
+
 void LogViewForm::scrollToBottom()
 {
 	QScrollBar* vsb = logTextEdit->verticalScrollBar();
@@ -86,7 +92,10 @@ void LogViewForm::update(bool log_zapped)
 	if (logstream) {
 		QString s = logstream->read();
 		if (!s.isNull() && !s.isEmpty()) {
+			bool bottom = isOnBottom();
 			logTextEdit->appendPlainText(s);
+			if (bottom)
+				scrollToBottom();
 		}
 	}
 }
