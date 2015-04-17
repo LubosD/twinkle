@@ -1,7 +1,7 @@
 TEMPLATE	= app
 LANGUAGE	= C++
 
-CONFIG	+= qt warn_on release thread
+CONFIG	+= qt warn_on debug thread
 
 LIBS	+= ../libtwinkle.a ../parser/libsipparser.a ../sdp/libsdpparser.a ../sockets/libsocket.a ../threads/libthread.a ../audio/libaudio.a ../audits/libaudits.a ../stun/libstun.a ../mwi/libmwi.a ../im/libim.a ../patterns/libpatterns.a ../presence/libpresence.a ../utils/libutils.a -lsndfile -lmagic -lncurses -lreadline -lX11
 
@@ -13,6 +13,7 @@ HEADERS	+= gui.h \
 	dtmfform.h \
 	deregisterform.h \
 	logviewform.h \
+	numberconversionform.h \
 	historylistview.h \
 	freedesksystray.h \
 	twinklesystray.h \
@@ -32,6 +33,7 @@ SOURCES	+= main.cpp \
 	dtmfform.cpp \
 	deregisterform.cpp \
 	logviewform.cpp \
+	numberconversionform.cpp \
 	historylistview.cpp \
 	freedesksystray.cpp \
 	twinklesystray.cpp \
@@ -44,7 +46,8 @@ SOURCES	+= main.cpp \
 
 FORMS	= dtmfform.ui \
 	deregisterform.ui \
-	logviewform.ui
+	logviewform.ui \
+	numberconversionform.ui
 
 #The following line was changed from FORMS to FORMS3 by qt3to4
 FORMS3	= mphoneform.ui \
@@ -63,7 +66,6 @@ FORMS3	= mphoneform.ui \
 	getaddressform.ui \
 	historyform.ui \
 	selectuserform.ui \
-	numberconversionform.ui \
 	addresscardform.ui \
 	messageform.ui \
 	buddyform.ui \
