@@ -12,7 +12,7 @@ OPTION(WITH_ILBC	"Enable the iLBC codec" OFF)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include (CheckIncludeFile)
-find_package(Qt4 REQUIRED)
+find_package(Qt4 REQUIRED COMPONENTS QTGUI QT3SUPPORT)
 find_package(LibXml2 REQUIRED)
 find_package(ALSA REQUIRED)
 find_package(LibMagic REQUIRED)
@@ -22,7 +22,8 @@ find_package(BISON REQUIRED)
 find_package(FLEX REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex)
 
-include_directories(${LIBXML2_INCLUDE_DIR})
+include_directories(${LIBXML2_INCLUDE_DIR} ${QT_QT3SUPPORT_INCLUDE_DIR}
+	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
 
 if (WITH_ZRTP)
 	find_package(Zrtpcpp)

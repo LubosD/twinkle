@@ -25,7 +25,7 @@
 #include "userintf.h"
 #include "im/msg_session.h"
 
-#include "messageform.h"
+#include "ui_messageform.h"
 
 #include "qaction.h"
 #include "qcombobox.h"
@@ -43,7 +43,9 @@
 using namespace std;
 
 // Forward declaration
+namespace Ui {
 class MphoneForm;
+}
 
 // Length of redial list in combo boxes
 #define SIZE_REDIAL_LIST 10
@@ -65,7 +67,7 @@ void setDisabledIcon(QToolButton *toolButton, const QString &icon);
 class t_gui : public QObject, public t_userintf {
 	Q_OBJECT
 private:
-	MphoneForm	*mainWindow;
+	Ui::MphoneForm	*mainWindow;
 	
 	// List of active instant messaging session.
 	list<im::t_msg_session *> messageSessions;

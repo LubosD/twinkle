@@ -1,215 +1,190 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>AddressCardForm</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>AddressCardForm</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0" stdsetdef="1">
+  <author></author>
+  <comment></comment>
+  <exportmacro></exportmacro>
+  <class>AddressCardForm</class>
+  <widget class="QDialog" name="AddressCardForm">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>604</width>
-            <height>209</height>
-        </rect>
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>604</width>
+        <height>209</height>
+      </rect>
     </property>
-    <property name="caption">
-        <string>Twinkle - Address Card</string>
+    <property name="windowTitle">
+      <string>Twinkle - Address Card</string>
     </property>
-    <vbox>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QLayoutWidget">
-            <property name="name">
-                <cstring>layout73</cstring>
-            </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QLabel" row="4" column="0">
-                    <property name="name">
-                        <cstring>remarkTextLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Remark:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>remarkLineEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="1" column="1">
-                    <property name="name">
-                        <cstring>infixNameLineEdit</cstring>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Infix name of contact.</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="0" column="1">
-                    <property name="name">
-                        <cstring>firstNameLineEdit</cstring>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>First name of contact.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>firstNameTextLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;First name:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>firstNameLineEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="1">
-                    <property name="name">
-                        <cstring>remarkLineEdit</cstring>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>You may place any remark about the contact here.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="0">
-                    <property name="name">
-                        <cstring>phoneTextLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Phone:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>phoneLineEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="0">
-                    <property name="name">
-                        <cstring>infixNameTextLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Infix name:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>infixNameLineEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="3" column="1">
-                    <property name="name">
-                        <cstring>phoneLineEdit</cstring>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Phone number or SIP address of contact.</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="2" column="1">
-                    <property name="name">
-                        <cstring>lastNameLineEdit</cstring>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Last name of contact.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="2" column="0">
-                    <property name="name">
-                        <cstring>lastNameTextLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Last name:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>lastNameLineEdit</cstring>
-                    </property>
-                </widget>
-            </grid>
-        </widget>
-        <spacer>
-            <property name="name">
-                <cstring>spacer100</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>20</width>
-                    <height>31</height>
-                </size>
-            </property>
+    <layout class="QVBoxLayout">
+      <item>
+        <layout class="QGridLayout">
+          <item row="4" column="0">
+            <widget class="QLabel" name="remarkTextLabel">
+              <property name="text">
+                <string>&amp;Remark:</string>
+              </property>
+              <property name="buddy" stdset="0">
+                <cstring>remarkLineEdit</cstring>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
+          <item row="1" column="1">
+            <widget class="QLineEdit" name="infixNameLineEdit">
+              <property name="whatsThis" stdset="0">
+                <string>Infix name of contact.</string>
+              </property>
+            </widget>
+          </item>
+          <item row="0" column="1">
+            <widget class="QLineEdit" name="firstNameLineEdit">
+              <property name="whatsThis" stdset="0">
+                <string>First name of contact.</string>
+              </property>
+            </widget>
+          </item>
+          <item row="0" column="0">
+            <widget class="QLabel" name="firstNameTextLabel">
+              <property name="text">
+                <string>&amp;First name:</string>
+              </property>
+              <property name="buddy" stdset="0">
+                <cstring>firstNameLineEdit</cstring>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
+          <item row="4" column="1">
+            <widget class="QLineEdit" name="remarkLineEdit">
+              <property name="whatsThis" stdset="0">
+                <string>You may place any remark about the contact here.</string>
+              </property>
+            </widget>
+          </item>
+          <item row="3" column="0">
+            <widget class="QLabel" name="phoneTextLabel">
+              <property name="text">
+                <string>&amp;Phone:</string>
+              </property>
+              <property name="buddy" stdset="0">
+                <cstring>phoneLineEdit</cstring>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
+          <item row="1" column="0">
+            <widget class="QLabel" name="infixNameTextLabel">
+              <property name="text">
+                <string>&amp;Infix name:</string>
+              </property>
+              <property name="buddy" stdset="0">
+                <cstring>infixNameLineEdit</cstring>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
+          <item row="3" column="1">
+            <widget class="QLineEdit" name="phoneLineEdit">
+              <property name="whatsThis" stdset="0">
+                <string>Phone number or SIP address of contact.</string>
+              </property>
+            </widget>
+          </item>
+          <item row="2" column="1">
+            <widget class="QLineEdit" name="lastNameLineEdit">
+              <property name="whatsThis" stdset="0">
+                <string>Last name of contact.</string>
+              </property>
+            </widget>
+          </item>
+          <item row="2" column="0">
+            <widget class="QLabel" name="lastNameTextLabel">
+              <property name="text">
+                <string>&amp;Last name:</string>
+              </property>
+              <property name="buddy" stdset="0">
+                <cstring>lastNameLineEdit</cstring>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
+        </layout>
+      </item>
+      <item>
+        <spacer name="spacer100">
+          <property name="sizeHint">
+            <size>
+              <width>20</width>
+              <height>31</height>
+            </size>
+          </property>
+          <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="orientation">
+            <enum>Qt::Vertical</enum>
+          </property>
         </spacer>
-        <widget class="QLayoutWidget">
-            <property name="name">
-                <cstring>layout72</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer99</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>261</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>okPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;OK</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+O</string>
-                    </property>
-                    <property name="default">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>cancelPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Cancel</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-    </vbox>
-</widget>
-<connections>
-    <connection>
-        <sender>okPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressCardForm</receiver>
-        <slot>validate()</slot>
-    </connection>
-    <connection>
-        <sender>cancelPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressCardForm</receiver>
-        <slot>reject()</slot>
-    </connection>
-</connections>
-<tabstops>
+      </item>
+      <item>
+        <layout class="QHBoxLayout">
+          <item>
+            <spacer name="spacer99">
+              <property name="sizeHint">
+                <size>
+                  <width>261</width>
+                  <height>20</height>
+                </size>
+              </property>
+              <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+              </property>
+            </spacer>
+          </item>
+          <item>
+            <widget class="QPushButton" name="okPushButton">
+              <property name="text">
+                <string>&amp;OK</string>
+              </property>
+              <property name="shortcut">
+                <string>Alt+O</string>
+              </property>
+              <property name="default">
+                <bool>true</bool>
+              </property>
+            </widget>
+          </item>
+          <item>
+            <widget class="QPushButton" name="cancelPushButton">
+              <property name="text">
+                <string>&amp;Cancel</string>
+              </property>
+              <property name="shortcut">
+                <string>Alt+C</string>
+              </property>
+            </widget>
+          </item>
+        </layout>
+      </item>
+    </layout>
+  </widget>
+  <layoutdefault spacing="6" margin="11"/>
+  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <tabstops>
     <tabstop>firstNameLineEdit</tabstop>
     <tabstop>infixNameLineEdit</tabstop>
     <tabstop>lastNameLineEdit</tabstop>
@@ -217,18 +192,22 @@
     <tabstop>remarkLineEdit</tabstop>
     <tabstop>okPushButton</tabstop>
     <tabstop>cancelPushButton</tabstop>
-</tabstops>
-<includes>
-    <include location="local" impldecl="in declaration">address_book.h</include>
-    <include location="local" impldecl="in implementation">gui.h</include>
-    <include location="local" impldecl="in implementation">addresscardform.ui.h</include>
-</includes>
-<slots>
-    <slot>validate()</slot>
-</slots>
-<functions>
-    <function returnType="int">exec( t_address_card &amp; card )</function>
-</functions>
-<pixmapinproject/>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+  </tabstops>
+  <includes>
+    <include location="local">address_book.h</include>
+  </includes>
+  <connections>
+    <connection>
+      <sender>okPushButton</sender>
+      <signal>clicked()</signal>
+      <receiver>AddressCardForm</receiver>
+      <slot>validate()</slot>
+    </connection>
+    <connection>
+      <sender>cancelPushButton</sender>
+      <signal>clicked()</signal>
+      <receiver>AddressCardForm</receiver>
+      <slot>reject()</slot>
+    </connection>
+  </connections>
+</ui>

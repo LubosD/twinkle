@@ -17,7 +17,6 @@ add_subdirectory(threads)
 add_subdirectory(utils)
 
 set(LIBTWINKLE_SRCS
-	main.cpp
 	abstract_dialog.cpp
 	address_book.cpp
 	auth.cpp
@@ -51,7 +50,13 @@ set(LIBTWINKLE_SRCS
 	user.cpp
 	userintf.cpp
 	util.cpp
-	
+)
+
+add_library(libtwinkle OBJECT ${LIBTWINKLE_SRCS})
+
+add_executable(twinkle-console
+	main.cpp
+	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>
 	$<TARGET_OBJECTS:libtwinkle-gsm>
 	$<TARGET_OBJECTS:libtwinkle-audits>
@@ -67,14 +72,13 @@ set(LIBTWINKLE_SRCS
 	$<TARGET_OBJECTS:libtwinkle-utils>
 )
 
-add_executable(twinkle
-	${LIBTWINKLE_SRCS})
+add_subdirectory(gui)
 
-target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
+target_link_libraries(twinkle-console -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
 	${Boost_LIBRARIES})
 
-install(TARGETS twinkle DESTINATION bin)
+install(TARGETS twinkle-console DESTINATION bin)
 
 
