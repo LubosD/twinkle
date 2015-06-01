@@ -18,8 +18,9 @@ find_package(ALSA REQUIRED)
 find_package(LibMagic REQUIRED)
 find_package(LibSndfile REQUIRED)
 find_package(Readline REQUIRED)
-#find_package(BISON)
-#find_package(FLEX)
+find_package(BISON REQUIRED)
+find_package(FLEX REQUIRED)
+find_package(Boost REQUIRED COMPONENTS regex)
 
 include_directories(${LIBXML2_INCLUDE_DIR})
 
@@ -101,5 +102,18 @@ check_include_file(linux/errqueue.h HAVE_LINUX_ERRQUEUE_H)
 
 configure_file(twinkle_config.h.in twinkle_config.h)
 include_directories("${CMAKE_BINARY_DIR}")
+
+install(FILES
+	${CMAKE_CURRENT_SOURCE_DIR}/data/providers.csv
+	${CMAKE_CURRENT_SOURCE_DIR}/data/ringtone.wav
+	${CMAKE_CURRENT_SOURCE_DIR}/data/ringback.wav
+	${CMAKE_CURRENT_SOURCE_DIR}/src/gui/images/twinkle16.png
+	${CMAKE_CURRENT_SOURCE_DIR}/src/gui/images/twinkle32.png
+	${CMAKE_CURRENT_SOURCE_DIR}/src/gui/images/twinkle48.png
+	DESTINATION share/twinkle)
+install(FILES
+	${CMAKE_CURRENT_SOURCE_DIR}/src/gui/images/twinkle48.png
+	DESTINATION share/pixmaps
+	RENAME twinkle.png)
 
 add_subdirectory(src)
