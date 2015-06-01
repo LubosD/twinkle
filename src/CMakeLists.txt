@@ -70,7 +70,7 @@ set(LIBTWINKLE_SRCS
 add_executable(twinkle
 	${LIBTWINKLE_SRCS})
 
-target_link_libraries(twinkle -lpthread ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
+target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY})
 
