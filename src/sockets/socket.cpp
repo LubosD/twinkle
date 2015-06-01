@@ -24,15 +24,15 @@
 #include "socket.h"
 #include "audits/memman.h"
 
-#if HAVE_UNISTD_H
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
-#if HAVE_LINUX_TYPES_H
+#ifdef HAVE_LINUX_TYPES_H
 #include <linux/types.h>
 #endif
 
-#if HAVE_LINUX_ERRQUEUE_H
+#ifdef HAVE_LINUX_ERRQUEUE_H
 #include <linux/errqueue.h>
 #endif
 
@@ -185,7 +185,7 @@ bool t_socket_udp::select_read(unsigned long timeout) {
 }
 
 bool t_socket_udp::enable_icmp(void) {
-#if HAVE_LINUX_ERRQUEUE_H
+#ifdef HAVE_LINUX_ERRQUEUE_H
 	int enable = 1;
 	int ret = setsockopt(SOL_IP, IP_RECVERR, &enable, sizeof(int));
 	if (ret < 0) return false;
@@ -196,7 +196,7 @@ bool t_socket_udp::enable_icmp(void) {
 }
 
 bool t_socket_udp::get_icmp(t_icmp_msg &icmp) {
-#if HAVE_LINUX_ERRQUEUE_H
+#ifdef HAVE_LINUX_ERRQUEUE_H
 	int ret;
 	char buf[256];
 	
