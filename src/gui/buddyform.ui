@@ -174,7 +174,7 @@
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>nameLineEdit</tabstop>
     <tabstop>phoneLineEdit</tabstop>

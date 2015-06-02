@@ -2111,31 +2111,51 @@ bool t_gui::cb_ask_user_to_redirect_request(t_user *user_config,
 	return permission;
 }
 
-bool t_gui::cb_ask_credentials(t_user *user_config, const string &realm, string &username,
-			       string &password)
+bool t_gui::do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
+				   string &password)
 {
 	QString user(username.c_str());
 	QString passwd(password.c_str());
-	
-	lock();
-	
+
 	AuthenticationForm *af = new AuthenticationForm(mainWindow, "authentication",
 							true);
 	MEMMAN_NEW(af);
 	if (!af->exec(user_config, QString(realm.c_str()), user, passwd)) {
 		MEMMAN_DELETE(af);
 		delete af;
-		unlock();
 		return false;
 	}
-	
+
 	username = user.ascii();
 	password = passwd.ascii();
 	MEMMAN_DELETE(af);
 	delete af;
-	
-	unlock();
+
 	return true;
+}
+
+bool t_gui::cb_ask_credentials(t_user *user_config, const string &realm, string &username,
+			       string &password)
+{
+	bool retval;
+	QMetaObject::invokeMethod(this, "do_cb_ask_credentials", Qt::BlockingQueuedConnection,
+							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
+							  Q_ARG(const string&, realm), Q_ARG(string&, username),
+							  Q_ARG(string&, password));
+
+	return retval;
+}
+
+bool t_gui::do_cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &destination,
+		const string &display)
+{
+	// TODO
+}
+
+bool t_gui::do_cb_ask_user_to_redirect_request(t_user *user_config, const t_url &destination,
+		const string &display, t_method method)
+{
+	// TODO
 }
 
 void t_gui::cb_ask_user_to_refer(t_user *user_config, const t_url &refer_to_uri,

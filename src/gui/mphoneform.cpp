@@ -226,15 +226,20 @@ void MphoneForm::init()
 		
 		menu->insertSeparator();
 		
+#ifdef ENABLE_DIAMONCARD
 		// Diamondcard menu
 		menu->insertItem("Diamondcard", Diamondcard);
+		menu->insertSeparator();
+#endif
 		
-		// Exit application when user selects Quit from the tray menu
-		connect(sysTray, SIGNAL(quitSelected()),
-			this, SLOT(fileExit()));
+		fileExitAction->addTo(menu);
 		
 		sysTray->show();
 	}
+
+#ifndef ENABLE_DIAMONDCARD
+	Diamondcard->menuAction()->setVisible(false);
+#endif
 }
 
 void MphoneForm::destroy()
@@ -640,11 +645,11 @@ void MphoneForm::updateLineStatus(int line)
 		break;
 	case LSSUB_ESTABLISHED:
 		if (phone->has_line_media(line)) {
-			statLabel->setPixmap(qPixmapFromMimeSource(
-					"stat_established.png"));
+			statLabel->setPixmap(QPixmap(
+					":/icons/images/stat_established.png"));
 		} else {
-			statLabel->setPixmap(qPixmapFromMimeSource(
-					"stat_established_nomedia.png"));
+			statLabel->setPixmap(QPixmap(
+					":/icons/images/stat_established_nomedia.png"));
 		}
 		statLabel->show();
 		break;
@@ -950,8 +955,8 @@ void MphoneForm::updateRegStatus()
 		statRegLabel->setPixmap(QPixmap(":/icons/images/reg_failed.png"));
 	} else if (num_registered > 0) {
 		// Some users are registered
-		statRegLabel->setPixmap(qPixmapFromMimeSource(
-				"twinkle16.png"));
+		statRegLabel->setPixmap(QPixmap(
+				":/icons/images/twinkle16.png"));
 	} else if (num_failed > 0) {
 		// Some users failed, none are registered
 		statRegLabel->setPixmap(QPixmap(":/icons/images/reg_failed.png"));
@@ -1023,12 +1028,12 @@ void MphoneForm::flashMWI()
 {
 	if (mwiFlashStatus) {
 		mwiFlashStatus = false;
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-				"mwi_none16.png"));
+		statMWILabel->setPixmap(QPixmap(
+				":/icons/images/mwi_none16.png"));
 	} else {
 		mwiFlashStatus = true;
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-				"mwi_new16.png"));
+		statMWILabel->setPixmap(QPixmap(
+				":/icons/images/mwi_new16.png"));
 	}
 }
 
@@ -1092,24 +1097,24 @@ void MphoneForm::updateMwi()
 	
 	// Set MWI icon
 	if (mwi_new_msgs) {
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-			"mwi_new16.png"));
+		statMWILabel->setPixmap(QPixmap(
+			":/icons/images/mwi_new16.png"));
 		mwiFlashStatus = true;
 		
 		// Start the flash MWI timer to flash the indicator
 		tmrFlashMWI.start(1000);
 	} else if (mwi_failure) {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-			"mwi_failure16.png"));
+		statMWILabel->setPixmap(QPixmap(
+			":/icons/images/mwi_failure16.png"));
 	} else if (mwi_known) {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-			"mwi_none16.png"));
+		statMWILabel->setPixmap(QPixmap(
+			":/icons/images/mwi_none16.png"));
 	} else {
 		tmrFlashMWI.stop();
-		statMWILabel->setPixmap(qPixmapFromMimeSource(
-			"mwi_none16_dis.png"));
+		statMWILabel->setPixmap(QPixmap(
+			":/icons/images/mwi_none16_dis.png"));
 	}
 	
 	// Set tool tip
@@ -1198,12 +1203,12 @@ void MphoneForm::updateServicesStatus()
 		statAaLabel->setPixmap(QPixmap(":/icons/images/auto_answer.png"));
 	} else if (num_auto_answer > 0) {
 		// Some users enabled auto answer
-		statAaLabel->setPixmap(qPixmapFromMimeSource(
-				"auto_answer.png"));
+		statAaLabel->setPixmap(QPixmap(
+				":/icons/images/auto_answer.png"));
 	} else {
 		// No users enabeld auto answer
-		statAaLabel->setPixmap(qPixmapFromMimeSource(
-				"auto_answer-disabled.png"));
+		statAaLabel->setPixmap(QPixmap(
+				":/icons/images/auto_answer-disabled.png"));
 	}
 	
 	// Set tool tip with detailed info for multiple users.
@@ -1393,7 +1398,7 @@ void MphoneForm::updateSysTrayStatus()
 		icon_name += "_dis.png";
 	}
 	
-	sysTray->setIcon(qPixmapFromMimeSource(icon_name));
+	sysTray->setIcon(QPixmap(":/icons/images/" + icon_name));
 }
 
 // Update menu status based on the number of active users
@@ -1428,7 +1433,9 @@ void MphoneForm::updateMenuStatus()
 			this, SLOT(srvAutoAnswer()));
 	}
 	
+#ifdef ENABLE_DIAMONDCARD
 	updateDiamondcardMenu();
+#endif
 }
 
 void MphoneForm::updateDiamondcardMenu()

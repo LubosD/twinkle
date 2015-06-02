@@ -14,7 +14,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include (CheckIncludeFile)
 find_package(Qt4 REQUIRED COMPONENTS QTGUI QT3SUPPORT)
 find_package(LibXml2 REQUIRED)
-find_package(ALSA REQUIRED)
 find_package(LibMagic REQUIRED)
 find_package(LibSndfile REQUIRED)
 find_package(Readline REQUIRED)
@@ -35,11 +34,23 @@ endif (COMMONCPP_FOUND)
 include_directories(${LIBXML2_INCLUDE_DIR} ${QT_QT3SUPPORT_INCLUDE_DIR}
 	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
 
+if (WITH_ALSA)
+	find_package(ALSA)
+
+	if (ALSA_FOUND)
+		message(STATUS "libasound OK")
+		set(HAVE_LIBASOUND TRUE)
+	else (ALSA_FOUND)
+		message(FATAL_ERROR "libasound not found!")
+	endif (ALSA_FOUND)
+endif (WITH_ALSA)
+
 if (WITH_ZRTP)
 	find_package(Zrtpcpp)
 	
 	if (ZRTPCPP_FOUND)
 		message(STATUS "libzrtpcpp OK")
+		set(HAVE_ZRTP TRUE)
 		
 		include_directories(${ZRTPCPP_INCLUDE_DIR})
 	else (ZRTPCPP_FOUND)
@@ -76,6 +87,7 @@ if (WITH_SPEEX)
 	
 	if (SPEEX_FOUND)
 		message(STATUS "Speex OK")
+		set(HAVE_SPEEX TRUE)
 		
 		include_directories(${SPEEX_INCLUDE_DIR})
 	else (SPEEX_FOUND)
@@ -88,6 +100,7 @@ if (WITH_ILBC)
 	
 	if (ILBC_FOUND)
 		message(STATUS "iLBC OK")
+		set(HAVE_ILBC TRUE)
 		
 		include_directories(${ILBC_INCLUDE_DIR})
 	else (ILBC_FOUND)

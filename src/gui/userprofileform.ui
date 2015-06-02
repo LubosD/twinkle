@@ -4712,7 +4712,7 @@ Sollicited message waiting indication as specified by RFC 3842.
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>displayLineEdit</tabstop>
     <tabstop>usernameLineEdit</tabstop>

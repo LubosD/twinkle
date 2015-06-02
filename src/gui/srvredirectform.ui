@@ -597,7 +597,7 @@
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>cfTabWidget</tabstop>
     <tabstop>cfAlwaysCheckBox</tabstop>

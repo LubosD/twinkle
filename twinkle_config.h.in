@@ -1,10 +1,11 @@
-#cmakedefine WITH_SPEEX
-#cmakedefine WITH_ILBC
-#cmakedefine WITH_ZRTP
+#cmakedefine HAVE_SPEEX
+#cmakedefine HAVE_ILBC
+#cmakedefine HAVE_ZRTP
 
 #cmakedefine HAVE_UNISTD_H
 #cmakedefine HAVE_LINUX_TYPES_H
 #cmakedefine HAVE_LINUX_ERRQUEUE_H
+#cmakedefine HAVE_LIBASOUND
 
 #define VERSION		"${PRODUCT_VERSION}"
 #define VERSION_DATE	"${PRODUCT_DATE}"

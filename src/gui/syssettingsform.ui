@@ -1438,7 +1438,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>categoryListBox</tabstop>
     <tabstop>guiUseSystrayCheckBox</tabstop>

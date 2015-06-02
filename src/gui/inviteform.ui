@@ -265,7 +265,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>inviteComboBox</tabstop>
     <tabstop>subjectLineEdit</tabstop>

@@ -273,7 +273,7 @@ This field is mandatory.</string>
     </layout>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+  <pixmapfunction></pixmapfunction>
   <tabstops>
     <tabstop>serviceProviderComboBox</tabstop>
     <tabstop>displayLineEdit</tabstop>

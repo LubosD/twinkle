@@ -71,6 +71,10 @@ void SelectProfileForm::languageChange()
 void SelectProfileForm::init()
 {
 	user_config = 0;
+
+#ifndef ENABLE_DIAMONDCARD
+	diamondcardPushButton->hide();
+#endif
 }
 
 void SelectProfileForm::destroy()

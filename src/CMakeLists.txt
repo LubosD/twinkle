@@ -77,7 +77,7 @@ add_subdirectory(gui)
 target_link_libraries(twinkle-console -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-	${Boost_LIBRARIES})
+	${Boost_LIBRARIES} ${ALSA_LIBRARY})
 
 install(TARGETS twinkle-console DESTINATION bin)
 

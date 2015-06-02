@@ -401,6 +401,13 @@ private slots:
 	 * function should be called every second.
 	 */
 	void updateTimersMessageSessions();
+
+	bool do_cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &destination,
+			const string &display);
+	bool do_cb_ask_user_to_redirect_request(t_user *user_config, const t_url &destination,
+			const string &display, t_method method);
+	bool do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
+			string &password);
 };
 
 #endif
