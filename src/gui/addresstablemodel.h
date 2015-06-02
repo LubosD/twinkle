@@ -34,6 +34,7 @@ public:
 	virtual int columnCount(const QModelIndex &parent) const;
 	virtual QVariant data(const QModelIndex &index, int role) const;
 	virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+	virtual void sort(int column, Qt::SortOrder order);
 
 	void appendAddress(const t_address_card& card);
 	void removeAddress(int index);

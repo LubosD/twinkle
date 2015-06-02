@@ -101,3 +101,28 @@ void AddressTableModel::modifyAddress(int index, const t_address_card& card)
 	emit dataChanged(createIndex(index, 0), createIndex(index, 2));
 }
 
+void AddressTableModel::sort(int column, Qt::SortOrder order)
+{
+	qSort(m_data.begin(), m_data.end(), [=](const t_address_card& a1, const t_address_card& a2) -> bool {
+		bool retval = false;
+
+		switch (column)
+		{
+		case COL_ADDR_NAME:
+			retval = QString::fromStdString(a1.get_display_name()) < QString::fromStdString(a2.get_display_name());
+			break;
+		case COL_ADDR_PHONE:
+			retval = a1.sip_address.compare(a2.sip_address) < 0;
+			break;
+		case COL_ADDR_REMARK:
+			retval = a1.remark.compare(a2.remark) < 0;
+			break;
+		}
+
+		if (order == Qt::DescendingOrder)
+			retval = !retval;
+		return retval;
+	});
+
+	emit dataChanged(createIndex(0, 0), createIndex(m_data.size()-1, 2));
+}
