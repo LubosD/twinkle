@@ -1,13 +1,5 @@
 //Added by qt3to4:
 #include <QPixmap>
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you wish to add, delete or rename functions or slots use
-** Qt Designer which will update this file, preserving your code. Create an
-** init() function in place of a constructor, and a destroy() function in
-** place of a destructor.
-*****************************************************************************/
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
 
@@ -25,6 +17,56 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+
+#include <QDir>
+#include "user.h"
+#include <QStringList>
+#include <QMessageBox>
+#include "protocol.h"
+#include "gui.h"
+#include "userprofileform.h"
+#include "getprofilenameform.h"
+#include "audits/memman.h"
+#include "wizardform.h"
+#include "syssettingsform.h"
+#include <Q3ListView>
+#include "service.h"
+#include "presence/buddy.h"
+#include "diamondcardprofileform.h"
+#include "selectprofileform.h"
+/*
+ *  Constructs a SelectProfileForm as a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'.
+ *
+ *  The dialog will by default be modeless, unless you set 'modal' to
+ *  true to construct a modal dialog.
+ */
+SelectProfileForm::SelectProfileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
+	: QDialog(parent, name, modal, fl)
+{
+	setupUi(this);
+
+	init();
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+SelectProfileForm::~SelectProfileForm()
+{
+	destroy();
+	// no need to delete child widgets, Qt does it all for us
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void SelectProfileForm::languageChange()
+{
+	retranslateUi(this);
+}
+
 
 void SelectProfileForm::init()
 {
@@ -152,7 +194,7 @@ void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(),  l.end(), profile.ascii()) != l.end())
 		{
-			item->setPixmap(0, qPixmapFromMimeSource("twinkle16.png"));
+			item->setPixmap(0, QPixmap(":/icons/images/twinkle16.png"));
 			defaultSet = true;
 		}
 		
@@ -296,7 +338,7 @@ void SelectProfileForm::newProfileCreated()
 	Q3CheckListItem *item = new Q3CheckListItem(profileListView,
 				user_config->get_profile_name().c_str(), 
 				Q3CheckListItem::CheckBox);
-	item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
+	item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
 		
 	// Make the new profile the selected profile
 	// Do not change this without changing the exec method.
@@ -493,7 +535,7 @@ void SelectProfileForm::setAsDefault()
 	// Restore all pixmaps
 	Q3ListViewItemIterator i(profileListView);
 	while (i.current()) {
-		i.current()->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
+		i.current()->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
 		i++;
 	}
 	
@@ -503,7 +545,7 @@ void SelectProfileForm::setAsDefault()
 	Q3ListViewItemIterator j(profileListView, Q3ListViewItemIterator::Checked);
 	while (j.current()) {
 		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
-		item->setPixmap(0, qPixmapFromMimeSource("twinkle16.png"));
+		item->setPixmap(0, QPixmap(":/icons/images/twinkle16.png"));
 		l.push_back(item->text().ascii());
 		j++;
 	}
@@ -618,7 +660,7 @@ void SelectProfileForm::fillProfileListView(const QStringList &profiles)
 		profile.truncate(profile.length() - strlen(USER_FILE_EXT));
 		Q3CheckListItem *item = new Q3CheckListItem(
 				profileListView, profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
+		item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
 	}
 	
 	// Highlight the first profile

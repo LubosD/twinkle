@@ -1,16 +1,53 @@
 //Added by qt3to4:
 #include <QPixmap>
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you want to add, delete, or rename functions or slots, use
-** Qt Designer to update this file, preserving your code.
-**
-** You should not define a constructor or destructor in this file.
-** Instead, write your code in functions called init() and destroy().
-** These will automatically be called by the form's constructor and
-** destructor.
-*****************************************************************************/
+#include <Q3ListBox>
+#include <QComboBox>
+#include "gui.h"
+#include "sockets/interfaces.h"
+#include "selectprofileform.h"
+#include <QStringList>
+#include "audits/memman.h"
+#include <Q3ListView>
+#include <QSpinBox>
+#include <Q3FileDialog>
+#include <QFileInfo>
+#include "twinkle_config.h"
+#include <QRegExp>
+#include <QValidator>
+#include "syssettingsform.h"
+/*
+ *  Constructs a SysSettingsForm as a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'.
+ *
+ *  The dialog will by default be modeless, unless you set 'modal' to
+ *  true to construct a modal dialog.
+ */
+SysSettingsForm::SysSettingsForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
+	: QDialog(parent, name, modal, fl)
+{
+	setupUi(this);
+
+	init();
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+SysSettingsForm::~SysSettingsForm()
+{
+	// no need to delete child widgets, Qt does it all for us
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void SysSettingsForm::languageChange()
+{
+	retranslateUi(this);
+}
+
+
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
     
@@ -42,11 +79,11 @@ void SysSettingsForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
+	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	i = openRingbackToolButton->iconSet();
-	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
+	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingbackToolButton->setIconSet(i);
 	
@@ -257,7 +294,7 @@ void SysSettingsForm::populate()
 		profile.truncate(profile.length() - 4);
 		Q3CheckListItem *item = new Q3CheckListItem(profileListView,
 					profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
+		item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
 		
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(), l.end(), profile.ascii()) != l.end())

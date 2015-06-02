@@ -1,13 +1,7 @@
+#include "redirectform.h"
 //Added by qt3to4:
 #include <QPixmap>
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you wish to add, delete or rename functions or slots use
-** Qt Designer which will update this file, preserving your code. Create an
-** init() function in place of a constructor, and a destroy() function in
-** place of a destructor.
-*****************************************************************************/
+
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
 
@@ -26,6 +20,30 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#include "audits/memman.h"
+#include "gui.h"
+
+RedirectForm::RedirectForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
+	: QDialog(parent, name, modal, fl)
+{
+	setupUi(this);
+	init();
+}
+
+RedirectForm::~RedirectForm()
+{
+	destroy();
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void RedirectForm::languageChange()
+{
+	retranslateUi(this);
+}
+
 void RedirectForm::init()
 {
 	// Keeps track of which address book tool button is clicked.
@@ -36,7 +54,7 @@ void RedirectForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = address1ToolButton->iconSet();
-	i.setPixmap(qPixmapFromMimeSource("kontact_contacts-disabled.png"),
+	i.setPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	address1ToolButton->setIconSet(i);
 	address2ToolButton->setIconSet(i);

@@ -73,7 +73,7 @@
               <string>User</string>
             </property>
             <property name="pixmap">
-              <pixmap>penguin.png</pixmap>
+              <pixmap>:/icons/images/penguin.png</pixmap>
             </property>
           </item>
           <item>
@@ -81,7 +81,7 @@
               <string>SIP server</string>
             </property>
             <property name="pixmap">
-              <pixmap>package_network.png</pixmap>
+              <pixmap>:/icons/images/package_network.png</pixmap>
             </property>
           </item>
           <item>
@@ -89,7 +89,7 @@
               <string>Voice mail</string>
             </property>
             <property name="pixmap">
-              <pixmap>mwi_none.png</pixmap>
+              <pixmap>:/icons/images/mwi_none.png</pixmap>
             </property>
           </item>
           <item>
@@ -97,7 +97,7 @@
               <string>Instant message</string>
             </property>
             <property name="pixmap">
-              <pixmap>message32.png</pixmap>
+              <pixmap>:/icons/images/message32.png</pixmap>
             </property>
           </item>
           <item>
@@ -105,7 +105,7 @@
               <string>Presence</string>
             </property>
             <property name="pixmap">
-              <pixmap>presence.png</pixmap>
+              <pixmap>:/icons/images/presence.png</pixmap>
             </property>
           </item>
           <item>
@@ -113,7 +113,7 @@
               <string>RTP audio</string>
             </property>
             <property name="pixmap">
-              <pixmap>kmix.png</pixmap>
+              <pixmap>:/icons/images/kmix.png</pixmap>
             </property>
           </item>
           <item>
@@ -121,7 +121,7 @@
               <string>SIP protocol</string>
             </property>
             <property name="pixmap">
-              <pixmap>package_system.png</pixmap>
+              <pixmap>:/icons/images/package_system.png</pixmap>
             </property>
           </item>
           <item>
@@ -129,7 +129,7 @@
               <string>Transport/NAT</string>
             </property>
             <property name="pixmap">
-              <pixmap>yast_babelfish.png</pixmap>
+              <pixmap>:/icons/images/yast_babelfish.png</pixmap>
             </property>
           </item>
           <item>
@@ -137,7 +137,7 @@
               <string>Address format</string>
             </property>
             <property name="pixmap">
-              <pixmap>yast_PhoneTTOffhook.png</pixmap>
+              <pixmap>:/icons/images/yast_PhoneTTOffhook.png</pixmap>
             </property>
           </item>
           <item>
@@ -145,7 +145,7 @@
               <string>Timers</string>
             </property>
             <property name="pixmap">
-              <pixmap>clock.png</pixmap>
+              <pixmap>:/icons/images/clock.png</pixmap>
             </property>
           </item>
           <item>
@@ -153,7 +153,7 @@
               <string>Ring tones</string>
             </property>
             <property name="pixmap">
-              <pixmap>knotify.png</pixmap>
+              <pixmap>:/icons/images/knotify.png</pixmap>
             </property>
           </item>
           <item>
@@ -161,7 +161,7 @@
               <string>Scripts</string>
             </property>
             <property name="pixmap">
-              <pixmap>edit.png</pixmap>
+              <pixmap>:/icons/images/edit.png</pixmap>
             </property>
           </item>
           <item>
@@ -169,7 +169,7 @@
               <string>Security</string>
             </property>
             <property name="pixmap">
-              <pixmap>encrypted32.png</pixmap>
+              <pixmap>:/icons/images/encrypted32.png</pixmap>
             </property>
           </item>
         </widget>
@@ -991,7 +991,7 @@ If you disable this option, then the first codec from the active codecs that is 
                                       <string/>
                                     </property>
                                     <property name="icon">
-                                      <pixmap>1rightarrow.png</pixmap>
+                                      <pixmap>:/icons/images/1rightarrow.png</pixmap>
                                     </property>
                                     <property name="whatsThis" stdset="0">
                                       <string>Move a codec from the list of available codecs to the list of active codecs.</string>
@@ -1004,7 +1004,7 @@ If you disable this option, then the first codec from the active codecs that is 
                                       <string/>
                                     </property>
                                     <property name="icon">
-                                      <pixmap>1leftarrow.png</pixmap>
+                                      <pixmap>:/icons/images/1leftarrow.png</pixmap>
                                     </property>
                                     <property name="whatsThis" stdset="0">
                                       <string>Move a codec from the list of active codecs to the list of available codecs.</string>
@@ -1074,7 +1074,7 @@ If you disable this option, then the first codec from the active codecs that is 
                                       <string/>
                                     </property>
                                     <property name="icon">
-                                      <pixmap>1uparrow.png</pixmap>
+                                      <pixmap>:/icons/images/1uparrow.png</pixmap>
                                     </property>
                                     <property name="whatsThis" stdset="0">
                                       <string>Move a codec upwards in the list of active codecs, i.e. increase its preference of use.</string>
@@ -1087,7 +1087,7 @@ If you disable this option, then the first codec from the active codecs that is 
                                       <string/>
                                     </property>
                                     <property name="icon">
-                                      <pixmap>1downarrow.png</pixmap>
+                                      <pixmap>:/icons/images/1downarrow.png</pixmap>
                                     </property>
                                     <property name="whatsThis" stdset="0">
                                       <string>Move a codec downwards in the list of active codecs, i.e. decrease its preference of use.</string>
@@ -3172,7 +3172,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
                                   <string/>
                                 </property>
                                 <property name="icon">
-                                  <pixmap>1uparrow.png</pixmap>
+                                  <pixmap>:/icons/images/1uparrow.png</pixmap>
                                 </property>
                                 <property name="whatsThis" stdset="0">
                                   <string>Move the selected number conversion rule upwards in the list.</string>
@@ -3185,7 +3185,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
                                   <string/>
                                 </property>
                                 <property name="icon">
-                                  <pixmap>1downarrow.png</pixmap>
+                                  <pixmap>:/icons/images/1downarrow.png</pixmap>
                                 </property>
                                 <property name="whatsThis" stdset="0">
                                   <string>Move the selected number conversion rule downwards in the list.</string>
@@ -3526,7 +3526,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select ring back tone file.</string>
@@ -3542,7 +3542,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select ring tone file.</string>
@@ -3671,7 +3671,7 @@ The values of all SIP headers of the outgoing SIP BYE request are passed in envi
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3687,7 +3687,7 @@ The values of all SIP headers of the outgoing SIP BYE request are passed in envi
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3703,7 +3703,7 @@ The values of all SIP headers of the outgoing SIP BYE request are passed in envi
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3734,7 +3734,7 @@ The values of all SIP headers of the outgoing SIP failure response are passed in
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3765,7 +3765,7 @@ The values of all SIP headers of the incoming SIP BYE request are passed in envi
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3882,7 +3882,7 @@ The values of all SIP headers of the outgoing 200 OK are passed in environment v
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -3967,7 +3967,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>
@@ -4009,7 +4009,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
                         <string/>
                       </property>
                       <property name="icon">
-                        <iconset>fileopen.png</iconset>
+                        <iconset>:/icons/images/fileopen.png</iconset>
                       </property>
                       <property name="whatsThis" stdset="0">
                         <string>Select script file.</string>

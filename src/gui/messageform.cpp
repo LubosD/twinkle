@@ -1,14 +1,4 @@
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you want to add, delete, or rename functions or slots, use
-** Qt Designer to update this file, preserving your code.
-**
-** You should not define a constructor or destructor in this file.
-** Instead, write your code in functions called init() and destroy().
-** These will automatically be called by the form's constructor and
-** destructor.
-*****************************************************************************/
+
 
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
@@ -45,6 +35,22 @@
 #include <QCloseEvent>
 #endif
 
+#include "gui.h"
+#include "sockets/url.h"
+#include <Q3StyleSheet>
+#include "audits/memman.h"
+#include "util.h"
+#include <QPixmap>
+#include <QCursor>
+#include <Q3FileDialog>
+#include "utils/file_utils.h"
+#include <QFile>
+#include "sendfileform.h"
+#include <QStatusBar>
+#include <Q3Frame>
+#include "messageform.h"
+
+
 using namespace utils;
 
 /** Maximum width for an inline image */
@@ -54,6 +60,34 @@ using namespace utils;
 #define MAX_HEIGHT_IMG_INLINE 400
 
 #define IMG_SCALE_FACTOR(width, height) (std::min<float>( float(MAX_WIDTH_IMG_INLINE) / (width), float(MAX_HEIGHT_IMG_INLINE) / (height) ) )
+
+MessageForm::MessageForm(QWidget* parent, const char* name, Qt::WindowFlags fl)
+	: Q3MainWindow(parent, name, fl)
+{
+	setupUi(this);
+
+	(void)statusBar();
+	init();
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+MessageForm::~MessageForm()
+{
+	destroy();
+	// no need to delete child widgets, Qt does it all for us
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void MessageForm::languageChange()
+{
+	retranslateUi(this);
+}
+
 
 void MessageForm::init()
 {
@@ -443,7 +477,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	
 	attachmentPopupMenu->clear();
 	
-	QIcon saveIcon(qPixmapFromMimeSource("save_as.png"));
+	QIcon saveIcon(QPixmap(":/icons/images/save_as.png"));
 	attachmentPopupMenu->insertItem(saveIcon, "Save as...", id++);
 	
 #ifdef HAVE_KDE
@@ -465,7 +499,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 		attachmentPopupMenu->insertItem(iconSet, menuText, id++);
 	}
 	
-	QIcon openIcon(qPixmapFromMimeSource("fileopen.png"));
+	QIcon openIcon(QPixmap(":/icons/images/fileopen.png"));
 	attachmentPopupMenu->insertItem(openIcon, tr("Open with..."), id++);
 #endif
 	

@@ -33,22 +33,22 @@
 void AbstractBLVItem::set_icon(t_presence_state::t_basic_state state) {
 	switch (state) {
 	case t_presence_state::ST_BASIC_UNKNOWN:
-		setPixmap(0, qPixmapFromMimeSource("presence_unknown.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_unknown.png"));
 		break;
 	case t_presence_state::ST_BASIC_CLOSED:
-		setPixmap(0, qPixmapFromMimeSource("presence_offline.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_offline.png"));
 		break;
 	case t_presence_state::ST_BASIC_OPEN:
-		setPixmap(0, qPixmapFromMimeSource("presence_online.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_online.png"));
 		break;
 	case t_presence_state::ST_BASIC_FAILED:
-		setPixmap(0, qPixmapFromMimeSource("presence_failed.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_failed.png"));
 		break;
 	case t_presence_state::ST_BASIC_REJECTED:
-		setPixmap(0, qPixmapFromMimeSource("presence_rejected.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_rejected.png"));
 		break;
 	default:
-		setPixmap(0, qPixmapFromMimeSource("presence_unknown.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_unknown.png"));
 		break;
 	}
 }
@@ -76,7 +76,7 @@ void BuddyListViewItem::set_icon(void) {
 	tip += Q3StyleSheet::escape(ui->format_sip_address(user_config, buddy->get_name(), t_url(url_str)).c_str()).replace(' ', "&nbsp;");
 	
 	if (!buddy->get_may_subscribe_presence()) {
-		setPixmap(0, qPixmapFromMimeSource("buddy.png"));
+		setPixmap(0, QPixmap(":/icons/images/buddy.png"));
 	} else {
 		QString failure;
 		t_presence_state::t_basic_state basic_state = buddy->
@@ -171,7 +171,7 @@ void BLViewUserItem::set_icon(void) {
 	switch (presence_epa->get_epa_state()) {
 	case t_presence_epa::EPA_UNPUBLISHED:
 		tip += qApp->translate("BuddyList", "not published");
-		setPixmap(0, qPixmapFromMimeSource("penguin-small.png"));
+		setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
 		break;
 	case t_presence_epa::EPA_FAILED:
 		tip += qApp->translate("BuddyList", "failed to publish");
@@ -179,7 +179,7 @@ void BLViewUserItem::set_icon(void) {
 		if (!failure.isEmpty()) {
 				tip += QString(" (%1)").arg(failure);
 			}
-		setPixmap(0, qPixmapFromMimeSource("presence_failed.png"));
+		setPixmap(0, QPixmap(":/icons/images/presence_failed.png"));
 		break;
 	case t_presence_epa::EPA_PUBLISHED:
 		basic_state = presence_epa->get_basic_state();

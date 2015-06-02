@@ -28,7 +28,7 @@
                 <string/>
               </property>
               <property name="icon">
-                <iconset>fileopen.png</iconset>
+                <iconset>:/icons/images/fileopen.png</iconset>
               </property>
               <property name="whatsThis" stdset="0">
                 <string>Select file to send.</string>

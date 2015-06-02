@@ -1,14 +1,7 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <Q3ValueList>
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you wish to add, delete or rename functions or slots use
-** Qt Designer which will update this file, preserving your code. Create an
-** init() function in place of a constructor, and a destroy() function in
-** place of a destructor.
-*****************************************************************************/
+
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
     
@@ -26,6 +19,26 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+
+#include <Q3ListBox>
+#include <QLineEdit>
+#include <QLabel>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QRegExp>
+#include "sdp/sdp.h"
+#include <QValidator>
+#include "protocol.h"
+#include <QMessageBox>
+#include "gui.h"
+#include <Q3FileDialog>
+#include <QFileInfo>
+#include <QStringList>
+#include "twinkle_config.h"
+#include <Q3ListView>
+#include "numberconversionform.h"
+#include "util.h"
+#include "userprofileform.h"
 
 
 // Indices of categories in the category list box
@@ -100,6 +113,39 @@
 #define idxSipTransportUDP	1
 #define idxSipTransportTCP	2
 
+/*
+ *  Constructs a UserProfileForm as a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'.
+ *
+ *  The dialog will by default be modeless, unless you set 'modal' to
+ *  true to construct a modal dialog.
+ */
+UserProfileForm::UserProfileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
+	: QDialog(parent, name, modal, fl)
+{
+	setupUi(this);
+
+	init();
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+UserProfileForm::~UserProfileForm()
+{
+	// no need to delete child widgets, Qt does it all for us
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void UserProfileForm::languageChange()
+{
+	retranslateUi(this);
+}
+
+
 void UserProfileForm::init()
 {
 	QRegExp rxNoSpace("\\S*");
@@ -149,7 +195,7 @@ void UserProfileForm::init()
 	// Set toolbutton icons for disabled options.
 	QIcon i;
 	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(qPixmapFromMimeSource("fileopen-disabled.png"),
+	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
 		    QIcon::Automatic, QIcon::Disabled);
 	openRingtoneToolButton->setIconSet(i);
 	openRingbackToolButton->setIconSet(i);

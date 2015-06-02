@@ -1,2129 +1,2500 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>MphoneForm</class>
-  <widget class="Q3MainWindow" name="MphoneForm">
-    <property name="enabled">
-      <bool>true</bool>
-    </property>
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>739</width>
-        <height>693</height>
-      </rect>
-    </property>
-    <property name="sizePolicy">
-      <sizepolicy>
-        <hsizetype>5</hsizetype>
-        <vsizetype>5</vsizetype>
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-      </sizepolicy>
-    </property>
-    <property name="minimumSize">
-      <size>
-        <width>714</width>
-        <height>693</height>
-      </size>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle</string>
-    </property>
-    <property name="windowIcon">
-      <pixmap>twinkle16.png</pixmap>
-    </property>
-    <property name="rightJustification">
-      <bool>false</bool>
-    </property>
-    <property name="usesBigPixmaps">
-      <bool>false</bool>
-    </property>
-    <property name="usesTextLabel">
-      <bool>true</bool>
-    </property>
-    <widget class="QWidget">
-      <layout class="QGridLayout">
-        <item row="0" column="0">
-          <widget class="QSplitter" name="splitter2">
-            <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+<ui version="4.0">
+ <class>MphoneForm</class>
+ <widget class="Q3MainWindow" name="MphoneForm">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>739</width>
+    <height>693</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>714</width>
+    <height>693</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle</string>
+  </property>
+  <property name="rightJustification" stdset="0">
+   <bool>false</bool>
+  </property>
+  <property name="usesBigPixmaps" stdset="0">
+   <bool>false</bool>
+  </property>
+  <property name="usesTextLabel" stdset="0">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>485</width>
+     <height>354</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="Q3ListView" name="buddyListView" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>150</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="whatsThis">
+        <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
+       </property>
+       <property name="rootIsDecorated" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layout13">
+       <layout class="QVBoxLayout">
+        <item>
+         <layout class="QGridLayout">
+          <item row="1" column="0">
+           <widget class="QLabel" name="callTextLabel">
+            <property name="text">
+             <string comment="Label in front of combobox to enter address">&amp;Call:</string>
             </property>
-            <widget class="Q3ListView" name="buddyListView">
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>callComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QComboBox" name="callComboBox">
               <property name="sizePolicy">
-                <sizepolicy>
-                  <hsizetype>7</hsizetype>
-                  <vsizetype>7</vsizetype>
-                  <horstretch>150</horstretch>
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="whatsThis">
+               <string>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
+              </property>
+              <property name="editable">
+               <bool>true</bool>
+              </property>
+              <property name="maxCount">
+               <number>10</number>
+              </property>
+              <property name="insertPolicy">
+               <enum>QComboBox::NoInsert</enum>
+              </property>
+              <property name="autoCompletion">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="addressToolButton">
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="toolTip">
+               <string>Address book</string>
+              </property>
+              <property name="whatsThis">
+               <string>Select an address from the address book.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/images/kontact_contacts.png</normaloff>:/icons/images/kontact_contacts.png</iconset>
+              </property>
+              <property name="shortcut">
+               <string>F10</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="callPushButton">
+              <property name="whatsThis">
+               <string>Dial the address.</string>
+              </property>
+              <property name="text">
+               <string>Dial</string>
+              </property>
+              <property name="default">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="userLabel">
+            <property name="text">
+             <string>&amp;User:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>userComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QComboBox" name="userComboBox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="whatsThis">
+               <string>The user that will make the call.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout">
+              <item>
+               <widget class="QLabel" name="statAaLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
-                </sizepolicy>
-              </property>
-              <property name="minimumSize">
-                <size>
-                  <width>0</width>
-                  <height>0</height>
-                </size>
-              </property>
-              <property name="rootIsDecorated">
-                <bool>true</bool>
-              </property>
-              <property name="resizeMode">
-                <enum>Q3ListView::LastColumn</enum>
-              </property>
-              <property name="whatsThis" stdset="0">
-                <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
-              </property>
-              <column>
-                <property name="text">
-                  <string>Buddy list</string>
+                 </sizepolicy>
                 </property>
-                <property name="clickable">
-                  <bool>false</bool>
+                <property name="wordWrap">
+                 <bool>false</bool>
                 </property>
-                <property name="resizable">
-                  <bool>false</bool>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="statCfLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-              </column>
-            </widget>
-            <widget class="QWidget" name="layout13">
-              <layout class="QVBoxLayout">
-                <item>
-                  <layout class="QGridLayout">
-                    <item row="1" column="0">
-                      <widget class="QLabel" name="callTextLabel">
-                        <property name="text">
-                          <string comment="Label in front of combobox to enter address">&amp;Call:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>callComboBox</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="1" column="1">
-                      <layout class="QHBoxLayout">
-                        <item>
-                          <widget class="QComboBox" name="callComboBox">
-                            <property name="sizePolicy">
-                              <sizepolicy>
-                                <hsizetype>3</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                              </sizepolicy>
-                            </property>
-                            <property name="editable">
-                              <bool>true</bool>
-                            </property>
-                            <property name="maxCount">
-                              <number>10</number>
-                            </property>
-                            <property name="insertPolicy">
-                              <enum>QComboBox::NoInsert</enum>
-                            </property>
-                            <property name="autoCompletion">
-                              <bool>true</bool>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
-                            </property>
-                          </widget>
-                        </item>
-                        <item>
-                          <widget class="QToolButton" name="addressToolButton">
-                            <property name="focusPolicy">
-                              <enum>Qt::TabFocus</enum>
-                            </property>
-                            <property name="text">
-                              <string/>
-                            </property>
-                            <property name="shortcut">
-                              <string>F10</string>
-                            </property>
-                            <property name="icon">
-                              <iconset>kontact_contacts.png</iconset>
-                            </property>
-                            <property name="toolTip" stdset="0">
-                              <string>Address book</string>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>Select an address from the address book.</string>
-                            </property>
-                          </widget>
-                        </item>
-                        <item>
-                          <widget class="QPushButton" name="callPushButton">
-                            <property name="text">
-                              <string>Dial</string>
-                            </property>
-                            <property name="default">
-                              <bool>true</bool>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>Dial the address.</string>
-                            </property>
-                          </widget>
-                        </item>
-                      </layout>
-                    </item>
-                    <item row="0" column="0">
-                      <widget class="QLabel" name="userLabel">
-                        <property name="text">
-                          <string>&amp;User:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>userComboBox</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="0" column="1">
-                      <layout class="QHBoxLayout">
-                        <item>
-                          <widget class="QComboBox" name="userComboBox">
-                            <property name="sizePolicy">
-                              <sizepolicy>
-                                <hsizetype>3</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                              </sizepolicy>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>The user that will make the call.</string>
-                            </property>
-                          </widget>
-                        </item>
-                        <item>
-                          <layout class="QHBoxLayout">
-                            <item>
-                              <widget class="QLabel" name="statAaLabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                            <item>
-                              <widget class="QLabel" name="statCfLabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                            <item>
-                              <widget class="QLabel" name="statDndLabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                            <item>
-                              <widget class="QLabel" name="statMWILabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                            <item>
-                              <widget class="QLabel" name="statMissedLabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                            <item>
-                              <widget class="QLabel" name="statRegLabel">
-                                <property name="sizePolicy">
-                                  <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                  </sizepolicy>
-                                </property>
-                                <property name="wordWrap">
-                                  <bool>false</bool>
-                                </property>
-                              </widget>
-                            </item>
-                          </layout>
-                        </item>
-                      </layout>
-                    </item>
-                  </layout>
-                </item>
-                <item>
-                  <widget class="Q3GroupBox" name="displayGroupBox">
-                    <property name="sizePolicy">
-                      <sizepolicy>
-                        <hsizetype>5</hsizetype>
-                        <vsizetype>5</vsizetype>
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                      </sizepolicy>
-                    </property>
-                    <property name="title">
-                      <string>Display</string>
-                    </property>
-                    <layout class="QVBoxLayout">
-                      <item>
-                        <widget class="Q3TextEdit" name="displayTextEdit">
-                          <property name="sizePolicy">
-                            <sizepolicy>
-                              <hsizetype>7</hsizetype>
-                              <vsizetype>3</vsizetype>
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                            </sizepolicy>
-                          </property>
-                          <property name="vScrollBarMode">
-                            <enum>Q3ScrollView::AlwaysOn</enum>
-                          </property>
-                          <property name="textFormat">
-                            <enum>Qt::PlainText</enum>
-                          </property>
-                          <property name="text">
-                            <string/>
-                          </property>
-                          <property name="wordWrap">
-                            <enum>Q3TextEdit::NoWrap</enum>
-                          </property>
-                          <property name="readOnly">
-                            <bool>true</bool>
-                          </property>
-                          <property name="autoFormatting">
-                            <set>Q3TextEdit::AutoAll</set>
-                          </property>
-                        </widget>
-                      </item>
-                    </layout>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="Q3ButtonGroup" name="lineButtonGroup">
-                    <property name="sizePolicy">
-                      <sizepolicy>
-                        <hsizetype>5</hsizetype>
-                        <vsizetype>5</vsizetype>
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                      </sizepolicy>
-                    </property>
-                    <property name="title">
-                      <string>Line status</string>
-                    </property>
-                    <property name="exclusive">
-                      <bool>true</bool>
-                    </property>
-                    <layout class="QVBoxLayout">
-                      <item>
-                        <layout class="QHBoxLayout">
-                          <item>
-                            <layout class="QVBoxLayout">
-                              <item>
-                                <widget class="QRadioButton" name="line1RadioButton">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>0</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>Line &amp;1:</string>
-                                  </property>
-                                  <property name="shortcut">
-                                    <string>Alt+1</string>
-                                  </property>
-                                  <property name="checked">
-                                    <bool>true</bool>
-                                  </property>
-                                  <property name="whatsThis" stdset="0">
-                                    <string>Click to switch to line 1.</string>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="fromhead1Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>From:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="tohead1Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>To:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="subjecthead1Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>Subject:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                            </layout>
-                          </item>
-                          <item>
-                            <layout class="QVBoxLayout">
-                              <item>
-                                <layout class="QHBoxLayout">
-                                  <item>
-                                    <widget class="QLabel" name="line1StatLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="status1TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>5</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">idle</string>
-                                      </property>
-                                      <property name="textFormat">
-                                        <enum>Qt::RichText</enum>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line1HoldLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line1MuteLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line1ConfLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line1ReferLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="crypt1Label">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line1SasLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">sas</string>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Short authentication string</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="codec1TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">g711a/g711a</string>
-                                      </property>
-                                      <property name="alignment">
-                                        <set>Qt::AlignVCenter|Qt::AlignRight</set>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Audio codec</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="timer1TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="font">
-                                        <font>
-                                          <family>Courier New</family>
-                                        </font>
-                                      </property>
-                                      <property name="text">
-                                        <string>0:00:00</string>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Call duration</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                </layout>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="from1Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">sip:from</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="to1Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">sip:to</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="subject1Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">subject</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                            </layout>
-                          </item>
-                          <item>
-                            <widget class="QLabel" name="photo1Label">
-                              <property name="sizePolicy">
-                                <sizepolicy>
-                                  <hsizetype>0</hsizetype>
-                                  <vsizetype>0</vsizetype>
-                                  <horstretch>0</horstretch>
-                                  <verstretch>0</verstretch>
-                                </sizepolicy>
-                              </property>
-                              <property name="minimumSize">
-                                <size>
-                                  <width>70</width>
-                                  <height>98</height>
-                                </size>
-                              </property>
-                              <property name="maximumSize">
-                                <size>
-                                  <width>70</width>
-                                  <height>98</height>
-                                </size>
-                              </property>
-                              <property name="frameShape">
-                                <enum>QFrame::Box</enum>
-                              </property>
-                              <property name="text">
-                                <string comment="No need to translate">photo</string>
-                              </property>
-                              <property name="wordWrap">
-                                <bool>false</bool>
-                              </property>
-                            </widget>
-                          </item>
-                        </layout>
-                      </item>
-                      <item>
-                        <layout class="QHBoxLayout">
-                          <item>
-                            <layout class="QVBoxLayout">
-                              <item>
-                                <widget class="QRadioButton" name="line2RadioButton">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>0</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>Line &amp;2:</string>
-                                  </property>
-                                  <property name="shortcut">
-                                    <string>Alt+2</string>
-                                  </property>
-                                  <property name="whatsThis" stdset="0">
-                                    <string>Click to switch to line 2.</string>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="fromhead2Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>From:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="tohead2Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>To:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLabel" name="subjecthead2Label">
-                                  <property name="sizePolicy">
-                                    <sizepolicy>
-                                      <hsizetype>0</hsizetype>
-                                      <vsizetype>5</vsizetype>
-                                      <horstretch>0</horstretch>
-                                      <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                  </property>
-                                  <property name="text">
-                                    <string>Subject:</string>
-                                  </property>
-                                  <property name="indent">
-                                    <number>21</number>
-                                  </property>
-                                  <property name="wordWrap">
-                                    <bool>false</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                            </layout>
-                          </item>
-                          <item>
-                            <layout class="QVBoxLayout">
-                              <item>
-                                <layout class="QHBoxLayout">
-                                  <item>
-                                    <widget class="QLabel" name="line2StatLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="status2TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>5</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">idle</string>
-                                      </property>
-                                      <property name="textFormat">
-                                        <enum>Qt::RichText</enum>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line2HoldLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line2MuteLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line2ConfLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line2ReferLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="crypt2Label">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="line2SasLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">sas</string>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Short authentication string</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="codec2TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="text">
-                                        <string comment="No need to translate">g711a/g711a</string>
-                                      </property>
-                                      <property name="alignment">
-                                        <set>Qt::AlignVCenter|Qt::AlignRight</set>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Audio codec</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                  <item>
-                                    <widget class="QLabel" name="timer2TextLabel">
-                                      <property name="sizePolicy">
-                                        <sizepolicy>
-                                          <hsizetype>0</hsizetype>
-                                          <vsizetype>5</vsizetype>
-                                          <horstretch>0</horstretch>
-                                          <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                      </property>
-                                      <property name="font">
-                                        <font>
-                                          <family>Courier New</family>
-                                        </font>
-                                      </property>
-                                      <property name="text">
-                                        <string>0:00:00</string>
-                                      </property>
-                                      <property name="whatsThis" stdset="0">
-                                        <string>Call duration</string>
-                                      </property>
-                                      <property name="wordWrap">
-                                        <bool>false</bool>
-                                      </property>
-                                    </widget>
-                                  </item>
-                                </layout>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="from2Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">sip:from</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="to2Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">sip:to</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                              <item>
-                                <widget class="QLineEdit" name="subject2Label">
-                                  <property name="focusPolicy">
-                                    <enum>Qt::NoFocus</enum>
-                                  </property>
-                                  <property name="text">
-                                    <string comment="No need to translate">subject</string>
-                                  </property>
-                                  <property name="readOnly">
-                                    <bool>true</bool>
-                                  </property>
-                                </widget>
-                              </item>
-                            </layout>
-                          </item>
-                          <item>
-                            <widget class="QLabel" name="photo2Label">
-                              <property name="sizePolicy">
-                                <sizepolicy>
-                                  <hsizetype>0</hsizetype>
-                                  <vsizetype>0</vsizetype>
-                                  <horstretch>0</horstretch>
-                                  <verstretch>0</verstretch>
-                                </sizepolicy>
-                              </property>
-                              <property name="minimumSize">
-                                <size>
-                                  <width>70</width>
-                                  <height>98</height>
-                                </size>
-                              </property>
-                              <property name="maximumSize">
-                                <size>
-                                  <width>70</width>
-                                  <height>98</height>
-                                </size>
-                              </property>
-                              <property name="frameShape">
-                                <enum>QFrame::Box</enum>
-                              </property>
-                              <property name="text">
-                                <string comment="No need to translate">photo</string>
-                              </property>
-                              <property name="wordWrap">
-                                <bool>false</bool>
-                              </property>
-                            </widget>
-                          </item>
-                        </layout>
-                      </item>
-                    </layout>
-                  </widget>
-                </item>
-              </layout>
-            </widget>
-          </widget>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="statDndLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="statMWILabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="statMissedLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="statRegLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
-      </layout>
-    </widget>
-    <widget class="Q3ToolBar" name="callToolbar">
-      <property name="resizeEnabled">
-        <bool>false</bool>
-      </property>
-      <property name="movingEnabled">
-        <bool>true</bool>
-      </property>
-      <property name="horizontallyStretchable">
-        <bool>true</bool>
-      </property>
-      <property name="verticallyStretchable">
-        <bool>true</bool>
-      </property>
-      <property name="label">
-        <string>Call Toolbar</string>
-      </property>
-      <addaction name="callInvite"/>
-      <addaction name="callAnswer"/>
-      <addaction name="callBye"/>
-      <addaction name="callReject"/>
-      <addaction name="callRedirect"/>
-      <addaction name="callTransfer"/>
-      <addaction name="callHold"/>
-      <addaction name="callConference"/>
-      <addaction name="callMute"/>
-      <addaction name="callDTMF"/>
-      <addaction name="callRedial"/>
-      <addaction name="actionSendMsg"/>
-    </widget>
-    <widget class="QMenuBar" name="menubar">
-      <widget class="QMenu" name="fileMenu">
-        <property name="title">
-          <string>&amp;File</string>
-        </property>
-        <addaction name="fileChangeUserAction"/>
-        <addaction name="separator"/>
-        <addaction name="fileExitAction"/>
-      </widget>
-      <widget class="QMenu" name="Edit">
-        <property name="title">
-          <string>&amp;Edit</string>
-        </property>
-        <addaction name="editUserProfileAction"/>
-        <addaction name="editSysSettingsAction"/>
-      </widget>
-      <widget class="QMenu" name="Call">
-        <property name="title">
-          <string>C&amp;all</string>
-        </property>
-        <widget class="QMenu" name="popupMenu_19">
-          <property name="title">
-            <string>Activate line</string>
+        <item>
+         <widget class="Q3GroupBox" name="displayGroupBox" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <addaction name="actionLine1"/>
-          <addaction name="actionLine2"/>
-        </widget>
-        <addaction name="callInvite"/>
-        <addaction name="callAnswer"/>
-        <addaction name="callBye"/>
-        <addaction name="callReject"/>
-        <addaction name="callRedirect"/>
-        <addaction name="callTransfer"/>
-        <addaction name="callHold"/>
-        <addaction name="callConference"/>
-        <addaction name="callMute"/>
-        <addaction name="callDTMF"/>
-        <addaction name="callRedial"/>
-        <addaction name="separator"/>
-        <addaction name="callTermCap"/>
-        <addaction name="callActivate_LineAction"/>
-        <addaction name="popupMenu_19"/>
+          <property name="title" stdset="0">
+           <string>Display</string>
+          </property>
+          <layout class="QVBoxLayout">
+           <item>
+            <widget class="Q3TextEdit" name="displayTextEdit" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text" stdset="0">
+              <string/>
+             </property>
+             <property name="readOnly" stdset="0">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="Q3ButtonGroup" name="lineButtonGroup" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title" stdset="0">
+           <string>Line status</string>
+          </property>
+          <property name="exclusive" stdset="0">
+           <bool>true</bool>
+          </property>
+          <layout class="QVBoxLayout">
+           <item>
+            <layout class="QHBoxLayout">
+             <item>
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QRadioButton" name="line1RadioButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="whatsThis">
+                  <string>Click to switch to line 1.</string>
+                 </property>
+                 <property name="text">
+                  <string>Line &amp;1:</string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Alt+1</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="fromhead1Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>From:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="tohead1Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>To:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="subjecthead1Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Subject:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout">
+               <item>
+                <layout class="QHBoxLayout">
+                 <item>
+                  <widget class="QLabel" name="line1StatLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="status1TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">idle</string>
+                   </property>
+                   <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line1HoldLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line1MuteLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line1ConfLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line1ReferLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="crypt1Label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line1SasLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Short authentication string</string>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">sas</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="codec1TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Audio codec</string>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">g711a/g711a</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="timer1TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Courier New</family>
+                    </font>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Call duration</string>
+                   </property>
+                   <property name="text">
+                    <string>0:00:00</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="from1Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">sip:from</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="to1Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">sip:to</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="subject1Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">subject</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="photo1Label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>98</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>98</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string comment="No need to translate">photo</string>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout">
+             <item>
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QRadioButton" name="line2RadioButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="whatsThis">
+                  <string>Click to switch to line 2.</string>
+                 </property>
+                 <property name="text">
+                  <string>Line &amp;2:</string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Alt+2</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="fromhead2Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>From:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="tohead2Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>To:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="subjecthead2Label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Subject:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="indent">
+                  <number>21</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout">
+               <item>
+                <layout class="QHBoxLayout">
+                 <item>
+                  <widget class="QLabel" name="line2StatLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="status2TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">idle</string>
+                   </property>
+                   <property name="textFormat">
+                    <enum>Qt::RichText</enum>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line2HoldLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line2MuteLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line2ConfLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line2ReferLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="crypt2Label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="line2SasLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Short authentication string</string>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">sas</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="codec2TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Audio codec</string>
+                   </property>
+                   <property name="text">
+                    <string comment="No need to translate">g711a/g711a</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="timer2TextLabel">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Courier New</family>
+                    </font>
+                   </property>
+                   <property name="whatsThis">
+                    <string>Call duration</string>
+                   </property>
+                   <property name="text">
+                    <string>0:00:00</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="from2Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">sip:from</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="to2Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">sip:to</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="subject2Label">
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string comment="No need to translate">subject</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="photo2Label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>98</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>98</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string comment="No need to translate">photo</string>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QMenu" name="Message">
-        <property name="title">
-          <string>&amp;Message</string>
-        </property>
-        <addaction name="actionSendMsg"/>
-      </widget>
-      <widget class="QMenu" name="PopupMenu_2">
-        <property name="title">
-          <string>&amp;Registration</string>
-        </property>
-        <addaction name="regRegister"/>
-        <addaction name="regDeregister"/>
-        <addaction name="regDeregisterAll"/>
-        <addaction name="regShow"/>
-      </widget>
-      <widget class="QMenu" name="PopupMenu_3">
-        <property name="title">
-          <string>&amp;Services</string>
-        </property>
-        <addaction name="serviceDnd"/>
-        <addaction name="serviceRedirection"/>
-        <addaction name="serviceAutoAnswer"/>
-        <addaction name="servicesVoice_mailAction"/>
-      </widget>
-      <widget class="QMenu" name="View">
-        <property name="title">
-          <string>&amp;View</string>
-        </property>
-        <addaction name="viewCall_HistoryAction"/>
-        <addaction name="viewLogAction"/>
-        <addaction name="viewDisplayAction"/>
-        <addaction name="viewBuddyListAction"/>
-      </widget>
-      <widget class="QMenu" name="Diamondcard">
-        <property name="title">
-          <string>Diamondcard</string>
-        </property>
-        <addaction name="diamondcardSign_upAction"/>
-      </widget>
-      <widget class="QMenu" name="helpMenu">
-        <property name="title">
-          <string>&amp;Help</string>
-        </property>
-        <addaction name="helpWhats_ThisAction"/>
-        <addaction name="separator"/>
-        <addaction name="helpManualAction"/>
-        <addaction name="helpAboutAction"/>
-        <addaction name="helpAboutQtAction"/>
-      </widget>
-      <addaction name="fileMenu"/>
-      <addaction name="Edit"/>
-      <addaction name="Call"/>
-      <addaction name="Message"/>
-      <addaction name="PopupMenu_2"/>
-      <addaction name="PopupMenu_3"/>
-      <addaction name="View"/>
-      <addaction name="Diamondcard"/>
-      <addaction name="helpMenu"/>
-      <addaction name="separator"/>
-    </widget>
-    <action name="fileExitAction">
-      <property name="name">
-        <cstring>fileExitAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>exit.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Quit</string>
-      </property>
-      <property name="text">
-        <string>&amp;Quit</string>
-      </property>
-      <property name="shortcut">
-        <string>Ctrl+Q</string>
-      </property>
-    </action>
-    <action name="helpAboutAction">
-      <property name="name">
-        <cstring>helpAboutAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>twinkle16.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>About Twinkle</string>
-      </property>
-      <property name="text">
-        <string>&amp;About Twinkle</string>
-      </property>
-      <property name="shortcut">
-        <string/>
-      </property>
-    </action>
-    <action name="callInvite">
-      <property name="name">
-        <cstring>callInvite</cstring>
-      </property>
-      <property name="icon">
-        <iconset>invite.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Call</string>
-      </property>
-      <property name="text">
-        <string>&amp;Call...</string>
-      </property>
-      <property name="toolTip">
-        <string>Call someone</string>
-      </property>
-      <property name="shortcut">
-        <string>F5</string>
-      </property>
-    </action>
-    <action name="callAnswer">
-      <property name="name">
-        <cstring>callAnswer</cstring>
-      </property>
-      <property name="icon">
-        <iconset>answer.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Answer</string>
-      </property>
-      <property name="text">
-        <string>&amp;Answer</string>
-      </property>
-      <property name="toolTip">
-        <string>Answer incoming call</string>
-      </property>
-      <property name="shortcut">
-        <string>F6</string>
-      </property>
-    </action>
-    <action name="callBye">
-      <property name="name">
-        <cstring>callBye</cstring>
-      </property>
-      <property name="icon">
-        <iconset>bye.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Bye</string>
-      </property>
-      <property name="text">
-        <string>&amp;Bye</string>
-      </property>
-      <property name="toolTip">
-        <string>Release call</string>
-      </property>
-      <property name="shortcut">
-        <string>Esc</string>
-      </property>
-    </action>
-    <action name="callReject">
-      <property name="name">
-        <cstring>callReject</cstring>
-      </property>
-      <property name="icon">
-        <iconset>reject.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Reject</string>
-      </property>
-      <property name="text">
-        <string>&amp;Reject</string>
-      </property>
-      <property name="toolTip">
-        <string>Reject incoming call</string>
-      </property>
-      <property name="shortcut">
-        <string>F8</string>
-      </property>
-    </action>
-    <action name="callHold">
-      <property name="name">
-        <cstring>callHold</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="icon">
-        <iconset>hold.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Hold</string>
-      </property>
-      <property name="text">
-        <string>&amp;Hold</string>
-      </property>
-      <property name="toolTip">
-        <string>Put a call on hold, or retrieve a held call</string>
-      </property>
-    </action>
-    <action name="callRedirect">
-      <property name="name">
-        <cstring>callRedirect</cstring>
-      </property>
-      <property name="icon">
-        <iconset>redirect.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Redirect</string>
-      </property>
-      <property name="text">
-        <string>R&amp;edirect...</string>
-      </property>
-      <property name="toolTip">
-        <string>Redirect incoming call without answering</string>
-      </property>
-    </action>
-    <action name="callDTMF">
-      <property name="name">
-        <cstring>callDTMF</cstring>
-      </property>
-      <property name="icon">
-        <iconset>dtmf.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Dtmf</string>
-      </property>
-      <property name="text">
-        <string>&amp;Dtmf...</string>
-      </property>
-      <property name="toolTip">
-        <string>Open keypad to enter digits for voice menu's</string>
-      </property>
-    </action>
-    <action name="regRegister">
-      <property name="name">
-        <cstring>regRegister</cstring>
-      </property>
-      <property name="icon">
-        <iconset>twinkle16.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Register</string>
-      </property>
-      <property name="text">
-        <string>&amp;Register</string>
-      </property>
-    </action>
-    <action name="regDeregister">
-      <property name="name">
-        <cstring>regDeregister</cstring>
-      </property>
-      <property name="icon">
-        <iconset>twinkle16-disabled.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Deregister</string>
-      </property>
-      <property name="text">
-        <string>&amp;Deregister</string>
-      </property>
-      <property name="toolTip">
-        <string>Deregister this device</string>
-      </property>
-    </action>
-    <action name="regShow">
-      <property name="name">
-        <cstring>regShow</cstring>
-      </property>
-      <property name="icon">
-        <iconset>reg-query.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Show registrations</string>
-      </property>
-      <property name="text">
-        <string>&amp;Show registrations</string>
-      </property>
-    </action>
-    <action name="callTermCap">
-      <property name="name">
-        <cstring>callTermCap</cstring>
-      </property>
-      <property name="iconText">
-        <string>Terminal capabilities</string>
-      </property>
-      <property name="text">
-        <string>&amp;Terminal capabilities...</string>
-      </property>
-      <property name="toolTip">
-        <string>Request terminal capabilities from someone</string>
-      </property>
-    </action>
-    <action name="serviceDnd">
-      <property name="name">
-        <cstring>serviceDnd</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="icon">
-        <iconset>cancel.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Do not disturb</string>
-      </property>
-      <property name="text">
-        <string>&amp;Do not disturb</string>
-      </property>
-    </action>
-    <action name="serviceRedirection">
-      <property name="name">
-        <cstring>serviceRedirection</cstring>
-      </property>
-      <property name="icon">
-        <iconset>cf.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Call redirection</string>
-      </property>
-      <property name="text">
-        <string>Call &amp;redirection...</string>
-      </property>
-    </action>
-    <action name="callRedial">
-      <property name="name">
-        <cstring>callRedial</cstring>
-      </property>
-      <property name="icon">
-        <iconset>redial.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Redial</string>
-      </property>
-      <property name="text">
-        <string>&amp;Redial</string>
-      </property>
-      <property name="toolTip">
-        <string>Repeat last call</string>
-      </property>
-      <property name="shortcut">
-        <string>F12</string>
-      </property>
-    </action>
-    <action name="helpAboutQtAction">
-      <property name="name">
-        <cstring>helpAboutQtAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>qt-logo.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>About Qt</string>
-      </property>
-      <property name="text">
-        <string>About &amp;Qt</string>
-      </property>
-    </action>
-    <action name="editUserProfileAction">
-      <property name="name">
-        <cstring>editUserProfileAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>penguin-small.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>User profile</string>
-      </property>
-      <property name="text">
-        <string>&amp;User profile...</string>
-      </property>
-    </action>
-    <action name="callConference">
-      <property name="name">
-        <cstring>callConference</cstring>
-      </property>
-      <property name="icon">
-        <iconset>conf.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Conf</string>
-      </property>
-      <property name="text">
-        <string>&amp;Conference</string>
-      </property>
-      <property name="toolTip">
-        <string>Join two calls in a 3-way conference</string>
-      </property>
-    </action>
-    <action name="callMute">
-      <property name="name">
-        <cstring>callMute</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="icon">
-        <iconset>mute.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Mute</string>
-      </property>
-      <property name="text">
-        <string>&amp;Mute</string>
-      </property>
-      <property name="toolTip">
-        <string>Mute a call</string>
-      </property>
-    </action>
-    <action name="callTransfer">
-      <property name="name">
-        <cstring>callTransfer</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="icon">
-        <iconset>transfer.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Xfer</string>
-      </property>
-      <property name="text">
-        <string>Trans&amp;fer...</string>
-      </property>
-      <property name="toolTip">
-        <string>Transfer call</string>
-      </property>
-    </action>
-    <action name="editSysSettingsAction">
-      <property name="name">
-        <cstring>editSysSettingsAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>settings.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>System settings</string>
-      </property>
-      <property name="text">
-        <string>&amp;System settings...</string>
-      </property>
-    </action>
-    <action name="registrationAction">
-      <property name="name">
-        <cstring>registrationAction</cstring>
-      </property>
-      <property name="iconText">
-        <string/>
-      </property>
-      <property name="text">
-        <string/>
-      </property>
-    </action>
-    <action name="regDeregisterAll">
-      <property name="name">
-        <cstring>regDeregisterAll</cstring>
-      </property>
-      <property name="icon">
-        <iconset>twinkle16-disabled.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Deregister all</string>
-      </property>
-      <property name="text">
-        <string>Deregister &amp;all</string>
-      </property>
-      <property name="toolTip">
-        <string>Deregister all your registered devices</string>
-      </property>
-    </action>
-    <action name="serviceAutoAnswer">
-      <property name="name">
-        <cstring>serviceAutoAnswer</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="icon">
-        <iconset>auto_answer.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Auto answer</string>
-      </property>
-      <property name="text">
-        <string>&amp;Auto answer</string>
-      </property>
-    </action>
-    <action name="viewLogAction">
-      <property name="name">
-        <cstring>viewLogAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>log_small.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Log</string>
-      </property>
-      <property name="text">
-        <string>&amp;Log...</string>
-      </property>
-    </action>
-    <action name="viewCall_HistoryAction">
-      <property name="name">
-        <cstring>viewCall_HistoryAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>missed.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Call history</string>
-      </property>
-      <property name="text">
-        <string>Call &amp;history...</string>
-      </property>
-      <property name="shortcut">
-        <string>F9</string>
-      </property>
-    </action>
-    <action name="fileChangeUserAction">
-      <property name="name">
-        <cstring>fileChangeUserAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>penguin-small.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Change user ...</string>
-      </property>
-      <property name="text">
-        <string>&amp;Change user ...</string>
-      </property>
-      <property name="toolTip">
-        <string>Activate or de-activate users</string>
-      </property>
-    </action>
-    <action name="helpWhats_ThisAction">
-      <property name="name">
-        <cstring>helpWhats_ThisAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>contexthelp.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>What's This?</string>
-      </property>
-      <property name="text">
-        <string>What's &amp;This?</string>
-      </property>
-      <property name="shortcut">
-        <string>Shift+F1</string>
-      </property>
-    </action>
-    <action name="callActivate_LineAction">
-      <property name="name">
-        <cstring>callActivate_LineAction</cstring>
-      </property>
-      <property name="checked">
-        <bool>false</bool>
-      </property>
-      <property name="iconText">
-        <string>Activate line</string>
-      </property>
-      <property name="text">
-        <string>Activate line</string>
-      </property>
-    </action>
-    <action name="viewDisplayAction">
-      <property name="name">
-        <cstring>viewDisplayAction</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="checked">
-        <bool>true</bool>
-      </property>
-      <property name="iconText">
-        <string>Display</string>
-      </property>
-      <property name="text">
-        <string>&amp;Display</string>
-      </property>
-    </action>
-    <action name="servicesVoice_mailAction">
-      <property name="name">
-        <cstring>servicesVoice_mailAction</cstring>
-      </property>
-      <property name="icon">
-        <iconset>mwi_none16.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Voice mail</string>
-      </property>
-      <property name="text">
-        <string>&amp;Voice mail</string>
-      </property>
-      <property name="toolTip">
-        <string>Access voice mail</string>
-      </property>
-      <property name="shortcut">
-        <string>F11</string>
-      </property>
-    </action>
-    <action name="actionSendMsg">
-      <property name="name">
-        <cstring>actionSendMsg</cstring>
-      </property>
-      <property name="icon">
-        <iconset>message.png</iconset>
-      </property>
-      <property name="iconText">
-        <string>Msg</string>
-      </property>
-      <property name="text">
-        <string>Instant &amp;message...</string>
-      </property>
-      <property name="toolTip">
-        <string>Instant message</string>
-      </property>
-    </action>
-    <action name="viewBuddyListAction">
-      <property name="name">
-        <cstring>viewBuddyListAction</cstring>
-      </property>
-      <property name="checkable">
-        <bool>true</bool>
-      </property>
-      <property name="checked">
-        <bool>true</bool>
-      </property>
-      <property name="iconText">
-        <string>Buddy list</string>
-      </property>
-      <property name="text">
-        <string>&amp;Buddy list</string>
-      </property>
-      <property name="toolTip">
-        <string>Buddy list</string>
-      </property>
-    </action>
-    <action name="helpManualAction">
-      <property name="name">
-        <cstring>helpManualAction</cstring>
-      </property>
-      <property name="iconText">
-        <string>Manual</string>
-      </property>
-      <property name="text">
-        <string>&amp;Manual</string>
-      </property>
-    </action>
-    <action name="diamondcardSign_upAction">
-      <property name="name">
-        <cstring>diamondcardSign_upAction</cstring>
-      </property>
-      <property name="iconText">
-        <string>Sign up</string>
-      </property>
-      <property name="text">
-        <string>&amp;Sign up...</string>
-      </property>
-      <property name="toolTip">
-        <string>Sign up</string>
-      </property>
-    </action>
-    <actiongroup name="actgrActivateLine">
-      <action name="actionLine1">
-        <property name="name">
-          <cstring>actionLine1</cstring>
-        </property>
-        <property name="checkable">
-          <bool>true</bool>
-        </property>
-        <property name="checked">
-          <bool>true</bool>
-        </property>
-        <property name="iconText">
-          <string>Line 1</string>
-        </property>
-      </action>
-      <action name="actionLine2">
-        <property name="name">
-          <cstring>actionLine2</cstring>
-        </property>
-        <property name="checkable">
-          <bool>true</bool>
-        </property>
-        <property name="iconText">
-          <string>Line 2</string>
-        </property>
-      </action>
-      <property name="name">
-        <cstring>actgrActivateLine</cstring>
-      </property>
-    </actiongroup>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
-  <tabstops>
-    <tabstop>callComboBox</tabstop>
-    <tabstop>addressToolButton</tabstop>
-    <tabstop>callPushButton</tabstop>
-    <tabstop>displayTextEdit</tabstop>
-    <tabstop>line1RadioButton</tabstop>
-    <tabstop>line2RadioButton</tabstop>
-    <tabstop>userComboBox</tabstop>
-    <tabstop>from1Label</tabstop>
-    <tabstop>subject1Label</tabstop>
-    <tabstop>to1Label</tabstop>
-    <tabstop>subject2Label</tabstop>
-    <tabstop>from2Label</tabstop>
-    <tabstop>to2Label</tabstop>
-  </tabstops>
-  <includes>
-    <include location="local">phone.h</include>
-    <include location="local">ui_dtmfform.h</include>
-    <include location="local">ui_inviteform.h</include>
-    <include location="local">ui_redirectform.h</include>
-    <include location="local">ui_termcapform.h</include>
-    <include location="local">ui_srvredirectform.h</include>
-    <include location="local">ui_userprofileform.h</include>
-    <include location="local">ui_transferform.h</include>
-    <include location="local">ui_syssettingsform.h</include>
-    <include location="local">ui_logviewform.h</include>
-    <include location="local">ui_historyform.h</include>
-    <include location="local">ui_selectuserform.h</include>
-    <include location="local">ui_selectprofileform.h</include>
-    <include location="local">qevent.h</include>
-    <include location="local">twinklesystray.h</include>
-    <include location="local">im/msg_session.h</include>
-    <include location="local">messageformview.h</include>
-    <include location="local">buddylistview.h</include>
-    <include location="local">diamondcard.h</include>
-  </includes>
-  <connections>
-    <connection>
-      <sender>helpWhats_ThisAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>whatsThis()</slot>
-    </connection>
-    <connection>
-      <sender>addressToolButton</sender>
-      <signal>clicked()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>showAddressBook()</slot>
-    </connection>
-    <connection>
-      <sender>callPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>quickCall()</slot>
-    </connection>
-    <connection>
-      <sender>fileChangeUserAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>selectProfile()</slot>
-    </connection>
-    <connection>
-      <sender>viewCall_HistoryAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>viewHistory()</slot>
-    </connection>
-    <connection>
-      <sender>viewLogAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>viewLog()</slot>
-    </connection>
-    <connection>
-      <sender>regDeregisterAll</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneDeregisterAll()</slot>
-    </connection>
-    <connection>
-      <sender>editSysSettingsAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>editSysSettings()</slot>
-    </connection>
-    <connection>
-      <sender>callMute</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneMute(bool)</slot>
-    </connection>
-    <connection>
-      <sender>callConference</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneConference()</slot>
-    </connection>
-    <connection>
-      <sender>editUserProfileAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>editUserProfile()</slot>
-    </connection>
-    <connection>
-      <sender>helpAboutQtAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>aboutQt()</slot>
-    </connection>
-    <connection>
-      <sender>helpAboutAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>about()</slot>
-    </connection>
-    <connection>
-      <sender>callRedial</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneRedial()</slot>
-    </connection>
-    <connection>
-      <sender>serviceRedirection</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>srvRedirect()</slot>
-    </connection>
-    <connection>
-      <sender>regShow</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneShowRegistrations()</slot>
-    </connection>
-    <connection>
-      <sender>regDeregister</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneDeregister()</slot>
-    </connection>
-    <connection>
-      <sender>regRegister</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneRegister()</slot>
-    </connection>
-    <connection>
-      <sender>callHold</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneHold(bool)</slot>
-    </connection>
-    <connection>
-      <sender>callReject</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneReject()</slot>
-    </connection>
-    <connection>
-      <sender>callRedirect</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneRedirect()</slot>
-    </connection>
-    <connection>
-      <sender>callInvite</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneInvite()</slot>
-    </connection>
-    <connection>
-      <sender>callDTMF</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneDTMF()</slot>
-    </connection>
-    <connection>
-      <sender>callBye</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneBye()</slot>
-    </connection>
-    <connection>
-      <sender>callAnswer</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneAnswer()</slot>
-    </connection>
-    <connection>
-      <sender>callTermCap</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneTermCap()</slot>
-    </connection>
-    <connection>
-      <sender>line2RadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>line2rbChangedState(bool)</slot>
-    </connection>
-    <connection>
-      <sender>line1RadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>line1rbChangedState(bool)</slot>
-    </connection>
-    <connection>
-      <sender>fileExitAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>fileExit()</slot>
-    </connection>
-    <connection>
-      <sender>actionLine1</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>actionLine1Toggled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>actionLine2</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>actionLine2Toggled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>viewDisplayAction</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>showDisplay(bool)</slot>
-    </connection>
-    <connection>
-      <sender>callTransfer</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>phoneTransfer()</slot>
-    </connection>
-    <connection>
-      <sender>servicesVoice_mailAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>popupMenuVoiceMail()</slot>
-    </connection>
-    <connection>
-      <sender>actionSendMsg</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>startMessageSession()</slot>
-    </connection>
-    <connection>
-      <sender>buddyListView</sender>
-      <signal>rightButtonPressed(Q3ListViewItem*,QPoint,int)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>showBuddyListPopupMenu(Q3ListViewItem*,QPoint)</slot>
-    </connection>
-    <connection>
-      <sender>buddyListView</sender>
-      <signal>doubleClicked(Q3ListViewItem*)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>doMessageBuddy(Q3ListViewItem*)</slot>
-    </connection>
-    <connection>
-      <sender>viewBuddyListAction</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>showBuddyList(bool)</slot>
-    </connection>
-    <connection>
-      <sender>helpManualAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>manual()</slot>
-    </connection>
-    <connection>
-      <sender>diamondcardSign_upAction</sender>
-      <signal>activated()</signal>
-      <receiver>MphoneForm</receiver>
-      <slot>DiamondcardSignUp()</slot>
-    </connection>
-  </connections>
+  <widget class="Q3ToolBar" name="callToolbar" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="resizeEnabled" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="movingEnabled" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="horizontallyStretchable" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="verticallyStretchable" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="label" stdset="0">
+    <string>Call Toolbar</string>
+   </property>
+   <addaction name="callInvite"/>
+   <addaction name="callAnswer"/>
+   <addaction name="callBye"/>
+   <addaction name="callReject"/>
+   <addaction name="callRedirect"/>
+   <addaction name="callTransfer"/>
+   <addaction name="callHold"/>
+   <addaction name="callConference"/>
+   <addaction name="callMute"/>
+   <addaction name="callDTMF"/>
+   <addaction name="callRedial"/>
+   <addaction name="actionSendMsg"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>0</width>
+     <height>0</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="fileChangeUserAction"/>
+    <addaction name="separator"/>
+    <addaction name="fileExitAction"/>
+   </widget>
+   <widget class="QMenu" name="Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="editUserProfileAction"/>
+    <addaction name="editSysSettingsAction"/>
+   </widget>
+   <widget class="QMenu" name="Call">
+    <property name="title">
+     <string>C&amp;all</string>
+    </property>
+    <widget class="QMenu" name="popupMenu_19">
+     <property name="title">
+      <string>Activate line</string>
+     </property>
+     <addaction name="actionLine1"/>
+     <addaction name="actionLine2"/>
+    </widget>
+    <addaction name="callInvite"/>
+    <addaction name="callAnswer"/>
+    <addaction name="callBye"/>
+    <addaction name="callReject"/>
+    <addaction name="callRedirect"/>
+    <addaction name="callTransfer"/>
+    <addaction name="callHold"/>
+    <addaction name="callConference"/>
+    <addaction name="callMute"/>
+    <addaction name="callDTMF"/>
+    <addaction name="callRedial"/>
+    <addaction name="separator"/>
+    <addaction name="callTermCap"/>
+    <addaction name="callActivate_LineAction"/>
+    <addaction name="popupMenu_19"/>
+   </widget>
+   <widget class="QMenu" name="Message">
+    <property name="title">
+     <string>&amp;Message</string>
+    </property>
+    <addaction name="actionSendMsg"/>
+   </widget>
+   <widget class="QMenu" name="PopupMenu_2">
+    <property name="title">
+     <string>&amp;Registration</string>
+    </property>
+    <addaction name="regRegister"/>
+    <addaction name="regDeregister"/>
+    <addaction name="regDeregisterAll"/>
+    <addaction name="regShow"/>
+   </widget>
+   <widget class="QMenu" name="PopupMenu_3">
+    <property name="title">
+     <string>&amp;Services</string>
+    </property>
+    <addaction name="serviceDnd"/>
+    <addaction name="serviceRedirection"/>
+    <addaction name="serviceAutoAnswer"/>
+    <addaction name="servicesVoice_mailAction"/>
+   </widget>
+   <widget class="QMenu" name="View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="viewCall_HistoryAction"/>
+    <addaction name="viewLogAction"/>
+    <addaction name="viewDisplayAction"/>
+    <addaction name="viewBuddyListAction"/>
+   </widget>
+   <widget class="QMenu" name="Diamondcard">
+    <property name="title">
+     <string>Diamondcard</string>
+    </property>
+    <addaction name="diamondcardSign_upAction"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="helpWhats_ThisAction"/>
+    <addaction name="separator"/>
+    <addaction name="helpManualAction"/>
+    <addaction name="helpAboutAction"/>
+    <addaction name="helpAboutQtAction"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="Edit"/>
+   <addaction name="Call"/>
+   <addaction name="Message"/>
+   <addaction name="PopupMenu_2"/>
+   <addaction name="PopupMenu_3"/>
+   <addaction name="View"/>
+   <addaction name="Diamondcard"/>
+   <addaction name="helpMenu"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="fileExitAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/exit.png</normaloff>:/icons/images/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="iconText">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>fileExitAction</cstring>
+   </property>
+  </action>
+  <action name="helpAboutAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/twinkle16.png</normaloff>:/icons/images/twinkle16.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About Twinkle</string>
+   </property>
+   <property name="iconText">
+    <string>About Twinkle</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>helpAboutAction</cstring>
+   </property>
+  </action>
+  <action name="callInvite">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/invite.png</normaloff>:/icons/images/invite.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Call...</string>
+   </property>
+   <property name="iconText">
+    <string>Call</string>
+   </property>
+   <property name="toolTip">
+    <string>Call someone</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callInvite</cstring>
+   </property>
+  </action>
+  <action name="callAnswer">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/answer.png</normaloff>:/icons/images/answer.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Answer</string>
+   </property>
+   <property name="iconText">
+    <string>Answer</string>
+   </property>
+   <property name="toolTip">
+    <string>Answer incoming call</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callAnswer</cstring>
+   </property>
+  </action>
+  <action name="callBye">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/bye.png</normaloff>:/icons/images/bye.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Bye</string>
+   </property>
+   <property name="iconText">
+    <string>Bye</string>
+   </property>
+   <property name="toolTip">
+    <string>Release call</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callBye</cstring>
+   </property>
+  </action>
+  <action name="callReject">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/reject.png</normaloff>:/icons/images/reject.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Reject</string>
+   </property>
+   <property name="iconText">
+    <string>Reject</string>
+   </property>
+   <property name="toolTip">
+    <string>Reject incoming call</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callReject</cstring>
+   </property>
+  </action>
+  <action name="callHold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/hold.png</normaloff>:/icons/images/hold.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Hold</string>
+   </property>
+   <property name="iconText">
+    <string>Hold</string>
+   </property>
+   <property name="toolTip">
+    <string>Put a call on hold, or retrieve a held call</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callHold</cstring>
+   </property>
+  </action>
+  <action name="callRedirect">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/redirect.png</normaloff>:/icons/images/redirect.png</iconset>
+   </property>
+   <property name="text">
+    <string>R&amp;edirect...</string>
+   </property>
+   <property name="iconText">
+    <string>Redirect</string>
+   </property>
+   <property name="toolTip">
+    <string>Redirect incoming call without answering</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callRedirect</cstring>
+   </property>
+  </action>
+  <action name="callDTMF">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/dtmf.png</normaloff>:/icons/images/dtmf.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Dtmf...</string>
+   </property>
+   <property name="iconText">
+    <string>Dtmf</string>
+   </property>
+   <property name="toolTip">
+    <string>Open keypad to enter digits for voice menu's</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callDTMF</cstring>
+   </property>
+  </action>
+  <action name="regRegister">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/twinkle16.png</normaloff>:/icons/images/twinkle16.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Register</string>
+   </property>
+   <property name="iconText">
+    <string>Register</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>regRegister</cstring>
+   </property>
+  </action>
+  <action name="regDeregister">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/twinkle16-disabled.png</normaloff>:/icons/images/twinkle16-disabled.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Deregister</string>
+   </property>
+   <property name="iconText">
+    <string>Deregister</string>
+   </property>
+   <property name="toolTip">
+    <string>Deregister this device</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>regDeregister</cstring>
+   </property>
+  </action>
+  <action name="regShow">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/reg-query.png</normaloff>:/icons/images/reg-query.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Show registrations</string>
+   </property>
+   <property name="iconText">
+    <string>Show registrations</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>regShow</cstring>
+   </property>
+  </action>
+  <action name="callTermCap">
+   <property name="text">
+    <string>&amp;Terminal capabilities...</string>
+   </property>
+   <property name="iconText">
+    <string>Terminal capabilities</string>
+   </property>
+   <property name="toolTip">
+    <string>Request terminal capabilities from someone</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callTermCap</cstring>
+   </property>
+  </action>
+  <action name="serviceDnd">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/cancel.png</normaloff>:/icons/images/cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Do not disturb</string>
+   </property>
+   <property name="iconText">
+    <string>Do not disturb</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>serviceDnd</cstring>
+   </property>
+  </action>
+  <action name="serviceRedirection">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/cf.png</normaloff>:/icons/images/cf.png</iconset>
+   </property>
+   <property name="text">
+    <string>Call &amp;redirection...</string>
+   </property>
+   <property name="iconText">
+    <string>Call redirection</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>serviceRedirection</cstring>
+   </property>
+  </action>
+  <action name="callRedial">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/redial.png</normaloff>:/icons/images/redial.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Redial</string>
+   </property>
+   <property name="iconText">
+    <string>Redial</string>
+   </property>
+   <property name="toolTip">
+    <string>Repeat last call</string>
+   </property>
+   <property name="shortcut">
+    <string>F12</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callRedial</cstring>
+   </property>
+  </action>
+  <action name="helpAboutQtAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/qt-logo.png</normaloff>:/icons/images/qt-logo.png</iconset>
+   </property>
+   <property name="text">
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="iconText">
+    <string>About Qt</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>helpAboutQtAction</cstring>
+   </property>
+  </action>
+  <action name="editUserProfileAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/penguin-small.png</normaloff>:/icons/images/penguin-small.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;User profile...</string>
+   </property>
+   <property name="iconText">
+    <string>User profile</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>editUserProfileAction</cstring>
+   </property>
+  </action>
+  <action name="callConference">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/conference.png</normaloff>:/icons/images/conference.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Conference</string>
+   </property>
+   <property name="iconText">
+    <string>Conf</string>
+   </property>
+   <property name="toolTip">
+    <string>Join two calls in a 3-way conference</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callConference</cstring>
+   </property>
+  </action>
+  <action name="callMute">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/mute.png</normaloff>:/icons/images/mute.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Mute</string>
+   </property>
+   <property name="iconText">
+    <string>Mute</string>
+   </property>
+   <property name="toolTip">
+    <string>Mute a call</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callMute</cstring>
+   </property>
+  </action>
+  <action name="callTransfer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/transfer.png</normaloff>:/icons/images/transfer.png</iconset>
+   </property>
+   <property name="text">
+    <string>Trans&amp;fer...</string>
+   </property>
+   <property name="iconText">
+    <string>Xfer</string>
+   </property>
+   <property name="toolTip">
+    <string>Transfer call</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callTransfer</cstring>
+   </property>
+  </action>
+  <action name="editSysSettingsAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/settings.png</normaloff>:/icons/images/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;System settings...</string>
+   </property>
+   <property name="iconText">
+    <string>System settings</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>editSysSettingsAction</cstring>
+   </property>
+  </action>
+  <action name="registrationAction">
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconText">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>registrationAction</cstring>
+   </property>
+  </action>
+  <action name="regDeregisterAll">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/twinkle16-disabled.png</normaloff>:/icons/images/twinkle16-disabled.png</iconset>
+   </property>
+   <property name="text">
+    <string>Deregister &amp;all</string>
+   </property>
+   <property name="iconText">
+    <string>Deregister all</string>
+   </property>
+   <property name="toolTip">
+    <string>Deregister all your registered devices</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>regDeregisterAll</cstring>
+   </property>
+  </action>
+  <action name="serviceAutoAnswer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/auto_answer.png</normaloff>:/icons/images/auto_answer.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Auto answer</string>
+   </property>
+   <property name="iconText">
+    <string>Auto answer</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>serviceAutoAnswer</cstring>
+   </property>
+  </action>
+  <action name="viewLogAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/log_small.png</normaloff>:/icons/images/log_small.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Log...</string>
+   </property>
+   <property name="iconText">
+    <string>Log</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>viewLogAction</cstring>
+   </property>
+  </action>
+  <action name="viewCall_HistoryAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/missed.png</normaloff>:/icons/images/missed.png</iconset>
+   </property>
+   <property name="text">
+    <string>Call &amp;history...</string>
+   </property>
+   <property name="iconText">
+    <string>Call history</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>viewCall_HistoryAction</cstring>
+   </property>
+  </action>
+  <action name="fileChangeUserAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/penguin-small.png</normaloff>:/icons/images/penguin-small.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Change user ...</string>
+   </property>
+   <property name="iconText">
+    <string>Change user ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Activate or de-activate users</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>fileChangeUserAction</cstring>
+   </property>
+  </action>
+  <action name="helpWhats_ThisAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/contexthelp.png</normaloff>:/icons/images/contexthelp.png</iconset>
+   </property>
+   <property name="text">
+    <string>What's &amp;This?</string>
+   </property>
+   <property name="iconText">
+    <string>What's This?</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F1</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>helpWhats_ThisAction</cstring>
+   </property>
+  </action>
+  <action name="callActivate_LineAction">
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Activate line</string>
+   </property>
+   <property name="iconText">
+    <string>Activate line</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>callActivate_LineAction</cstring>
+   </property>
+  </action>
+  <action name="viewDisplayAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Display</string>
+   </property>
+   <property name="iconText">
+    <string>Display</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>viewDisplayAction</cstring>
+   </property>
+  </action>
+  <action name="servicesVoice_mailAction">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/mwi_none16.png</normaloff>:/icons/images/mwi_none16.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Voice mail</string>
+   </property>
+   <property name="iconText">
+    <string>Voice mail</string>
+   </property>
+   <property name="toolTip">
+    <string>Access voice mail</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>servicesVoice_mailAction</cstring>
+   </property>
+  </action>
+  <action name="actionSendMsg">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/images/message.png</normaloff>:/icons/images/message.png</iconset>
+   </property>
+   <property name="text">
+    <string>Instant &amp;message...</string>
+   </property>
+   <property name="iconText">
+    <string>Msg</string>
+   </property>
+   <property name="toolTip">
+    <string>Instant message</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>actionSendMsg</cstring>
+   </property>
+  </action>
+  <action name="viewBuddyListAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Buddy list</string>
+   </property>
+   <property name="iconText">
+    <string>Buddy list</string>
+   </property>
+   <property name="toolTip">
+    <string>Buddy list</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>viewBuddyListAction</cstring>
+   </property>
+  </action>
+  <action name="helpManualAction">
+   <property name="text">
+    <string>&amp;Manual</string>
+   </property>
+   <property name="iconText">
+    <string>Manual</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>helpManualAction</cstring>
+   </property>
+  </action>
+  <action name="diamondcardSign_upAction">
+   <property name="text">
+    <string>&amp;Sign up...</string>
+   </property>
+   <property name="iconText">
+    <string>Sign up</string>
+   </property>
+   <property name="toolTip">
+    <string>Sign up</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>diamondcardSign_upAction</cstring>
+   </property>
+  </action>
+  <actiongroup name="actgrActivateLine">
+   <action name="actionLine1">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="iconText">
+     <string>Line 1</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>actionLine1</cstring>
+    </property>
+   </action>
+   <action name="actionLine2">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="iconText">
+     <string>Line 2</string>
+    </property>
+    <property name="name" stdset="0">
+     <cstring>actionLine2</cstring>
+    </property>
+   </action>
+   <property name="name" stdset="0">
+    <cstring>actgrActivateLine</cstring>
+   </property>
+  </actiongroup>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3MainWindow</class>
+   <extends>QWidget</extends>
+   <header>q3mainwindow.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>QWidget</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3GroupBox</class>
+   <extends>QWidget</extends>
+   <header>q3groupbox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3TextEdit</class>
+   <extends>QWidget</extends>
+   <header>q3textedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3ButtonGroup</class>
+   <extends>QWidget</extends>
+   <header>q3buttongroup.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3ToolBar</class>
+   <extends>QWidget</extends>
+   <header>q3toolbar.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>callComboBox</tabstop>
+  <tabstop>addressToolButton</tabstop>
+  <tabstop>callPushButton</tabstop>
+  <tabstop>displayTextEdit</tabstop>
+  <tabstop>line1RadioButton</tabstop>
+  <tabstop>line2RadioButton</tabstop>
+  <tabstop>userComboBox</tabstop>
+  <tabstop>from1Label</tabstop>
+  <tabstop>subject1Label</tabstop>
+  <tabstop>to1Label</tabstop>
+  <tabstop>subject2Label</tabstop>
+  <tabstop>from2Label</tabstop>
+  <tabstop>to2Label</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">phone.h</include>
+  <include location="local">ui_dtmfform.h</include>
+  <include location="local">ui_inviteform.h</include>
+  <include location="local">ui_redirectform.h</include>
+  <include location="local">ui_termcapform.h</include>
+  <include location="local">ui_srvredirectform.h</include>
+  <include location="local">ui_userprofileform.h</include>
+  <include location="local">ui_transferform.h</include>
+  <include location="local">ui_syssettingsform.h</include>
+  <include location="local">ui_logviewform.h</include>
+  <include location="local">ui_historyform.h</include>
+  <include location="local">ui_selectuserform.h</include>
+  <include location="local">ui_selectprofileform.h</include>
+  <include location="local">qevent.h</include>
+  <include location="local">im/msg_session.h</include>
+  <include location="local">messageformview.h</include>
+  <include location="local">buddylistview.h</include>
+  <include location="local">diamondcard.h</include>
+ </includes>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>helpWhats_ThisAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>whatsThis()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addressToolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>showAddressBook()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>quickCall()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileChangeUserAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>selectProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewCall_HistoryAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>viewHistory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewLogAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>viewLog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regDeregisterAll</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneDeregisterAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editSysSettingsAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>editSysSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callMute</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneMute(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callConference</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneConference()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editUserProfileAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>editUserProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpAboutQtAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>aboutQt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpAboutAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>about()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callRedial</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneRedial()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>serviceRedirection</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>srvRedirect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regShow</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneShowRegistrations()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regDeregister</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneDeregister()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>regRegister</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneRegister()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callHold</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneHold(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callReject</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneReject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callRedirect</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneRedirect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callInvite</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneInvite()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callDTMF</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneDTMF()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callBye</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneBye()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callAnswer</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneAnswer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callTermCap</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneTermCap()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>line2RadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>line2rbChangedState(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>line1RadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>line1rbChangedState(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileExitAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>fileExit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLine1</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>actionLine1Toggled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLine2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>actionLine2Toggled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewDisplayAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>showDisplay(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>callTransfer</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>phoneTransfer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>servicesVoice_mailAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>popupMenuVoiceMail()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSendMsg</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>startMessageSession()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buddyListView</sender>
+   <signal>rightButtonPressed(Q3ListViewItem*,QPoint,int)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>showBuddyListPopupMenu(Q3ListViewItem*,QPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buddyListView</sender>
+   <signal>doubleClicked(Q3ListViewItem*)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>doMessageBuddy(Q3ListViewItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewBuddyListAction</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>showBuddyList(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpManualAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>manual()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>diamondcardSign_upAction</sender>
+   <signal>activated()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>DiamondcardSignUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

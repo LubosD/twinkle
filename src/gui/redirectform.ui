@@ -103,7 +103,7 @@
                   <string>F10</string>
                 </property>
                 <property name="icon">
-                  <iconset>kontact_contacts.png</iconset>
+                  <iconset>:/icons/images/kontact_contacts.png</iconset>
                 </property>
                 <property name="toolTip" stdset="0">
                   <string>Address book</string>
@@ -125,7 +125,7 @@
                   <string>F12</string>
                 </property>
                 <property name="icon">
-                  <iconset>kontact_contacts.png</iconset>
+                  <iconset>:/icons/images/kontact_contacts.png</iconset>
                 </property>
                 <property name="toolTip" stdset="0">
                   <string>Address book</string>
@@ -147,7 +147,7 @@
                   <string>F11</string>
                 </property>
                 <property name="icon">
-                  <iconset>kontact_contacts.png</iconset>
+                  <iconset>:/icons/images/kontact_contacts.png</iconset>
                 </property>
                 <property name="toolTip" stdset="0">
                   <string>Address book</string>

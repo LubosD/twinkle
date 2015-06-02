@@ -35,7 +35,7 @@
               <string>General</string>
             </property>
             <property name="pixmap">
-              <pixmap>twinkle32.png</pixmap>
+              <pixmap>:/icons/images/twinkle32.png</pixmap>
             </property>
           </item>
           <item>
@@ -43,7 +43,7 @@
               <string>Audio</string>
             </property>
             <property name="pixmap">
-              <pixmap>kmix.png</pixmap>
+              <pixmap>:/icons/images/kmix.png</pixmap>
             </property>
           </item>
           <item>
@@ -51,7 +51,7 @@
               <string>Ring tones</string>
             </property>
             <property name="pixmap">
-              <pixmap>knotify.png</pixmap>
+              <pixmap>:/icons/images/knotify.png</pixmap>
             </property>
           </item>
           <item>
@@ -59,7 +59,7 @@
               <string>Address book</string>
             </property>
             <property name="pixmap">
-              <pixmap>kontact_contacts32.png</pixmap>
+              <pixmap>:/icons/images/kontact_contacts32.png</pixmap>
             </property>
           </item>
           <item>
@@ -67,7 +67,7 @@
               <string>Network</string>
             </property>
             <property name="pixmap">
-              <pixmap>network.png</pixmap>
+              <pixmap>:/icons/images/network.png</pixmap>
             </property>
           </item>
           <item>
@@ -75,7 +75,7 @@
               <string>Log</string>
             </property>
             <property name="pixmap">
-              <pixmap>log.png</pixmap>
+              <pixmap>:/icons/images/log.png</pixmap>
             </property>
           </item>
         </widget>
@@ -1221,7 +1221,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
                               <string/>
                             </property>
                             <property name="icon">
-                              <iconset>fileopen.png</iconset>
+                              <iconset>:/icons/images/fileopen.png</iconset>
                             </property>
                             <property name="whatsThis" stdset="0">
                               <string>Select ring tone file.</string>
@@ -1320,7 +1320,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
                               <string/>
                             </property>
                             <property name="icon">
-                              <iconset>fileopen.png</iconset>
+                              <iconset>:/icons/images/fileopen.png</iconset>
                             </property>
                             <property name="whatsThis" stdset="0">
                               <string>Select ring back tone file.</string>

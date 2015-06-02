@@ -1,13 +1,13 @@
+#include "inviteform.h"
 //Added by qt3to4:
 #include <QCloseEvent>
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you wish to add, delete or rename functions or slots use
-** Qt Designer which will update this file, preserving your code. Create an
-** init() function in place of a constructor, and a destroy() function in
-** place of a destructor.
-*****************************************************************************/
+#include "gui.h"
+#include "util.h"
+#include "audits/memman.h"
+#include "sys_settings.h"
+#include <QRegExp>
+#include <QValidator>
+
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
 
@@ -26,12 +26,24 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+InviteForm::InviteForm(QWidget *parent, const char *name, bool modal)
+	: QDialog(parent, name, modal)
+{
+	setupUi(this);
+	init();
+}
+
+InviteForm::~InviteForm()
+{
+	destroy();
+}
+
 void InviteForm::init()
 {
 	getAddressForm = 0;
 	
 	// Set toolbutton icons for disabled options.
-	setDisabledIcon(addressToolButton, "kontact_contacts-disabled.png");
+	setDisabledIcon(addressToolButton, ":/icons/images/kontact_contacts-disabled.png");
 	
 	// A QComboBox accepts a new line through copy/paste.
 	QRegExp rxNoNewLine("[^\\n\\r]*");

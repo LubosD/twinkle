@@ -23,7 +23,7 @@
             <string/>
           </property>
           <property name="pixmap">
-            <pixmap>kcmpci.png</pixmap>
+            <pixmap>:/icons/images/kcmpci.png</pixmap>
           </property>
           <property name="wordWrap">
             <bool>false</bool>

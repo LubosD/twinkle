@@ -43,8 +43,6 @@ qt4_wrap_cpp(twinkle_MOC
 	numberconversionform.h
 	getprofilenameform.h
 	historylistview.h
-	freedesksystray.h
-	twinklesystray.h
 	address_finder.h
 	qt_translator.h
 	core_strings.h
@@ -55,15 +53,56 @@ qt4_wrap_cpp(twinkle_MOC
 	buddylistview.h
 	textbrowsernoautolink.h
 	twinkleapplication.h
+
+	mphoneform.h
+	inviteform.h
+	getaddressform.h
+	termcapform.h
+	redirectform.h
+	messageform.h
+	srvredirectform.h
+	userprofileform.h
+	transferform.h
+	syssettingsform.h
+	historyform.h
+	selectuserform.h
+	selectprofileform.h
+	buddyform.h
+	diamondcardprofileform.h
+	addresscardform.h
+	authenticationform.h
+	selectnicform.h
+	sendfileform.h
+	wizardform.h
 )
 
 set(TWINKLE_GUI-SRCS
+	mphoneform.cpp
+	inviteform.cpp
+	getaddressform.cpp
+	redirectform.cpp
+	termcapform.cpp
+	messageform.cpp
+	srvredirectform.cpp
+	userprofileform.cpp
+	transferform.cpp
+	syssettingsform.cpp
+	historyform.cpp
+	selectuserform.cpp
+	selectprofileform.cpp
+	buddyform.cpp
+	diamondcardprofileform.cpp
+	addresscardform.cpp
+	authenticationform.cpp
+	selectnicform.cpp
+	sendfileform.cpp
+	wizardform.cpp
+
 	address_finder.cpp
 	addresslistviewitem.cpp
 	buddylistview.cpp
 	deregisterform.cpp
 	dtmfform.cpp
-	freedesksystray.cpp
 	getprofilenameform.cpp
 	gui.cpp
 	historylistview.cpp
@@ -72,7 +111,6 @@ set(TWINKLE_GUI-SRCS
 	messageformview.cpp
 	numberconversionform.cpp
 	twinkleapplication.cpp
-	twinklesystray.cpp
 	yesnodialog.cpp
 
 	$<TARGET_OBJECTS:libtwinkle>
@@ -98,6 +136,6 @@ add_executable(twinkle ${TWINKLE_GUI-SRCS})
 target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-	${Boost_LIBRARIES} ${QT_LIBRARIES})
+	${Boost_LIBRARIES} Qt4::QtGui Qt4::Qt3Support)
 
 install(TARGETS twinkle DESTINATION bin)

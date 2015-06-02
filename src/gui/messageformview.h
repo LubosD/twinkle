@@ -19,12 +19,12 @@
 #ifndef _MESSAGEFORMVIEW_H
 #define _MESSAGEFORMVIEW_H
 
-#include "ui_messageform.h"
+#include "messageform.h"
 
 #include "im/msg_session.h"
 #include "patterns/observer.h"
 
-class MessageFormView : public Ui::MessageForm, patterns::t_observer
+class MessageFormView : public MessageForm, patterns::t_observer
 {	
 	Q_OBJECT
 private:

@@ -25,7 +25,7 @@
                 <string/>
               </property>
               <property name="pixmap">
-                <pixmap>password.png</pixmap>
+                <pixmap>:/icons/images/password.png</pixmap>
               </property>
               <property name="wordWrap">
                 <bool>false</bool>

@@ -49,12 +49,11 @@
 #include "sockets/interfaces.h"
 #include "threads/thread.h"
 #include "audits/memman.h"
-#include "ui_authenticationform.h"
-#include "ui_mphoneform.h"
-#include "ui_selectnicform.h"
-#include "ui_selectprofileform.h"
+#include "authenticationform.h"
+#include "mphoneform.h"
+#include "selectnicform.h"
+#include "selectprofileform.h"
 #include "messageformview.h"
-#include "twinklesystray.h"
 #include "util.h"
 #include "address_finder.h"
 #include "yesnodialog.h"
@@ -98,14 +97,14 @@ QString str2html(const QString &s)
 
 void setDisabledIcon(QAction *action, const QString &icon) {
 	QIcon i = action->iconSet();
-	i.setPixmap(qPixmapFromMimeSource(icon),
+	i.setPixmap(QPixmap(icon),
 		    QIcon::Automatic, QIcon::Disabled);
 	action->setIconSet(i);
 }
 
 void setDisabledIcon(QToolButton *toolButton, const QString &icon) {
 	QIcon i = toolButton->iconSet();
-	i.setPixmap(qPixmapFromMimeSource(icon),
+	i.setPixmap(QPixmap(icon),
 		    QIcon::Automatic, QIcon::Disabled);
 	toolButton->setIconSet(i);
 }
@@ -891,7 +890,7 @@ string t_gui::select_network_intf(void) {
 			item = i->name.c_str();
 			item.append(':').append(i->get_ip_addr().c_str());
 			sf->nicListBox->insertItem(
-					qPixmapFromMimeSource("kcmpci16.png"),
+					QPixmap(":/icons/images/kcmpci16.png"),
 					item);
 		}
 		
@@ -1515,12 +1514,12 @@ void t_gui::cb_register_inprog(t_user *user_config, t_register_type register_typ
 		// Do not report registration refreshments
 		if (phone->get_is_registered(user_config)) break;
 		mainWindow->statRegLabel->setPixmap(
-				qPixmapFromMimeSource("gear.png"));
+				QPixmap(":/icons/images/gear.png"));
 		break;
 	case REG_DEREGISTER:
 	case REG_DEREGISTER_ALL:
 		mainWindow->statRegLabel->setPixmap(
-				qPixmapFromMimeSource("gear.png"));
+				QPixmap(":/icons/images/gear.png"));
 		break;
 	case REG_QUERY:
 		emit mw_display_header();
@@ -1602,7 +1601,7 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		QPixmap pm;
 		Q3Frame::Shape photoFrameShape = Q3Frame::NoFrame;
 		if (photo.isNull()) {
-			pm = qPixmapFromMimeSource("twinkle32.png");
+			pm = QPixmap(":/icons/images/twinkle32.png");
 		} else {
 			pm.convertFromImage(photo);
 			photoFrameShape = Q3Frame::Box;
@@ -1656,12 +1655,12 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 		// Answer and reject buttons
 		
 		Q3HBox *buttonBox = new Q3HBox(vb);
-		QIcon iconAnswer(qPixmapFromMimeSource("answer.png"));
+		QIcon iconAnswer(QPixmap(":/icons/images/answer.png"));
 		QPushButton *pbAnswer = new QPushButton(iconAnswer, 
 			qApp->translate("SysTrayPopup", "Answer"), buttonBox);
 		QObject::connect(pbAnswer, SIGNAL(clicked()), 
 				 mainWindow, SLOT(phoneAnswerFromSystrayPopup()));
-		QIcon iconReject(qPixmapFromMimeSource("reject.png"));
+		QIcon iconReject(QPixmap(":/icons/images/reject.png"));
 		QPushButton *pbReject = new QPushButton(iconReject, 
 			qApp->translate("SysTrayPopup", "Reject"), buttonBox);
 		QObject::connect(pbReject, SIGNAL(clicked()), 

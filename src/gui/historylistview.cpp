@@ -41,13 +41,13 @@ HistoryListViewItem::HistoryListViewItem( Q3ListView * parent, const t_call_reco
 	
 	// Set direction icon
 	setPixmap(HISTCOL_DIRECTION, (cr.direction == t_call_record::DIR_IN ?
-			    qPixmapFromMimeSource("1leftarrow-yellow.png") :
-			    qPixmapFromMimeSource("1rightarrow.png")));
+				QPixmap(":/icons/images/1leftarrow-yellow.png") :
+				QPixmap(":/icons/images/1rightarrow.png")));
 		
 	// Set status icon
 	setPixmap(HISTCOL_STATUS, (cr.invite_resp_code < 300 ?
-			    qPixmapFromMimeSource("ok.png") :
-			    qPixmapFromMimeSource("cancel.png")));
+				QPixmap(":/icons/images/ok.png") :
+				QPixmap(":/icons/images/cancel.png")));
 }
 
 void HistoryListViewItem::paintCell(QPainter *painter, const QColorGroup &cg, 

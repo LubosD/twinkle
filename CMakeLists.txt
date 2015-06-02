@@ -22,6 +22,16 @@ find_package(BISON REQUIRED)
 find_package(FLEX REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex)
 
+find_package(Commoncpp)
+
+if (COMMONCPP_FOUND)
+	message(STATUS "commoncpp OK")
+	
+	include_directories(${COMMONCPP_INCLUDE_DIR})
+else (COMMONCPP_FOUND)
+	message(FATAL_ERROR "commoncpp not found!")
+endif (COMMONCPP_FOUND)
+
 include_directories(${LIBXML2_INCLUDE_DIR} ${QT_QT3SUPPORT_INCLUDE_DIR}
 	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
 
@@ -47,18 +57,6 @@ if (WITH_ZRTP)
 	else (CCRTP_FOUND)
 		message(FATAL_ERROR "ccrtp not found!")
 	endif (CCRTP_FOUND)
-	
-	#####
-	
-	find_package(Commoncpp)
-	
-	if (COMMONCPP_FOUND)
-		message(STATUS "commoncpp OK")
-		
-		include_directories(${COMMONCPP_INCLUDE_DIR})
-	else (COMMONCPP_FOUND)
-		message(FATAL_ERROR "commoncpp not found!")
-	endif (COMMONCPP_FOUND)
 	
 	#####
 	

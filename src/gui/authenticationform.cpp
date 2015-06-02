@@ -1,11 +1,3 @@
-/****************************************************************************
-** ui.h extension file, included from the uic-generated form implementation.
-**
-** If you wish to add, delete or rename functions or slots use
-** Qt Designer which will update this file, preserving your code. Create an
-** init() function in place of a constructor, and a destroy() function in
-** place of a destructor.
-*****************************************************************************/
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
 
@@ -23,6 +15,38 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+
+#include "authenticationform.h"
+/*
+ *  Constructs a AuthenticationForm as a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'.
+ *
+ *  The dialog will by default be modeless, unless you set 'modal' to
+ *  true to construct a modal dialog.
+ */
+AuthenticationForm::AuthenticationForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
+	: QDialog(parent, name, modal, fl)
+{
+	setupUi(this);
+
+}
+
+/*
+ *  Destroys the object and frees any allocated resources
+ */
+AuthenticationForm::~AuthenticationForm()
+{
+	// no need to delete child widgets, Qt does it all for us
+}
+
+/*
+ *  Sets the strings of the subwidgets using the current
+ *  language.
+ */
+void AuthenticationForm::languageChange()
+{
+	retranslateUi(this);
+}
 
 
 int AuthenticationForm::exec(t_user *user_config, const QString &realm, QString &username,
