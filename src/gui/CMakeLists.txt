@@ -35,6 +35,15 @@ qt4_wrap_ui(
 
 qt4_add_resources(twinkle_QRC icons.qrc)
 
+qt4_add_translation(twinkle_LANG
+	lang/twinkle_cs.ts
+	lang/twinkle_de.ts
+	lang/twinkle_fr.ts
+	lang/twinkle_nl.ts
+	lang/twinkle_ru.ts
+	lang/twinkle_sv.ts
+)
+
 qt4_wrap_cpp(twinkle_MOC
 	gui.h
 	dtmfform.h
@@ -130,6 +139,7 @@ set(TWINKLE_GUI-SRCS
 	${twinkle_UIS}
 	${twinkle_QRC}
 	${twinkle_MOC}
+	${twinkle_LANG}
 )
 
 add_executable(twinkle ${TWINKLE_GUI-SRCS})
@@ -139,3 +149,4 @@ target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_L
 	${Boost_LIBRARIES} Qt4::QtGui Qt4::Qt3Support ${ALSA_LIBRARY})
 
 install(TARGETS twinkle DESTINATION bin)
+install(FILES ${twinkle_LANG} DESTINATION share/twinkle/lang)

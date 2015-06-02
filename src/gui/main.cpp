@@ -35,6 +35,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <QtDebug>
 #include <unistd.h>
 
 #include "address_book.h"
@@ -513,7 +514,11 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		// Do not report to memman as the translator will be deleted
 		// automatically when the QApplication is deleted.
 		qtranslator = new QTranslator(0);
-		qtranslator->load(QString("twinkle_") + QTextCodec::locale(), 
+
+		QString langName = QLocale::system().name().left(2);
+
+		qDebug() << "Language name:" << langName;
+		qtranslator->load(QString("twinkle_") + langName,
 			QString(sys_config->get_dir_lang().c_str()));
 		qa->installTranslator(qtranslator);
 		
