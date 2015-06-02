@@ -55,7 +55,7 @@ qt4_wrap_cpp(twinkle_MOC
 	address_finder.h
 	qt_translator.h
 	core_strings.h
-	addresslistviewitem.h
+	addresstablemodel.h
 	yesnodialog.h
 	command_args.h
 	messageformview.h
@@ -108,7 +108,7 @@ set(TWINKLE_GUI-SRCS
 	wizardform.cpp
 
 	address_finder.cpp
-	addresslistviewitem.cpp
+	addresstablemodel.cpp
 	buddylistview.cpp
 	deregisterform.cpp
 	dtmfform.cpp

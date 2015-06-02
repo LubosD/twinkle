@@ -21,7 +21,7 @@
 #include "sys_settings.h"
 #include "gui.h"
 #include "address_book.h"
-#include "addresslistviewitem.h"
+#include "addresstablemodel.h"
 #include "addresscardform.h"
 #define TAB_KABC	0
 #define TAB_LOCAL	1
@@ -45,6 +45,9 @@ GetAddressForm::GetAddressForm(QWidget *parent, const char *name, bool modal)
 {
 	setupUi(this);
 	init();
+
+	m_model = new AddressTableModel(this, ab_local->get_address_list());
+	localListView->setModel(m_model);
 }
 
 GetAddressForm::~GetAddressForm()
@@ -67,7 +70,6 @@ void GetAddressForm::init()
 	addressTabWidget->setTabEnabled(tabKABC, false);
 	addressTabWidget->setCurrentPage(TAB_LOCAL);
 #endif
-	loadLocalAddresses();
 }
 
 void GetAddressForm::reload()
@@ -137,20 +139,6 @@ void GetAddressForm::loadAddresses()
 #endif
 }
 
-void GetAddressForm::loadLocalAddresses() 
-{
-	localListView->clear();
-	const list<t_address_card> &address_list = ab_local->get_address_list();
-	
-	for(list<t_address_card>::const_iterator i = address_list.begin(); i != address_list.end(); i++)
-	{
-		new AddressListViewItem(localListView, *i);
-	}
-	
-	Q3ListViewItem *first = localListView->firstChild();
-	if (first) localListView->setSelected(first, true);
-}
-
 void GetAddressForm::selectAddress()
 {
 	if (addressTabWidget->currentPageIndex() == TAB_KABC) {
@@ -182,12 +170,12 @@ void GetAddressForm::selectKABCAddress()
 
 void GetAddressForm::selectLocalAddress()
 {
-	AddressListViewItem *item = dynamic_cast<AddressListViewItem *>(
-			localListView->selectedItem());
-	if (item) {
-		t_address_card card = item->getAddressCard();
-		emit(card.get_display_name().c_str(), card.sip_address.c_str());
-		
+	QModelIndexList sel = localListView->selectionModel()->selectedRows();
+	if (!sel.isEmpty())
+	{
+		t_address_card card = m_model->getAddress(sel[0].row());
+		emit(QString::fromStdString(card.get_display_name()), QString::fromStdString(card.sip_address));
+
 		// Signal display name and url combined.
 		t_display_url du(t_url(card.sip_address), card.get_display_name());
 		emit address(du.encode().c_str());
@@ -215,10 +203,11 @@ void GetAddressForm::toggleSipOnly(bool on)
 void GetAddressForm::addLocalAddress()
 {
 	t_address_card card;
-	AddressCardForm f;
+	AddressCardForm f(this);
 	if (f.exec(card)) {
 		ab_local->add_address(card);
-		new AddressListViewItem(localListView, card);
+
+		m_model->appendAddress(card);
 		
 		string error_msg;
 		if (!ab_local->save(error_msg)) {
@@ -229,33 +218,34 @@ void GetAddressForm::addLocalAddress()
 
 void GetAddressForm::deleteLocalAddress()
 {
-	AddressListViewItem *item = dynamic_cast<AddressListViewItem *>(
-			localListView->selectedItem());
-	if (item) {
-		t_address_card card = item->getAddressCard();
-		if (ab_local->del_address(card)) {
-			delete item;
-			
-			string error_msg;
-			if (!ab_local->save(error_msg)) {
-				ui->cb_show_msg(error_msg, MSG_CRITICAL);
-			}
+	QModelIndexList sel = localListView->selectionModel()->selectedRows();
+	if (sel.isEmpty())
+		return;
+
+	t_address_card card = m_model->getAddress(sel[0].row());
+
+	if (ab_local->del_address(card)) {
+		m_model->removeAddress(sel[0].row());
+
+		string error_msg;
+		if (!ab_local->save(error_msg)) {
+			ui->cb_show_msg(error_msg, MSG_CRITICAL);
 		}
 	}
 }
 
 void GetAddressForm::editLocalAddress()
 {
-	AddressListViewItem *item = dynamic_cast<AddressListViewItem *>(
-			localListView->selectedItem());
-	if (!item) return;
+	QModelIndexList sel = localListView->selectionModel()->selectedRows();
+	if (sel.isEmpty())
+		return;
 	
-	t_address_card oldCard = item->getAddressCard();
+	t_address_card oldCard = m_model->getAddress(sel[0].row());
 	t_address_card newCard = oldCard;
-	AddressCardForm f;
+	AddressCardForm f(this);
 	if (f.exec(newCard)) {
 		if (ab_local->update_address(oldCard, newCard)) {
-			item->update(newCard);
+			m_model->modifyAddress(sel[0].row(), newCard);
 			
 			string error_msg;
 			if (!ab_local->save(error_msg)) {

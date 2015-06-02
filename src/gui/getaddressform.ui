@@ -1,388 +1,427 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>GetAddressForm</class>
-  <widget class="QDialog" name="GetAddressForm">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>655</width>
-        <height>474</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle - Select address</string>
-    </property>
-    <layout class="QVBoxLayout">
-      <item>
-        <widget class="QTabWidget" name="addressTabWidget">
-          <property name="tabShape">
-            <enum>QTabWidget::Rounded</enum>
-          </property>
-          <widget class="QWidget" name="tabKABC">
-            <attribute name="title">
-              <string>&amp;KAddressBook</string>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="Q3ListView" name="addressListView">
-                  <property name="resizePolicy">
-                    <enum>Q3ScrollView::Manual</enum>
-                  </property>
-                  <property name="allColumnsShowFocus">
-                    <bool>true</bool>
-                  </property>
-                  <property name="showSortIndicator">
-                    <bool>true</bool>
-                  </property>
-                  <property name="itemMargin">
-                    <number>1</number>
-                  </property>
-                  <property name="resizeMode">
-                    <enum>Q3ListView::LastColumn</enum>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</string>
-                  </property>
-                  <column>
-                    <property name="text">
-                      <string>Name</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                  <column>
-                    <property name="text">
-                      <string>Type</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                  <column>
-                    <property name="text">
-                      <string>Phone</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                </widget>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QCheckBox" name="sipOnlyCheckBox">
-                      <property name="text">
-                        <string>&amp;Show only SIP addresses</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+S</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Check this option when you only want to see contacts with SIP addresses, i.e. starting with &quot;&lt;b&gt;sip:&lt;/b&gt;&quot;.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer16">
-                      <property name="sizeHint">
-                        <size>
-                          <width>201</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QPushButton" name="reloadPushButton">
-                      <property name="text">
-                        <string>&amp;Reload</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+R</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Reload the list of addresses from KAddressbook.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer59">
-                      <property name="sizeHint">
-                        <size>
-                          <width>491</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-            </layout>
-          </widget>
-          <widget class="QWidget" name="tabLocal">
-            <attribute name="title">
-              <string>&amp;Local address book</string>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="Q3ListView" name="localListView">
-                  <property name="allColumnsShowFocus">
-                    <bool>true</bool>
-                  </property>
-                  <property name="showSortIndicator">
-                    <bool>true</bool>
-                  </property>
-                  <property name="resizeMode">
-                    <enum>Q3ListView::LastColumn</enum>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Contacts in the local address book of Twinkle.</string>
-                  </property>
-                  <column>
-                    <property name="text">
-                      <string>Name</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                  <column>
-                    <property name="text">
-                      <string>Phone</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                  <column>
-                    <property name="text">
-                      <string>Remark</string>
-                    </property>
-                    <property name="clickable">
-                      <bool>true</bool>
-                    </property>
-                    <property name="resizable">
-                      <bool>true</bool>
-                    </property>
-                  </column>
-                </widget>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QPushButton" name="addPushButton">
-                      <property name="text">
-                        <string>&amp;Add</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+A</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Add a new contact to the local address book.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QPushButton" name="deletePushButton">
-                      <property name="text">
-                        <string>&amp;Delete</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+D</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Delete a contact from the local address book.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QPushButton" name="editPushButton">
-                      <property name="text">
-                        <string>&amp;Edit</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+E</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Edit a contact from the local address book.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer97">
-                      <property name="sizeHint">
-                        <size>
-                          <width>161</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-            </layout>
-          </widget>
+<ui version="4.0">
+ <class>GetAddressForm</class>
+ <widget class="QDialog" name="GetAddressForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>655</width>
+    <height>474</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle - Select address</string>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QTabWidget" name="addressTabWidget">
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabKABC">
+      <attribute name="title">
+       <string>&amp;KAddressBook</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QTableView" name="addressListView">
+         <property name="whatsThis">
+          <string>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</string>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="columnCount" stdset="0">
+          <number>3</number>
+         </property>
+         <property name="allColumnsShowFocus" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="showSortIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="itemMargin" stdset="0">
+          <number>1</number>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
         </widget>
-      </item>
-      <item>
+       </item>
+       <item>
         <layout class="QHBoxLayout">
-          <item>
-            <spacer name="spacer5">
-              <property name="sizeHint">
-                <size>
-                  <width>378</width>
-                  <height>20</height>
-                </size>
-              </property>
-              <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-              </property>
-            </spacer>
-          </item>
-          <item>
-            <widget class="QPushButton" name="okPushButton">
-              <property name="text">
-                <string>&amp;OK</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+O</string>
-              </property>
-              <property name="default">
-                <bool>true</bool>
-              </property>
-            </widget>
-          </item>
-          <item>
-            <widget class="QPushButton" name="cancelPushButton">
-              <property name="text">
-                <string>&amp;Cancel</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+C</string>
-              </property>
-            </widget>
-          </item>
+         <item>
+          <widget class="QCheckBox" name="sipOnlyCheckBox">
+           <property name="whatsThis">
+            <string>Check this option when you only want to see contacts with SIP addresses, i.e. starting with &quot;&lt;b&gt;sip:&lt;/b&gt;&quot;.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Show only SIP addresses</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+S</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer16">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>201</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
-      </item>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QPushButton" name="reloadPushButton">
+           <property name="whatsThis">
+            <string>Reload the list of addresses from KAddressbook.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Reload</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+R</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer59">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>491</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabLocal">
+      <attribute name="title">
+       <string>&amp;Local address book</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QTableView" name="localListView">
+         <property name="whatsThis">
+          <string>Contacts in the local address book of Twinkle.</string>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="columnCount" stdset="0">
+          <number>3</number>
+         </property>
+         <property name="allColumnsShowFocus" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="showSortIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QPushButton" name="addPushButton">
+           <property name="whatsThis">
+            <string>Add a new contact to the local address book.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Add</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+A</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deletePushButton">
+           <property name="whatsThis">
+            <string>Delete a contact from the local address book.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Delete</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+D</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editPushButton">
+           <property name="whatsThis">
+            <string>Edit a contact from the local address book.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Edit</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+E</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer97">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>161</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout">
+     <item>
+      <spacer name="spacer5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>378</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okPushButton">
+       <property name="text">
+        <string>&amp;OK</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+O</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelPushButton">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
+       </property>
+      </widget>
+     </item>
     </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction></pixmapfunction>
-  <tabstops>
-    <tabstop>addressListView</tabstop>
-    <tabstop>sipOnlyCheckBox</tabstop>
-    <tabstop>reloadPushButton</tabstop>
-    <tabstop>addressTabWidget</tabstop>
-    <tabstop>localListView</tabstop>
-    <tabstop>addPushButton</tabstop>
-    <tabstop>deletePushButton</tabstop>
-    <tabstop>editPushButton</tabstop>
-    <tabstop>okPushButton</tabstop>
-    <tabstop>cancelPushButton</tabstop>
-  </tabstops>
-  <includes>
-    <include location="local">user.h</include>
-  </includes>
-  <connections>
-    <connection>
-      <sender>okPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>selectAddress()</slot>
-    </connection>
-    <connection>
-      <sender>cancelPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>reject()</slot>
-    </connection>
-    <connection>
-      <sender>addressListView</sender>
-      <signal>doubleClicked(Q3ListViewItem*)</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>selectKABCAddress()</slot>
-    </connection>
-    <connection>
-      <sender>sipOnlyCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>toggleSipOnly(bool)</slot>
-    </connection>
-    <connection>
-      <sender>reloadPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>reload()</slot>
-    </connection>
-    <connection>
-      <sender>localListView</sender>
-      <signal>doubleClicked(Q3ListViewItem*)</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>selectLocalAddress()</slot>
-    </connection>
-    <connection>
-      <sender>addPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>addLocalAddress()</slot>
-    </connection>
-    <connection>
-      <sender>deletePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>deleteLocalAddress()</slot>
-    </connection>
-    <connection>
-      <sender>editPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>GetAddressForm</receiver>
-      <slot>editLocalAddress()</slot>
-    </connection>
-  </connections>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>addressListView</tabstop>
+  <tabstop>sipOnlyCheckBox</tabstop>
+  <tabstop>reloadPushButton</tabstop>
+  <tabstop>addressTabWidget</tabstop>
+  <tabstop>localListView</tabstop>
+  <tabstop>addPushButton</tabstop>
+  <tabstop>deletePushButton</tabstop>
+  <tabstop>editPushButton</tabstop>
+  <tabstop>okPushButton</tabstop>
+  <tabstop>cancelPushButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">user.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>selectAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>458</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>583</x>
+     <y>458</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addressListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>selectKABCAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sipOnlyCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>toggleSipOnly(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>365</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reloadPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>reload()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>392</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>addLocalAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>34</x>
+     <y>393</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deletePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>deleteLocalAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>121</x>
+     <y>393</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>editLocalAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>393</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>localListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>GetAddressForm</receiver>
+   <slot>selectLocalAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
