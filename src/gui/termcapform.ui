@@ -55,7 +55,7 @@
         </layout>
       </item>
       <item>
-        <widget class="Q3GroupBox" name="termCapGroupBox">
+        <widget class="QGroupBox" name="termCapGroupBox">
           <property name="title">
             <string>Get terminal capabilities of</string>
           </property>
