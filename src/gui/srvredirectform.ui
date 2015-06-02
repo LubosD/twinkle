@@ -81,7 +81,7 @@
                 </widget>
               </item>
               <item row="1" column="0">
-                <widget class="Q3GroupBox" name="cfAlwaysGroupBox">
+                <widget class="QGroupBox" name="cfAlwaysGroupBox">
                   <property name="enabled">
                     <bool>true</bool>
                   </property>
@@ -248,7 +248,7 @@
                 </widget>
               </item>
               <item row="1" column="0">
-                <widget class="Q3GroupBox" name="cfBusyGroupBox">
+                <widget class="QGroupBox" name="cfBusyGroupBox">
                   <property name="enabled">
                     <bool>true</bool>
                   </property>
@@ -397,7 +397,7 @@
                 </widget>
               </item>
               <item row="1" column="0">
-                <widget class="Q3GroupBox" name="cfNoanswerGroupBox">
+                <widget class="QGroupBox" name="cfNoanswerGroupBox">
                   <property name="enabled">
                     <bool>true</bool>
                   </property>
