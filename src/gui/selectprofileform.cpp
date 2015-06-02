@@ -120,7 +120,11 @@ int SelectProfileForm::execForm()
 			"You can create a Diamondcard account to make worldwide "\
 			"calls to regular and cell phones and send SMS messages.<br><br>"\
 			"Choose what method you wish to use.</html>"),
-			tr("&Wizard"), tr("&Profile editor"), tr("&Diamondcard"));
+			tr("&Wizard"), tr("&Profile editor")
+#ifdef WITH_DIAMONDCARD
+			, tr("&Diamondcard")
+#endif
+			);
 		
 		switch (newProfileMethod) {
 		case 0:
