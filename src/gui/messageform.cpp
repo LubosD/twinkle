@@ -30,9 +30,6 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPixmap>
-#include <Q3Frame>
-#include <Q3PopupMenu>
-#include <QCloseEvent>
 #endif
 
 #include "gui.h"
@@ -42,12 +39,13 @@
 #include "util.h"
 #include <QPixmap>
 #include <QCursor>
-#include <Q3FileDialog>
+#include <QFileDialog>
 #include "utils/file_utils.h"
 #include <QFile>
 #include "sendfileform.h"
 #include <QStatusBar>
-#include <Q3Frame>
+#include <QFrame>
+#include <QTextDocument>
 #include "messageform.h"
 
 
@@ -62,7 +60,7 @@ using namespace utils;
 #define IMG_SCALE_FACTOR(width, height) (std::min<float>( float(MAX_WIDTH_IMG_INLINE) / (width), float(MAX_HEIGHT_IMG_INLINE) / (height) ) )
 
 MessageForm::MessageForm(QWidget* parent, const char* name, Qt::WindowFlags fl)
-	: Q3MainWindow(parent, name, fl)
+	: QMainWindow(parent, name, fl)
 {
 	setupUi(this);
 
@@ -104,7 +102,7 @@ void MessageForm::init()
 	// Set toolbutton icons for disabled options.
 	setDisabledIcon(addressToolButton, "kontact_contacts-disabled.png");
 	
-	attachmentPopupMenu = new Q3PopupMenu(this);
+	attachmentPopupMenu = new QMenu(this);
 	MEMMAN_NEW(attachmentPopupMenu);
 	
 	connect(attachmentPopupMenu, SIGNAL(activated(int)), 
@@ -153,7 +151,7 @@ void MessageForm::destroy()
 void MessageForm::closeEvent(QCloseEvent *e)
 {
 	MEMMAN_DELETE(this); // destructive close
-	Q3MainWindow::closeEvent(e);
+	QMainWindow::closeEvent(e);
 }
 
 
@@ -172,7 +170,7 @@ void MessageForm::show()
 		msgLineEdit->setFocus();
 	}
 	
-	Q3MainWindow::show();
+	QMainWindow::show();
 }
 
 void MessageForm::selectUserConfig(t_user *user_config)
@@ -320,7 +318,7 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 	// Timestamp and name of sender
 	if (msg.direction == im::MSG_DIR_IN) s += "<font color=\"blue\">";
 	s += time2str(msg.timestamp, "%H:%M:%S ").c_str();
-	s += Q3StyleSheet::escape(name);
+	s += Qt::escape(name);
 	if (msg.direction == im::MSG_DIR_IN) s += "</font>";
 	s += "</b>";
 	
@@ -503,7 +501,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	attachmentPopupMenu->insertItem(openIcon, tr("Open with..."), id++);
 #endif
 	
-	attachmentPopupMenu->popup(QCursor::pos());
+	attachmentPopupMenu->popup(QCursor::pos(), 0);
 }
 
 void MessageForm::attachmentPopupActivated(int id) {
@@ -521,14 +519,13 @@ void MessageForm::attachmentPopupActivated(int id) {
 		connect(d, SIGNAL(okClicked()), this,
 			SLOT(saveAttachment()));
 #else
-		Q3FileDialog *d = new Q3FileDialog(QString::null, QString::null, this, 0, true);
+		QFileDialog *d = new QFileDialog(this);
 		MEMMAN_NEW(d);
-		d->setMode(Q3FileDialog::AnyFile);
 		
 		connect(d, SIGNAL(fileSelected(const QString &)), this,
 			SLOT(saveAttachment()));
 #endif
-		d->setSelection(_filenameMap[clickedAttachment.ascii()].c_str());
+		d->selectFile(QString::fromStdString(_filenameMap[clickedAttachment.ascii()]));
 		d->setCaption(tr("Save attachment as..."));
 		
 		if (_saveAsDialog) {
@@ -555,7 +552,7 @@ void MessageForm::saveAttachment() {
 #ifdef HAVE_KDE
 	KFileDialog *d = dynamic_cast<KFileDialog *>(_saveAsDialog);
 #else
-	Q3FileDialog *d = dynamic_cast<Q3FileDialog *>(_saveAsDialog);
+	QFileDialog *d = dynamic_cast<QFileDialog *>(_saveAsDialog);
 #endif
 	QString filename = d->selectedFile();
 	
@@ -579,7 +576,7 @@ void MessageForm::chooseFileToSend()
 	// Indicate that a message is being composed.
 	setLocalComposingIndicationActive();
 	
-	SendFileForm *form = new SendFileForm();
+	SendFileForm *form = new SendFileForm(this);
 	MEMMAN_NEW(form);
 	// Form will auto destruct itself on close.
 	

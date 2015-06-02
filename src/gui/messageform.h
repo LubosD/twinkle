@@ -4,18 +4,18 @@
 #include "getaddressform.h"
 #include "im/msg_session.h"
 #include "phone.h"
-#include <Qt3Support/Q3PopupMenu>
 #include <QtGui/QLabel>
 #include <QtCore/QStringRef>
 #include "textbrowsernoautolink.h"
 #include "user.h"
 #include "ui_messageform.h"
-#include <Q3MainWindow>
+#include <QMainWindow>
+#include <QMenu>
 
 class t_phone;
 extern t_phone *phone;
 
-class MessageForm : public Q3MainWindow, public Ui::MessageForm
+class MessageForm : public QMainWindow, public Ui::MessageForm
 {
 	Q_OBJECT
 
@@ -60,7 +60,7 @@ private:
 	map<string, string> _filenameMap;
 	bool _remotePartyComplete;
 	GetAddressForm *_getAddressForm;
-	Q3PopupMenu *attachmentPopupMenu;
+	QMenu *attachmentPopupMenu;
 	QString clickedAttachment;
 	void *_serviceMap;
 	QLabel *_isComposingLabel;

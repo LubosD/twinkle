@@ -4,7 +4,7 @@
   <comment></comment>
   <exportmacro></exportmacro>
   <class>MessageForm</class>
-  <widget class="Q3MainWindow" name="MessageForm">
+  <widget class="QMainWindow" name="MessageForm">
     <property name="geometry">
       <rect>
         <x>0</x>
@@ -89,7 +89,7 @@
           </layout>
         </item>
         <item>
-          <widget class="Q3GroupBox" name="conversationGroupBox">
+          <widget class="QGroupBox" name="conversationGroupBox">
             <property name="title">
               <string>Conversation</string>
             </property>
@@ -132,10 +132,7 @@
         </item>
       </layout>
     </widget>
-    <widget class="Q3ToolBar" name="Toolbar">
-      <property name="horizontallyStretchable">
-        <bool>false</bool>
-      </property>
+    <widget class="QToolBar" name="Toolbar">
       <property name="label">
         <string>Instant message toolbar</string>
       </property>
