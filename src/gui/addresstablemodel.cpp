@@ -115,7 +115,7 @@ void AddressTableModel::sort(int column, Qt::SortOrder order)
 			retval = a1.sip_address.compare(a2.sip_address) < 0;
 			break;
 		case COL_ADDR_REMARK:
-			retval = a1.remark.compare(a2.remark) < 0;
+			retval = QString::fromStdString(a1.remark) < QString::fromStdString(a2.remark);
 			break;
 		}
 
