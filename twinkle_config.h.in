@@ -10,4 +10,4 @@
 #define VERSION		"${PRODUCT_VERSION}"
 #define VERSION_DATE	"${PRODUCT_DATE}"
 
-#define DATADIR		"${CMAKE_INSTALL_PREFIX}/share/twinkle"
+#define DATADIR		"${datadir}"

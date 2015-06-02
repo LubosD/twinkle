@@ -112,7 +112,10 @@ check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)
 check_include_file(linux/errqueue.h HAVE_LINUX_ERRQUEUE_H)
 
+set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)
+configure_file(twinkle.desktop.in twinkle.desktop)
+
 include_directories("${CMAKE_BINARY_DIR}")
 
 install(FILES
@@ -127,5 +130,8 @@ install(FILES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/gui/images/twinkle48.png
 	DESTINATION share/pixmaps
 	RENAME twinkle.png)
+install(FILES
+	${CMAKE_CURRENT_BINARY_DIR}/twinkle.desktop
+	DESTINATION share/applications)
 
 add_subdirectory(src)
