@@ -67,7 +67,7 @@
 #include "q3listbox.h"
 #include "qmessagebox.h"
 #include "qpixmap.h"
-#include "q3process.h"
+#include <QProcess>
 #include "qpushbutton.h"
 #include "qsize.h"
 #include "qsizepolicy.h"
@@ -2031,84 +2031,25 @@ void t_gui::cb_stun_failed(t_user *user_config) {
 bool t_gui::cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &destination,
 					   const string &display)
 {
-	QString s;
-	QString title;
-	
-	lock();
-	
-	title = PRODUCT_NAME;
-	title.append(" - ").append(qApp->translate("GUI", "Redirecting call"));
-	
-	s = qApp->translate("GUI", "User profile:").append(" <b>");
-	s.append(user_config->get_profile_name().c_str());
-	s.append("</b><br>").append(qApp->translate("GUI", "User:")).append(" <b>");
-	s.append(str2html(user_config->get_display_uri().c_str()));
-	s.append("</b><br><br>");
-	
-	s.append(qApp->translate("GUI", "Do you allow the call to be redirected to the following destination?"));
-	s.append("<br><br>");
-	s.append(str2html(ui->format_sip_address(user_config, display, destination).c_str()));
-	s.append("<br><br>");
-	s.append(qApp->translate("GUI", 
-		"If you don't want to be asked this anymore, then you must change "
-		"the settings in the SIP protocol section of the user profile."));
-	QMessageBox *mb = new QMessageBox(title, s,
-					  QMessageBox::Warning,
-					  QMessageBox::Yes,
-					  QMessageBox::No,
-					  QMessageBox::NoButton,
-					  mainWindow);
-	MEMMAN_NEW(mb);
-	bool permission = (mb->exec() == QMessageBox::Yes);
-	MEMMAN_DELETE(mb);
-	delete mb;
-	
-	unlock();
-	
-	return permission;
+	bool retval;
+	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_invite", Qt::BlockingQueuedConnection,
+							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
+							  Q_ARG(const t_url&, destination), Q_ARG(const string&, display));
+
+	return retval;
 }
 
 bool t_gui::cb_ask_user_to_redirect_request(t_user *user_config,
 					    const t_url &destination,
 					    const string &display, t_method method)
 {
-	QString s;
-	QString title;
-	
-	lock();
-	
-	title = PRODUCT_NAME;
-	title.append(" - ").append(qApp->translate("GUI", "Redirecting request"));
-	
-	s = qApp->translate("GUI", "User profile:").append(" <b>");
-	s.append(user_config->get_profile_name().c_str());
-	s.append("</b><br>").append(qApp->translate("GUI", "User:")).append(" <b>");
-	s.append(str2html(user_config->get_display_uri().c_str()));
-	s.append("</b><br><br>");
-	
-	s.append(qApp->translate("GUI", 
-		"Do you allow the %1 request to be redirected to the following destination?").arg(
-		method2str(method).c_str()));
-	s.append("<br><br>");
-	s.append(str2html(ui->format_sip_address(user_config, display, destination).c_str()));
-	s.append("<br><br>");
-	s.append(qApp->translate("GUI",
-		"If you don't want to be asked this anymore, then you must change "
-		"the settings in the SIP protocol section of the user profile."));
-	QMessageBox *mb = new QMessageBox(title, s,
-					  QMessageBox::Warning,
-					  QMessageBox::Yes,
-					  QMessageBox::No,
-					  QMessageBox::NoButton,
-					  mainWindow);
-	MEMMAN_NEW(mb);
-	bool permission = (mb->exec() == QMessageBox::Yes);
-	MEMMAN_DELETE(mb);
-	delete mb;
-	
-	unlock();
-	
-	return permission;
+	bool retval;
+	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_request", Qt::BlockingQueuedConnection,
+							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
+							  Q_ARG(const t_url&, destination), Q_ARG(const string&, display),
+							  Q_ARG(t_method, method));
+
+	return retval;
 }
 
 bool t_gui::do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
@@ -2149,13 +2090,75 @@ bool t_gui::cb_ask_credentials(t_user *user_config, const string &realm, string 
 bool t_gui::do_cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &destination,
 		const string &display)
 {
-	// TODO
+	QString s;
+	QString title;
+
+	title = PRODUCT_NAME;
+	title.append(" - ").append(qApp->translate("GUI", "Redirecting call"));
+
+	s = qApp->translate("GUI", "User profile:").append(" <b>");
+	s.append(user_config->get_profile_name().c_str());
+	s.append("</b><br>").append(qApp->translate("GUI", "User:")).append(" <b>");
+	s.append(str2html(user_config->get_display_uri().c_str()));
+	s.append("</b><br><br>");
+
+	s.append(qApp->translate("GUI", "Do you allow the call to be redirected to the following destination?"));
+	s.append("<br><br>");
+	s.append(str2html(ui->format_sip_address(user_config, display, destination).c_str()));
+	s.append("<br><br>");
+	s.append(qApp->translate("GUI",
+		"If you don't want to be asked this anymore, then you must change "
+		"the settings in the SIP protocol section of the user profile."));
+	QMessageBox *mb = new QMessageBox(title, s,
+					  QMessageBox::Warning,
+					  QMessageBox::Yes,
+					  QMessageBox::No,
+					  QMessageBox::NoButton,
+					  mainWindow);
+	MEMMAN_NEW(mb);
+	bool permission = (mb->exec() == QMessageBox::Yes);
+	MEMMAN_DELETE(mb);
+	delete mb;
+
+	return permission;
 }
 
 bool t_gui::do_cb_ask_user_to_redirect_request(t_user *user_config, const t_url &destination,
 		const string &display, t_method method)
 {
-	// TODO
+	QString s;
+	QString title;
+
+	title = PRODUCT_NAME;
+	title.append(" - ").append(qApp->translate("GUI", "Redirecting request"));
+
+	s = qApp->translate("GUI", "User profile:").append(" <b>");
+	s.append(user_config->get_profile_name().c_str());
+	s.append("</b><br>").append(qApp->translate("GUI", "User:")).append(" <b>");
+	s.append(str2html(user_config->get_display_uri().c_str()));
+	s.append("</b><br><br>");
+
+	s.append(qApp->translate("GUI",
+		"Do you allow the %1 request to be redirected to the following destination?").arg(
+		method2str(method).c_str()));
+	s.append("<br><br>");
+	s.append(str2html(ui->format_sip_address(user_config, display, destination).c_str()));
+	s.append("<br><br>");
+	s.append(qApp->translate("GUI",
+		"If you don't want to be asked this anymore, then you must change "
+		"the settings in the SIP protocol section of the user profile."));
+	QMessageBox *mb = new QMessageBox(title, s,
+					  QMessageBox::Warning,
+					  QMessageBox::Yes,
+					  QMessageBox::No,
+					  QMessageBox::NoButton,
+					  mainWindow);
+	MEMMAN_NEW(mb);
+	bool permission = (mb->exec() == QMessageBox::Yes);
+	MEMMAN_DELETE(mb);
+	delete mb;
+
+	return permission;
 }
 
 void t_gui::cb_ask_user_to_refer(t_user *user_config, const t_url &refer_to_uri,
@@ -2312,18 +2315,17 @@ void  t_gui::cb_missed_call(int num_missed_calls) {
 }
 
 void t_gui::cb_nat_discovery_progress_start(int num_steps) {
-	natDiscoveryProgressDialog = new Q3ProgressDialog(
+	natDiscoveryProgressDialog = new QProgressDialog(
 			qApp->translate("GUI", "Firewall / NAT discovery..."), 
 			qApp->translate("GUI", "Abort"), 
-			num_steps, NULL,
-			"nat discovery progress", true);
+			0, num_steps, mainWindow);
 	MEMMAN_NEW(natDiscoveryProgressDialog);
 	natDiscoveryProgressDialog->setCaption(PRODUCT_NAME);
 	natDiscoveryProgressDialog->setMinimumDuration(200);
 }
 
 void t_gui::cb_nat_discovery_progress_step(int step) {
-	natDiscoveryProgressDialog->setProgress(step);
+	natDiscoveryProgressDialog->setValue(step);
 	qApp->processEvents();
 }
 
@@ -2333,7 +2335,7 @@ void t_gui::cb_nat_discovery_finished(void) {
 }
 
 bool t_gui::cb_nat_discovery_cancelled(void) {
-	return natDiscoveryProgressDialog->wasCancelled();
+	return natDiscoveryProgressDialog->wasCanceled();
 }
 
 void t_gui::cb_line_encrypted(int line, bool encrypted, const string &cipher_mode) {
@@ -3053,13 +3055,13 @@ void t_gui::open_url_in_browser(const QString &url) {
 		}
 	}
 #endif
-	Q3Process process;
+	QProcess process;
 	bool process_started = false;
 	
 	QStringList browsers;
 	
 	if (sys_browser.empty()) {
-		browsers << "firefox" << "mozilla" << "netscape" << "opera";
+		browsers << "xdg-open" << "firefox" << "mozilla" << "netscape" << "opera";
 		browsers << "galeon" << "epiphany" << "konqueror";
 	} else {
 		browsers << sys_browser.c_str();
@@ -3067,8 +3069,8 @@ void t_gui::open_url_in_browser(const QString &url) {
 	
 	for (QStringList::Iterator it = browsers.begin(); it != browsers.end(); ++it)
 	{
-		process.setArguments(QStringList() << *it << url);
-		process_started = process.start();
+		process.start(*it, QStringList(url));
+		process_started = process.waitForStarted(1000);
 		if (process_started) break;
 	}
 	

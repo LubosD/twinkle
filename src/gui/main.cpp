@@ -26,7 +26,6 @@
 #include <qapplication.h>
 #include <qtranslator.h>
 #include <qmime.h>
-#include <q3progressdialog.h>
 #include <qtextcodec.h>
 
 #include "mphoneform.h"
