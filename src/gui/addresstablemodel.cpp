@@ -109,18 +109,25 @@ void AddressTableModel::sort(int column, Qt::SortOrder order)
 		switch (column)
 		{
 		case COL_ADDR_NAME:
-			retval = QString::fromStdString(a1.get_display_name()) < QString::fromStdString(a2.get_display_name());
+            if (order == Qt::DescendingOrder)
+                retval = QString::fromStdString(a1.get_display_name()) > QString::fromStdString(a2.get_display_name());
+            else
+                retval = QString::fromStdString(a1.get_display_name()) < QString::fromStdString(a2.get_display_name());
 			break;
 		case COL_ADDR_PHONE:
-			retval = a1.sip_address.compare(a2.sip_address) < 0;
+            if (order == Qt::DescendingOrder)
+                retval = a1.sip_address.compare(a2.sip_address) > 0;
+            else
+                retval = a1.sip_address.compare(a2.sip_address) < 0;
 			break;
 		case COL_ADDR_REMARK:
-			retval = QString::fromStdString(a1.remark) < QString::fromStdString(a2.remark);
+            if (order == Qt::DescendingOrder)
+                retval = QString::fromStdString(a1.remark) > QString::fromStdString(a2.remark);
+            else
+                retval = QString::fromStdString(a1.remark) < QString::fromStdString(a2.remark);
 			break;
 		}
 
-		if (order == Qt::DescendingOrder)
-			retval = !retval;
 		return retval;
 	});
 
