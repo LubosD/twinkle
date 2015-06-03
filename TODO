@@ -6,7 +6,6 @@
 	either of Qt4 and Qt5.
 
 	Remaining .ui/cpp/h files:
-	* historyform
 	* mphoneform
 	* selectnicform
 	* selectprofileform

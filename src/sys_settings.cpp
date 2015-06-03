@@ -981,7 +981,7 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 	
-	s += "Copyright (C) 2005-2009  ";
+	s += "Copyright (C) 2005-2015  ";
 	s += PRODUCT_AUTHOR;
 	if (html) s += "<BR>";
 	s += "\n";

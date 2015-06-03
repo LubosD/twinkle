@@ -25,10 +25,16 @@
 #include "util.h"
 #include "gui.h"
 #include "q3listview.h"
-#include "historylistview.h"
 #include "qicon.h"
 #include "audits/memman.h"
 #include "historyform.h"
+
+#define HISTCOL_TIMESTAMP 	0
+#define HISTCOL_DIRECTION	1
+#define HISTCOL_FROMTO		2
+#define HISTCOL_SUBJECT	3
+#define HISTCOL_STATUS		4
+
 /*
  *  Constructs a HistoryForm as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
@@ -65,11 +71,16 @@ void HistoryForm::languageChange()
 
 void HistoryForm::init()
 {
-	historyListView->setSorting(HISTCOL_TIMESTAMP, false);
-	historyListView->setColumnWidthMode(HISTCOL_FROMTO, Q3ListView::Manual);
-	historyListView->setColumnWidth(HISTCOL_FROMTO, 200);
-	historyListView->setColumnWidthMode(HISTCOL_SUBJECT, Q3ListView::Manual);
-	historyListView->setColumnWidth(HISTCOL_SUBJECT, 200);
+
+    m_model = new QStandardItemModel(historyListView);
+    historyListView->setModel(m_model);
+    m_model->setColumnCount(5);
+
+    m_model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("In/Out") << tr("From/To") << tr("Subject") << tr("Status"));
+    historyListView->sortByColumn(HISTCOL_TIMESTAMP, Qt::DescendingOrder);
+
+    historyListView->setColumnWidth(HISTCOL_FROMTO, 200);
+    historyListView->setColumnWidth(HISTCOL_SUBJECT, 200);
 	
 	inCheckBox->setChecked(true);
 	outCheckBox->setChecked(true);
@@ -81,17 +92,20 @@ void HistoryForm::init()
 	
 	QIcon inviteIcon(QPixmap(":/icons/images/invite.png"));
 	QIcon deleteIcon(QPixmap(":/icons/images/editdelete.png"));
-	histPopupMenu = new Q3PopupMenu(this);
-	MEMMAN_NEW(histPopupMenu);
+    histPopupMenu = new QMenu(this);
 	
 	itemCall = histPopupMenu->insertItem(inviteIcon, tr("Call..."), this, SLOT(call()));
 	histPopupMenu->insertItem(deleteIcon, tr("Delete"), this, SLOT(deleteEntry()));
+
+    m_pixmapIn = QPixmap(":/icons/images/1leftarrow-yellow.png");
+    m_pixmapOut = QPixmap(":/icons/images/1rightarrow.png");
+
+    m_pixmapOk = QPixmap(":/icons/images/ok.png");
+    m_pixmapCancel = QPixmap(":/icons/images/cancel.png");
 }
 
 void HistoryForm::destroy()
 {
-	MEMMAN_DELETE(histPopupMenu);
-	delete histPopupMenu;
 }
 
 void HistoryForm::loadHistory()
@@ -107,23 +121,28 @@ void HistoryForm::loadHistory()
 	unsigned long numberOfCalls = 0;
 	unsigned long totalCallDuration = 0;
 	unsigned long totalConversationDuration = 0;
-	historyListView->clear();
-	list<t_call_record> history;
-	call_history->get_history(history);
-	for (list<t_call_record>::iterator i = history.begin(); i != history.end(); i++) {
-		if (i->direction == t_call_record::DIR_IN && !inCheckBox->isChecked()) {
+
+    std::list<t_call_record> history;
+
+    call_history->get_history(history);
+    m_history = QList<t_call_record>::fromStdList(history);
+
+    for (int x = 0; x < m_history.size(); x++) {
+        const t_call_record* cr = &m_history[x];
+
+        if (cr->direction == t_call_record::DIR_IN && !inCheckBox->isChecked()) {
 			continue;
 		}
-		if (i->direction == t_call_record::DIR_OUT && !outCheckBox->isChecked()) {
+        if (cr->direction == t_call_record::DIR_OUT && !outCheckBox->isChecked()) {
 			continue;
 		}
-		if (i->invite_resp_code < 300 && !successCheckBox->isChecked()) {
+        if (cr->invite_resp_code < 300 && !successCheckBox->isChecked()) {
 			continue;
 		}
-		if (i->invite_resp_code >= 300 && !missedCheckBox->isChecked()) {
+        if (cr->invite_resp_code >= 300 && !missedCheckBox->isChecked()) {
 			continue;
 		}
-		if (!profile_name_list.contains(i->user_profile.c_str()) &&
+        if (!profile_name_list.contains(cr->user_profile.c_str()) &&
 		    profileCheckBox->isChecked())
 		{
 			continue;
@@ -132,12 +151,12 @@ void HistoryForm::loadHistory()
 		numberOfCalls++;
 		
 		// Calculate total duration
-		totalCallDuration += i->time_end - i->time_start;
-		if (i->time_answer != 0) {
-			totalConversationDuration += i->time_end - i->time_answer;
+        totalCallDuration += cr->time_end - cr->time_start;
+        if (cr->time_answer != 0) {
+            totalConversationDuration += cr->time_end - cr->time_answer;
 		}
 		
-		t_user *user_config = phone->ref_user_profile(i->user_profile);
+        t_user *user_config = phone->ref_user_profile(cr->user_profile);
 		
 		// If the user profile is not active, then use the
 		// first user profile for formatting	
@@ -145,8 +164,58 @@ void HistoryForm::loadHistory()
 			user_config = phone->ref_users().front();
 		}
 		
-		new HistoryListViewItem(historyListView,
-			*i, user_config, timeLastViewed);
+        m_model->setRowCount(numberOfCalls);
+
+        for (int j = 0; j < 5; j++)
+        {
+            QModelIndex index = m_model->index(m_model->rowCount()-1, j);
+
+            m_model->setData(index, QVariant(x), Qt::UserRole);
+            switch (j)
+            {
+                case HISTCOL_TIMESTAMP:
+                {
+                    QString time = QString::fromStdString(time2str(cr->time_start,  "%d %b %Y %H:%M:%S"));
+                    m_model->setData(index, time);
+                    break;
+                }
+                case HISTCOL_DIRECTION:
+                {
+                    m_model->setData(index, QString::fromStdString(cr->get_direction()));
+
+                    m_model->setData(index, (cr->direction == t_call_record::DIR_IN ?
+                                    m_pixmapIn : m_pixmapOut), Qt::DecorationRole);
+
+                    break;
+                }
+                case HISTCOL_FROMTO:
+                {
+                    std::string address;
+
+                    address = (cr->direction == t_call_record::DIR_IN ?
+                         ui->format_sip_address(user_config,
+                          cr->from_display, cr->from_uri) :
+                         ui->format_sip_address(user_config,
+                          cr->to_display, cr->to_uri));
+
+                    m_model->setData(index, QString::fromStdString(address));
+
+                    m_model->setData(index, (cr->invite_resp_code < 300 ?
+                                    m_pixmapOk : m_pixmapCancel), Qt::DecorationRole);
+                    break;
+                }
+                case HISTCOL_SUBJECT:
+                {
+                    m_model->setData(index, QString::fromStdString(cr->subject));
+                    break;
+                }
+                case HISTCOL_STATUS:
+                {
+                    m_model->setData(index, QString::fromStdString(cr->invite_resp_reason));
+                    break;
+                }
+            }
+        }
 	}
 	
 	numberCallsValueTextLabel->setText(QString().setNum(numberOfCalls));
@@ -161,13 +230,9 @@ void HistoryForm::loadHistory()
 	totalDurationValueTextLabel->setText(durationText);
 	
 	// Make the first entry the selected entry.
-	Q3ListViewItem *first = historyListView->firstChild();
-	if (first) {
-		historyListView->setSelected(first, true);
-		showCallDetails(first);
-	} else {
-		cdrTextEdit->clear();
-	}
+    historyListView->selectRow(0);
+
+    //	showCallDetails(first);
 }
 
 // Update history when triggered by a call back function on the user
@@ -208,11 +273,12 @@ void HistoryForm::closeEvent( QCloseEvent *e )
 	QDialog::closeEvent(e);
 }
 
-void HistoryForm::showCallDetails(Q3ListViewItem *item)
+void HistoryForm::showCallDetails(QModelIndex index)
 {
 	QString s;
 	
-	t_call_record cr = ((HistoryListViewItem *)item)->get_call_record();
+    int x = m_model->data(index, Qt::UserRole).toInt();
+    const t_call_record& cr = m_history[x];
 	cdrTextEdit->clear();
 	
 	t_user *user_config = phone->ref_user_profile(cr.user_profile);
@@ -307,14 +373,15 @@ void HistoryForm::showCallDetails(Q3ListViewItem *item)
 	cdrTextEdit->setText(s);
 }
 
-void HistoryForm::popupMenu(Q3ListViewItem *item, const QPoint &pos)
+void HistoryForm::popupMenu(QPoint pos)
 {
-	if (!item) return;
+    if (!historyListView->selectionModel()->hasSelection())
+        return;
+
+    QModelIndex index = historyListView->selectionModel()->currentIndex();
+    int x = m_model->data(index, Qt::UserRole).toInt();
 	
-	HistoryListViewItem *histItem = dynamic_cast<HistoryListViewItem *>(item);
-	if (!histItem) return;
-	
-	t_call_record cr = histItem->get_call_record();
+    const t_call_record& cr = m_history[x];
 	
 	// An anonymous caller cannot be called
 	bool canCall = !(cr.direction == t_call_record::DIR_IN &&
@@ -324,12 +391,10 @@ void HistoryForm::popupMenu(Q3ListViewItem *item, const QPoint &pos)
 	histPopupMenu->popup(pos);
 }
 
-void HistoryForm::call(Q3ListViewItem *item)
+void HistoryForm::call(QModelIndex index)
 {
-	if (!item) return;
-	
-	HistoryListViewItem *histItem = (HistoryListViewItem *)item;
-	t_call_record cr = histItem->get_call_record();
+    int i = m_model->data(index, Qt::UserRole).toInt();
+    const t_call_record& cr = m_history[i];
 	
 	t_user *user_config = phone->ref_user_profile(cr.user_profile);
 	// If the user profile is not active, then use the first profile
@@ -368,26 +433,27 @@ void HistoryForm::call(Q3ListViewItem *item)
 		{
 			hide_user = true;
 		}
-		emit call(user_config, item->text(HISTCOL_FROMTO), subject, hide_user);
+        emit call(user_config, m_model->data(m_model->index(index.row(), HISTCOL_FROMTO)).toString(), subject, hide_user);
 	}
 }
 
 void HistoryForm::call(void)
 {
-	Q3ListViewItem *item = historyListView->currentItem();
-	if (item) call(item);
+    QModelIndex index = historyListView->selectionModel()->currentIndex();
+    if (index.isValid()) call(index);
 }
 
 void HistoryForm::deleteEntry(void)
 {
-	Q3ListViewItem *item = historyListView->currentItem();
-	HistoryListViewItem *histItem = dynamic_cast<HistoryListViewItem *>(item);
-	if (!histItem) return;
+    QModelIndex index = historyListView->selectionModel()->currentIndex();
+    int i = m_model->data(index, Qt::UserRole).toInt();
+    m_model->removeRow(index.row());
 	
-	call_history->delete_call_record(histItem->get_call_record().get_id());
+    call_history->delete_call_record(m_history[i].get_id());
 }
 
 void HistoryForm::clearHistory()
 {
 	call_history->clear();
+    m_model->setRowCount(0);
 }

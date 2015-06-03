@@ -51,7 +51,6 @@ qt4_wrap_cpp(twinkle_MOC
 	logviewform.h
 	numberconversionform.h
 	getprofilenameform.h
-	historylistview.h
 	address_finder.h
 	qt_translator.h
 	core_strings.h
@@ -114,7 +113,6 @@ set(TWINKLE_GUI-SRCS
 	dtmfform.cpp
 	getprofilenameform.cpp
 	gui.cpp
-	historylistview.cpp
 	logviewform.cpp
 	main.cpp
 	messageformview.cpp

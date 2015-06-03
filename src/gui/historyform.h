@@ -1,7 +1,9 @@
 #ifndef HISTORYFORM_H
 #define HISTORYFORM_H
 #include "phone.h"
-#include <Qt3Support/Q3PopupMenu>
+#include <QMenu>
+#include <QStandardItemModel>
+#include <QPixmap>
 #include "user.h"
 #include "ui_historyform.h"
 
@@ -18,9 +20,9 @@ public slots:
 	virtual void update();
 	virtual void show();
 	virtual void closeEvent( QCloseEvent * e );
-	virtual void showCallDetails( Q3ListViewItem * item );
-	virtual void popupMenu( Q3ListViewItem * item, const QPoint & pos );
-	virtual void call( Q3ListViewItem * item );
+    virtual void showCallDetails( QModelIndex item );
+    virtual void popupMenu( QPoint pos );
+    virtual void call( QModelIndex index );
 	virtual void call( void );
 	virtual void deleteEntry( void );
 	virtual void clearHistory();
@@ -33,8 +35,12 @@ protected slots:
 
 private:
 	time_t timeLastViewed;
-	Q3PopupMenu *histPopupMenu;
+    QMenu *histPopupMenu;
+    QStandardItemModel *m_model;
 	int itemCall;
+    QPixmap m_pixmapIn, m_pixmapOut;
+    QPixmap m_pixmapOk, m_pixmapCancel;
+    QList<t_call_record> m_history;
 
 	void init();
 	void destroy();
