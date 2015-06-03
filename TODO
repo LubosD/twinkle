@@ -5,6 +5,16 @@
 	tedious enough. The ultimate goal is allow twinkle to be built against
 	either of Qt4 and Qt5.
 
+	Remaining .ui/cpp/h files:
+	* historyform
+	* mphoneform
+	* selectnicform
+	* selectprofileform
+	* selectuserform
+	* syssettingsform
+	* userprofileform
+	* gui
+
 * make KDE support work again
 
 	After cleaning up the autotools config, twinkle only builds with
@@ -19,7 +29,7 @@
 
 	Dirty workaround for (mostly) calling GUI related methods from non-GUI
 	threads. Doesn't actually work with Qt4, causing segfaults. Analyze
-	the remaining uses and get rid off it.
+	the remaining uses and get rid of it.
 
 * MEMMAN_* tracking macros
 
