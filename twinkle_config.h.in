@@ -1,3 +1,4 @@
+#cmakedefine WITH_DIAMONDCARD
 #cmakedefine HAVE_SPEEX
 #cmakedefine HAVE_ILBC
 #cmakedefine HAVE_ZRTP

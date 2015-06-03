@@ -6,9 +6,11 @@ set(PRODUCT_VERSION "1.9.0")
 set(PRODUCT_DATE    "June 1, 2015")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-OPTION(WITH_ZRTP	"Enable ZRTP encrypted calls" OFF)
-OPTION(WITH_SPEEX	"Enable the Speex codec" OFF)
-OPTION(WITH_ILBC	"Enable the iLBC codec" OFF)
+OPTION(WITH_ZRTP		"Enable ZRTP encrypted calls" OFF)
+OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
+OPTION(WITH_ILBC		"Enable the iLBC codec" OFF)
+OPTION(WITH_ALSA		"Enable ALSA support" ON)
+OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
