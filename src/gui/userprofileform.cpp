@@ -1,7 +1,3 @@
-//Added by qt3to4:
-#include <QPixmap>
-#include <Q3ValueList>
-
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
     
@@ -19,8 +15,8 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-#include <Q3ListBox>
+#include <QPixmap>
+#include <QList>
 #include <QLineEdit>
 #include <QLabel>
 #include <QComboBox>
@@ -31,11 +27,11 @@
 #include "protocol.h"
 #include <QMessageBox>
 #include "gui.h"
-#include <Q3FileDialog>
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QStringList>
 #include "twinkle_config.h"
-#include <Q3ListView>
+#include <QListWidget>
 #include "numberconversionform.h"
 #include "util.h"
 #include "userprofileform.h"
@@ -1292,10 +1288,9 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 
 void UserProfileForm::chooseFile(QLineEdit *qle, const QString &filter, const QString &caption) 
 {
-	QString file = Q3FileDialog::getOpenFileName(
+	QString file = QFileDialog::getOpenFileName(this, caption,
 			((t_gui *)ui)->get_last_file_browse_path(),
-			filter, this, "open file dialog",
-			caption);
+			filter);
 	if (!file.isEmpty()) {
 		qle->setText(file);
 		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));

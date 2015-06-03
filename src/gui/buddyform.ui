@@ -186,7 +186,6 @@
   <includes>
     <include location="local">presence/buddy.h</include>
     <include location="local">user.h</include>
-    <include location="local">q3listview.h</include>
     <include location="local">getaddressform.h</include>
   </includes>
   <connections>

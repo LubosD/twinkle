@@ -1,7 +1,7 @@
 //Added by qt3to4:
 #include <QCloseEvent>
 #include <QPixmap>
-#include <Q3PopupMenu>
+#include <QMenu>
 
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>

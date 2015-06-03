@@ -23,7 +23,7 @@
 #include <qapplication.h>
 //Added by qt3to4:
 #include <q3mimefactory.h>
-#include <Q3Frame>
+#include <QFrame>
 
 #ifdef HAVE_KDE
 #include <kmimetype.h>
@@ -1603,7 +1603,7 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 			pm = QPixmap(":/icons/images/twinkle32.png");
 		} else {
 			pm.convertFromImage(photo);
-			photoFrameShape = Q3Frame::Box;
+			photoFrameShape = QFrame::Box;
 		}
 		
 		// Create the popup view.

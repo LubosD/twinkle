@@ -1,6 +1,3 @@
-//Added by qt3to4:
-#include <Q3TextStream>
-
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
     
@@ -24,6 +21,7 @@
 #include <QLabel>
 #include <QValidator>
 #include <QComboBox>
+#include <QTextStream>
 #include "gui.h"
 #include <QFile>
 #include "wizardform.h"
@@ -94,7 +92,7 @@ void WizardForm::initProviders()
 	fname.append("/").append(FILE_PROVIDERS);
 	QFile providersFile(fname);
 	if (providersFile.open(QIODevice::ReadOnly)) {
-		Q3TextStream providersStream(&providersFile);
+		QTextStream providersStream(&providersFile);
 		QString entry;
 		while ((entry = providersStream.readLine()) != QString::null) {
 			// Skip comment

@@ -23,7 +23,7 @@ public:
 	static bool getUserProfiles( QStringList & profiles, QString & error );
 
 public slots:
-	virtual void showForm( Q3MainWindow * _mainWindow );
+	virtual void showForm( QWidget * _mainWindow );
 	virtual void runProfile();
 	virtual void editProfile();
 	virtual void newProfile();
@@ -50,7 +50,7 @@ protected slots:
 private:
 	bool defaultSet;
 	t_user *user_config;
-	Q3MainWindow *mainWindow;
+	QWidget *mainWindow;
 
 	void init();
 	void destroy();

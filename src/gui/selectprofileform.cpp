@@ -179,7 +179,7 @@ int SelectProfileForm::execForm()
 // The execForm() method cannot be used as it will block the Qt event loop.
 // NOTE: the method show() is not re-implemented as Qt calls this method
 //   from exec() internally.
-void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
+void SelectProfileForm::showForm(QWidget *_mainWindow)
 {
 	mainWindow = _mainWindow;
 	profileListView->clear();

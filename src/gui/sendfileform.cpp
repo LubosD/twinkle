@@ -23,7 +23,7 @@
 #include "audits/memman.h"
 #include "gui.h"
 #include <QFile>
-#include <Q3FileDialog>
+#include <QFileDialog>
 #include "sendfileform.h"
 /*
  *  Constructs a SendFileForm as a child of 'parent', with the
@@ -98,7 +98,7 @@ void SendFileForm::chooseFile()
 	d->setOperationMode(KFileDialog::Other);
 	connect(d, SIGNAL(okClicked()), this, SLOT(setFilename()));
 #else
-	Q3FileDialog *d = new Q3FileDialog(QString::null, QString::null, this, 0, true);
+	QFileDialog *d = new QFileDialog(this);
 	MEMMAN_NEW(d);
 	
 	connect(d, SIGNAL(fileSelected(const QString &)), this, SLOT(setFilename()));
@@ -125,7 +125,7 @@ void SendFileForm::setFilename()
 	KFileDialog *d = dynamic_cast<KFileDialog *>(_chooseFileDialog);
 	filename = d->selectedFile();
 #else
-	Q3FileDialog *d = dynamic_cast<Q3FileDialog *>(_chooseFileDialog);
+	QFileDialog *d = dynamic_cast<QFileDialog *>(_chooseFileDialog);
 	filename = d->selectedFile();
 #endif
 	

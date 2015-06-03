@@ -31,17 +31,17 @@
 #ifndef _TEXTBROWSERNOAUTOLINK_H
 #define _TEXTBROWSERNOAUTOLINK_H
 
-#include <q3textbrowser.h>
+#include <QTextBrowser>
 
 /**
   * A text browser similar to QTextBrowser, but when a user clicks a link
   * the browser will not automatically load the linked document.
   */
-class TextBrowserNoAutoLink : public Q3TextBrowser {
+class TextBrowserNoAutoLink : public QTextBrowser {
 	Q_OBJECT
 public:
 	TextBrowserNoAutoLink ( QWidget * parent = 0, const char * name = 0 ) :
-			Q3TextBrowser(parent, name) {};
+			QTextBrowser(parent, name) {};
 	virtual void setSource ( const QString & name ) {};
 };
 

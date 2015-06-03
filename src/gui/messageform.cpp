@@ -34,7 +34,7 @@
 
 #include "gui.h"
 #include "sockets/url.h"
-#include <Q3StyleSheet>
+#include <QTextDocument>
 #include "audits/memman.h"
 #include "util.h"
 #include <QPixmap>
@@ -337,7 +337,7 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 		if (msg.format == im::TXT_HTML) {
 			s += msg.message.c_str();
 		} else {
-			s += Q3StyleSheet::escape(msg.message.c_str());
+			s += Qt::escape(msg.message.c_str());
 		}
 	}
 	
@@ -428,7 +428,7 @@ void MessageForm::displayError(const QString &errorMsg)
 	s += "<b>";
 	s += tr("Delivery failure").ascii();
 	s += ": </b>";
-	s += Q3StyleSheet::escape(errorMsg);
+	s += Qt::escape(errorMsg);
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -440,7 +440,7 @@ void MessageForm::displayDeliveryNotification(const QString &notification)
 	s += "<b>";
 	s += tr("Delivery notification").ascii();
 	s += ": </b>";
-	s += Q3StyleSheet::escape(notification);
+	s += Qt::escape(notification);
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -598,7 +598,7 @@ void MessageForm::setComposingIndication(const QString &name)
 		MEMMAN_NEW(_isComposingLabel);
 		
 		_isComposingLabel->setText(tr("%1 is typing a message.").arg(name));
-		_isComposingLabel->setFrameStyle(Q3Frame::NoFrame | Q3Frame::Plain);
+		_isComposingLabel->setFrameStyle(QFrame::NoFrame | QFrame::Plain);
 		statusBar()->addWidget(_isComposingLabel);
 	}
 }

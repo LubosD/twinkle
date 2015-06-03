@@ -20,7 +20,7 @@
 */
 
 #include "phone.h"
-#include <Q3GroupBox>
+#include <QGroupBox>
 #include <QCheckBox>
 #include "gui.h"
 #include "audits/memman.h"
