@@ -1,330 +1,424 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>SelectProfileForm</class>
-  <widget class="QDialog" name="SelectProfileForm">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>501</width>
-        <height>513</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle - Select user profile</string>
-    </property>
-    <layout class="QGridLayout">
-      <item row="0" column="0">
-        <widget class="QLabel" name="selectTextLabel">
-          <property name="sizePolicy">
-            <sizepolicy>
-              <hsizetype>5</hsizetype>
-              <vsizetype>0</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-            </sizepolicy>
+<ui version="4.0">
+ <class>SelectProfileForm</class>
+ <widget class="QDialog" name="SelectProfileForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>499</width>
+    <height>511</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle - Select user profile</string>
+  </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="selectTextLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Select user profile(s) to run:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <layout class="QVBoxLayout">
+     <item>
+      <spacer name="spacer17">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="newProfileGroupBox">
+       <property name="title">
+        <string>Create profile</string>
+       </property>
+       <layout class="QVBoxLayout">
+        <item>
+         <widget class="QPushButton" name="newPushButton">
+          <property name="whatsThis">
+           <string>Create a new profile with the profile editor.</string>
           </property>
           <property name="text">
-            <string>Select user profile(s) to run:</string>
+           <string>Ed&amp;itor</string>
           </property>
-          <property name="alignment">
-            <set>Qt::AlignVCenter</set>
+          <property name="shortcut">
+           <string>Alt+I</string>
           </property>
-          <property name="wordWrap">
-            <bool>true</bool>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="wizardPushButton">
+          <property name="whatsThis">
+           <string>Create a new profile with the wizard.</string>
           </property>
-        </widget>
-      </item>
-      <item row="1" column="0">
-        <widget class="Q3ListView" name="profileListView">
-          <property name="resizeMode">
-            <enum>Q3ListView::LastColumn</enum>
+          <property name="text">
+           <string>&amp;Wizard</string>
           </property>
-          <property name="whatsThis" stdset="0">
-            <string>Tick the check boxes of the user profiles that you want to run and press run.</string>
+          <property name="shortcut">
+           <string>Alt+W</string>
           </property>
-          <column>
-            <property name="text">
-              <string>User profile</string>
-            </property>
-            <property name="clickable">
-              <bool>true</bool>
-            </property>
-            <property name="resizable">
-              <bool>true</bool>
-            </property>
-          </column>
-        </widget>
-      </item>
-      <item row="0" column="1" rowspan="2" colspan="1">
-        <layout class="QVBoxLayout">
-          <item>
-            <spacer name="spacer17">
-              <property name="sizeHint">
-                <size>
-                  <width>20</width>
-                  <height>20</height>
-                </size>
-              </property>
-              <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="orientation">
-                <enum>Qt::Vertical</enum>
-              </property>
-            </spacer>
-          </item>
-          <item>
-            <widget class="Q3GroupBox" name="newProfileGroupBox">
-              <property name="title">
-                <string>Create profile</string>
-              </property>
-              <layout class="QVBoxLayout">
-                <item>
-                  <widget class="QPushButton" name="newPushButton">
-                    <property name="text">
-                      <string>Ed&amp;itor</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+I</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Create a new profile with the profile editor.</string>
-                    </property>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="QPushButton" name="wizardPushButton">
-                    <property name="text">
-                      <string>&amp;Wizard</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+W</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Create a new profile with the wizard.</string>
-                    </property>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="QPushButton" name="diamondcardPushButton">
-                    <property name="text">
-                      <string>Dia&amp;mondcard</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+M</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Create a profile for a Diamondcard account. With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages.</string>
-                    </property>
-                  </widget>
-                </item>
-              </layout>
-            </widget>
-          </item>
-          <item>
-            <widget class="Q3GroupBox" name="modifyProfileGroupBox">
-              <property name="title">
-                <string>Modify profile</string>
-              </property>
-              <layout class="QVBoxLayout">
-                <item>
-                  <widget class="QPushButton" name="editPushButton">
-                    <property name="text">
-                      <string>&amp;Edit</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+E</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Edit the highlighted profile.</string>
-                    </property>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="QPushButton" name="deletePushButton">
-                    <property name="text">
-                      <string>&amp;Delete</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+D</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Delete the highlighted profile.</string>
-                    </property>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="QPushButton" name="renamePushButton">
-                    <property name="text">
-                      <string>Ren&amp;ame</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+A</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Rename the highlighted profile.</string>
-                    </property>
-                  </widget>
-                </item>
-              </layout>
-            </widget>
-          </item>
-          <item>
-            <widget class="Q3GroupBox" name="startupProfileGroupBox">
-              <property name="title">
-                <string>Startup profile</string>
-              </property>
-              <layout class="QVBoxLayout">
-                <item>
-                  <widget class="QPushButton" name="defaultPushButton">
-                    <property name="text">
-                      <string>&amp;Set as default</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+S</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Make the selected profiles the default profiles. The next time you start Twinkle, these profiles will be automatically run.</string>
-                    </property>
-                  </widget>
-                </item>
-                <item>
-                  <widget class="QPushButton" name="runPushButton">
-                    <property name="text">
-                      <string>&amp;Run</string>
-                    </property>
-                    <property name="shortcut">
-                      <string>Alt+R</string>
-                    </property>
-                    <property name="default">
-                      <bool>true</bool>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                      <string>Run Twinkle with the selected profiles.</string>
-                    </property>
-                  </widget>
-                </item>
-              </layout>
-            </widget>
-          </item>
-          <item>
-            <widget class="QPushButton" name="sysPushButton">
-              <property name="text">
-                <string>S&amp;ystem settings</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+Y</string>
-              </property>
-              <property name="whatsThis" stdset="0">
-                <string>Edit the system settings.</string>
-              </property>
-            </widget>
-          </item>
-          <item>
-            <widget class="QPushButton" name="cancelPushButton">
-              <property name="text">
-                <string>&amp;Cancel</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+C</string>
-              </property>
-            </widget>
-          </item>
-        </layout>
-      </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="diamondcardPushButton">
+          <property name="whatsThis">
+           <string>Create a profile for a Diamondcard account. With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages.</string>
+          </property>
+          <property name="text">
+           <string>Dia&amp;mondcard</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+M</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="modifyProfileGroupBox">
+       <property name="title">
+        <string>Modify profile</string>
+       </property>
+       <layout class="QVBoxLayout">
+        <item>
+         <widget class="QPushButton" name="editPushButton">
+          <property name="whatsThis">
+           <string>Edit the highlighted profile.</string>
+          </property>
+          <property name="text">
+           <string>&amp;Edit</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+E</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deletePushButton">
+          <property name="whatsThis">
+           <string>Delete the highlighted profile.</string>
+          </property>
+          <property name="text">
+           <string>&amp;Delete</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+D</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="renamePushButton">
+          <property name="whatsThis">
+           <string>Rename the highlighted profile.</string>
+          </property>
+          <property name="text">
+           <string>Ren&amp;ame</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+A</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="startupProfileGroupBox">
+       <property name="title">
+        <string>Startup profile</string>
+       </property>
+       <layout class="QVBoxLayout">
+        <item>
+         <widget class="QPushButton" name="defaultPushButton">
+          <property name="whatsThis">
+           <string>Make the selected profiles the default profiles. The next time you start Twinkle, these profiles will be automatically run.</string>
+          </property>
+          <property name="text">
+           <string>&amp;Set as default</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+S</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="runPushButton">
+          <property name="whatsThis">
+           <string>Run Twinkle with the selected profiles.</string>
+          </property>
+          <property name="text">
+           <string>&amp;Run</string>
+          </property>
+          <property name="shortcut">
+           <string>Alt+R</string>
+          </property>
+          <property name="default">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sysPushButton">
+       <property name="whatsThis">
+        <string>Edit the system settings.</string>
+       </property>
+       <property name="text">
+        <string>S&amp;ystem settings</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+Y</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelPushButton">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
+       </property>
+      </widget>
+     </item>
     </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction></pixmapfunction>
-  <tabstops>
-    <tabstop>profileListView</tabstop>
-    <tabstop>newPushButton</tabstop>
-    <tabstop>wizardPushButton</tabstop>
-    <tabstop>diamondcardPushButton</tabstop>
-    <tabstop>editPushButton</tabstop>
-    <tabstop>deletePushButton</tabstop>
-    <tabstop>renamePushButton</tabstop>
-    <tabstop>defaultPushButton</tabstop>
-    <tabstop>runPushButton</tabstop>
-    <tabstop>sysPushButton</tabstop>
-    <tabstop>cancelPushButton</tabstop>
-  </tabstops>
-  <includes>
-    <include location="global">list</include>
-    <include location="global">string</include>
-    <include location="local">phone.h</include>
-    <include location="local">q3mainwindow.h</include>
-  </includes>
-  <connections>
-    <connection>
-      <sender>cancelPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>reject()</slot>
-    </connection>
-    <connection>
-      <sender>runPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>runProfile()</slot>
-    </connection>
-    <connection>
-      <sender>editPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>editProfile()</slot>
-    </connection>
-    <connection>
-      <sender>newPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>newProfile()</slot>
-    </connection>
-    <connection>
-      <sender>deletePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>deleteProfile()</slot>
-    </connection>
-    <connection>
-      <sender>renamePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>renameProfile()</slot>
-    </connection>
-    <connection>
-      <sender>wizardPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>wizardProfile()</slot>
-    </connection>
-    <connection>
-      <sender>defaultPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>setAsDefault()</slot>
-    </connection>
-    <connection>
-      <sender>sysPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>sysSettings()</slot>
-    </connection>
-    <connection>
-      <sender>profileListView</sender>
-      <signal>doubleClicked(Q3ListViewItem*)</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>toggleItem(Q3ListViewItem*)</slot>
-    </connection>
-    <connection>
-      <sender>diamondcardPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SelectProfileForm</receiver>
-      <slot>diamondcardProfile()</slot>
-    </connection>
-  </connections>
+   </item>
+   <item row="1" column="0">
+    <widget class="QListWidget" name="profileListView">
+     <property name="whatsThis">
+      <string>Tick the check boxes of the user profiles that you want to run and press run.</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>profileListView</tabstop>
+  <tabstop>newPushButton</tabstop>
+  <tabstop>wizardPushButton</tabstop>
+  <tabstop>diamondcardPushButton</tabstop>
+  <tabstop>editPushButton</tabstop>
+  <tabstop>deletePushButton</tabstop>
+  <tabstop>renamePushButton</tabstop>
+  <tabstop>defaultPushButton</tabstop>
+  <tabstop>runPushButton</tabstop>
+  <tabstop>sysPushButton</tabstop>
+  <tabstop>cancelPushButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="global">list</include>
+  <include location="global">string</include>
+  <include location="local">phone.h</include>
+  <include location="local">q3mainwindow.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>501</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>runPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>runProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>435</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>editProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>newPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>newProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deletePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>deleteProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>318</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>renamePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>renameProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wizardPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>wizardProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>defaultPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>setAsDefault()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>406</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sysPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>sysSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>472</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>diamondcardPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>diamondcardProfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>profileListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>SelectProfileForm</receiver>
+   <slot>toggleItem(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>433</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>toggleItem(QModelIndex)</slot>
+ </slots>
 </ui>

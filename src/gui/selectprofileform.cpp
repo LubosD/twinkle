@@ -29,7 +29,7 @@
 #include "audits/memman.h"
 #include "wizardform.h"
 #include "syssettingsform.h"
-#include <Q3ListView>
+#include <QListWidgetItem>
 #include "service.h"
 #include "presence/buddy.h"
 #include "diamondcardprofileform.h"
@@ -140,7 +140,7 @@ int SelectProfileForm::execForm()
 			return QDialog::Rejected;
 		}
 		
-		if (profileListView->childCount() == 0) {
+        if (profileListView->count() == 0) {
 			// No profile has been created.
 			return QDialog::Rejected;
 		}
@@ -193,25 +193,26 @@ void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
 	
 	// Initialize profile list view
 	fillProfileListView(profiles);
-	Q3ListViewItemIterator j(profileListView);
-	while (j.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
-		QString profile = item->text();
+
+    for (int i = 0; i < profileListView->count(); i++)
+    {
+        QListWidgetItem* item = profileListView->item(i);
+        QString profile = item->text();
 		
 		// Set pixmap of default profile
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(),  l.end(), profile.ascii()) != l.end())
 		{
-			item->setPixmap(0, QPixmap(":/icons/images/twinkle16.png"));
+            item->setData(Qt::DecorationRole, QPixmap(":/icons/images/twinkle16.png"));
 			defaultSet = true;
 		}
 		
 		// Tick check box of active profile
-		if (phone->ref_user_profile(profile.ascii())) {
-			item->setOn(true);
-		}
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
 
-		j++;
+		if (phone->ref_user_profile(profile.ascii())) {
+            item->setCheckState(Qt::Checked);
+		}
 	}	
 	
 	sysPushButton->hide();
@@ -223,13 +224,13 @@ void SelectProfileForm::showForm(Q3MainWindow *_mainWindow)
 void SelectProfileForm::runProfile()
 {
 	selectedProfiles.clear();
-	Q3ListViewItemIterator i(profileListView, Q3ListViewItemIterator::Checked);
-	while (i.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)i.current();
-		QString profile =item->text();
+
+    for (int i = 0; i < profileListView->count(); i++)
+    {
+        QListWidgetItem* item = profileListView->item(i);
+        QString profile = item->text();
 		profile.append(USER_FILE_EXT);
 		selectedProfiles.push_back(profile.ascii());
-		i++;
 	}
 	
 	if (selectedProfiles.empty()) {
@@ -343,16 +344,17 @@ void SelectProfileForm::newProfileCreated()
 {
 	// New profile created
 	// Add the new profile to the profile list box
-	Q3CheckListItem *item = new Q3CheckListItem(profileListView,
-				user_config->get_profile_name().c_str(), 
-				Q3CheckListItem::CheckBox);
-	item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
+    QListWidgetItem* item = new QListWidgetItem(QPixmap(":/icons/images/penguin-small.png"),
+                                                QString::fromStdString(user_config->get_profile_name()),
+                                                profileListView);
+
+    item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
 		
 	// Make the new profile the selected profile
 	// Do not change this without changing the exec method.
 	// When there are no profiles, the exec methods relies on the
 	// fact that afer creation of the profile it is selected.
-	profileListView->setSelected(item, true);
+    profileListView->setCurrentItem(item);
 		
 	// Enable buttons that act on a profile
 	editPushButton->setEnabled(true);
@@ -418,7 +420,7 @@ void SelectProfileForm::deleteProfile()
 			Q3CheckListItem *item = (Q3CheckListItem *)profileListView->
 					       currentItem();
 			delete item;
-			if (profileListView->childCount() == 0) {
+            if (profileListView->count() == 0) {
 				// There are no profiles anymore
 				// Disable buttons that act on a profile
 				editPushButton->setEnabled(false);
@@ -427,8 +429,7 @@ void SelectProfileForm::deleteProfile()
 				defaultPushButton->setEnabled(false);
 				runPushButton->setEnabled(false);
 			} else {
-				profileListView->setSelected(profileListView->
-						firstChild(), true);
+                profileListView->setCurrentItem(profileListView->item(0));
 			}
 		}
 	}
@@ -541,22 +542,23 @@ void SelectProfileForm::setAsDefault()
 	defaultSet = true;
 	
 	// Restore all pixmaps
-	Q3ListViewItemIterator i(profileListView);
-	while (i.current()) {
-		i.current()->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
-		i++;
+    // Set pixmap of the default profiles.
+    // Set default profiles in system settings.
+    list<string> l;
+    for (int i = 0; i < profileListView->count(); i++) {
+        QListWidgetItem* item = profileListView->item(i);
+
+        if (item->checkState() == Qt::Checked)
+        {
+            item->setData(Qt::DecorationRole, QPixmap(":/icons/images/twinkle16.png"));
+            l.push_back(item->text().ascii());
+        }
+        else
+        {
+            item->setData(Qt::DecorationRole, QPixmap(":/icons/images/penguin-small.png"));
+        }
 	}
-	
-	// Set pixmap of the default profiles.
-	// Set default profiles in system settings.
-	list<string> l;
-	Q3ListViewItemIterator j(profileListView, Q3ListViewItemIterator::Checked);
-	while (j.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)j.current();
-		item->setPixmap(0, QPixmap(":/icons/images/twinkle16.png"));
-		l.push_back(item->text().ascii());
-		j++;
-	}
+
 	sys_config->set_start_user_profiles(l);
 	
 	// Write default to system settings
@@ -666,18 +668,23 @@ void SelectProfileForm::fillProfileListView(const QStringList &profiles)
 		// Strip off the user file extension
 		QString profile = *i;
 		profile.truncate(profile.length() - strlen(USER_FILE_EXT));
-		Q3CheckListItem *item = new Q3CheckListItem(
-				profileListView, profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
+
+        QListWidgetItem* item = new QListWidgetItem(QPixmap(":/icons/images/penguin-small.png"), profile, profileListView);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(Qt::Unchecked);
 	}
 	
 	// Highlight the first profile
-	profileListView->setSelected(profileListView->firstChild(), true);
+    profileListView->setCurrentItem(profileListView->item(0));
 }
 
-void SelectProfileForm::toggleItem(Q3ListViewItem *item)
+void SelectProfileForm::toggleItem(QModelIndex index)
 {
-	Q3CheckListItem *checkItem = (Q3CheckListItem *)item;
-	checkItem->setOn(!checkItem->isOn());
+    QListWidgetItem* item = profileListView->item(index.row());
+    Qt::CheckState state = item->checkState();
+    if (state == Qt::Checked)
+        item->setCheckState(Qt::Unchecked);
+    else
+        item->setCheckState(Qt::Checked);
 }
 

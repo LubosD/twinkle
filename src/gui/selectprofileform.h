@@ -6,7 +6,7 @@ extern t_phone *phone;
 #include <list>
 #include <string>
 #include "phone.h"
-#include <Qt3Support/Q3MainWindow>
+#include <QDialog>
 #include "ui_selectprofileform.h"
 
 class SelectProfileForm : public QDialog, public Ui::SelectProfileForm
@@ -38,7 +38,7 @@ public slots:
 	virtual void diamondcardProfile( bool exec_mode );
 	virtual void sysSettings();
 	virtual void fillProfileListView( const QStringList & profiles );
-	virtual void toggleItem( Q3ListViewItem * item );
+    virtual void toggleItem( QModelIndex item );
 
 signals:
 	void selection(const list<string> &);
