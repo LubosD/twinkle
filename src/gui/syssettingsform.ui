@@ -1,321 +1,317 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>SysSettingsForm</class>
-  <widget class="QDialog" name="SysSettingsForm">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>765</width>
-        <height>624</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle - System Settings</string>
-    </property>
-    <layout class="QGridLayout">
-      <item row="0" column="0">
-        <widget class="Q3ListBox" name="categoryListBox">
-          <property name="sizePolicy">
-            <sizepolicy>
-              <hsizetype>1</hsizetype>
-              <vsizetype>7</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-            </sizepolicy>
-          </property>
-          <property name="whatsThis" stdset="0">
-            <string>Select a category for which you want to see or modify the settings.</string>
-          </property>
-          <item>
-            <property name="text">
-              <string>General</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/twinkle32.png</pixmap>
-            </property>
-          </item>
-          <item>
-            <property name="text">
-              <string>Audio</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/kmix.png</pixmap>
-            </property>
-          </item>
-          <item>
-            <property name="text">
-              <string>Ring tones</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/knotify.png</pixmap>
-            </property>
-          </item>
-          <item>
-            <property name="text">
-              <string>Address book</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/kontact_contacts32.png</pixmap>
-            </property>
-          </item>
-          <item>
-            <property name="text">
-              <string>Network</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/network.png</pixmap>
-            </property>
-          </item>
-          <item>
-            <property name="text">
-              <string>Log</string>
-            </property>
-            <property name="pixmap">
-              <pixmap>:/icons/images/log.png</pixmap>
-            </property>
-          </item>
+<ui version="4.0">
+ <class>SysSettingsForm</class>
+ <widget class="QDialog" name="SysSettingsForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>757</width>
+    <height>616</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle - System Settings</string>
+  </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <widget class="QListWidget" name="categoryListBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="whatsThis">
+      <string>Select a category for which you want to see or modify the settings.</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="currentRow">
+      <number>0</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>General</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/twinkle32.png</normaloff>:/icons/images/twinkle32.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Audio</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/kmix.png</normaloff>:/icons/images/kmix.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ring tones</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/knotify.png</normaloff>:/icons/images/knotify.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Address book</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/kontact_contacts32.png</normaloff>:/icons/images/kontact_contacts32.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Network</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/network.png</normaloff>:/icons/images/network.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Log</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/images/log.png</normaloff>:/icons/images/log.png</iconset>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QHBoxLayout">
+     <item>
+      <spacer name="spacer98">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>321</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okPushButton">
+       <property name="whatsThis">
+        <string>Accept and save your changes.</string>
+       </property>
+       <property name="text">
+        <string>&amp;OK</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+O</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelPushButton">
+       <property name="whatsThis">
+        <string>Undo all your changes and close the window.</string>
+       </property>
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1">
+    <widget class="QStackedWidget" name="settingsWidgetStack">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="pageAudio">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="audioTitleTextLabel">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>Audio</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
         </widget>
-      </item>
-      <item row="1" column="0" rowspan="1" colspan="2">
-        <layout class="QHBoxLayout">
-          <item>
-            <spacer name="spacer98">
-              <property name="sizeHint">
-                <size>
-                  <width>321</width>
-                  <height>20</height>
-                </size>
-              </property>
-              <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-              </property>
-            </spacer>
-          </item>
-          <item>
-            <widget class="QPushButton" name="okPushButton">
-              <property name="text">
-                <string>&amp;OK</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+O</string>
-              </property>
-              <property name="default">
-                <bool>true</bool>
-              </property>
-              <property name="whatsThis" stdset="0">
-                <string>Accept and save your changes.</string>
-              </property>
-            </widget>
-          </item>
-          <item>
-            <widget class="QPushButton" name="cancelPushButton">
-              <property name="text">
-                <string>&amp;Cancel</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+C</string>
-              </property>
-              <property name="whatsThis" stdset="0">
-                <string>Undo all your changes and close the window.</string>
-              </property>
-            </widget>
-          </item>
-        </layout>
-      </item>
-      <item row="0" column="1">
-        <widget class="Q3WidgetStack" name="settingsWidgetStack">
-          <property name="sizePolicy">
-            <sizepolicy>
-              <hsizetype>7</hsizetype>
-              <vsizetype>5</vsizetype>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="soundcardGroupBox">
+         <property name="title">
+          <string>Sound Card</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="1">
+           <widget class="QComboBox" name="ringtoneComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
-            </sizepolicy>
-          </property>
-          <property name="frameShape">
-            <enum>Box</enum>
-          </property>
-          <widget class="QWidget" name="pageAudio">
-            <attribute name="id">
-              <number>0</number>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="QLabel" name="audioTitleTextLabel">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>Audio</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3GroupBox" name="soundcardGroupBox">
-                  <property name="title">
-                    <string>Sound Card</string>
-                  </property>
-                  <layout class="QGridLayout">
-                    <item row="0" column="1">
-                      <widget class="QComboBox" name="ringtoneComboBox">
-                        <property name="sizePolicy">
-                          <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                          </sizepolicy>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Select the sound card for playing the ring tone for incoming calls.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="4" column="1">
-                      <widget class="QComboBox" name="micComboBox">
-                        <property name="sizePolicy">
-                          <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                          </sizepolicy>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Select the sound card to which your microphone is connected.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="2" column="1">
-                      <widget class="QComboBox" name="speakerComboBox">
-                        <property name="sizePolicy">
-                          <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                          </sizepolicy>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Select the sound card for the speaker function during a call.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="2" column="0">
-                      <widget class="QLabel" name="speakerTextLabel">
-                        <property name="text">
-                          <string>&amp;Speaker:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>speakerComboBox</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="0" column="0">
-                      <widget class="QLabel" name="ringtoneTextLabel">
-                        <property name="text">
-                          <string>&amp;Ring tone:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>ringtoneComboBox</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="1" column="0">
-                      <widget class="QLabel" name="otherRingtoneTextLabel">
-                        <property name="text">
-                          <string>Other device:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>otherRingtoneLineEdit</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="3" column="0">
-                      <widget class="QLabel" name="otherSpeakerTextLabel">
-                        <property name="text">
-                          <string>Other device:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>otherSpeakerLineEdit</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="5" column="0">
-                      <widget class="QLabel" name="otherMicTextLabel">
-                        <property name="text">
-                          <string>Other device:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>otherMicLineEdit</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="4" column="0">
-                      <widget class="QLabel" name="micTextLabel">
-                        <property name="text">
-                          <string>&amp;Microphone:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                          <cstring>micComboBox</cstring>
-                        </property>
-                        <property name="wordWrap">
-                          <bool>false</bool>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="1" column="1">
-                      <widget class="QLineEdit" name="otherRingtoneLineEdit"/>
-                    </item>
-                    <item row="5" column="1">
-                      <widget class="QLineEdit" name="otherMicLineEdit"/>
-                    </item>
-                    <item row="3" column="1">
-                      <widget class="QLineEdit" name="otherSpeakerLineEdit"/>
-                    </item>
-                    <item row="7" column="0" rowspan="1" colspan="2">
-                      <widget class="QCheckBox" name="validateAudioCheckBox">
-                        <property name="text">
-                          <string>&amp;Validate devices before usage</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+V</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>&lt;p&gt;
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Select the sound card for playing the ring tone for incoming calls.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="micComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Select the sound card to which your microphone is connected.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="speakerComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Select the sound card for the speaker function during a call.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="speakerTextLabel">
+            <property name="text">
+             <string>&amp;Speaker:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>speakerComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="ringtoneTextLabel">
+            <property name="text">
+             <string>&amp;Ring tone:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>ringtoneComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="otherRingtoneTextLabel">
+            <property name="text">
+             <string>Other device:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>otherRingtoneLineEdit</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="otherSpeakerTextLabel">
+            <property name="text">
+             <string>Other device:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>otherSpeakerLineEdit</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="otherMicTextLabel">
+            <property name="text">
+             <string>Other device:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>otherMicLineEdit</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="micTextLabel">
+            <property name="text">
+             <string>&amp;Microphone:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+            <property name="buddy">
+             <cstring>micComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="otherRingtoneLineEdit"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="otherMicLineEdit"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="otherSpeakerLineEdit"/>
+          </item>
+          <item row="7" column="0" colspan="2">
+           <widget class="QCheckBox" name="validateAudioCheckBox">
+            <property name="whatsThis">
+             <string>&lt;p&gt;
 Twinkle validates the audio devices before usage to avoid an established call without an audio channel.
 &lt;p&gt;
 On startup of Twinkle a warning is given if an audio device is inaccessible.
@@ -323,1315 +319,1539 @@ On startup of Twinkle a warning is given if an audio device is inaccessible.
 If before making a call, the microphone or speaker appears to be invalid, a warning is given and no call can be made.
 &lt;p&gt;
 If before answering a call, the microphone or speaker appears to be invalid, a warning is given and the call will not be answered.</string>
-                        </property>
-                      </widget>
-                    </item>
-                  </layout>
-                </widget>
+            </property>
+            <property name="text">
+             <string>&amp;Validate devices before usage</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+V</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="advancedSoundGroupBox">
+         <property name="title">
+          <string>Advanced</string>
+         </property>
+         <layout class="QHBoxLayout">
+          <item>
+           <layout class="QGridLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="ossFragmnetTextLabel">
+              <property name="text">
+               <string>OSS &amp;fragment size:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="buddy">
+               <cstring>ossFragmentComboBox</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="alsaPlayPeriodComboBox">
+              <property name="whatsThis">
+               <string>The ALSA play period size influences the real time behaviour of your soundcard for playing sound. If your sound frequently drops while using ALSA, you might try a different value here.</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>16</string>
+               </property>
               </item>
               <item>
-                <widget class="Q3GroupBox" name="advancedSoundGroupBox">
-                  <property name="title">
-                    <string>Advanced</string>
-                  </property>
-                  <layout class="QHBoxLayout">
-                    <item>
-                      <layout class="QGridLayout">
-                        <item row="0" column="0">
-                          <widget class="QLabel" name="ossFragmnetTextLabel">
-                            <property name="text">
-                              <string>OSS &amp;fragment size:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                              <cstring>ossFragmentComboBox</cstring>
-                            </property>
-                            <property name="wordWrap">
-                              <bool>false</bool>
-                            </property>
-                          </widget>
-                        </item>
-                        <item row="1" column="1">
-                          <widget class="QComboBox" name="alsaPlayPeriodComboBox">
-                            <property name="whatsThis" stdset="0">
-                              <string>The ALSA play period size influences the real time behaviour of your soundcard for playing sound. If your sound frequently drops while using ALSA, you might try a different value here.</string>
-                            </property>
-                            <item>
-                              <property name="text">
-                                <string>16</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>32</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>64</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>128</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>256</string>
-                              </property>
-                            </item>
-                          </widget>
-                        </item>
-                        <item row="1" column="0">
-                          <widget class="QLabel" name="alsaPlayPeriodTextLabel">
-                            <property name="text">
-                              <string>ALSA &amp;play period size:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                              <cstring>alsaPlayPeriodComboBox</cstring>
-                            </property>
-                            <property name="wordWrap">
-                              <bool>false</bool>
-                            </property>
-                          </widget>
-                        </item>
-                        <item row="2" column="0">
-                          <widget class="QLabel" name="alsaCapturePeriosTextLabel">
-                            <property name="text">
-                              <string>&amp;ALSA capture period size:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                              <cstring>alsaCapturePeriodComboBox</cstring>
-                            </property>
-                            <property name="wordWrap">
-                              <bool>false</bool>
-                            </property>
-                          </widget>
-                        </item>
-                        <item row="0" column="1">
-                          <widget class="QComboBox" name="ossFragmentComboBox">
-                            <property name="whatsThis" stdset="0">
-                              <string>The OSS fragment size influences the real time behaviour of your soundcard. If your sound frequently drops while using OSS, you might try a different value here.</string>
-                            </property>
-                            <item>
-                              <property name="text">
-                                <string>16</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>32</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>64</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>128</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>256</string>
-                              </property>
-                            </item>
-                          </widget>
-                        </item>
-                        <item row="2" column="1">
-                          <widget class="QComboBox" name="alsaCapturePeriodComboBox">
-                            <property name="whatsThis" stdset="0">
-                              <string>The ALSA capture period size influences the real time behaviour of your soundcard for capturing sound. If the other side of your call complains about frequently dropping sound, you might try a different value here.</string>
-                            </property>
-                            <item>
-                              <property name="text">
-                                <string>16</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>32</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>64</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>128</string>
-                              </property>
-                            </item>
-                            <item>
-                              <property name="text">
-                                <string>256</string>
-                              </property>
-                            </item>
-                          </widget>
-                        </item>
-                      </layout>
-                    </item>
-                    <item>
-                      <spacer name="spacer27">
-                        <property name="sizeHint">
-                          <size>
-                            <width>121</width>
-                            <height>20</height>
-                          </size>
-                        </property>
-                        <property name="sizeType">
-                          <enum>QSizePolicy::Expanding</enum>
-                        </property>
-                        <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                        </property>
-                      </spacer>
-                    </item>
-                  </layout>
-                </widget>
+               <property name="text">
+                <string>32</string>
+               </property>
               </item>
               <item>
-                <spacer name="spacer97">
-                  <property name="sizeHint">
-                    <size>
-                      <width>20</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                  </property>
-                </spacer>
+               <property name="text">
+                <string>64</string>
+               </property>
               </item>
-            </layout>
+              <item>
+               <property name="text">
+                <string>128</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>256</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="alsaPlayPeriodTextLabel">
+              <property name="text">
+               <string>ALSA &amp;play period size:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="buddy">
+               <cstring>alsaPlayPeriodComboBox</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="alsaCapturePeriosTextLabel">
+              <property name="text">
+               <string>&amp;ALSA capture period size:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="buddy">
+               <cstring>alsaCapturePeriodComboBox</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="ossFragmentComboBox">
+              <property name="whatsThis">
+               <string>The OSS fragment size influences the real time behaviour of your soundcard. If your sound frequently drops while using OSS, you might try a different value here.</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>16</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>32</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>64</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>128</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>256</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="alsaCapturePeriodComboBox">
+              <property name="whatsThis">
+               <string>The ALSA capture period size influences the real time behaviour of your soundcard for capturing sound. If the other side of your call complains about frequently dropping sound, you might try a different value here.</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>16</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>32</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>64</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>128</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>256</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="spacer27">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>121</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer97">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageLog">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="logTitleTextLabel">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>Log</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QLabel" name="logMaxSizeTextLabel">
+           <property name="text">
+            <string>&amp;Max log size:</string>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+           <property name="buddy">
+            <cstring>logMaxSizeSpinBox</cstring>
+           </property>
           </widget>
-          <widget class="QWidget" name="pageLog">
-            <attribute name="id">
-              <number>1</number>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="QLabel" name="logTitleTextLabel">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>Log</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QLabel" name="logMaxSizeTextLabel">
-                      <property name="text">
-                        <string>&amp;Max log size:</string>
-                      </property>
-                      <property name="buddy" stdset="0">
-                        <cstring>logMaxSizeSpinBox</cstring>
-                      </property>
-                      <property name="wordWrap">
-                        <bool>false</bool>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QSpinBox" name="logMaxSizeSpinBox">
-                      <property name="maximum">
-                        <number>100</number>
-                      </property>
-                      <property name="minimum">
-                        <number>1</number>
-                      </property>
-                      <property name="singleStep">
-                        <number>5</number>
-                      </property>
-                      <property name="value">
-                        <number>5</number>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>The maximum size of a log file in MB. When the log file exceeds this size, a backup of the log file is created and the current log file is zapped. Only one backup log file will be kept.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QLabel" name="logSizeMbTextLabel">
-                      <property name="text">
-                        <string>MB</string>
-                      </property>
-                      <property name="wordWrap">
-                        <bool>false</bool>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer7">
-                      <property name="sizeHint">
-                        <size>
-                          <width>211</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="logDebugCheckBox">
-                  <property name="text">
-                    <string>Log &amp;debug reports</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+D</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Indicates if reports marked as &quot;debug&quot; will be logged.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="logSipCheckBox">
-                  <property name="text">
-                    <string>Log &amp;SIP reports</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+S</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Indicates if SIP messages will be logged.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="logStunCheckBox">
-                  <property name="text">
-                    <string>Log S&amp;TUN reports</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+T</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Indicates if STUN messages will be logged.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="logMemoryCheckBox">
-                  <property name="text">
-                    <string>Log m&amp;emory reports</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+E</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Indicates if reports concerning memory management will be logged.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="spacer6">
-                  <property name="sizeHint">
-                    <size>
-                      <width>20</width>
-                      <height>61</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                  </property>
-                </spacer>
-              </item>
-            </layout>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="logMaxSizeSpinBox">
+           <property name="whatsThis">
+            <string>The maximum size of a log file in MB. When the log file exceeds this size, a backup of the log file is created and the current log file is zapped. Only one backup log file will be kept.</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="singleStep">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <number>5</number>
+           </property>
           </widget>
-          <widget class="QWidget" name="pageGeneral">
-            <attribute name="id">
-              <number>2</number>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="QLabel" name="generalTitleTextLabel">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>General</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3GroupBox" name="systrayGroupBox">
-                  <property name="title">
-                    <string>System tray</string>
-                  </property>
-                  <layout class="QVBoxLayout">
-                    <item>
-                      <widget class="QCheckBox" name="guiUseSystrayCheckBox">
-                        <property name="text">
-                          <string>Create &amp;system tray icon on startup</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+S</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Enable this option if you want a system tray icon for Twinkle. The system tray icon is created when you start Twinkle.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QCheckBox" name="guiHideCheckBox">
-                        <property name="text">
-                          <string>&amp;Hide in system tray when closing main window</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+H</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Enable this option if you want Twinkle to hide in the system tray when you close the main window.</string>
-                        </property>
-                      </widget>
-                    </item>
-                  </layout>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3GroupBox" name="startupGroupBox">
-                  <property name="title">
-                    <string>Startup</string>
-                  </property>
-                  <layout class="QGridLayout">
-                    <item row="0" column="0" rowspan="1" colspan="2">
-                      <widget class="QCheckBox" name="startHiddenCheckBox">
-                        <property name="text">
-                          <string>S&amp;tartup hidden in system tray</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+T</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Next time you start Twinkle it will immediately hide in the system tray. This works best when you also select a default user profile.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item row="1" column="0" rowspan="1" colspan="2">
-                      <widget class="Q3ListView" name="profileListView">
-                        <property name="selectionMode">
-                          <enum>Q3ListView::NoSelection</enum>
-                        </property>
-                        <property name="resizeMode">
-                          <enum>Q3ListView::LastColumn</enum>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</string>
-                        </property>
-                        <column>
-                          <property name="text">
-                            <string>Default user profiles</string>
-                          </property>
-                          <property name="clickable">
-                            <bool>true</bool>
-                          </property>
-                          <property name="resizable">
-                            <bool>true</bool>
-                          </property>
-                        </column>
-                      </widget>
-                    </item>
-                  </layout>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3GroupBox" name="srvGroupBox">
-                  <property name="title">
-                    <string>Services</string>
-                  </property>
-                  <layout class="QVBoxLayout">
-                    <item>
-                      <widget class="QCheckBox" name="callWaitingCheckBox">
-                        <property name="text">
-                          <string>Call &amp;waiting</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+W</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>With call waiting an incoming call is accepted when only one line is busy. When you disable call waiting an incoming call will be rejected when one line is busy.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QCheckBox" name="hangupBothCheckBox">
-                        <property name="text">
-                          <string>Hang up &amp;both lines when ending a 3-way conference call.</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+B</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Hang up both lines when you press bye to end a 3-way conference call. When this option is disabled, only the active line will be hung up and you can continue talking with the party on the other line.</string>
-                        </property>
-                      </widget>
-                    </item>
-                  </layout>
-                </widget>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QLabel" name="histSizeTextLabel">
-                      <property name="text">
-                        <string>&amp;Maximum calls in call history:</string>
-                      </property>
-                      <property name="buddy" stdset="0">
-                        <cstring>histSizeSpinBox</cstring>
-                      </property>
-                      <property name="wordWrap">
-                        <bool>false</bool>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QSpinBox" name="histSizeSpinBox">
-                      <property name="maximum">
-                        <number>1000</number>
-                      </property>
-                      <property name="singleStep">
-                        <number>10</number>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>The maximum number of calls that will be kept in the call history.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer73">
-                      <property name="sizeHint">
-                        <size>
-                          <width>191</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QCheckBox" name="autoShowCheckBox">
-                      <property name="text">
-                        <string>&amp;Auto show main window on incoming call after</string>
-                      </property>
-                      <property name="shortcut">
-                        <string>Alt+A</string>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>When the main window is hidden, it will be automatically shown on an incoming call after the number of specified seconds.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QSpinBox" name="autoShowTimeoutSpinBox">
-                      <property name="maximum">
-                        <number>60</number>
-                      </property>
-                      <property name="whatsThis" stdset="0">
-                        <string>Number of seconds after which the main window should be shown.</string>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QLabel" name="secAutoShowTextLabel">
-                      <property name="text">
-                        <string>secs</string>
-                      </property>
-                      <property name="wordWrap">
-                        <bool>false</bool>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <spacer name="spacer14">
-                      <property name="sizeHint">
-                        <size>
-                          <width>29</width>
-                          <height>20</height>
-                        </size>
-                      </property>
-                      <property name="sizeType">
-                        <enum>QSizePolicy::Expanding</enum>
-                      </property>
-                      <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                      </property>
-                    </spacer>
-                  </item>
-                </layout>
-              </item>
-              <item>
-                <layout class="QHBoxLayout">
-                  <item>
-                    <widget class="QLabel" name="browserTextLabel">
-                      <property name="text">
-                        <string>W&amp;eb browser command:</string>
-                      </property>
-                      <property name="buddy" stdset="0">
-                        <cstring>browserLineEdit</cstring>
-                      </property>
-                      <property name="wordWrap">
-                        <bool>false</bool>
-                      </property>
-                    </widget>
-                  </item>
-                  <item>
-                    <widget class="QLineEdit" name="browserLineEdit">
-                      <property name="whatsThis" stdset="0">
-                        <string>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</string>
-                      </property>
-                    </widget>
-                  </item>
-                </layout>
-              </item>
-            </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="logSizeMbTextLabel">
+           <property name="text">
+            <string>MB</string>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
           </widget>
-          <widget class="QWidget" name="pageNetwork">
-            <attribute name="id">
-              <number>3</number>
-            </attribute>
-            <layout class="QGridLayout">
-              <item row="0" column="0" rowspan="1" colspan="4">
-                <widget class="QLabel" name="networkTitleTextLabel">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>Network</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item row="5" column="3">
-                <spacer name="spacer9">
-                  <property name="sizeHint">
-                    <size>
-                      <width>20</width>
-                      <height>230</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                  </property>
-                </spacer>
-              </item>
-              <item row="2" column="2" rowspan="1" colspan="2">
-                <spacer name="spacer8">
-                  <property name="sizeHint">
-                    <size>
-                      <width>314</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                </spacer>
-              </item>
-              <item row="3" column="3">
-                <widget class="QLineEdit" name="maxUdpSizeLineEdit">
-                  <property name="whatsThis" stdset="0">
-                    <string>Maximum allowed size (0-65535) in bytes of an incoming SIP message over UDP.</string>
-                  </property>
-                </widget>
-              </item>
-              <item row="1" column="0">
-                <widget class="QLabel" name="sipUdpPortTextLabel">
-                  <property name="text">
-                    <string>&amp;SIP port:</string>
-                  </property>
-                  <property name="buddy" stdset="0">
-                    <cstring>sipUdpPortSpinBox</cstring>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item row="2" column="0">
-                <widget class="QLabel" name="rtpPortTextLabel">
-                  <property name="text">
-                    <string>&amp;RTP port:</string>
-                  </property>
-                  <property name="buddy" stdset="0">
-                    <cstring>rtpPortSpinBox</cstring>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item row="4" column="0" rowspan="1" colspan="3">
-                <widget class="QLabel" name="maxTcpSizeTextLabel">
-                  <property name="text">
-                    <string>Max. SIP message size (&amp;TCP):</string>
-                  </property>
-                  <property name="buddy" stdset="0">
-                    <cstring>maxTcpSizeLineEdit</cstring>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item row="1" column="2" rowspan="1" colspan="2">
-                <spacer name="spacer7_2">
-                  <property name="sizeHint">
-                    <size>
-                      <width>314</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                  </property>
-                </spacer>
-              </item>
-              <item row="1" column="1">
-                <widget class="QSpinBox" name="sipUdpPortSpinBox">
-                  <property name="maximum">
-                    <number>65535</number>
-                  </property>
-                  <property name="minimum">
-                    <number>1025</number>
-                  </property>
-                  <property name="value">
-                    <number>5060</number>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>The UDP/TCP port used for sending and receiving SIP messages.</string>
-                  </property>
-                </widget>
-              </item>
-              <item row="3" column="0" rowspan="1" colspan="3">
-                <widget class="QLabel" name="maxUdpSizeTextLabel">
-                  <property name="text">
-                    <string>Max. SIP message size (&amp;UDP):</string>
-                  </property>
-                  <property name="buddy" stdset="0">
-                    <cstring>maxUdpSizeLineEdit</cstring>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item row="4" column="3">
-                <widget class="QLineEdit" name="maxTcpSizeLineEdit">
-                  <property name="whatsThis" stdset="0">
-                    <string>Maximum allowed size (0-4294967295) in bytes of an incoming SIP message over TCP.</string>
-                  </property>
-                </widget>
-              </item>
-              <item row="2" column="1">
-                <widget class="QSpinBox" name="rtpPortSpinBox">
-                  <property name="maximum">
-                    <number>65535</number>
-                  </property>
-                  <property name="minimum">
-                    <number>1025</number>
-                  </property>
-                  <property name="singleStep">
-                    <number>2</number>
-                  </property>
-                  <property name="value">
-                    <number>8000</number>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>The UDP port used for sending and receiving RTP for the first line. The UDP port for the second line is 2 higher. E.g. if port 8000 is used for the first line, then the second line uses port 8002. When you use call transfer then the next even port (eg. 8004) is also used.</string>
-                  </property>
-                </widget>
-              </item>
-            </layout>
+         </item>
+         <item>
+          <spacer name="spacer7">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>211</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="logDebugCheckBox">
+         <property name="whatsThis">
+          <string>Indicates if reports marked as &quot;debug&quot; will be logged.</string>
+         </property>
+         <property name="text">
+          <string>Log &amp;debug reports</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+D</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="logSipCheckBox">
+         <property name="whatsThis">
+          <string>Indicates if SIP messages will be logged.</string>
+         </property>
+         <property name="text">
+          <string>Log &amp;SIP reports</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+S</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="logStunCheckBox">
+         <property name="whatsThis">
+          <string>Indicates if STUN messages will be logged.</string>
+         </property>
+         <property name="text">
+          <string>Log S&amp;TUN reports</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+T</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="logMemoryCheckBox">
+         <property name="whatsThis">
+          <string>Indicates if reports concerning memory management will be logged.</string>
+         </property>
+         <property name="text">
+          <string>Log m&amp;emory reports</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+E</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>61</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageGeneral">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="generalTitleTextLabel">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>General</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="systrayGroupBox">
+         <property name="title">
+          <string>System tray</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="guiUseSystrayCheckBox">
+            <property name="whatsThis">
+             <string>Enable this option if you want a system tray icon for Twinkle. The system tray icon is created when you start Twinkle.</string>
+            </property>
+            <property name="text">
+             <string>Create &amp;system tray icon on startup</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+S</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="guiHideCheckBox">
+            <property name="whatsThis">
+             <string>Enable this option if you want Twinkle to hide in the system tray when you close the main window.</string>
+            </property>
+            <property name="text">
+             <string>&amp;Hide in system tray when closing main window</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+H</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="startupGroupBox">
+         <property name="title">
+          <string>Startup</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="startHiddenCheckBox">
+            <property name="whatsThis">
+             <string>Next time you start Twinkle it will immediately hide in the system tray. This works best when you also select a default user profile.</string>
+            </property>
+            <property name="text">
+             <string>S&amp;tartup hidden in system tray</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+T</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QListWidget" name="profileListView">
+            <property name="whatsThis">
+             <string>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</string>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::NoSelection</enum>
+            </property>
+            <property name="resizeMode">
+             <enum>QListView::Fixed</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="srvGroupBox">
+         <property name="title">
+          <string>Services</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="callWaitingCheckBox">
+            <property name="whatsThis">
+             <string>With call waiting an incoming call is accepted when only one line is busy. When you disable call waiting an incoming call will be rejected when one line is busy.</string>
+            </property>
+            <property name="text">
+             <string>Call &amp;waiting</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+W</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="hangupBothCheckBox">
+            <property name="whatsThis">
+             <string>Hang up both lines when you press bye to end a 3-way conference call. When this option is disabled, only the active line will be hung up and you can continue talking with the party on the other line.</string>
+            </property>
+            <property name="text">
+             <string>Hang up &amp;both lines when ending a 3-way conference call.</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+B</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QLabel" name="histSizeTextLabel">
+           <property name="text">
+            <string>&amp;Maximum calls in call history:</string>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+           <property name="buddy">
+            <cstring>histSizeSpinBox</cstring>
+           </property>
           </widget>
-          <widget class="QWidget" name="pageRingtones">
-            <attribute name="id">
-              <number>4</number>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="QLabel" name="ringtonesTitleTextLabel">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>Ring tones</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3ButtonGroup" name="ringtoneButtonGroup">
-                  <property name="title">
-                    <string>Ring tone</string>
-                  </property>
-                  <layout class="QVBoxLayout">
-                    <item>
-                      <widget class="QCheckBox" name="playRingtoneCheckBox">
-                        <property name="text">
-                          <string>&amp;Play ring tone on incoming call</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+P</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Indicates if a ring tone should be played when a call comes in.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QRadioButton" name="defaultRingtoneRadioButton">
-                        <property name="text">
-                          <string>&amp;Default ring tone</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+D</string>
-                        </property>
-                        <property name="checked">
-                          <bool>true</bool>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Play the default ring tone when a call comes in.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QRadioButton" name="customRingtoneRadioButton">
-                        <property name="text">
-                          <string>C&amp;ustom ring tone</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+U</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Play a custom ring tone when a call comes in.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <layout class="QHBoxLayout">
-                        <item>
-                          <spacer name="spacer21">
-                            <property name="sizeHint">
-                              <size>
-                                <width>20</width>
-                                <height>20</height>
-                              </size>
-                            </property>
-                            <property name="sizeType">
-                              <enum>QSizePolicy::Fixed</enum>
-                            </property>
-                            <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                            </property>
-                          </spacer>
-                        </item>
-                        <item>
-                          <widget class="QLineEdit" name="ringtoneLineEdit">
-                            <property name="whatsThis" stdset="0">
-                              <string>Specify the file name of a .wav file that you want to be played as ring tone.</string>
-                            </property>
-                          </widget>
-                        </item>
-                        <item>
-                          <widget class="QToolButton" name="openRingtoneToolButton">
-                            <property name="focusPolicy">
-                              <enum>Qt::TabFocus</enum>
-                            </property>
-                            <property name="text">
-                              <string/>
-                            </property>
-                            <property name="icon">
-                              <iconset>:/icons/images/fileopen.png</iconset>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>Select ring tone file.</string>
-                            </property>
-                          </widget>
-                        </item>
-                      </layout>
-                    </item>
-                  </layout>
-                </widget>
-              </item>
-              <item>
-                <widget class="Q3ButtonGroup" name="ringbackButtonGroup">
-                  <property name="title">
-                    <string>Ring back tone</string>
-                  </property>
-                  <layout class="QVBoxLayout">
-                    <item>
-                      <widget class="QCheckBox" name="playRingbackCheckBox">
-                        <property name="text">
-                          <string>P&amp;lay ring back tone when network does not play ring back tone</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+L</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>&lt;p&gt;
+         </item>
+         <item>
+          <widget class="QSpinBox" name="histSizeSpinBox">
+           <property name="whatsThis">
+            <string>The maximum number of calls that will be kept in the call history.</string>
+           </property>
+           <property name="maximum">
+            <number>1000</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer73">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>191</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QCheckBox" name="autoShowCheckBox">
+           <property name="whatsThis">
+            <string>When the main window is hidden, it will be automatically shown on an incoming call after the number of specified seconds.</string>
+           </property>
+           <property name="text">
+            <string>&amp;Auto show main window on incoming call after</string>
+           </property>
+           <property name="shortcut">
+            <string>Alt+A</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="autoShowTimeoutSpinBox">
+           <property name="whatsThis">
+            <string>Number of seconds after which the main window should be shown.</string>
+           </property>
+           <property name="maximum">
+            <number>60</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="secAutoShowTextLabel">
+           <property name="text">
+            <string>secs</string>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="spacer14">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>29</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QLabel" name="browserTextLabel">
+           <property name="text">
+            <string>W&amp;eb browser command:</string>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+           <property name="buddy">
+            <cstring>browserLineEdit</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="browserLineEdit">
+           <property name="whatsThis">
+            <string>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageNetwork">
+      <layout class="QGridLayout">
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="networkTitleTextLabel">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>Network</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <spacer name="spacer9">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>230</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="2" colspan="2">
+        <spacer name="spacer8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>314</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="maxUdpSizeLineEdit">
+         <property name="whatsThis">
+          <string>Maximum allowed size (0-65535) in bytes of an incoming SIP message over UDP.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="sipUdpPortTextLabel">
+         <property name="text">
+          <string>&amp;SIP port:</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="buddy">
+          <cstring>sipUdpPortSpinBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="rtpPortTextLabel">
+         <property name="text">
+          <string>&amp;RTP port:</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="buddy">
+          <cstring>rtpPortSpinBox</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <widget class="QLabel" name="maxTcpSizeTextLabel">
+         <property name="text">
+          <string>Max. SIP message size (&amp;TCP):</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="buddy">
+          <cstring>maxTcpSizeLineEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <spacer name="spacer7_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>314</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sipUdpPortSpinBox">
+         <property name="whatsThis">
+          <string>The UDP/TCP port used for sending and receiving SIP messages.</string>
+         </property>
+         <property name="minimum">
+          <number>1025</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>5060</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="QLabel" name="maxUdpSizeTextLabel">
+         <property name="text">
+          <string>Max. SIP message size (&amp;UDP):</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="buddy">
+          <cstring>maxUdpSizeLineEdit</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="maxTcpSizeLineEdit">
+         <property name="whatsThis">
+          <string>Maximum allowed size (0-4294967295) in bytes of an incoming SIP message over TCP.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="rtpPortSpinBox">
+         <property name="whatsThis">
+          <string>The UDP port used for sending and receiving RTP for the first line. The UDP port for the second line is 2 higher. E.g. if port 8000 is used for the first line, then the second line uses port 8002. When you use call transfer then the next even port (eg. 8004) is also used.</string>
+         </property>
+         <property name="minimum">
+          <number>1025</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="singleStep">
+          <number>2</number>
+         </property>
+         <property name="value">
+          <number>8000</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageRingtones">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="ringtonesTitleTextLabel">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>Ring tones</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ringtoneButtonGroup">
+         <property name="title">
+          <string>Ring tone</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="playRingtoneCheckBox">
+            <property name="whatsThis">
+             <string>Indicates if a ring tone should be played when a call comes in.</string>
+            </property>
+            <property name="text">
+             <string>&amp;Play ring tone on incoming call</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+P</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="defaultRingtoneRadioButton">
+            <property name="whatsThis">
+             <string>Play the default ring tone when a call comes in.</string>
+            </property>
+            <property name="text">
+             <string>&amp;Default ring tone</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+D</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="customRingtoneRadioButton">
+            <property name="whatsThis">
+             <string>Play a custom ring tone when a call comes in.</string>
+            </property>
+            <property name="text">
+             <string>C&amp;ustom ring tone</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+U</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <spacer name="spacer21">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="ringtoneLineEdit">
+              <property name="whatsThis">
+               <string>Specify the file name of a .wav file that you want to be played as ring tone.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="openRingtoneToolButton">
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="whatsThis">
+               <string>Select ring tone file.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="icons.qrc">
+                <normaloff>:/icons/images/fileopen.png</normaloff>:/icons/images/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ringbackButtonGroup">
+         <property name="title">
+          <string>Ring back tone</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QCheckBox" name="playRingbackCheckBox">
+            <property name="whatsThis">
+             <string>&lt;p&gt;
 Play ring back tone while you are waiting for the far-end to answer your call.
 &lt;/p&gt;
 &lt;p&gt;
 Depending on your SIP provider the network might provide ring back tone or an announcement.
 &lt;/p&gt;</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QRadioButton" name="defaultRingbackRadioButton">
-                        <property name="text">
-                          <string>D&amp;efault ring back tone</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+E</string>
-                        </property>
-                        <property name="checked">
-                          <bool>true</bool>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Play the default ring back tone.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <widget class="QRadioButton" name="customRingbackRadioButton">
-                        <property name="text">
-                          <string>Cu&amp;stom ring back tone</string>
-                        </property>
-                        <property name="shortcut">
-                          <string>Alt+S</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                          <string>Play a custom ring back tone.</string>
-                        </property>
-                      </widget>
-                    </item>
-                    <item>
-                      <layout class="QHBoxLayout">
-                        <item>
-                          <spacer name="spacer21_2">
-                            <property name="sizeHint">
-                              <size>
-                                <width>20</width>
-                                <height>20</height>
-                              </size>
-                            </property>
-                            <property name="sizeType">
-                              <enum>QSizePolicy::Fixed</enum>
-                            </property>
-                            <property name="orientation">
-                              <enum>Qt::Horizontal</enum>
-                            </property>
-                          </spacer>
-                        </item>
-                        <item>
-                          <widget class="QLineEdit" name="ringbackLineEdit">
-                            <property name="whatsThis" stdset="0">
-                              <string>Specify the file name of a .wav file that you want to be played as ring back tone.</string>
-                            </property>
-                          </widget>
-                        </item>
-                        <item>
-                          <widget class="QToolButton" name="openRingbackToolButton">
-                            <property name="focusPolicy">
-                              <enum>Qt::TabFocus</enum>
-                            </property>
-                            <property name="text">
-                              <string/>
-                            </property>
-                            <property name="icon">
-                              <iconset>:/icons/images/fileopen.png</iconset>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                              <string>Select ring back tone file.</string>
-                            </property>
-                          </widget>
-                        </item>
-                      </layout>
-                    </item>
-                  </layout>
-                </widget>
-              </item>
-              <item>
-                <spacer name="spacer23">
-                  <property name="sizeHint">
-                    <size>
-                      <width>20</width>
-                      <height>20</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                  </property>
-                </spacer>
-              </item>
-            </layout>
-          </widget>
-          <widget class="QWidget" name="pageAddressBook">
-            <attribute name="id">
-              <number>5</number>
-            </attribute>
-            <layout class="QVBoxLayout">
-              <item>
-                <widget class="QLabel" name="ringtonesTitleTextLabel_2">
-                  <property name="font">
-                    <font>
-                      <pointsize>21</pointsize>
-                    </font>
-                  </property>
-                  <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                  </property>
-                  <property name="text">
-                    <string>Address book</string>
-                  </property>
-                  <property name="indent">
-                    <number>10</number>
-                  </property>
-                  <property name="wordWrap">
-                    <bool>false</bool>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="abLookupNameCheckBox">
-                  <property name="text">
-                    <string>&amp;Lookup name for incoming call</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+L</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>On an incoming call, Twinkle will try to find the name belonging to the incoming SIP address in your address book. This name will be displayed.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="abOverrideDisplayCheckBox">
-                  <property name="text">
-                    <string>Ove&amp;rride received display name</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+R</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>The caller may have provided a display name already. Tick this box if you want to override that name with the name you have in your address book.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <widget class="QCheckBox" name="abLookupPhotoCheckBox">
-                  <property name="text">
-                    <string>Lookup &amp;photo for incoming call</string>
-                  </property>
-                  <property name="shortcut">
-                    <string>Alt+P</string>
-                  </property>
-                  <property name="whatsThis" stdset="0">
-                    <string>Lookup the photo of a caller in your address book and display it on an incoming call.</string>
-                  </property>
-                </widget>
-              </item>
-              <item>
-                <spacer name="spacer61">
-                  <property name="sizeHint">
-                    <size>
-                      <width>20</width>
-                      <height>121</height>
-                    </size>
-                  </property>
-                  <property name="sizeType">
-                    <enum>QSizePolicy::Expanding</enum>
-                  </property>
-                  <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                  </property>
-                </spacer>
-              </item>
-            </layout>
-          </widget>
+            </property>
+            <property name="text">
+             <string>P&amp;lay ring back tone when network does not play ring back tone</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+L</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="defaultRingbackRadioButton">
+            <property name="whatsThis">
+             <string>Play the default ring back tone.</string>
+            </property>
+            <property name="text">
+             <string>D&amp;efault ring back tone</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+E</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="customRingbackRadioButton">
+            <property name="whatsThis">
+             <string>Play a custom ring back tone.</string>
+            </property>
+            <property name="text">
+             <string>Cu&amp;stom ring back tone</string>
+            </property>
+            <property name="shortcut">
+             <string>Alt+S</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <spacer name="spacer21_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="ringbackLineEdit">
+              <property name="whatsThis">
+               <string>Specify the file name of a .wav file that you want to be played as ring back tone.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="openRingbackToolButton">
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="whatsThis">
+               <string>Select ring back tone file.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="icons.qrc">
+                <normaloff>:/icons/images/fileopen.png</normaloff>:/icons/images/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
-      </item>
-    </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction></pixmapfunction>
-  <tabstops>
-    <tabstop>categoryListBox</tabstop>
-    <tabstop>guiUseSystrayCheckBox</tabstop>
-    <tabstop>guiHideCheckBox</tabstop>
-    <tabstop>startHiddenCheckBox</tabstop>
-    <tabstop>profileListView</tabstop>
-    <tabstop>callWaitingCheckBox</tabstop>
-    <tabstop>hangupBothCheckBox</tabstop>
-    <tabstop>histSizeSpinBox</tabstop>
-    <tabstop>autoShowCheckBox</tabstop>
-    <tabstop>autoShowTimeoutSpinBox</tabstop>
-    <tabstop>ringtoneComboBox</tabstop>
-    <tabstop>otherRingtoneLineEdit</tabstop>
-    <tabstop>speakerComboBox</tabstop>
-    <tabstop>otherSpeakerLineEdit</tabstop>
-    <tabstop>micComboBox</tabstop>
-    <tabstop>otherMicLineEdit</tabstop>
-    <tabstop>validateAudioCheckBox</tabstop>
-    <tabstop>ossFragmentComboBox</tabstop>
-    <tabstop>alsaPlayPeriodComboBox</tabstop>
-    <tabstop>alsaCapturePeriodComboBox</tabstop>
-    <tabstop>playRingtoneCheckBox</tabstop>
-    <tabstop>defaultRingtoneRadioButton</tabstop>
-    <tabstop>ringtoneLineEdit</tabstop>
-    <tabstop>openRingtoneToolButton</tabstop>
-    <tabstop>playRingbackCheckBox</tabstop>
-    <tabstop>defaultRingbackRadioButton</tabstop>
-    <tabstop>ringbackLineEdit</tabstop>
-    <tabstop>openRingbackToolButton</tabstop>
-    <tabstop>abLookupNameCheckBox</tabstop>
-    <tabstop>abOverrideDisplayCheckBox</tabstop>
-    <tabstop>abLookupPhotoCheckBox</tabstop>
-    <tabstop>sipUdpPortSpinBox</tabstop>
-    <tabstop>rtpPortSpinBox</tabstop>
-    <tabstop>maxUdpSizeLineEdit</tabstop>
-    <tabstop>maxTcpSizeLineEdit</tabstop>
-    <tabstop>logMaxSizeSpinBox</tabstop>
-    <tabstop>logDebugCheckBox</tabstop>
-    <tabstop>logSipCheckBox</tabstop>
-    <tabstop>logStunCheckBox</tabstop>
-    <tabstop>logMemoryCheckBox</tabstop>
-    <tabstop>okPushButton</tabstop>
-    <tabstop>cancelPushButton</tabstop>
-    <tabstop>customRingtoneRadioButton</tabstop>
-    <tabstop>customRingbackRadioButton</tabstop>
-  </tabstops>
-  <includes>
-    <include location="local">sys_settings.h</include>
-  </includes>
-  <connections>
-    <connection>
-      <sender>okPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>validate()</slot>
-    </connection>
-    <connection>
-      <sender>cancelPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>reject()</slot>
-    </connection>
-    <connection>
-      <sender>categoryListBox</sender>
-      <signal>highlighted(int)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>showCategory(int)</slot>
-    </connection>
-    <connection>
-      <sender>guiUseSystrayCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>guiHideCheckBox</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>guiUseSystrayCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>guiHideCheckBox</receiver>
-      <slot>setChecked(bool)</slot>
-    </connection>
-    <connection>
-      <sender>guiUseSystrayCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>startHiddenCheckBox</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingtoneCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>customRingtoneRadioButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingtoneCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>defaultRingtoneRadioButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingtoneCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>playRingToneCheckBoxToggles(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingtoneCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>openRingtoneToolButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingbackCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>customRingbackRadioButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingbackCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>defaultRingbackRadioButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingbackCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>playRingBackToneCheckBoxToggles(bool)</slot>
-    </connection>
-    <connection>
-      <sender>playRingbackCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>openRingbackToolButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>openRingtoneToolButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>chooseRingtone()</slot>
-    </connection>
-    <connection>
-      <sender>openRingbackToolButton</sender>
-      <signal>clicked()</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>chooseRingback()</slot>
-    </connection>
-    <connection>
-      <sender>customRingtoneRadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>ringtoneLineEdit</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>customRingtoneRadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>openRingtoneToolButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>customRingbackRadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>ringbackLineEdit</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>customRingbackRadioButton</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>openRingbackToolButton</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>abLookupNameCheckBox</sender>
-      <signal>toggled(bool)</signal>
-      <receiver>abOverrideDisplayCheckBox</receiver>
-      <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-      <sender>ringtoneComboBox</sender>
-      <signal>activated(int)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>devRingtoneSelected(int)</slot>
-    </connection>
-    <connection>
-      <sender>speakerComboBox</sender>
-      <signal>activated(int)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>devSpeakerSelected(int)</slot>
-    </connection>
-    <connection>
-      <sender>micComboBox</sender>
-      <signal>activated(int)</signal>
-      <receiver>SysSettingsForm</receiver>
-      <slot>devMicSelected(int)</slot>
-    </connection>
-  </connections>
+       </item>
+       <item>
+        <spacer name="spacer23">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageAddressBook">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="ringtonesTitleTextLabel_2">
+         <property name="font">
+          <font>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="text">
+          <string>Address book</string>
+         </property>
+         <property name="wordWrap">
+          <bool>false</bool>
+         </property>
+         <property name="indent">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="abLookupNameCheckBox">
+         <property name="whatsThis">
+          <string>On an incoming call, Twinkle will try to find the name belonging to the incoming SIP address in your address book. This name will be displayed.</string>
+         </property>
+         <property name="text">
+          <string>&amp;Lookup name for incoming call</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+L</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="abOverrideDisplayCheckBox">
+         <property name="whatsThis">
+          <string>The caller may have provided a display name already. Tick this box if you want to override that name with the name you have in your address book.</string>
+         </property>
+         <property name="text">
+          <string>Ove&amp;rride received display name</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+R</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="abLookupPhotoCheckBox">
+         <property name="whatsThis">
+          <string>Lookup the photo of a caller in your address book and display it on an incoming call.</string>
+         </property>
+         <property name="text">
+          <string>Lookup &amp;photo for incoming call</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+P</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacer61">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>121</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>categoryListBox</tabstop>
+  <tabstop>guiUseSystrayCheckBox</tabstop>
+  <tabstop>guiHideCheckBox</tabstop>
+  <tabstop>startHiddenCheckBox</tabstop>
+  <tabstop>profileListView</tabstop>
+  <tabstop>callWaitingCheckBox</tabstop>
+  <tabstop>hangupBothCheckBox</tabstop>
+  <tabstop>histSizeSpinBox</tabstop>
+  <tabstop>autoShowCheckBox</tabstop>
+  <tabstop>autoShowTimeoutSpinBox</tabstop>
+  <tabstop>ringtoneComboBox</tabstop>
+  <tabstop>otherRingtoneLineEdit</tabstop>
+  <tabstop>speakerComboBox</tabstop>
+  <tabstop>otherSpeakerLineEdit</tabstop>
+  <tabstop>micComboBox</tabstop>
+  <tabstop>otherMicLineEdit</tabstop>
+  <tabstop>validateAudioCheckBox</tabstop>
+  <tabstop>ossFragmentComboBox</tabstop>
+  <tabstop>alsaPlayPeriodComboBox</tabstop>
+  <tabstop>alsaCapturePeriodComboBox</tabstop>
+  <tabstop>playRingtoneCheckBox</tabstop>
+  <tabstop>defaultRingtoneRadioButton</tabstop>
+  <tabstop>ringtoneLineEdit</tabstop>
+  <tabstop>openRingtoneToolButton</tabstop>
+  <tabstop>playRingbackCheckBox</tabstop>
+  <tabstop>defaultRingbackRadioButton</tabstop>
+  <tabstop>ringbackLineEdit</tabstop>
+  <tabstop>openRingbackToolButton</tabstop>
+  <tabstop>abLookupNameCheckBox</tabstop>
+  <tabstop>abOverrideDisplayCheckBox</tabstop>
+  <tabstop>abLookupPhotoCheckBox</tabstop>
+  <tabstop>sipUdpPortSpinBox</tabstop>
+  <tabstop>rtpPortSpinBox</tabstop>
+  <tabstop>maxUdpSizeLineEdit</tabstop>
+  <tabstop>maxTcpSizeLineEdit</tabstop>
+  <tabstop>logMaxSizeSpinBox</tabstop>
+  <tabstop>logDebugCheckBox</tabstop>
+  <tabstop>logSipCheckBox</tabstop>
+  <tabstop>logStunCheckBox</tabstop>
+  <tabstop>logMemoryCheckBox</tabstop>
+  <tabstop>okPushButton</tabstop>
+  <tabstop>cancelPushButton</tabstop>
+  <tabstop>customRingtoneRadioButton</tabstop>
+  <tabstop>customRingbackRadioButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">sys_settings.h</include>
+ </includes>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>okPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>validate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>categoryListBox</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>showCategory(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>guiUseSystrayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>guiHideCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>guiUseSystrayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>guiHideCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>guiUseSystrayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>startHiddenCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingtoneCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>customRingtoneRadioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingtoneCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>defaultRingtoneRadioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingtoneCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>playRingToneCheckBoxToggles(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingtoneCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>openRingtoneToolButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingbackCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>customRingbackRadioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingbackCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>defaultRingbackRadioButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingbackCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>playRingBackToneCheckBoxToggles(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playRingbackCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>openRingbackToolButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openRingtoneToolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>chooseRingtone()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openRingbackToolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>chooseRingback()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customRingtoneRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ringtoneLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customRingtoneRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>openRingtoneToolButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customRingbackRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>ringbackLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customRingbackRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>openRingbackToolButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>abLookupNameCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>abOverrideDisplayCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ringtoneComboBox</sender>
+   <signal>activated(int)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>devRingtoneSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>speakerComboBox</sender>
+   <signal>activated(int)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>devSpeakerSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>micComboBox</sender>
+   <signal>activated(int)</signal>
+   <receiver>SysSettingsForm</receiver>
+   <slot>devMicSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

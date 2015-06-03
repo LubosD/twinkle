@@ -148,7 +148,7 @@ int SelectProfileForm::execForm()
 		}
 		
 		// Select the created profile
-		Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
+        QListWidgetItem* item = profileListView->currentItem();
 		QString profile = item->text();
 		profile.append(USER_FILE_EXT);
 		selectedProfiles.clear();
@@ -251,7 +251,7 @@ void SelectProfileForm::runProfile()
 
 void SelectProfileForm::editProfile()
 {
-	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
+    QListWidgetItem *item = profileListView->currentItem();
 	QString profile = item->text();
 	
 	// If the profile to edit is currently active, then edit the in-memory
@@ -368,7 +368,7 @@ void SelectProfileForm::newProfileCreated()
 
 void SelectProfileForm::deleteProfile()
 {
-	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
+    QListWidgetItem *item = profileListView->currentItem();
 	QString profile = item->text();
 	QString msg = tr("Are you sure you want to delete profile '%1'?").arg(profile);
 	QMessageBox *mb = new QMessageBox(tr("Delete profile"), msg,
@@ -419,7 +419,7 @@ void SelectProfileForm::deleteProfile()
 			}
 			
 			// Delete profile from profile list box
-			Q3CheckListItem *item = (Q3CheckListItem *)profileListView->
+            QListWidgetItem *item = profileListView->
 					       currentItem();
 			delete item;
             if (profileListView->count() == 0) {
@@ -442,7 +442,7 @@ void SelectProfileForm::deleteProfile()
 
 void SelectProfileForm::renameProfile()
 {
-	Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
+    QListWidgetItem *item = profileListView->currentItem();
 	QString oldProfile = item->text();
 	
 	// Ask user for a new profile name
@@ -523,8 +523,8 @@ void SelectProfileForm::renameProfile()
 		emit profileRenamed();
 		
 		// Change profile name in the list box
-		Q3CheckListItem *item = (Q3CheckListItem *)profileListView->currentItem();
-		item->setText(0, newProfile);
+        QListWidgetItem *item = profileListView->currentItem();
+        item->setText(newProfile);
 	}
 }
 

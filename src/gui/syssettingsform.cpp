@@ -1,15 +1,30 @@
-//Added by qt3to4:
+/*
+    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
 #include <QPixmap>
-#include <Q3ListBox>
 #include <QComboBox>
 #include "gui.h"
 #include "sockets/interfaces.h"
 #include "selectprofileform.h"
 #include <QStringList>
 #include "audits/memman.h"
-#include <Q3ListView>
 #include <QSpinBox>
-#include <Q3FileDialog>
+#include <QFileDialog>
 #include <QFileInfo>
 #include "twinkle_config.h"
 #include <QRegExp>
@@ -47,25 +62,6 @@ void SysSettingsForm::languageChange()
 	retranslateUi(this);
 }
 
-
-/*
-    Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
-    
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
-
 // Indices of categories in the category list box
 #define idxCatGeneral	0
 #define idxCatAudio	1
@@ -95,17 +91,17 @@ void SysSettingsForm::init()
 void SysSettingsForm::showCategory( int index )
 {
 	if (index == idxCatGeneral) {
-		settingsWidgetStack->raiseWidget(pageGeneral);
+        settingsWidgetStack->setCurrentWidget(pageGeneral);
 	} else if (index == idxCatAudio) {
-		settingsWidgetStack->raiseWidget(pageAudio);
+        settingsWidgetStack->setCurrentWidget(pageAudio);
 	} else if (index == idxCatRingtones) {
-		settingsWidgetStack->raiseWidget(pageRingtones);
+        settingsWidgetStack->setCurrentWidget(pageRingtones);
 	} else if (index == idxCatAddressBook) {
-		settingsWidgetStack->raiseWidget(pageAddressBook);
+        settingsWidgetStack->setCurrentWidget(pageAddressBook);
 	} else if (index == idxCatNetwork) {
-		settingsWidgetStack->raiseWidget(pageNetwork);
+        settingsWidgetStack->setCurrentWidget(pageNetwork);
 	} else if (index == idxCatLog) {
-		settingsWidgetStack->raiseWidget(pageLog);
+        settingsWidgetStack->setCurrentWidget(pageLog);
 	}
 }
 
@@ -151,8 +147,8 @@ void SysSettingsForm::populate()
 	int idx;
 	
 	// Select the Audio category
-	categoryListBox->setSelected(idxCatGeneral, true);
-	settingsWidgetStack->raiseWidget(pageGeneral);
+    categoryListBox->setCurrentRow(idxCatGeneral);
+    settingsWidgetStack->setCurrentWidget(pageGeneral);
 	
 	// Set focus on first field
 	categoryListBox->setFocus();
@@ -292,14 +288,15 @@ void SysSettingsForm::populate()
 		// Strip off the .cfg suffix
 		QString profile = *i;
 		profile.truncate(profile.length() - 4);
-		Q3CheckListItem *item = new Q3CheckListItem(profileListView,
-					profile, Q3CheckListItem::CheckBox);
-		item->setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
+        QListWidgetItem* item = new QListWidgetItem(profile, profileListView);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(Qt::Unchecked);
+        item->setData(Qt::DecorationRole, QPixmap(":/icons/images/penguin-small.png"));
 		
 		list<string> l = sys_config->get_start_user_profiles();
 		if (std::find(l.begin(), l.end(), profile.ascii()) != l.end())
 		{
-			item->setOn(true);
+            item->setCheckState(Qt::Checked);
 		}
 	}
 	
@@ -393,11 +390,10 @@ void SysSettingsForm::validate()
 				   guiUseSystrayCheckBox->isChecked());
 	
 	list<string> start_user_profiles;
-	Q3ListViewItemIterator i(profileListView, Q3ListViewItemIterator::Checked);
-	while (i.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)i.current();
+    for (int i = 0; i < profileListView->count(); i++)
+    {
+        QListWidgetItem *item = profileListView->item(i);
 		start_user_profiles.push_back(item->text().ascii());
-		i++;
 	}
 	sys_config->set_start_user_profiles(start_user_profiles);
 	
@@ -471,10 +467,9 @@ int SysSettingsForm::exec()
 
 void SysSettingsForm::chooseRingtone()
 {
-	QString file = Q3FileDialog::getOpenFileName(
+    QString file = QFileDialog::getOpenFileName(this, tr("Choose ring tone"),
 			((t_gui *)ui)->get_last_file_browse_path(),
-			tr("Ring tones", "Description of .wav files in file dialog").append(" (*.wav)"), this, "ring tone file dialog",
-			tr("Choose ring tone"));
+            tr("Ring tones", "Description of .wav files in file dialog").append(" (*.wav)"));
 	if (!file.isEmpty()) {
 		ringtoneLineEdit->setText(file);
 		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));
@@ -483,10 +478,9 @@ void SysSettingsForm::chooseRingtone()
 
 void SysSettingsForm::chooseRingback()
 {
-	QString file = Q3FileDialog::getOpenFileName(
+    QString file = QFileDialog::getOpenFileName(this, tr("Choose ring back tone"),
 			((t_gui *)ui)->get_last_file_browse_path(),
-			tr("Ring back tones", "Description of .wav files in file dialog").append(" (*.wav)"), this, "ring back file dialog",
-			tr("Choose ring back tone"));
+            tr("Ring back tones", "Description of .wav files in file dialog").append(" (*.wav)"));
 	if (!file.isEmpty()) {
 		ringbackLineEdit->setText(file);
 		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));
