@@ -62,7 +62,7 @@
             </widget>
           </item>
           <item>
-            <widget class="Q3ListBox" name="nicListBox">
+            <widget class="QListWidget" name="nicListBox">
               <property name="whatsThis" stdset="0">
                 <string>You have multiple IP addresses. Here you must select which IP address should be used. This IP address will be used inside the SIP messages.</string>
               </property>

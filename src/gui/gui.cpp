@@ -889,15 +889,14 @@ string t_gui::select_network_intf(void) {
 		for (list<t_interface>::iterator i = l->begin(); i != l->end(); i++) {
 			item = i->name.c_str();
 			item.append(':').append(i->get_ip_addr().c_str());
-			sf->nicListBox->insertItem(
-					QPixmap(":/icons/images/kcmpci16.png"),
-					item);
+
+            new QListWidgetItem(QPixmap(":/icons/images/kcmpci16.png"), item, sf->nicListBox);
 		}
 		
 		sf->nicListBox->setCurrentItem(0);
 		sf->exec();
 		
-		int selection = sf->nicListBox->currentItem();
+        int selection = sf->nicListBox->currentRow();
 		int num = 0;
 		for (list<t_interface>::iterator i = l->begin(); i != l->end(); i++) {
 			if (num == selection) {
