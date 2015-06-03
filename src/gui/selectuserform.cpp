@@ -21,7 +21,7 @@
 #include <QImage>
 #include <QPixmap>
 
-#include <Q3ListView>
+#include <QListWidget>
 #include "selectuserform.h"
 /*
  *  Constructs a SelectUserForm as a child of 'parent', with the
@@ -58,8 +58,6 @@ void SelectUserForm::languageChange()
 
 void SelectUserForm::init()
 {
-	// Disable sorting
-	userListView->setSorting(-1);
 }
 
 void SelectUserForm::show(t_select_purpose purpose)
@@ -99,15 +97,19 @@ void SelectUserForm::show(t_select_purpose purpose)
 	// Fill list view
 	list<t_user *> user_list = phone->ref_users();
 	for (list<t_user *>::reverse_iterator i = user_list.rbegin(); i != user_list.rend(); i++) {
-		Q3CheckListItem *item = new Q3CheckListItem(userListView,
-			(*i)->get_profile_name().c_str(), Q3CheckListItem::CheckBox);
+        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i)->get_profile_name()), userListView);
+
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(Qt::Unchecked);
 		
 		switch (purpose) {
 		case SELECT_DND:
-			item->setOn(phone->ref_service(*i)->is_dnd_active());
+            if (phone->ref_service(*i)->is_dnd_active())
+                item->setCheckState(Qt::Checked);
 			break;
 		case SELECT_AUTO_ANSWER:
-			item->setOn(phone->ref_service(*i)->is_auto_answer_active());
+            if (phone->ref_service(*i)->is_auto_answer_active())
+                item->setCheckState(Qt::Checked);
 			break;
 		default:
 			break;
@@ -121,10 +123,10 @@ void SelectUserForm::validate()
 {
 	list<t_user *> selected_list, not_selected_list;
 	
-	Q3ListViewItemIterator i(userListView);
-	while (i.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
-		if (item->isOn()) {
+    for (int i = 0; i < userListView->count(); i++)
+    {
+        QListWidgetItem *item = userListView->item(i);
+        if (item->checkState() == Qt::Checked) {
 			selected_list.push_back(phone->
 				ref_user_profile(item->text().ascii()));
 		} else {
@@ -141,26 +143,25 @@ void SelectUserForm::validate()
 
 void SelectUserForm::selectAll()
 {
-	Q3ListViewItemIterator i(userListView);
-	while (i.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
-		item->setOn(true);
-		i++;
-	}
+    for (int i = 0; i < userListView->count(); i++)
+    {
+        QListWidgetItem *item = userListView->item(i);
+        item->setCheckState(Qt::Checked);
+    }
 }
 
 void SelectUserForm::clearAll()
 {
-	Q3ListViewItemIterator i(userListView);
-	while (i.current()) {
-		Q3CheckListItem *item = (Q3CheckListItem *)(i.current());
-		item->setOn(false);
-		i++;
-	}
+    for (int i = 0; i < userListView->count(); i++)
+    {
+        QListWidgetItem *item = userListView->item(i);
+        item->setCheckState(Qt::Unchecked);
+    }
 }
 
-void SelectUserForm::toggle(Q3ListViewItem *item)
+void SelectUserForm::toggle(QModelIndex index)
 {
-	Q3CheckListItem *checkItem = (Q3CheckListItem *)item;
-	checkItem->setOn(!checkItem->isOn());
+    QListWidgetItem *item = userListView->item(index.row());
+    Qt::CheckState state = item->checkState();
+    item->setCheckState((state == Qt::Checked) ? Qt::Unchecked : Qt::Checked);
 }

@@ -21,7 +21,7 @@ public slots:
 	virtual void validate();
 	virtual void selectAll();
 	virtual void clearAll();
-	virtual void toggle( Q3ListViewItem * item );
+    virtual void toggle( QModelIndex item );
 
 signals:
 	void selection(list<t_user *>);
