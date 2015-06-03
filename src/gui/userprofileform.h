@@ -2,7 +2,7 @@
 #define USERPROFILEFORM_H
 #include <list>
 #include <map>
-#include "Qt3Support/Q3ValueList"
+#include <QList>
 #include "user.h"
 #include "ui_userprofileform.h"
 
@@ -19,7 +19,7 @@ public:
 	virtual int ext_support2indexComboItem( t_ext_support ext );
 	virtual t_ext_support indexComboItem2ext_support( int index );
 	virtual int exec( list<t_user *> profiles, QString show_profile );
-	virtual bool check_dynamic_payload( QSpinBox * spb, Q3ValueList<int> & checked_list );
+    virtual bool check_dynamic_payload( QSpinBox * spb, QList<int> & checked_list );
 	virtual list<t_number_conversion> get_number_conversions();
 	virtual bool validateValues();
 

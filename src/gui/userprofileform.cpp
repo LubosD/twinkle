@@ -205,31 +205,31 @@ void UserProfileForm::init()
 void UserProfileForm::showCategory( int index )
 {
 	if (index == idxCatUser) {
-		settingsWidgetStack->raiseWidget(pageUser);
+        settingsWidgetStack->setCurrentWidget(pageUser);
 	} else if (index == idxCatSipServer) {
-		settingsWidgetStack->raiseWidget(pageSipServer);
+        settingsWidgetStack->setCurrentWidget(pageSipServer);
 	} else if (index == idxCatVoiceMail) {
-		settingsWidgetStack->raiseWidget(pageVoiceMail);
+        settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 	} else if (index == idxCatIM) {
-		settingsWidgetStack->raiseWidget(pageIM);
+        settingsWidgetStack->setCurrentWidget(pageIM);
 	} else if (index == idxCatPresence) {
-		settingsWidgetStack->raiseWidget(pagePresence);
+        settingsWidgetStack->setCurrentWidget(pagePresence);
 	} else if (index == idxCatRtpAudio) {
-		settingsWidgetStack->raiseWidget(pageRtpAudio);
+        settingsWidgetStack->setCurrentWidget(pageRtpAudio);
 	} else if (index == idxCatSipProtocol) {
-		settingsWidgetStack->raiseWidget(pageSipProtocol);
+        settingsWidgetStack->setCurrentWidget(pageSipProtocol);
 	} else if (index == idxCatNat) {
-		settingsWidgetStack->raiseWidget(pageNat);
+        settingsWidgetStack->setCurrentWidget(pageNat);
 	} else if (index == idxCatAddrFmt) {
-		settingsWidgetStack->raiseWidget(pageAddressFormat);
+        settingsWidgetStack->setCurrentWidget(pageAddressFormat);
 	} else if (index == idxCatTimers) {
-		settingsWidgetStack->raiseWidget(pageTimers);
+        settingsWidgetStack->setCurrentWidget(pageTimers);
 	} else if (index == idxCatRingTones) {
-		settingsWidgetStack->raiseWidget(pageRingTones);
+        settingsWidgetStack->setCurrentWidget(pageRingTones);
 	} else if (index == idxCatScripts) {
-		settingsWidgetStack->raiseWidget(pageScripts);
+        settingsWidgetStack->setCurrentWidget(pageScripts);
 	} else if (index == idxCatSecurity) {
-		settingsWidgetStack->raiseWidget(pageSecurity);
+        settingsWidgetStack->setCurrentWidget(pageSecurity);
 	}
 }
 
@@ -336,8 +336,8 @@ void UserProfileForm::populate()
 	setCaption(s);
 	
 	// Select the User category
-	categoryListBox->setSelected(idxCatUser, true);
-	settingsWidgetStack->raiseWidget(pageUser);
+    categoryListBox->setCurrentRow(idxCatUser);
+    settingsWidgetStack->setCurrentWidget(pageUser);
 	
 	// Set focus on first field
 	displayLineEdit->setFocus();
@@ -427,11 +427,11 @@ void UserProfileForm::populate()
 	list<t_audio_codec> audio_codecs = current_profile->get_codecs();
 	for (list<t_audio_codec>::iterator i = audio_codecs.begin(); i != audio_codecs.end(); i++)
 	{
-		activeCodecListBox->insertItem(codec2label(*i));
+        activeCodecListBox->addItem(codec2label(*i));
 		allCodecs.remove(codec2label(*i));
 	}
 	availCodecListBox->clear();
-	if (!allCodecs.empty()) availCodecListBox->insertStringList(allCodecs);
+    if (!allCodecs.empty()) availCodecListBox->addItems(allCodecs);
 	
 	// G.711/G.726 ptime
 	ptimeSpinBox->setValue(current_profile->get_ptime());
@@ -587,12 +587,18 @@ void UserProfileForm::populate()
 	specialLineEdit->setText(current_profile->get_special_phone_symbols().c_str());
 	useTelUriCheckBox->setChecked(current_profile->get_use_tel_uri_for_phone());
 	
-	conversionListView->clear();
-	conversionListView->setSorting(-1);
 	list<t_number_conversion> conversions = current_profile->get_number_conversions();
-	for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++)
+
+    conversionListView->horizontalHeader()->resizeSection(0, 200);
+    conversionListView->setRowCount(conversions.size());
+
+    int j = 0;
+    for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++, j++)
 	{
-		new Q3ListViewItem(conversionListView, i->re.str().c_str(), i->fmt.c_str());
+        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(i->re.str()));
+        conversionListView->setItem(j, 0, item);
+        item = new QTableWidgetItem(QString::fromStdString(i->fmt));
+        conversionListView->setItem(j, 1, item);
 	}
 	
 	// TIMERS
@@ -673,39 +679,40 @@ int UserProfileForm::exec(list<t_user *> profiles, QString show_profile)
 }
 
 bool UserProfileForm::check_dynamic_payload(QSpinBox *spb,
-					    Q3ValueList<int> &checked_list)
+                        QList<int> &checked_list)
 {
 	if (checked_list.contains(spb->value())) {
-		categoryListBox->setSelected(idxCatRtpAudio, true);
-		settingsWidgetStack->raiseWidget(pageRtpAudio);
+        categoryListBox->setCurrentRow(idxCatRtpAudio);
+        settingsWidgetStack->setCurrentWidget(pageRtpAudio);
 		QString msg = tr("Dynamic payload type %1 is used more than once.").arg(spb->value());
 		((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_CRITICAL);
 		spb->setFocus();
 		return false;
 	}
 	
-	checked_list.append(spb->value());
+    checked_list << spb->value();
 	return true;
 }
 
 list<t_number_conversion> UserProfileForm::get_number_conversions()
 {
 	list<t_number_conversion> conversions;
-	Q3ListViewItemIterator it(conversionListView);
-	while (it.current()) {
-		Q3ListViewItem *item = it.current();
+
+    for (int i = 0; i < conversionListView->rowCount(); i++)
+    {
+        QTableWidgetItem* item;
 		t_number_conversion c;
 		
 		try {
-			c.re.assign(item->text(colExpr).ascii());
-			c.fmt = item->text(colReplace).ascii();
+            item = conversionListView->item(0, 0);
+            c.re.assign(item->text().ascii());
+            item = conversionListView->item(0, 1);
+            c.fmt = item->text().ascii();
 			conversions.push_back(c);
 		} catch (boost::bad_expression) {
 			// Should never happen as validity has been
 			// checked already. Just being defensive here.
 		}
-
-		++it;
 	}
 	
 	return conversions;
@@ -718,8 +725,8 @@ bool UserProfileForm::validateValues()
 	// Validity check user page
 	// SIP username is mandatory
 	if (usernameLineEdit->text().isEmpty()) {
-		categoryListBox->setSelected(idxCatUser, true);
-		settingsWidgetStack->raiseWidget(pageUser);
+        categoryListBox->setCurrentRow(idxCatUser);
+        settingsWidgetStack->setCurrentWidget(pageUser);
 		((t_gui *)ui)->cb_show_msg(this, tr("You must fill in a user name for your SIP account.").ascii(),
 				MSG_CRITICAL);
 		usernameLineEdit->setFocus();
@@ -728,8 +735,8 @@ bool UserProfileForm::validateValues()
 	
 	// SIP user domain is mandatory
 	if (domainLineEdit->text().isEmpty()) {
-		categoryListBox->setSelected(idxCatUser, true);
-		settingsWidgetStack->raiseWidget(pageUser);
+        categoryListBox->setCurrentRow(idxCatUser);
+        settingsWidgetStack->setCurrentWidget(pageUser);
 		((t_gui *)ui)->cb_show_msg(this, tr(
 				"You must fill in a domain name for your SIP account.\n"
 				"This could be the hostname or IP address of your PC "
@@ -744,8 +751,8 @@ bool UserProfileForm::validateValues()
 	s.append(':').append(domainLineEdit->text());
 	t_url u_domain(s.ascii());
 	if (!u_domain.is_valid() || u_domain.get_user() != "") {
-		categoryListBox->setSelected(idxCatUser, true);
-		settingsWidgetStack->raiseWidget(pageUser);
+        categoryListBox->setCurrentRow(idxCatUser);
+        settingsWidgetStack->setCurrentWidget(pageUser);
 		((t_gui *)ui)->cb_show_msg(this,  tr("Invalid domain.").ascii(), MSG_CRITICAL);
 		domainLineEdit->setFocus();
 		return false;
@@ -757,8 +764,8 @@ bool UserProfileForm::validateValues()
 	s.append(domainLineEdit->text());
 	t_url u_user_domain(s.ascii());
 	if (!u_user_domain.is_valid()) {
-		categoryListBox->setSelected(idxCatUser, true);
-		settingsWidgetStack->raiseWidget(pageUser);
+        categoryListBox->setCurrentRow(idxCatUser);
+        settingsWidgetStack->setCurrentWidget(pageUser);
 		((t_gui *)ui)->cb_show_msg(this,  tr("Invalid user name.").ascii(), MSG_CRITICAL);
 		usernameLineEdit->setFocus();
 		return false;
@@ -770,8 +777,8 @@ bool UserProfileForm::validateValues()
 		s.append(':').append(registrarLineEdit->text());
 		t_url u(s.ascii());
 		if (!u.is_valid() || u.get_user() != "") {
-			categoryListBox->setSelected(idxCatSipServer, true);
-			settingsWidgetStack->raiseWidget(pageSipServer);
+            categoryListBox->setCurrentRow(idxCatSipServer);
+            settingsWidgetStack->setCurrentWidget(pageSipServer);
 			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for registrar.").ascii(), 
 						   MSG_CRITICAL);
 			registrarLineEdit->setFocus();
@@ -786,8 +793,8 @@ bool UserProfileForm::validateValues()
 		s.append(':').append(proxyLineEdit->text());
 		t_url u(s.ascii());
 		if (!u.is_valid() || u.get_user() != "") {
-			categoryListBox->setSelected(idxCatSipServer, true);
-			settingsWidgetStack->raiseWidget(pageSipServer);
+            categoryListBox->setCurrentRow(idxCatSipServer);
+            settingsWidgetStack->setCurrentWidget(pageSipServer);
 			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for outbound proxy.").ascii(), 
 					MSG_CRITICAL);
 			proxyLineEdit->setFocus();
@@ -801,8 +808,8 @@ bool UserProfileForm::validateValues()
 	if (mwiTypeComboBox->currentItem() == idxMWISollicited) {
 		// Mailbox user name is mandatory
 		if (mwiUserLineEdit->text().isEmpty()) {
-			categoryListBox->setSelected(idxCatVoiceMail, true);
-			settingsWidgetStack->raiseWidget(pageVoiceMail);
+            categoryListBox->setCurrentRow(idxCatVoiceMail);
+            settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this, 
 					tr("You must fill in a mailbox user name.").ascii(),
 					MSG_CRITICAL);
@@ -812,8 +819,8 @@ bool UserProfileForm::validateValues()
 		
 		// Mailbox server is mandatory
 		if (mwiServerLineEdit->text().isEmpty()) {
-			categoryListBox->setSelected(idxCatVoiceMail, true);
-			settingsWidgetStack->raiseWidget(pageVoiceMail);
+            categoryListBox->setCurrentRow(idxCatVoiceMail);
+            settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this, 
 					tr("You must fill in a mailbox server").ascii(),
 					MSG_CRITICAL);
@@ -826,8 +833,8 @@ bool UserProfileForm::validateValues()
 		s.append(':').append(mwiServerLineEdit->text());
 		t_url u_server(s.ascii());
 		if (!u_server.is_valid() || u_server.get_user() != "") {
-			categoryListBox->setSelected(idxCatVoiceMail, true);
-			settingsWidgetStack->raiseWidget(pageVoiceMail);
+            categoryListBox->setCurrentRow(idxCatVoiceMail);
+            settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox server.").ascii(), 
 						   MSG_CRITICAL);
 			mwiServerLineEdit->setFocus();
@@ -840,8 +847,8 @@ bool UserProfileForm::validateValues()
 		s.append(mwiServerLineEdit->text());
 		t_url u_user_server(s.ascii());
 		if (!u_user_server.is_valid()) {
-			categoryListBox->setSelected(idxCatVoiceMail, true);
-			settingsWidgetStack->raiseWidget(pageVoiceMail);
+            categoryListBox->setCurrentRow(idxCatVoiceMail);
+            settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox user name.").ascii(), 
 						   MSG_CRITICAL);
 			mwiUserLineEdit->setFocus();
@@ -852,8 +859,8 @@ bool UserProfileForm::validateValues()
 	// NAT public IP
 	if (natStaticRadioButton->isChecked()) {
 		if (publicIPLineEdit->text().isEmpty()){
-			categoryListBox->setSelected(idxCatNat, true);
-			settingsWidgetStack->raiseWidget(pageNat);
+            categoryListBox->setCurrentRow(idxCatNat);
+            settingsWidgetStack->setCurrentWidget(pageNat);
 			((t_gui *)ui)->cb_show_msg(this, tr("Value for public IP address missing.").ascii(),
 					MSG_CRITICAL);
 			publicIPLineEdit->setFocus();
@@ -862,7 +869,7 @@ bool UserProfileForm::validateValues()
 	}
 	
 	// Check for double RTP dynamic payload types
-	Q3ValueList<int> checked_types;
+    QList<int> checked_types;
 	if (!check_dynamic_payload(spxNbPayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(spxWbPayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(spxUwbPayloadSpinBox, checked_types))
@@ -895,8 +902,8 @@ bool UserProfileForm::validateValues()
 		s.append(stunServerLineEdit->text());
 		t_url u(s.ascii());
 		if (!u.is_valid() || u.get_user() != "") {
-			categoryListBox->setSelected(idxCatNat, true);
-			settingsWidgetStack->raiseWidget(pageNat);
+            categoryListBox->setCurrentRow(idxCatNat);
+            settingsWidgetStack->setCurrentWidget(pageNat);
 			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for STUN server.").ascii(), 
 					MSG_CRITICAL);
 			stunServerLineEdit->setFocus();
@@ -1045,7 +1052,7 @@ bool UserProfileForm::validateValues()
 	// Codecs
 	list<t_audio_codec> audio_codecs;
 	for (size_t i = 0; i < activeCodecListBox->count(); i++) {
-		audio_codecs.push_back(label2codec(activeCodecListBox->text(i)));
+        audio_codecs.push_back(label2codec(activeCodecListBox->item(i)->text()));
 	}
 	current_profile->set_codecs(audio_codecs);
 	
@@ -1264,7 +1271,7 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 	}
 	
 	// Store the current viewed category
-	map_last_cat[current_profile] = categoryListBox->index(categoryListBox->selectedItem());
+    map_last_cat[current_profile] = categoryListBox->currentRow();
 	
 	// Change to new profile.
 	for (list<t_user *>::iterator i = profile_list.begin(); i != profile_list.end(); i++) {
@@ -1279,7 +1286,7 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 	
 	// Restore last viewed category
 	int idxCat = map_last_cat[current_profile];
-	categoryListBox->setSelected(idxCat, true);
+    categoryListBox->setCurrentRow(idxCat);
 	showCategory(idxCat);
 }
 
@@ -1347,11 +1354,11 @@ void UserProfileForm::chooseRemoteReleaseScript()
 
 void UserProfileForm::addCodec() {
 	for (size_t i = 0; i < availCodecListBox->count(); i++) {
-		if (availCodecListBox->isSelected(i)) {
-			activeCodecListBox->insertItem(availCodecListBox->text(i));
-			activeCodecListBox->setSelected(
-					activeCodecListBox->count() - 1, true);
-			availCodecListBox->removeItem(i);
+
+        if (availCodecListBox->item(i)->isSelected()) {
+            activeCodecListBox->addItem(availCodecListBox->item(i)->text());
+            activeCodecListBox->item(activeCodecListBox->count()-1)->setSelected(true);
+            delete availCodecListBox->takeItem(i);
 			return;
 		}
 	}
@@ -1359,69 +1366,81 @@ void UserProfileForm::addCodec() {
 
 void UserProfileForm::removeCodec() {
 	for (size_t i = 0; i < activeCodecListBox->count(); i++) {
-		if (activeCodecListBox->isSelected(i)) {
-			availCodecListBox->insertItem(activeCodecListBox->text(i));
-			availCodecListBox->setSelected(
-					availCodecListBox->count() - 1, true);
-			activeCodecListBox->removeItem(i);
+        if (activeCodecListBox->item(i)->isSelected()) {
+            availCodecListBox->addItem(activeCodecListBox->item(i)->text());
+            availCodecListBox->item(availCodecListBox->count() - 1)->setSelected(true);
+            delete activeCodecListBox->takeItem(i);
 			return;
 		}
 	}
 }
 
 void UserProfileForm::upCodec() {
-	Q3ListBoxItem *lbi = activeCodecListBox->selectedItem();
-	if (!lbi) return;
-	
-	int idx = activeCodecListBox->index(lbi);
-	if (idx == 0) return;
-	
-	QString label = lbi->text();
-	activeCodecListBox->removeItem(idx);
-	activeCodecListBox->insertItem(label, idx - 1);
-	activeCodecListBox->setSelected(idx - 1, true);
+    int row = activeCodecListBox->currentRow();
+    if (row <= 0)
+        return;
+
+    QListWidgetItem* item = activeCodecListBox->takeItem(row);
+    activeCodecListBox->insertItem(row-1, item);
+    activeCodecListBox->setCurrentRow(row-1);
 }
 
 void UserProfileForm::downCodec() {
-	Q3ListBoxItem *lbi = activeCodecListBox->selectedItem();
-	if (!lbi) return;
-	
-	size_t idx = activeCodecListBox->index(lbi);
-	if (idx == activeCodecListBox->count() - 1) return;
-	
-	QString label = lbi->text();
-	activeCodecListBox->removeItem(idx);
-	activeCodecListBox->insertItem(label, idx + 1);
-	activeCodecListBox->setSelected(idx + 1, true);
+    int row = activeCodecListBox->currentRow();
+    if (row < 0 || row >= activeCodecListBox->count()-1)
+        return;
+
+    QListWidgetItem* item = activeCodecListBox->takeItem(row);
+    activeCodecListBox->insertItem(row+1, item);
+    activeCodecListBox->setCurrentRow(row+1);
 }
 
 void UserProfileForm::upConversion() {
-	Q3ListViewItem *lvi = conversionListView->selectedItem();
-	if (!lvi) return;
-	
-	Q3ListViewItem *above = lvi->itemAbove();
-	if (!above) return;
-	
-	Q3ListViewItem *newAbove = above->itemAbove();
-	
-	if (newAbove) {
-		lvi->moveItem(newAbove);
-	} else {
-		above->moveItem(lvi);
-	}
-		
-	lvi->setSelected(true);
+    QTableWidgetItem *c1, *c2;
+    QModelIndexList ilist = conversionListView->selectionModel()->selectedRows();
+    int row;
+
+    if (ilist.isEmpty())
+        return;
+
+    row = ilist[0].row();
+    if (row == 0)
+        return;
+
+    c1 = conversionListView->takeItem(row, 0);
+    c2 = conversionListView->takeItem(row, 1);
+
+    conversionListView->setItem(row, 0, conversionListView->takeItem(row-1, 0));
+    conversionListView->setItem(row, 1, conversionListView->takeItem(row-1, 1));
+
+    conversionListView->setItem(row-1, 0, c1);
+    conversionListView->setItem(row-1, 1, c2);
+
+    conversionListView->selectRow(row-1);
 }
 
 void UserProfileForm::downConversion() {
-	Q3ListViewItem *lvi = conversionListView->selectedItem();
-	if (!lvi) return;
-	
-	Q3ListViewItem *below = lvi->itemBelow();
-	if (!below) return;
-	
-	lvi->moveItem(below);
-	lvi->setSelected(true);
+    QTableWidgetItem *c1, *c2;
+    QModelIndexList ilist = conversionListView->selectionModel()->selectedRows();
+    int row;
+
+    if (ilist.isEmpty())
+        return;
+
+    row = ilist[0].row();
+    if (row == conversionListView->rowCount()-1)
+        return;
+
+    c1 = conversionListView->takeItem(row, 0);
+    c2 = conversionListView->takeItem(row, 1);
+
+    conversionListView->setItem(row, 0, conversionListView->takeItem(row+1, 0));
+    conversionListView->setItem(row, 1, conversionListView->takeItem(row+1, 1));
+
+    conversionListView->setItem(row+1, 0, c1);
+    conversionListView->setItem(row+1, 1, c2);
+
+    conversionListView->selectRow(row+1);
 }
 
 void UserProfileForm::addConversion() {
@@ -1430,33 +1449,47 @@ void UserProfileForm::addConversion() {
 	
 	NumberConversionForm f;
 	if (f.exec(expr, replace) == QDialog::Accepted) {
-		Q3ListViewItem *last = conversionListView->lastItem();
-		if (last) {
-			new Q3ListViewItem(conversionListView, last, expr, replace);
-		} else {
-			new Q3ListViewItem(conversionListView, expr, replace);
-		}
+        QTableWidgetItem* item;
+        int row = conversionListView->rowCount();
+
+        conversionListView->setRowCount(row + 1);
+
+        item = new QTableWidgetItem(expr);
+        conversionListView->setItem(row, 0, item);
+
+        item = new QTableWidgetItem(replace);
+        conversionListView->setItem(row, 1, item);
 	}
 }
 
 void UserProfileForm::editConversion() {
-	Q3ListViewItem *lvi = conversionListView->selectedItem();
-	if (!lvi) return;
-	 
-	QString expr = lvi->text(colExpr);
-	QString replace = lvi->text(colReplace);
+    QModelIndexList ilist = conversionListView->selectionModel()->selectedRows();
+    int row;
+
+    if (ilist.isEmpty())
+        return;
+
+    row = ilist[0].row();
+
+    QString expr = conversionListView->item(row, 0)->text();
+    QString replace = conversionListView->item(row, 1)->text();
 	
 	NumberConversionForm f;
 	if (f.exec(expr, replace) == QDialog::Accepted) {
-		lvi->setText(colExpr, expr);
-		lvi->setText(colReplace, replace);
+        conversionListView->item(row, 0)->setText(expr);
+        conversionListView->item(row, 1)->setText(replace);
 	}
 }
 
 void UserProfileForm::removeConversion() {
-	Q3ListViewItem *lvi = conversionListView->selectedItem();
-	if (!lvi) return;
-	delete lvi;
+    QModelIndexList ilist = conversionListView->selectionModel()->selectedRows();
+    int row;
+
+    if (ilist.isEmpty())
+        return;
+
+    row = ilist[0].row();
+    conversionListView->removeRow(row);
 }
 
 void UserProfileForm::testConversion() {

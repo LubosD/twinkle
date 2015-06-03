@@ -8,7 +8,6 @@
 	Remaining .ui/cpp/h files:
 	* mphoneform
 	* syssettingsform
-	* userprofileform
 	* gui
 
 * make KDE support work again
