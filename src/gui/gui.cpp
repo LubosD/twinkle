@@ -688,7 +688,7 @@ void t_gui::run(void) {
 	s.append(' ').append(PRODUCT_VERSION).append(", ");
 	s.append(sys_config->get_product_date().c_str());
 	mainWindow->display(s);
-	s = "Copyright (C) 2005-2009  ";
+	s = "Copyright (C) 2005-2015  ";
 	s.append(PRODUCT_AUTHOR);
 	mainWindow->display(s);
 	

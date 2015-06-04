@@ -2186,7 +2186,7 @@ void t_userintf::run(void) {
 
 	cout << PRODUCT_NAME << " " << PRODUCT_VERSION << ", " << PRODUCT_DATE;
 	cout << endl;
-	cout << "Copyright (C) 2005-2009  " << PRODUCT_AUTHOR << endl;
+	cout << "Copyright (C) 2005-2015  " << PRODUCT_AUTHOR << endl;
 	cout << endl;
 	
 	cout << "Users:";
