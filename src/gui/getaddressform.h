@@ -9,7 +9,7 @@ class GetAddressForm : public QDialog, public Ui::GetAddressForm
 {
 Q_OBJECT
 public:
-	GetAddressForm(QWidget *parent, const char *name, bool modal);
+    GetAddressForm(QWidget *parent);
 	~GetAddressForm();
 private:
 	void init();

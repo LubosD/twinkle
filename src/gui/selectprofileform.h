@@ -14,7 +14,7 @@ class SelectProfileForm : public QDialog, public Ui::SelectProfileForm
 	Q_OBJECT
 
 public:
-	SelectProfileForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SelectProfileForm(QWidget* parent = 0);
 	~SelectProfileForm();
 
 	std::list<std::string> selectedProfiles;

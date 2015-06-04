@@ -11,7 +11,7 @@ class UserProfileForm : public QDialog, public Ui::UserProfileForm
 	Q_OBJECT
 
 public:
-	UserProfileForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    UserProfileForm(QWidget* parent = 0);
 	~UserProfileForm();
 
 	virtual t_audio_codec label2codec( const QString & label );

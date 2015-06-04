@@ -32,8 +32,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SendFileForm::SendFileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SendFileForm::SendFileForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -61,7 +61,7 @@ void SendFileForm::languageChange()
 
 void SendFileForm::init()
 {
-	setWindowFlags(windowFlags() | Qt::WDestructiveClose);
+    setAttribute(Qt::WA_DeleteOnClose);
 	_chooseFileDialog = NULL;
 }
 
@@ -80,7 +80,7 @@ void SendFileForm::destroy()
 void SendFileForm::signalSelectedInfo() 
 {
 	if (!QFile::exists(fileLineEdit->text())) {
-		((t_gui *)ui)->cb_show_msg(this,  tr("File does not exist.").ascii(), MSG_WARNING);
+        ((t_gui *)ui)->cb_show_msg(this,  tr("File does not exist.").toStdString(), MSG_WARNING);
 		return;
 	}
 	
@@ -103,7 +103,7 @@ void SendFileForm::chooseFile()
 	
 	connect(d, SIGNAL(fileSelected(const QString &)), this, SLOT(setFilename()));
 #endif
-	d->setCaption(tr("Send file..."));
+    d->setWindowTitle(tr("Send file..."));
 	
 	if (_chooseFileDialog) {
 		MEMMAN_DELETE(_chooseFileDialog);
@@ -126,7 +126,10 @@ void SendFileForm::setFilename()
 	filename = d->selectedFile();
 #else
 	QFileDialog *d = dynamic_cast<QFileDialog *>(_chooseFileDialog);
-	filename = d->selectedFile();
+    QStringList files = d->selectedFiles();
+
+    if (!files.empty())
+        filename = files[0];
 #endif
 	
 	fileLineEdit->setText(filename);

@@ -80,7 +80,6 @@
   </tabstops>
   <includes>
     <include location="local">qfile.h</include>
-    <include location="local">q3textstream.h</include>
   </includes>
   <connections>
     <connection>

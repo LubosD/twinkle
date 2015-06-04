@@ -24,7 +24,6 @@
 #include "call_history.h"
 #include "util.h"
 #include "gui.h"
-#include "q3listview.h"
 #include "qicon.h"
 #include "audits/memman.h"
 #include "historyform.h"
@@ -42,8 +41,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-HistoryForm::HistoryForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+HistoryForm::HistoryForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -94,8 +93,8 @@ void HistoryForm::init()
 	QIcon deleteIcon(QPixmap(":/icons/images/editdelete.png"));
     histPopupMenu = new QMenu(this);
 	
-	itemCall = histPopupMenu->insertItem(inviteIcon, tr("Call..."), this, SLOT(call()));
-	histPopupMenu->insertItem(deleteIcon, tr("Delete"), this, SLOT(deleteEntry()));
+    itemCall = histPopupMenu->addAction(inviteIcon, tr("Call..."), this, SLOT(call()));
+    histPopupMenu->addAction(deleteIcon, tr("Delete"), this, SLOT(deleteEntry()));
 
     m_pixmapIn = QPixmap(":/icons/images/1leftarrow-yellow.png");
     m_pixmapOut = QPixmap(":/icons/images/1rightarrow.png");
@@ -241,14 +240,14 @@ void HistoryForm::update()
 {
 	// There is no need to update the history when the window is
 	// hidden.
-	if (isShown()) loadHistory();
+    if (isVisible()) loadHistory();
 }
 
 void HistoryForm::show()
 {
-	if (isShown()) {
+    if (isVisible()) {
 		raise();
-		setActiveWindow();
+        activateWindow();
 		return;
 	}
 	
@@ -387,7 +386,7 @@ void HistoryForm::popupMenu(QPoint pos)
 	bool canCall = !(cr.direction == t_call_record::DIR_IN &&
 			    cr.from_uri.encode() == ANONYMOUS_URI);
 	
-	histPopupMenu->setItemEnabled(itemCall, canCall);
+    itemCall->setEnabled(canCall);
 	histPopupMenu->popup(pos);
 }
 
@@ -406,7 +405,7 @@ void HistoryForm::call(QModelIndex index)
 	QString subject;
 	if (cr.direction == t_call_record::DIR_IN) {
 		if (!cr.subject.empty()) {
-			if (cr.subject.substr(0, tr("Re:").length()) != tr("Re:").ascii()) {
+            if (cr.subject.substr(0, tr("Re:").length()) != tr("Re:").toStdString()) {
 				subject = tr("Re:").append(" ");
 				subject += cr.subject.c_str();
 			} else {

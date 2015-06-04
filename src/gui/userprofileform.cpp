@@ -116,8 +116,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-UserProfileForm::UserProfileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+UserProfileForm::UserProfileForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -174,13 +174,13 @@ void UserProfileForm::init()
 	// Speex & (Speex) Preprocessing
 	speexGroupBox->hide();
 	preprocessingGroupBox->hide();
-	rtpAudioTabWidget->setTabEnabled(rtpAudioTabWidget->page(idxRtpSpeex), false);
-	rtpAudioTabWidget->setTabEnabled(rtpAudioTabWidget->page(idxRtpPreprocessing), false);
+    rtpAudioTabWidget->setTabEnabled(idxRtpSpeex, false);
+    rtpAudioTabWidget->setTabEnabled(idxRtpPreprocessing, false);
 #endif
 #ifndef HAVE_ILBC
 	// iLBC
 	ilbcGroupBox->hide();
-	rtpAudioTabWidget->setTabEnabled(rtpAudioTabWidget->page(idxRtpIlbc), false);
+    rtpAudioTabWidget->setTabEnabled(idxRtpIlbc, false);
 #endif
 #ifndef HAVE_ZRTP
 	// Zrtp
@@ -190,12 +190,11 @@ void UserProfileForm::init()
 	
 	// Set toolbutton icons for disabled options.
 	QIcon i;
-	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	openRingtoneToolButton->setIconSet(i);
-	openRingbackToolButton->setIconSet(i);
-	openIncomingCallScriptToolButton->setIconSet(i);
+    i = openRingtoneToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/fileopen-disabled.png"), QIcon::Disabled);
+    openRingtoneToolButton->setIcon(i);
+    openRingbackToolButton->setIcon(i);
+    openIncomingCallScriptToolButton->setIcon(i);
 }
 
 void UserProfileForm::showCategory( int index )
@@ -329,7 +328,7 @@ void UserProfileForm::populate()
 	s = PRODUCT_NAME;
 	s.append(" - ").append(tr("User profile:")).append(" ");
 	s.append(current_profile->get_profile_name().c_str());
-	setCaption(s);
+    setWindowTitle(s);
 	
 	// Select the User category
     categoryListBox->setCurrentRow(idxCatUser);
@@ -380,10 +379,10 @@ void UserProfileForm::populate()
 	// VOICE MAIL
 	vmAddressLineEdit->setText(current_profile->get_mwi_vm_address().c_str());
 	if (current_profile->get_mwi_sollicited()) {
-		mwiTypeComboBox->setCurrentItem(idxMWISollicited);
+        mwiTypeComboBox->setCurrentIndex(idxMWISollicited);
 		mwiSollicitedGroupBox->setEnabled(true);
 	} else {
-		mwiTypeComboBox->setCurrentItem(idxMWIUnsollicited);
+        mwiTypeComboBox->setCurrentIndex(idxMWIUnsollicited);
 		mwiSollicitedGroupBox->setEnabled(false);
 	}
 	mwiUserLineEdit->setText(current_profile->get_mwi_user().c_str());
@@ -424,7 +423,7 @@ void UserProfileForm::populate()
 	for (list<t_audio_codec>::iterator i = audio_codecs.begin(); i != audio_codecs.end(); i++)
 	{
         activeCodecListBox->addItem(codec2label(*i));
-		allCodecs.remove(codec2label(*i));
+        allCodecs.removeAll(codec2label(*i));
 	}
 	availCodecListBox->clear();
     if (!allCodecs.empty()) availCodecListBox->addItems(allCodecs);
@@ -459,9 +458,9 @@ void UserProfileForm::populate()
 	ilbcPayloadSpinBox->setValue(current_profile->get_ilbc_payload_type());
 	
 	if (current_profile->get_ilbc_mode() == 20) {
-		ilbcPayloadSizeComboBox->setCurrentItem(idxIlbcMode20);
+        ilbcPayloadSizeComboBox->setCurrentIndex(idxIlbcMode20);
 	} else {
-		ilbcPayloadSizeComboBox->setCurrentItem(idxIlbcMode30);
+        ilbcPayloadSizeComboBox->setCurrentIndex(idxIlbcMode30);
 	}
 	
 	// G.726
@@ -471,24 +470,24 @@ void UserProfileForm::populate()
 	g72640PayloadSpinBox->setValue(current_profile->get_g726_40_payload_type());
 	
 	if (current_profile->get_g726_packing() == G726_PACK_RFC3551) {
-		g726PackComboBox->setCurrentItem(idxG726PackRfc3551);
+        g726PackComboBox->setCurrentIndex(idxG726PackRfc3551);
 	} else {
-		g726PackComboBox->setCurrentItem(idxG726PackAal2);
+        g726PackComboBox->setCurrentIndex(idxG726PackAal2);
 	}
 	
 	// DTMF
 	switch (current_profile->get_dtmf_transport()) {
 	case DTMF_RFC2833:
-		dtmfTransportComboBox->setCurrentItem(idxDtmfRfc2833);
+        dtmfTransportComboBox->setCurrentIndex(idxDtmfRfc2833);
 		break;
 	case DTMF_INBAND:
-		dtmfTransportComboBox->setCurrentItem(idxDtmfInband);
+        dtmfTransportComboBox->setCurrentIndex(idxDtmfInband);
 		break;
 	case DTMF_INFO:
-		dtmfTransportComboBox->setCurrentItem(idxDtmfInfo);
+        dtmfTransportComboBox->setCurrentIndex(idxDtmfInfo);
 		break;
 	default:
-		dtmfTransportComboBox->setCurrentItem(idxDtmfAuto);
+        dtmfTransportComboBox->setCurrentIndex(idxDtmfAuto);
 		break;
 	}
 	
@@ -500,10 +499,10 @@ void UserProfileForm::populate()
 	// SIP PROTOCOL
 	switch (current_profile->get_hold_variant()) {
 	case HOLD_RFC2543:
-		holdVariantComboBox->setCurrentItem(idxHoldRfc2543);
+        holdVariantComboBox->setCurrentIndex(idxHoldRfc2543);
 		break;
 	default:
-		holdVariantComboBox->setCurrentItem(idxHoldRfc3264);
+        holdVariantComboBox->setCurrentIndex(idxHoldRfc3264);
 		break;
 	}
 	
@@ -522,7 +521,7 @@ void UserProfileForm::populate()
 	maxRedirectTextLabel->setEnabled(current_profile->get_allow_redirection());
 	maxRedirectSpinBox->setEnabled(current_profile->get_allow_redirection());
 	maxRedirectSpinBox->setValue(current_profile->get_max_redirections());
-	ext100relComboBox->setCurrentItem(
+    ext100relComboBox->setCurrentIndex(
 			ext_support2indexComboItem(current_profile->get_ext_100rel()));
 	extReplacesCheckBox->setChecked(current_profile->get_ext_replaces());
 	allowReferCheckBox->setChecked(current_profile->get_allow_refer());
@@ -540,13 +539,13 @@ void UserProfileForm::populate()
 	// Transport/NAT
 	switch (current_profile->get_sip_transport()) {
 	case SIP_TRANS_UDP:
-		sipTransportComboBox->setCurrentItem(idxSipTransportUDP);
+        sipTransportComboBox->setCurrentIndex(idxSipTransportUDP);
 		break;
 	case SIP_TRANS_TCP:
-		sipTransportComboBox->setCurrentItem(idxSipTransportTCP);
+        sipTransportComboBox->setCurrentIndex(idxSipTransportTCP);
 		break;
 	default:
-		sipTransportComboBox->setCurrentItem(idxSipTransportAuto);
+        sipTransportComboBox->setCurrentIndex(idxSipTransportAuto);
 		break;
 	}
 	
@@ -635,7 +634,7 @@ void UserProfileForm::initProfileList(list<t_user *> profiles, QString show_prof
 	int show_idx = 0;
 	int idx = 0;
 	for (list<t_user *>::iterator i = profile_list.begin(); i != profile_list.end(); i++) {
-		profileComboBox->insertItem((*i)->get_profile_name().c_str());
+        profileComboBox->addItem((*i)->get_profile_name().c_str());
 		if (show_profile_name == (*i)->get_profile_name().c_str()) {
 			show_idx = idx;
 			show_profile = *i;
@@ -651,7 +650,7 @@ void UserProfileForm::initProfileList(list<t_user *> profiles, QString show_prof
 	} else {
 		current_profile = show_profile;
 	}
-	profileComboBox->setCurrentItem(current_profile_idx);
+    profileComboBox->setCurrentIndex(current_profile_idx);
 }
 
 // Show the form
@@ -681,7 +680,7 @@ bool UserProfileForm::check_dynamic_payload(QSpinBox *spb,
         categoryListBox->setCurrentRow(idxCatRtpAudio);
         settingsWidgetStack->setCurrentWidget(pageRtpAudio);
 		QString msg = tr("Dynamic payload type %1 is used more than once.").arg(spb->value());
-		((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this, msg.toStdString(), MSG_CRITICAL);
 		spb->setFocus();
 		return false;
 	}
@@ -701,9 +700,9 @@ list<t_number_conversion> UserProfileForm::get_number_conversions()
 		
 		try {
             item = conversionListView->item(0, 0);
-            c.re.assign(item->text().ascii());
+            c.re.assign(item->text().toStdString());
             item = conversionListView->item(0, 1);
-            c.fmt = item->text().ascii();
+            c.fmt = item->text().toStdString();
 			conversions.push_back(c);
 		} catch (boost::bad_expression) {
 			// Should never happen as validity has been
@@ -723,7 +722,7 @@ bool UserProfileForm::validateValues()
 	if (usernameLineEdit->text().isEmpty()) {
         categoryListBox->setCurrentRow(idxCatUser);
         settingsWidgetStack->setCurrentWidget(pageUser);
-		((t_gui *)ui)->cb_show_msg(this, tr("You must fill in a user name for your SIP account.").ascii(),
+        ((t_gui *)ui)->cb_show_msg(this, tr("You must fill in a user name for your SIP account.").toStdString(),
 				MSG_CRITICAL);
 		usernameLineEdit->setFocus();
 		return false;
@@ -736,7 +735,7 @@ bool UserProfileForm::validateValues()
 		((t_gui *)ui)->cb_show_msg(this, tr(
 				"You must fill in a domain name for your SIP account.\n"
 				"This could be the hostname or IP address of your PC "
-				"if you want direct PC to PC dialing.").ascii(),
+                "if you want direct PC to PC dialing.").toStdString(),
 				MSG_CRITICAL);
 		domainLineEdit->setFocus();
 		return false;
@@ -745,11 +744,11 @@ bool UserProfileForm::validateValues()
 	// Check validity of domain
 	s = USER_SCHEME;
 	s.append(':').append(domainLineEdit->text());
-	t_url u_domain(s.ascii());
+    t_url u_domain(s.toStdString());
 	if (!u_domain.is_valid() || u_domain.get_user() != "") {
         categoryListBox->setCurrentRow(idxCatUser);
         settingsWidgetStack->setCurrentWidget(pageUser);
-		((t_gui *)ui)->cb_show_msg(this,  tr("Invalid domain.").ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this,  tr("Invalid domain.").toStdString(), MSG_CRITICAL);
 		domainLineEdit->setFocus();
 		return false;
 	}
@@ -758,11 +757,11 @@ bool UserProfileForm::validateValues()
 	s = USER_SCHEME;
 	s.append(':').append(usernameLineEdit->text()).append('@');
 	s.append(domainLineEdit->text());
-	t_url u_user_domain(s.ascii());
+    t_url u_user_domain(s.toStdString());
 	if (!u_user_domain.is_valid()) {
         categoryListBox->setCurrentRow(idxCatUser);
         settingsWidgetStack->setCurrentWidget(pageUser);
-		((t_gui *)ui)->cb_show_msg(this,  tr("Invalid user name.").ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this,  tr("Invalid user name.").toStdString(), MSG_CRITICAL);
 		usernameLineEdit->setFocus();
 		return false;
 	}
@@ -771,11 +770,11 @@ bool UserProfileForm::validateValues()
 	if (!registrarLineEdit->text().isEmpty()) {
 		s = USER_SCHEME;
 		s.append(':').append(registrarLineEdit->text());
-		t_url u(s.ascii());
+        t_url u(s.toStdString());
 		if (!u.is_valid() || u.get_user() != "") {
             categoryListBox->setCurrentRow(idxCatSipServer);
             settingsWidgetStack->setCurrentWidget(pageSipServer);
-			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for registrar.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for registrar.").toStdString(),
 						   MSG_CRITICAL);
 			registrarLineEdit->setFocus();
 			registrarLineEdit->selectAll();
@@ -787,11 +786,11 @@ bool UserProfileForm::validateValues()
 	if (useProxyCheckBox->isChecked()) {
 		s = USER_SCHEME;
 		s.append(':').append(proxyLineEdit->text());
-		t_url u(s.ascii());
+        t_url u(s.toStdString());
 		if (!u.is_valid() || u.get_user() != "") {
             categoryListBox->setCurrentRow(idxCatSipServer);
             settingsWidgetStack->setCurrentWidget(pageSipServer);
-			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for outbound proxy.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for outbound proxy.").toStdString(),
 					MSG_CRITICAL);
 			proxyLineEdit->setFocus();
 			proxyLineEdit->selectAll();
@@ -801,13 +800,13 @@ bool UserProfileForm::validateValues()
 	
 
 	// Validity check voice mail page
-	if (mwiTypeComboBox->currentItem() == idxMWISollicited) {
+    if (mwiTypeComboBox->currentIndex() == idxMWISollicited) {
 		// Mailbox user name is mandatory
 		if (mwiUserLineEdit->text().isEmpty()) {
             categoryListBox->setCurrentRow(idxCatVoiceMail);
             settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this, 
-					tr("You must fill in a mailbox user name.").ascii(),
+                    tr("You must fill in a mailbox user name.").toStdString(),
 					MSG_CRITICAL);
 			mwiUserLineEdit->setFocus();
 			return false;
@@ -818,7 +817,7 @@ bool UserProfileForm::validateValues()
             categoryListBox->setCurrentRow(idxCatVoiceMail);
             settingsWidgetStack->setCurrentWidget(pageVoiceMail);
 			((t_gui *)ui)->cb_show_msg(this, 
-					tr("You must fill in a mailbox server").ascii(),
+                    tr("You must fill in a mailbox server").toStdString(),
 					MSG_CRITICAL);
 			mwiServerLineEdit->setFocus();
 			return false;
@@ -827,11 +826,11 @@ bool UserProfileForm::validateValues()
 		// Check validity of mailbox server
 		s = USER_SCHEME;
 		s.append(':').append(mwiServerLineEdit->text());
-		t_url u_server(s.ascii());
+        t_url u_server(s.toStdString());
 		if (!u_server.is_valid() || u_server.get_user() != "") {
             categoryListBox->setCurrentRow(idxCatVoiceMail);
             settingsWidgetStack->setCurrentWidget(pageVoiceMail);
-			((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox server.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox server.").toStdString(),
 						   MSG_CRITICAL);
 			mwiServerLineEdit->setFocus();
 			return false;
@@ -841,11 +840,11 @@ bool UserProfileForm::validateValues()
 		s = USER_SCHEME;
 		s.append(':').append(mwiUserLineEdit->text()).append('@');
 		s.append(mwiServerLineEdit->text());
-		t_url u_user_server(s.ascii());
+        t_url u_user_server(s.toStdString());
 		if (!u_user_server.is_valid()) {
             categoryListBox->setCurrentRow(idxCatVoiceMail);
             settingsWidgetStack->setCurrentWidget(pageVoiceMail);
-			((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox user name.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this,  tr("Invalid mailbox user name.").toStdString(),
 						   MSG_CRITICAL);
 			mwiUserLineEdit->setFocus();
 			return false;
@@ -857,7 +856,7 @@ bool UserProfileForm::validateValues()
 		if (publicIPLineEdit->text().isEmpty()){
             categoryListBox->setCurrentRow(idxCatNat);
             settingsWidgetStack->setCurrentWidget(pageNat);
-			((t_gui *)ui)->cb_show_msg(this, tr("Value for public IP address missing.").ascii(),
+            ((t_gui *)ui)->cb_show_msg(this, tr("Value for public IP address missing.").toStdString(),
 					MSG_CRITICAL);
 			publicIPLineEdit->setFocus();
 			return false;
@@ -870,12 +869,12 @@ bool UserProfileForm::validateValues()
 	    !check_dynamic_payload(spxWbPayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(spxUwbPayloadSpinBox, checked_types))
 	{
-		rtpAudioTabWidget->showPage(tabSpeex);
+        rtpAudioTabWidget->setCurrentWidget(tabSpeex);
 		return false;
 	}
 	
 	if (!check_dynamic_payload(ilbcPayloadSpinBox, checked_types)) {
-		rtpAudioTabWidget->showPage(tabIlbc);
+        rtpAudioTabWidget->setCurrentWidget(tabIlbc);
 		return false;
 	}
 	
@@ -883,12 +882,12 @@ bool UserProfileForm::validateValues()
 	    !check_dynamic_payload(g72624PayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(g72632PayloadSpinBox, checked_types) ||
 	    !check_dynamic_payload(g72640PayloadSpinBox, checked_types)) {
-		rtpAudioTabWidget->showPage(tabG726);
+        rtpAudioTabWidget->setCurrentWidget(tabG726);
 		return false;
 	}
 	
 	if (!check_dynamic_payload(dtmfPayloadTypeSpinBox, checked_types)) {
-		rtpAudioTabWidget->showPage(tabDtmf);
+        rtpAudioTabWidget->setCurrentWidget(tabDtmf);
 		return false;
 	}
 	
@@ -896,11 +895,11 @@ bool UserProfileForm::validateValues()
 	if (natStunRadioButton->isChecked()) {
 		s = "stun:";
 		s.append(stunServerLineEdit->text());
-		t_url u(s.ascii());
+        t_url u(s.toStdString());
 		if (!u.is_valid() || u.get_user() != "") {
             categoryListBox->setCurrentRow(idxCatNat);
             settingsWidgetStack->setCurrentWidget(pageNat);
-			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for STUN server.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for STUN server.").toStdString(),
 					MSG_CRITICAL);
 			stunServerLineEdit->setFocus();
 			stunServerLineEdit->selectAll();
@@ -914,7 +913,7 @@ bool UserProfileForm::validateValues()
 	}
 	
 	// Clear sollicited MWI settings if unsollicited MWI is used
-	if (mwiTypeComboBox->currentItem() == idxMWIUnsollicited) {
+    if (mwiTypeComboBox->currentIndex() == idxMWIUnsollicited) {
 		t_user user_default;
 		mwiUserLineEdit->clear();
 		mwiServerLineEdit->clear();
@@ -934,40 +933,40 @@ bool UserProfileForm::validateValues()
 	
 	// Set all values in the current_profile object
 	// USER
-	if (current_profile->get_name() != usernameLineEdit->text().ascii() ||
-	    current_profile->get_display(false) != displayLineEdit->text().ascii() ||
-	    current_profile->get_domain() != domainLineEdit->text().ascii())
+    if (current_profile->get_name() != usernameLineEdit->text().toStdString() ||
+        current_profile->get_display(false) != displayLineEdit->text().toStdString() ||
+        current_profile->get_domain() != domainLineEdit->text().toStdString())
 	{
-		current_profile->set_display(displayLineEdit->text().ascii());
-		current_profile->set_name(usernameLineEdit->text().ascii());
-		current_profile->set_domain (domainLineEdit->text().ascii());
+        current_profile->set_display(displayLineEdit->text().toStdString());
+        current_profile->set_name(usernameLineEdit->text().toStdString());
+        current_profile->set_domain (domainLineEdit->text().toStdString());
 		emit sipUserChanged(current_profile);
 	}
 	
-	current_profile->set_organization(organizationLineEdit->text().ascii());
+    current_profile->set_organization(organizationLineEdit->text().toStdString());
 	
 	uint8 new_aka_op[AKA_OPLEN];
 	uint8 new_aka_amf[AKA_AMFLEN];
 	uint8 current_aka_op[AKA_OPLEN];
 	uint8 current_aka_amf[AKA_AMFLEN];
 	
-	hex2binary(padleft(authAkaOpLineEdit->text().ascii(), '0', 32), new_aka_op);
-	hex2binary(padleft(authAkaAmfLineEdit->text().ascii(), '0', 4), new_aka_amf);
+    hex2binary(padleft(authAkaOpLineEdit->text().toStdString(), '0', 32), new_aka_op);
+    hex2binary(padleft(authAkaAmfLineEdit->text().toStdString(), '0', 4), new_aka_amf);
 	current_profile->get_auth_aka_op(current_aka_op);
 	current_profile->get_auth_aka_amf(current_aka_amf);
 	
-	if (current_profile->get_auth_realm() != authRealmLineEdit->text().ascii() ||
-	    current_profile->get_auth_name() != authNameLineEdit->text().ascii() ||
-	    current_profile->get_auth_pass() != authPasswordLineEdit->text().ascii() ||
+    if (current_profile->get_auth_realm() != authRealmLineEdit->text().toStdString() ||
+        current_profile->get_auth_name() != authNameLineEdit->text().toStdString() ||
+        current_profile->get_auth_pass() != authPasswordLineEdit->text().toStdString() ||
 	    memcmp(current_aka_op, new_aka_op, AKA_OPLEN) != 0 ||
 	    memcmp(current_aka_amf, new_aka_amf, AKA_AMFLEN) != 0)
 	{
 		emit authCredentialsChanged(current_profile,
 					current_profile->get_auth_realm());
 		
-		current_profile->set_auth_realm(authRealmLineEdit->text().ascii());
-		current_profile->set_auth_name(authNameLineEdit->text().ascii());
-		current_profile->set_auth_pass(authPasswordLineEdit->text().ascii());
+        current_profile->set_auth_realm(authRealmLineEdit->text().toStdString());
+        current_profile->set_auth_name(authNameLineEdit->text().toStdString());
+        current_profile->set_auth_pass(authPasswordLineEdit->text().toStdString());
 		current_profile->set_auth_aka_op(new_aka_op);
 		current_profile->set_auth_aka_amf(new_aka_amf);
 	}
@@ -976,25 +975,25 @@ bool UserProfileForm::validateValues()
 	current_profile->set_use_registrar(!registrarLineEdit->text().isEmpty());
 	s = USER_SCHEME;
 	s.append(':').append(registrarLineEdit->text());
-	current_profile->set_registrar(t_url(s.ascii()));
+    current_profile->set_registrar(t_url(s.toStdString()));
 	current_profile->set_registration_time(expirySpinBox->value());
 	current_profile->set_register_at_startup(regAtStartupCheckBox->isChecked());
 	current_profile->set_reg_add_qvalue(regAddQvalueCheckBox->isChecked());
-	current_profile->set_reg_qvalue(atof(regQvalueLineEdit->text().ascii()));
+    current_profile->set_reg_qvalue(regQvalueLineEdit->text().toDouble());
 	
 	current_profile->set_use_outbound_proxy(useProxyCheckBox->isChecked());
 	s = USER_SCHEME;
 	s.append(':').append(proxyLineEdit->text());
-	current_profile->set_outbound_proxy(t_url(s.ascii()));
+    current_profile->set_outbound_proxy(t_url(s.toStdString()));
 	current_profile->set_all_requests_to_proxy(allRequestsCheckBox->isChecked());
 	current_profile->set_non_resolvable_to_proxy(
 			proxyNonResolvableCheckBox->isChecked());
 	
 	// VOICE MAIL
-	current_profile->set_mwi_vm_address(vmAddressLineEdit->text().ascii());
+    current_profile->set_mwi_vm_address(vmAddressLineEdit->text().toStdString());
 	
 	bool mustTriggerMWISubscribe = false;
-	bool mwiSollicited = (mwiTypeComboBox->currentItem() == idxMWISollicited);
+    bool mwiSollicited = (mwiTypeComboBox->currentIndex() == idxMWISollicited);
 	if (mwiSollicited) {
 		if (!current_profile->get_mwi_sollicited()) {
 			// Sollicited MWI now enabled. Subscribe after all MWI
@@ -1003,8 +1002,8 @@ bool UserProfileForm::validateValues()
 		} else {
 			s = USER_SCHEME;
 			s.append(':').append(mwiServerLineEdit->text());
-			if (mwiUserLineEdit->text().ascii() != current_profile->get_mwi_user() ||
-			    t_url(s.ascii()) != current_profile->get_mwi_server() ||
+            if (mwiUserLineEdit->text().toStdString() != current_profile->get_mwi_user() ||
+                t_url(s.toStdString()) != current_profile->get_mwi_server() ||
 			    mwiViaProxyCheckBox->isChecked() != current_profile->get_mwi_via_proxy())
 			{
 				// Sollicited MWI settings changed. Trigger unsubscribe
@@ -1024,10 +1023,10 @@ bool UserProfileForm::validateValues()
 	}
 	
 	current_profile->set_mwi_sollicited(mwiSollicited);
-	current_profile->set_mwi_user(mwiUserLineEdit->text().ascii());
+    current_profile->set_mwi_user(mwiUserLineEdit->text().toStdString());
 	s = USER_SCHEME;
 	s.append(':').append(mwiServerLineEdit->text());
-	current_profile->set_mwi_server(t_url(s.ascii()));
+    current_profile->set_mwi_server(t_url(s.toStdString()));
 	current_profile->set_mwi_via_proxy(mwiViaProxyCheckBox->isChecked());
 	current_profile->set_mwi_subscription_time(mwiDurationSpinBox->value());
 	
@@ -1078,7 +1077,7 @@ bool UserProfileForm::validateValues()
 	
 	// iLBC
 	current_profile->set_ilbc_payload_type(ilbcPayloadSpinBox->value());
-	switch (ilbcPayloadSizeComboBox->currentItem()) {
+    switch (ilbcPayloadSizeComboBox->currentIndex()) {
 	case idxIlbcMode20:
 		current_profile->set_ilbc_mode(20);
 		break;
@@ -1093,7 +1092,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_g726_32_payload_type(g72632PayloadSpinBox->value());
 	current_profile->set_g726_40_payload_type(g72640PayloadSpinBox->value());
 	
-	switch (g726PackComboBox->currentItem()) {
+    switch (g726PackComboBox->currentIndex()) {
 	case idxG726PackRfc3551:
 		current_profile->set_g726_packing(G726_PACK_RFC3551);
 		break;
@@ -1103,7 +1102,7 @@ bool UserProfileForm::validateValues()
 	}
 	
 	// DTMF
-	switch (dtmfTransportComboBox->currentItem()) {
+    switch (dtmfTransportComboBox->currentIndex()) {
 	case idxDtmfRfc2833:
 		current_profile->set_dtmf_transport(DTMF_RFC2833);
 		break;
@@ -1124,7 +1123,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_dtmf_volume(-(dtmfVolumeSpinBox->value()));
 	
 	// SIP PROTOCOL
-	switch (holdVariantComboBox->currentItem()) {
+    switch (holdVariantComboBox->currentIndex()) {
 	case idxHoldRfc2543:
 		current_profile->set_hold_variant(HOLD_RFC2543);
 		break;
@@ -1146,7 +1145,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_ask_user_to_redirect(askUserRedirectCheckBox->isChecked());
 	current_profile->set_max_redirections(maxRedirectSpinBox->value());
 	current_profile->set_ext_100rel(indexComboItem2ext_support(
-			ext100relComboBox->currentItem()));
+            ext100relComboBox->currentIndex()));
 	current_profile->set_ext_replaces(extReplacesCheckBox->isChecked());
 	current_profile->set_allow_refer(allowReferCheckBox->isChecked());
 	current_profile->set_ask_user_to_refer(askUserReferCheckBox->isChecked());
@@ -1159,7 +1158,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_send_p_preferred_id(pPreferredIdCheckBox->isChecked());
 	
 	// Transport/NAT
-	switch (sipTransportComboBox->currentItem()) {
+    switch (sipTransportComboBox->currentIndex()) {
 	case idxSipTransportUDP:
 		current_profile->set_sip_transport(SIP_TRANS_UDP);
 		break;
@@ -1174,15 +1173,15 @@ bool UserProfileForm::validateValues()
 	current_profile->set_sip_transport_udp_threshold(udpThresholdSpinBox->value());
 	
 	current_profile->set_use_nat_public_ip(natStaticRadioButton->isChecked());
-	current_profile->set_nat_public_ip(publicIPLineEdit->text().ascii());
+    current_profile->set_nat_public_ip(publicIPLineEdit->text().toStdString());
 	current_profile->set_use_stun(natStunRadioButton->isChecked());
 	
-	if (current_profile->get_stun_server().encode_noscheme() != stunServerLineEdit->text().ascii() ||
+    if (current_profile->get_stun_server().encode_noscheme() != stunServerLineEdit->text().toStdString() ||
 	    current_profile->get_enable_nat_keepalive() != natKeepaliveCheckBox->isChecked()) 
 	{
 		s = "stun:";
 		s.append(stunServerLineEdit->text());
-		current_profile->set_stun_server(t_url(s.ascii()));
+        current_profile->set_stun_server(t_url(s.toStdString()));
 		current_profile->set_enable_nat_keepalive(natKeepaliveCheckBox->isChecked());
 		emit stunServerChanged(current_profile);
 	}
@@ -1197,7 +1196,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_remove_special_phone_symbols(
 			removeSpecialCheckBox->isChecked());
 	current_profile->set_special_phone_symbols(
-			specialLineEdit->text().stripWhiteSpace().ascii());
+            specialLineEdit->text().trimmed().toStdString());
 	current_profile->set_number_conversions(get_number_conversions());
 	current_profile->set_use_tel_uri_for_phone(useTelUriCheckBox->isChecked());
 	
@@ -1206,26 +1205,26 @@ bool UserProfileForm::validateValues()
 	current_profile->set_timer_nat_keepalive(tmrNatKeepaliveSpinBox->value());
 	
 	// RING TONES
-	current_profile->set_ringtone_file(ringtoneLineEdit->text().stripWhiteSpace().ascii());
-	current_profile->set_ringback_file(ringbackLineEdit->text().stripWhiteSpace().ascii());
+    current_profile->set_ringtone_file(ringtoneLineEdit->text().trimmed().toStdString());
+    current_profile->set_ringback_file(ringbackLineEdit->text().trimmed().toStdString());
 	
 	// SCRIPTS
 	current_profile->set_script_incoming_call(incomingCallScriptLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_in_call_answered(inCallAnsweredLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_in_call_failed(inCallFailedLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_outgoing_call(outCallLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_out_call_answered(outCallAnsweredLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_out_call_failed(outCallFailedLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_local_release(localReleaseLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	current_profile->set_script_remote_release(remoteReleaseLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 	
 	// Security
 	current_profile->set_zrtp_enabled(zrtpEnabledCheckBox->isChecked());
@@ -1262,7 +1261,7 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 	if (!validateValues()) {
 		// Current values are not valid.
 		// Do not change to the new profile.
-		profileComboBox->setCurrentItem(current_profile_idx);
+        profileComboBox->setCurrentIndex(current_profile_idx);
 		return;
 	}
 	
@@ -1271,13 +1270,13 @@ void UserProfileForm::changeProfile(const QString &profileName) {
 	
 	// Change to new profile.
 	for (list<t_user *>::iterator i = profile_list.begin(); i != profile_list.end(); i++) {
-		if ((*i)->get_profile_name() == profileName.ascii()) {
+        if ((*i)->get_profile_name() == profileName.toStdString()) {
 			current_profile = *i;
 			break;
 		}
 	}
 	
-	current_profile_idx = profileComboBox->currentItem();
+    current_profile_idx = profileComboBox->currentIndex();
 	populate();
 	
 	// Restore last viewed category
@@ -1293,7 +1292,7 @@ void UserProfileForm::chooseFile(QLineEdit *qle, const QString &filter, const QS
 			filter);
 	if (!file.isEmpty()) {
 		qle->setText(file);
-		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));
+        ((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).absolutePath());
 	}	
 }
 
@@ -1494,21 +1493,21 @@ void UserProfileForm::testConversion() {
 	bool remove_special_phone_symbols = removeSpecialCheckBox->isChecked();
 	QString special_phone_symbols = specialLineEdit->text();
 	
-	number = remove_white_space(number.ascii()).c_str();
+    number = remove_white_space(number.toStdString()).c_str();
 	
 	// Remove special symbols
 	if (remove_special_phone_symbols &&
-	    looks_like_phone(number.ascii(), special_phone_symbols.ascii()))
+        looks_like_phone(number.toStdString(), special_phone_symbols.toStdString()))
 	{
 		number = remove_symbols(
-				number.ascii(), special_phone_symbols.ascii()).c_str();
+                number.toStdString(), special_phone_symbols.toStdString()).c_str();
 	}
 	
 	QString msg = tr("%1 converts to %2")
 		      .arg(number)
-		      .arg(current_profile->convert_number(number.ascii(), get_number_conversions()).c_str());
+              .arg(current_profile->convert_number(number.toStdString(), get_number_conversions()).c_str());
 	
-	((t_gui *)ui)->cb_show_msg(this,  msg.ascii(), MSG_INFO);
+    ((t_gui *)ui)->cb_show_msg(this,  msg.toStdString(), MSG_INFO);
 }
 
 void UserProfileForm::changeMWIType(int idxMWIType) {

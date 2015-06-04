@@ -29,8 +29,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SelectNicForm::SelectNicForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SelectNicForm::SelectNicForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 

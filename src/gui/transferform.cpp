@@ -14,8 +14,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-TransferForm::TransferForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+TransferForm::TransferForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -65,10 +65,9 @@ void TransferForm::init()
 	
 	// Set toolbutton icons for disabled options.
 	QIcon i;
-	i = addressToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	addressToolButton->setIconSet(i);
+    i = addressToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"), QIcon::Disabled);
+    addressToolButton->setIcon(i);
 }
 
 void TransferForm::destroy()
@@ -155,12 +154,12 @@ void TransferForm::reject()
 void TransferForm::validate()
 {
 	t_display_url dest;
-	ui->expand_destination(user_config, toLineEdit->text().stripWhiteSpace().ascii(), dest);
+    ui->expand_destination(user_config, toLineEdit->text().trimmed().toStdString(), dest);
 	
 	t_transfer_type transfer_type;
-	if (consultRadioButton->isOn()) {
+    if (consultRadioButton->isChecked()) {
 		transfer_type = TRANSFER_CONSULT;
-	} else if (otherLineRadioButton->isOn()) {
+    } else if (otherLineRadioButton->isChecked()) {
 		transfer_type = TRANSFER_OTHER_LINE;
 	} else {
 		transfer_type = TRANSFER_BASIC;
@@ -186,8 +185,8 @@ void TransferForm::closeEvent(QCloseEvent *)
 void TransferForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	

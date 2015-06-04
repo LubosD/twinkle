@@ -28,8 +28,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-BuddyForm::BuddyForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+BuddyForm::BuddyForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -68,7 +68,7 @@ void BuddyForm::destroy()
 	}
 }
 
-void BuddyForm::showNew(t_buddy_list &_buddy_list, Q3ListViewItem *_profileItem)
+void BuddyForm::showNew(t_buddy_list &_buddy_list, QTreeWidgetItem *_profileItem)
 {
 	user_config = _buddy_list.get_user_profile();
 	edit_mode = false;
@@ -98,21 +98,21 @@ void BuddyForm::showEdit(t_buddy &buddy)
 
 void BuddyForm::validate()
 {
-	QString name = nameLineEdit->text().stripWhiteSpace();
-	QString address = phoneLineEdit->text().stripWhiteSpace();
+    QString name = nameLineEdit->text().trimmed();
+    QString address = phoneLineEdit->text().trimmed();
 	
 	if (name.isEmpty()) {
 		((t_gui *)ui)->cb_show_msg(this,  
-			tr("You must fill in a name.").ascii(), MSG_CRITICAL);
+            tr("You must fill in a name.").toStdString(), MSG_CRITICAL);
 		nameLineEdit->setFocus();
 		return;
 	}
 	
-	string dest = ui->expand_destination(user_config, address.ascii());
+    string dest = ui->expand_destination(user_config, address.toStdString());
 	t_url dest_url(dest);
 	if (!dest_url.is_valid()) {
 		((t_gui *)ui)->cb_show_msg(this,  
-			tr("Invalid phone.").ascii(), MSG_CRITICAL);
+            tr("Invalid phone.").toStdString(), MSG_CRITICAL);
 		phoneLineEdit->setFocus();
 		return;
 	}
@@ -131,8 +131,8 @@ void BuddyForm::validate()
 			}
 		}
 		
-		edit_buddy->set_name(nameLineEdit->text().stripWhiteSpace().ascii());
-		edit_buddy->set_sip_address(phoneLineEdit->text().stripWhiteSpace().ascii());
+        edit_buddy->set_name(nameLineEdit->text().trimmed().toStdString());
+        edit_buddy->set_sip_address(phoneLineEdit->text().trimmed().toStdString());
 		edit_buddy->set_may_subscribe_presence(subscribeCheckBox->isChecked());
 		
 		if (must_subscribe) edit_buddy->subscribe_presence();
@@ -140,8 +140,8 @@ void BuddyForm::validate()
 	} else {
 		// Add a new buddy
 		t_buddy buddy;
-		buddy.set_name(nameLineEdit->text().stripWhiteSpace().ascii());
-		buddy.set_sip_address(phoneLineEdit->text().stripWhiteSpace().ascii());
+        buddy.set_name(nameLineEdit->text().trimmed().toStdString());
+        buddy.set_sip_address(phoneLineEdit->text().trimmed().toStdString());
 		buddy.set_may_subscribe_presence(subscribeCheckBox->isChecked());
 		
 		t_buddy *new_buddy = buddy_list->add_buddy(buddy);
@@ -152,7 +152,7 @@ void BuddyForm::validate()
 	string err_msg;
 	if (!buddy_list->save(err_msg)) {
 		QString msg = tr("Failed to save buddy list: %1").arg(err_msg.c_str());
-		((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this, msg.toStdString(), MSG_CRITICAL);
 	}
 	
 	accept();
@@ -161,8 +161,8 @@ void BuddyForm::validate()
 void BuddyForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	

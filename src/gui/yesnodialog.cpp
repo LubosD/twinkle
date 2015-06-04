@@ -38,17 +38,23 @@ void YesNoDialog::actionNo() {
 }
 
 YesNoDialog::YesNoDialog() {
-	new QDialog(NULL, NULL, true, Qt::WDestructiveClose);
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
 YesNoDialog::YesNoDialog(QWidget *parent, const QString &caption, const QString &text) :
-		QDialog(parent, NULL, true, Qt::WDestructiveClose)
+        QDialog(parent)
 {
-	setCaption(caption);
-	QBoxLayout *vb = new QVBoxLayout(this, 11, 6);
+    setModal(true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowTitle(caption);
+
+    QBoxLayout *vb = new QVBoxLayout(this);
+    vb->setMargin(11);
+    vb->setSpacing(6);
 	QLabel *lblQuestion = new QLabel(text, this);
 	vb->addWidget(lblQuestion);
-	QHBoxLayout *hb = new QHBoxLayout(NULL, 0, 6);
+    QHBoxLayout *hb = new QHBoxLayout(this);
+    hb->setSpacing(6);
 	QSpacerItem *spacer1 = new QSpacerItem(1, 1, QSizePolicy::Expanding, 
 					       QSizePolicy::Minimum );
 	hb->addItem(spacer1);

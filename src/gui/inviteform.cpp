@@ -26,8 +26,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-InviteForm::InviteForm(QWidget *parent, const char *name, bool modal)
-	: QDialog(parent, name, modal)
+InviteForm::InviteForm(QWidget *parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 	init();
@@ -60,7 +60,7 @@ void InviteForm::destroy()
 
 void InviteForm::clear()
 {
-	inviteComboBox->clearEdit();
+    inviteComboBox->clearEditText();
 	subjectLineEdit->clear();
 	hideUserCheckBox->setChecked(false);
 	inviteComboBox->setFocus();
@@ -74,10 +74,10 @@ void InviteForm::show(t_user *user_config, const QString &dest, const QString &s
 	// Select from user
 	if (user_config) {
 		for (int i = 0; i < fromComboBox->count(); i++) {
-			if (fromComboBox->text(i) == 
+            if (fromComboBox->itemText(i) ==
 			    user_config->get_profile_name().c_str())
 			{
-				fromComboBox->setCurrentItem(i);
+                fromComboBox->setCurrentIndex(i);
 				break;
 			}
 		}
@@ -93,10 +93,10 @@ void InviteForm::validate()
 {
 	string display, dest_str;
 	t_user *from_user = phone->ref_user_profile(
-				fromComboBox->currentText().ascii());
+                fromComboBox->currentText().toStdString());
 	
 	ui->expand_destination(from_user, 
-			       inviteComboBox->currentText().stripWhiteSpace().ascii(), 
+                   inviteComboBox->currentText().trimmed().toStdString(),
 			       display, dest_str);
 	t_url dest(dest_str);
 	
@@ -115,7 +115,7 @@ void InviteForm::validate()
 // Add a destination to the history list of inviteComboBox
 void InviteForm::addToInviteComboBox(const QString &destination)
 {
-	inviteComboBox->insertItem(destination, 0);
+    inviteComboBox->insertItem(0, destination);
 	if (inviteComboBox->count() > SIZE_REDIAL_LIST) {
 		inviteComboBox->removeItem(inviteComboBox->count() - 1);
 	}
@@ -137,8 +137,8 @@ void InviteForm::closeEvent(QCloseEvent *)
 void InviteForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	
@@ -160,7 +160,7 @@ void InviteForm::warnHideUser(void) {
 	
 	QString msg = tr("Not all SIP providers support identity hiding. Make sure your SIP provider "
 			 "supports it if you really need it.");
-	((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_WARNING);
+    ((t_gui *)ui)->cb_show_msg(this, msg.toStdString(), MSG_WARNING);
 	
 	// Do not warn again
 	sys_config->set_warn_hide_user(false);

@@ -26,7 +26,7 @@ class RedirectForm : public QDialog, public Ui::RedirectForm
 	Q_OBJECT
 
 public:
-	RedirectForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    RedirectForm(QWidget* parent = 0);
 	~RedirectForm();
 
 public slots:

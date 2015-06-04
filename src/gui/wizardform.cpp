@@ -42,8 +42,8 @@ struct t_provider {
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-WizardForm::WizardForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+WizardForm::WizardForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -79,14 +79,14 @@ void WizardForm::init()
 	proxyLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
 	
 	initProviders();
-	serviceProviderComboBox->setCurrentItem(serviceProviderComboBox->count() - 1);
+    serviceProviderComboBox->setCurrentIndex(serviceProviderComboBox->count() - 1);
 	update(tr(PROV_OTHER));
 }
 
 void WizardForm::initProviders()
 {
 	serviceProviderComboBox->clear();
-	serviceProviderComboBox->insertItem(tr(PROV_NONE));
+    serviceProviderComboBox->addItem(tr(PROV_NONE));
 	
 	QString fname = sys_config->get_dir_share().c_str();
 	fname.append("/").append(FILE_PROVIDERS);
@@ -98,7 +98,7 @@ void WizardForm::initProviders()
 			// Skip comment
 			if (entry[0] == '#') continue;
 			
-			QStringList l = QStringList::split(";", entry, true);
+            QStringList l = entry.split(";", QString::KeepEmptyParts);
 			
 			// Skip invalid lines
 			if (l.size() != 4) continue;
@@ -109,12 +109,12 @@ void WizardForm::initProviders()
 			p.stun_server = l[3];
 			mapProviders[l[0]] = p;
 			
-			serviceProviderComboBox->insertItem(l[0]);
+            serviceProviderComboBox->addItem(l[0]);
 		}
 		providersFile.close();
 	}
 	
-	serviceProviderComboBox->insertItem(tr(PROV_OTHER));
+    serviceProviderComboBox->addItem(tr(PROV_OTHER));
 }
 
 int WizardForm::exec(t_user *user)
@@ -125,7 +125,7 @@ int WizardForm::exec(t_user *user)
 	QString s = PRODUCT_NAME;
 	s.append(" - ").append(tr("User profile wizard:")).append(" ");
 	s.append(user_config->get_profile_name().c_str());
-	setCaption(s);
+    setWindowTitle(s);
 	
 	return QDialog::exec();
 }
@@ -138,7 +138,7 @@ void WizardForm::show(t_user *user)
 	QString s = PRODUCT_NAME;
 	s.append(" - ").append(tr("User profile wizard:")).append(" ");
 	s.append(user_config->get_profile_name().c_str());
-	setCaption(s);
+    setWindowTitle(s);
 	
 	QDialog::show();
 }
@@ -211,7 +211,7 @@ void WizardForm::validate()
 	// Validity check user page
 	// SIP username is mandatory
 	if (usernameLineEdit->text().isEmpty()) {
-		((t_gui *)ui)->cb_show_msg(this, tr("You must fill in a user name for your SIP account.").ascii(),
+        ((t_gui *)ui)->cb_show_msg(this, tr("You must fill in a user name for your SIP account.").toStdString(),
 				MSG_CRITICAL);
 		usernameLineEdit->setFocus();
 		return;
@@ -222,7 +222,7 @@ void WizardForm::validate()
 		((t_gui *)ui)->cb_show_msg(this, tr(
 				"You must fill in a domain name for your SIP account.\n"
 				"This could be the hostname or IP address of your PC "
-				"if you want direct PC to PC dialing.").ascii(),
+                "if you want direct PC to PC dialing.").toStdString(),
 				MSG_CRITICAL);
 		domainLineEdit->setFocus();
 		return;
@@ -232,9 +232,9 @@ void WizardForm::validate()
 	if (proxyLineEdit->text() != "") {
 		s = USER_SCHEME;
 		s.append(':').append(proxyLineEdit->text());
-		t_url u(s.ascii());
+        t_url u(s.toStdString());
 		if (!u.is_valid() || u.get_user() != "") {
-			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for SIP proxy.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for SIP proxy.").toStdString(),
 					MSG_CRITICAL);
 			proxyLineEdit->setFocus();
 			proxyLineEdit->selectAll();
@@ -252,9 +252,9 @@ void WizardForm::validate()
 	if (stunServerLineEdit->text() != "") {
 		s = "stun:";
 		s.append(stunServerLineEdit->text());
-		t_url u(s.ascii());
+        t_url u(s.toStdString());
 		if (!u.is_valid() || u.get_user() != "") {
-			((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for STUN server.").ascii(), 
+            ((t_gui *)ui)->cb_show_msg(this, tr("Invalid value for STUN server.").toStdString(),
 					MSG_CRITICAL);
 			stunServerLineEdit->setFocus();
 			stunServerLineEdit->selectAll();
@@ -264,23 +264,23 @@ void WizardForm::validate()
 	
 	// Set all values in the user_config object
 	// USER
-	user_config->set_display(displayLineEdit->text().ascii());
-	user_config->set_name(usernameLineEdit->text().ascii());
-	user_config->set_domain(domainLineEdit->text().ascii());
-	user_config->set_auth_name(authNameLineEdit->text().ascii());
-	user_config->set_auth_pass(authPasswordLineEdit->text().ascii());
+    user_config->set_display(displayLineEdit->text().toStdString());
+    user_config->set_name(usernameLineEdit->text().toStdString());
+    user_config->set_domain(domainLineEdit->text().toStdString());
+    user_config->set_auth_name(authNameLineEdit->text().toStdString());
+    user_config->set_auth_pass(authPasswordLineEdit->text().toStdString());
 	
 	// SIP SERVER
 	user_config->set_use_outbound_proxy(!proxyLineEdit->text().isEmpty());
 	s = USER_SCHEME;
 	s.append(':').append(proxyLineEdit->text());
-	user_config->set_outbound_proxy(t_url(s.ascii()));
+    user_config->set_outbound_proxy(t_url(s.toStdString()));
 	
 	// NAT
 	user_config->set_use_stun(!stunServerLineEdit->text().isEmpty());
 	s = "stun:";
 	s.append(stunServerLineEdit->text());
-	user_config->set_stun_server(t_url(s.ascii()));
+    user_config->set_stun_server(t_url(s.toStdString()));
 	
 	// Save user config
 	string error_msg;

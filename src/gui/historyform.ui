@@ -279,7 +279,6 @@
  <includes>
   <include location="local">user.h</include>
   <include location="local">phone.h</include>
-  <include location="local">q3popupmenu.h</include>
  </includes>
  <resources/>
  <connections>

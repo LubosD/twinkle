@@ -52,7 +52,7 @@ void NumberConversionForm::validate()
 
 	if (expr.isEmpty()) {
 		((t_gui *)ui)->cb_show_msg(this,
-			tr("Match expression may not be empty.").ascii(), MSG_CRITICAL);
+            tr("Match expression may not be empty.").toStdString(), MSG_CRITICAL);
 		exprLineEdit->setFocus();
 		exprLineEdit->selectAll();
 		return;
@@ -60,17 +60,17 @@ void NumberConversionForm::validate()
 
 	if (replace.isEmpty()) {
 		((t_gui *)ui)->cb_show_msg(this,
-			tr("Replace value may not be empty.").ascii(), MSG_CRITICAL);
+            tr("Replace value may not be empty.").toStdString(), MSG_CRITICAL);
 		replaceLineEdit->setFocus();
 		replaceLineEdit->selectAll();
 		return;
 	}
 
 	try {
-		boost::regex re(expr.ascii());
+        boost::regex re(expr.toStdString());
 	} catch (boost::bad_expression) {
 		((t_gui *)ui)->cb_show_msg(this,
-			tr("Invalid regular expression.").ascii(), MSG_CRITICAL);
+            tr("Invalid regular expression.").toStdString(), MSG_CRITICAL);
 		exprLineEdit->setFocus();
 		return;
 	}

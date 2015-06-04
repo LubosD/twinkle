@@ -39,7 +39,7 @@ void LogViewForm::scrollToBottom()
 
 void LogViewForm::show()
 {
-	if (isShown()) {
+    if (isVisible()) {
 		raise();
 		return;
 	}
@@ -51,7 +51,7 @@ void LogViewForm::show()
 	if (logfile->open(QIODevice::ReadOnly)) {
 		logstream = new QTextStream(logfile);
 		MEMMAN_NEW(logstream);
-		logTextEdit->setPlainText(logstream->read());
+        logTextEdit->setPlainText(logstream->readAll());
 	}
 	log_file->enable_inform_user(true);
 
@@ -81,7 +81,7 @@ void LogViewForm::closeEvent(QCloseEvent* ev)
 
 void LogViewForm::update(bool log_zapped)
 {
-	if (!isShown()) return;
+    if (!isVisible()) return;
 
 	if (log_zapped) {
 		close();
@@ -90,7 +90,7 @@ void LogViewForm::update(bool log_zapped)
 	}
 
 	if (logstream) {
-		QString s = logstream->read();
+        QString s = logstream->readAll();
 		if (!s.isNull() && !s.isEmpty()) {
 			bool bottom = isOnBottom();
 			logTextEdit->appendPlainText(s);

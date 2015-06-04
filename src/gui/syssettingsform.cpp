@@ -37,8 +37,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SysSettingsForm::SysSettingsForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SysSettingsForm::SysSettingsForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -74,14 +74,14 @@ void SysSettingsForm::init()
 {
 	// Set toolbutton icons for disabled options.
 	QIcon i;
-	i = openRingtoneToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	openRingtoneToolButton->setIconSet(i);
-	i = openRingbackToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	openRingbackToolButton->setIconSet(i);
+    i = openRingtoneToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
+            QIcon::Disabled);
+    openRingtoneToolButton->setIcon(i);
+    i = openRingbackToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/fileopen-disabled.png"),
+            QIcon::Disabled);
+    openRingbackToolButton->setIcon(i);
 	
 	QRegExp rxNumber("[0-9]+");
 	maxUdpSizeLineEdit->setValidator(new QRegExpValidator(rxNumber, this));
@@ -109,12 +109,12 @@ string SysSettingsForm::comboItem2audio_dev(QString item, QLineEdit *qleOther, b
 {
 	if (item == QString("ALSA: ") + DEV_OTHER) {
 		if (qleOther->text().isEmpty()) return "";
-		return (QString(PFX_ALSA) + qleOther->text()).ascii();
+        return (QString(PFX_ALSA) + qleOther->text()).toStdString();
 	}
 	
 	if (item == QString("OSS: ") + DEV_OTHER) {
 		if (qleOther->text().isEmpty()) return "";
-		return (QString(PFX_OSS) + qleOther->text()).ascii();
+        return (QString(PFX_OSS) + qleOther->text()).toStdString();
 	}
 	
 	list<t_audio_device> &list_audio_dev = (playback ?
@@ -123,7 +123,7 @@ string SysSettingsForm::comboItem2audio_dev(QString item, QLineEdit *qleOther, b
 	for (list<t_audio_device>::iterator i = list_audio_dev.begin(); 
 	i != list_audio_dev.end(); i++)
 	{
-		if (i->get_description() == item.ascii()) {
+        if (i->get_description() == item.toStdString()) {
 			return i->get_settings_value();
 		}
 	}
@@ -134,8 +134,8 @@ string SysSettingsForm::comboItem2audio_dev(QString item, QLineEdit *qleOther, b
 void SysSettingsForm::populateComboBox(QComboBox *cb, const QString &s)
 {
 	for (int i = 0; i < cb->count(); i++) {
-		if (cb->text(i) == s) {
-			cb->setCurrentItem(i);
+        if (cb->itemText(i) == s) {
+            cb->setCurrentIndex(i);
 			return;
 		}
 	}
@@ -168,17 +168,17 @@ void SysSettingsForm::populate()
 	for (list<t_audio_device>::iterator i = list_audio_playback_dev.begin(); 
 	i != list_audio_playback_dev.end(); i++, idx++) {
 		string item = i->get_description();
-		ringtoneComboBox->insertItem(QString(item.c_str()));
-		speakerComboBox->insertItem(QString(item.c_str()));
+        ringtoneComboBox->addItem(QString(item.c_str()));
+        speakerComboBox->addItem(QString(item.c_str()));
 		
 		// Select audio device
 		if (sys_config->get_dev_ringtone().device == i->device) {
-			ringtoneComboBox->setCurrentItem(idx);
+            ringtoneComboBox->setCurrentIndex(idx);
 			otherRingtoneLineEdit->clear();
 			devRingtoneFound = true;
 		}
 		if (sys_config->get_dev_speaker().device == i->device) {
-			speakerComboBox->setCurrentItem(idx);
+            speakerComboBox->setCurrentIndex(idx);
 			otherSpeakerLineEdit->clear();
 			devSpeakerFound = true;
 		}
@@ -197,13 +197,13 @@ void SysSettingsForm::populate()
 	if (!devRingtoneFound) {
 		t_audio_device dev = sys_config->get_dev_ringtone();
 		otherRingtoneLineEdit->setText(dev.device.c_str());
-		ringtoneComboBox->setCurrentItem(
+        ringtoneComboBox->setCurrentIndex(
 			(dev.type == t_audio_device::ALSA ? idxOtherPlaybackDevAlsa : idxOtherPlaybackDevOss));
 	}
 	if (!devSpeakerFound) {
 		t_audio_device dev = sys_config->get_dev_speaker();
 		otherSpeakerLineEdit->setText(dev.device.c_str());
-		speakerComboBox->setCurrentItem(
+        speakerComboBox->setCurrentIndex(
 			(dev.type == t_audio_device::ALSA ? idxOtherPlaybackDevAlsa : idxOtherPlaybackDevOss));
 	}
 	
@@ -212,11 +212,11 @@ void SysSettingsForm::populate()
 	for (list<t_audio_device>::iterator i = list_audio_capture_dev.begin(); 
 	i != list_audio_capture_dev.end(); i++, idx++) {
 		string item = i->get_description();
-		micComboBox->insertItem(QString(item.c_str()));
+        micComboBox->addItem(QString(item.c_str()));
 		
 		// Select audio device
 		if (sys_config->get_dev_mic().device == i->device) {
-			micComboBox->setCurrentItem(idx);
+            micComboBox->setCurrentIndex(idx);
 			otherMicLineEdit->clear();
 			devMicFound = true;
 		}
@@ -235,14 +235,14 @@ void SysSettingsForm::populate()
 	if (!devMicFound) {
 		t_audio_device dev = sys_config->get_dev_mic();
 		otherMicLineEdit->setText(dev.device.c_str());
-		micComboBox->setCurrentItem(
+        micComboBox->setCurrentIndex(
 			(dev.type == t_audio_device::ALSA ? idxOtherCaptureDevAlsa : idxOtherCaptureDevOss));
 	}
 	
 	// Enable/disable line edit for non-standard device
-	devRingtoneSelected(ringtoneComboBox->currentItem());
-	devSpeakerSelected(speakerComboBox->currentItem());
-	devMicSelected(micComboBox->currentItem());
+    devRingtoneSelected(ringtoneComboBox->currentIndex());
+    devSpeakerSelected(speakerComboBox->currentIndex());
+    devMicSelected(micComboBox->currentIndex());
 	
 	validateAudioCheckBox->setChecked(sys_config->get_validate_audio_dev());
 	
@@ -281,7 +281,7 @@ void SysSettingsForm::populate()
 	
 	QStringList profiles;
 	if (!SelectProfileForm::getUserProfiles(profiles, msg)) {
-		((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this, msg.toStdString(), MSG_CRITICAL);
 	}
 	profileListView->clear();
 	for (QStringList::Iterator i = profiles.begin(); i != profiles.end(); i++) {
@@ -294,7 +294,7 @@ void SysSettingsForm::populate()
         item->setData(Qt::DecorationRole, QPixmap(":/icons/images/penguin-small.png"));
 		
 		list<string> l = sys_config->get_start_user_profiles();
-		if (std::find(l.begin(), l.end(), profile.ascii()) != l.end())
+        if (std::find(l.begin(), l.end(), profile.toStdString()) != l.end())
 		{
             item->setCheckState(Qt::Checked);
 		}
@@ -393,12 +393,12 @@ void SysSettingsForm::validate()
     for (int i = 0; i < profileListView->count(); i++)
     {
         QListWidgetItem *item = profileListView->item(i);
-		start_user_profiles.push_back(item->text().ascii());
+        start_user_profiles.push_back(item->text().toStdString());
 	}
 	sys_config->set_start_user_profiles(start_user_profiles);
 	
 	// Web browser command
-	sys_config->set_gui_browser_cmd(browserLineEdit->text().stripWhiteSpace().ascii());
+    sys_config->set_gui_browser_cmd(browserLineEdit->text().trimmed().toStdString());
 	
 	// Network
 	if (sys_config->get_config_sip_port() != sipUdpPortSpinBox->value()) {
@@ -415,11 +415,11 @@ void SysSettingsForm::validate()
 	// Ring tones
 	sys_config->set_play_ringtone(playRingtoneCheckBox->isChecked());
 	if (sys_config->get_play_ringtone()) {
-		if (defaultRingtoneRadioButton->isOn()) {
+        if (defaultRingtoneRadioButton->isChecked()) {
 			sys_config->set_ringtone_file("");
 		} else {
 			sys_config->set_ringtone_file(ringtoneLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 		}
 	} else {
 		sys_config->set_ringtone_file("");
@@ -427,11 +427,11 @@ void SysSettingsForm::validate()
 	
 	sys_config->set_play_ringback(playRingbackCheckBox->isChecked());
 	if (sys_config->get_play_ringback()) {
-		if (defaultRingbackRadioButton->isOn()) {
+        if (defaultRingbackRadioButton->isChecked()) {
 			sys_config->set_ringback_file("");
 		} else {
 			sys_config->set_ringback_file(ringbackLineEdit->
-					text().stripWhiteSpace().ascii());
+                    text().trimmed().toStdString());
 		}
 	} else {
 		sys_config->set_ringback_file("");
@@ -472,7 +472,7 @@ void SysSettingsForm::chooseRingtone()
             tr("Ring tones", "Description of .wav files in file dialog").append(" (*.wav)"));
 	if (!file.isEmpty()) {
 		ringtoneLineEdit->setText(file);
-		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));
+        ((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).absolutePath());
 	}
 }
 
@@ -483,7 +483,7 @@ void SysSettingsForm::chooseRingback()
             tr("Ring back tones", "Description of .wav files in file dialog").append(" (*.wav)"));
 	if (!file.isEmpty()) {
 		ringbackLineEdit->setText(file);
-		((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).dirPath(true));
+        ((t_gui *)ui)->set_last_file_browse_path(QFileInfo(file).absolutePath());
 	}
 }
 

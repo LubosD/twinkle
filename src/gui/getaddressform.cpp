@@ -40,8 +40,8 @@
 #define AB_COL_PHONE	2
 #endif
 
-GetAddressForm::GetAddressForm(QWidget *parent, const char *name, bool modal)
-	: QDialog(parent, name, modal)
+GetAddressForm::GetAddressForm(QWidget *parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 	init();
@@ -67,8 +67,8 @@ void GetAddressForm::init()
 	
 	sipOnlyCheckBox->setChecked(sys_config->get_ab_show_sip_only());
 #else
-	addressTabWidget->setTabEnabled(tabKABC, false);
-	addressTabWidget->setCurrentPage(TAB_LOCAL);
+    addressTabWidget->setTabEnabled(addressTabWidget->indexOf(tabKABC), false);
+    addressTabWidget->setCurrentIndex(TAB_LOCAL);
 #endif
 }
 
@@ -141,7 +141,7 @@ void GetAddressForm::loadAddresses()
 
 void GetAddressForm::selectAddress()
 {
-	if (addressTabWidget->currentPageIndex() == TAB_KABC) {
+    if (addressTabWidget->currentIndex() == TAB_KABC) {
 		selectKABCAddress();
 	} else {
 		selectLocalAddress();

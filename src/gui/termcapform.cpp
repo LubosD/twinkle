@@ -32,8 +32,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-TermCapForm::TermCapForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+TermCapForm::TermCapForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -74,10 +74,10 @@ void TermCapForm::show(t_user *user_config, const QString &dest)
 	// Select from user
 	if (user_config) {
 		for (int i = 0; i < fromComboBox->count(); i++) {
-			if (fromComboBox->text(i) == 
+            if (fromComboBox->itemText(i) ==
 			    user_config->get_profile_name().c_str())
 			{
-				fromComboBox->setCurrentItem(i);
+                fromComboBox->setCurrentIndex(i);
 				break;
 			}
 		}
@@ -99,10 +99,10 @@ void TermCapForm::validate()
 {
 	string display, dest_str;
 	t_user *from_user = phone->ref_user_profile(
-				fromComboBox->currentText().ascii());
+                fromComboBox->currentText().toStdString());
 	
 	ui->expand_destination(from_user, 
-			       partyLineEdit->text().stripWhiteSpace().ascii(), 
+                   partyLineEdit->text().trimmed().toStdString(),
 			       display, dest_str);
 	t_url dest(dest_str);
 	
@@ -117,8 +117,8 @@ void TermCapForm::validate()
 void TermCapForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	

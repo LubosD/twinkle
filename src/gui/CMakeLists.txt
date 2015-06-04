@@ -1,6 +1,5 @@
 project(twinkle-gui)
 
-add_definitions(-DQT3_SUPPORT)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -144,7 +143,7 @@ add_executable(twinkle ${TWINKLE_GUI-SRCS})
 target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-	${Boost_LIBRARIES} Qt4::QtGui Qt4::Qt3Support ${ALSA_LIBRARY})
+        ${Boost_LIBRARIES} Qt4::QtGui ${ALSA_LIBRARY})
 
 install(TARGETS twinkle DESTINATION bin)
 install(FILES ${twinkle_LANG} DESTINATION share/twinkle/lang)

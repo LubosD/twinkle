@@ -29,11 +29,11 @@ public:
 	t_qt_translator(QApplication *qa) : _qa(qa) {};
 	
 	virtual string translate(const string &s) {
-		return _qa->translate("TwinkleCore", s.c_str()).ascii(); 
+        return _qa->translate("TwinkleCore", s.c_str()).toStdString();
 	};
 	
 	virtual string translate2(const string &context, const string &s) {
-		return _qa->translate(context.c_str(), s.c_str()).ascii();
+        return _qa->translate(context.c_str(), s.c_str()).toStdString();
 	};
 
 private:

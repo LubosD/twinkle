@@ -10,7 +10,7 @@ class DiamondcardProfileForm : public QDialog, public Ui::DiamondcardProfileForm
 	Q_OBJECT
 
 public:
-	DiamondcardProfileForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    DiamondcardProfileForm(QWidget* parent = 0);
 	~DiamondcardProfileForm();
 
 	virtual int exec( t_user * user );

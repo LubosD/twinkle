@@ -16,7 +16,7 @@ class SrvRedirectForm : public QDialog, public Ui::SrvRedirectForm
 	Q_OBJECT
 
 public:
-	SrvRedirectForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SrvRedirectForm(QWidget* parent = 0);
 	~SrvRedirectForm();
 
 	virtual bool validateValues();

@@ -237,7 +237,6 @@
   <include location="global">list</include>
   <include location="global">string</include>
   <include location="local">phone.h</include>
-  <include location="local">q3mainwindow.h</include>
  </includes>
  <resources/>
  <connections>

@@ -16,7 +16,7 @@ class TransferForm : public QDialog, public Ui::TransferForm
 	Q_OBJECT
 
 public:
-	TransferForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    TransferForm(QWidget* parent = 0);
 	~TransferForm();
 
 public slots:

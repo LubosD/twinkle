@@ -20,7 +20,7 @@ class MessageForm : public QMainWindow, public Ui::MessageForm
 	Q_OBJECT
 
 public:
-	MessageForm(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = Qt::WType_TopLevel);
+    MessageForm(QWidget* parent = 0);
 	~MessageForm();
 
 	virtual bool updateMessageSession();
@@ -39,7 +39,7 @@ public slots:
 	virtual void displayDeliveryNotification( const QString & notification );
 	virtual void setRemotePartyCaption( void );
 	virtual void showAttachmentPopupMenu( const QString & attachment );
-	virtual void attachmentPopupActivated( int id );
+    virtual void attachmentPopupActivated( QAction* action );
 	virtual void saveAttachment();
 	virtual void chooseFileToSend();
 	virtual void setComposingIndication( const QString & name );

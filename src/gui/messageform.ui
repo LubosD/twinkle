@@ -133,15 +133,9 @@
       </layout>
     </widget>
     <widget class="QToolBar" name="Toolbar">
-      <property name="label">
-        <string>Instant message toolbar</string>
-      </property>
       <addaction name="sendFileAction"/>
     </widget>
     <action name="sendFileAction">
-      <property name="name">
-        <cstring>sendFileAction</cstring>
-      </property>
       <property name="icon">
         <iconset>:/icons/images/attach.png</iconset>
       </property>
@@ -182,7 +176,6 @@
     <include location="local">user.h</include>
     <include location="local">im/msg_session.h</include>
     <include location="local">phone.h</include>
-    <include location="local">q3popupmenu.h</include>
     <include location="local">qlabel.h</include>
     <include location="local">textbrowsernoautolink.h</include>
   </includes>

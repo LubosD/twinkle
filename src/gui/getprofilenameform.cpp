@@ -12,8 +12,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-GetProfileNameForm::GetProfileNameForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-    : QDialog(parent, name, modal, fl)
+GetProfileNameForm::GetProfileNameForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 }

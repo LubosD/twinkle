@@ -23,8 +23,8 @@
 #include "audits/memman.h"
 #include "gui.h"
 
-RedirectForm::RedirectForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+RedirectForm::RedirectForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 	init();
@@ -53,12 +53,12 @@ void RedirectForm::init()
 	
 	// Set toolbutton icons for disabled options.
 	QIcon i;
-	i = address1ToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	address1ToolButton->setIconSet(i);
-	address2ToolButton->setIconSet(i);
-	address3ToolButton->setIconSet(i);
+    i = address1ToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"),
+            QIcon::Disabled);
+    address1ToolButton->setIcon(i);
+    address2ToolButton->setIcon(i);
+    address3ToolButton->setIcon(i);
 }
 
 void RedirectForm::destroy()
@@ -91,7 +91,7 @@ void RedirectForm::validate()
 	list<t_display_url> dest_list;
 	
 	// 1st choice destination
-	ui->expand_destination(user_config, contact1LineEdit->text().stripWhiteSpace().ascii(),
+    ui->expand_destination(user_config, contact1LineEdit->text().trimmed().toStdString(),
 			       destination);
 	if (destination.is_valid()) {
 		dest_list.push_back(destination);
@@ -103,7 +103,7 @@ void RedirectForm::validate()
 	// 2nd choice destination
 	if (!contact2LineEdit->text().isEmpty()) {
 		ui->expand_destination(user_config,
-			contact2LineEdit->text().stripWhiteSpace().ascii(), destination);
+            contact2LineEdit->text().trimmed().toStdString(), destination);
 		if (destination.is_valid()) {
 			dest_list.push_back(destination);
 		} else {
@@ -115,7 +115,7 @@ void RedirectForm::validate()
 	// 3rd choice destination
 	if (!contact3LineEdit->text().isEmpty()) {
 		ui->expand_destination(user_config,
-			contact3LineEdit->text().stripWhiteSpace().ascii(), destination);
+            contact3LineEdit->text().trimmed().toStdString(), destination);
 		if (destination.is_valid()) {
 			dest_list.push_back(destination);
 		} else {
@@ -131,8 +131,8 @@ void RedirectForm::validate()
 void RedirectForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	

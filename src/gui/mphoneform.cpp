@@ -25,18 +25,17 @@
 */
 #include "mphoneform.h"
 #include "twinkle_config.h"
-//Added by qt3to4:
+#include <QWhatsThis>
 #include <QLabel>
 #include <QPixmap>
 #include <QMouseEvent>
 #include <QCloseEvent>
 #include <QKeyEvent>
 #include <QEvent>
-#include <Q3Frame>
-#include <Q3PopupMenu>
+#include <QFrame>
 #include "../audits/memman.h"
 #include "user.h"
-#include <Q3TextEdit>
+#include <QTextEdit>
 #include <QCheckBox>
 #include <QApplication>
 #include "gui.h"
@@ -47,10 +46,9 @@
 #include "line.h"
 #include "stun/stun_transaction.h"
 #include "log.h"
-#include <Q3ProgressDialog>
+#include <QProgressDialog>
 #include "util.h"
 #include <QTimer>
-#include <Q3Frame>
 #include <QCursor>
 #include <QRegExp>
 #include <QValidator>
@@ -62,8 +60,8 @@
 // a call has ended
 #define HIDE_LINE_TIMER_AFTER	5
 
-MphoneForm::MphoneForm(QWidget* parent, const char * name, Qt::WindowFlags f)
-	: Q3MainWindow(parent, name, f)
+MphoneForm::MphoneForm(QWidget* parent)
+    : QMainWindow(parent)
 {
 	setupUi(this);
 	init();
@@ -97,31 +95,29 @@ void MphoneForm::init()
 	QIcon messageIcon(QPixmap(":/icons/images/message.png"));
 	QIcon editIcon(QPixmap(":/icons/images/edit16.png"));
 	QIcon deleteIcon(QPixmap(":/icons/images/editdelete.png"));
-	buddyPopupMenu = new Q3PopupMenu(this);
+    buddyPopupMenu = new QMenu(this);
 	MEMMAN_NEW(buddyPopupMenu);
-	buddyPopupMenu->insertItem(inviteIcon, tr("&Call..."), this, SLOT(doCallBuddy()));
-	buddyPopupMenu->insertItem(messageIcon, tr("Instant &message..."), this, SLOT(doMessageBuddy()));
-	buddyPopupMenu->insertItem(editIcon, tr("&Edit..."), this, SLOT(doEditBuddy()));
-	buddyPopupMenu->insertItem(deleteIcon, tr("&Delete"), this, SLOT(doDeleteBuddy()));
-	
-	// Change availibility sub popup menu
-	changeAvailabilityPopupMenu = new Q3PopupMenu(this);
-	MEMMAN_NEW(changeAvailabilityPopupMenu);
-	QIcon availOnlineIcon(QPixmap(":/icons/images/presence_online.png"));
-	QIcon availOfflineIcon(QPixmap(":/icons/images/presence_offline.png"));
-	changeAvailabilityPopupMenu->insertItem(availOfflineIcon, tr("O&ffline"), this, 
-						SLOT(doAvailabilityOffline()));
-	changeAvailabilityPopupMenu->insertItem(availOnlineIcon, tr("&Online"), this, 
-						SLOT(doAvailabilityOnline()));
+    buddyPopupMenu->addAction(inviteIcon, tr("&Call..."), this, SLOT(doCallBuddy()));
+    buddyPopupMenu->addAction(messageIcon, tr("Instant &message..."), this, SLOT(doMessageBuddy()));
+    buddyPopupMenu->addAction(editIcon, tr("&Edit..."), this, SLOT(doEditBuddy()));
+    buddyPopupMenu->addAction(deleteIcon, tr("&Delete"), this, SLOT(doDeleteBuddy()));
 	
 	// Popup menu for a buddy list (click on profile name)
 	QIcon changeAvailabilityIcon(QPixmap(":/icons/images/presence_online.png"));
 	QIcon addIcon(QPixmap(":/icons/images/buddy.png"));
-	buddyListPopupMenu = new Q3PopupMenu(this);
+    buddyListPopupMenu = new QMenu(this);
 	MEMMAN_NEW(buddyListPopupMenu);
-	buddyListPopupMenu->insertItem(changeAvailabilityIcon, tr("&Change availability"), 
-				       changeAvailabilityPopupMenu);
-	buddyListPopupMenu->insertItem(addIcon, tr("&Add buddy..."), this, SLOT(doAddBuddy()));
+    changeAvailabilityPopupMenu = buddyListPopupMenu->addMenu(changeAvailabilityIcon, tr("&Change availability"));
+
+    // Change availibility sub popup menu
+    QIcon availOnlineIcon(QPixmap(":/icons/images/presence_online.png"));
+    QIcon availOfflineIcon(QPixmap(":/icons/images/presence_offline.png"));
+    changeAvailabilityPopupMenu->addAction(availOfflineIcon, tr("O&ffline"), this,
+                        SLOT(doAvailabilityOffline()));
+    changeAvailabilityPopupMenu->addAction(availOnlineIcon, tr("&Online"), this,
+                        SLOT(doAvailabilityOnline()));
+
+    buddyListPopupMenu->addAction(addIcon, tr("&Add buddy..."), this, SLOT(doAddBuddy()));
 	
 	// ToDo: Tool tip for buddy list
 	
@@ -163,12 +159,12 @@ void MphoneForm::init()
 	// does not fit. The background of a QLineEdit is static however, it does not
 	// automatically take a background color passed by the -bg parameter.
 	// Set the background color of these QLineEdit objects here.
-	from1Label->setPaletteBackgroundColor(paletteBackgroundColor());
-	to1Label->setPaletteBackgroundColor(paletteBackgroundColor());
-	subject1Label->setPaletteBackgroundColor(paletteBackgroundColor());
-	from2Label->setPaletteBackgroundColor(paletteBackgroundColor());
-	to2Label->setPaletteBackgroundColor(paletteBackgroundColor());
-	subject2Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //from1Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //to1Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //subject1Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //from2Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //to2Label->setPaletteBackgroundColor(paletteBackgroundColor());
+    //subject2Label->setPaletteBackgroundColor(paletteBackgroundColor());
 	
 	// A QComboBox accepts a new line through copy/paste.
 	QRegExp rxNoNewLine("[^\\n\\r]*");
@@ -189,55 +185,55 @@ void MphoneForm::init()
 		sysTray->setContextMenu(menu);
 		
 		// Call menu
-		callInvite->addTo(menu);
-		callAnswer->addTo(menu);
-		callBye->addTo(menu);
-		callReject->addTo(menu);
-		callRedirect->addTo(menu);
-		callTransfer->addTo(menu);
-		callHold->addTo(menu);
-		callConference->addTo(menu);
-		callMute->addTo(menu);
-		callDTMF->addTo(menu);
-		callRedial->addTo(menu);
+        menu->addAction(callInvite);
+        menu->addAction(callAnswer);
+        menu->addAction(callBye);
+        menu->addAction(callReject);
+        menu->addAction(callRedirect);
+        menu->addAction(callTransfer);
+        menu->addAction(callHold);
+        menu->addAction(callConference);
+        menu->addAction(callMute);
+        menu->addAction(callDTMF);
+        menu->addAction(callRedial);
 		
-		menu->insertSeparator();
+        menu->addSeparator();
 		
 		// Messaging
-		actionSendMsg->addTo(menu);
+        menu->addAction(actionSendMsg);
 		
-		menu->insertSeparator();
+        menu->addSeparator();
 		
 		// Line activation
-		actgrActivateLine->addTo(menu);
+        menu->addActions(actgrActivateLine->actions());
 		
-		menu->insertSeparator();
+        menu->addSeparator();
 		
 		// Service menu
-		serviceDnd->addTo(menu);
-		serviceRedirection->addTo(menu);
-		serviceAutoAnswer->addTo(menu);
-		servicesVoice_mailAction->addTo(menu);
+        menu->addAction(serviceDnd);
+        menu->addAction(serviceRedirection);
+        menu->addAction(serviceAutoAnswer);
+        menu->addAction(servicesVoice_mailAction);
 		
-		menu->insertSeparator();
+        menu->addSeparator();
 		
 		// View menu
-		viewCall_HistoryAction->addTo(menu);
+        menu->addAction(viewCall_HistoryAction);
 		
-		menu->insertSeparator();
+        menu->addSeparator();
 		
-#ifdef ENABLE_DIAMONCARD
+#ifdef WITH_DIAMONDCARD
 		// Diamondcard menu
 		menu->insertItem("Diamondcard", Diamondcard);
-		menu->insertSeparator();
+        menu->addSeparator();
 #endif
 		
-		fileExitAction->addTo(menu);
+        menu->addAction(fileExitAction);
 		
 		sysTray->show();
 	}
 
-#ifndef ENABLE_DIAMONDCARD
+#ifndef WITH_DIAMONDCARD
 	Diamondcard->menuAction()->setVisible(false);
 #endif
 }
@@ -277,12 +273,12 @@ void MphoneForm::destroy()
 		delete sysSettingsForm;
 	}
 	if (logViewForm) {
-		if (logViewForm->isShown()) logViewForm->close();
+        if (logViewForm->isVisible()) logViewForm->close();
 		MEMMAN_DELETE(logViewForm);
 		delete logViewForm;
 	}
 	if (historyForm) {
-		if (historyForm->isShown()) historyForm->close();
+        if (historyForm->isVisible()) historyForm->close();
 		MEMMAN_DELETE(historyForm);
 		delete historyForm;
 	}
@@ -317,8 +313,6 @@ void MphoneForm::destroy()
 	delete hideLineTimer2;
 	MEMMAN_DELETE(buddyPopupMenu);
 	delete buddyPopupMenu;
-	MEMMAN_DELETE(changeAvailabilityPopupMenu);
-	delete changeAvailabilityPopupMenu;
 	MEMMAN_DELETE(buddyListPopupMenu);
 	delete buddyListPopupMenu;
 }
@@ -383,7 +377,10 @@ void MphoneForm::display( const QString &s )
 	displayTextEdit->setText(displayContents.join("\n"));
 	
 	// Set cursor position at the end of text
-	displayTextEdit->setCursorPosition(displayTextEdit->paragraphs() - 1, 0);
+    QTextCursor cursor;
+    cursor = displayTextEdit->textCursor();
+    cursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
+    displayTextEdit->setTextCursor(cursor);
 }
 
 // Print message header on display
@@ -482,14 +479,16 @@ void MphoneForm::updateLineTimer(int line)
 			}
 			
 			// Update timer every 1s
-			(*timer)->start(1000, false);
+            (*timer)->setSingleShot(false);
+            (*timer)->start(1000);
 		}
 		break;
 	default:
 		// Hide call duration timer
 		if (*timer != NULL) {
 			// Hide the timer after a few seconds
-			hideLineTimer->start(HIDE_LINE_TIMER_AFTER * 1000, true);
+            hideLineTimer->setSingleShot(true);
+            hideLineTimer->start(HIDE_LINE_TIMER_AFTER * 1000);
 			(*timer)->stop();
 			MEMMAN_DELETE(*timer);
 			*timer = NULL;
@@ -515,7 +514,7 @@ void MphoneForm::updateLineEncryptionState(int line)
 		bool zrtp_sas_confirmed = as->get_zrtp_sas_confirmed();
 		string srtp_cipher_mode = as->get_srtp_cipher_mode();
 		
-		QToolTip::remove(cryptLabel);
+        cryptLabel->setToolTip(QString());
 		QString toolTip = tr("Voice is encrypted") + " (";
 		toolTip.append(srtp_cipher_mode.c_str()).append(")");
 		
@@ -533,17 +532,17 @@ void MphoneForm::updateLineEncryptionState(int line)
 			
 		if (!zrtp_sas_confirmed) {
 			toolTip.append("\n").append(tr("Click to confirm SAS."));
-			cryptLabel->setFrameStyle(Q3Frame::Panel | Q3Frame::Raised);
+            cryptLabel->setFrameStyle(QFrame::Panel | QFrame::Raised);
 			cryptLabel->setPixmap(
 				QPixmap(":/icons/images/encrypted.png"));
 		} else {
 			toolTip.append("\n").append(tr("Click to clear SAS verification."));
-			cryptLabel->setFrameStyle(Q3Frame::NoFrame);
+            cryptLabel->setFrameStyle(QFrame::NoFrame);
 			cryptLabel->setPixmap(
 				QPixmap(":/icons/images/encrypted_verified.png"));
 		}
 
-		QToolTip::add(cryptLabel, toolTip);
+        cryptLabel->setToolTip(toolTip);
 		cryptLabel->show();
 	} else {
 		cryptLabel->hide();
@@ -605,7 +604,7 @@ void MphoneForm::updateLineStatus(int line)
 	to_be_transferred = phone->line_to_be_transferred(line, dummy);
 	if (refer_state != REFST_NULL || is_transfer_consult || to_be_transferred) {
 		QString toolTip;
-		QToolTip::remove(referLabel);
+        referLabel->setToolTip(QString());
 		referLabel->show();
 		if (is_transfer_consult) {
 			referLabel->setPixmap(
@@ -616,7 +615,7 @@ void MphoneForm::updateLineStatus(int line)
 				QPixmap(":/icons/images/cf.png"));
 			toolTip = tr("Transferring call");
 		}
-		QToolTip::add(referLabel, toolTip);
+        referLabel->setToolTip(toolTip);
 	} else {
 		referLabel->hide();
 	}
@@ -705,21 +704,21 @@ void MphoneForm::updateState()
 	// The active line may change when one of the parties in a conference
 	// releases the call. If this happens, then update the state of the
 	// line radio buttons.
-	if (line == 0 && line2RadioButton->isOn()) 
+    if (line == 0 && line2RadioButton->isChecked())
 	{
 		line1RadioButton->setChecked(true);
-	} else if (line == 1 && line1RadioButton->isOn())
+    } else if (line == 1 && line1RadioButton->isChecked())
 	{
 		line2RadioButton->setChecked(true);
 	}
 	
 	// Same logic for the activate line menu items
-	if (line == 0 && actionLine2->isOn()) 
+    if (line == 0 && actionLine2->isChecked())
 	{
-		actionLine1->setOn(true);
-	} else if (line == 1 && actionLine1->isOn())
+        actionLine1->setChecked(true);
+    } else if (line == 1 && actionLine1->isChecked())
 	{
-		actionLine2->setOn(true);
+        actionLine2->setChecked(true);
 	}
 	
 	switch(line_substate) {
@@ -841,13 +840,13 @@ void MphoneForm::updateState()
 	}
 	
 	// Set hold action in correct state
-	callHold->setOn(on_hold);
+    callHold->setChecked(on_hold);
 	
 	// Set mute action in correct state
-	callMute->setOn(is_muted);
+    callMute->setChecked(is_muted);
 	
 	// Set transfer action in correct state
-	callTransfer->setOn(is_transfer_consult);
+    callTransfer->setChecked(is_transfer_consult);
 	
 	// Hide redirect form if it is still visible, but not applicable anymore
 	if (!callRedirect->isEnabled() && redirectForm && 
@@ -966,12 +965,12 @@ void MphoneForm::updateRegStatus()
 	}
 	
 	// Set tool tip with detailed info.
-	QToolTip::remove(statRegLabel);
+    statRegLabel->setToolTip(QString());
 	
 	if (num_registered > 0 || num_failed > 0) {
-		QToolTip::add(statRegLabel, toolTip);
+        statRegLabel->setToolTip(toolTip);
 	} else {
-		QToolTip::add(statRegLabel, tr("No users are registered."));
+        statRegLabel->setToolTip(tr("No users are registered."));
 	}
 	
 	updateSysTrayStatus();
@@ -1118,8 +1117,7 @@ void MphoneForm::updateMwi()
 	}
 	
 	// Set tool tip
-	QToolTip::remove(statMWILabel);
-	QToolTip::add(statMWILabel, toolTip);
+    statMWILabel->setToolTip(toolTip);
 	
 	updateSysTrayStatus();
 }
@@ -1212,50 +1210,48 @@ void MphoneForm::updateServicesStatus()
 	}
 	
 	// Set tool tip with detailed info for multiple users.
-	QToolTip::remove(statDndLabel);
-	QToolTip::remove(statCfLabel);
-	QToolTip::remove(statAaLabel);
+    statDndLabel->setToolTip(QString());
+    statCfLabel->setToolTip(QString());
+    statAaLabel->setToolTip(QString());
 
 	QString clickToActivate("<i>");
 	clickToActivate += tr("Click to activate").replace(' ', "&nbsp;");
 	clickToActivate += "</i>";
 	if (num_dnd > 0) {
-		QToolTip::add(statDndLabel, tipDnd);
+        statDndLabel->setToolTip(tipDnd);
 	} else {
 		QString status("<p>");
 		status += tr("Do not disturb is not active.").replace(' ', "&nbsp;");
 		status += "</p>";
 		status += clickToActivate;
-		QToolTip::add(statDndLabel, status);
+        statDndLabel->setToolTip(status);
 	}		
 	
 	if (num_cf > 0) {
-		QToolTip::add(statCfLabel, tipCf);
+        statCfLabel->setToolTip(tipCf);
 	} else {
 		QString status("<p>");
 		status += tr("Redirection is not active.").replace(' ', "&nbsp;");
 		status += "</p>";
 		status += clickToActivate;
-		QToolTip::add(statCfLabel, status);
+        statCfLabel->setToolTip(status);
 	}
 	
 	if (num_auto_answer > 0) {
-		QToolTip::add(statAaLabel, tipAa);
+        statAaLabel->setToolTip(tipAa);
 	} else {
 		QString status("<p>");
 		status += tr("Auto answer is not active.").replace(' ', "&nbsp;");
 		status += "</p>";
 		status += clickToActivate;
-		QToolTip::add(statAaLabel, status);
+        statAaLabel->setToolTip(status);
 	}
 	
 	updateSysTrayStatus();
 }
 
 void MphoneForm::updateMissedCallStatus(int num_missed_calls)
-{
-	QToolTip::remove(statMissedLabel);
-	
+{	
 	QString clickDetails("<i>");
 	clickDetails += tr("Click to see call history for details.").replace(' ', "&nbsp;");
 	clickDetails += "</i>";
@@ -1265,7 +1261,7 @@ void MphoneForm::updateMissedCallStatus(int num_missed_calls)
 		status += tr("You have no missed calls.").replace(' ', "&nbsp;");
 		status += "</p>";
 		status += clickDetails;
-		QToolTip::add(statMissedLabel, status);
+        statMissedLabel->setToolTip(status);
 	} else {
 		statMissedLabel->setPixmap(
 			QPixmap(":/icons/images/missed.png"));
@@ -1279,7 +1275,7 @@ void MphoneForm::updateMissedCallStatus(int num_missed_calls)
 		}
 		tip += "</p>";
 		tip += clickDetails;
-		QToolTip::add(statMissedLabel, tip);
+        statMissedLabel->setToolTip(tip);
 	}
 	
 	updateSysTrayStatus();
@@ -1412,28 +1408,28 @@ void MphoneForm::updateMenuStatus()
 	if (phone->ref_users().size() == 1) {
 		t_service *srv = phone->ref_service(phone->ref_users().front());
 		
-		serviceDnd->setToggleAction(true);
-		serviceDnd->setOn(srv->is_dnd_active());
+        serviceDnd->setCheckable(true);
+        serviceDnd->setChecked(srv->is_dnd_active());
 		connect(serviceDnd, SIGNAL(toggled(bool)),
 			this, SLOT(srvDnd(bool)));
 		
-		serviceAutoAnswer->setToggleAction(true);
-		serviceAutoAnswer->setOn(srv->is_auto_answer_active());
+        serviceAutoAnswer->setCheckable(true);
+        serviceAutoAnswer->setChecked(srv->is_auto_answer_active());
 		connect(serviceAutoAnswer, SIGNAL(toggled(bool)),
 			this, SLOT(srvAutoAnswer(bool)));
 	} else {
-		serviceDnd->setOn(false);
-		serviceDnd->setToggleAction(false);
+        serviceDnd->setChecked(false);
+        serviceDnd->setCheckable(false);
 		connect(serviceDnd, SIGNAL(activated()),
 			this, SLOT(srvDnd()));
 		
-		serviceAutoAnswer->setOn(false);
-		serviceAutoAnswer->setToggleAction(false);
+        serviceAutoAnswer->setChecked(false);
+        serviceAutoAnswer->setCheckable(false);
 		connect(serviceAutoAnswer, SIGNAL(activated()),
 			this, SLOT(srvAutoAnswer()));
 	}
 	
-#ifdef ENABLE_DIAMONDCARD
+#ifdef WITH_DIAMONDCARD
 	updateDiamondcardMenu();
 #endif
 }
@@ -1450,16 +1446,16 @@ void MphoneForm::updateDiamondcardMenu()
 	list<t_user *> diamondcard_users = diamondcard_get_users(phone);
 	
 	// Menu item identifiers
-	static int rechargeId = -1;
-	static int balanceHistoryId = -1;
-	static int callHistoryId = -1;
-	static int adminCenterId = -1;
+    static QAction* rechargeId = nullptr;
+    static QAction* balanceHistoryId = nullptr;
+    static QAction* callHistoryId = nullptr;
+    static QAction* adminCenterId = nullptr;
 	
 	// Sub menu's
-	static Q3PopupMenu *rechargeMenu = NULL;
-	static Q3PopupMenu *balanceHistoryMenu = NULL;
-	static Q3PopupMenu *callHistoryMenu = NULL;
-	static Q3PopupMenu *adminCenterMenu = NULL;
+    static QMenu *rechargeMenu = NULL;
+    static QMenu *balanceHistoryMenu = NULL;
+    static QMenu *callHistoryMenu = NULL;
+    static QMenu *adminCenterMenu = NULL;
 	
 	// Clear old menu
 	removeDiamondcardAction(rechargeId);
@@ -1473,29 +1469,32 @@ void MphoneForm::updateDiamondcardMenu()
 	
 	if (diamondcard_users.size() <= 1)
 	{
-		rechargeId = Diamondcard->insertItem(tr("Recharge..."), this, SLOT(DiamondcardRecharge(int)));
-		Diamondcard->setItemParameter(rechargeId, 0);
-		balanceHistoryId = Diamondcard->insertItem(tr("Balance history..."), this, SLOT(DiamondcardBalanceHistory(int)));
-		Diamondcard->setItemParameter(balanceHistoryId, 0);
-		callHistoryId = Diamondcard->insertItem(tr("Call history..."), this, SLOT(DiamondcardCallHistory(int)));
-		Diamondcard->setItemParameter(callHistoryId, 0);
-		adminCenterId = Diamondcard->insertItem(tr("Admin center..."), this, SLOT(DiamondcardAdminCenter(int)));
-		Diamondcard->setItemParameter(adminCenterId, 0);
+        rechargeId = Diamondcard->addAction(tr("Recharge..."), this, SLOT(DiamondcardRecharge()));
+        rechargeId->setData(0);
+        balanceHistoryId = Diamondcard->addAction(tr("Balance history..."), this, SLOT(DiamondcardBalanceHistory()));
+        balanceHistoryId->setData(0);
+        callHistoryId = Diamondcard->addAction(tr("Call history..."), this, SLOT(DiamondcardCallHistory()));
+        callHistoryId->setData(0);
+        adminCenterId = Diamondcard->addAction(tr("Admin center..."), this, SLOT(DiamondcardAdminCenter()));
+        adminCenterId->setData(0);
 		
 		// Disable actions as there is no active Diamondcard users.
 		if (diamondcard_users.empty()) {
-			Diamondcard->setItemEnabled(rechargeId, false);
-			Diamondcard->setItemEnabled(balanceHistoryId, false);
-			Diamondcard->setItemEnabled(callHistoryId, false);
-			Diamondcard->setItemEnabled(adminCenterId, false);
+            rechargeId->setEnabled(false);
+            balanceHistoryId->setEnabled(false);
+            callHistoryId->setEnabled(false);
+            adminCenterId->setEnabled(false);
 		}
 	}
 	else
 	{
-		rechargeMenu = new Q3PopupMenu(this);
-		balanceHistoryMenu = new Q3PopupMenu(this);
-		callHistoryMenu = new Q3PopupMenu(this);
-		adminCenterMenu = new Q3PopupMenu(this);
+        // Add the Diamondcard popup menus to the main Diamondcard menu.
+        rechargeMenu = Diamondcard->addMenu(tr("Recharge"));
+        balanceHistoryMenu = Diamondcard->addMenu(tr("Balance history"));
+        callHistoryMenu = Diamondcard->addMenu(tr("Call history"));
+        adminCenterMenu = Diamondcard->addMenu(tr("Admin center"));
+
+
 		// No MEMMAN registration as the popup menu may be automatically
 		// deleted by Qt on application close down. This would show up as
 		// a memory leak in MEMMAN.
@@ -1505,7 +1504,7 @@ void MphoneForm::updateDiamondcardMenu()
 		for (list<t_user *>::const_iterator it = diamondcard_users.begin(); 
 		       it != diamondcard_users.end(); ++it)
 		{
-			int menuId;
+            QAction* menuId;
 			t_user *user = *it;
 			
 			// Set the index in the user list as parameter to the menu item.
@@ -1513,39 +1512,35 @@ void MphoneForm::updateDiamondcardMenu()
 			// received this parameter and can use it as an index in the user list
 			// to find the user.
 			
-			menuId = rechargeMenu->insertItem(user->get_profile_name().c_str(), this,
-							      SLOT(DiamondcardRecharge(int)));
-			rechargeMenu->setItemParameter(menuId, idx);
-			menuId = balanceHistoryMenu->insertItem(user->get_profile_name().c_str(), this,
-							      SLOT(DiamondcardBalanceHistory(int)));
-			balanceHistoryMenu->setItemParameter(menuId, idx);
-			menuId = callHistoryMenu->insertItem(user->get_profile_name().c_str(), this,
-							      SLOT(DiamondcardCallHistory(int)));
-			callHistoryMenu->setItemParameter(menuId, idx);
-			menuId = adminCenterMenu->insertItem(user->get_profile_name().c_str(), this,
-							      SLOT(DiamondcardAdminCenter(int)));
-			adminCenterMenu->setItemParameter(menuId, idx);
+            menuId = rechargeMenu->addAction(user->get_profile_name().c_str(), this,
+                                  SLOT(DiamondcardRecharge()));
+            menuId->setData(idx);
+            menuId = balanceHistoryMenu->addAction(user->get_profile_name().c_str(), this,
+                                  SLOT(DiamondcardBalanceHistory()));
+            menuId->setData(idx);
+            menuId = callHistoryMenu->addAction(user->get_profile_name().c_str(), this,
+                                  SLOT(DiamondcardCallHistory()));
+            menuId->setData(idx);
+            menuId = adminCenterMenu->addAction(user->get_profile_name().c_str(), this,
+                                  SLOT(DiamondcardAdminCenter()));
+            menuId->setData(idx);
 			
 			++idx;
 		}
 		
-		// Add the Diamondcard popup menus to the main Diamondcard menu.
-		Diamondcard->insertItem(tr("Recharge"), rechargeMenu);
-		Diamondcard->insertItem(tr("Balance history"), balanceHistoryMenu);
-		Diamondcard->insertItem(tr("Call history"), callHistoryMenu);
-		Diamondcard->insertItem(tr("Admin center"), adminCenterMenu);
+
 	}
 }
 
-void MphoneForm::removeDiamondcardAction(int &id)
+void MphoneForm::removeDiamondcardAction(QAction*& act)
 {
-	if (id != -1) {
-		Diamondcard->removeItem(id);
-		id = -1;
+    if (act != nullptr) {
+        Diamondcard->removeAction(act);
+        act = nullptr;
 	}
 }
 
-void MphoneForm::removeDiamondcardMenu(Q3PopupMenu* &menu)
+void MphoneForm::removeDiamondcardMenu(QMenu* &menu)
 {
 	if (menu) {
 		delete menu;
@@ -1564,7 +1559,8 @@ void MphoneForm::phoneRegister()
 			delete (selectUserForm);
 		}
 		
-		selectUserForm = new SelectUserForm(this, "register", true);
+        selectUserForm = new SelectUserForm(this);
+        selectUserForm->setModal(true);
 		MEMMAN_NEW(selectUserForm);
 		
 		connect(selectUserForm, SIGNAL(selection(list<t_user *>)), this, 
@@ -1591,7 +1587,8 @@ void MphoneForm::phoneDeregister()
 			delete (selectUserForm);
 		}
 		
-		selectUserForm = new SelectUserForm(this, "deregister", true);
+        selectUserForm = new SelectUserForm(this);
+        selectUserForm->setModal(true);
 		MEMMAN_NEW(selectUserForm);
 		
 		connect(selectUserForm, SIGNAL(selection(list<t_user *>)), this, 
@@ -1618,7 +1615,8 @@ void MphoneForm::phoneDeregisterAll()
 			delete (selectUserForm);
 		}
 		
-		selectUserForm = new SelectUserForm(this, "deregister all", true);
+        selectUserForm = new SelectUserForm(this);
+        selectUserForm->setModal(true);
 		MEMMAN_NEW(selectUserForm);
 	
 		connect(selectUserForm, SIGNAL(selection(list<t_user *>)), this, 
@@ -1651,12 +1649,13 @@ void MphoneForm::phoneInvite(t_user * user_config,
 	if (inviteForm) {
 		inviteForm->clear();
 	} else {
-		inviteForm = new InviteForm(this, "invite", true);
+        inviteForm = new InviteForm(this);
+        inviteForm->setModal(true);
 		MEMMAN_NEW(inviteForm);
 		
 		// Initialize the destination history list
 		for (int i = callComboBox->count() - 1; i >= 0; i--) {
-			inviteForm->addToInviteComboBox(callComboBox->text(i));
+            inviteForm->addToInviteComboBox(callComboBox->itemText(i));
 		}
 		
 		connect(inviteForm, 
@@ -1676,7 +1675,7 @@ void MphoneForm::phoneInvite(t_user * user_config,
 
 void MphoneForm::phoneInvite(const QString &dest, const QString &subject, bool anonymous)
 {
-	t_user *user = phone->ref_user_profile(userComboBox->currentText().ascii());
+    t_user *user = phone->ref_user_profile(userComboBox->currentText().toStdString());
 	if (!user) {
 		log_file->write_report("Cannot find user profile.",
 			       "MphoneForm::phoneInvite", 
@@ -1688,7 +1687,7 @@ void MphoneForm::phoneInvite(const QString &dest, const QString &subject, bool a
 
 void MphoneForm::phoneInvite()
 {
-	t_user *user = phone->ref_user_profile(userComboBox->currentText().ascii());
+    t_user *user = phone->ref_user_profile(userComboBox->currentText().toStdString());
 	if (!user) {
 		log_file->write_report("Cannot find user profile.",
 			       "MphoneForm::phoneInvite", 
@@ -1704,7 +1703,7 @@ void MphoneForm::do_phoneInvite(t_user *user_config, const QString &display,
 			const t_url &destination, const QString &subject,
 			bool anonymous)
 {
-	((t_gui *)ui)->action_invite(user_config, destination, display.ascii(), subject.ascii(),
+    ((t_gui *)ui)->action_invite(user_config, destination, display.toStdString(), subject.toStdString(),
 				     anonymous);
 	updateState();
 }
@@ -1784,7 +1783,8 @@ void MphoneForm::phoneRedirect(const list<string> &contacts)
 		delete (redirectForm);
 	}
 	
-	redirectForm = new RedirectForm(this, "redirect", true);
+    redirectForm = new RedirectForm(this);
+    redirectForm->setModal(true);
 	MEMMAN_NEW(redirectForm);
 	connect(redirectForm, SIGNAL(destinations(const list<t_display_url> &)),
 		this, SLOT(do_phoneRedirect(const list<t_display_url> &)));
@@ -1821,7 +1821,8 @@ void MphoneForm::phoneTransfer(const string &dest, t_transfer_type transfer_type
 		delete transferForm;
 	}
 	
-	transferForm = new TransferForm(this, "transfer", true);
+    transferForm = new TransferForm(this);
+    transferForm->setModal(true);
 	MEMMAN_NEW(transferForm);
 	connect(transferForm, SIGNAL(destination(const t_display_url &, t_transfer_type)),
 		this, SLOT(do_phoneTransfer(const t_display_url &, t_transfer_type)));
@@ -1942,12 +1943,13 @@ void MphoneForm::phoneTermCap(const QString &dest)
 		delete (termCapForm);
 	}
 	
-	termCapForm = new TermCapForm(this, "termcap", true);
+    termCapForm = new TermCapForm(this);
+    termCapForm->setModal(true);
 	MEMMAN_NEW(termCapForm);
 	connect(termCapForm, SIGNAL(destination(t_user *, const t_url &)),
 		this, SLOT(do_phoneTermCap(t_user *, const t_url &)));
 	
-	t_user *user = phone->ref_user_profile(userComboBox->currentText().ascii());
+    t_user *user = phone->ref_user_profile(userComboBox->currentText().toStdString());
 	if (!user) {
 		log_file->write_report("Cannot find user profile.",
 			       "MphoneForm::phoneTermcap", 
@@ -1981,12 +1983,12 @@ void MphoneForm::phoneDTMF()
 
 void MphoneForm::sendDTMF(const QString &digits)
 {
-	((t_gui *)ui)->action_dtmf(digits.ascii());	
+    ((t_gui *)ui)->action_dtmf(digits.toStdString());
 }
 
 void MphoneForm::startMessageSession(void)
 {
-	t_user *user = phone->ref_user_profile(userComboBox->currentText().ascii());
+    t_user *user = phone->ref_user_profile(userComboBox->currentText().toStdString());
 	if (!user) {
 		log_file->write_report("Cannot find user profile.",
 			       "MphoneForm::startMessageSession", 
@@ -2109,7 +2111,8 @@ void MphoneForm::srvDnd()
 		delete (selectUserForm);
 	}
 		
-	selectUserForm = new SelectUserForm(this, "dnd", true);
+    selectUserForm = new SelectUserForm(this);
+    selectUserForm->setModal(true);
 	MEMMAN_NEW(selectUserForm);
 		
 	connect(selectUserForm, SIGNAL(selection(list<t_user *>)), this, 
@@ -2145,7 +2148,8 @@ void MphoneForm::srvAutoAnswer()
 		delete (selectUserForm);
 	}
 		
-	selectUserForm = new SelectUserForm(this, "auto answer", true);
+    selectUserForm = new SelectUserForm(this);
+    selectUserForm->setModal(true);
 	MEMMAN_NEW(selectUserForm);
 		
 	connect(selectUserForm, SIGNAL(selection(list<t_user *>)), this, 
@@ -2169,7 +2173,9 @@ void MphoneForm::do_srvAutoAnswer_disable(list<t_user *> user_list) {
 void MphoneForm::srvRedirect()
 {
 	if (!srvRedirectForm) {
-		srvRedirectForm = new SrvRedirectForm(this, "call redirection", true);
+        srvRedirectForm = new SrvRedirectForm(this);
+        srvRedirectForm->setModal(true);
+
 		MEMMAN_NEW(srvRedirectForm);
 		connect(srvRedirectForm, 
 			SIGNAL(destinations(t_user *,
@@ -2241,7 +2247,8 @@ void MphoneForm::manual()
 void MphoneForm::editUserProfile()
 {
 	if (!userProfileForm) {
-		userProfileForm = new UserProfileForm(this, "user profile", true);
+        userProfileForm = new UserProfileForm(this);
+        userProfileForm->setModal(true);
 		MEMMAN_NEW(userProfileForm);
 	
 		connect(userProfileForm,
@@ -2274,7 +2281,8 @@ void MphoneForm::editUserProfile()
 void MphoneForm::editSysSettings()
 {
 	if (!sysSettingsForm) {
-		sysSettingsForm = new SysSettingsForm(this, "system settings", true);
+        sysSettingsForm = new SysSettingsForm(this);
+        sysSettingsForm->setModal(true);
 		MEMMAN_NEW(sysSettingsForm);
 		connect(sysSettingsForm, SIGNAL(sipUdpPortChanged()),
 			this, SLOT(updateSipUdpPort()));
@@ -2288,7 +2296,8 @@ void MphoneForm::editSysSettings()
 void MphoneForm::selectProfile()
 {
 	if (!selectProfileForm) {
-		selectProfileForm = new SelectProfileForm(this, "select profile", true);
+        selectProfileForm = new SelectProfileForm(this);
+        selectProfileForm->setModal(true);
 		MEMMAN_NEW(selectProfileForm);
 		connect(selectProfileForm, SIGNAL(selection(const list<string> &)),
 			this, SLOT(newUsers(const list<string> &)));
@@ -2352,22 +2361,22 @@ void MphoneForm::newUsers(const list<string> &profiles)
 		// Strip off the .cfg extension
 		profile.truncate(profile.length() - 4);
 		
-		if (!phone->ref_user_profile(profile.ascii())) {
+        if (!phone->ref_user_profile(profile.toStdString())) {
 			add_profile_list.push_back(*i);
 		}
 	}
 	
 	// Add new phone users
-	Q3ProgressDialog progress(tr("Starting user profiles..."), "Abort", add_profile_list.size(), this,
-				 "starting user profiles", true);
-	progress.setCaption(PRODUCT_NAME);
+    QProgressDialog progress(tr("Starting user profiles..."), "Abort", 0, add_profile_list.size(), this);
+    progress.setModal(true);
+    progress.setWindowTitle(PRODUCT_NAME);
 	progress.setMinimumDuration(200);
 	int progressStep = 0;
 	for (list<string>::iterator i = add_profile_list.begin(); i != add_profile_list.end(); i++) {
-		progress.setProgress(progressStep);
+        progress.setValue(progressStep);
 		qApp->processEvents();
 		
-		if (progress.wasCancelled()) {
+        if (progress.wasCanceled()) {
 			log_file->write_report("User aborted startup of new users.", 
 					       "MphoneForm::newUsers");
 			break;
@@ -2408,7 +2417,7 @@ void MphoneForm::newUsers(const list<string> &profiles)
 				// Extension initialization will be done after 
 				// registration succeeded.
 			} else {
-				error_msg = tr("The following profiles are both for user %1").arg(user_config.get_name().c_str()).ascii();
+                error_msg = tr("The following profiles are both for user %1").arg(QString::fromStdString(user_config.get_name())).toStdString();
 				error_msg += '@';
 				error_msg += user_config.get_domain();
 				error_msg += ":\n\n";
@@ -2416,7 +2425,7 @@ void MphoneForm::newUsers(const list<string> &profiles)
 				error_msg += "\n";
 				error_msg += dup_user->get_profile_name();
 				error_msg += "\n\n";
-				error_msg += tr("You can only run multiple profiles for different users.").ascii();
+                error_msg += tr("You can only run multiple profiles for different users.").toStdString();
 				
 				log_file->write_report(error_msg,
 					"MphoneForm::newUsers", 
@@ -2432,7 +2441,7 @@ void MphoneForm::newUsers(const list<string> &profiles)
 		
 		progressStep++;
 	}
-	progress.setProgress(add_profile_list.size());
+    progress.setValue(add_profile_list.size());
 	
 	populateBuddyList();
 	updateUserComboBox();
@@ -2462,8 +2471,8 @@ void MphoneForm::updateUserComboBox()
 	
 	// If previous selected user is still active, make it the current user
 	for (int i = 0; i < userComboBox->count(); i++) {
-		if (userComboBox->text(i) == current_user) {
-			userComboBox->setCurrentItem(i);
+        if (userComboBox->itemText(i) == current_user) {
+            userComboBox->setCurrentIndex(i);
 		}
 	}
 }
@@ -2472,7 +2481,7 @@ void MphoneForm::updateSipUdpPort()
 {
 	((t_gui *)ui)->cb_show_msg(sysSettingsForm,
 			tr("You have changed the SIP UDP port. This setting will only become "\
-			"active when you restart Twinkle.").ascii(),
+            "active when you restart Twinkle.").toStdString(),
 			MSG_INFO);
 }
 
@@ -2558,7 +2567,7 @@ void MphoneForm::quickCall()
 	string display, dest_str;
 	
 	t_user *from_user = phone->ref_user_profile(
-				userComboBox->currentText().ascii());
+                userComboBox->currentText().toStdString());
 	if (!from_user) {
 		log_file->write_report("Cannot find user profile.",
 			       "MphoneForm::quickCall", 
@@ -2567,7 +2576,7 @@ void MphoneForm::quickCall()
 	}
 	
 	ui->expand_destination(from_user, 
-			       callComboBox->currentText().stripWhiteSpace().ascii(), 
+                   callComboBox->currentText().trimmed().toStdString(),
 			       display, dest_str);
 	t_url dest(dest_str);
 	
@@ -2585,14 +2594,14 @@ void MphoneForm::addToCallComboBox(const QString &destination)
 {
 	// Remove duplicate entries
 	for (int i = callComboBox->count() - 1; i >= 0; i--) {
-		if (callComboBox->text(i) == destination) {
+        if (callComboBox->itemText(i) == destination) {
 			callComboBox->removeItem(i);
 		}
 	}
 	
 	// Add entry
-	callComboBox->insertItem(destination, 0);
-	callComboBox->setCurrentItem(0);
+    callComboBox->insertItem(0, destination);
+    callComboBox->setCurrentIndex(0);
 	
 	// Remove last entry is list exceeds maximum size
 	if (callComboBox->count() > SIZE_REDIAL_LIST) {
@@ -2603,14 +2612,14 @@ void MphoneForm::addToCallComboBox(const QString &destination)
 	// also called when a call is made through the inviteForm.
 	// The insertItem puts the text also in the edit field. So it must
 	// be cleared here.
-	callComboBox->clearEdit();
+    callComboBox->clearEditText();
 }
 
 void MphoneForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	
@@ -2743,36 +2752,36 @@ void MphoneForm::mouseReleaseEvent(QMouseEvent *e)
 
 void MphoneForm::processLeftMouseButtonRelease(QMouseEvent *e)
 {
-	if (statAaLabel->hasMouse()) {
+    if (statAaLabel->testAttribute(Qt::WA_UnderMouse)) {
 		if (phone->ref_users().size() == 1) {
-			bool enable = !serviceAutoAnswer->isOn();
+            bool enable = !serviceAutoAnswer->isChecked();
 			srvAutoAnswer(enable);
-			serviceAutoAnswer->setOn(enable);
+            serviceAutoAnswer->setChecked(enable);
 		} else {
 			srvAutoAnswer();
 		}
-	} else if (statDndLabel->hasMouse()) {
+    } else if (statDndLabel->testAttribute(Qt::WA_UnderMouse)) {
 		if (phone->ref_users().size() == 1) {
-			bool enable = !serviceDnd->isOn();
+            bool enable = !serviceDnd->isChecked();
 			srvDnd(enable);
-			serviceDnd->setOn(enable);
+            serviceDnd->setChecked(enable);
 		} else {
 			srvDnd();
 		}
-	} else if (statCfLabel->hasMouse()) {
+    } else if (statCfLabel->testAttribute(Qt::WA_UnderMouse)) {
 		srvRedirect();
-	} else if (statMWILabel->hasMouse()) {
+    } else if (statMWILabel->testAttribute(Qt::WA_UnderMouse)) {
 		popupMenuVoiceMail(e->globalPos());
-	} else if (statMissedLabel->hasMouse()) {
+    } else if (statMissedLabel->testAttribute(Qt::WA_UnderMouse)) {
 		// Open the history form, when the user clicks on the 
 		// missed calls indication.
 		viewHistory();
-	} else if (statRegLabel->hasMouse()) {
+    } else if (statRegLabel->testAttribute(Qt::WA_UnderMouse)) {
 		// Fetch registration status
 		phoneShowRegistrations();
-	} else if (crypt1Label->hasMouse()) {
+    } else if (crypt1Label->testAttribute(Qt::WA_UnderMouse)) {
 		processCryptLabelClick(0);
-	} else if (crypt2Label->hasMouse()) {
+    } else if (crypt2Label->testAttribute(Qt::WA_UnderMouse)) {
 		processCryptLabelClick(1);
 	} else {
 		e->ignore();
@@ -2799,13 +2808,12 @@ void MphoneForm::processCryptLabelClick(int line)
 // Show popup menu to access voice mail
 void MphoneForm::popupMenuVoiceMail(const QPoint &pos)
 {
-	Q3PopupMenu menu(this);
+    QMenu menu(this);
 	QIcon vmIcon(QPixmap(":/icons/images/mwi_none16.png"));
-	vmIcon.setPixmap(QPixmap(":/icons/images/mwi_none16_dis.png"),
-		       QIcon::Automatic, QIcon::Disabled);
+    vmIcon.addPixmap(QPixmap(":/icons/images/mwi_none16_dis.png"), QIcon::Disabled);
 	
 	list<t_user *>user_list = phone->ref_users();
-	map<int, t_user *> vm;
+    map<QAction*, t_user *> vm;
 	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); ++i) {
 		QString address = (*i)->get_mwi_vm_address().c_str();
 		QString entry		= (*i)->get_profile_name().c_str();
@@ -2816,26 +2824,26 @@ void MphoneForm::popupMenuVoiceMail(const QPoint &pos)
 			entry += address;
 		}		
 		
-		int id = menu.insertItem(vmIcon, entry);
+        QAction* act = menu.addAction(vmIcon, entry);
 		if (address.isEmpty()) {
-			menu.setItemEnabled(id, false);
+            act->setEnabled(false);
 		}
 		
-		vm.insert(make_pair(id, *i));
+        vm.insert(make_pair(act, *i));
 	}
 	
-	int selected;
+    QAction* selected;
 	
 	// If multiple profiles are active, then show the popup menu.
 	// If one profile is active, then call voice mail immediately.
 	if (user_list.size() > 1) {
 		selected = menu.exec(pos);
-		if (selected == -1) return;
+        if (selected == nullptr) return;
 	} else {
 		if (vm.begin()->second->get_mwi_vm_address().empty()) {
 			ui->cb_show_msg(
 				tr("You must provision your voice mail address in your "
-				   "user profile, before you can access it.").ascii(), 
+                   "user profile, before you can access it.").toStdString(),
 				MSG_INFO);
 			return;
 		}
@@ -2845,7 +2853,7 @@ void MphoneForm::popupMenuVoiceMail(const QPoint &pos)
 	// Call can only be made if line is idle
 	int line = phone->get_active_line();
 	if (phone->get_line_state(line) == LS_BUSY) {
-		ui->cb_show_msg(tr("The line is busy. Cannot access voice mail.").ascii(), 
+        ui->cb_show_msg(tr("The line is busy. Cannot access voice mail.").toStdString(),
 				MSG_WARNING);
 		return;
 	}
@@ -2866,7 +2874,7 @@ void MphoneForm::popupMenuVoiceMail(const QPoint &pos)
 	} else {
 		QString msg(tr("The voice mail address %1 is an invalid address. "
 			       "Please provision a valid address in your user profile."));
-		ui->cb_show_msg(msg.arg(selectedUser->get_mwi_vm_address().c_str()).ascii(),
+        ui->cb_show_msg(msg.arg(selectedUser->get_mwi_vm_address().c_str()).toStdString(),
 				MSG_CRITICAL);
 	}
 }
@@ -2891,7 +2899,7 @@ void MphoneForm::showDisplay(bool on)
 	}
 	
 	viewDisplay = on;
-	viewDisplayAction->setOn(on);
+    viewDisplayAction->setChecked(on);
 }
 
 void MphoneForm::showBuddyList(bool on)
@@ -2903,7 +2911,7 @@ void MphoneForm::showBuddyList(bool on)
 	}
 	
 	viewBuddyList = on;
-	viewBuddyListAction->setOn(on);
+    viewBuddyListAction->setChecked(on);
 }
 
 void MphoneForm::showCompactLineStatus(bool on)
@@ -2987,25 +2995,27 @@ void MphoneForm::populateBuddyList()
 			new BuddyListViewItem(profileItem, &(*bit));
 		}
 		
-		profileItem->setOpen(true);
+        // profileItem->setOpen(true);
 	}
+    buddyListView->expandAll();
 }
 
-void MphoneForm::showBuddyListPopupMenu(Q3ListViewItem *item, const QPoint &pos)
+void MphoneForm::showBuddyListPopupMenu(const QPoint &pos)
 {
+    QTreeWidgetItem* item = buddyListView->currentItem();
 	if (!item) return;
 	
 	BuddyListViewItem *buddyItem = dynamic_cast<BuddyListViewItem *>(item);
 	if (buddyItem) {
-		buddyPopupMenu->popup(pos);
+        buddyPopupMenu->popup(buddyListView->mapToGlobal(pos));
 	} else {
-		buddyListPopupMenu->popup(pos);
+        buddyListPopupMenu->popup(buddyListView->mapToGlobal(pos));
 	}
 }
 
 void MphoneForm::doCallBuddy()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BuddyListViewItem *item = dynamic_cast<BuddyListViewItem *>(qitem);
 	if (!item) return;
 	
@@ -3015,7 +3025,7 @@ void MphoneForm::doCallBuddy()
 	phoneInvite(user_config, buddy->get_sip_address().c_str(), "", false);
 }
 
-void MphoneForm::doMessageBuddy(Q3ListViewItem *qitem)
+void MphoneForm::doMessageBuddy(QTreeWidgetItem *qitem)
 {	
 	BuddyListViewItem *item = dynamic_cast<BuddyListViewItem *>(qitem);
 	if (!item) return;
@@ -3027,26 +3037,28 @@ void MphoneForm::doMessageBuddy(Q3ListViewItem *qitem)
 
 void MphoneForm::doMessageBuddy()
 {
-	Q3ListViewItem *item = buddyListView->currentItem();
+    QTreeWidgetItem *item = buddyListView->currentItem();
 	doMessageBuddy(item);
 }
 
 void MphoneForm::doEditBuddy()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BuddyListViewItem *item = dynamic_cast<BuddyListViewItem *>(qitem);
 	if (!item) return;
 	
 	t_buddy *buddy = item->get_buddy();
 	
-	BuddyForm *form = new BuddyForm(this, "new_buddy", true, Qt::WDestructiveClose);
+    BuddyForm *form = new BuddyForm(this);
+    form->setModal(true);
+    form->setAttribute(Qt::WA_DeleteOnClose, true);
 	// Do not call MEMMAN as this form will be deleted automatically.	
 	form->showEdit(*buddy);
 }
 
 void MphoneForm::doDeleteBuddy()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BuddyListViewItem *item = dynamic_cast<BuddyListViewItem *>(qitem);
 	if (!item) return;
 	
@@ -3066,13 +3078,13 @@ void MphoneForm::doDeleteBuddy()
 	string err_msg;
 	if (!buddy_list->save(err_msg)) {
 		QString msg = tr("Failed to save buddy list: %1").arg(err_msg.c_str());
-		((t_gui *)ui)->cb_show_msg(this, msg.ascii(), MSG_CRITICAL);
+        ((t_gui *)ui)->cb_show_msg(this, msg.toStdString(), MSG_CRITICAL);
 	}
 }
 
 void MphoneForm::doAddBuddy()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BLViewUserItem *item = dynamic_cast<BLViewUserItem *>(qitem);
 	if (!item) return;
 	
@@ -3081,14 +3093,16 @@ void MphoneForm::doAddBuddy()
 	t_buddy_list *buddy_list = pu->get_buddy_list();
 	if (!buddy_list) return;
 	
-	BuddyForm *form = new BuddyForm(this, "new_buddy", true, Qt::WDestructiveClose);
+    BuddyForm *form = new BuddyForm(this);
+    form->setModal(true);
+    form->setAttribute( Qt::WA_DeleteOnClose, true );
 	// Do not call MEMMAN as this form will be deleted automatically.
 	form->showNew(*buddy_list, item);
 }
 
 void MphoneForm::doAvailabilityOffline()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BLViewUserItem *item = dynamic_cast<BLViewUserItem *>(qitem);
 	if (!item) return;
 	
@@ -3100,7 +3114,7 @@ void MphoneForm::doAvailabilityOffline()
 
 void MphoneForm::doAvailabilityOnline()
 {
-	Q3ListViewItem *qitem = buddyListView->currentItem();
+    QTreeWidgetItem *qitem = buddyListView->currentItem();
 	BLViewUserItem *item = dynamic_cast<BLViewUserItem *>(qitem);
 	if (!item) return;
 	
@@ -3112,9 +3126,10 @@ void MphoneForm::doAvailabilityOnline()
 
 void MphoneForm::DiamondcardSignUp()
 {
-	DiamondcardProfileForm *f = new DiamondcardProfileForm(this, "select profile", true, 
-							       Qt::WDestructiveClose);
+    DiamondcardProfileForm *f = new DiamondcardProfileForm(this);
 	
+    f->setModal(true);
+    f->setAttribute( Qt::WA_DeleteOnClose, true );
 	connect(f, SIGNAL(newDiamondcardProfile(const QString&)),
 			this, SLOT(newDiamondcardUser(const QString &)));
 	
@@ -3131,7 +3146,7 @@ void MphoneForm::newDiamondcardUser(const QString &filename)
 		profileFilenames.push_back(user->get_filename());
 	}
 	
-	profileFilenames.push_back(filename.ascii());
+    profileFilenames.push_back(filename.toStdString());
 	newUsers(profileFilenames);
 }
 
@@ -3147,22 +3162,27 @@ void MphoneForm::DiamondcardAction(t_dc_action action, int userIdx)
 	((t_gui *)ui)->open_url_in_browser(url);
 }
 
-void MphoneForm::DiamondcardRecharge(int userIdx)
+void MphoneForm::DiamondcardRecharge()
 {
-	DiamondcardAction(DC_ACT_RECHARGE, userIdx);
+    DiamondcardAction(DC_ACT_RECHARGE, static_cast<QAction*>(sender())->data().toInt());
 }
 
-void MphoneForm::DiamondcardBalanceHistory(int userIdx)
+void MphoneForm::DiamondcardBalanceHistory()
 {
-	DiamondcardAction(DC_ACT_BALANCE_HISTORY, userIdx);
+    DiamondcardAction(DC_ACT_BALANCE_HISTORY, static_cast<QAction*>(sender())->data().toInt());
 }
 
-void MphoneForm::DiamondcardCallHistory(int userIdx)
+void MphoneForm::DiamondcardCallHistory()
 {
-	DiamondcardAction(DC_ACT_CALL_HISTORY, userIdx);
+    DiamondcardAction(DC_ACT_CALL_HISTORY, static_cast<QAction*>(sender())->data().toInt());
 }
 
-void MphoneForm::DiamondcardAdminCenter(int userIdx)
+void MphoneForm::DiamondcardAdminCenter()
 {
-	DiamondcardAction(DC_ACT_ADMIN_CENTER, userIdx);
+    DiamondcardAction(DC_ACT_ADMIN_CENTER, static_cast<QAction*>(sender())->data().toInt());
+}
+
+void MphoneForm::whatsThis()
+{
+    QWhatsThis::enterWhatsThisMode();
 }

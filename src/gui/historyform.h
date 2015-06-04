@@ -12,7 +12,7 @@ class HistoryForm : public QDialog, public Ui::HistoryForm
 	Q_OBJECT
 
 public:
-	HistoryForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    HistoryForm(QWidget* parent = 0);
 	~HistoryForm();
 
 public slots:
@@ -37,7 +37,7 @@ private:
 	time_t timeLastViewed;
     QMenu *histPopupMenu;
     QStandardItemModel *m_model;
-	int itemCall;
+    QAction* itemCall;
     QPixmap m_pixmapIn, m_pixmapOut;
     QPixmap m_pixmapOk, m_pixmapCancel;
     QList<t_call_record> m_history;

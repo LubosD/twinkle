@@ -8,7 +8,7 @@ class SelectNicForm : public QDialog, public Ui::SelectNicForm
 	Q_OBJECT
 
 public:
-	SelectNicForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SelectNicForm(QWidget* parent = 0);
 	~SelectNicForm();
 
 public slots:

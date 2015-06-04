@@ -12,7 +12,7 @@ class WizardForm : public QDialog, public Ui::WizardForm
 	Q_OBJECT
 
 public:
-	WizardForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    WizardForm(QWidget* parent = 0);
 	~WizardForm();
 
 	virtual void show( t_user * user );

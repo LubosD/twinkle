@@ -24,8 +24,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-AuthenticationForm::AuthenticationForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+AuthenticationForm::AuthenticationForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 

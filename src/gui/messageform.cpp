@@ -59,8 +59,8 @@ using namespace utils;
 
 #define IMG_SCALE_FACTOR(width, height) (std::min<float>( float(MAX_WIDTH_IMG_INLINE) / (width), float(MAX_HEIGHT_IMG_INLINE) / (height) ) )
 
-MessageForm::MessageForm(QWidget* parent, const char* name, Qt::WindowFlags fl)
-	: QMainWindow(parent, name, fl)
+MessageForm::MessageForm(QWidget* parent)
+    : QMainWindow(parent)
 {
 	setupUi(this);
 
@@ -89,7 +89,7 @@ void MessageForm::languageChange()
 
 void MessageForm::init()
 {
-	setWindowFlags(windowFlags() | Qt::WDestructiveClose);
+    this->setAttribute(Qt::WA_DeleteOnClose);
 	
 	_getAddressForm = 0;
 	_remotePartyComplete = false;
@@ -105,8 +105,8 @@ void MessageForm::init()
 	attachmentPopupMenu = new QMenu(this);
 	MEMMAN_NEW(attachmentPopupMenu);
 	
-	connect(attachmentPopupMenu, SIGNAL(activated(int)), 
-		this, SLOT(attachmentPopupActivated(int)));
+    connect(attachmentPopupMenu, SIGNAL(triggered(QAction*)),
+        this, SLOT(attachmentPopupActivated(QAction*)));
 	
 	_serviceMap = NULL;
 	_saveAsDialog = NULL;
@@ -176,10 +176,10 @@ void MessageForm::show()
 void MessageForm::selectUserConfig(t_user *user_config)
 {
 	for (int i = 0; i < fromComboBox->count(); i++) {
-		if (fromComboBox->text(i) == 
+        if (fromComboBox->itemText(i) ==
 		    user_config->get_profile_name().c_str())
 		{
-			fromComboBox->setCurrentItem(i);
+            fromComboBox->setCurrentIndex(i);
 			break;
 		}
 	}
@@ -188,8 +188,8 @@ void MessageForm::selectUserConfig(t_user *user_config)
 void MessageForm::showAddressBook()
 {
 	if (!_getAddressForm) {
-		_getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        _getAddressForm = new GetAddressForm(this);
+        _getAddressForm->setModal(true);
 		MEMMAN_NEW(_getAddressForm);
 	}
 	
@@ -213,14 +213,14 @@ bool MessageForm::updateMessageSession()
 {
 	string display, dest_str;
 	t_user *from_user = phone->ref_user_profile(
-				fromComboBox->currentText().ascii());
+                fromComboBox->currentText().toStdString());
 	if (!from_user) {
 		// The user profile is not active anymore
 		fromComboBox->setFocus();
 		return false;
 	}
 	
-	ui->expand_destination(from_user, toLineEdit->text().stripWhiteSpace().ascii(), 
+    ui->expand_destination(from_user, toLineEdit->text().trimmed().toStdString(),
 			       display, dest_str);
 	t_url dest(dest_str);
 	
@@ -277,7 +277,7 @@ void MessageForm::sendMessage() {
 		return;
 	}
 	
-	_msgSession->send_msg(msgLineEdit->text().ascii(), im::TXT_PLAIN);	
+    _msgSession->send_msg(msgLineEdit->text().toStdString(), im::TXT_PLAIN);
 }
 
 /**
@@ -297,13 +297,13 @@ void MessageForm::sendFile(const QString &filename, const QString &subject) {
 	KMimeType::Ptr pMime = KMimeType::findByURL(filename);
 	media = t_media(pMime->name().ascii());
 #else
-	string mime_type = mime_database->get_mimetype(filename.ascii());
+    string mime_type = mime_database->get_mimetype(filename.toStdString());
 	if (!mime_type.empty()) {
 		media = t_media(mime_type);
 	}
 #endif
 
-	_msgSession->send_file(filename.ascii(), media, subject.ascii());
+    _msgSession->send_file(filename.toStdString(), media, subject.toStdString());
 }
 
 /**
@@ -426,7 +426,7 @@ void MessageForm::displayError(const QString &errorMsg)
 {
 	QString s = "<font color =\"red\">";
 	s += "<b>";
-	s += tr("Delivery failure").ascii();
+    s += tr("Delivery failure");
 	s += ": </b>";
 	s += Qt::escape(errorMsg);
 	s += "</font>";
@@ -438,7 +438,7 @@ void MessageForm::displayDeliveryNotification(const QString &notification)
 {
 	QString s = "<font color =\"darkgreen\">";
 	s += "<b>";
-	s += tr("Delivery notification").ascii();
+    s += tr("Delivery notification");
 	s += ": </b>";
 	s += Qt::escape(notification);
 	s += "</font>";
@@ -450,7 +450,7 @@ void MessageForm::setRemotePartyCaption(void) {
 	if (!_msgSession) return;
 	t_user *user = _msgSession->get_user();
 	t_display_url remote_party = _msgSession->get_remote_party();
-	setCaption(ui->format_sip_address(user, 
+    setWindowTitle(ui->format_sip_address(user,
 			remote_party.display, remote_party.url).c_str());
 }
 
@@ -476,7 +476,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	attachmentPopupMenu->clear();
 	
 	QIcon saveIcon(QPixmap(":/icons/images/save_as.png"));
-	attachmentPopupMenu->insertItem(saveIcon, "Save as...", id++);
+    attachmentPopupMenu->addAction(saveIcon, "Save as...")->setData(id++);
 	
 #ifdef HAVE_KDE
 	// Get mime type for the attachment
@@ -504,7 +504,9 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	attachmentPopupMenu->popup(QCursor::pos(), 0);
 }
 
-void MessageForm::attachmentPopupActivated(int id) {
+void MessageForm::attachmentPopupActivated(QAction* act) {
+    int id = act->data().toInt();
+
 #ifdef HAVE_KDE
 	vector<KService::Ptr> *serviceMap = (vector<KService::Ptr> *)_serviceMap;
 	assert(serviceMap);
@@ -525,8 +527,8 @@ void MessageForm::attachmentPopupActivated(int id) {
 		connect(d, SIGNAL(fileSelected(const QString &)), this,
 			SLOT(saveAttachment()));
 #endif
-		d->selectFile(QString::fromStdString(_filenameMap[clickedAttachment.ascii()]));
-		d->setCaption(tr("Save attachment as..."));
+        d->selectFile(QString::fromStdString(_filenameMap[clickedAttachment.toStdString()]));
+        d->setWindowTitle(tr("Save attachment as..."));
 		
 		if (_saveAsDialog) {
 			MEMMAN_DELETE(_saveAsDialog);
@@ -554,18 +556,22 @@ void MessageForm::saveAttachment() {
 #else
 	QFileDialog *d = dynamic_cast<QFileDialog *>(_saveAsDialog);
 #endif
-	QString filename = d->selectedFile();
+    QStringList files = d->selectedFiles();
+    QString filename;
+
+    if (!files.empty())
+        filename = files[0];
 	
 	if (QFile::exists(filename)) {
 		bool overwrite = ((t_gui *)ui)->cb_ask_msg(this, 
-				  tr("File already exists. Do you want to overwrite this file?").ascii(),
+                  tr("File already exists. Do you want to overwrite this file?").toStdString(),
 				  MSG_WARNING);
 		
 		if (!overwrite) return;
 	}
 	
-	if (!filecopy(clickedAttachment.ascii(), filename.ascii())) {
-		((t_gui *)ui)->cb_show_msg(this, tr("Failed to save attachment.").ascii(), 
+    if (!filecopy(clickedAttachment.toStdString(), filename.toStdString())) {
+        ((t_gui *)ui)->cb_show_msg(this, tr("Failed to save attachment.").toStdString(),
 					   MSG_CRITICAL);
 	}
 }
@@ -608,7 +614,7 @@ void MessageForm::clearComposingIndication()
 {
 	if (_isComposingLabel) {
 		statusBar()->removeWidget(_isComposingLabel);
-		statusBar()->clear();
+        statusBar()->clearMessage();
 	
 		MEMMAN_DELETE(_isComposingLabel);
 		delete _isComposingLabel;

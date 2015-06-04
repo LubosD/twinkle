@@ -33,7 +33,7 @@ t_twinkle_application::t_twinkle_application(int &argc, char **argv) :
 {}
 #endif
 void t_twinkle_application::commitData (QSessionManager &sm) {
-	sys_config->set_ui_session_id(sessionId().ascii());
+    sys_config->set_ui_session_id(sessionId().toStdString());
 	
 	// Create list of active profile file names
 	list<t_user *> user_list = phone->ref_users();

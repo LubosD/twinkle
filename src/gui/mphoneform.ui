@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MphoneForm</class>
- <widget class="Q3MainWindow" name="MphoneForm">
+ <widget class="QMainWindow" name="MphoneForm">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
+    <width>733</width>
     <height>693</height>
    </rect>
   </property>
@@ -38,21 +38,13 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>485</width>
-     <height>354</height>
-    </rect>
-   </property>
    <layout class="QGridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="Q3ListView" name="buddyListView" native="true">
+      <widget class="QTreeWidget" name="buddyListView">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>150</horstretch>
@@ -65,12 +57,20 @@
          <height>0</height>
         </size>
        </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
        <property name="whatsThis">
         <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
        </property>
-       <property name="rootIsDecorated" stdset="0">
+       <property name="rootIsDecorated">
         <bool>true</bool>
        </property>
+       <column>
+        <property name="text">
+         <string>Buddy list</string>
+        </property>
+       </column>
       </widget>
       <widget class="QWidget" name="layout13">
        <layout class="QVBoxLayout">
@@ -131,7 +131,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="icons.qrc">
                 <normaloff>:/icons/images/kontact_contacts.png</normaloff>:/icons/images/kontact_contacts.png</iconset>
               </property>
               <property name="shortcut">
@@ -192,6 +192,12 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="whatsThis">
+                 <string>Auto answer indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/auto_answer.png</pixmap>
+                </property>
                 <property name="wordWrap">
                  <bool>false</bool>
                 </property>
@@ -204,6 +210,12 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="whatsThis">
+                 <string>Call redirect indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/cf.png</pixmap>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -218,6 +230,12 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="whatsThis">
+                 <string>Do not disturb indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/cancel.png</pixmap>
+                </property>
                 <property name="wordWrap">
                  <bool>false</bool>
                 </property>
@@ -230,6 +248,12 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="whatsThis">
+                 <string>Message waiting indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/mwi_none16.png</pixmap>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -244,6 +268,12 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="whatsThis">
+                 <string>Missed call indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/missed.png</pixmap>
+                </property>
                 <property name="wordWrap">
                  <bool>false</bool>
                 </property>
@@ -257,6 +287,12 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="whatsThis">
+                 <string>Registration status.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/twinkle16.png</pixmap>
+                </property>
                 <property name="wordWrap">
                  <bool>false</bool>
                 </property>
@@ -269,30 +305,30 @@
          </layout>
         </item>
         <item>
-         <widget class="Q3GroupBox" name="displayGroupBox" native="true">
+         <widget class="QGroupBox" name="displayGroupBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="title" stdset="0">
+          <property name="title">
            <string>Display</string>
           </property>
           <layout class="QVBoxLayout">
            <item>
-            <widget class="Q3TextEdit" name="displayTextEdit" native="true">
+            <widget class="QTextEdit" name="displayTextEdit">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
              <property name="text" stdset="0">
               <string/>
-             </property>
-             <property name="readOnly" stdset="0">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -300,14 +336,14 @@
          </widget>
         </item>
         <item>
-         <widget class="Q3ButtonGroup" name="lineButtonGroup" native="true">
+         <widget class="QGroupBox" name="lineButtonGroup">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="title" stdset="0">
+          <property name="title">
            <string>Line status</string>
           </property>
           <property name="exclusive" stdset="0">
@@ -629,7 +665,7 @@
                 </size>
                </property>
                <property name="frameShape">
-                <enum>QFrame::Box</enum>
+                <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="text">
                 <string comment="No need to translate">photo</string>
@@ -953,7 +989,7 @@
                 </size>
                </property>
                <property name="frameShape">
-                <enum>QFrame::Box</enum>
+                <enum>QFrame::StyledPanel</enum>
                </property>
                <property name="text">
                 <string comment="No need to translate">photo</string>
@@ -974,30 +1010,31 @@
     </item>
    </layout>
   </widget>
-  <widget class="Q3ToolBar" name="callToolbar" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>100</width>
-     <height>30</height>
-    </rect>
+  <widget class="QToolBar" name="callToolbar">
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
    <property name="resizeEnabled" stdset="0">
     <bool>false</bool>
    </property>
    <property name="movingEnabled" stdset="0">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="horizontallyStretchable" stdset="0">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="verticallyStretchable" stdset="0">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="label" stdset="0">
-    <string>Call Toolbar</string>
+    <string/>
    </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
    <addaction name="callInvite"/>
    <addaction name="callAnswer"/>
    <addaction name="callBye"/>
@@ -1016,8 +1053,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>0</width>
-     <height>0</height>
+     <width>733</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -1783,40 +1820,6 @@
   </actiongroup>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction></pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3MainWindow</class>
-   <extends>QWidget</extends>
-   <header>q3mainwindow.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends>QWidget</extends>
-   <header>q3listview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QWidget</extends>
-   <header>q3groupbox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>QWidget</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>QWidget</extends>
-   <header>q3buttongroup.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Q3ToolBar</class>
-   <extends>QWidget</extends>
-   <header>q3toolbar.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>callComboBox</tabstop>
   <tabstop>addressToolButton</tabstop>
@@ -1879,8 +1882,8 @@
    <slot>showAddressBook()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>634</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1895,8 +1898,8 @@
    <slot>quickCall()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>664</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -2279,8 +2282,8 @@
    <slot>line2rbChangedState(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>309</x>
+     <y>597</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -2295,8 +2298,8 @@
    <slot>line1rbChangedState(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>309</x>
+     <y>491</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -2417,38 +2420,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>buddyListView</sender>
-   <signal>rightButtonPressed(Q3ListViewItem*,QPoint,int)</signal>
-   <receiver>MphoneForm</receiver>
-   <slot>showBuddyListPopupMenu(Q3ListViewItem*,QPoint)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buddyListView</sender>
-   <signal>doubleClicked(Q3ListViewItem*)</signal>
-   <receiver>MphoneForm</receiver>
-   <slot>doMessageBuddy(Q3ListViewItem*)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>viewBuddyListAction</sender>
    <signal>toggled(bool)</signal>
    <receiver>MphoneForm</receiver>
@@ -2496,5 +2467,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buddyListView</sender>
+   <signal>itemDoubleClicked(QTreeWidgetItem*,int)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>doMessageBuddy(QTreeWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>206</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>195</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buddyListView</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>showBuddyListPopupMenu(QPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>98</x>
+     <y>285</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>doMessageBuddy(QTreeWidgetItem*)</slot>
+  <slot>showBuddyListPopupMenu(QPoint)</slot>
+ </slots>
 </ui>

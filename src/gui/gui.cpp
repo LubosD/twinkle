@@ -21,8 +21,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <qapplication.h>
-//Added by qt3to4:
-#include <q3mimefactory.h>
 #include <QFrame>
 
 #ifdef HAVE_KDE
@@ -61,10 +59,8 @@
 #include "im/msg_session.h"
 
 #include "qcombobox.h"
-#include "q3hbox.h"
 #include "qlabel.h"
 #include "qlayout.h"
-#include "q3listbox.h"
 #include "qmessagebox.h"
 #include "qpixmap.h"
 #include <QProcess>
@@ -73,10 +69,7 @@
 #include "qsizepolicy.h"
 #include "qstring.h"
 #include "qtextcodec.h"
-#include "q3textedit.h"
-#include "q3toolbar.h"
 #include "qtooltip.h"
-#include "q3vbox.h"
 
 extern string user_host;
 extern pthread_t thread_id_main;
@@ -96,17 +89,15 @@ QString str2html(const QString &s)
 }
 
 void setDisabledIcon(QAction *action, const QString &icon) {
-	QIcon i = action->iconSet();
-	i.setPixmap(QPixmap(icon),
-		    QIcon::Automatic, QIcon::Disabled);
-	action->setIconSet(i);
+    QIcon i = action->icon();
+    i.addPixmap(QPixmap(icon), QIcon::Disabled);
+    action->setIcon(i);
 }
 
 void setDisabledIcon(QToolButton *toolButton, const QString &icon) {
-	QIcon i = toolButton->iconSet();
-	i.setPixmap(QPixmap(icon),
-		    QIcon::Automatic, QIcon::Disabled);
-	toolButton->setIconSet(i);
+    QIcon i = toolButton->icon();
+    i.addPixmap(QPixmap(icon), QIcon::Disabled);
+    toolButton->setIcon(i);
 }
 
 /////////////////////////////////////////////////
@@ -134,11 +125,11 @@ void t_gui::clearLineFields(int line) {
 	
 	setLineFields(line);
 	fromLabel->clear();
-	QToolTip::remove(fromLabel);
+    fromLabel->setToolTip(QString());
 	toLabel->clear();
-	QToolTip::remove(toLabel);
+    toLabel->setToolTip(QString());
 	subjectLabel->clear();
-	QToolTip::remove(subjectLabel);
+    subjectLabel->setToolTip(QString());
 	codecLabel->clear();
 	photoLabel->clear();
 	photoLabel->hide();
@@ -147,19 +138,19 @@ void t_gui::clearLineFields(int line) {
 void t_gui::displayTo(const QString &s) {
 	toLabel->setText(s);
 	toLabel->setCursorPosition(0);
-	QToolTip::add(toLabel, s);
+    toLabel->setToolTip(s);
 }
 
 void t_gui::displayFrom(const QString &s) {
 	fromLabel->setText(s);
 	fromLabel->setCursorPosition(0);
-	QToolTip::add(fromLabel, s);
+    fromLabel->setToolTip(s);
 }
 
 void t_gui::displaySubject(const QString &s) {
 	subjectLabel->setText(s);
 	subjectLabel->setCursorPosition(0);
-	QToolTip::add(subjectLabel, s);
+    subjectLabel->setToolTip(s);
 }
 
 void t_gui::displayCodecInfo(int line) {
@@ -204,8 +195,8 @@ void t_gui::displayPhoto(const QImage &photo) {
 		photoLabel->hide();
 	} else {
 		QPixmap pm;
-		pm.convertFromImage(photo.smoothScale(
-			photoLabel->width(), photoLabel->height(), Qt::KeepAspectRatio));
+        pm.convertFromImage(photo.scaled(
+            QSize(photoLabel->width(), photoLabel->height()), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 		photoLabel->setPixmap(pm);
 		photoLabel->show();
 	}
@@ -221,7 +212,7 @@ bool t_gui::do_invite(const string &destination, const string &display,
 	if (mainWindow->callInvite->isEnabled()) {
 		if (immediate) {
 			t_user *user = phone->ref_user_profile(
-				mainWindow->userComboBox->currentText().ascii());
+                mainWindow->userComboBox->currentText().toStdString());
 			t_url dst_url(expand_destination(user, destination));
 			if (dst_url.is_valid()) {
 				mainWindow->do_phoneInvite(user, 
@@ -284,7 +275,7 @@ void t_gui::do_redirect(bool show_status, bool type_present, t_cf_type cf_type,
 	}
 	
 	t_user *user = phone->ref_user_profile(mainWindow->
-				userComboBox->currentText().ascii());
+                userComboBox->currentText().toStdString());
 	
 	list<t_display_url> dest_list;
 	for (list<string>::const_iterator i = dest_strlist.begin();
@@ -346,13 +337,13 @@ void t_gui::do_dnd(bool show_status, bool toggle, bool enable) {
 	lock();
 	if (phone->ref_users().size() == 1) {
 		if (toggle) {
-			enable = !mainWindow->serviceDnd->isOn();
+            enable = !mainWindow->serviceDnd->isChecked();
 		}
 		mainWindow->srvDnd(enable);
-		mainWindow->serviceDnd->setOn(enable);
+        mainWindow->serviceDnd->setChecked(enable);
 	} else {
 		t_user *user = phone->ref_user_profile(mainWindow->
-				userComboBox->currentText().ascii());
+                userComboBox->currentText().toStdString());
 		list<t_user *> l;
 		l.push_back(user);
 		if (toggle) {
@@ -377,13 +368,13 @@ void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
 	lock();
 	if (phone->ref_users().size() == 1) {
 		if (toggle) {
-			enable = !mainWindow->serviceAutoAnswer->isOn();
+            enable = !mainWindow->serviceAutoAnswer->isChecked();
 		}
 		mainWindow->srvAutoAnswer(enable);
-		mainWindow->serviceAutoAnswer->setOn(enable);
+        mainWindow->serviceAutoAnswer->setChecked(enable);
 	} else {
 		t_user *user = phone->ref_user_profile(mainWindow->
-				userComboBox->currentText().ascii());
+                userComboBox->currentText().toStdString());
 		list<t_user *> l;
 		l.push_back(user);
 		if (toggle) {
@@ -410,7 +401,7 @@ void t_gui::do_bye(void) {
 
 void t_gui::do_hold(void) {
 	lock();
-	if (mainWindow->callHold->isEnabled() && !mainWindow->callHold->isOn()) {
+    if (mainWindow->callHold->isEnabled() && !mainWindow->callHold->isChecked()) {
 		mainWindow->phoneHold(true);
 	}
 	unlock();
@@ -418,7 +409,7 @@ void t_gui::do_hold(void) {
 
 void t_gui::do_retrieve(void) {
 	lock();
-	if (mainWindow->callHold->isEnabled() && mainWindow->callHold->isOn()) {
+    if (mainWindow->callHold->isEnabled() && mainWindow->callHold->isChecked()) {
 		mainWindow->phoneHold(false);
 	}
 	unlock();
@@ -427,12 +418,12 @@ void t_gui::do_retrieve(void) {
 bool t_gui::do_refer(const string &destination, t_transfer_type transfer_type, bool immediate) {
 	lock();
 	if (mainWindow->callTransfer->isEnabled() &&
-	    !mainWindow->callTransfer->isOn()) 
+        !mainWindow->callTransfer->isChecked())
 	{
 		if (immediate) {
 			t_display_url du;
 			t_user *user = phone->ref_user_profile(mainWindow->
-				userComboBox->currentText().ascii());
+                userComboBox->currentText().toStdString());
 			du.url = expand_destination(user, destination);
 			
 			if (du.is_valid() || transfer_type == TRANSFER_OTHER_LINE) {
@@ -442,7 +433,7 @@ bool t_gui::do_refer(const string &destination, t_transfer_type transfer_type, b
 			mainWindow->phoneTransfer(destination, transfer_type);
 		}
 	} else if(mainWindow->callTransfer->isEnabled() &&
-		  mainWindow->callTransfer->isOn())
+          mainWindow->callTransfer->isChecked())
 	{
 		if (transfer_type != TRANSFER_CONSULT) {
 			mainWindow->do_phoneTransferLine();
@@ -491,7 +482,7 @@ void t_gui::do_register(bool reg_all_profiles) {
 		l = phone->ref_users();
 	} else {
 		t_user *user = phone->ref_user_profile(mainWindow->
-			userComboBox->currentText().ascii());
+            userComboBox->currentText().toStdString());
 		l.push_back(user);
 	}
 	
@@ -507,7 +498,7 @@ void t_gui::do_deregister(bool dereg_all_profiles, bool dereg_all_devices) {
 		l = phone->ref_users();
 	} else {
 		t_user *user = phone->ref_user_profile(mainWindow->
-			userComboBox->currentText().ascii());
+            userComboBox->currentText().toStdString());
 		l.push_back(user);
 	}
 	
@@ -536,7 +527,7 @@ bool t_gui::do_options(bool dest_set, const string &destination, bool immediate)
 	
 	if (immediate) {
 		t_user *user = phone->ref_user_profile(mainWindow->
-			userComboBox->currentText().ascii());
+            userComboBox->currentText().toStdString());
 		t_url dst_url(expand_destination(user, destination));
 		
 		if (dst_url.is_valid()) {
@@ -561,9 +552,9 @@ void t_gui::do_line(int line) {
 void t_gui::do_user(const string &profile_name) {
 	lock();
 	for (int i = 0; i < mainWindow->userComboBox->count(); i++) {
-		if (mainWindow->userComboBox->text(i) == profile_name.c_str()) 
+        if (mainWindow->userComboBox->itemText(i) == profile_name.c_str())
 		{
-			mainWindow->userComboBox->setCurrentItem(i);
+            mainWindow->userComboBox->setCurrentIndex(i);
 		}
 	}
 	unlock();
@@ -573,7 +564,7 @@ bool t_gui::do_message(const string &destination, const string &display,
 		       const im::t_msg &msg)
 {
 	t_user *user = phone->ref_user_profile(mainWindow->
-			userComboBox->currentText().ascii());
+            userComboBox->currentText().toStdString());
 	
 	t_url dest_url(expand_destination(user, destination));
 	
@@ -586,7 +577,7 @@ bool t_gui::do_message(const string &destination, const string &display,
 
 void t_gui::do_presence(t_presence_state::t_basic_state basic_state) {
 	t_user *user = phone->ref_user_profile(mainWindow->
-			userComboBox->currentText().ascii());
+            userComboBox->currentText().toStdString());
 	
 	phone->pub_publish_presence(user, basic_state);
 }
@@ -636,8 +627,11 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 {
 	use_stdout = false;
 	lastFileBrowsePath = DIR_HOME;
+
+    qRegisterMetaType<t_user*>("t_user*");
+    qRegisterMetaType<t_register_type>("t_register_type");
 	
-	mainWindow = new MphoneForm(0, 0, Qt::WType_TopLevel | Qt::WStyle_ContextHelp);
+    mainWindow = new MphoneForm;
 #ifdef HAVE_KDE
 	sys_tray_popup = NULL;
 #endif
@@ -648,7 +642,7 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	}
 	
 	MEMMAN_NEW(mainWindow);
-	qApp->setMainWidget(mainWindow);
+
 	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()));
 	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()));
 	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()));
@@ -680,11 +674,11 @@ void t_gui::run(void) {
 	// NOTE: the t_gui::lock() method cannot be used as this method
 	// will not lock from the main thread and we are running in the
 	// main thread (a bit of a kludge).
-	qApp->lock();
+    //qApp->lock();
 	
 	// Set configuration file name in titlebar
 	s = PRODUCT_NAME;
-	mainWindow->setCaption(s);
+    mainWindow->setWindowTitle(s);
 	
 	// Set user combo box
 	mainWindow->updateUserComboBox();
@@ -727,7 +721,7 @@ void t_gui::run(void) {
 	
 	// Start QApplication/KApplication
 	if (qApp->isSessionRestored() && 
-	    sys_config->get_ui_session_id() == qApp->sessionId().ascii())
+        sys_config->get_ui_session_id() == qApp->sessionId().toStdString())
 	{
 		// Restore previous session
 		restore_session_state();
@@ -745,23 +739,23 @@ void t_gui::run(void) {
 	// line.
 	if (!g_cmd_args.cmd_set_profile.isEmpty()) {
 		cmdsocket::cmd_cli(string("user ") + 
-				   g_cmd_args.cmd_set_profile.ascii(), true);
+                   g_cmd_args.cmd_set_profile.toStdString(), true);
 	}
 	
 	// Execute the call command if a callto destination was specified on the
 	// command line
 	if (!g_cmd_args.callto_destination.isEmpty()) {
-		cmdsocket::cmd_call(g_cmd_args.callto_destination.ascii(), 
+        cmdsocket::cmd_call(g_cmd_args.callto_destination.toStdString(),
 			 g_cmd_args.cmd_immediate_mode);
 	}
 	
 	// Execute a CLI command if one was given on the command line
 	if (!g_cmd_args.cli_command.isEmpty()) {
-		cmdsocket::cmd_cli(g_cmd_args.cli_command.ascii(), 
+        cmdsocket::cmd_cli(g_cmd_args.cli_command.toStdString(),
 			g_cmd_args.cmd_immediate_mode);
 	}
 	
-	qApp->unlock();
+    //qApp->unlock();
 	
 	// Start Qt application
 	qApp->exec();
@@ -777,11 +771,11 @@ void t_gui::save_state(void) {
 	lock();
 	
 	sys_config->set_last_used_profile(
-			mainWindow->userComboBox->currentText().ascii());
+            mainWindow->userComboBox->currentText().toStdString());
 
 	list<string> history;
 	for (int i = 0; i < mainWindow->callComboBox->count(); i++) {
-		history.push_back(mainWindow->callComboBox->text(i).ascii());
+        history.push_back(mainWindow->callComboBox->itemText(i).toStdString());
 	}
 	sys_config->set_dial_history(history);
 	
@@ -846,17 +840,17 @@ void t_gui::lock(void) {
 	// main thread.
 	// If the Qt event loop has not been started yet, then the lock
 	// should also be taken from the main thread.
-	t_userintf::lock();
-	if (!t_thread::is_self(thread_id_main)) {
-		qApp->lock();
-	}
+    t_userintf::lock();
+    //if (!t_thread::is_self(thread_id_main)) {
+    //	qApp->lock();
+    //}
 }
 
 void t_gui::unlock(void) {
 	t_userintf::lock();
-	if (!t_thread::is_self(thread_id_main)) {
-		qApp->unlock();
-	}
+    //if (!t_thread::is_self(thread_id_main)) {
+    //	qApp->unlock();
+    //}
 }
 
 string t_gui::select_network_intf(void) {
@@ -870,7 +864,7 @@ string t_gui::select_network_intf(void) {
 			    "Cannot find a network interface. Twinkle will use "
 			    "127.0.0.1 as the local IP address. When you connect to "
 			    "the network you have to restart Twinkle to use the correct "
-			    "IP address.").ascii(),
+                "IP address.").toStdString(),
 			    MSG_WARNING);
 		
 		MEMMAN_DELETE(l);
@@ -883,7 +877,8 @@ string t_gui::select_network_intf(void) {
 		ip = l->front().get_ip_addr();
 	} else {
 		// There are multiple interfaces
-		SelectNicForm *sf = new SelectNicForm(NULL, "nic", true);
+        SelectNicForm *sf = new SelectNicForm(NULL);
+        sf->setModal(true);
 		MEMMAN_NEW(sf);
 		QString item;
 		for (list<t_interface>::iterator i = l->begin(); i != l->end(); i++) {
@@ -916,7 +911,8 @@ string t_gui::select_network_intf(void) {
 }
 
 bool t_gui::select_user_config(list<string> &config_files) {
-	SelectProfileForm f(0, "select user profile", true);
+    SelectProfileForm f(nullptr);
+    f.setModal(true);
 	
 	if (f.execForm()) {
 		config_files = f.selectedProfiles;
@@ -1582,20 +1578,20 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 	if (tray && !sys_tray_popup &&  !phone->is_line_auto_answered(line)) {
 		QString presFromParty("");
 		if (!from_party.isEmpty()) {
-			presFromParty = dotted_truncate(from_party.ascii(), 50).c_str();
+            presFromParty = dotted_truncate(from_party.toStdString(), 50).c_str();
 		}
 		QString presOrganization("");
 		if (!organization.isEmpty()) {
-			presOrganization = dotted_truncate(organization.ascii(), 50).c_str();
+            presOrganization = dotted_truncate(organization.toStdString(), 50).c_str();
 		}
 		QString presSubject("");
 		if (!subject.isEmpty()) {
-			presSubject = dotted_truncate(subject.ascii(), 50).c_str();
+            presSubject = dotted_truncate(subject.toStdString(), 50).c_str();
 		}
 		QString presReferredByParty("");
 		if (!referred_by_party.isEmpty()) {
 			presReferredByParty = qApp->translate("GUI", "Transferred by: %1").arg(
-					dotted_truncate(referred_by_party.ascii(), 40).c_str());
+                    dotted_truncate(referred_by_party.toStdString(), 40).c_str());
 		}
 		
 		// Create photo pixmap. If no photo is available, then use
@@ -1680,8 +1676,10 @@ void t_gui::cb_notify_call(int line, const QString &from_party, const QString &o
 	
 	// Show main window after a few seconds
 	if (sys_config->get_gui_auto_show_incoming()) {
-		autoShowTimer[line].start(
-			sys_config->get_gui_auto_show_timeout() * 1000, true);
+
+        autoShowTimer[line].setSingleShot(true);
+        autoShowTimer[line].start(
+            sys_config->get_gui_auto_show_timeout() * 1000);
 	}
 	
 	unlock();
@@ -2060,8 +2058,8 @@ bool t_gui::do_cb_ask_credentials(t_user *user_config, const string &realm, stri
 	QString user(username.c_str());
 	QString passwd(password.c_str());
 
-	AuthenticationForm *af = new AuthenticationForm(mainWindow, "authentication",
-							true);
+    AuthenticationForm *af = new AuthenticationForm(mainWindow);
+    af->setModal(true);
 	MEMMAN_NEW(af);
 	if (!af->exec(user_config, QString(realm.c_str()), user, passwd)) {
 		MEMMAN_DELETE(af);
@@ -2069,8 +2067,8 @@ bool t_gui::do_cb_ask_credentials(t_user *user_config, const string &realm, stri
 		return false;
 	}
 
-	username = user.ascii();
-	password = passwd.ascii();
+    username = user.toStdString();
+    password = passwd.toStdString();
 	MEMMAN_DELETE(af);
 	delete af;
 
@@ -2322,7 +2320,7 @@ void t_gui::cb_nat_discovery_progress_start(int num_steps) {
 			qApp->translate("GUI", "Abort"), 
 			0, num_steps, mainWindow);
 	MEMMAN_NEW(natDiscoveryProgressDialog);
-	natDiscoveryProgressDialog->setCaption(PRODUCT_NAME);
+    natDiscoveryProgressDialog->setWindowTitle(PRODUCT_NAME);
 	natDiscoveryProgressDialog->setMinimumDuration(200);
 }
 
@@ -2371,9 +2369,9 @@ void t_gui::cb_zrtp_confirm_go_clear(int line) {
 	QString msg(qApp->translate("GUI", "The remote user on line %1 disabled the encryption.")
 			.arg(line + 1));
 	if (user_config->get_zrtp_goclear_warning()) {
-		cb_show_msg(msg.ascii(), MSG_WARNING);
+        cb_show_msg(msg.toStdString(), MSG_WARNING);
 	} else {
-		cb_display_msg(msg.ascii(), MSG_WARNING);
+        cb_display_msg(msg.toStdString(), MSG_WARNING);
 	}
 	
 	action_zrtp_go_clear_ok(line);
@@ -2499,7 +2497,7 @@ bool t_gui::cb_message_request(t_user *user_config, t_request *r) {
 			// Try to decode the text
 			QTextCodec *c = QTextCodec::codecForName(charset.c_str());
 			if (c) {
-				text = c->toUnicode(text.c_str()).ascii();
+                text = c->toUnicode(text.c_str()).toStdString();
 			} else {
 				log_file->write_header(
 						"t_gui::cb_message_request",
@@ -2565,7 +2563,7 @@ bool t_gui::cb_message_request(t_user *user_config, t_request *r) {
 	if (failed_to_save_attachment) {
 		QString s = qApp->translate("GUI", "Failed to save message attachment: %1");
 		s.arg(attachment_error_msg.c_str());
-		session->set_error(s.ascii());
+        session->set_error(s.toStdString());
 	}
 	
 	unlock();
@@ -2589,7 +2587,7 @@ void t_gui::cb_message_response(t_user *user_config, t_response *r, t_request *r
 			if (r->code == R_202_ACCEPTED) {
 				string s;
 				if (r->reason == REASON_202) {
-					s = qApp->translate("GUI", "Accepted by network").ascii();
+                    s = qApp->translate("GUI", "Accepted by network").toStdString();
 				} else { 
 					s = r->reason;
 				}
@@ -2642,7 +2640,7 @@ void t_gui::cmd_call(const string &destination, bool immediate) {
 	t_display_url du;
 	
 	t_user *user = phone->ref_user_profile(
-			mainWindow->userComboBox->currentText().ascii());
+            mainWindow->userComboBox->currentText().toStdString());
 	expand_destination(user, destination, du, subject, dst_no_headers);
 	if (!du.is_valid()) return;
 	
@@ -2670,7 +2668,7 @@ void t_gui::cmd_show(void) {
 	} else {
 		mainWindow->show();
 		mainWindow->raise();
-		mainWindow->setActiveWindow();
+        mainWindow->activateWindow();
 	}
 	unlock();
 }
@@ -2931,10 +2929,10 @@ void t_gui::fill_user_combo(QComboBox *cb) {
 	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
 		// OLD code: used display uri
 		// cb->insertItem((*i)->get_display_uri().c_str());
-		cb->insertItem((*i)->get_profile_name().c_str());
+        cb->addItem((*i)->get_profile_name().c_str());
 	}
 	
-	cb->setCurrentItem(0);
+    cb->setCurrentIndex(0);
 }
 
 QString t_gui::get_last_file_browse_path(void) const {
@@ -3030,7 +3028,7 @@ string t_gui::mime2file_extension(t_media media) {
 	const QStringList &patterns = pMime->patterns();
 	
 	if (!patterns.empty()) {
-		extension = patterns.front().ascii();
+        extension = patterns.front().toStdString();
 	} else {
 		log_file->write_header("t_gui::mime2file_extension", LOG_NORMAL, LOG_DEBUG);
 		log_file->write_raw("Cannot find file extension for mime type ");
@@ -3080,6 +3078,6 @@ void t_gui::open_url_in_browser(const QString &url) {
 		QString msg = qApp->translate("GUI", "Cannot open web browser: %1").arg(url);
 		msg += "\n\n";
 		msg += qApp->translate("GUI", "Configure your web browser in the system settings.");
-		cb_show_msg(msg.ascii(), MSG_CRITICAL);
+        cb_show_msg(msg.toStdString(), MSG_CRITICAL);
 	}
 }

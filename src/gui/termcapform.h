@@ -14,7 +14,7 @@ class TermCapForm : public QDialog, public Ui::TermCapForm
 	Q_OBJECT
 
 public:
-	TermCapForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    TermCapForm(QWidget* parent = 0);
 	~TermCapForm();
 
 public slots:

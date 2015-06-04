@@ -10,7 +10,7 @@ class SysSettingsForm : public QDialog, public Ui::SysSettingsForm
 	Q_OBJECT
 
 public:
-	SysSettingsForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SysSettingsForm(QWidget* parent = 0);
 	~SysSettingsForm();
 
 	virtual string comboItem2audio_dev( QString item, QLineEdit * qleOther, bool playback );

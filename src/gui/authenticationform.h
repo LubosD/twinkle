@@ -8,7 +8,7 @@ class AuthenticationForm : public QDialog, public Ui::AuthenticationForm
 	Q_OBJECT
 
 public:
-	AuthenticationForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    AuthenticationForm(QWidget* parent = 0);
 	~AuthenticationForm();
 
 	virtual int exec( t_user * user_config, const QString & realm, QString & username, QString & password );

@@ -22,43 +22,40 @@
 
 #include "qapplication.h"
 #include "qfont.h"
-#include "q3header.h"
 #include "qpixmap.h"
 #include "qrect.h"
 #include "qsize.h"
-#include "q3stylesheet.h"
-//Added by qt3to4:
-#include <q3mimefactory.h>
+#include <QTextDocument>
 
 void AbstractBLVItem::set_icon(t_presence_state::t_basic_state state) {
 	switch (state) {
 	case t_presence_state::ST_BASIC_UNKNOWN:
-		setPixmap(0, QPixmap(":/icons/images/presence_unknown.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
 		break;
 	case t_presence_state::ST_BASIC_CLOSED:
-		setPixmap(0, QPixmap(":/icons/images/presence_offline.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_offline.png"));
 		break;
 	case t_presence_state::ST_BASIC_OPEN:
-		setPixmap(0, QPixmap(":/icons/images/presence_online.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_online.png"));
 		break;
 	case t_presence_state::ST_BASIC_FAILED:
-		setPixmap(0, QPixmap(":/icons/images/presence_failed.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_failed.png"));
 		break;
 	case t_presence_state::ST_BASIC_REJECTED:
-		setPixmap(0, QPixmap(":/icons/images/presence_rejected.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_rejected.png"));
 		break;
 	default:
-		setPixmap(0, QPixmap(":/icons/images/presence_unknown.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
 		break;
 	}
 }
 
-AbstractBLVItem::AbstractBLVItem(Q3ListViewItem *parent, const QString &text) :
-		Q3ListViewItem(parent, text)
+AbstractBLVItem::AbstractBLVItem(QTreeWidgetItem *parent, const QString &text) :
+        QTreeWidgetItem(parent, QStringList(text))
 {}
 		
-AbstractBLVItem::AbstractBLVItem(Q3ListView *parent, const QString &text) :
-		Q3ListViewItem(parent, text)
+AbstractBLVItem::AbstractBLVItem(QTreeWidget *parent, const QString &text) :
+        QTreeWidgetItem(parent, QStringList(text))
 {}
 
 AbstractBLVItem::~AbstractBLVItem() {}
@@ -73,10 +70,10 @@ void BuddyListViewItem::set_icon(void) {
 	string url_str = ui->expand_destination(user_config, buddy->get_sip_address());
 	
 	tip = "<html>";
-	tip += Q3StyleSheet::escape(ui->format_sip_address(user_config, buddy->get_name(), t_url(url_str)).c_str()).replace(' ', "&nbsp;");
+    tip += Qt::escape(QString::fromStdString(ui->format_sip_address(user_config, buddy->get_name(), t_url(url_str)))).replace(' ', "&nbsp;");
 	
 	if (!buddy->get_may_subscribe_presence()) {
-		setPixmap(0, QPixmap(":/icons/images/buddy.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/buddy.png"));
 	} else {
 		QString failure;
 		t_presence_state::t_basic_state basic_state = buddy->
@@ -100,7 +97,7 @@ void BuddyListViewItem::set_icon(void) {
 			break;
 		case t_presence_state::ST_BASIC_FAILED:
 			tip += qApp->translate("BuddyList", "request failed");
-			failure = buddy->get_presence_state()->get_failure_msg().c_str();
+            failure = QString::fromStdString(buddy->get_presence_state()->get_failure_msg());
 			if (!failure.isEmpty()) {
 				tip += QString(" (%1)").arg(failure);
 			}
@@ -118,8 +115,8 @@ void BuddyListViewItem::set_icon(void) {
 	tip = tip.replace(' ', "&nbsp;");
 }
 
-BuddyListViewItem::BuddyListViewItem(Q3ListViewItem *parent, t_buddy *_buddy) :
-		AbstractBLVItem(parent, _buddy->get_name().c_str()),
+BuddyListViewItem::BuddyListViewItem(QTreeWidgetItem *parent, t_buddy *_buddy) :
+        AbstractBLVItem(parent, QString::fromStdString(_buddy->get_name())),
 		buddy(_buddy)
 {
 	set_icon();
@@ -137,8 +134,8 @@ void BuddyListViewItem::update_slot(void) {
 	set_icon();
 	
 	if (buddy->get_name().c_str() != text(0)) {
-		setText(0, buddy->get_name().c_str());
-		Q3ListViewItem::parent()->sort();
+        setText(0, QString::fromStdString(buddy->get_name()));
+        QTreeWidgetItem::treeWidget()->sortItems(0, Qt::AscendingOrder);
 	}
 	ui->unlock();
 }
@@ -159,10 +156,10 @@ t_buddy *BuddyListViewItem::get_buddy(void) {
 void BLViewUserItem::set_icon(void) {
 	t_presence_state::t_basic_state basic_state;
 	QString failure;
-	QString profile_name = presence_epa->get_user_profile()->get_profile_name().c_str();
+    QString profile_name = QString::fromStdString(presence_epa->get_user_profile()->get_profile_name());
 	
 	tip = "<html>";
-	tip += Q3StyleSheet::escape(profile_name);
+    tip += Qt::escape(profile_name);
 	tip += "<br>";
 	tip += "<b>";
 	tip += qApp->translate("BuddyList", "Availability");
@@ -171,7 +168,7 @@ void BLViewUserItem::set_icon(void) {
 	switch (presence_epa->get_epa_state()) {
 	case t_presence_epa::EPA_UNPUBLISHED:
 		tip += qApp->translate("BuddyList", "not published");
-		setPixmap(0, QPixmap(":/icons/images/penguin-small.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/penguin-small.png"));
 		break;
 	case t_presence_epa::EPA_FAILED:
 		tip += qApp->translate("BuddyList", "failed to publish");
@@ -179,7 +176,7 @@ void BLViewUserItem::set_icon(void) {
 		if (!failure.isEmpty()) {
 				tip += QString(" (%1)").arg(failure);
 			}
-		setPixmap(0, QPixmap(":/icons/images/presence_failed.png"));
+        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_failed.png"));
 		break;
 	case t_presence_epa::EPA_PUBLISHED:
 		basic_state = presence_epa->get_basic_state();
@@ -208,28 +205,21 @@ void BLViewUserItem::set_icon(void) {
 	tip = tip.replace(' ', "&nbsp;");
 }
 
-BLViewUserItem::BLViewUserItem(Q3ListView *parent, t_presence_epa *_presence_epa) :
-		AbstractBLVItem(parent, _presence_epa->get_user_profile()->get_profile_name().c_str()),
+BLViewUserItem::BLViewUserItem(QTreeWidget *parent, t_presence_epa *_presence_epa) :
+        AbstractBLVItem(parent, QString::fromStdString(_presence_epa->get_user_profile()->get_profile_name())),
 		presence_epa(_presence_epa)
 {
 	set_icon();
 	presence_epa->attach(this);
 	QObject::connect(this, SIGNAL(update_signal()), this, SLOT(update_slot()));
+
+    QFont font = this->font(0);
+    font.setBold(true);
+    this->setFont(0, font);
 }
 
 BLViewUserItem::~BLViewUserItem() {
 	presence_epa->detach(this);
-}
-
-void BLViewUserItem::paintCell(QPainter *painter, const QColorGroup &cg, 
-				    int column, int width, int align)
-{
-	painter->save();
-	QFont font = painter->font();
-	font.setBold(true);
-	painter->setFont(font);
-	Q3ListViewItem::paintCell(painter, cg, column, width, align);
-	painter->restore();
 }
 
 void BLViewUserItem::update_slot(void) {
@@ -238,8 +228,8 @@ void BLViewUserItem::update_slot(void) {
 	set_icon();
 	
 	if (presence_epa->get_user_profile()->get_profile_name().c_str() == text(0)) {
-		setText(0, presence_epa->get_user_profile()->get_profile_name().c_str());
-		Q3ListViewItem::listView()->sort();
+        setText(0, QString::fromStdString(presence_epa->get_user_profile()->get_profile_name()));
+        QTreeWidgetItem::treeWidget()->sortItems(0, Qt::AscendingOrder);
 	}
 	ui->unlock();
 }

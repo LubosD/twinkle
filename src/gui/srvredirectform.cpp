@@ -33,8 +33,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SrvRedirectForm::SrvRedirectForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SrvRedirectForm::SrvRedirectForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -72,18 +72,17 @@ void SrvRedirectForm::init()
 	
 	// Set toolbutton icons for disabled options.
 	QIcon i;
-	i = addrAlways1ToolButton->iconSet();
-	i.setPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"),
-		    QIcon::Automatic, QIcon::Disabled);
-	addrAlways1ToolButton->setIconSet(i);
-	addrAlways2ToolButton->setIconSet(i);
-	addrAlways3ToolButton->setIconSet(i);
-	addrBusy1ToolButton->setIconSet(i);
-	addrBusy2ToolButton->setIconSet(i);
-	addrBusy3ToolButton->setIconSet(i);
-	addrNoanswer1ToolButton->setIconSet(i);
-	addrNoanswer2ToolButton->setIconSet(i);
-	addrNoanswer3ToolButton->setIconSet(i);
+    i = addrAlways1ToolButton->icon();
+    i.addPixmap(QPixmap(":/icons/images/kontact_contacts-disabled.png"), QIcon::Disabled);
+    addrAlways1ToolButton->setIcon(i);
+    addrAlways2ToolButton->setIcon(i);
+    addrAlways3ToolButton->setIcon(i);
+    addrBusy1ToolButton->setIcon(i);
+    addrBusy2ToolButton->setIcon(i);
+    addrBusy3ToolButton->setIcon(i);
+    addrNoanswer1ToolButton->setIcon(i);
+    addrNoanswer2ToolButton->setIcon(i);
+    addrNoanswer3ToolButton->setIcon(i);
 }
 
 void SrvRedirectForm::destroy()
@@ -168,7 +167,7 @@ void SrvRedirectForm::validate()
 		accept();
 	} else {
 		((t_gui *)ui)->cb_show_msg(this,
-			tr("You have entered an invalid destination.").ascii(),
+            tr("You have entered an invalid destination.").toStdString(),
 			MSG_WARNING);
 	}
 }
@@ -183,7 +182,7 @@ bool SrvRedirectForm::validateValues()
 		 cfAlwaysDst1LineEdit, cfAlwaysDst2LineEdit, cfAlwaysDst3LineEdit,
 		 cfDestAlways);
 	if (!valid) {
-		cfTabWidget->setCurrentPage(0);
+        cfTabWidget->setCurrentIndex(0);
 		return false;
 	}
 	
@@ -192,7 +191,7 @@ bool SrvRedirectForm::validateValues()
 		 cfBusyDst1LineEdit, cfBusyDst2LineEdit, cfBusyDst3LineEdit,
 		 cfDestBusy);
 	if (!valid) {
-		cfTabWidget->setCurrentPage(1);
+        cfTabWidget->setCurrentIndex(1);
 		return false;
 	}
 	
@@ -202,7 +201,7 @@ bool SrvRedirectForm::validateValues()
 		 cfNoanswerDst3LineEdit,
 		 cfDestNoanswer);
 	if (!valid) {
-		cfTabWidget->setCurrentPage(2);
+        cfTabWidget->setCurrentIndex(2);
 		return false;
 	}
 	
@@ -231,7 +230,7 @@ bool SrvRedirectForm::validate(bool cf_active,
 	}
 	
 	// 1st choice destination
-	ui->expand_destination(current_user, dst1->text().stripWhiteSpace().ascii(), destination);
+    ui->expand_destination(current_user, dst1->text().trimmed().toStdString(), destination);
 	if (destination.is_valid()) {
 		dest_list.push_back(destination);
 	} else {
@@ -242,7 +241,7 @@ bool SrvRedirectForm::validate(bool cf_active,
 	// 2nd choice destination
 	if (!dst2->text().isEmpty()) {
 		ui->expand_destination(current_user, 
-				       dst2->text().stripWhiteSpace().ascii(), destination);
+                       dst2->text().trimmed().toStdString(), destination);
 		if (destination.is_valid()) {
 			dest_list.push_back(destination);
 		} else {
@@ -254,7 +253,7 @@ bool SrvRedirectForm::validate(bool cf_active,
 	// 3rd choice destination
 	if (!dst3->text().isEmpty()) {
 		ui->expand_destination(current_user,
-				       dst3->text().stripWhiteSpace().ascii(), destination);
+                       dst3->text().trimmed().toStdString(), destination);
 		if (destination.is_valid()) {
 			dest_list.push_back(destination);
 		} else {
@@ -300,22 +299,22 @@ void SrvRedirectForm::changedUser(const QString &user_profile)
 		return;
 	}
 	
-	t_user *new_user = phone->ref_user_profile(user_profile.ascii());
+    t_user *new_user = phone->ref_user_profile(user_profile.toStdString());
 	if (!new_user) {
-		userComboBox->setCurrentItem(current_user_idx);
+        userComboBox->setCurrentIndex(current_user_idx);
 		return;
 	}
 	
 	if (!validateValues()) {
-		userComboBox->setCurrentItem(current_user_idx);
+        userComboBox->setCurrentIndex(current_user_idx);
 		((t_gui *)ui)->cb_show_msg(this,
-			tr("You have entered an invalid destination.").ascii(),
+            tr("You have entered an invalid destination.").toStdString(),
 			MSG_WARNING);
 		return;
 	}
 	
 	// Change current user
-	current_user_idx = userComboBox->currentItem();
+    current_user_idx = userComboBox->currentIndex();
 	current_user = new_user;
 	populate();
 }
@@ -323,8 +322,8 @@ void SrvRedirectForm::changedUser(const QString &user_profile)
 void SrvRedirectForm::showAddressBook()
 {
 	if (!getAddressForm) {
-		getAddressForm = new GetAddressForm(
-				this, "select address", true);
+        getAddressForm = new GetAddressForm(this);
+        getAddressForm->setModal(true);
 		MEMMAN_NEW(getAddressForm);
 	}
 	

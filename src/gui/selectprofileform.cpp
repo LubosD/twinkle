@@ -41,8 +41,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SelectProfileForm::SelectProfileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SelectProfileForm::SelectProfileForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -72,7 +72,7 @@ void SelectProfileForm::init()
 {
 	user_config = 0;
 
-#ifndef ENABLE_DIAMONDCARD
+#ifndef WITH_DIAMONDCARD
 	diamondcardPushButton->hide();
 #endif
 }
@@ -152,7 +152,7 @@ int SelectProfileForm::execForm()
 		QString profile = item->text();
 		profile.append(USER_FILE_EXT);
 		selectedProfiles.clear();
-		selectedProfiles.push_back(profile.ascii());
+        selectedProfiles.push_back(profile.toStdString());
 		
 		QMessageBox::information(this, PRODUCT_NAME, tr(
 			"<html>"\
@@ -161,7 +161,8 @@ int SelectProfileForm::execForm()
 			"<br><br>"\
 			"Click OK to view and adjust the system settings.</html>"));
 		
-		SysSettingsForm f(this, "system settings", true);
+        SysSettingsForm f(this);
+        f.setModal(true);
 		f.exec();
 		
 		return QDialog::Accepted;
@@ -203,7 +204,7 @@ void SelectProfileForm::showForm(QWidget *_mainWindow)
 		
 		// Set pixmap of default profile
 		list<string> l = sys_config->get_start_user_profiles();
-		if (std::find(l.begin(),  l.end(), profile.ascii()) != l.end())
+        if (std::find(l.begin(),  l.end(), profile.toStdString()) != l.end())
 		{
             item->setData(Qt::DecorationRole, QPixmap(":/icons/images/twinkle16.png"));
 			defaultSet = true;
@@ -212,7 +213,7 @@ void SelectProfileForm::showForm(QWidget *_mainWindow)
 		// Tick check box of active profile
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
 
-		if (phone->ref_user_profile(profile.ascii())) {
+        if (phone->ref_user_profile(profile.toStdString())) {
             item->setCheckState(Qt::Checked);
 		}
 	}	
@@ -232,7 +233,7 @@ void SelectProfileForm::runProfile()
         QListWidgetItem* item = profileListView->item(i);
         QString profile = item->text();
 		profile.append(USER_FILE_EXT);
-		selectedProfiles.push_back(profile.ascii());
+        selectedProfiles.push_back(profile.toStdString());
 	}
 	
 	if (selectedProfiles.empty()) {
@@ -257,13 +258,13 @@ void SelectProfileForm::editProfile()
 	// If the profile to edit is currently active, then edit the in-memory
 	// user profile owned by the t_phone_user object
 	if (mainWindow) {
-		t_user *active_user = phone->ref_user_profile(profile.ascii());
+        t_user *active_user = phone->ref_user_profile(profile.toStdString());
 		if (active_user) {
 			list<t_user *> user_list;
 			user_list.push_back(active_user);
-			UserProfileForm *f = new UserProfileForm(this, 
-						"edit user profile", true, 
-						 Qt::WDestructiveClose);
+            UserProfileForm *f = new UserProfileForm(this);
+            f->setAttribute(Qt::WA_DeleteOnClose);
+            f->setModal(true);
 			
 			connect(f, SIGNAL(authCredentialsChanged(t_user *, const string&)),
 				mainWindow, 
@@ -290,7 +291,7 @@ void SelectProfileForm::editProfile()
 	user_config = new t_user();
 	MEMMAN_NEW(user_config);
 	
-	if (!user_config->read_config(profile.ascii(), error_msg)) {
+    if (!user_config->read_config(profile.toStdString(), error_msg)) {
 		((t_gui *)ui)->cb_show_msg(this, error_msg, MSG_WARNING);
 		return;
 	}
@@ -298,8 +299,9 @@ void SelectProfileForm::editProfile()
 	// Show the edit user profile form (modal dialog)
 	list<t_user *> user_list;
 	user_list.push_back(user_config);
-	UserProfileForm *f = new UserProfileForm(this, "edit user profile", true, 
-						 Qt::WDestructiveClose);
+    UserProfileForm *f = new UserProfileForm(this);
+    f->setAttribute(Qt::WA_DeleteOnClose);
+    f->setModal(true);
 	f->show(user_list, "");
 }
 
@@ -311,7 +313,8 @@ void SelectProfileForm::newProfile()
 void SelectProfileForm::newProfile(bool exec_mode)
 {
 	// Ask user for a profile name
-	GetProfileNameForm getProfileNameForm(this, "get profile name", true);
+    GetProfileNameForm getProfileNameForm(this);
+    getProfileNameForm.setModal(true);
 	if (!getProfileNameForm.execNewName()) return;
 	
 	// Create file name
@@ -326,13 +329,14 @@ void SelectProfileForm::newProfile(bool exec_mode)
 	}
 	user_config = new t_user();
 	MEMMAN_NEW(user_config);
-	user_config->set_config(filename.ascii());
+    user_config->set_config(filename.toStdString());
 	
 	// Show the edit user profile form (modal dialog)
 	list<t_user *> user_list;
 	user_list.push_back(user_config);
-	UserProfileForm *f = new UserProfileForm(this, "edit user profile", true, 
-						 Qt::WDestructiveClose);
+    UserProfileForm *f = new UserProfileForm(this);
+    f->setAttribute(Qt::WA_DeleteOnClose);
+    f->setModal(true);
 	connect(f, SIGNAL(success()), this, SLOT(newProfileCreated()));
 	
 	if (exec_mode) {
@@ -407,8 +411,8 @@ void SelectProfileForm::deleteProfile()
 			// Delete profile from list of default profiles in
 			// system settings
 			list<string> l = sys_config->get_start_user_profiles();
-			if (std::find(l.begin(), l.end(), profile.ascii()) != l.end()) {
-				l.remove(profile.ascii());
+            if (std::find(l.begin(), l.end(), profile.toStdString()) != l.end()) {
+                l.remove(profile.toStdString());
 				sys_config->set_start_user_profiles(l);
 				
 				string error_msg;
@@ -447,7 +451,8 @@ void SelectProfileForm::renameProfile()
 	QString oldProfile = item->text();
 	
 	// Ask user for a new profile name
-	GetProfileNameForm getProfileNameForm(this, "get profile name", true);
+    GetProfileNameForm getProfileNameForm(this);
+    getProfileNameForm.setModal(true);
 	if (!getProfileNameForm.execRename(oldProfile)) return;
 	
 	// Create file name for the new profile
@@ -508,9 +513,9 @@ void SelectProfileForm::renameProfile()
 		// Rename profile in list of default profiles in
 		// system settings
 		list<string> l = sys_config->get_start_user_profiles();
-		if (std::find(l.begin(), l.end(), oldProfile.ascii()) != l.end())
+        if (std::find(l.begin(), l.end(), oldProfile.toStdString()) != l.end())
 		{
-			std::replace(l.begin(), l.end(), oldProfile.ascii(), newProfile.ascii());
+            std::replace(l.begin(), l.end(), oldProfile.toStdString(), newProfile.toStdString());
 			sys_config->set_start_user_profiles(l);
 				
 			string error_msg;
@@ -554,7 +559,7 @@ void SelectProfileForm::setAsDefault()
         if (item->checkState() == Qt::Checked)
         {
             item->setData(Qt::DecorationRole, QPixmap(":/icons/images/twinkle16.png"));
-            l.push_back(item->text().ascii());
+            l.push_back(item->text().toStdString());
         }
         else
         {
@@ -580,7 +585,8 @@ void SelectProfileForm::wizardProfile()
 void SelectProfileForm::wizardProfile(bool exec_mode)
 {
 	// Ask user for a profile name
-	GetProfileNameForm getProfileNameForm(this, "get profile name", true);
+    GetProfileNameForm getProfileNameForm(this);
+    getProfileNameForm.setModal(true);
 	if (!getProfileNameForm.execNewName()) return;
 	
 	// Create file name
@@ -595,10 +601,12 @@ void SelectProfileForm::wizardProfile(bool exec_mode)
 	}	
 	user_config = new t_user();
 	MEMMAN_NEW(user_config);
-	user_config->set_config(filename.ascii());
+    user_config->set_config(filename.toStdString());
 	
 	// Show the wizard form (modal dialog)
-	WizardForm *f = new WizardForm(this, "wizard", true, Qt::WDestructiveClose);
+    WizardForm *f = new WizardForm(this);
+    f->setAttribute(Qt::WA_DeleteOnClose);
+    f->setModal(true);
 	connect(f, SIGNAL(success()), this, SLOT(newProfileCreated()));
 	
 	if (exec_mode) {
@@ -624,8 +632,10 @@ void SelectProfileForm::diamondcardProfile(bool exec_mode)
 	MEMMAN_NEW(user_config);
 	
 	// Show the diamondcard profile form (modal dialog)
-	DiamondcardProfileForm *f = new DiamondcardProfileForm(this, "diamondcard",
-							       true, Qt::WDestructiveClose);
+    DiamondcardProfileForm *f = new DiamondcardProfileForm(this);
+    f->setAttribute(Qt::WA_DeleteOnClose);
+    f->setModal(true);
+
 	connect(f, SIGNAL(success()), this, SLOT(newProfileCreated()));
 	
 	if (exec_mode) {
@@ -638,8 +648,9 @@ void SelectProfileForm::diamondcardProfile(bool exec_mode)
 
 void SelectProfileForm::sysSettings()
 {
-	SysSettingsForm *f = new SysSettingsForm(this, "system settings", true,
-						 Qt::WDestructiveClose);
+    SysSettingsForm *f = new SysSettingsForm(this);
+    f->setAttribute(Qt::WA_DeleteOnClose);
+    f->setModal(true);
 	f->show();
 }
 
@@ -654,10 +665,10 @@ bool SelectProfileForm::getUserProfiles(QStringList &profiles, QString &error)
 	}
 	
 	// Select all config files
-	QString filterName = "*";
+    QString filterName = "*";
 	filterName.append(USER_FILE_EXT);
 	d.setFilter(QDir::Files);
-	d.setNameFilter(filterName);
+    d.setNameFilters(QStringList(filterName));
 	d.setSorting(QDir::Name | QDir::IgnoreCase);
 	profiles = d.entryList();
 	

@@ -30,8 +30,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-SelectUserForm::SelectUserForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+SelectUserForm::SelectUserForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -91,7 +91,7 @@ void SelectUserForm::show(t_select_purpose purpose)
 	default:
 		assert(false);
 	}
-	setCaption(title);
+    setWindowTitle(title);
 	purposeTextLabel->setText(msg_purpose);
 	
 	// Fill list view
@@ -128,10 +128,10 @@ void SelectUserForm::validate()
         QListWidgetItem *item = userListView->item(i);
         if (item->checkState() == Qt::Checked) {
 			selected_list.push_back(phone->
-				ref_user_profile(item->text().ascii()));
+                ref_user_profile(item->text().toStdString()));
 		} else {
 			not_selected_list.push_back(phone->
-				ref_user_profile(item->text().ascii()));
+                ref_user_profile(item->text().toStdString()));
 		}
 		i++;
 	}

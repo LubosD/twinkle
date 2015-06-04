@@ -40,8 +40,8 @@
 class TextBrowserNoAutoLink : public QTextBrowser {
 	Q_OBJECT
 public:
-	TextBrowserNoAutoLink ( QWidget * parent = 0, const char * name = 0 ) :
-			QTextBrowser(parent, name) {};
+    TextBrowserNoAutoLink ( QWidget * parent = 0 ) :
+            QTextBrowser(parent) {};
 	virtual void setSource ( const QString & name ) {};
 };
 

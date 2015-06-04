@@ -34,8 +34,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-DiamondcardProfileForm::DiamondcardProfileForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+DiamondcardProfileForm::DiamondcardProfileForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -113,14 +113,14 @@ int DiamondcardProfileForm::exec(t_user *user)
 void DiamondcardProfileForm::validate()
 {
 	if (accountIdLineEdit->text().isEmpty()) {
-		((t_gui *)ui)->cb_show_msg(this, tr("Fill in your account ID.").ascii(), 
+        ((t_gui *)ui)->cb_show_msg(this, tr("Fill in your account ID.").toStdString(),
 					   MSG_CRITICAL);
 		accountIdLineEdit->setFocus();
 		return;
 	}
 	
 	if (pinCodeLineEdit->text().isEmpty()) {
-		((t_gui *)ui)->cb_show_msg(this, tr("Fill in your PIN code.").ascii(), 
+        ((t_gui *)ui)->cb_show_msg(this, tr("Fill in your PIN code.").toStdString(),
 					   MSG_CRITICAL);
 		pinCodeLineEdit->setFocus();
 		return;
@@ -132,13 +132,14 @@ void DiamondcardProfileForm::validate()
 	filename.append(USER_FILE_EXT);
 	
 	// Create a new user config
-	while (!user_config->set_config(filename.ascii())) {
+    while (!user_config->set_config(filename.toStdString())) {
 		((t_gui *)ui)->cb_show_msg(this, 
-			tr("A user profile with name %1 already exists.").arg(profileName).ascii(), 
+            tr("A user profile with name %1 already exists.").arg(profileName).toStdString(),
 			MSG_WARNING);
 		
 		// Ask user for a profile name
-		GetProfileNameForm getProfileNameForm(this, "get profile name", true);
+        GetProfileNameForm getProfileNameForm(this);
+        getProfileNameForm.setModal(true);
 		if (!getProfileNameForm.execNewName()) return;
 		
 		profileName = getProfileNameForm.getProfileName();
@@ -147,9 +148,9 @@ void DiamondcardProfileForm::validate()
 	}
 	
 	diamondcard_set_user_config(*user_config, 
-				    nameLineEdit->text().ascii(),
-				    accountIdLineEdit->text().ascii(),
-				    pinCodeLineEdit->text().ascii());
+                    nameLineEdit->text().toStdString(),
+                    accountIdLineEdit->text().toStdString(),
+                    pinCodeLineEdit->text().toStdString());
 	
 	string error_msg;
 	if (!user_config->write_config(user_config->get_filename(), error_msg)) {
@@ -175,7 +176,7 @@ void DiamondcardProfileForm::mouseReleaseEvent(QMouseEvent *e)
 
 void DiamondcardProfileForm::processLeftMouseButtonRelease(QMouseEvent *e)
 {
-	if (signUpTextLabel->hasMouse()) {
+    if (signUpTextLabel->testAttribute(Qt::WA_UnderMouse)) {
 		string url = diamondcard_url(DC_ACT_SIGNUP, "", "");
 		((t_gui *)ui)->open_url_in_browser(url.c_str());
 	} else {

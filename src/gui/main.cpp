@@ -288,7 +288,7 @@ void parse_main_args(int argc, char **argv, bool &cli_mode, bool &override_lock_
 		} else if (strcmp(argv[i], "--version") == 0) {
 			// Get version
 			QString s = sys_config->about(false).c_str();
-			cout << s.ascii();
+            cout << s.toStdString();
 			exit(0);
 		} else if (strcmp(argv[i], "-c") == 0) {
 			// CLI mode
@@ -312,7 +312,7 @@ void parse_main_args(int argc, char **argv, bool &cli_mode, bool &override_lock_
 					{
 						config_file += USER_FILE_EXT;
 					}
-					config_files.push_back(config_file.ascii());
+                    config_files.push_back(config_file.toStdString());
 				}
 			} else {
 				cout << argv[0] << ": ";
@@ -456,11 +456,11 @@ bool open_sip_socket(bool cli_mode) {
 		if (cli_mode) {
 			msg = QString("Failed to create a %1 socket (SIP) on port %2")
 			   .arg(sock_type)
-			   .arg(sys_config->get_sip_port()).ascii();
+               .arg(sys_config->get_sip_port()).toStdString();
 		} else {
 			msg = qApp->translate("GUI", "Failed to create a %1 socket (SIP) on port %2")
 			   .arg(sock_type)
-			   .arg(sys_config->get_sip_port()).ascii();
+               .arg(sys_config->get_sip_port()).toStdString();
 		}
 		msg += "\n";
 		msg += get_error_str(err);
@@ -617,7 +617,7 @@ int main( int argc, char ** argv )
 		
 		// Activate a profile in the running Twinkle process.
 		if (already_running && !g_cmd_args.cmd_set_profile.isEmpty()) {
-			cmdsocket::cmd_cli(string("user ") + g_cmd_args.cmd_set_profile.ascii(), true);
+            cmdsocket::cmd_cli(string("user ") + g_cmd_args.cmd_set_profile.toStdString(), true);
 			// Do not exit now as this option may be used in conjuction
 			// with --call or --cmd
 			must_exit = true;
@@ -627,7 +627,7 @@ int main( int argc, char ** argv )
 		// is present, then send the call destination to the running
 		// Twinkle process.
 		if (already_running && !g_cmd_args.callto_destination.isEmpty()) {
-			cmdsocket::cmd_call(g_cmd_args.callto_destination.ascii(), 
+            cmdsocket::cmd_call(g_cmd_args.callto_destination.toStdString(),
 					    g_cmd_args.cmd_immediate_mode);
 			exit(0);
 		}
@@ -635,7 +635,7 @@ int main( int argc, char ** argv )
 		// If the --cmd parameter is present, send the cli command
 		// to the running Twinkle process
 		if (already_running && !g_cmd_args.cli_command.isEmpty()) {
-			cmdsocket::cmd_cli(g_cmd_args.cli_command.ascii(), 
+            cmdsocket::cmd_cli(g_cmd_args.cli_command.toStdString(),
 					   g_cmd_args.cmd_immediate_mode);
 			exit(0);
 		}
@@ -677,7 +677,7 @@ int main( int argc, char ** argv )
 				if (!cli_mode) {
 					msg += "\n\n";
 					msg += qApp->translate("GUI",
-						"Override lock file and start anyway?").ascii();
+                        "Override lock file and start anyway?").toStdString();
 				}
 				if (override_lock_file || ui->cb_ask_msg(msg, MSG_WARNING)) {
 					sys_config->delete_lock_file();
@@ -716,9 +716,9 @@ int main( int argc, char ** argv )
 	// shutdow and now gets restored.
 	if (qa && qa->isSessionRestored()) {
 		QString msg = "Restore session: " + qa->sessionId();
-		log_file->write_report(msg.ascii(), "::main");
+        log_file->write_report(msg.toStdString(), "::main");
 		
-		if (sys_config->get_ui_session_id() == qa->sessionId().ascii()) {
+        if (sys_config->get_ui_session_id() == qa->sessionId().toStdString()) {
 			config_files = sys_config->get_ui_session_active_profiles();
 			// Note: the GUI state is restore in t_gui::run()
 		} else {
@@ -739,7 +739,7 @@ int main( int argc, char ** argv )
 		{
 			QString config_file = (*i).c_str();
 			config_file += USER_FILE_EXT;
-			config_files.push_back(config_file.ascii());
+            config_files.push_back(config_file.toStdString());
 		}
 	}
 	
@@ -767,9 +767,9 @@ int main( int argc, char ** argv )
 					profile_selected = true;
 				} else {
 					if (cli_mode) {
-						error_msg = QString("The following profiles are both for user %1").arg(user_config.get_name().c_str()).ascii();
+                        error_msg = QString("The following profiles are both for user %1").arg(user_config.get_name().c_str()).toStdString();
 					} else {
-						error_msg = qApp->translate("GUI", "The following profiles are both for user %1").arg(user_config.get_name().c_str()).ascii();
+                        error_msg = qApp->translate("GUI", "The following profiles are both for user %1").arg(user_config.get_name().c_str()).toStdString();
 					}
 					error_msg += ":\n\n";
 					error_msg += user_config.get_profile_name();
@@ -777,17 +777,17 @@ int main( int argc, char ** argv )
 					error_msg += dup_user->get_profile_name();
 					error_msg += "\n\n";
 					if (cli_mode) {
-						error_msg += QString("You can only run multiple profiles for different users.").ascii();
+                        error_msg += QString("You can only run multiple profiles for different users.").toStdString();
 						error_msg += "\n";
-						error_msg += QString("If these are users for different domains, then enable the following option in your user profile (SIP protocol):").ascii();
+                        error_msg += QString("If these are users for different domains, then enable the following option in your user profile (SIP protocol):").toStdString();
 						error_msg += "\n";
-						error_msg += QString("Use domain name to create a unique contact header").ascii();
+                        error_msg += QString("Use domain name to create a unique contact header").toStdString();
 					} else {
-						error_msg += qApp->translate("GUI", "You can only run multiple profiles for different users.").ascii();
+                        error_msg += qApp->translate("GUI", "You can only run multiple profiles for different users.").toStdString();
 						error_msg += "\n";
-						error_msg += qApp->translate("GUI", "If these are users for different domains, then enable the following option in your user profile (SIP protocol)").ascii();
+                        error_msg += qApp->translate("GUI", "If these are users for different domains, then enable the following option in your user profile (SIP protocol)").toStdString();
 						error_msg += ":\n";
-						error_msg += qApp->translate("GUI", "Use domain name to create a unique contact header").ascii();
+                        error_msg += qApp->translate("GUI", "Use domain name to create a unique contact header").toStdString();
 					}
 					ui->cb_show_msg(error_msg, MSG_CRITICAL);
 					profile_selected = false;

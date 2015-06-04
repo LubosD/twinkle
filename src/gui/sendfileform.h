@@ -7,7 +7,7 @@ class SendFileForm : public QDialog, public Ui::SendFileForm
 	Q_OBJECT
 
 public:
-	SendFileForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SendFileForm(QWidget* parent = 0);
 	~SendFileForm();
 
 public slots:

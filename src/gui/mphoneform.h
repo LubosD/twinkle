@@ -16,8 +16,7 @@
 #include "selectuserform.h"
 #include "selectprofileform.h"
 #include <QEvent>
-#include <Q3PopupMenu>
-#include <Q3ListViewItem>
+#include <QMenu>
 #include <QSystemTrayIcon>
 #include "im/msg_session.h"
 #include "messageformview.h"
@@ -27,11 +26,11 @@
 class t_phone;
 extern t_phone *phone;
 
-class MphoneForm : public Q3MainWindow, public Ui::MphoneForm
+class MphoneForm : public QMainWindow, public Ui::MphoneForm
 {
 Q_OBJECT
 public:
-	MphoneForm(QWidget* parent, const char * name, Qt::WindowFlags f);
+    MphoneForm(QWidget* parent = 0);
 	~MphoneForm();
 
 public:
@@ -60,8 +59,8 @@ public slots:
 	void updateSysTrayStatus();
 	void updateMenuStatus();
 	void updateDiamondcardMenu();
-	void removeDiamondcardAction( int & id );
-	void removeDiamondcardMenu( Q3PopupMenu * & menu );
+    void removeDiamondcardAction( QAction* & id );
+    void removeDiamondcardMenu( QMenu * & menu );
 	void phoneRegister();
 	void do_phoneRegister( list<t_user *> user_list );
 	void phoneDeregister();
@@ -150,9 +149,9 @@ public slots:
 	void showBuddyList( bool on );
 	void showCompactLineStatus( bool on );
 	void populateBuddyList();
-	void showBuddyListPopupMenu( Q3ListViewItem * item, const QPoint & pos );
+    void showBuddyListPopupMenu( const QPoint & pos );
 	void doCallBuddy();
-	void doMessageBuddy( Q3ListViewItem * qitem );
+    void doMessageBuddy( QTreeWidgetItem * qitem );
 	void doMessageBuddy();
 	void doEditBuddy();
 	void doDeleteBuddy();
@@ -162,10 +161,11 @@ public slots:
 	void DiamondcardSignUp();
 	void newDiamondcardUser( const QString & filename );
 	void DiamondcardAction( t_dc_action action, int userIdx );
-	void DiamondcardRecharge( int userIdx );
-	void DiamondcardBalanceHistory( int userIdx );
-	void DiamondcardCallHistory( int userIdx );
-	void DiamondcardAdminCenter( int userIdx );
+    void DiamondcardRecharge();
+    void DiamondcardBalanceHistory();
+    void DiamondcardCallHistory();
+    void DiamondcardAdminCenter();
+    void whatsThis();
 
 private:
 	void init();
@@ -196,9 +196,9 @@ private:
 	bool viewDisplay;
 	bool viewCompactLineStatus;
 	bool mwiFlashStatus;
-	Q3PopupMenu *buddyPopupMenu;
-	Q3PopupMenu *buddyListPopupMenu;
-	Q3PopupMenu *changeAvailabilityPopupMenu;
+    QMenu *buddyPopupMenu;
+    QMenu *buddyListPopupMenu;
+    QMenu *changeAvailabilityPopupMenu;
 	bool viewBuddyList;
 
 };

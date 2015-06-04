@@ -13,7 +13,7 @@ class SelectUserForm : public QDialog, public Ui::SelectUserForm
 	Q_OBJECT
 
 public:
-	SelectUserForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    SelectUserForm(QWidget* parent = 0);
 	~SelectUserForm();
 
 public slots:

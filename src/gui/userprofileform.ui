@@ -4809,7 +4809,6 @@ Sollicited message waiting indication as specified by RFC 3842.
  </tabstops>
  <includes>
   <include location="local">user.h</include>
-  <include location="local">q3valuelist.h</include>
   <include location="global">map</include>
   <include location="global">list</include>
  </includes>

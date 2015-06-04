@@ -9,7 +9,7 @@ class GetProfileNameForm : public QDialog, private Ui::GetProfileNameForm
     Q_OBJECT
 
 public:
-    GetProfileNameForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    GetProfileNameForm(QWidget* parent = 0);
     ~GetProfileNameForm();
 
     QString getProfileName();

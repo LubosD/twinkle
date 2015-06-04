@@ -15,7 +15,7 @@ OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include (CheckIncludeFile)
-find_package(Qt4 REQUIRED COMPONENTS QTGUI QT3SUPPORT)
+find_package(Qt4 REQUIRED COMPONENTS QTGUI)
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
 find_package(LibSndfile REQUIRED)

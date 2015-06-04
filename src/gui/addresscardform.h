@@ -8,7 +8,7 @@ class AddressCardForm : public QDialog, public Ui::AddressCardForm
 	Q_OBJECT
 
 public:
-	AddressCardForm(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
+    AddressCardForm(QWidget* parent = 0);
 	~AddressCardForm();
 
 	virtual int exec( t_address_card & card );

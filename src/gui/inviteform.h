@@ -14,7 +14,7 @@ class InviteForm : public QDialog, public Ui::InviteForm
 {
 	Q_OBJECT
 public:
-	InviteForm(QWidget *parent, const char *name, bool modal);
+    InviteForm(QWidget *parent);
 	~InviteForm();
 public slots:
 	void clear();

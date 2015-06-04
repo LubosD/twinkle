@@ -26,8 +26,8 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-AddressCardForm::AddressCardForm(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-	: QDialog(parent, name, modal, fl)
+AddressCardForm::AddressCardForm(QWidget* parent)
+    : QDialog(parent)
 {
 	setupUi(this);
 
@@ -61,11 +61,11 @@ int AddressCardForm::exec(t_address_card &card) {
 	int retval = QDialog::exec();
 	
 	if (retval == QDialog::Accepted) {
-		card.name_first = firstNameLineEdit->text().stripWhiteSpace().ascii();
-		card.name_infix = infixNameLineEdit->text().stripWhiteSpace().ascii();
-		card.name_last = lastNameLineEdit->text().stripWhiteSpace().ascii();
-		card.sip_address = phoneLineEdit->text().stripWhiteSpace().ascii();
-		card.remark = remarkLineEdit->text().stripWhiteSpace().ascii();
+        card.name_first = firstNameLineEdit->text().trimmed().toStdString();
+        card.name_infix = infixNameLineEdit->text().trimmed().toStdString();
+        card.name_last = lastNameLineEdit->text().trimmed().toStdString();
+        card.sip_address = phoneLineEdit->text().trimmed().toStdString();
+        card.remark = remarkLineEdit->text().trimmed().toStdString();
 	}
 	
 	return retval;
@@ -73,21 +73,21 @@ int AddressCardForm::exec(t_address_card &card) {
 
 void AddressCardForm::validate()
 {
-	QString firstName = firstNameLineEdit->text().stripWhiteSpace();
-	QString infixName = infixNameLineEdit->text().stripWhiteSpace();
-	QString lastName = lastNameLineEdit->text().stripWhiteSpace();
-	QString phone = phoneLineEdit->text().stripWhiteSpace();
+    QString firstName = firstNameLineEdit->text().trimmed();
+    QString infixName = infixNameLineEdit->text().trimmed();
+    QString lastName = lastNameLineEdit->text().trimmed();
+    QString phone = phoneLineEdit->text().trimmed();
 	
 	if (firstName.isEmpty() && infixName.isEmpty() && lastName.isEmpty()) {
 		((t_gui *)ui)->cb_show_msg(this,  
-			tr("You must fill in a name.").ascii(), MSG_CRITICAL);
+            tr("You must fill in a name.").toStdString(), MSG_CRITICAL);
 		firstNameLineEdit->setFocus();
 		return;
 	}
 	
 	if (phone.isEmpty()) {
 		((t_gui *)ui)->cb_show_msg(this,  
-			tr("You must fill in a phone number or SIP address.").ascii(), MSG_CRITICAL);
+            tr("You must fill in a phone number or SIP address.").toStdString(), MSG_CRITICAL);
 		phoneLineEdit->setFocus();
 		return;
 	}
