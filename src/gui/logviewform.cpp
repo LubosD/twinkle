@@ -1,6 +1,7 @@
 #include "logviewform.h"
 
 #include <QScrollBar>
+#include <QTimer>
 #include "audits/memman.h"
 #include "log.h"
 
@@ -35,6 +36,7 @@ void LogViewForm::scrollToBottom()
 {
 	QScrollBar* vsb = logTextEdit->verticalScrollBar();
 	vsb->setValue(vsb->maximum());
+	logTextEdit->update();
 }
 
 void LogViewForm::show()
@@ -56,14 +58,16 @@ void LogViewForm::show()
 	log_file->enable_inform_user(true);
 
 	QDialog::show();
-	scrollToBottom();
+
+	// Couldn't get it to scroll AND show contents(!) without this hack
+	QTimer::singleShot(50, this, SLOT(scrollToBottom()));
 	raise();
 }
 
 void LogViewForm::closeEvent(QCloseEvent* ev)
 {
 	log_file->enable_inform_user(false);
-	logTextEdit->clear();
+	// logTextEdit->clear(); // causes crashes with Qt5
 
 	if (logstream) {
 		MEMMAN_DELETE(logstream);

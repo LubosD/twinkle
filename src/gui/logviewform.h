@@ -16,6 +16,7 @@ private:
     QTextStream* logstream;
 
     bool isOnBottom() const;
+public slots:
     void scrollToBottom();
 
 public:

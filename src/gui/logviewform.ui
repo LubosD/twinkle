@@ -1,98 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>LogViewForm</class>
-  <widget class="QDialog" name="LogViewForm">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>599</width>
-        <height>472</height>
-      </rect>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle - Log</string>
-    </property>
-    <layout class="QGridLayout">
-      <item row="0" column="0" rowspan="1" colspan="3">
-        <widget class="QPlainTextEdit" name="logTextEdit">
-          <property name="lineWrapMode">
-            <enum>QPlainTextEdit::NoWrap</enum>
-          </property>
-          <property name="readOnly">
-            <bool>true</bool>
-          </property>
-          <property name="whatsThis" stdset="0">
-            <string>Contents of the current log file (~/.twinkle/twinkle.log)</string>
-          </property>
-        </widget>
-      </item>
-      <item row="1" column="2">
-        <widget class="QPushButton" name="closePushButton">
-          <property name="text">
-            <string>&amp;Close</string>
-          </property>
-          <property name="shortcut">
-            <string>Alt+C</string>
-          </property>
-        </widget>
-      </item>
-      <item row="1" column="0">
-        <spacer name="spacer23">
-          <property name="sizeHint">
-            <size>
-              <width>360</width>
-              <height>20</height>
-            </size>
-          </property>
-          <property name="sizeType">
-            <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-          </property>
-        </spacer>
-      </item>
-      <item row="1" column="1">
-        <widget class="QPushButton" name="clearPushButton">
-          <property name="text">
-            <string>C&amp;lear</string>
-          </property>
-          <property name="shortcut">
-            <string>Alt+L</string>
-          </property>
-          <property name="whatsThis" stdset="0">
-            <string>Clear the log window. This does &lt;b&gt;not&lt;/b&gt; clear the log file itself.</string>
-          </property>
-        </widget>
-      </item>
-    </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <pixmapfunction></pixmapfunction>
-  <tabstops>
-    <tabstop>logTextEdit</tabstop>
-    <tabstop>clearPushButton</tabstop>
-    <tabstop>closePushButton</tabstop>
-  </tabstops>
-  <includes>
-    <include location="local">qfile.h</include>
-  </includes>
-  <connections>
-    <connection>
-      <sender>closePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>LogViewForm</receiver>
-      <slot>close()</slot>
-    </connection>
-    <connection>
-      <sender>clearPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>LogViewForm</receiver>
-      <slot>clear()</slot>
-    </connection>
-  </connections>
+<ui version="4.0">
+ <class>LogViewForm</class>
+ <widget class="QDialog" name="LogViewForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>599</width>
+    <height>472</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle - Log</string>
+  </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QPlainTextEdit" name="logTextEdit">
+     <property name="whatsThis">
+      <string>Contents of the current log file (~/.twinkle/twinkle.log)</string>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="closePushButton">
+     <property name="text">
+      <string>&amp;Close</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+C</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="spacer23">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>360</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="clearPushButton">
+     <property name="whatsThis">
+      <string>Clear the log window. This does &lt;b&gt;not&lt;/b&gt; clear the log file itself.</string>
+     </property>
+     <property name="text">
+      <string>C&amp;lear</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+L</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>logTextEdit</tabstop>
+  <tabstop>clearPushButton</tabstop>
+  <tabstop>closePushButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">qfile.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LogViewForm</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LogViewForm</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
