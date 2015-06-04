@@ -1503,32 +1503,35 @@ void t_gui::cb_fetch_reg_result(t_user *user_config, const t_response *r) {
 	unlock();
 }
 
+void t_gui::do_cb_register_inprog(t_user *user_config, t_register_type register_type)
+{
+    QString s;
+
+    switch(register_type) {
+    case REG_REGISTER:
+        // Do not report registration refreshments
+        if (phone->get_is_registered(user_config)) break;
+        mainWindow->statRegLabel->setPixmap(
+                QPixmap(":/icons/images/gear.png"));
+        break;
+    case REG_DEREGISTER:
+    case REG_DEREGISTER_ALL:
+        mainWindow->statRegLabel->setPixmap(
+                QPixmap(":/icons/images/gear.png"));
+        break;
+    case REG_QUERY:
+        emit mw_display_header();
+        s = user_config->get_profile_name().c_str();
+        s += qApp->translate("GUI", ": fetching registrations...");
+        emit mw_display(s);
+        break;
+    }
+}
+
 void t_gui::cb_register_inprog(t_user *user_config, t_register_type register_type) {
-	QString s;
-	
-	lock();
-	
-	switch(register_type) {
-	case REG_REGISTER:
-		// Do not report registration refreshments
-		if (phone->get_is_registered(user_config)) break;
-		mainWindow->statRegLabel->setPixmap(
-				QPixmap(":/icons/images/gear.png"));
-		break;
-	case REG_DEREGISTER:
-	case REG_DEREGISTER_ALL:
-		mainWindow->statRegLabel->setPixmap(
-				QPixmap(":/icons/images/gear.png"));
-		break;
-	case REG_QUERY:
-		emit mw_display_header();
-		s = user_config->get_profile_name().c_str();
-		s += qApp->translate("GUI", ": fetching registrations...");
-		emit mw_display(s);
-		break;
-	}
-	
-	unlock();
+    QMetaObject::invokeMethod(this, "do_cb_register_inprog", Qt::QueuedConnection,
+                              Q_ARG(t_user*, user_config), Q_ARG(t_register_type, register_type));
+
 }
 
 void t_gui::cb_redirecting_request(t_user *user_config, int line, const t_contact_param &contact) {

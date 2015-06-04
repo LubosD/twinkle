@@ -408,6 +408,7 @@ private slots:
 			const string &display, t_method method);
 	bool do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
 			string &password);
+    void do_cb_register_inprog(t_user *user_config, t_register_type register_type);
 };
 
 #endif
