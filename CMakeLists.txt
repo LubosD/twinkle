@@ -24,15 +24,9 @@ find_package(BISON REQUIRED)
 find_package(FLEX REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex)
 
-find_package(Commoncpp)
-
-if (COMMONCPP_FOUND)
-	message(STATUS "commoncpp OK")
-	
-	include_directories(${COMMONCPP_INCLUDE_DIR})
-else (COMMONCPP_FOUND)
-	message(FATAL_ERROR "commoncpp not found!")
-endif (COMMONCPP_FOUND)
+find_package(Commoncpp REQUIRED)
+find_package(Ccrtp REQUIRED)
+find_package(Ucommon REQUIRED)
 
 include_directories(${LIBXML2_INCLUDE_DIR} ${QT_QT3SUPPORT_INCLUDE_DIR}
 	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
@@ -59,30 +53,6 @@ if (WITH_ZRTP)
 	else (ZRTPCPP_FOUND)
 		message(FATAL_ERROR "libzrtpcpp not found!")
 	endif (ZRTPCPP_FOUND)
-	
-	#####
-	
-	find_package(Ccrtp)
-	
-	if (CCRTP_FOUND)
-		message(STATUS "ccrtp OK")
-		
-		include_directories(${CCRTP_INCLUDE_DIR})
-	else (CCRTP_FOUND)
-		message(FATAL_ERROR "ccrtp not found!")
-	endif (CCRTP_FOUND)
-	
-	#####
-	
-	find_package(Ucommon)
-	
-	if (UCOMMON_FOUND)
-		message(STATUS "ucommon OK")
-		
-		include_directories(${UCOMMON_INCLUDE_DIR})
-	else (UCOMMON_FOUND)
-		message(FATAL_ERROR "ucommon not found!")
-	endif (UCOMMON_FOUND)
 endif (WITH_ZRTP)
 
 if (WITH_SPEEX)
