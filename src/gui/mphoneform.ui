@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Twinkle</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/images/twinkle48.png</normaloff>:/icons/images/twinkle48.png</iconset>
+  </property>
   <property name="rightJustification" stdset="0">
    <bool>false</bool>
   </property>
@@ -1054,7 +1058,7 @@
      <x>0</x>
      <y>0</y>
      <width>733</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
