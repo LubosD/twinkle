@@ -351,6 +351,7 @@ void SelectProfileForm::newProfileCreated()
                                                 profileListView);
 
     item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+    item->setCheckState(Qt::Unchecked);
 		
 	// Make the new profile the selected profile
 	// Do not change this without changing the exec method.
