@@ -1861,7 +1861,7 @@
  <connections>
   <connection>
    <sender>helpWhats_ThisAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>whatsThis()</slot>
    <hints>
@@ -1909,7 +1909,7 @@
   </connection>
   <connection>
    <sender>fileChangeUserAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>selectProfile()</slot>
    <hints>
@@ -1925,7 +1925,7 @@
   </connection>
   <connection>
    <sender>viewCall_HistoryAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>viewHistory()</slot>
    <hints>
@@ -1941,7 +1941,7 @@
   </connection>
   <connection>
    <sender>viewLogAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>viewLog()</slot>
    <hints>
@@ -1957,7 +1957,7 @@
   </connection>
   <connection>
    <sender>regDeregisterAll</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneDeregisterAll()</slot>
    <hints>
@@ -1973,7 +1973,7 @@
   </connection>
   <connection>
    <sender>editSysSettingsAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>editSysSettings()</slot>
    <hints>
@@ -2005,7 +2005,7 @@
   </connection>
   <connection>
    <sender>callConference</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneConference()</slot>
    <hints>
@@ -2021,7 +2021,7 @@
   </connection>
   <connection>
    <sender>editUserProfileAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>editUserProfile()</slot>
    <hints>
@@ -2037,7 +2037,7 @@
   </connection>
   <connection>
    <sender>helpAboutQtAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>aboutQt()</slot>
    <hints>
@@ -2053,7 +2053,7 @@
   </connection>
   <connection>
    <sender>helpAboutAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>about()</slot>
    <hints>
@@ -2069,7 +2069,7 @@
   </connection>
   <connection>
    <sender>callRedial</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneRedial()</slot>
    <hints>
@@ -2085,7 +2085,7 @@
   </connection>
   <connection>
    <sender>serviceRedirection</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>srvRedirect()</slot>
    <hints>
@@ -2101,7 +2101,7 @@
   </connection>
   <connection>
    <sender>regShow</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneShowRegistrations()</slot>
    <hints>
@@ -2117,7 +2117,7 @@
   </connection>
   <connection>
    <sender>regDeregister</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneDeregister()</slot>
    <hints>
@@ -2133,7 +2133,7 @@
   </connection>
   <connection>
    <sender>regRegister</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneRegister()</slot>
    <hints>
@@ -2165,7 +2165,7 @@
   </connection>
   <connection>
    <sender>callReject</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneReject()</slot>
    <hints>
@@ -2181,7 +2181,7 @@
   </connection>
   <connection>
    <sender>callRedirect</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneRedirect()</slot>
    <hints>
@@ -2197,7 +2197,7 @@
   </connection>
   <connection>
    <sender>callInvite</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneInvite()</slot>
    <hints>
@@ -2213,7 +2213,7 @@
   </connection>
   <connection>
    <sender>callDTMF</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneDTMF()</slot>
    <hints>
@@ -2229,7 +2229,7 @@
   </connection>
   <connection>
    <sender>callBye</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneBye()</slot>
    <hints>
@@ -2245,7 +2245,7 @@
   </connection>
   <connection>
    <sender>callAnswer</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneAnswer()</slot>
    <hints>
@@ -2261,7 +2261,7 @@
   </connection>
   <connection>
    <sender>callTermCap</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneTermCap()</slot>
    <hints>
@@ -2309,7 +2309,7 @@
   </connection>
   <connection>
    <sender>fileExitAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>fileExit()</slot>
    <hints>
@@ -2373,7 +2373,7 @@
   </connection>
   <connection>
    <sender>callTransfer</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>phoneTransfer()</slot>
    <hints>
@@ -2389,7 +2389,7 @@
   </connection>
   <connection>
    <sender>servicesVoice_mailAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>popupMenuVoiceMail()</slot>
    <hints>
@@ -2405,7 +2405,7 @@
   </connection>
   <connection>
    <sender>actionSendMsg</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>startMessageSession()</slot>
    <hints>
@@ -2437,7 +2437,7 @@
   </connection>
   <connection>
    <sender>helpManualAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>manual()</slot>
    <hints>
@@ -2453,7 +2453,7 @@
   </connection>
   <connection>
    <sender>diamondcardSign_upAction</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MphoneForm</receiver>
    <slot>DiamondcardSignUp()</slot>
    <hints>

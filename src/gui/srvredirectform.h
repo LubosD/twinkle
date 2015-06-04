@@ -3,7 +3,7 @@
 #include <list>
 #include "getaddressform.h"
 #include "phone.h"
-#include <QtGui/QLineEdit>
+#include <QLineEdit>
 #include "sockets/url.h"
 #include "user.h"
 #include "ui_srvredirectform.h"

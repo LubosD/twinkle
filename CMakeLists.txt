@@ -11,11 +11,17 @@ OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
 OPTION(WITH_ILBC		"Enable the iLBC codec" OFF)
 OPTION(WITH_ALSA		"Enable ALSA support" ON)
 OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
+OPTION(WITH_QT4			"Enable Qt 4 GUI" OFF)
+OPTION(WITH_QT5			"Enable Qt 5 GUI" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
+if (WITH_QT4 AND WITH_QT5)
+		message(FATAL_ERROR "Qt 4 and Qt 5 cannot be enabled at the same time!")
+endif (WITH_QT4 AND WITH_QT5)
+
 include (CheckIncludeFile)
-find_package(Qt4 REQUIRED COMPONENTS QTGUI)
+
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
 find_package(LibSndfile REQUIRED)
@@ -23,13 +29,25 @@ find_package(Readline REQUIRED)
 find_package(BISON REQUIRED)
 find_package(FLEX REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex)
-
 find_package(Commoncpp REQUIRED)
 find_package(Ccrtp REQUIRED)
 find_package(Ucommon REQUIRED)
 
-include_directories(${LIBXML2_INCLUDE_DIR} ${QT_QT3SUPPORT_INCLUDE_DIR}
-	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
+if (WITH_QT4)
+	find_package(Qt4 REQUIRED COMPONENTS QTGUI)
+	include_directories(${QT_QT3SUPPORT_INCLUDE_DIR}
+		${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
+
+elseif (WITH_QT5)
+
+	find_package(Qt5Widgets REQUIRED)
+	find_package(Qt5LinguistTools REQUIRED)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+	include_directories(${Qt5Widgets_INCLUDES})
+	add_definitions(${Qt5Widgets_DEFINITIONS})
+endif (WITH_QT4)
+
+include_directories(${LIBXML2_INCLUDE_DIR})
 
 if (WITH_ALSA)
 	find_package(ALSA)

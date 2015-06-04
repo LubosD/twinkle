@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -68,6 +70,21 @@
     <message>
         <source>You must fill in a phone number or SIP address.</source>
         <translation>U moet een telefoonnummer of SIP adres invullen.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Naam</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation type="unfinished">Telefoon</translation>
+    </message>
+    <message>
+        <source>Remark</source>
+        <translation type="unfinished">Opmerkingen</translation>
     </message>
 </context>
 <context>
@@ -319,7 +336,7 @@
     <name>DiamondcardProfileForm</name>
     <message>
         <source>Twinkle - Diamondcard User Profile</source>
-        <translation>Twinkle - Diamondcard gebruikersprofiel</translation>
+        <translation type="obsolete">Twinkle - Diamondcard gebruikersprofiel</translation>
     </message>
     <message>
         <source>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
@@ -329,43 +346,35 @@
     </message>
     <message>
         <source>Your Diamondcard account ID.</source>
-        <translation>Uw Diamondcard account ID.</translation>
+        <translation type="obsolete">Uw Diamondcard account ID.</translation>
     </message>
     <message>
         <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation>Dit is uw eigen naam. bijv. Jan Jansen. Als u iemand belt, kan deze naam getoond worden.</translation>
+        <translation type="obsolete">Dit is uw eigen naam. bijv. Jan Jansen. Als u iemand belt, kan deze naam getoond worden.</translation>
     </message>
     <message>
         <source>&amp;Account ID:</source>
-        <translation>&amp;Account ID:</translation>
+        <translation type="obsolete">&amp;Account ID:</translation>
     </message>
     <message>
         <source>&amp;PIN code:</source>
-        <translation>&amp;PIN code:</translation>
+        <translation type="obsolete">&amp;PIN code:</translation>
     </message>
     <message>
         <source>&amp;Your name:</source>
-        <translation>U&amp;w naam:</translation>
+        <translation type="obsolete">U&amp;w naam:</translation>
     </message>
     <message>
         <source>&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Aanmelden voor een Diamondcard account&lt;/u&gt;&lt;/p&gt;</translation>
+        <translation type="obsolete">&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Aanmelden voor een Diamondcard account&lt;/u&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation></translation>
+        <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Ann&amp;uleren</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation></translation>
+        <translation type="obsolete">Ann&amp;uleren</translation>
     </message>
     <message>
         <source>Fill in your account ID.</source>
@@ -381,12 +390,12 @@
     </message>
     <message>
         <source>Your Diamondcard PIN code.</source>
-        <translation>Uw Diamondcard PIN code.</translation>
+        <translation type="obsolete">Uw Diamondcard PIN code.</translation>
     </message>
     <message>
         <source>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
 &lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the &quot;sign up&quot; link.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Met een Diamondcard account kunt u wereldwijd bellen naar vaste en mobiele telefoons en SMS berichten versturen. U kunt zich aanmelden voor een Diamondcard account door op de onderstaande &quot;aanmelden&quot; link te klikken. Na aanmelding ontvangt u een account ID en PIN code. Voer dit account ID en de PIN code hieronder in om een Twinkle gebruikersprofiel voor uw Diamondcard account te maken.&lt;/p&gt;
+        <translation type="obsolete">&lt;p&gt;Met een Diamondcard account kunt u wereldwijd bellen naar vaste en mobiele telefoons en SMS berichten versturen. U kunt zich aanmelden voor een Diamondcard account door op de onderstaande &quot;aanmelden&quot; link te klikken. Na aanmelding ontvangt u een account ID en PIN code. Voer dit account ID en de PIN code hieronder in om een Twinkle gebruikersprofiel voor uw Diamondcard account te maken.&lt;/p&gt;
 &lt;p&gt;Beltarieven kunt u vinden op de aanmeldingspagina die u krijgt als u op de &quot;aanmelden&quot; link klinkt.&lt;/p&gt;</translation>
     </message>
 </context>
@@ -477,11 +486,11 @@
     <name>FreeDeskSysTray</name>
     <message>
         <source>Show/Hide</source>
-        <translation>Toon/Verberg</translation>
+        <translation type="obsolete">Toon/Verberg</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Afsluiten</translation>
+        <translation type="obsolete">Afsluiten</translation>
     </message>
 </context>
 <context>
@@ -883,15 +892,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation>Naam</translation>
+        <translation type="obsolete">Naam</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation>Telefoon</translation>
+        <translation type="obsolete">Telefoon</translation>
     </message>
     <message>
         <source>&amp;Show only SIP addresses</source>
@@ -947,7 +956,7 @@
     </message>
     <message>
         <source>Remark</source>
-        <translation>Opmerkingen</translation>
+        <translation type="obsolete">Opmerkingen</translation>
     </message>
     <message>
         <source>Contacts in the local address book of Twinkle.</source>
@@ -1435,7 +1444,7 @@ Met deze optie verzoekt u uw SIP provider om uw identiteit verborgen te houden v
     </message>
     <message>
         <source>Instant message toolbar</source>
-        <translation>Instant berichten</translation>
+        <translation type="obsolete">Instant berichten</translation>
     </message>
     <message>
         <source>Send file...</source>
@@ -1581,15 +1590,15 @@ Met deze optie verzoekt u uw SIP provider om uw identiteit verborgen te houden v
     </message>
     <message>
         <source>Call is on hold</source>
-        <translation>Gesprek staat in de wacht</translation>
+        <translation type="obsolete">Gesprek staat in de wacht</translation>
     </message>
     <message>
         <source>Voice is muted</source>
-        <translation>Geluid is onderdrukt</translation>
+        <translation type="obsolete">Geluid is onderdrukt</translation>
     </message>
     <message>
         <source>Conference call</source>
-        <translation>Conferentiegesprek</translation>
+        <translation type="obsolete">Conferentiegesprek</translation>
     </message>
     <message>
         <source>Transferring call</source>
@@ -1606,7 +1615,7 @@ Both ends of an encrypted voice channel receive the same SAS on the first call. 
 &lt;p&gt;
 If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don&apos;t have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
+        <translation type="obsolete">&lt;p&gt;
 Het hangslot geeft aan dat het geluidskanaal versleuteld is tijdens transport over het netwerk.
 &lt;/p&gt;
 &lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
@@ -1679,7 +1688,7 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     </message>
     <message>
         <source>Call Toolbar</source>
-        <translation>Gespreksbalk</translation>
+        <translation type="obsolete">Gespreksbalk</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -2058,7 +2067,7 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     </message>
     <message>
         <source>Visual indication of line state.</source>
-        <translation>Visuele indicatie van de lijnstatus.</translation>
+        <translation type="obsolete">Visuele indicatie van de lijnstatus.</translation>
     </message>
     <message>
         <source>Call redirection</source>
@@ -2172,117 +2181,117 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     <message>
         <source>Call</source>
         <comment>toolbar text</comment>
-        <translation>Bel</translation>
+        <translation type="obsolete">Bel</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
         <comment>call menu text</comment>
-        <translation>&amp;Bel...</translation>
+        <translation type="obsolete">&amp;Bel...</translation>
     </message>
     <message>
         <source>Answer</source>
         <comment>toolbar text</comment>
-        <translation>Antw</translation>
+        <translation type="obsolete">Antw</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
         <comment>menu text</comment>
-        <translation>&amp;Antwoord</translation>
+        <translation type="obsolete">&amp;Antwoord</translation>
     </message>
     <message>
         <source>Bye</source>
         <comment>toolbar text</comment>
-        <translation>Einde</translation>
+        <translation type="obsolete">Einde</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
         <comment>menu text</comment>
-        <translation>&amp;Einde</translation>
+        <translation type="obsolete">&amp;Einde</translation>
     </message>
     <message>
         <source>Reject</source>
         <comment>toolbar text</comment>
-        <translation>Afwijzen</translation>
+        <translation type="obsolete">Afwijzen</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
         <comment>menu text</comment>
-        <translation>A&amp;fwijzen</translation>
+        <translation type="obsolete">A&amp;fwijzen</translation>
     </message>
     <message>
         <source>Hold</source>
         <comment>toolbar text</comment>
-        <translation>Wacht</translation>
+        <translation type="obsolete">Wacht</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
         <comment>menu text</comment>
-        <translation>&amp;Wacht</translation>
+        <translation type="obsolete">&amp;Wacht</translation>
     </message>
     <message>
         <source>Redirect</source>
         <comment>toolbar text</comment>
-        <translation>Verwijs</translation>
+        <translation type="obsolete">Verwijs</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
         <comment>menu text</comment>
-        <translation>&amp;Verwijs...</translation>
+        <translation type="obsolete">&amp;Verwijs...</translation>
     </message>
     <message>
         <source>Dtmf</source>
         <comment>toolbar text</comment>
-        <translation>Dtmf</translation>
+        <translation type="obsolete">Dtmf</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
         <comment>menu text</comment>
-        <translation>Dt&amp;mf...</translation>
+        <translation type="obsolete">Dt&amp;mf...</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
         <comment>menu text</comment>
-        <translation>&amp;Terminal eigenschappen...</translation>
+        <translation type="obsolete">&amp;Terminal eigenschappen...</translation>
     </message>
     <message>
         <source>Redial</source>
         <comment>toolbar text</comment>
-        <translation>Herh</translation>
+        <translation type="obsolete">Herh</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
         <comment>menu text</comment>
-        <translation>&amp;Herhaal</translation>
+        <translation type="obsolete">&amp;Herhaal</translation>
     </message>
     <message>
         <source>Conf</source>
         <comment>toolbar text</comment>
-        <translation>Conf</translation>
+        <translation type="obsolete">Conf</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
         <comment>menu text</comment>
-        <translation>&amp;Conferentie</translation>
+        <translation type="obsolete">&amp;Conferentie</translation>
     </message>
     <message>
         <source>Mute</source>
         <comment>toolbar text</comment>
-        <translation>Stil</translation>
+        <translation type="obsolete">Stil</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
         <comment>menu text</comment>
-        <translation>&amp;Stil</translation>
+        <translation type="obsolete">&amp;Stil</translation>
     </message>
     <message>
         <source>Xfer</source>
         <comment>toolbar text</comment>
-        <translation>Xfer</translation>
+        <translation type="obsolete">Xfer</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
         <comment>menu text</comment>
-        <translation>&amp;Doorverbinden...</translation>
+        <translation type="obsolete">&amp;Doorverbinden...</translation>
     </message>
     <message>
         <source>Voice mail</source>
@@ -2419,6 +2428,94 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     <message>
         <source>Admin center</source>
         <translation>Admin center</translation>
+    </message>
+    <message>
+        <source>Call</source>
+        <translation type="unfinished">Bel</translation>
+    </message>
+    <message>
+        <source>&amp;Answer</source>
+        <translation type="unfinished">&amp;Antwoord</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bye</source>
+        <translation type="unfinished">&amp;Einde</translation>
+    </message>
+    <message>
+        <source>Bye</source>
+        <translation type="unfinished">Einde</translation>
+    </message>
+    <message>
+        <source>&amp;Reject</source>
+        <translation type="unfinished">A&amp;fwijzen</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished">Afwijzen</translation>
+    </message>
+    <message>
+        <source>&amp;Hold</source>
+        <translation type="unfinished">&amp;Wacht</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation type="unfinished">Wacht</translation>
+    </message>
+    <message>
+        <source>R&amp;edirect...</source>
+        <translation type="unfinished">&amp;Verwijs...</translation>
+    </message>
+    <message>
+        <source>Redirect</source>
+        <translation type="unfinished">Verwijs</translation>
+    </message>
+    <message>
+        <source>&amp;Dtmf...</source>
+        <translation type="unfinished">Dt&amp;mf...</translation>
+    </message>
+    <message>
+        <source>Dtmf</source>
+        <translation type="unfinished">Dtmf</translation>
+    </message>
+    <message>
+        <source>&amp;Terminal capabilities...</source>
+        <translation type="unfinished">&amp;Terminal eigenschappen...</translation>
+    </message>
+    <message>
+        <source>&amp;Redial</source>
+        <translation type="unfinished">&amp;Herhaal</translation>
+    </message>
+    <message>
+        <source>Redial</source>
+        <translation type="unfinished">Herh</translation>
+    </message>
+    <message>
+        <source>&amp;Conference</source>
+        <translation type="unfinished">&amp;Conferentie</translation>
+    </message>
+    <message>
+        <source>Conf</source>
+        <translation type="unfinished">Conf</translation>
+    </message>
+    <message>
+        <source>&amp;Mute</source>
+        <translation type="unfinished">&amp;Stil</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation type="unfinished">Stil</translation>
+    </message>
+    <message>
+        <source>Trans&amp;fer...</source>
+        <translation type="unfinished">&amp;Doorverbinden...</translation>
+    </message>
+    <message>
+        <source>Xfer</source>
+        <translation type="unfinished">Xfer</translation>
     </message>
 </context>
 <context>
@@ -2590,7 +2687,7 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     </message>
     <message>
         <source>User profile</source>
-        <translation>Gebruikersprofiel</translation>
+        <translation type="obsolete">Gebruikersprofiel</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -2793,7 +2890,19 @@ Kies eerst een gebruikersprofiel.</translation>
     </message>
     <message>
         <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;Choose what method you wish to use.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;U kunt de profieleditor gebruiken om een gebruikersprofiel te maken. Met de profieleditor kunt u diverse instellingen met betrekking tot het SIP protocol, RTP en vele andere zaken wijzigen.&lt;br&gt;&lt;br&gt;Met de wizard kunt u snel een gebruikersprofiel maken. De wizard vraagt u alleen om een aantal essentiële instellingen. Als u een gebruikersprofiel met de wizard maakt, dan kun u deze op een later tijdstip alsnog met de profieleditor wijzigen.&lt;br&gt;&lt;br&gt;U kunt een Diamondcard account aanmaken waarmee u wereldwijd kunt bellen naar vaste en mobiele telefoonnummers en SMS berichten versturen.&lt;br&gt;&lt;br&gt;Kies op welke wijze u een gebruikersprofiel wilt maken.&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;U kunt de profieleditor gebruiken om een gebruikersprofiel te maken. Met de profieleditor kunt u diverse instellingen met betrekking tot het SIP protocol, RTP en vele andere zaken wijzigen.&lt;br&gt;&lt;br&gt;Met de wizard kunt u snel een gebruikersprofiel maken. De wizard vraagt u alleen om een aantal essentiële instellingen. Als u een gebruikersprofiel met de wizard maakt, dan kun u deze op een later tijdstip alsnog met de profieleditor wijzigen.&lt;br&gt;&lt;br&gt;U kunt een Diamondcard account aanmaken waarmee u wereldwijd kunt bellen naar vaste en mobiele telefoonnummers en SMS berichten versturen.&lt;br&gt;&lt;br&gt;Kies op welke wijze u een gebruikersprofiel wilt maken.&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose what method you wish to use.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2836,7 +2945,7 @@ Kies eerst een gebruikersprofiel.</translation>
     </message>
     <message>
         <source>User</source>
-        <translation>Gebruiker</translation>
+        <translation type="obsolete">Gebruiker</translation>
     </message>
     <message>
         <source>Register</source>
@@ -3314,7 +3423,7 @@ Het algoritme om ruis te verminderen is erg simplistisch. Geluid wordt gedigital
     </message>
     <message>
         <source>Default user profiles</source>
-        <translation>Default gebruikersprofielen</translation>
+        <translation type="obsolete">Default gebruikersprofielen</translation>
     </message>
     <message>
         <source>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</source>
@@ -3727,7 +3836,7 @@ Als voor het beantwoorden van een inkomend gesprek, de microfoon of speaker onbe
     </message>
     <message>
         <source>Type of transfer</source>
-        <translation>Doorverbindmethode</translation>
+        <translation type="obsolete">Doorverbindmethode</translation>
     </message>
     <message>
         <source>&amp;Blind transfer</source>

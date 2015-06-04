@@ -72,7 +72,9 @@ add_executable(twinkle-console
 	$<TARGET_OBJECTS:libtwinkle-utils>
 )
 
-add_subdirectory(gui)
+if (WITH_QT4 OR WITH_QT5)
+	add_subdirectory(gui)
+endif (WITH_QT4 OR WITH_QT5)
 
 target_link_libraries(twinkle-console -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}

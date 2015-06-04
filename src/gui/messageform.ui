@@ -194,13 +194,13 @@
     </connection>
     <connection>
       <sender>conversationBrowser</sender>
-      <signal>linkClicked(QString)</signal>
+      <signal>anchorClicked(QUrl)</signal>
       <receiver>MessageForm</receiver>
-      <slot>showAttachmentPopupMenu(QString)</slot>
+      <slot>showAttachmentPopupMenu(QUrl)</slot>
     </connection>
     <connection>
       <sender>sendFileAction</sender>
-      <signal>activated()</signal>
+      <signal>triggered()</signal>
       <receiver>MessageForm</receiver>
       <slot>chooseFileToSend()</slot>
     </connection>

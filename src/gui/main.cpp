@@ -17,6 +17,7 @@
 */
 
 #include "twinkle_config.h"
+#include <QtDebug>
 
 #ifdef HAVE_KDE
 #include <kapplication.h>
@@ -25,7 +26,6 @@
 
 #include <qapplication.h>
 #include <qtranslator.h>
-#include <qmime.h>
 #include <qtextcodec.h>
 
 #include "mphoneform.h"
@@ -507,8 +507,10 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		qa = new t_twinkle_application(tmp, argv);
 		MEMMAN_NEW(qa);
 #endif
+#if QT_VERSION < 0x050000 // In Qt5, these functions are removed. UTF-8 is the default.
 		QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
 		QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+#endif
 		
 		// Install Qt translator
 		// Do not report to memman as the translator will be deleted
@@ -533,6 +535,37 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 	return qa;
 }
 
+void blockSignals()
+{
+	// Dedicated thread will catch SIGALRM, SIGINT, SIGTERM, SIGCHLD signals,
+	// therefore all threads must block these signals. Block now, then all
+	// created threads will inherit the signal mask.
+	// In LinuxThreads the sigwait does not work very well, so
+	// in LinuxThreads a signal handler is used instead.
+
+	if (!threading_is_LinuxThreads) {
+		sigset_t sigset;
+		sigemptyset(&sigset);
+		sigaddset(&sigset, SIGALRM);
+		sigaddset(&sigset, SIGINT);
+		sigaddset(&sigset, SIGTERM);
+		sigaddset(&sigset, SIGCHLD);
+		sigprocmask(SIG_BLOCK, &sigset, NULL);
+	} else {
+		if (!phone->set_sighandler()) {
+			string msg = "Failed to register signal handler.";
+			log_file->write_report(msg, "::main", LOG_NORMAL, LOG_CRITICAL);
+			ui->cb_show_msg(msg, MSG_CRITICAL);
+			sys_config->delete_lock_file();
+			exit(1);
+		}
+	}
+
+	// Ignore SIGPIPE so read from broken sockets will not cause
+	// the process to terminate.
+	(void)signal(SIGPIPE, SIG_IGN);
+}
+
 int main( int argc, char ** argv )
 {
 	string error_msg;
@@ -545,6 +578,8 @@ int main( int argc, char ** argv )
 	
 	// Determine threading implementation
 	threading_is_LinuxThreads = t_thread::is_LinuxThreads();
+
+	blockSignals();
 
 	QApplication *qa = NULL;
 	QTranslator *qtranslator = NULL;
@@ -913,33 +948,6 @@ int main( int argc, char ** argv )
 		log_msg += "\n";
 		log_file->write_report(log_msg, "::main", LOG_NORMAL, LOG_WARNING);
 	}
-	
-	// Dedicated thread will catch SIGALRM, SIGINT, SIGTERM, SIGCHLD signals, 
-	// therefore all threads must block these signals. Block now, then all
-	// created threads will inherit the signal mask.
-	// In LinuxThreads the sigwait does not work very well, so
-	// in LinuxThreads a signal handler is used instead.
-	if (!threading_is_LinuxThreads) {
-		sigset_t sigset;
-		sigemptyset(&sigset);
-		sigaddset(&sigset, SIGALRM);
-		sigaddset(&sigset, SIGINT);
-		sigaddset(&sigset, SIGTERM);
-		sigaddset(&sigset, SIGCHLD);
-		sigprocmask(SIG_BLOCK, &sigset, NULL);
-	} else {
-		if (!phone->set_sighandler()) {
-			string msg = "Failed to register signal handler.";
-			log_file->write_report(msg, "::main", LOG_NORMAL, LOG_CRITICAL);
-			ui->cb_show_msg(msg, MSG_CRITICAL);
-			sys_config->delete_lock_file();
-			exit(1);
-		}
-	}
-	
-	// Ignore SIGPIPE so read from broken sockets will not cause
-	// the process to terminate.
-	(void)signal(SIGPIPE, SIG_IGN);
 				 
 	// Create threads
 	t_thread *thr_sender;

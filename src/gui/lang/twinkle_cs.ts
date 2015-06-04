@@ -1,5 +1,6 @@
-<!DOCTYPE TS><TS>
-<defaultcodec></defaultcodec>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -69,6 +70,21 @@
     <message>
         <source>You must fill in a phone number or SIP address.</source>
         <translation>Musíte zadat jméno nebo SIP adresu.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Jméno</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation type="unfinished">Telefon</translation>
+    </message>
+    <message>
+        <source>Remark</source>
+        <translation type="unfinished">Poznámka</translation>
     </message>
 </context>
 <context>
@@ -319,48 +335,8 @@
 <context>
     <name>DiamondcardProfileForm</name>
     <message>
-        <source>Twinkle - Diamondcard User Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard account ID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Account ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;PIN code:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Your name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">Zrušit (Es&amp;c)</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Zrušit (Es&amp;c)</translation>
     </message>
     <message>
         <source>Fill in your account ID.</source>
@@ -372,15 +348,6 @@
     </message>
     <message>
         <source>A user profile with name %1 already exists.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard PIN code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
-&lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the &quot;sign up&quot; link.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -471,11 +438,11 @@
     <name>FreeDeskSysTray</name>
     <message>
         <source>Show/Hide</source>
-        <translation>Ukázat/Zminimalizovat</translation>
+        <translation type="obsolete">Ukázat/Zminimalizovat</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Ukončit</translation>
+        <translation type="obsolete">Ukončit</translation>
     </message>
 </context>
 <context>
@@ -878,15 +845,15 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Name</source>
-        <translation>Jméno</translation>
+        <translation type="obsolete">Jméno</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation>Telefon</translation>
+        <translation type="obsolete">Telefon</translation>
     </message>
     <message>
         <source>&amp;Show only SIP addresses</source>
@@ -944,7 +911,7 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>Remark</source>
-        <translation>Poznámka</translation>
+        <translation type="obsolete">Poznámka</translation>
     </message>
     <message>
         <source>Contacts in the local address book of Twinkle.</source>
@@ -1424,7 +1391,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Instant message toolbar</source>
-        <translation>Lišta s instantními zprávami</translation>
+        <translation type="obsolete">Lišta s instantními zprávami</translation>
     </message>
     <message>
         <source>Send file...</source>
@@ -1571,7 +1538,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Visual indication of line state.</source>
-        <translation>Optické zobrazení stavu linky.</translation>
+        <translation type="obsolete">Optické zobrazení stavu linky.</translation>
     </message>
     <message>
         <source>idle</source>
@@ -1580,15 +1547,15 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Call is on hold</source>
-        <translation>Hovor je podržen</translation>
+        <translation type="obsolete">Hovor je podržen</translation>
     </message>
     <message>
         <source>Voice is muted</source>
-        <translation>Hovor je ztišen</translation>
+        <translation type="obsolete">Hovor je ztišen</translation>
     </message>
     <message>
         <source>Conference call</source>
-        <translation>Konferenční hovor</translation>
+        <translation type="obsolete">Konferenční hovor</translation>
     </message>
     <message>
         <source>Transferring call</source>
@@ -1605,7 +1572,7 @@ Both ends of an encrypted voice channel receive the same SAS on the first call. 
 &lt;p&gt;
 If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don&apos;t have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
+        <translation type="obsolete">&lt;p&gt;
 Symbol zámečku se zobrazí pokud je volání přenášeno pomocí šifrování a není možné ho odposlouchávat.
 &lt;/p&gt;
 &lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
@@ -1710,7 +1677,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Call Toolbar</source>
-        <translation>Lišta volání</translation>
+        <translation type="obsolete">Lišta volání</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -2164,117 +2131,117 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     <message>
         <source>Call</source>
         <comment>toolbar text</comment>
-        <translation>Volat</translation>
+        <translation type="obsolete">Volat</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
         <comment>call menu text</comment>
-        <translation>Volat (&amp;Call)...</translation>
+        <translation type="obsolete">Volat (&amp;Call)...</translation>
     </message>
     <message>
         <source>Answer</source>
         <comment>toolbar text</comment>
-        <translation>Odpovědět</translation>
+        <translation type="obsolete">Odpovědět</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
         <comment>menu text</comment>
-        <translation>&amp;Odpovědět</translation>
+        <translation type="obsolete">&amp;Odpovědět</translation>
     </message>
     <message>
         <source>Bye</source>
         <comment>toolbar text</comment>
-        <translation>Zavěsit</translation>
+        <translation type="obsolete">Zavěsit</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
         <comment>menu text</comment>
-        <translation>Zavěsit (&amp;Bye)</translation>
+        <translation type="obsolete">Zavěsit (&amp;Bye)</translation>
     </message>
     <message>
         <source>Reject</source>
         <comment>toolbar text</comment>
-        <translation>Odmítnout</translation>
+        <translation type="obsolete">Odmítnout</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
         <comment>menu text</comment>
-        <translation>&amp;Odmítnout</translation>
+        <translation type="obsolete">&amp;Odmítnout</translation>
     </message>
     <message>
         <source>Hold</source>
         <comment>toolbar text</comment>
-        <translation>Podržet</translation>
+        <translation type="obsolete">Podržet</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
         <comment>menu text</comment>
-        <translation>&amp;Podržet</translation>
+        <translation type="obsolete">&amp;Podržet</translation>
     </message>
     <message>
         <source>Redirect</source>
         <comment>toolbar text</comment>
-        <translation>Přesměrovat</translation>
+        <translation type="obsolete">Přesměrovat</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
         <comment>menu text</comment>
-        <translation>&amp;Přesměrovat...</translation>
+        <translation type="obsolete">&amp;Přesměrovat...</translation>
     </message>
     <message>
         <source>Dtmf</source>
         <comment>toolbar text</comment>
-        <translation>DTMF</translation>
+        <translation type="obsolete">DTMF</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
         <comment>menu text</comment>
-        <translation>&amp;DTMF...</translation>
+        <translation type="obsolete">&amp;DTMF...</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
         <comment>menu text</comment>
-        <translation>&amp;Parametry protistrany...</translation>
+        <translation type="obsolete">&amp;Parametry protistrany...</translation>
     </message>
     <message>
         <source>Redial</source>
         <comment>toolbar text</comment>
-        <translation>Opakovat</translation>
+        <translation type="obsolete">Opakovat</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
         <comment>menu text</comment>
-        <translation>&amp;Opakovat</translation>
+        <translation type="obsolete">&amp;Opakovat</translation>
     </message>
     <message>
         <source>Conf</source>
         <comment>toolbar text</comment>
-        <translation>Konference</translation>
+        <translation type="obsolete">Konference</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
         <comment>menu text</comment>
-        <translation>&amp;Konference</translation>
+        <translation type="obsolete">&amp;Konference</translation>
     </message>
     <message>
         <source>Mute</source>
         <comment>toolbar text</comment>
-        <translation>Ztišit</translation>
+        <translation type="obsolete">Ztišit</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
         <comment>menu text</comment>
-        <translation>&amp;Ztišit</translation>
+        <translation type="obsolete">&amp;Ztišit</translation>
     </message>
     <message>
         <source>Xfer</source>
         <comment>toolbar text</comment>
-        <translation>Zprostředkovat</translation>
+        <translation type="obsolete">Zprostředkovat</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
         <comment>menu text</comment>
-        <translation>&amp;Zprostředkovat...</translation>
+        <translation type="obsolete">&amp;Zprostředkovat...</translation>
     </message>
     <message>
         <source>Message waiting indication.</source>
@@ -2411,6 +2378,94 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     <message>
         <source>Admin center</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call</source>
+        <translation type="unfinished">Volat</translation>
+    </message>
+    <message>
+        <source>&amp;Answer</source>
+        <translation type="unfinished">&amp;Odpovědět</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bye</source>
+        <translation type="unfinished">Zavěsit (&amp;Bye)</translation>
+    </message>
+    <message>
+        <source>Bye</source>
+        <translation type="unfinished">Zavěsit</translation>
+    </message>
+    <message>
+        <source>&amp;Reject</source>
+        <translation type="unfinished">&amp;Odmítnout</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished">Odmítnout</translation>
+    </message>
+    <message>
+        <source>&amp;Hold</source>
+        <translation type="unfinished">&amp;Podržet</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation type="unfinished">Podržet</translation>
+    </message>
+    <message>
+        <source>R&amp;edirect...</source>
+        <translation type="unfinished">&amp;Přesměrovat...</translation>
+    </message>
+    <message>
+        <source>Redirect</source>
+        <translation type="unfinished">Přesměrovat</translation>
+    </message>
+    <message>
+        <source>&amp;Dtmf...</source>
+        <translation type="unfinished">&amp;DTMF...</translation>
+    </message>
+    <message>
+        <source>Dtmf</source>
+        <translation type="unfinished">DTMF</translation>
+    </message>
+    <message>
+        <source>&amp;Terminal capabilities...</source>
+        <translation type="unfinished">&amp;Parametry protistrany...</translation>
+    </message>
+    <message>
+        <source>&amp;Redial</source>
+        <translation type="unfinished">&amp;Opakovat</translation>
+    </message>
+    <message>
+        <source>Redial</source>
+        <translation type="unfinished">Opakovat</translation>
+    </message>
+    <message>
+        <source>&amp;Conference</source>
+        <translation type="unfinished">&amp;Konference</translation>
+    </message>
+    <message>
+        <source>Conf</source>
+        <translation type="unfinished">Konference</translation>
+    </message>
+    <message>
+        <source>&amp;Mute</source>
+        <translation type="unfinished">&amp;Ztišit</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation type="unfinished">Ztišit</translation>
+    </message>
+    <message>
+        <source>Trans&amp;fer...</source>
+        <translation type="unfinished">&amp;Zprostředkovat...</translation>
+    </message>
+    <message>
+        <source>Xfer</source>
+        <translation type="unfinished">Zprostředkovat</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2637,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>User profile</source>
-        <translation>Uživatelský profil</translation>
+        <translation type="obsolete">Uživatelský profil</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -2743,7 +2798,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Alt+I</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt+I</translation>
     </message>
     <message>
         <source>Dia&amp;mondcard</source>
@@ -2751,7 +2806,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Alt+M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt+M</translation>
     </message>
     <message>
         <source>Modify profile</source>
@@ -2770,7 +2825,15 @@ Please select a profile.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;Choose what method you wish to use.&lt;/html&gt;</source>
+        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose what method you wish to use.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2819,7 +2882,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>User</source>
-        <translation>Uživatel</translation>
+        <translation type="obsolete">Uživatel</translation>
     </message>
     <message>
         <source>Register</source>
@@ -3287,7 +3350,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Default user profiles</source>
-        <translation>Standardní uživatelský profil</translation>
+        <translation type="obsolete">Standardní uživatelský profil</translation>
     </message>
     <message>
         <source>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</source>
@@ -3693,7 +3756,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Type of transfer</source>
-        <translation>Typ přesměrování</translation>
+        <translation type="obsolete">Typ přesměrování</translation>
     </message>
     <message>
         <source>&amp;Blind transfer</source>

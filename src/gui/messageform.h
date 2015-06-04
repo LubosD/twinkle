@@ -1,10 +1,9 @@
 #ifndef MESSAGEFORM_H
 #define MESSAGEFORM_H
-#include <textbrowsernoautolink.h>
 #include "getaddressform.h"
 #include "im/msg_session.h"
 #include "phone.h"
-#include <QtGui/QLabel>
+#include <QLabel>
 #include <QtCore/QStringRef>
 #include "textbrowsernoautolink.h"
 #include "user.h"
@@ -38,7 +37,7 @@ public slots:
 	virtual void displayError( const QString & errorMsg );
 	virtual void displayDeliveryNotification( const QString & notification );
 	virtual void setRemotePartyCaption( void );
-	virtual void showAttachmentPopupMenu( const QString & attachment );
+	virtual void showAttachmentPopupMenu( const QUrl & attachment );
     virtual void attachmentPopupActivated( QAction* action );
 	virtual void saveAttachment();
 	virtual void chooseFileToSend();

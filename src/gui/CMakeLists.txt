@@ -3,8 +3,7 @@ project(twinkle-gui)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-qt4_wrap_ui(
-	twinkle_UIS
+set(twinkle_ui_SRC
 	addresscardform.ui
 	authenticationform.ui
 	buddyform.ui
@@ -32,9 +31,7 @@ qt4_wrap_ui(
 	wizardform.ui
 )
 
-qt4_add_resources(twinkle_QRC icons.qrc)
-
-qt4_add_translation(twinkle_LANG
+set (twinkle_lang_SRC
 	lang/twinkle_cs.ts
 	lang/twinkle_de.ts
 	lang/twinkle_fr.ts
@@ -43,45 +40,37 @@ qt4_add_translation(twinkle_LANG
 	lang/twinkle_sv.ts
 )
 
-qt4_wrap_cpp(twinkle_MOC
-	gui.h
-	dtmfform.h
-	deregisterform.h
-	logviewform.h
-	numberconversionform.h
-	getprofilenameform.h
-	address_finder.h
-	qt_translator.h
-	core_strings.h
-	addresstablemodel.h
-	yesnodialog.h
-	command_args.h
-	messageformview.h
-	buddylistview.h
-	textbrowsernoautolink.h
-	twinkleapplication.h
-
-	mphoneform.h
-	inviteform.h
-	getaddressform.h
-	termcapform.h
-	redirectform.h
-	messageform.h
-	srvredirectform.h
-	userprofileform.h
-	transferform.h
-	syssettingsform.h
-	historyform.h
-	selectuserform.h
-	selectprofileform.h
-	buddyform.h
-	diamondcardprofileform.h
-	addresscardform.h
-	authenticationform.h
-	selectnicform.h
-	sendfileform.h
-	wizardform.h
+if (WITH_QT4)
+qt4_wrap_ui(
+	twinkle_UIS
+	${twinkle_ui_SRC}
 )
+
+qt4_add_resources(twinkle_QRC icons.qrc)
+
+qt4_add_translation(twinkle_LANG
+	${twinkle_lang_SRC}
+)
+
+set(qt_LIBS Qt4::QtGui)
+
+elseif (WITH_QT5)
+
+qt5_wrap_ui(
+	twinkle_UIS
+	${twinkle_ui_SRC}
+)
+
+qt5_add_resources(twinkle_QRC icons.qrc)
+
+qt5_add_translation(twinkle_LANG
+	${twinkle_lang_SRC}
+)
+
+set(qt_LIBS Qt5::Widgets)
+endif (WITH_QT4)
+
+set(CMAKE_AUTOMOC ON)
 
 set(TWINKLE_GUI-SRCS
 	mphoneform.cpp
@@ -118,6 +107,7 @@ set(TWINKLE_GUI-SRCS
 	numberconversionform.cpp
 	twinkleapplication.cpp
 	yesnodialog.cpp
+	textbrowsernoautolink.cpp
 
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>
@@ -135,7 +125,6 @@ set(TWINKLE_GUI-SRCS
 	$<TARGET_OBJECTS:libtwinkle-utils>
 	${twinkle_UIS}
 	${twinkle_QRC}
-	${twinkle_MOC}
 	${twinkle_LANG}
 )
 
@@ -143,7 +132,7 @@ add_executable(twinkle ${TWINKLE_GUI-SRCS})
 target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
 	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-        ${Boost_LIBRARIES} Qt4::QtGui ${ALSA_LIBRARY})
+	${Boost_LIBRARIES} ${ALSA_LIBRARY} ${qt_LIBS})
 
 install(TARGETS twinkle DESTINATION bin)
 install(FILES ${twinkle_LANG} DESTINATION share/twinkle/lang)

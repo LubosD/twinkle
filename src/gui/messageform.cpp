@@ -318,7 +318,11 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 	// Timestamp and name of sender
 	if (msg.direction == im::MSG_DIR_IN) s += "<font color=\"blue\">";
 	s += time2str(msg.timestamp, "%H:%M:%S ").c_str();
+#if QT_VERSION >= 0x050000
+	s += name.toHtmlEscaped();
+#else
 	s += Qt::escape(name);
+#endif
 	if (msg.direction == im::MSG_DIR_IN) s += "</font>";
 	s += "</b>";
 	
@@ -337,7 +341,11 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 		if (msg.format == im::TXT_HTML) {
 			s += msg.message.c_str();
 		} else {
+#if QT_VERSION >= 0x050000
+			s += QString::fromStdString(msg.message).toHtmlEscaped();
+#else
 			s += Qt::escape(msg.message.c_str());
+#endif
 		}
 	}
 	
@@ -428,7 +436,11 @@ void MessageForm::displayError(const QString &errorMsg)
 	s += "<b>";
     s += tr("Delivery failure");
 	s += ": </b>";
+#if QT_VERSION >= 0x050000
+	s += errorMsg.toHtmlEscaped();
+#else
 	s += Qt::escape(errorMsg);
+#endif
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -440,7 +452,11 @@ void MessageForm::displayDeliveryNotification(const QString &notification)
 	s += "<b>";
     s += tr("Delivery notification");
 	s += ": </b>";
+#if QT_VERSION >= 0x050000
+	s += notification.toHtmlEscaped();
+#else
 	s += Qt::escape(notification);
+#endif
 	s += "</font>";
 	
 	conversationBrowser->append(s);
@@ -454,7 +470,7 @@ void MessageForm::setRemotePartyCaption(void) {
 			remote_party.display, remote_party.url).c_str());
 }
 
-void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
+void MessageForm::showAttachmentPopupMenu(const QUrl &attachment) {
 #ifdef HAVE_KDE
 	vector<KService::Ptr> *serviceMap = (vector<KService::Ptr> *)_serviceMap;
 	
@@ -471,7 +487,7 @@ void MessageForm::showAttachmentPopupMenu(const QString &attachment) {
 	
 	// Store attachment. When the user selects an attachment we still
 	// know which attachment was clicked.
-	clickedAttachment = attachment;
+	clickedAttachment = attachment.toLocalFile();
 	
 	attachmentPopupMenu->clear();
 	

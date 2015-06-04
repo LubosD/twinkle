@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -68,6 +70,21 @@
     <message>
         <source>You must fill in a phone number or SIP address.</source>
         <translation>Sie müssen eine Nummer oder SIP-Adresse angeben.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Name</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation type="unfinished">Telefon</translation>
+    </message>
+    <message>
+        <source>Remark</source>
+        <translation type="unfinished">Anmerkung</translation>
     </message>
 </context>
 <context>
@@ -318,48 +335,8 @@
 <context>
     <name>DiamondcardProfileForm</name>
     <message>
-        <source>Twinkle - Diamondcard User Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard account ID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Account ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;PIN code:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Your name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">Abbruch (Es&amp;c)</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Abbruch (Es&amp;c)</translation>
     </message>
     <message>
         <source>Fill in your account ID.</source>
@@ -371,15 +348,6 @@
     </message>
     <message>
         <source>A user profile with name %1 already exists.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard PIN code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
-&lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the &quot;sign up&quot; link.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -470,11 +438,11 @@
     <name>FreeDeskSysTray</name>
     <message>
         <source>Show/Hide</source>
-        <translation>Wiederherstellen/Minimieren</translation>
+        <translation type="obsolete">Wiederherstellen/Minimieren</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Beenden</translation>
+        <translation type="obsolete">Beenden</translation>
     </message>
 </context>
 <context>
@@ -876,15 +844,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation type="obsolete">Name</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation>Telefon</translation>
+        <translation type="obsolete">Telefon</translation>
     </message>
     <message>
         <source>&amp;Show only SIP addresses</source>
@@ -943,7 +911,7 @@ Nutzen Sie zum Anlegen und Bearbeiten Ihrer systemweiten Adressinformationen das
     </message>
     <message>
         <source>Remark</source>
-        <translation>Anmerkung</translation>
+        <translation type="obsolete">Anmerkung</translation>
     </message>
     <message>
         <source>Contacts in the local address book of Twinkle.</source>
@@ -1426,7 +1394,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Instant message toolbar</source>
-        <translation>Instant Message Werkzeugleiste</translation>
+        <translation type="obsolete">Instant Message Werkzeugleiste</translation>
     </message>
     <message>
         <source>Send file...</source>
@@ -1577,7 +1545,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Visual indication of line state.</source>
-        <translation>Optische Anzeige des Leitungsstatus.</translation>
+        <translation type="obsolete">Optische Anzeige des Leitungsstatus.</translation>
     </message>
     <message>
         <source>idle</source>
@@ -1586,15 +1554,15 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Call is on hold</source>
-        <translation>Anruf gehalten</translation>
+        <translation type="obsolete">Anruf gehalten</translation>
     </message>
     <message>
         <source>Voice is muted</source>
-        <translation>stummgeschaltet</translation>
+        <translation type="obsolete">stummgeschaltet</translation>
     </message>
     <message>
         <source>Conference call</source>
-        <translation>Konferenz</translation>
+        <translation type="obsolete">Konferenz</translation>
     </message>
     <message>
         <source>Transferring call</source>
@@ -1611,7 +1579,7 @@ Both ends of an encrypted voice channel receive the same SAS on the first call. 
 &lt;p&gt;
 If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don&apos;t have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
+        <translation type="obsolete">&lt;p&gt;
 Das Vorhängeschloss erscheint, wenn eine abhörsicher verschüsselte Verbindung zur Übertragung der Sprachdaten aufgebaut werden konnte.
 &lt;/p&gt;
 &lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
@@ -1717,7 +1685,7 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     </message>
     <message>
         <source>Call Toolbar</source>
-        <translation>Anruf Werkzeugleiste</translation>
+        <translation type="obsolete">Anruf Werkzeugleiste</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -2171,118 +2139,118 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     <message>
         <source>Call</source>
         <comment>toolbar text</comment>
-        <translation>Anruf+</translation>
+        <translation type="obsolete">Anruf+</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
         <comment>call menu text</comment>
-        <translation>Anruf+...  (&amp;Call)</translation>
+        <translation type="obsolete">Anruf+...  (&amp;Call)</translation>
     </message>
     <message>
         <source>Answer</source>
         <comment>toolbar text</comment>
-        <translation>Ja?</translation>
+        <translation type="obsolete">Ja?</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
         <comment>menu text</comment>
-        <translation>&amp;Annehmen</translation>
+        <translation type="obsolete">&amp;Annehmen</translation>
     </message>
     <message>
         <source>Bye</source>
         <comment>toolbar text</comment>
-        <translation>Ende</translation>
+        <translation type="obsolete">Ende</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
         <comment>menu text</comment>
-        <translation>Auflegen (&amp;Bye)</translation>
+        <translation type="obsolete">Auflegen (&amp;Bye)</translation>
     </message>
     <message>
         <source>Reject</source>
         <comment>toolbar text</comment>
-        <translation>Nein!</translation>
+        <translation type="obsolete">Nein!</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
         <comment>menu text</comment>
-        <translation>Ab&amp;weisen</translation>
+        <translation type="obsolete">Ab&amp;weisen</translation>
     </message>
     <message>
         <source>Hold</source>
         <comment>toolbar text</comment>
-        <translation>Halten</translation>
+        <translation type="obsolete">Halten</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
         <comment>menu text</comment>
-        <translation>&amp;Halten</translation>
+        <translation type="obsolete">&amp;Halten</translation>
     </message>
     <message>
         <source>Redirect</source>
         <comment>toolbar text</comment>
-        <translation>Umleit</translation>
+        <translation type="obsolete">Umleit</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
         <comment>menu text</comment>
-        <translation>Uml&amp;eiten...</translation>
+        <translation type="obsolete">Uml&amp;eiten...</translation>
     </message>
     <message>
         <source>Dtmf</source>
         <comment>toolbar text</comment>
-        <translation>DTMF</translation>
+        <translation type="obsolete">DTMF</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
         <comment>menu text</comment>
-        <translation>&amp;DTMF...</translation>
+        <translation type="obsolete">&amp;DTMF...</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
         <comment>menu text</comment>
-        <translation>&amp;Fähigkeiten Gegenstelle...</translation>
+        <translation type="obsolete">&amp;Fähigkeiten Gegenstelle...</translation>
     </message>
     <message>
         <source>Redial</source>
         <comment>toolbar text</comment>
-        <translation>-&gt; -&gt;</translation>
+        <translation type="obsolete">-&gt; -&gt;</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
         <comment>menu text</comment>
-        <translation>Wahlwiederholun&amp;g</translation>
+        <translation type="obsolete">Wahlwiederholun&amp;g</translation>
     </message>
     <message>
         <source>Conf</source>
         <comment>toolbar text</comment>
-        <translation>3er-K.</translation>
+        <translation type="obsolete">3er-K.</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
         <comment>menu text</comment>
-        <translation>Konferen&amp;z</translation>
+        <translation type="obsolete">Konferen&amp;z</translation>
     </message>
     <message>
         <source>Mute</source>
         <comment>toolbar text</comment>
-        <translation>Stumm</translation>
+        <translation type="obsolete">Stumm</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
         <comment>menu text</comment>
-        <translation>Stu&amp;mm
+        <translation type="obsolete">Stu&amp;mm
 </translation>
     </message>
     <message>
         <source>Xfer</source>
         <comment>toolbar text</comment>
-        <translation>Vmtlg</translation>
+        <translation type="obsolete">Vmtlg</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
         <comment>menu text</comment>
-        <translation>Vermitte&amp;ln...</translation>
+        <translation type="obsolete">Vermitte&amp;ln...</translation>
     </message>
     <message>
         <source>Voice mail</source>
@@ -2420,6 +2388,95 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     <message>
         <source>Admin center</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call</source>
+        <translation type="unfinished">Anruf+</translation>
+    </message>
+    <message>
+        <source>&amp;Answer</source>
+        <translation type="unfinished">&amp;Annehmen</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bye</source>
+        <translation type="unfinished">Auflegen (&amp;Bye)</translation>
+    </message>
+    <message>
+        <source>Bye</source>
+        <translation type="unfinished">Ende</translation>
+    </message>
+    <message>
+        <source>&amp;Reject</source>
+        <translation type="unfinished">Ab&amp;weisen</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hold</source>
+        <translation type="unfinished">&amp;Halten</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation type="unfinished">Halten</translation>
+    </message>
+    <message>
+        <source>R&amp;edirect...</source>
+        <translation type="unfinished">Uml&amp;eiten...</translation>
+    </message>
+    <message>
+        <source>Redirect</source>
+        <translation type="unfinished">Umleit</translation>
+    </message>
+    <message>
+        <source>&amp;Dtmf...</source>
+        <translation type="unfinished">&amp;DTMF...</translation>
+    </message>
+    <message>
+        <source>Dtmf</source>
+        <translation type="unfinished">DTMF</translation>
+    </message>
+    <message>
+        <source>&amp;Terminal capabilities...</source>
+        <translation type="unfinished">&amp;Fähigkeiten Gegenstelle...</translation>
+    </message>
+    <message>
+        <source>&amp;Redial</source>
+        <translation type="unfinished">Wahlwiederholun&amp;g</translation>
+    </message>
+    <message>
+        <source>Redial</source>
+        <translation type="unfinished">-&gt; -&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Conference</source>
+        <translation type="unfinished">Konferen&amp;z</translation>
+    </message>
+    <message>
+        <source>Conf</source>
+        <translation type="unfinished">3er-K.</translation>
+    </message>
+    <message>
+        <source>&amp;Mute</source>
+        <translation type="unfinished">Stu&amp;mm
+</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation type="unfinished">Stumm</translation>
+    </message>
+    <message>
+        <source>Trans&amp;fer...</source>
+        <translation type="unfinished">Vermitte&amp;ln...</translation>
+    </message>
+    <message>
+        <source>Xfer</source>
+        <translation type="unfinished">Vmtlg</translation>
     </message>
 </context>
 <context>
@@ -2591,7 +2648,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>User profile</source>
-        <translation>Benutzerprofil</translation>
+        <translation type="obsolete">Benutzerprofil</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -2783,7 +2840,15 @@ Please select a profile.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;Choose what method you wish to use.&lt;/html&gt;</source>
+        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose what method you wish to use.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2832,7 +2897,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>User</source>
-        <translation>Benutzer</translation>
+        <translation type="obsolete">Benutzer</translation>
     </message>
     <message>
         <source>Register</source>
@@ -3305,7 +3370,7 @@ Im Normalfall führt das Aktivieren eher zu einer kaum bemerkbaren Verschlechter
     </message>
     <message>
         <source>Default user profiles</source>
-        <translation>Default Benutzerprofile</translation>
+        <translation type="obsolete">Default Benutzerprofile</translation>
     </message>
     <message>
         <source>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</source>
@@ -3714,7 +3779,7 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>Type of transfer</source>
-        <translation>Art der Vermittlung</translation>
+        <translation type="obsolete">Art der Vermittlung</translation>
     </message>
     <message>
         <source>&amp;Blind transfer</source>

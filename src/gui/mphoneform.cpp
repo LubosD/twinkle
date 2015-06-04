@@ -1420,12 +1420,12 @@ void MphoneForm::updateMenuStatus()
 	} else {
         serviceDnd->setChecked(false);
         serviceDnd->setCheckable(false);
-		connect(serviceDnd, SIGNAL(activated()),
+		connect(serviceDnd, SIGNAL(triggered()),
 			this, SLOT(srvDnd()));
 		
         serviceAutoAnswer->setChecked(false);
         serviceAutoAnswer->setCheckable(false);
-		connect(serviceAutoAnswer, SIGNAL(activated()),
+		connect(serviceAutoAnswer, SIGNAL(triggered()),
 			this, SLOT(srvAutoAnswer()));
 	}
 	

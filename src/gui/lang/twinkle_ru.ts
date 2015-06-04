@@ -1,5 +1,6 @@
-<!DOCTYPE TS><TS>
-<defaultcodec></defaultcodec>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -69,6 +70,21 @@
     <message>
         <source>You must fill in a phone number or SIP address.</source>
         <translation>Вы должны заполнить поле номер телефона или SIP адрес</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Имя</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation type="unfinished">Телефон</translation>
+    </message>
+    <message>
+        <source>Remark</source>
+        <translation type="unfinished">Описание</translation>
     </message>
 </context>
 <context>
@@ -319,48 +335,12 @@
 <context>
     <name>DiamondcardProfileForm</name>
     <message>
-        <source>Twinkle - Diamondcard User Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard account ID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Account ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;PIN code:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Your name:</source>
-        <translation type="unfinished">&amp;Ваше имя:</translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;&lt;u&gt;Sign up for a Diamondcard account&lt;/u&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Ваше имя:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отмена</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Отмена</translation>
     </message>
     <message>
         <source>Fill in your account ID.</source>
@@ -372,15 +352,6 @@
     </message>
     <message>
         <source>A user profile with name %1 already exists.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Diamondcard PIN code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
-&lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the &quot;sign up&quot; link.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -471,11 +442,11 @@
     <name>FreeDeskSysTray</name>
     <message>
         <source>Show/Hide</source>
-        <translation>Показать/Скрыть</translation>
+        <translation type="obsolete">Показать/Скрыть</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Выход</translation>
+        <translation type="obsolete">Выход</translation>
     </message>
 </context>
 <context>
@@ -877,15 +848,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation type="obsolete">Имя</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation type="obsolete">Тип</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation>Телефон</translation>
+        <translation type="obsolete">Телефон</translation>
     </message>
     <message>
         <source>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</source>
@@ -921,7 +892,7 @@
     </message>
     <message>
         <source>Remark</source>
-        <translation>Описание</translation>
+        <translation type="obsolete">Описание</translation>
     </message>
     <message>
         <source>Contacts in the local address book of Twinkle.</source>
@@ -1424,7 +1395,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Instant message toolbar</source>
-        <translation>Панель мгновенных сообщений</translation>
+        <translation type="obsolete">Панель мгновенных сообщений</translation>
     </message>
     <message>
         <source>Send file...</source>
@@ -1583,7 +1554,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Visual indication of line state.</source>
-        <translation>Наглядное отображение состояния линии.</translation>
+        <translation type="obsolete">Наглядное отображение состояния линии.</translation>
     </message>
     <message>
         <source>idle</source>
@@ -1592,32 +1563,19 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Call is on hold</source>
-        <translation>Звонок на удержании</translation>
+        <translation type="obsolete">Звонок на удержании</translation>
     </message>
     <message>
         <source>Voice is muted</source>
-        <translation>Микрофон заглушен</translation>
+        <translation type="obsolete">Микрофон заглушен</translation>
     </message>
     <message>
         <source>Conference call</source>
-        <translation>Конференц связь</translation>
+        <translation type="obsolete">Конференц связь</translation>
     </message>
     <message>
         <source>Transferring call</source>
         <translation>Передача звонка</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;
-The padlock indicates that your voice is encrypted during transport over the network.
-&lt;/p&gt;
-&lt;h3&gt;SAS - Short Authentication String&lt;/h3&gt;
-&lt;p&gt;
-Both ends of an encrypted voice channel receive the same SAS on the first call. If the SAS is different at each end, your voice channel may be compromised by a man-in-the-middle attack (MitM).
-&lt;/p&gt;
-&lt;p&gt;
-If the SAS is equal at both ends, then you should confirm it by clicking this padlock for stronger security of future calls to the same destination. For subsequent calls to the same destination, you don&apos;t have to confirm the SAS again. The padlock will show a check symbol when the SAS has been confirmed.
-&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>sas</source>
@@ -1715,7 +1673,7 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     </message>
     <message>
         <source>Call Toolbar</source>
-        <translation>Панель звонков</translation>
+        <translation type="obsolete">Панель звонков</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -1740,12 +1698,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Call</source>
         <comment>toolbar text</comment>
-        <translation>Звон</translation>
+        <translation type="obsolete">Звон</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
         <comment>call menu text</comment>
-        <translation>&amp;Звонить...</translation>
+        <translation type="obsolete">&amp;Звонить...</translation>
     </message>
     <message>
         <source>Call someone</source>
@@ -1758,12 +1716,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Answer</source>
         <comment>toolbar text</comment>
-        <translation>Ответ</translation>
+        <translation type="obsolete">Ответ</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
         <comment>menu text</comment>
-        <translation>&amp;Ответить</translation>
+        <translation type="obsolete">&amp;Ответить</translation>
     </message>
     <message>
         <source>Answer incoming call</source>
@@ -1776,12 +1734,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Bye</source>
         <comment>toolbar text</comment>
-        <translation>Заверш</translation>
+        <translation type="obsolete">Заверш</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
         <comment>menu text</comment>
-        <translation>&amp;Завершить</translation>
+        <translation type="obsolete">&amp;Завершить</translation>
     </message>
     <message>
         <source>Release call</source>
@@ -1794,12 +1752,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Reject</source>
         <comment>toolbar text</comment>
-        <translation>Отклон</translation>
+        <translation type="obsolete">Отклон</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
         <comment>menu text</comment>
-        <translation>&amp;Отклонить</translation>
+        <translation type="obsolete">&amp;Отклонить</translation>
     </message>
     <message>
         <source>Reject incoming call</source>
@@ -1812,12 +1770,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Hold</source>
         <comment>toolbar text</comment>
-        <translation>Удерж</translation>
+        <translation type="obsolete">Удерж</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
         <comment>menu text</comment>
-        <translation>&amp;Удержать</translation>
+        <translation type="obsolete">&amp;Удержать</translation>
     </message>
     <message>
         <source>Put a call on hold, or retrieve a held call</source>
@@ -1826,26 +1784,16 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Redirect</source>
         <comment>toolbar text</comment>
-        <translation>Направ</translation>
+        <translation type="obsolete">Направ</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
         <comment>menu text</comment>
-        <translation>П&amp;еренаправить...</translation>
+        <translation type="obsolete">П&amp;еренаправить...</translation>
     </message>
     <message>
         <source>Redirect incoming call without answering</source>
         <translation>Перенаправить входящий звонок без ответа</translation>
-    </message>
-    <message>
-        <source>Dtmf</source>
-        <comment>toolbar text</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Dtmf...</source>
-        <comment>menu text</comment>
-        <translation></translation>
     </message>
     <message>
         <source>Open keypad to enter digits for voice menu&apos;s</source>
@@ -1886,7 +1834,7 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>&amp;Terminal capabilities...</source>
         <comment>menu text</comment>
-        <translation>&amp;Ограничения терминала...</translation>
+        <translation type="obsolete">&amp;Ограничения терминала...</translation>
     </message>
     <message>
         <source>Request terminal capabilities from someone</source>
@@ -1911,12 +1859,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Redial</source>
         <comment>toolbar text</comment>
-        <translation>Повт</translation>
+        <translation type="obsolete">Повт</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
         <comment>menu text</comment>
-        <translation>&amp;Повторить</translation>
+        <translation type="obsolete">&amp;Повторить</translation>
     </message>
     <message>
         <source>Repeat last call</source>
@@ -1945,12 +1893,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Conf</source>
         <comment>toolbar text</comment>
-        <translation>Конф</translation>
+        <translation type="obsolete">Конф</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
         <comment>menu text</comment>
-        <translation>&amp;Конференция</translation>
+        <translation type="obsolete">&amp;Конференция</translation>
     </message>
     <message>
         <source>Join two calls in a 3-way conference</source>
@@ -1959,12 +1907,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Mute</source>
         <comment>toolbar text</comment>
-        <translation>Вык.Зв</translation>
+        <translation type="obsolete">Вык.Зв</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
         <comment>menu text</comment>
-        <translation>&amp;Выключить звук</translation>
+        <translation type="obsolete">&amp;Выключить звук</translation>
     </message>
     <message>
         <source>Mute a call</source>
@@ -1973,12 +1921,12 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     <message>
         <source>Xfer</source>
         <comment>toolbar text</comment>
-        <translation>Перекл</translation>
+        <translation type="obsolete">Перекл</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
         <comment>menu text</comment>
-        <translation>Пере&amp;ключить...</translation>
+        <translation type="obsolete">Пере&amp;ключить...</translation>
     </message>
     <message>
         <source>Transfer call</source>
@@ -2400,6 +2348,94 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
         <source>Admin center</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Call</source>
+        <translation type="unfinished">Звон</translation>
+    </message>
+    <message>
+        <source>&amp;Answer</source>
+        <translation type="unfinished">&amp;Ответить</translation>
+    </message>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bye</source>
+        <translation type="unfinished">&amp;Завершить</translation>
+    </message>
+    <message>
+        <source>Bye</source>
+        <translation type="unfinished">Заверш</translation>
+    </message>
+    <message>
+        <source>&amp;Reject</source>
+        <translation type="unfinished">&amp;Отклонить</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hold</source>
+        <translation type="unfinished">&amp;Удержать</translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation type="unfinished">Удерж</translation>
+    </message>
+    <message>
+        <source>R&amp;edirect...</source>
+        <translation type="unfinished">П&amp;еренаправить...</translation>
+    </message>
+    <message>
+        <source>Redirect</source>
+        <translation type="unfinished">Направ</translation>
+    </message>
+    <message>
+        <source>&amp;Dtmf...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dtmf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Terminal capabilities...</source>
+        <translation type="unfinished">&amp;Ограничения терминала...</translation>
+    </message>
+    <message>
+        <source>&amp;Redial</source>
+        <translation type="unfinished">&amp;Повторить</translation>
+    </message>
+    <message>
+        <source>Redial</source>
+        <translation type="unfinished">Повт</translation>
+    </message>
+    <message>
+        <source>&amp;Conference</source>
+        <translation type="unfinished">&amp;Конференция</translation>
+    </message>
+    <message>
+        <source>Conf</source>
+        <translation type="unfinished">Конф</translation>
+    </message>
+    <message>
+        <source>&amp;Mute</source>
+        <translation type="unfinished">&amp;Выключить звук</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation type="unfinished">Вык.Зв</translation>
+    </message>
+    <message>
+        <source>Trans&amp;fer...</source>
+        <translation type="unfinished">Пере&amp;ключить...</translation>
+    </message>
+    <message>
+        <source>Xfer</source>
+        <translation type="unfinished">Перекл</translation>
+    </message>
 </context>
 <context>
     <name>NumberConversionForm</name>
@@ -2570,7 +2606,7 @@ If the SAS is equal at both ends, then you should confirm it by clicking this pa
     </message>
     <message>
         <source>User profile</source>
-        <translation>Профиль пользователя</translation>
+        <translation type="obsolete">Профиль пользователя</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -2759,7 +2795,15 @@ Please select a profile.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;Choose what method you wish to use.&lt;/html&gt;</source>
+        <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose what method you wish to use.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2808,7 +2852,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>User</source>
-        <translation>Пользователь</translation>
+        <translation type="obsolete">Пользователь</translation>
     </message>
     <message>
         <source>Register</source>
@@ -3284,7 +3328,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Default user profiles</source>
-        <translation>Стандартный профиль пользователя</translation>
+        <translation type="obsolete">Стандартный профиль пользователя</translation>
     </message>
     <message>
         <source>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</source>
@@ -3618,7 +3662,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>Type of transfer</source>
-        <translation>Тип переключения</translation>
+        <translation type="obsolete">Тип переключения</translation>
     </message>
     <message>
         <source>&amp;Blind transfer</source>
