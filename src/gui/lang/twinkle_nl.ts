@@ -3737,6 +3737,18 @@ Als voor het beantwoorden van een inkomend gesprek, de microfoon of speaker onbe
         <source>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</source>
         <translation>Het commando waamee uw web browser kan worden opgestart. Als u dit veld leeg laat, dan zal Twinkle zelf proberen om uw standaard web browser op te starten.</translation>
     </message>
+    <message>
+        <source>512</source>
+        <translation type="unfinished">512</translation>
+    </message>
+    <message>
+        <source>1024</source>
+        <translation type="unfinished">1024</translation>
+    </message>
+    <message>
+        <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>

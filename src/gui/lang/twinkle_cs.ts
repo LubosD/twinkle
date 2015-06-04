@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1" language="cs" sourcelanguage="en">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -76,15 +76,15 @@
     <name>AddressTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Jméno</translation>
+        <translation>Jméno</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation type="unfinished">Telefon</translation>
+        <translation>Telefon</translation>
     </message>
     <message>
         <source>Remark</source>
-        <translation type="unfinished">Poznámka</translation>
+        <translation>Poznámka</translation>
     </message>
 </context>
 <context>
@@ -826,15 +826,15 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Transferred by: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Přesměroval: %1</translation>
     </message>
     <message>
         <source>Cannot open web browser: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu otevřit webový prohlížeč: %1</translation>
     </message>
     <message>
         <source>Configure your web browser in the system settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Změňte nastavení vašeho prohlížeče v systémovém nastavení.</translation>
     </message>
 </context>
 <context>
@@ -1216,15 +1216,15 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Number of calls:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet hovorů:</translation>
     </message>
     <message>
         <source>###</source>
-        <translation type="unfinished"></translation>
+        <translation># # #</translation>
     </message>
     <message>
         <source>Total call duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkové trvání hovorů:</translation>
     </message>
 </context>
 <context>
@@ -1297,7 +1297,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -1431,11 +1431,11 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost</translation>
     </message>
 </context>
 <context>
@@ -2329,7 +2329,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>Diamondcard</source>
@@ -2337,11 +2337,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Příručka</translation>
     </message>
     <message>
         <source>&amp;Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Příručka</translation>
     </message>
     <message>
         <source>Sign up</source>
@@ -2381,91 +2381,91 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Call</source>
-        <translation type="unfinished">Volat</translation>
+        <translation>Volat</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
-        <translation type="unfinished">&amp;Odpovědět</translation>
+        <translation>Přijm&amp;out</translation>
     </message>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Přijmout</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
-        <translation type="unfinished">Zavěsit (&amp;Bye)</translation>
+        <translation>Zavěsit (&amp;Bye)</translation>
     </message>
     <message>
         <source>Bye</source>
-        <translation type="unfinished">Zavěsit</translation>
+        <translation>Zavěsit</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
-        <translation type="unfinished">&amp;Odmítnout</translation>
+        <translation>&amp;Odmítnout</translation>
     </message>
     <message>
         <source>Reject</source>
-        <translation type="unfinished">Odmítnout</translation>
+        <translation>Odmítnout</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
-        <translation type="unfinished">&amp;Podržet</translation>
+        <translation>&amp;Podržet</translation>
     </message>
     <message>
         <source>Hold</source>
-        <translation type="unfinished">Podržet</translation>
+        <translation>Podržet</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
-        <translation type="unfinished">&amp;Přesměrovat...</translation>
+        <translation>&amp;Přesměrovat...</translation>
     </message>
     <message>
         <source>Redirect</source>
-        <translation type="unfinished">Přesměrovat</translation>
+        <translation>Přesměrovat</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
-        <translation type="unfinished">&amp;DTMF...</translation>
+        <translation>&amp;DTMF...</translation>
     </message>
     <message>
         <source>Dtmf</source>
-        <translation type="unfinished">DTMF</translation>
+        <translation>DTMF</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
-        <translation type="unfinished">&amp;Parametry protistrany...</translation>
+        <translation>&amp;Parametry protistrany...</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
-        <translation type="unfinished">&amp;Opakovat</translation>
+        <translation>&amp;Opakovat</translation>
     </message>
     <message>
         <source>Redial</source>
-        <translation type="unfinished">Opakovat</translation>
+        <translation>Opakovat</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
-        <translation type="unfinished">&amp;Konference</translation>
+        <translation>&amp;Konference</translation>
     </message>
     <message>
         <source>Conf</source>
-        <translation type="unfinished">Konference</translation>
+        <translation>Konference</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
-        <translation type="unfinished">&amp;Ztišit</translation>
+        <translation>&amp;Ztišit</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished">Ztišit</translation>
+        <translation>Ztišit</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
-        <translation type="unfinished">&amp;Zprostředkovat...</translation>
+        <translation>&amp;Zprostředkovat...</translation>
     </message>
     <message>
         <source>Xfer</source>
-        <translation type="unfinished">Zprostředkovat</translation>
+        <translation>Zprostředkovat</translation>
     </message>
 </context>
 <context>
@@ -2563,15 +2563,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation type="unfinished">F12</translation>
+        <translation>F12</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished">F11</translation>
+        <translation>F11</translation>
     </message>
 </context>
 <context>
@@ -3097,15 +3097,15 @@ Please select a profile.</source>
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished">F11</translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation type="unfinished">F12</translation>
+        <translation>F12</translation>
     </message>
 </context>
 <context>
@@ -3651,11 +3651,23 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>W&amp;eb browser command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkaz pro webový prohlížeč:</translation>
     </message>
     <message>
         <source>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</source>
-        <translation type="unfinished"></translation>
+        <translation>Příkaz pro spuštění webového prohlížeče. Pokud ponecháte toto pole prázdné, Twinkle se pokusí zjistit váš výchozí prohlížeč.</translation>
+    </message>
+    <message>
+        <source>512</source>
+        <translation>512</translation>
+    </message>
+    <message>
+        <source>1024</source>
+        <translation>1024</translation>
+    </message>
+    <message>
+        <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
+        <translation>Tip: při praskajícím zvuku s PulseAudio nastavte nejvyšší periodu pro ALSA play.</translation>
     </message>
 </context>
 <context>
@@ -3670,7 +3682,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Incoming Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Příchozí hovor</translation>
     </message>
 </context>
 <context>
@@ -3713,7 +3725,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -3796,7 +3808,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished">F10</translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -4020,7 +4032,7 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>Cannot open ALSA driver for PCM capture</source>
-        <translation type="unfinished">Nelze otevřít ALSA ovladač pro PCM nahrávání</translation>
+        <translation>Nelze otevřít ALSA ovladač pro PCM nahrávání</translation>
     </message>
     <message>
         <source>Cannot receive incoming TCP connections.</source>
@@ -4040,7 +4052,7 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>Cannot lock %1 .</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uzamknout %1.</translation>
     </message>
 </context>
 <context>
@@ -5774,7 +5786,7 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Transport/NAT</source>
-        <translation type="unfinished">Transport/NAT</translation>
+        <translation>Přenos/NAT</translation>
     </message>
     <message>
         <source>Add q-value to registration</source>
@@ -5946,11 +5958,11 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Send UDP NAT keep alive packets.</source>
-        <translation type="unfinished"></translation>
+        <translation>Posílat UDP pakety pro udržení spojení přes NAT.</translation>
     </message>
     <message>
         <source>If you have enabled STUN or NAT keep alive, then Twinkle will send keep alive packets at this interval rate to keep the address bindings in your NAT device alive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud máte povolený STUN nebo NAT keep alive, pak bude Twinkle zasílat udržovací pakety s tímto intervalem, aby byla udržena mapování na vašem NATu.</translation>
     </message>
 </context>
 <context>

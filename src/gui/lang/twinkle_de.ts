@@ -3680,6 +3680,18 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
         <source>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>512</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1024</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
