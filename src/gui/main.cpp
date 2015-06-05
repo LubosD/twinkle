@@ -523,6 +523,8 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		qtranslator->load(QString("twinkle_") + langName,
 			QString(sys_config->get_dir_lang().c_str()));
 		qa->installTranslator(qtranslator);
+
+		qa->setQuitOnLastWindowClosed(false);
 		
 		// Create translator for translation of strings from the core
 		translator = new t_qt_translator(qa);

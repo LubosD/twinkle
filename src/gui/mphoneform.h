@@ -39,8 +39,9 @@ public:
 	bool getViewDisplay();
 	bool getViewBuddyList();
 	bool getViewCompactLineStatus();
+protected:
+	virtual void closeEvent( QCloseEvent * e ) override;
 public slots:
-	void closeEvent( QCloseEvent * e );
 	void fileExit();
 	void display( const QString & s );
 	void displayHeader();
@@ -166,6 +167,7 @@ public slots:
     void DiamondcardCallHistory();
     void DiamondcardAdminCenter();
     void whatsThis();
+	void sysTrayIconClicked(QSystemTrayIcon::ActivationReason);
 
 private:
 	void init();

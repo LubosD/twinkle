@@ -183,6 +183,9 @@ void MphoneForm::init()
 
 		menu = new QMenu(this);
 		sysTray->setContextMenu(menu);
+
+		connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+				this, SLOT(sysTrayIconClicked(QSystemTrayIcon::ActivationReason)));
 		
 		// Call menu
         menu->addAction(callInvite);
@@ -363,7 +366,7 @@ void MphoneForm::closeEvent( QCloseEvent *e )
 void MphoneForm::fileExit()
 {
 	hide();
-	QApplication::exit(0);
+	qApp->quit();
 }
 
 // Append a string to the display window
@@ -3185,4 +3188,15 @@ void MphoneForm::DiamondcardAdminCenter()
 void MphoneForm::whatsThis()
 {
     QWhatsThis::enterWhatsThisMode();
+}
+
+void MphoneForm::sysTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
+{
+	if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
+	{
+		if (sys_config->get_gui_hide_on_close())
+			setVisible(!isVisible());
+		else
+			activateWindow();
+	}
 }
