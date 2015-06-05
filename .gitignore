@@ -32,8 +32,12 @@ src/gui/.moc/
 src/gui/.ui/
 src/gui/twinkle
 src/gui/qrc_icons.cpp
+src/parser/parser.cxx
+src/parser/parser.hxx
+src/parser/scanner.cxx
 src/sdp/sdp_parser.cxx
 src/sdp/sdp_parser.hxx
+src/sdp/sdp_scanner.cxx
 
 # generic
 *~
