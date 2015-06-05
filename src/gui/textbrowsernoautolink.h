@@ -41,11 +41,7 @@ class TextBrowserNoAutoLink : public QTextBrowser {
 	Q_OBJECT
 public:
 	TextBrowserNoAutoLink ( QWidget * parent = 0 );
-#if QT_VERSION >= 0x050000
-	virtual void setSource(const QUrl & name) override;
-#else
-	virtual void setSource ( const QString & name ) override;
-#endif
+	virtual void setSource(const QUrl& name) override;
 };
 
 #endif
