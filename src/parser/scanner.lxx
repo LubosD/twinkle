@@ -22,7 +22,7 @@
 #include <math.h>
 #include <string>
 #include "parse_ctrl.h"
-#include "parser.h"
+#include "parser.hxx"
 #include "util.h"
 #include "audits/memman.h"
 
