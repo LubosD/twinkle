@@ -1,685 +1,782 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" stdsetdef="1">
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>DtmfForm</class>
-  <widget class="QDialog" name="DtmfForm">
-    <property name="geometry">
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>350</width>
-        <height>302</height>
-      </rect>
-    </property>
-    <property name="sizePolicy">
-      <sizepolicy>
-        <hsizetype>5</hsizetype>
-        <vsizetype>5</vsizetype>
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-      </sizepolicy>
-    </property>
-    <property name="windowTitle">
-      <string>Twinkle - DTMF</string>
-    </property>
-    <layout class="QVBoxLayout">
-      <item>
-        <widget class="QGroupBox" name="keypadGroupBox">
-          <property name="title">
-            <string>Keypad</string>
-          </property>
-          <layout class="QGridLayout">
-            <item row="0" column="1">
-              <widget class="QPushButton" name="twoPushButton">
-                <property name="font">
-                  <font>
-                    <pointsize>10</pointsize>
-                  </font>
-                </property>
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-2.png</normaloff>:/icons/images/dtmf-2.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>2</string>
-                </property>
-              </widget>
-            </item>
-            <item row="0" column="2">
-              <widget class="QPushButton" name="threePushButton">
-                <property name="font">
-                  <font>
-                    <pointsize>10</pointsize>
-                  </font>
-                </property>
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-3.png</normaloff>:/icons/images/dtmf-3.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>3</string>
-                </property>
-              </widget>
-            </item>
-            <item row="0" column="3">
-              <widget class="QPushButton" name="aPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-a.png</normaloff>:/icons/images/dtmf-a.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Over decadic A. Normally not needed.</string>
-                </property>
-                <property name="palette">
-                  <palette>
-                    <active>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </active>
-                    <inactive>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </inactive>
-                    <disabled>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </disabled>
-                  </palette>
-                </property>
-              </widget>
-            </item>
-            <item row="1" column="0">
-              <widget class="QPushButton" name="fourPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-4.png</normaloff>:/icons/images/dtmf-4.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>4</string>
-                </property>
-              </widget>
-            </item>
-            <item row="1" column="1">
-              <widget class="QPushButton" name="fivePushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-5.png</normaloff>:/icons/images/dtmf-5.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>5</string>
-                </property>
-              </widget>
-            </item>
-            <item row="1" column="2">
-              <widget class="QPushButton" name="sixPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-6.png</normaloff>:/icons/images/dtmf-6.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>6</string>
-                </property>
-              </widget>
-            </item>
-            <item row="1" column="3">
-              <widget class="QPushButton" name="bPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-b.png</normaloff>:/icons/images/dtmf-b.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Over decadic B. Normally not needed.</string>
-                </property>
-                <property name="palette">
-                  <palette>
-                    <active>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </active>
-                    <inactive>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </inactive>
-                    <disabled>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </disabled>
-                  </palette>
-                </property>
-              </widget>
-            </item>
-            <item row="2" column="0">
-              <widget class="QPushButton" name="sevenPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-7.png</normaloff>:/icons/images/dtmf-7.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>7</string>
-                </property>
-              </widget>
-            </item>
-            <item row="2" column="1">
-              <widget class="QPushButton" name="eightPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-8.png</normaloff>:/icons/images/dtmf-8.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>8</string>
-                </property>
-              </widget>
-            </item>
-            <item row="2" column="2">
-              <widget class="QPushButton" name="ninePushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-9.png</normaloff>:/icons/images/dtmf-9.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>9</string>
-                </property>
-              </widget>
-            </item>
-            <item row="2" column="3">
-              <widget class="QPushButton" name="cPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-c.png</normaloff>:/icons/images/dtmf-c.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Over decadic C. Normally not needed.</string>
-                </property>
-                <property name="palette">
-                  <palette>
-                    <active>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </active>
-                    <inactive>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </inactive>
-                    <disabled>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </disabled>
-                  </palette>
-                </property>
-              </widget>
-            </item>
-            <item row="3" column="0">
-              <widget class="QPushButton" name="starPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-star.png</normaloff>:/icons/images/dtmf-star.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Star (*)</string>
-                </property>
-              </widget>
-            </item>
-            <item row="3" column="1">
-              <widget class="QPushButton" name="zeroPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-0.png</normaloff>:/icons/images/dtmf-0.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>0</string>
-                </property>
-              </widget>
-            </item>
-            <item row="3" column="2">
-              <widget class="QPushButton" name="poundPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-pound.png</normaloff>:/icons/images/dtmf-pound.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Pound (#)</string>
-                </property>
-              </widget>
-            </item>
-            <item row="3" column="3">
-              <widget class="QPushButton" name="dPushButton">
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-d.png</normaloff>:/icons/images/dtmf-d.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>Over decadic D. Normally not needed.</string>
-                </property>
-                <property name="palette">
-                  <palette>
-                    <active>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </active>
-                    <inactive>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </inactive>
-                    <disabled>
-                      <colorrole role="Button">
-                        <brush brushstyle="SolidPattern">
-                          <color alpha="255">
-                            <red>194</red>
-                            <green>202</green>
-                            <blue>210</blue>
-                          </color>
-                        </brush>
-                      </colorrole>
-                    </disabled>
-                  </palette>
-                </property>
-              </widget>
-            </item>
-            <item row="0" column="0">
-              <widget class="QPushButton" name="onePushButton">
-                <property name="font">
-                  <font>
-                    <pointsize>10</pointsize>
-                  </font>
-                </property>
-                <property name="text">
-                  <string/>
-                </property>
-                <property name="icon">
-                  <iconset resource="icons.qrc">
-                    <normaloff>:/icons/images/dtmf-1.png</normaloff>:/icons/images/dtmf-1.png</iconset>
-                </property>
-                <property name="iconSize">
-                  <size>
-                    <width>22</width>
-                    <height>22</height>
-                  </size>
-                </property>
-                <property name="autoDefault">
-                  <bool>true</bool>
-                </property>
-                <property name="whatsThis" stdset="0">
-                  <string>1</string>
-                </property>
-              </widget>
-            </item>
-          </layout>
-        </widget>
+<ui version="4.0">
+ <class>DtmfForm</class>
+ <widget class="QDialog" name="DtmfForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>302</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Twinkle - DTMF</string>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QGroupBox" name="keypadGroupBox">
+     <property name="title">
+      <string>Keypad</string>
+     </property>
+     <layout class="QGridLayout">
+      <item row="0" column="1">
+       <widget class="QPushButton" name="twoPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
+        <property name="whatsThis">
+         <string>2</string>
+        </property>
+        <property name="text">
+         <string notr="true">2
+abc</string>
+        </property>
+       </widget>
       </item>
-      <item>
-        <layout class="QHBoxLayout">
-          <item>
-            <spacer name="spacer20">
-              <property name="sizeHint">
-                <size>
-                  <width>291</width>
-                  <height>20</height>
-                </size>
-              </property>
-              <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-              </property>
-            </spacer>
-          </item>
-          <item>
-            <widget class="QPushButton" name="closePushButton">
-              <property name="text">
-                <string>&amp;Close</string>
-              </property>
-              <property name="shortcut">
-                <string>Alt+C</string>
-              </property>
-              <property name="default">
-                <bool>true</bool>
-              </property>
-            </widget>
-          </item>
-        </layout>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="threePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>3</string>
+        </property>
+        <property name="text">
+         <string notr="true">3
+def</string>
+        </property>
+       </widget>
       </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="aPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="whatsThis">
+         <string>Over decadic A. Normally not needed.</string>
+        </property>
+        <property name="text">
+         <string notr="true">A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="fourPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>4</string>
+        </property>
+        <property name="text">
+         <string notr="true">4
+ghi</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="fivePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>5</string>
+        </property>
+        <property name="text">
+         <string notr="true">5
+jkl</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="sixPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>6</string>
+        </property>
+        <property name="text">
+         <string notr="true">6
+mno</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="bPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="whatsThis">
+         <string>Over decadic B. Normally not needed.</string>
+        </property>
+        <property name="text">
+         <string notr="true">B</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="sevenPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>7</string>
+        </property>
+        <property name="text">
+         <string notr="true">7
+pqrs</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="eightPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>8</string>
+        </property>
+        <property name="text">
+         <string notr="true">8
+tuv</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QPushButton" name="ninePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>9</string>
+        </property>
+        <property name="text">
+         <string notr="true">9
+wxyz</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QPushButton" name="cPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="whatsThis">
+         <string>Over decadic C. Normally not needed.</string>
+        </property>
+        <property name="text">
+         <string notr="true">C</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QPushButton" name="starPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>Star (*)</string>
+        </property>
+        <property name="text">
+         <string notr="true">*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="zeroPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>0</string>
+        </property>
+        <property name="text">
+         <string notr="true">0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="poundPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>Pound (#)</string>
+        </property>
+        <property name="text">
+         <string notr="true">#</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QPushButton" name="dPushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>194</red>
+              <green>202</green>
+              <blue>210</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="whatsThis">
+         <string>Over decadic D. Normally not needed.</string>
+        </property>
+        <property name="text">
+         <string notr="true">D</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="onePushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="whatsThis">
+         <string>1</string>
+        </property>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout">
+     <item>
+      <spacer name="spacer20">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>291</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closePushButton">
+       <property name="text">
+        <string>&amp;Close</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11"/>
-  <tabstops>
-    <tabstop>onePushButton</tabstop>
-    <tabstop>twoPushButton</tabstop>
-    <tabstop>threePushButton</tabstop>
-    <tabstop>aPushButton</tabstop>
-    <tabstop>fourPushButton</tabstop>
-    <tabstop>fivePushButton</tabstop>
-    <tabstop>sixPushButton</tabstop>
-    <tabstop>bPushButton</tabstop>
-    <tabstop>sevenPushButton</tabstop>
-    <tabstop>eightPushButton</tabstop>
-    <tabstop>ninePushButton</tabstop>
-    <tabstop>cPushButton</tabstop>
-    <tabstop>starPushButton</tabstop>
-    <tabstop>zeroPushButton</tabstop>
-    <tabstop>poundPushButton</tabstop>
-    <tabstop>dPushButton</tabstop>
-    <tabstop>closePushButton</tabstop>
-  </tabstops>
-  <resources>
-    <include location="icons.qrc"/>
-  </resources>
-  <connections>
-    <connection>
-      <sender>closePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>accept()</slot>
-    </connection>
-    <connection>
-      <sender>onePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf1()</slot>
-    </connection>
-    <connection>
-      <sender>twoPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf2()</slot>
-    </connection>
-    <connection>
-      <sender>threePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf3()</slot>
-    </connection>
-    <connection>
-      <sender>fourPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf4()</slot>
-    </connection>
-    <connection>
-      <sender>fivePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf5()</slot>
-    </connection>
-    <connection>
-      <sender>sixPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf6()</slot>
-    </connection>
-    <connection>
-      <sender>sevenPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf7()</slot>
-    </connection>
-    <connection>
-      <sender>eightPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf8()</slot>
-    </connection>
-    <connection>
-      <sender>ninePushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf9()</slot>
-    </connection>
-    <connection>
-      <sender>zeroPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmf0()</slot>
-    </connection>
-    <connection>
-      <sender>starPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfStar()</slot>
-    </connection>
-    <connection>
-      <sender>poundPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfPound()</slot>
-    </connection>
-    <connection>
-      <sender>aPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfA()</slot>
-    </connection>
-    <connection>
-      <sender>bPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfB()</slot>
-    </connection>
-    <connection>
-      <sender>cPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfC()</slot>
-    </connection>
-    <connection>
-      <sender>dPushButton</sender>
-      <signal>clicked()</signal>
-      <receiver>DtmfForm</receiver>
-      <slot>dtmfD()</slot>
-    </connection>
-  </connections>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>onePushButton</tabstop>
+  <tabstop>twoPushButton</tabstop>
+  <tabstop>threePushButton</tabstop>
+  <tabstop>aPushButton</tabstop>
+  <tabstop>fourPushButton</tabstop>
+  <tabstop>fivePushButton</tabstop>
+  <tabstop>sixPushButton</tabstop>
+  <tabstop>bPushButton</tabstop>
+  <tabstop>sevenPushButton</tabstop>
+  <tabstop>eightPushButton</tabstop>
+  <tabstop>ninePushButton</tabstop>
+  <tabstop>cPushButton</tabstop>
+  <tabstop>starPushButton</tabstop>
+  <tabstop>zeroPushButton</tabstop>
+  <tabstop>poundPushButton</tabstop>
+  <tabstop>dPushButton</tabstop>
+  <tabstop>closePushButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>onePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>twoPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>threePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fourPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fivePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sixPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf6()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sevenPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf7()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>eightPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf8()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ninePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf9()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zeroPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmf0()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>starPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfStar()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>poundPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfPound()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>aPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfA()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DtmfForm</receiver>
+   <slot>dtmfD()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

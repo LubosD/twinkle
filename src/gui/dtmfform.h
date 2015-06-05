@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QKeyEvent>
+#include <QTimer>
 #include "ui_dtmfform.h"
 
 class DtmfForm : public QDialog, private Ui::DtmfForm
@@ -30,10 +31,16 @@ public slots:
     void dtmfB();
     void dtmfC();
     void dtmfD();
-    void keyPressEvent(QKeyEvent* e);
 
+	void insertNextKey();
+
+protected:
+    void keyPressEvent(QKeyEvent* e);
 signals:
     void digits(const QString&);
+private:
+	QTimer m_insertTimer;
+	QString m_remainingKeys;
 };
 
 #endif // DTMFFORM_H
