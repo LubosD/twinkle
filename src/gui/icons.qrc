@@ -1,4 +1,4 @@
-<RCC version="1.0">
+<RCC>
     <qresource prefix="/icons">
         <file>images/answer-disabled.png</file>
         <file>images/answer.png</file>
@@ -161,5 +161,8 @@
         <file>images/1leftarrow-yellow.png</file>
         <file>images/1rightarrow.png</file>
         <file>images/1uparrow.png</file>
+        <file>images/osd_hangup.png</file>
+        <file>images/osd_mic_off.png</file>
+        <file>images/osd_mic_on.png</file>
     </qresource>
 </RCC>

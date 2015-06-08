@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>ImageButton.qml</file>
+        <file>osd.qml</file>
+    </qresource>
+</RCC>

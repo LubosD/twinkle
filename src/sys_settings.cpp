@@ -76,6 +76,7 @@ using namespace utils;
 #define FLD_GUI_AUTO_SHOW_INCOMING	"gui_auto_show_incoming"
 #define FLD_GUI_AUTO_SHOW_TIMEOUT	"gui_auto_show_timeout"
 #define FLD_GUI_BROWSER_CMD	"gui_browser_cmd"
+#define FLD_GUI_SHOW_CALL_OSD	"gui_show_call_osd"
 
 // Address book settings
 #define FLD_AB_SHOW_SIP_ONLY	"ab_show_sip_only"
@@ -254,6 +255,7 @@ t_sys_settings::t_sys_settings() {
 	gui_hide_on_close = true;
 	gui_auto_show_incoming = false;
 	gui_auto_show_timeout = 10;
+	gui_show_call_osd = true;
 	
 	ab_show_sip_only = false;
 	ab_lookup_name = true;
@@ -634,6 +636,10 @@ bool t_sys_settings::get_show_buddy_list(void) const {
 	return result;
 }
 
+bool t_sys_settings::get_gui_show_call_osd() const {
+	return gui_show_call_osd;
+}
+
 string t_sys_settings::get_ui_session_id(void) const {
 	t_mutex_guard guard(mtx_sys);
 	return ui_session_id;
@@ -965,6 +971,12 @@ void t_sys_settings::set_ui_session_main_state(unsigned int state) {
 void t_sys_settings::set_warn_hide_user(bool b) {
 	t_mutex_guard guard(mtx_sys);
 	warn_hide_user = b;
+}
+
+void t_sys_settings::set_gui_show_call_osd(bool b) {
+	// Using mutexes in primitive type getters/setters doesn't make any sense.
+	// TODO: remove t_mutex_guard from other getters/setters like this one.
+	gui_show_call_osd = b;
 }
 
 void t_sys_settings::set_mime_shared_database(const string &filename) {
@@ -1565,6 +1577,8 @@ bool t_sys_settings::read_config(string &error_msg) {
 			gui_auto_show_timeout = atoi(value.c_str());
 		} else if (parameter == FLD_GUI_BROWSER_CMD) {
 			gui_browser_cmd = value;
+		} else if (parameter == FLD_GUI_SHOW_CALL_OSD) {
+			gui_show_call_osd = yesno2bool(value);
 		} else if (parameter == FLD_AB_SHOW_SIP_ONLY) {
 			ab_show_sip_only = yesno2bool(value);
 		} else if (parameter == FLD_AB_LOOKUP_NAME) {
@@ -1704,6 +1718,7 @@ bool t_sys_settings::write_config(string &error_msg) {
 	config << FLD_GUI_AUTO_SHOW_INCOMING << '=' << bool2yesno(gui_auto_show_incoming) << endl;
 	config << FLD_GUI_AUTO_SHOW_TIMEOUT << '=' << gui_auto_show_timeout << endl;
 	config << FLD_GUI_BROWSER_CMD << '=' << gui_browser_cmd << endl;
+	config << FLD_GUI_SHOW_CALL_OSD << '=' << bool2yesno(gui_show_call_osd) << endl;
 	config << endl;
 	
 	// Write address book settings

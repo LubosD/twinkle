@@ -31,6 +31,7 @@
 #include <QMouseEvent>
 #include <QCloseEvent>
 #include <QKeyEvent>
+#include <QtDebug>
 #include <QEvent>
 #include <QFrame>
 #include "../audits/memman.h"
@@ -38,6 +39,7 @@
 #include <QTextEdit>
 #include <QCheckBox>
 #include <QApplication>
+#include <QDesktopWidget>
 #include "gui.h"
 #include <QPixmap>
 #include <QIcon>
@@ -54,6 +56,7 @@
 #include <QValidator>
 #include "buddyform.h"
 #include "diamondcardprofileform.h"
+#include "osd.h"
 
 
 // Time (s) that the conversation timer of a line should stay visible after
@@ -165,6 +168,13 @@ void MphoneForm::init()
     //from2Label->setPaletteBackgroundColor(paletteBackgroundColor());
     //to2Label->setPaletteBackgroundColor(paletteBackgroundColor());
     //subject2Label->setPaletteBackgroundColor(paletteBackgroundColor());
+
+	QDesktopWidget* desktop = QApplication::desktop();
+	osdWindow = new OSD(this);
+
+	osdWindow->move(desktop->width() - osdWindow->width() - 10, 10);
+	connect(osdWindow, SIGNAL(hangupClicked()), this, SLOT(phoneBye()));
+	connect(osdWindow, SIGNAL(muteClicked()), this, SLOT(osdMuteClicked()));
 	
 	// A QComboBox accepts a new line through copy/paste.
 	QRegExp rxNoNewLine("[^\\n\\r]*");
@@ -412,6 +422,7 @@ void MphoneForm::showLineTimer(int line)
 	unsigned long duration = t.tv_sec - cr.time_answer;
 
 	timerLabel->setText(timer2str(duration).c_str());
+	updateOSD();
 }
 
 void MphoneForm::showLineTimer1()
@@ -723,6 +734,8 @@ void MphoneForm::updateState()
 	{
         actionLine2->setChecked(true);
 	}
+
+	updateOSD();
 	
 	switch(line_substate) {
 	case LSSUB_IDLE:
@@ -3199,4 +3212,90 @@ void MphoneForm::sysTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
 		else
 			activateWindow();
 	}
+}
+
+bool MphoneForm::event(QEvent * event)
+{
+	if (event->type() == QEvent::WindowActivate || event->type() == QEvent::WindowDeactivate)
+		osdWindow->setVisible(shouldDisplayOSD());
+
+	return QMainWindow::event(event);
+}
+
+bool MphoneForm::shouldDisplayOSD()
+{
+	if (QApplication::activeWindow() == this)
+		return false;
+
+	t_line_substate ss;
+
+	ss = phone->get_line_substate(phone->get_active_line());
+
+	switch (ss)
+	{
+	case LSSUB_ANSWERING:
+	case LSSUB_ESTABLISHED:
+	case LSSUB_OUTGOING_PROGRESS:
+		break;
+	default:
+		return false;
+	}
+
+	if (!sys_config->get_gui_show_call_osd())
+		return false;
+
+	return true;
+}
+
+void MphoneForm::updateOSD()
+{
+	t_line_substate ss;
+	int line;
+	bool osdDisplayed;
+	struct timeval t;
+	unsigned long duration;
+	t_user *user_config;
+	t_call_record cr;
+
+	osdDisplayed = shouldDisplayOSD();
+	osdWindow->setVisible(osdDisplayed);
+
+	line = phone->get_active_line();
+	ss = phone->get_line_substate(line);
+	user_config = phone->get_line_user(line);
+
+	cr = phone->get_call_hist(line);
+
+	if (ss == LSSUB_ESTABLISHED)
+	{
+		// Calculate duration of call
+		gettimeofday(&t, nullptr);
+		duration = t.tv_sec - cr.time_answer;
+
+		osdWindow->setTime(QString::fromStdString(timer2str(duration)));
+		osdWindow->setMuted(phone->is_line_muted(line));
+	}
+	else
+	{
+		osdWindow->setTime(lineSubstate2str(line));
+	}
+
+	if (ss != LSSUB_IDLE && user_config != nullptr)
+	{
+		std::string address;
+
+		address = (cr.direction == t_call_record::DIR_IN ?
+			 ui->format_sip_address(user_config,
+			  cr.from_display, cr.from_uri) :
+			 ui->format_sip_address(user_config,
+			  cr.to_display, cr.to_uri));
+
+		osdWindow->setCaller(QString::fromStdString(address));
+	}
+}
+
+void MphoneForm::osdMuteClicked()
+{
+	((t_gui *)ui)->action_mute(!phone->is_line_muted(phone->get_active_line()));
+	updateState();
 }

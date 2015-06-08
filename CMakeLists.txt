@@ -34,17 +34,19 @@ find_package(Ccrtp REQUIRED)
 find_package(Ucommon REQUIRED)
 
 if (WITH_QT4)
-	find_package(Qt4 REQUIRED COMPONENTS QTGUI)
+	find_package(Qt4 REQUIRED COMPONENTS QTGUI QTDECLARATIVE)
 	include_directories(${QT_QT3SUPPORT_INCLUDE_DIR}
-		${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR} ${QT_INCLUDE_DIR})
+		${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR}
+		${QT_QTDECLARATIVE_INCLUDE_DIR} ${QT_INCLUDE_DIR})
 
 elseif (WITH_QT5)
-
 	find_package(Qt5Widgets REQUIRED)
 	find_package(Qt5LinguistTools REQUIRED)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-	include_directories(${Qt5Widgets_INCLUDES})
-	add_definitions(${Qt5Widgets_DEFINITIONS})
+	find_package(Qt5Quick REQUIRED)
+	find_package(Qt5Declarative REQUIRED)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} ${Qt5Declarative_EXECUTABLE_COMPILE_FLAGS}")
+	include_directories(${Qt5Widgets_INCLUDES} ${Qt5Declarative_INCLUDES})
+	add_definitions(${Qt5Widgets_DEFINITIONS} ${Qt5Declarative_DEFINITIONS})
 endif (WITH_QT4)
 
 include_directories(${LIBXML2_INCLUDE_DIR})

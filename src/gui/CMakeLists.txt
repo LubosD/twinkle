@@ -46,13 +46,13 @@ qt4_wrap_ui(
 	${twinkle_ui_SRC}
 )
 
-qt4_add_resources(twinkle_QRC icons.qrc)
+qt4_add_resources(twinkle_QRC icons.qrc qml/qml.qrc)
 
 qt4_add_translation(twinkle_LANG
 	${twinkle_lang_SRC}
 )
 
-set(qt_LIBS Qt4::QtGui)
+set(qt_LIBS Qt4::QtGui Qt4::QtDeclarative)
 
 elseif (WITH_QT5)
 
@@ -61,13 +61,13 @@ qt5_wrap_ui(
 	${twinkle_ui_SRC}
 )
 
-qt5_add_resources(twinkle_QRC icons.qrc)
+qt5_add_resources(twinkle_QRC icons.qrc qml/qml.qrc)
 
 qt5_add_translation(twinkle_LANG
 	${twinkle_lang_SRC}
 )
 
-set(qt_LIBS Qt5::Widgets)
+set(qt_LIBS Qt5::Widgets Qt5::Quick Qt5::Declarative)
 endif (WITH_QT4)
 
 set(CMAKE_AUTOMOC ON)
@@ -108,6 +108,7 @@ set(TWINKLE_GUI-SRCS
 	twinkleapplication.cpp
 	yesnodialog.cpp
 	textbrowsernoautolink.cpp
+	osd.cpp
 
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>

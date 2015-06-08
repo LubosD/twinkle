@@ -26,6 +26,8 @@
 class t_phone;
 extern t_phone *phone;
 
+class OSD;
+
 class MphoneForm : public QMainWindow, public Ui::MphoneForm
 {
 Q_OBJECT
@@ -41,6 +43,7 @@ public:
 	bool getViewCompactLineStatus();
 protected:
 	virtual void closeEvent( QCloseEvent * e ) override;
+	virtual bool event(QEvent * event) override;
 public slots:
 	void fileExit();
 	void display( const QString & s );
@@ -169,9 +172,13 @@ public slots:
     void whatsThis();
 	void sysTrayIconClicked(QSystemTrayIcon::ActivationReason);
 
+	void osdMuteClicked();
+
 private:
 	void init();
 	void destroy();
+	bool shouldDisplayOSD();
+	void updateOSD();
 	QString lineSubstate2str( int line );
 
 private:
@@ -202,7 +209,7 @@ private:
     QMenu *buddyListPopupMenu;
     QMenu *changeAvailabilityPopupMenu;
 	bool viewBuddyList;
-
+	OSD	*osdWindow;
 };
 
 #endif

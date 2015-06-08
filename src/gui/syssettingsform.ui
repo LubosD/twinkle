@@ -709,8 +709,8 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
       </layout>
      </widget>
      <widget class="QWidget" name="pageGeneral">
-      <layout class="QVBoxLayout">
-       <item>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
         <widget class="QLabel" name="generalTitleTextLabel">
          <property name="font">
           <font>
@@ -731,7 +731,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
         <widget class="QGroupBox" name="systrayGroupBox">
          <property name="title">
           <string>System tray</string>
@@ -766,7 +766,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="2" column="0">
         <widget class="QGroupBox" name="startupGroupBox">
          <property name="title">
           <string>Startup</string>
@@ -801,7 +801,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="3" column="0">
         <widget class="QGroupBox" name="srvGroupBox">
          <property name="title">
           <string>Services</string>
@@ -836,7 +836,14 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="osdCheckBox">
+         <property name="text">
+          <string>Enable in-call OSD</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
         <layout class="QHBoxLayout">
          <item>
           <widget class="QLabel" name="histSizeTextLabel">
@@ -882,7 +889,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </item>
         </layout>
        </item>
-       <item>
+       <item row="6" column="0">
         <layout class="QHBoxLayout">
          <item>
           <widget class="QCheckBox" name="autoShowCheckBox">
@@ -935,7 +942,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </item>
         </layout>
        </item>
-       <item>
+       <item row="7" column="0">
         <layout class="QHBoxLayout">
          <item>
           <widget class="QLabel" name="browserTextLabel">

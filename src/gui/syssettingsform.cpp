@@ -278,6 +278,8 @@ void SysSettingsForm::populate()
 	
 	// Startup settings
 	startHiddenCheckBox->setChecked(sys_config->get_start_hidden());
+
+	osdCheckBox->setChecked(sys_config->get_gui_show_call_osd());
 	
 	QStringList profiles;
 	if (!SelectProfileForm::getUserProfiles(profiles, msg)) {
@@ -373,6 +375,7 @@ void SysSettingsForm::validate()
 	// General
 	sys_config->set_gui_use_systray(guiUseSystrayCheckBox->isChecked());
 	sys_config->set_gui_hide_on_close(guiHideCheckBox->isChecked());
+	sys_config->set_gui_show_call_osd(osdCheckBox->isChecked());
 	
 	// Auto show on incoming call
 	sys_config->set_gui_auto_show_incoming(autoShowCheckBox->isChecked());
