@@ -23,6 +23,7 @@ set(LIBTWINKLE_AUDIO-SRCS
 	twinkle_zrtp_ui.cpp
 
 	sources/audio_source_silence.cpp
+	sources/audio_source_rtp.cpp
 )
 
 add_library(libtwinkle-audio OBJECT ${LIBTWINKLE_AUDIO-SRCS})

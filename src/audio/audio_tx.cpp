@@ -31,6 +31,8 @@
 #include "line.h"
 #include "sequence_number.h"
 #include "audits/memman.h"
+#include "sources/audio_source_rtp.h"
+#include "sources/audio_source_silence.h"
 
 extern t_phone *phone;
 
@@ -404,14 +406,24 @@ void t_audio_tx::run()
 {
 	std::unique_ptr<uint8_t[]> buf;
 	int bufSize;
+	t_audio_source_rtp* rtp = new t_audio_source_rtp(rtp_session, user_config, payload2codec, codec, ptime);
+	t_audio_source_silence* silence = new t_audio_source_silence(rtp);
 
 	bufSize = playback_device->get_buffer_size(false);
 	buf.reset(new uint8_t[bufSize]);
 
 	while (!stop_running)
 	{
+		size_t rd;
 
+		rd = silence->get_audio_samples(buf.get(), bufSize);
+		std::cout << "Got " << rd << " bytes of audio\n";
+		playback_device->write(buf.get(), rd);
 	}
+
+	delete silence;
+
+	is_running = false;
 }
 
 void t_audio_tx::run_old(void) {

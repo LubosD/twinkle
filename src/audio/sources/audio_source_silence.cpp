@@ -18,8 +18,15 @@ size_t t_audio_source_silence::get_audio_samples(uint8_t* buf, size_t buf_size)
 
 	rd = m_wrapped->get_audio_samples(buf, buf_size);
 
-	if (rd < buf_size)
-		std::memset(buf + rd, 0, buf_size - rd);
+	if (rd == 0)
+	{
+		if (buf_size < m_lastCount)
+			m_lastCount = buf_size;
 
-	return buf_size;
+		std::memset(buf, 0, m_lastCount);
+		return m_lastCount;
+	}
+
+	m_lastCount = rd;
+	return rd;
 }

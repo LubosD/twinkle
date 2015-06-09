@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
 
 set(PRODUCT_VERSION "1.9.0")
 set(PRODUCT_DATE    "June 1, 2015")
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb -O0")
 
 OPTION(WITH_ZRTP		"Enable ZRTP encrypted calls" OFF)
 OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
@@ -22,6 +24,8 @@ if (WITH_QT4 AND WITH_QT5)
 endif (WITH_QT4 AND WITH_QT5)
 
 include (CheckIncludeFile)
+
+# TODO: check for libsamplerate
 
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)

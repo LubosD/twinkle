@@ -72,7 +72,7 @@ bool t_audio_session::open_dsp_full_duplex(void) {
 
 	// Open audio device
 	speaker = t_audio_io::open(sys_config->get_dev_speaker(), true, true, true, 1, 
-		SAMPLEFORMAT_S16, audio_sample_rate(codec), true);
+		SAMPLEFORMAT_S16, 44100, true);
 	if (!speaker) {
 		string msg(TRANSLATE2("CoreAudio", "Failed to open sound card"));
 		log_file->write_report(msg, "t_audio_session::open_dsp_full_duplex",

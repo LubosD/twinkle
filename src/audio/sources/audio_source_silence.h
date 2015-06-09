@@ -13,6 +13,7 @@ public:
 	virtual size_t get_audio_samples(uint8_t* buf, size_t buf_size) override;
 private:
 	t_audio_source* m_wrapped;
+	size_t m_lastCount = 0;
 };
 
 #endif // T_AUDIO_SOURCE_SILENCE_H
