@@ -21,6 +21,8 @@ set(LIBTWINKLE_AUDIO-SRCS
 	tone_gen.cpp
 	twinkle_rtp_session.cpp
 	twinkle_zrtp_ui.cpp
+
+	sources/audio_source_silence.cpp
 )
 
 add_library(libtwinkle-audio OBJECT ${LIBTWINKLE_AUDIO-SRCS})

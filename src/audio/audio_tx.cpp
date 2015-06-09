@@ -22,6 +22,7 @@
 #include <ctime>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <memory>
 #include "audio_tx.h"
 #include "log.h"
 #include "phone.h"
@@ -399,7 +400,21 @@ void t_audio_tx::set_running(bool running) {
 	is_running = running;
 }
 
-void t_audio_tx::run(void) {
+void t_audio_tx::run()
+{
+	std::unique_ptr<uint8_t[]> buf;
+	int bufSize;
+
+	bufSize = playback_device->get_buffer_size(false);
+	buf.reset(new uint8_t[bufSize]);
+
+	while (!stop_running)
+	{
+
+	}
+}
+
+void t_audio_tx::run_old(void) {
 	const AppDataUnit* adu;
 	struct timespec sleeptimer;
 	//struct timeval debug_timer, debug_timer_prev;

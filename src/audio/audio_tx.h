@@ -169,7 +169,8 @@ public:
 	// Set the is running flag
 	void set_running(bool running);
 
-	void run(void);
+	void run_old(void);
+	void run();
 	
 	// Set the dynamic payload type for telephone events
 	void set_pt_telephone_event(int pt, int pt_alt);
