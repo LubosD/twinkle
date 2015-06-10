@@ -143,7 +143,29 @@ protected:
 	virtual void do_presence(t_presence_state::t_basic_state basic_state);
 	virtual void do_quit(void);
 	virtual void do_help(const list<t_command_arg> &al);
-	
+private slots:
+	bool gui_do_invite(const QString &destination, const QString &display,
+			const QString &subject, bool immediate,
+			bool anonymous);
+	void gui_do_redial(void);
+	void gui_do_answer(void);
+	void gui_do_answerbye(void);
+	void gui_do_reject(void);
+	void gui_do_redirect(bool type_present, t_cf_type cf_type,
+		bool action_present, bool enable, int num_redirections,
+		const std::list<std::string> &dest_strlist, bool immediate);
+	void gui_do_dnd(bool toggle, bool enable);
+	void gui_do_auto_answer(bool toggle, bool enable);
+	void gui_do_bye(void);
+	void gui_do_hold(void);
+	void gui_do_retrieve(void);
+	bool gui_do_refer(const QString &destination, t_transfer_type transfer_type,
+		bool immediate);
+	void gui_do_conference(void);
+	void gui_do_mute(bool toggle, bool enable);
+	void gui_do_dtmf(const QString &digits);
+	void gui_do_user(const QString &profile_name);
+	QString gui_get_current_profile();
 public:
 	t_gui(t_phone *_phone);
 	virtual ~t_gui();

@@ -208,61 +208,28 @@ void t_gui::displayPhoto(const QImage &photo) {
 bool t_gui::do_invite(const string &destination, const string &display, 
 			const string &subject, bool immediate, bool anonymous)
 {
-	lock();
-	if (mainWindow->callInvite->isEnabled()) {
-		if (immediate) {
-			t_user *user = phone->ref_user_profile(
-                mainWindow->userComboBox->currentText().toStdString());
-			t_url dst_url(expand_destination(user, destination));
-			if (dst_url.is_valid()) {
-				mainWindow->do_phoneInvite(user, 
-						display.c_str(), dst_url, subject.c_str(),
-						anonymous);
-			}
-		} else {
-			t_url dest_url(destination);
-			t_display_url du(dest_url, display);
-			mainWindow->phoneInvite(du.encode().c_str(), subject.c_str(),
-						anonymous);
-		}
-	}
-	unlock();
-	
+	QMetaObject::invokeMethod(this, "gui_do_invite", Q_ARG(QString, QString::fromStdString(destination)),
+							  Q_ARG(QString, QString::fromStdString(display)), Q_ARG(QString, QString::fromStdString(subject)),
+							  Q_ARG(bool, immediate), Q_ARG(bool, anonymous));
+
 	return true;
 }
 
 void t_gui::do_redial(void) {
-	lock();
-	if (mainWindow->callRedial->isEnabled()) {
-		mainWindow->phoneRedial();
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_redial");
 }
 
 void t_gui::do_answer(void) {
-	lock();
-	if (mainWindow->callAnswer->isEnabled()) {
-		mainWindow->phoneAnswer();
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_answer");
 }
 
 void t_gui::do_answerbye(void) {
-	lock();
-	if (mainWindow->callAnswer->isEnabled()) {
-		mainWindow->phoneAnswer();
-	} else if (mainWindow->callBye->isEnabled()) {
-		mainWindow->phoneBye();
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_answerbye");
 }
 
 void t_gui::do_reject(void) {
-	lock();
-	if (mainWindow->callReject->isEnabled()) {
-		mainWindow->phoneReject();
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_reject");
 }
 
 void t_gui::do_redirect(bool show_status, bool type_present, t_cf_type cf_type, 
@@ -273,59 +240,12 @@ void t_gui::do_redirect(bool show_status, bool type_present, t_cf_type cf_type,
 		// Show status not supported in GUI
 		return;
 	}
+
+	QMetaObject::invokeMethod(this, "gui_do_redirect", Qt::BlockingQueuedConnection,
+							  Q_ARG(bool, type_present), Q_ARG(t_cf_type, cf_type),
+							  Q_ARG(bool, action_present), Q_ARG(bool, enable), Q_ARG(int, num_redirections),
+							  Q_ARG(std::list<std::string>, dest_strlist), Q_ARG(bool, immediate));
 	
-	t_user *user = phone->ref_user_profile(mainWindow->
-                userComboBox->currentText().toStdString());
-	
-	list<t_display_url> dest_list;
-	for (list<string>::const_iterator i = dest_strlist.begin();
-	     i != dest_strlist.end(); i++)
-	{
-		t_display_url du;
-		du.url = expand_destination(user, *i);
-		du.display.clear();
-		if (!du.is_valid()) return;
-		dest_list.push_back(du);
-	}
-	
-	// Enable/disable permanent redirections
-	if (type_present) {
-		lock();
-		if (enable) {
-			phone->ref_service(user)->enable_cf(cf_type, dest_list);
-		} else {
-			phone->ref_service(user)->disable_cf(cf_type);
-		}
-		mainWindow->updateServicesStatus();
-		unlock();
-		
-		return;
-	} else {
-		if (action_present) {
-			if (!enable) {
-				lock();
-				phone->ref_service(user)->disable_cf(CF_ALWAYS);
-				phone->ref_service(user)->disable_cf(CF_BUSY);
-				phone->ref_service(user)->disable_cf(CF_NOANSWER);
-				mainWindow->updateServicesStatus();
-				unlock();
-			}
-			
-			return;
-		}
-	}
-	
-	lock();
-	if (mainWindow->callRedirect->isEnabled()) {
-		if (immediate) {
-			mainWindow->do_phoneRedirect(dest_list);
-		} else {
-			mainWindow->phoneRedirect(dest_strlist);
-		}
-	}
-	unlock();
-	
-	return;
 }
 
 void t_gui::do_dnd(bool show_status, bool toggle, bool enable) {
@@ -334,29 +254,7 @@ void t_gui::do_dnd(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	lock();
-	if (phone->ref_users().size() == 1) {
-		if (toggle) {
-            enable = !mainWindow->serviceDnd->isChecked();
-		}
-		mainWindow->srvDnd(enable);
-        mainWindow->serviceDnd->setChecked(enable);
-	} else {
-		t_user *user = phone->ref_user_profile(mainWindow->
-                userComboBox->currentText().toStdString());
-		list<t_user *> l;
-		l.push_back(user);
-		if (toggle) {
-			enable = !phone->ref_service(user)->is_dnd_active();
-		}
-		
-		if (enable) {
-			mainWindow->do_srvDnd_enable(l);
-		} else {
-			mainWindow->do_srvDnd_disable(l);
-		}
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "do_dnd", Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
@@ -365,91 +263,35 @@ void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	lock();
-	if (phone->ref_users().size() == 1) {
-		if (toggle) {
-            enable = !mainWindow->serviceAutoAnswer->isChecked();
-		}
-		mainWindow->srvAutoAnswer(enable);
-        mainWindow->serviceAutoAnswer->setChecked(enable);
-	} else {
-		t_user *user = phone->ref_user_profile(mainWindow->
-                userComboBox->currentText().toStdString());
-		list<t_user *> l;
-		l.push_back(user);
-		if (toggle) {
-			enable = !phone->ref_service(user)->
-				 is_auto_answer_active();
-		}
-
-		if (enable) {
-			mainWindow->do_srvAutoAnswer_enable(l);
-		} else {
-			mainWindow->do_srvAutoAnswer_disable(l);
-		}
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_auto_answer", Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_bye(void) {
-	lock();
-	if (mainWindow->callBye->isEnabled()) {
-		mainWindow->phoneBye();
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_bye");
 }
 
 void t_gui::do_hold(void) {
-	lock();
-    if (mainWindow->callHold->isEnabled() && !mainWindow->callHold->isChecked()) {
-		mainWindow->phoneHold(true);
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_hold");
 }
 
 void t_gui::do_retrieve(void) {
-	lock();
-    if (mainWindow->callHold->isEnabled() && mainWindow->callHold->isChecked()) {
-		mainWindow->phoneHold(false);
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_retrieve");
 }
 
 bool t_gui::do_refer(const string &destination, t_transfer_type transfer_type, bool immediate) {
-	lock();
-	if (mainWindow->callTransfer->isEnabled() &&
-        !mainWindow->callTransfer->isChecked())
-	{
-		if (immediate) {
-			t_display_url du;
-			t_user *user = phone->ref_user_profile(mainWindow->
-                userComboBox->currentText().toStdString());
-			du.url = expand_destination(user, destination);
-			
-			if (du.is_valid() || transfer_type == TRANSFER_OTHER_LINE) {
-				mainWindow->do_phoneTransfer(du, transfer_type);
-			}
-		} else {
-			mainWindow->phoneTransfer(destination, transfer_type);
-		}
-	} else if(mainWindow->callTransfer->isEnabled() &&
-          mainWindow->callTransfer->isChecked())
-	{
-		if (transfer_type != TRANSFER_CONSULT) {
-			mainWindow->do_phoneTransferLine();
-		}
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_refer", Q_ARG(QString, QString::fromStdString(destination)),
+							  Q_ARG(t_transfer_type, transfer_type),
+							  Q_ARG(bool, immediate));
 	
 	return true;
 }
 
 void t_gui::do_conference(void) {
-	lock();
-	if (mainWindow->callConference->isEnabled()) {
-		mainWindow->phoneConference();
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_conference");
 }
 
 void t_gui::do_mute(bool show_status, bool toggle, bool enable) {
@@ -458,47 +300,44 @@ void t_gui::do_mute(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	lock();
-	if (mainWindow->callMute->isEnabled()) {
-		if (toggle) enable = !phone->is_line_muted(phone->get_active_line());
-		mainWindow->phoneMute(enable);
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_mute", Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_dtmf(const string &digits) {
-	lock();
-	if (mainWindow->callDTMF->isEnabled()) {
-		mainWindow->sendDTMF(digits.c_str());
-	}
-	unlock();
+
+	QMetaObject::invokeMethod(this, "gui_do_dtmf", Q_ARG(QString, QString::fromStdString(digits)));
 }
 
 void t_gui::do_register(bool reg_all_profiles) {
-	lock();
 	list<t_user *> l;
 	
 	if (reg_all_profiles) {
 		l = phone->ref_users();
 	} else {
-		t_user *user = phone->ref_user_profile(mainWindow->
-            userComboBox->currentText().toStdString());
+		QString profile;
+		t_user *user;
+
+		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+
+		user = phone->ref_user_profile(profile.toStdString());
 		l.push_back(user);
 	}
 	
 	mainWindow->do_phoneRegister(l);
-	unlock();
 }
 
 void t_gui::do_deregister(bool dereg_all_profiles, bool dereg_all_devices) {
-	lock();
 	list<t_user *> l;
 	
 	if (dereg_all_profiles) {
 		l = phone->ref_users();
 	} else {
-		t_user *user = phone->ref_user_profile(mainWindow->
-            userComboBox->currentText().toStdString());
+		QString profile;
+		t_user *user;
+
+		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+
+		user = phone->ref_user_profile(profile.toStdString());
 		l.push_back(user);
 	}
 	
@@ -507,17 +346,14 @@ void t_gui::do_deregister(bool dereg_all_profiles, bool dereg_all_devices) {
 	} else {
 		mainWindow->do_phoneDeregister(l);
 	}
-	unlock();
 }
 
 void t_gui::do_fetch_registrations(void) {
-	lock();
-	mainWindow->phoneShowRegistrations();
-	unlock();
+	QMetaObject::invokeMethod(mainWindow, "phoneShowRegistrations");
 }
 
 bool t_gui::do_options(bool dest_set, const string &destination, bool immediate) {
-	lock();
+
 	// In-dialog OPTIONS request
 	int line = phone->get_active_line();
 	if (phone->get_line_substate(line) == LSSUB_ESTABLISHED) {
@@ -526,17 +362,20 @@ bool t_gui::do_options(bool dest_set, const string &destination, bool immediate)
 	}
 	
 	if (immediate) {
-		t_user *user = phone->ref_user_profile(mainWindow->
-            userComboBox->currentText().toStdString());
+		QString profile;
+		t_user *user;
+
+		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+
+		user = phone->ref_user_profile(profile.toStdString());
 		t_url dst_url(expand_destination(user, destination));
 		
 		if (dst_url.is_valid()) {
 			mainWindow->do_phoneTermCap(user, dst_url);
 		}
 	} else {
-		mainWindow->phoneTermCap(destination.c_str());
+		QMetaObject::invokeMethod(mainWindow, "phoneTermCap", Q_ARG(QString, QString::fromStdString(destination)));
 	}
-	unlock();
 	
 	return true;
 }
@@ -550,21 +389,23 @@ void t_gui::do_line(int line) {
 }
 
 void t_gui::do_user(const string &profile_name) {
-	lock();
-	for (int i = 0; i < mainWindow->userComboBox->count(); i++) {
-        if (mainWindow->userComboBox->itemText(i) == profile_name.c_str())
-		{
-            mainWindow->userComboBox->setCurrentIndex(i);
-		}
-	}
-	unlock();
+	QMetaObject::invokeMethod(this, "gui_do_user", Q_ARG(QString, QString::fromStdString(profile_name)));
+}
+
+QString t_gui::gui_get_current_profile()
+{
+	return mainWindow->userComboBox->currentText();
 }
 
 bool t_gui::do_message(const string &destination, const string &display,
 		       const im::t_msg &msg)
 {
-	t_user *user = phone->ref_user_profile(mainWindow->
-            userComboBox->currentText().toStdString());
+	t_user *user;
+	QString profile;
+
+	QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+
+	user = phone->ref_user_profile(profile.toStdString());
 	
 	t_url dest_url(expand_destination(user, destination));
 	
@@ -576,8 +417,12 @@ bool t_gui::do_message(const string &destination, const string &display,
 }
 
 void t_gui::do_presence(t_presence_state::t_basic_state basic_state) {
-	t_user *user = phone->ref_user_profile(mainWindow->
-            userComboBox->currentText().toStdString());
+	QString profile;
+	t_user *user;
+
+	QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+
+	user = phone->ref_user_profile(profile.toStdString());
 	
 	phone->pub_publish_presence(user, basic_state);
 }
@@ -587,16 +432,16 @@ void t_gui::do_zrtp(t_zrtp_cmd zrtp_cmd) {
 	
 	switch (zrtp_cmd) {
 	case ZRTP_ENCRYPT:
-		mainWindow->phoneEnableZrtp(true);
+		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp", Q_ARG(bool, true));
 		break;
 	case ZRTP_GO_CLEAR:
-		mainWindow->phoneEnableZrtp(false);
+		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp", Q_ARG(bool, false));
 		break;
 	case ZRTP_CONFIRM_SAS:
-		mainWindow->phoneConfirmZrtpSas();
+		QMetaObject::invokeMethod(mainWindow, "phoneConfirmZrtpSas");
 		break;
 	case ZRTP_RESET_SAS:
-		mainWindow->phoneResetZrtpSasConfirmation();
+		QMetaObject::invokeMethod(mainWindow, "phoneResetZrtpSasConfirmation");
 		break;
 	default:
 		assert(false);
@@ -608,9 +453,7 @@ void t_gui::do_zrtp(t_zrtp_cmd zrtp_cmd) {
 
 
 void t_gui::do_quit(void) {
-	lock();
-	mainWindow->fileExit();
-	unlock();
+	QMetaObject::invokeMethod(mainWindow, "fileExit");
 }
 
 void t_gui::do_help(const list<t_command_arg> &al) {
@@ -618,6 +461,244 @@ void t_gui::do_help(const list<t_command_arg> &al) {
 	return;
 }
 
+bool t_gui::gui_do_invite(const QString &destination, const QString &display,
+		const QString &subject, bool immediate,
+		bool anonymous)
+{
+	if (mainWindow->callInvite->isEnabled()) {
+		if (immediate) {
+			t_user *user = phone->ref_user_profile(
+				mainWindow->userComboBox->currentText().toStdString());
+			t_url dst_url(expand_destination(user, destination.toStdString()));
+			if (dst_url.is_valid()) {
+				mainWindow->do_phoneInvite(user,
+						display, dst_url, subject,
+						anonymous);
+			}
+		} else {
+			t_url dest_url(destination.toStdString());
+			t_display_url du(dest_url, display.toStdString());
+			mainWindow->phoneInvite(du.encode().c_str(), subject,
+						anonymous);
+		}
+	}
+}
+
+void t_gui::gui_do_redial(void)
+{
+	if (mainWindow->callRedial->isEnabled()) {
+		mainWindow->phoneRedial();
+	}
+}
+
+void t_gui::gui_do_answer(void)
+{
+	if (mainWindow->callAnswer->isEnabled()) {
+		mainWindow->phoneAnswer();
+	}
+}
+
+void t_gui::gui_do_answerbye(void)
+{
+	if (mainWindow->callAnswer->isEnabled()) {
+		mainWindow->phoneAnswer();
+	} else if (mainWindow->callBye->isEnabled()) {
+		mainWindow->phoneBye();
+	}
+}
+
+void t_gui::gui_do_reject(void)
+{
+	if (mainWindow->callReject->isEnabled()) {
+		mainWindow->phoneReject();
+	}
+}
+
+void t_gui::gui_do_redirect(bool type_present, t_cf_type cf_type,
+	bool action_present, bool enable, int num_redirections,
+	const list<string> &dest_strlist, bool immediate)
+{
+	t_user *user = phone->ref_user_profile(mainWindow->
+				userComboBox->currentText().toStdString());
+
+	list<t_display_url> dest_list;
+	for (list<string>::const_iterator i = dest_strlist.begin();
+		 i != dest_strlist.end(); i++)
+	{
+		t_display_url du;
+		du.url = expand_destination(user, *i);
+		du.display.clear();
+		if (!du.is_valid()) return;
+		dest_list.push_back(du);
+	}
+
+	// Enable/disable permanent redirections
+	if (type_present) {
+
+		if (enable) {
+			phone->ref_service(user)->enable_cf(cf_type, dest_list);
+		} else {
+			phone->ref_service(user)->disable_cf(cf_type);
+		}
+		mainWindow->updateServicesStatus();
+
+
+		return;
+	} else {
+		if (action_present) {
+			if (!enable) {
+
+				phone->ref_service(user)->disable_cf(CF_ALWAYS);
+				phone->ref_service(user)->disable_cf(CF_BUSY);
+				phone->ref_service(user)->disable_cf(CF_NOANSWER);
+				mainWindow->updateServicesStatus();
+
+			}
+
+			return;
+		}
+	}
+
+	if (mainWindow->callRedirect->isEnabled()) {
+		if (immediate) {
+			mainWindow->do_phoneRedirect(dest_list);
+		} else {
+			mainWindow->phoneRedirect(dest_strlist);
+		}
+	}
+}
+
+void t_gui::gui_do_dnd(bool toggle, bool enable)
+{
+	if (phone->ref_users().size() == 1) {
+		if (toggle) {
+			enable = !mainWindow->serviceDnd->isChecked();
+		}
+		mainWindow->srvDnd(enable);
+		mainWindow->serviceDnd->setChecked(enable);
+	} else {
+		t_user *user = phone->ref_user_profile(mainWindow->
+				userComboBox->currentText().toStdString());
+		list<t_user *> l;
+		l.push_back(user);
+		if (toggle) {
+			enable = !phone->ref_service(user)->is_dnd_active();
+		}
+
+		if (enable) {
+			mainWindow->do_srvDnd_enable(l);
+		} else {
+			mainWindow->do_srvDnd_disable(l);
+		}
+	}
+}
+
+void t_gui::gui_do_auto_answer(bool toggle, bool enable)
+{
+	if (phone->ref_users().size() == 1) {
+		if (toggle) {
+			enable = !mainWindow->serviceAutoAnswer->isChecked();
+		}
+		mainWindow->srvAutoAnswer(enable);
+		mainWindow->serviceAutoAnswer->setChecked(enable);
+	} else {
+		t_user *user = phone->ref_user_profile(mainWindow->
+				userComboBox->currentText().toStdString());
+		list<t_user *> l;
+		l.push_back(user);
+		if (toggle) {
+			enable = !phone->ref_service(user)->
+				 is_auto_answer_active();
+		}
+
+		if (enable) {
+			mainWindow->do_srvAutoAnswer_enable(l);
+		} else {
+			mainWindow->do_srvAutoAnswer_disable(l);
+		}
+	}
+}
+
+void t_gui::gui_do_bye(void)
+{
+	if (mainWindow->callBye->isEnabled()) {
+		mainWindow->phoneBye();
+	}
+}
+
+void t_gui::gui_do_hold(void)
+{
+	if (mainWindow->callHold->isEnabled() && !mainWindow->callHold->isChecked()) {
+		mainWindow->phoneHold(true);
+	}
+}
+
+void t_gui::gui_do_retrieve(void)
+{
+	if (mainWindow->callHold->isEnabled() && mainWindow->callHold->isChecked()) {
+		mainWindow->phoneHold(false);
+	}
+}
+
+bool t_gui::gui_do_refer(const QString &destination, t_transfer_type transfer_type,
+	bool immediate)
+{
+	if (mainWindow->callTransfer->isEnabled() &&
+		!mainWindow->callTransfer->isChecked())
+	{
+		if (immediate) {
+			t_display_url du;
+			t_user *user = phone->ref_user_profile(mainWindow->
+				userComboBox->currentText().toStdString());
+			du.url = expand_destination(user, destination.toStdString());
+
+			if (du.is_valid() || transfer_type == TRANSFER_OTHER_LINE) {
+				mainWindow->do_phoneTransfer(du, transfer_type);
+			}
+		} else {
+			mainWindow->phoneTransfer(destination.toStdString(), transfer_type);
+		}
+	} else if(mainWindow->callTransfer->isEnabled() &&
+		  mainWindow->callTransfer->isChecked())
+	{
+		if (transfer_type != TRANSFER_CONSULT) {
+			mainWindow->do_phoneTransferLine();
+		}
+	}
+}
+
+void t_gui::gui_do_conference(void)
+{
+	if (mainWindow->callConference->isEnabled()) {
+		mainWindow->phoneConference();
+	}
+}
+
+void t_gui::gui_do_mute(bool toggle, bool enable)
+{
+	if (mainWindow->callMute->isEnabled()) {
+		if (toggle) enable = !phone->is_line_muted(phone->get_active_line());
+		mainWindow->phoneMute(enable);
+	}
+}
+
+void t_gui::gui_do_dtmf(const QString &digits)
+{
+	if (mainWindow->callDTMF->isEnabled()) {
+		mainWindow->sendDTMF(digits);
+	}
+}
+
+void t_gui::gui_do_user(const QString &profile_name)
+{
+	for (int i = 0; i < mainWindow->userComboBox->count(); i++) {
+		if (mainWindow->userComboBox->itemText(i) == profile_name)
+		{
+			mainWindow->userComboBox->setCurrentIndex(i);
+			break;
+		}
+	}
+}
 
 /////////////////////////////////////////////////
 // PUBLIC
@@ -630,6 +711,9 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 
     qRegisterMetaType<t_user*>("t_user*");
     qRegisterMetaType<t_register_type>("t_register_type");
+	qRegisterMetaType<t_transfer_type>("t_transfer_type");
+	qRegisterMetaType<t_cf_type>("t_cf_type");
+	qRegisterMetaType<std::list<std::string>>("std::list<std::string>");
 	
     mainWindow = new MphoneForm;
 #ifdef HAVE_KDE
