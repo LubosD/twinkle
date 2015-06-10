@@ -57,6 +57,7 @@
 #include "buddyform.h"
 #include "diamondcardprofileform.h"
 #include "osd.h"
+#include "incoming_call_popup.h"
 
 
 // Time (s) that the conversation timer of a line should stay visible after
@@ -175,6 +176,10 @@ void MphoneForm::init()
 	osdWindow->move(desktop->width() - osdWindow->width() - 10, 10);
 	connect(osdWindow, SIGNAL(hangupClicked()), this, SLOT(phoneBye()));
 	connect(osdWindow, SIGNAL(muteClicked()), this, SLOT(osdMuteClicked()));
+
+	incomingCallPopup = new IncomingCallPopup(this);
+	connect(incomingCallPopup, SIGNAL(answerClicked()), this, SLOT(phoneAnswer()));
+	connect(incomingCallPopup, SIGNAL(rejectClicked()), this, SLOT(phoneReject()));
 	
 	// A QComboBox accepts a new line through copy/paste.
 	QRegExp rxNoNewLine("[^\\n\\r]*");
@@ -637,6 +642,7 @@ void MphoneForm::updateLineStatus(int line)
 	statusTextLabel->setText(state);
 	
 	t_line_substate line_substate;
+
 	line_substate = phone->get_line_substate(line);
 	switch (line_substate) {
 	case LSSUB_IDLE:
@@ -651,6 +657,7 @@ void MphoneForm::updateLineStatus(int line)
 	case LSSUB_INCOMING_PROGRESS:
 		statLabel->setPixmap(QPixmap(":/icons/images/stat_ringing.png"));
 		statLabel->show();
+
 		break;
 	case LSSUB_ANSWERING:
 		statLabel->setPixmap(QPixmap(":/icons/images/gear.png"));
@@ -737,123 +744,142 @@ void MphoneForm::updateState()
 
 	updateOSD();
 	
+	bool showIncomingCallPopup = false;
+
 	switch(line_substate) {
-	case LSSUB_IDLE:
-		enableCallOptions(true);
-		callAnswer->setEnabled(false);
-		callBye->setEnabled(false);
-		callReject->setEnabled(false);
-		callRedirect->setEnabled(false);
-		callTransfer->setEnabled(false);
-		callHold->setEnabled(false);
-		callConference->setEnabled(false);
-		callMute->setEnabled(false);
-		callDTMF->setEnabled(false);
-		callRedial->setEnabled(ui->can_redial());
-		break;
-	case LSSUB_OUTGOING_PROGRESS:
-		enableCallOptions(false);
-		callAnswer->setEnabled(false);
-		callBye->setEnabled(true);
-		callReject->setEnabled(false);
-		callRedirect->setEnabled(false);
-		
-		if (is_transfer_consult && user_config->get_allow_transfer_consultation_inprog()) {
-			callTransfer->setEnabled(true);
-		} else {
-			callTransfer->setEnabled(false);
-		}
-		
-		callHold->setEnabled(false);
-		callConference->setEnabled(false);
-		callMute->setEnabled(false);
-		callDTMF->setEnabled(call_info.dtmf_supported);
-		callRedial->setEnabled(false);
-		break;
-	case LSSUB_INCOMING_PROGRESS:
-		enableCallOptions(false);
-		callAnswer->setEnabled(true);
-		callBye->setEnabled(false);
-		callReject->setEnabled(true);
-		callRedirect->setEnabled(true);
-		callTransfer->setEnabled(false);
-		callHold->setEnabled(false);
-		callConference->setEnabled(false);
-		callMute->setEnabled(false);
-		callDTMF->setEnabled(call_info.dtmf_supported);
-		callRedial->setEnabled(false);
-		break;
-	case LSSUB_ESTABLISHED:
-		enableCallOptions(false);
-		callInvite->setEnabled(false);
-		callAnswer->setEnabled(false);
-		callBye->setEnabled(true);
-		callReject->setEnabled(false);
-		callRedirect->setEnabled(false);
-		
-		if (in_conference) {
+		case LSSUB_IDLE:
+			enableCallOptions(true);
+			callAnswer->setEnabled(false);
+			callBye->setEnabled(false);
+			callReject->setEnabled(false);
+			callRedirect->setEnabled(false);
 			callTransfer->setEnabled(false);
 			callHold->setEnabled(false);
 			callConference->setEnabled(false);
+			callMute->setEnabled(false);
 			callDTMF->setEnabled(false);
-		} else {
-			callTransfer->setEnabled(has_media && 
-						 call_info.refer_supported &&
-						 refer_state == REFST_NULL &&
-						 !to_be_transferred);
-			callHold->setEnabled(has_media);
-			callDTMF->setEnabled(call_info.dtmf_supported);
-			
-			if (phone->get_line_substate(other_line) == 
-			    LSSUB_ESTABLISHED)
-			{
-				// If one of the lines is transferring a call, then a
-				// conference cannot be setup.
-				if (refer_state != REFST_NULL ||
-				    phone->get_line_refer_state(other_line) != REFST_NULL)
-				{
-					callConference->setEnabled(false);
-				} else {
-					callConference->setEnabled(has_media);
-				}
+			callRedial->setEnabled(ui->can_redial());
+			break;
+		case LSSUB_OUTGOING_PROGRESS:
+			enableCallOptions(false);
+			callAnswer->setEnabled(false);
+			callBye->setEnabled(true);
+			callReject->setEnabled(false);
+			callRedirect->setEnabled(false);
+
+			if (is_transfer_consult && user_config->get_allow_transfer_consultation_inprog()) {
+				callTransfer->setEnabled(true);
 			} else {
-				callConference->setEnabled(false);
+				callTransfer->setEnabled(false);
 			}
+
+			callHold->setEnabled(false);
+			callConference->setEnabled(false);
+			callMute->setEnabled(false);
+			callDTMF->setEnabled(call_info.dtmf_supported);
+			callRedial->setEnabled(false);
+			break;
+		case LSSUB_INCOMING_PROGRESS:
+		{
+			enableCallOptions(false);
+			callAnswer->setEnabled(true);
+			callBye->setEnabled(false);
+			callReject->setEnabled(true);
+			callRedirect->setEnabled(true);
+			callTransfer->setEnabled(false);
+			callHold->setEnabled(false);
+			callConference->setEnabled(false);
+			callMute->setEnabled(false);
+			callDTMF->setEnabled(call_info.dtmf_supported);
+			callRedial->setEnabled(false);
+
+			std::string name;
+			t_call_record cr = phone->get_call_hist(line);
+			// t_user *user_config = phone->get_line_user(line);
+
+			// name = ui->format_sip_address(user_config, cr.from_display, cr.from_uri);
+			name = cr.from_display;
+			if (name.empty())
+				name = cr.from_uri.encode_no_params_hdrs(false);
+
+			incomingCallPopup->setCallerName(QString::fromStdString(name));
+			showIncomingCallPopup = true;
+
+			break;
 		}
-		
-		callMute->setEnabled(true);
-		callRedial->setEnabled(false);
-		break;
-	case LSSUB_SEIZED:
-	case LSSUB_ANSWERING:
-	case LSSUB_RELEASING:
-		// During dialing, answering and call release no other actions are 
-		// possible
-		enableCallOptions(false);
-		callAnswer->setEnabled(false);
-		callBye->setEnabled(false);
-		callReject->setEnabled(false);
-		callRedirect->setEnabled(false);
-		callTransfer->setEnabled(false);
-		callHold->setEnabled(false);
-		callConference->setEnabled(false);
-		callMute->setEnabled(false);
-		callDTMF->setEnabled(false);
-		callRedial->setEnabled(false);
-		break;
-	default:
-		enableCallOptions(true);
-		callAnswer->setEnabled(true);
-		callBye->setEnabled(true);
-		callReject->setEnabled(true);
-		callRedirect->setEnabled(true);
-		callTransfer->setEnabled(true);
-		callHold->setEnabled(true);
-		callConference->setEnabled(false);
-		callMute->setEnabled(true);
-		callDTMF->setEnabled(true);
-		callRedial->setEnabled(ui->can_redial());
+		case LSSUB_ESTABLISHED:
+			enableCallOptions(false);
+			callInvite->setEnabled(false);
+			callAnswer->setEnabled(false);
+			callBye->setEnabled(true);
+			callReject->setEnabled(false);
+			callRedirect->setEnabled(false);
+
+			if (in_conference) {
+				callTransfer->setEnabled(false);
+				callHold->setEnabled(false);
+				callConference->setEnabled(false);
+				callDTMF->setEnabled(false);
+			} else {
+				callTransfer->setEnabled(has_media &&
+							 call_info.refer_supported &&
+							 refer_state == REFST_NULL &&
+							 !to_be_transferred);
+				callHold->setEnabled(has_media);
+				callDTMF->setEnabled(call_info.dtmf_supported);
+
+				if (phone->get_line_substate(other_line) ==
+					LSSUB_ESTABLISHED)
+				{
+					// If one of the lines is transferring a call, then a
+					// conference cannot be setup.
+					if (refer_state != REFST_NULL ||
+						phone->get_line_refer_state(other_line) != REFST_NULL)
+					{
+						callConference->setEnabled(false);
+					} else {
+						callConference->setEnabled(has_media);
+					}
+				} else {
+					callConference->setEnabled(false);
+				}
+			}
+
+			callMute->setEnabled(true);
+			callRedial->setEnabled(false);
+			break;
+		case LSSUB_SEIZED:
+		case LSSUB_ANSWERING:
+		case LSSUB_RELEASING:
+			// During dialing, answering and call release no other actions are
+			// possible
+			enableCallOptions(false);
+			callAnswer->setEnabled(false);
+			callBye->setEnabled(false);
+			callReject->setEnabled(false);
+			callRedirect->setEnabled(false);
+			callTransfer->setEnabled(false);
+			callHold->setEnabled(false);
+			callConference->setEnabled(false);
+			callMute->setEnabled(false);
+			callDTMF->setEnabled(false);
+			callRedial->setEnabled(false);
+			break;
+		default:
+			enableCallOptions(true);
+			callAnswer->setEnabled(true);
+			callBye->setEnabled(true);
+			callReject->setEnabled(true);
+			callRedirect->setEnabled(true);
+			callTransfer->setEnabled(true);
+			callHold->setEnabled(true);
+			callConference->setEnabled(false);
+			callMute->setEnabled(true);
+			callDTMF->setEnabled(true);
+			callRedial->setEnabled(ui->can_redial());
 	}
+
+	incomingCallPopup->setVisible(showIncomingCallPopup);
 	
 	// Set hold action in correct state
     callHold->setChecked(on_hold);

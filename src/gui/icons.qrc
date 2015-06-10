@@ -164,5 +164,7 @@
         <file>images/osd_hangup.png</file>
         <file>images/osd_mic_off.png</file>
         <file>images/osd_mic_on.png</file>
+        <file>images/popup_incoming_answer.png</file>
+        <file>images/popup_incoming_reject.png</file>
     </qresource>
 </RCC>

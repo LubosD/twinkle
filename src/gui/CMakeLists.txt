@@ -109,6 +109,7 @@ set(TWINKLE_GUI-SRCS
 	yesnodialog.cpp
 	textbrowsernoautolink.cpp
 	osd.cpp
+	incoming_call_popup.cpp
 
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>

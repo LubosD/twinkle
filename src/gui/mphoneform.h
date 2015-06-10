@@ -27,6 +27,7 @@ class t_phone;
 extern t_phone *phone;
 
 class OSD;
+class IncomingCallPopup;
 
 class MphoneForm : public QMainWindow, public Ui::MphoneForm
 {
@@ -210,6 +211,7 @@ private:
     QMenu *changeAvailabilityPopupMenu;
 	bool viewBuddyList;
 	OSD	*osdWindow;
+	IncomingCallPopup *incomingCallPopup;
 };
 
 #endif
