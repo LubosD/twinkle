@@ -254,7 +254,7 @@ void t_gui::do_dnd(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	QMetaObject::invokeMethod(this, "do_dnd", Q_ARG(bool, toggle), Q_ARG(bool, enable));
+	QMetaObject::invokeMethod(this, "gui_do_dnd", Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
