@@ -1160,6 +1160,10 @@ string t_sys_settings::get_options_built(void) const {
 	if (!options_built.empty()) options_built += ", ";
 	options_built += "ZRTP";
 #endif
+#ifdef HAVE_GNUTLS
+	if (!options_built.empty()) options_built += ", ";
+	options_built += "TLS";
+#endif
 
 	return options_built;
 }
