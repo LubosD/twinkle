@@ -36,6 +36,8 @@
 
 using namespace std;
 
+class t_user;
+
 // ports and addresses should be in host order
 
 /** ICMP message */
@@ -204,7 +206,7 @@ public:
 #ifdef HAVE_GNUTLS
 class t_socket_tcp_tls : public t_socket_tcp {
 public:
-	t_socket_tcp_tls();
+	t_socket_tcp_tls(t_user* user = nullptr, std::string hostname = std::string());
 	virtual ~t_socket_tcp_tls();
 
 	virtual void connect(unsigned long dest_addr, unsigned short dest_port) override;
@@ -220,6 +222,8 @@ private:
 private:
 	gnutls_session_t m_session;
 	gnutls_certificate_credentials_t m_xcred;
+	t_user* m_user;
+	std::string m_hostname;
 };
 #endif
 

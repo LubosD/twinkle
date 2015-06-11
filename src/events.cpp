@@ -551,6 +551,7 @@ void t_event_queue::push_network(t_sip_message *m, const t_ip_port &ip_port) {
 	event->dst_addr = ip_port.ipaddr;
 	event->dst_port = ip_port.port;
 	event->transport = ip_port.transport;
+	event->hostname = ip_port.hostname;
 	push(event);
 }
 

@@ -23,6 +23,11 @@
 #include "twinkle_config.h"
 #include "socket.h"
 #include "audits/memman.h"
+#include "user.h"
+
+#ifdef HAVE_GNUTLS
+#	include <gnutls/x509.h>
+#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -366,12 +371,16 @@ void t_socket_tcp::get_remote_address(unsigned long &remote_addr, unsigned short
 // t_socket_tcp_tls
 /////////////////
 
-t_socket_tcp_tls::t_socket_tcp_tls()
+t_socket_tcp_tls::t_socket_tcp_tls(t_user* user, std::string hostname)
+	: m_user(user), m_hostname(hostname)
 {
 	gnutls_certificate_allocate_credentials(&m_xcred);
 	gnutls_init(&m_session, GNUTLS_CLIENT);
 
 	gnutls_certificate_set_verify_function(m_xcred, vertify_certificate_callback);
+	gnutls_certificate_set_x509_system_trust(m_xcred);
+
+	gnutls_session_set_ptr(m_session, this);
 }
 
 t_socket_tcp_tls::~t_socket_tcp_tls()
@@ -417,6 +426,31 @@ ssize_t t_socket_tcp_tls::recv(void *buf, int buf_size)
 
 int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 {
+	int ret;
+	gnutls_certificate_type_t type;
+	gnutls_datum_t out;
+	unsigned int status;
+	gnutls_typed_vdata_st data[2];
+	t_socket_tcp_tls* This;
+
+	This = static_cast<t_socket_tcp_tls*>(gnutls_session_get_ptr(session));
+
+	std::memset(data, 0, sizeof(data));
+
+	data[0].type = GNUTLS_DT_DNS_HOSTNAME;
+	data[0].data = (unsigned char*) This->m_hostname.c_str();
+
+	data[1].type = GNUTLS_DT_KEY_PURPOSE_OID;
+	data[1].data = (unsigned char*) GNUTLS_KP_ANY;
+
+	ret = gnutls_certificate_verify_peers(session, data, 2, &status);
+
+	type = gnutls_certificate_type_get(session);
+	gnutls_certificate_verification_status_print(status, type, &out, 0);
+
+	printf("(for hostname %s): %s\n", This->m_hostname.c_str(), out.data);
+	gnutls_free(out.data);
+
 	// TODO: certificate verification
 	return 0; // accept all (insecure)
 }

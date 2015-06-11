@@ -97,6 +97,7 @@ public:
 	unsigned int	dst_addr; /**< Destination IP address of the SIP message (host order). */
 	unsigned short	dst_port; /**< Destination port of the SIP message (host order). */
 	string		transport; /**< Transport protocol */
+	string		hostname; /**< Hostname for TLS certificate verification */
 
 	/**
 	 * Constructor.

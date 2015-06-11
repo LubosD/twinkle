@@ -159,11 +159,11 @@ string display_and_url2str(const string &display, const string &url) {
 
 // t_ip_port
 
-t_ip_port::t_ip_port(unsigned long _ipaddr, unsigned short _port) :
-	transport("udp"), ipaddr(_ipaddr), port(_port) {}
+t_ip_port::t_ip_port(unsigned long _ipaddr, unsigned short _port, std::string _hostname) :
+	transport("udp"), ipaddr(_ipaddr), port(_port), hostname(_hostname) {}
 	
-t_ip_port::t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port) :
-	transport(proto), ipaddr(_ipaddr), port(_port) {}
+t_ip_port::t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port, std::string _hostname) :
+	transport(proto), ipaddr(_ipaddr), port(_port), hostname(_hostname) {}
 
 void t_ip_port::clear(void) {
 	transport.clear();
@@ -582,7 +582,8 @@ list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 				for (list<unsigned long>::iterator j = ipaddr_list.begin();
 				     j != ipaddr_list.end(); j++)
 				{
-					ip_list.push_back(t_ip_port(transport, *j, i->port));
+					// TODO: Not sure if I should use i->hostname or host?
+					ip_list.push_back(t_ip_port(transport, *j, i->port, i->hostname));
 				}
 			}
 			
@@ -596,7 +597,7 @@ list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 	for (list<unsigned long>::iterator j = ipaddr_list.begin();
 		j != ipaddr_list.end(); j++)
 	{
-		ip_list.push_back(t_ip_port(transport, *j, get_hport()));
+		ip_list.push_back(t_ip_port(transport, *j, get_hport(), host));
 	}
 	
 	return ip_list;

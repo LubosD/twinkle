@@ -188,6 +188,7 @@ static void send_sip_tcp(t_event *event, std::string transport_type) {
 	e = (t_event_network *)event;
 	unsigned long dst_addr = e->dst_addr;
 	unsigned short dst_port = e->dst_port;
+	std::string hostname = e->hostname;
 	
 	assert(dst_addr != 0);
 	assert(dst_port != 0);
@@ -219,17 +220,33 @@ static void send_sip_tcp(t_event *event, std::string transport_type) {
 	}
 	
 	if (!conn) {
+
 		if (sip_msg->get_type() == MSG_RESPONSE) {
 			t_ip_port dst_ip_port;
 			sip_msg->hdr_via.get_response_dst(dst_ip_port);
 			dst_addr = dst_ip_port.ipaddr;
 			dst_port = dst_ip_port.port;
+			hostname = dst_ip_port.hostname;
 		}
 		
 		t_socket_tcp *tcp;
 #ifdef HAVE_GNUTLS
 		if (transport_type == "tls_tcp")
-			tcp = new t_socket_tcp_tls;
+		{
+			t_request *req = dynamic_cast<t_request *>(sip_msg);
+			t_phone_user *pu;
+			t_user *user_config = nullptr;
+
+			if (req != nullptr)
+			{
+				pu = phone->find_phone_user(req->hdr_to.uri);
+
+				if (pu != nullptr)
+					user_config = pu->get_user_profile();
+			}
+
+			tcp = new t_socket_tcp_tls(user_config, hostname);
+		}
 		else
 #endif
 		tcp = new t_socket_tcp;

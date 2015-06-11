@@ -35,10 +35,11 @@ public:
 	string			transport;
 	unsigned long		ipaddr;
 	unsigned short		port;
+	string			hostname; // Added for TLS certificate verification
 	
 	t_ip_port() : transport("udp") {};
-	t_ip_port(unsigned long _ipaddr, unsigned short _port);
-	t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port);
+	t_ip_port(unsigned long _ipaddr, unsigned short _port, std::string _hostname = std::string());
+	t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port, std::string _hostname = std::string());
 	
 	void clear(void);
 	bool is_null(void) const;
