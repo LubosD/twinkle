@@ -253,10 +253,18 @@ void MphoneForm::init()
 #ifndef WITH_DIAMONDCARD
 	Diamondcard->menuAction()->setVisible(false);
 #endif
+
+	restoreState(g_gui_state->value("mainwindow/state").toByteArray());
+	restoreGeometry(g_gui_state->value("mainwindow/geometry").toByteArray());
+	splitter2->restoreState(g_gui_state->value("mainwindow/mainsplitter").toByteArray());
 }
 
 void MphoneForm::destroy()
 {
+	g_gui_state->setValue("mainwindow/state", saveState());
+	g_gui_state->setValue("mainwindow/geometry", saveGeometry());
+	g_gui_state->setValue("mainwindow/mainsplitter", splitter2->saveState());
+
 	if (dtmfForm) {
 		MEMMAN_DELETE(dtmfForm);
 		delete dtmfForm;

@@ -70,12 +70,15 @@
 #include "qstring.h"
 #include "qtextcodec.h"
 #include "qtooltip.h"
+#include <QSettings>
 
 extern string user_host;
 extern pthread_t thread_id_main;
 
 // External command arguments
 extern t_command_args g_cmd_args;
+
+extern QSettings* g_gui_state;
 
 QString str2html(const QString &s)
 {
@@ -798,10 +801,10 @@ void t_gui::run(void) {
 	mainWindow->populateBuddyList();
 	
 	// Set width of window to width of tool bar
-	int widthToolBar = mainWindow->callToolbar->width();
-	QSize sizeMainWin = mainWindow->size();
-	sizeMainWin.setWidth(widthToolBar);
-	mainWindow->resize(sizeMainWin);
+	// int widthToolBar = mainWindow->callToolbar->width();
+	// QSize sizeMainWin = mainWindow->size();
+	// sizeMainWin.setWidth(widthToolBar);
+	// mainWindow->resize(sizeMainWin);
 	
 	// Start QApplication/KApplication
 	if (qApp->isSessionRestored() && 

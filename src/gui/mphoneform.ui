@@ -21,7 +21,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>714</width>
+    <width>500</width>
     <height>693</height>
    </size>
   </property>
@@ -1058,7 +1058,7 @@
      <x>0</x>
      <y>0</y>
      <width>733</width>
-     <height>20</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
