@@ -10,6 +10,11 @@
 #	include <QDeclarativeContext>
 #	include <QDeclarativeItem>
 #endif
+#include <QDesktopWidget>
+#include <QSettings>
+#include <QApplication>
+
+extern QSettings* g_gui_state;
 
 OSD::OSD(QObject* parent)
 	: QObject(parent)
@@ -21,6 +26,8 @@ OSD::OSD(QObject* parent)
 	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/osd.qml"));
 
+	positionWindow();
+
 	QObject* buttonHangup;
 	buttonHangup = m_view->rootObject()->findChild<QObject*>("hangup");
 
@@ -31,11 +38,41 @@ OSD::OSD(QObject* parent)
 	m_mute = m_view->rootObject()->findChild<QML_ITEMTYPE*>("mute");
 
 	connect(m_mute, SIGNAL(clicked()), this, SLOT(onMuteClicked()));
+
+	connect(m_view->rootObject(), SIGNAL(moved()), this, SLOT(saveState()));
 }
 
 OSD::~OSD()
 {
 	delete m_view;
+}
+
+void OSD::positionWindow()
+{
+	QDesktopWidget* desktop = QApplication::desktop();
+	int x, y;
+	int defaultX, defaultY;
+
+	defaultX = desktop->width() - this->width() - 10;
+	defaultY = 10;
+
+	x = g_gui_state->value("osd/x", defaultX).toInt();
+	y = g_gui_state->value("osd/y", defaultY).toInt();
+
+	// Reset position if off screen
+	if (x > desktop->width() || x < 0)
+		x = defaultX;
+	if (y > desktop->height() || y < 0)
+		y = defaultY;
+
+	m_view->move(x, y);
+}
+
+void OSD::saveState()
+{
+	QPoint pos = m_view->pos();
+	g_gui_state->setValue("osd/x", pos.x());
+	g_gui_state->setValue("osd/y", pos.y());
 }
 
 void OSD::onHangupClicked()

@@ -27,6 +27,8 @@
 #include <qapplication.h>
 #include <qtranslator.h>
 #include <qtextcodec.h>
+#include <QSettings>
+#include <QDir>
 
 #include "mphoneform.h"
 
@@ -165,6 +167,7 @@ pthread_t		thread_id_main;
 // Indicates if LinuxThreads or NPTL is active.
 bool			threading_is_LinuxThreads;
 
+QSettings*      g_gui_state;
 
 /**
  * Parse arguments passed to application
@@ -511,6 +514,9 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
 		QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 #endif
+
+        g_gui_state = new QSettings(QDir::home().absoluteFilePath(QString("%1/%2").arg(DIR_USER).arg("gui_state.ini")),
+                                    QSettings::IniFormat, qa);
 		
 		// Install Qt translator
 		// Do not report to memman as the translator will be deleted

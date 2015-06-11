@@ -1,10 +1,12 @@
 import QtQuick 1.1
 
 Rectangle {
-    id: rectangle1
+    id: rectangleOsd
     width: 310
     height: 55
     color: "black"
+
+    signal moved
 
     Image {
         id: image1
@@ -87,6 +89,8 @@ Rectangle {
                 var dy = mouseY - previousPosition.y
                 viewerWidget.pos = Qt.point(viewerWidget.pos.x + dx,
                                             viewerWidget.pos.y + dy)
+
+                rectangleOsd.moved()
             }
         }
     }

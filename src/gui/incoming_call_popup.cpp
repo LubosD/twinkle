@@ -2,6 +2,9 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QDeclarativeContext>
+#include <QSettings>
+
+extern QSettings* g_gui_state;
 
 IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 {
@@ -12,14 +15,8 @@ IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 
 	m_view->setSource(QUrl("qrc:/qml/incoming_call.qml"));
 
-	// Place into the middle of the screen
-	QDesktopWidget* desktop = qApp->desktop();
-	QPoint pos;
-
-	pos.setX(desktop->width()/2 - m_view->width()/2);
-	pos.setY(desktop->height()/2 - m_view->height()/2);
-
-	m_view->move(pos);
+    // Place into the middle of the screen
+	positionWindow();
 
 	QObject* button;
 
@@ -30,11 +27,45 @@ IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 	connect(button, SIGNAL(clicked()), this, SLOT(onRejectClicked()));
 
 	m_callerText = m_view->rootObject()->findChild<QDeclarativeItem*>("callerText");
+	connect(m_view->rootObject(), SIGNAL(moved()), this, SLOT(saveState()));
 }
 
 IncomingCallPopup::~IncomingCallPopup()
 {
 	delete m_view;
+}
+
+void IncomingCallPopup::positionWindow()
+{
+	QDesktopWidget* desktop = qApp->desktop();
+	int x, y;
+	int defaultX, defaultY;
+
+	defaultX = desktop->width()/2 - m_view->width()/2;
+	defaultY = desktop->height()/2 - m_view->height()/2;
+
+	x = g_gui_state->value("incoming_popup/x", defaultX).toInt();
+	y = g_gui_state->value("incoming_popup/y", defaultY).toInt();
+
+	// Reset position if off screen
+	if (x > desktop->width() || x < 0)
+		x = defaultX;
+	if (y > desktop->height() || y < 0)
+		y = defaultY;
+
+	m_view->move(x, y);
+}
+
+void IncomingCallPopup::saveState()
+{
+	QPoint pos = m_view->pos();
+	g_gui_state->setValue("incoming_popup/x", pos.x());
+	g_gui_state->setValue("incoming_popup/y", pos.y());
+}
+
+void IncomingCallPopup::move(int x, int y)
+{
+    m_view->move(QPoint(x, y));
 }
 
 void IncomingCallPopup::setCallerName(const QString& name)

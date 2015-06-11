@@ -1,10 +1,12 @@
 import QtQuick 1.1
 
 Rectangle {
-    id: rectangle1
+    id: rectanglePopup
     width: 400
     height: 70
     color: "black"
+
+    signal moved
 
     Image {
         id: image1
@@ -57,6 +59,25 @@ Rectangle {
         anchors.left: buttonAnswer.right
         anchors.leftMargin: 15
         image: "qrc:/icons/images/popup_incoming_reject.png"
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        property variant previousPosition
+        onPressed: {
+            previousPosition = Qt.point(mouseX, mouseY)
+        }
+        onPositionChanged: {
+            if (pressedButtons == Qt.LeftButton) {
+                var dx = mouseX - previousPosition.x
+                var dy = mouseY - previousPosition.y
+                viewerWidget.pos = Qt.point(viewerWidget.pos.x + dx,
+                                            viewerWidget.pos.y + dy)
+
+                previousPosition = Qt.point(mouseX, mouseY)
+                rectanglePopup.moved()
+            }
+        }
     }
 }
 

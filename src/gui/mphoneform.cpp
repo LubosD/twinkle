@@ -54,11 +54,13 @@
 #include <QCursor>
 #include <QRegExp>
 #include <QValidator>
+#include <QSettings>
 #include "buddyform.h"
 #include "diamondcardprofileform.h"
 #include "osd.h"
 #include "incoming_call_popup.h"
 
+extern QSettings*      g_gui_state;
 
 // Time (s) that the conversation timer of a line should stay visible after
 // a call has ended
@@ -170,10 +172,7 @@ void MphoneForm::init()
     //to2Label->setPaletteBackgroundColor(paletteBackgroundColor());
     //subject2Label->setPaletteBackgroundColor(paletteBackgroundColor());
 
-	QDesktopWidget* desktop = QApplication::desktop();
 	osdWindow = new OSD(this);
-
-	osdWindow->move(desktop->width() - osdWindow->width() - 10, 10);
 	connect(osdWindow, SIGNAL(hangupClicked()), this, SLOT(phoneBye()));
 	connect(osdWindow, SIGNAL(muteClicked()), this, SLOT(osdMuteClicked()));
 

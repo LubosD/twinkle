@@ -15,13 +15,17 @@ public:
 	void show();
 	void hide();
 	void setVisible(bool v) { if (v) show(); else hide(); }
+    void move(int x, int y);
 
+private:
+	void positionWindow();
 signals:
 	void answerClicked();
 	void rejectClicked();
 public slots:
 	void onAnswerClicked();
 	void onRejectClicked();
+	void saveState();
 private:
 	QDeclarativeView* m_view;
 	QDeclarativeItem* m_callerText;

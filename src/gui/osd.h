@@ -34,9 +34,12 @@ public:
 	int height() const;
 	void setVisible(bool v) { if (v) show(); else hide(); }
 
+private:
+	void positionWindow();
 public slots:
 	void onHangupClicked();
 	void onMuteClicked();
+	void saveState();
 
 signals:
 	void hangupClicked();
