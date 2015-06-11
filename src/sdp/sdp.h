@@ -34,6 +34,7 @@
 #define SDP_FORMAT_G711_ULAW	0
 #define SDP_FORMAT_GSM		3
 #define SDP_FORMAT_G711_ALAW	8
+#define SDP_FORMAT_G729			18
 
 // rtpmap values
 #define SDP_RTPMAP_G711_ULAW	"PCMU/8000"
@@ -47,6 +48,7 @@
 #define SDP_RTPMAP_G726_24	"G726-24/8000"
 #define SDP_RTPMAP_G726_32	"G726-32/8000"
 #define SDP_RTPMAP_G726_40	"G726-40/8000"
+#define SDP_RTPMAP_G729A	"G729/8000"
 #define SDP_RTPMAP_TELEPHONE_EV	"telephone-event/8000"
 
 // Audio codec names
@@ -59,6 +61,7 @@
 #define SDP_AC_NAME_G726_24		"G726-24"
 #define SDP_AC_NAME_G726_32		"G726-32"
 #define SDP_AC_NAME_G726_40		"G726-40"
+#define SDP_AC_NAME_G729		"G729"
 #define SDP_AC_NAME_TELEPHONE_EV	"telephone-event"
 
 // Check on fmtp parameter values

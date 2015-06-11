@@ -342,6 +342,16 @@ void t_sdp_media::add_format(unsigned short f, t_audio_codec codec) {
 		string fmtp = int2str(f);
 		fmtp += ' ';
 		fmtp += "0-15";
+
+		attributes.push_back(t_sdp_attr("fmtp", fmtp));
+	}
+	else if (codec == CODEC_G729A)
+	{
+		string fmtp = int2str(f);
+
+		fmtp += ' ';
+		fmtp += "annexb=no"; // annexb=no means G729A
+
 		attributes.push_back(t_sdp_attr("fmtp", fmtp));
 	}
 }

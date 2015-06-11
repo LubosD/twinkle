@@ -37,7 +37,8 @@ enum t_audio_codec {
 	CODEC_G726_24,
 	CODEC_G726_32,
 	CODEC_G726_40,
-	CODEC_TELEPHONE_EVENT
+	CODEC_TELEPHONE_EVENT,
+	CODEC_G729A
 };
 
 // Default ptime values (ms) for audio codecs
