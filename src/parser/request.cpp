@@ -22,6 +22,7 @@
 #include "protocol.h"
 #include "milenage.h"
 #include "audits/memman.h"
+#include "twinkle_config.h"
 #include <sstream>
 #include <ucommon/secure.h>
 
@@ -566,6 +567,17 @@ void t_request::add_destinations(const t_user &user_profile, const t_url &dst_ur
 		list<t_ip_port> l = dest.get_h_ip_srv("tcp");
 		destinations.insert(destinations.end(), l.begin(), l.end());
 	}
+
+#ifdef HAVE_GNUTLS
+	if (user_profile.get_sip_transport() == SIP_TRANS_TLS_TCP
+			&&
+			(dest.get_transport().empty() ||
+			 cmp_nocase(dest.get_transport(), "tls") == 0))
+	{
+		list<t_ip_port> l = dest.get_h_ip_srv("tls_tcp");
+		destinations.insert(destinations.end(), l.begin(), l.end());
+	}
+#endif
 	
 	// Add UDP destinations after TCP, so UDP will be used as a fallback
 	// for large messages, when TCP fails. If the message is not large,

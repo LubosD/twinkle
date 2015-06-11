@@ -27,6 +27,7 @@
 #include "util.h"
 #include "audits/memman.h"
 #include "parser/parse_ctrl.h"
+#include "twinkle_config.h"
 
 extern t_connection_table *connection_table;
 
@@ -162,6 +163,11 @@ t_sip_message *t_connection::get_sip_msg(string &raw_headers, string &raw_body, 
 		
 		get_remote_address(sip_msg_->src_ip_port.ipaddr, sip_msg_->src_ip_port.port);
 		sip_msg_->src_ip_port.transport = "tcp";
+
+#ifdef HAVE_GNUTLS
+		if (dynamic_cast<t_socket_tcp_tls*>(socket_) != nullptr)
+			sip_msg_->src_ip_port.transport = "tls_tcp";
+#endif
 		
 		// Remove the processed headers from the read buffer.
 		remove_data(pos_body);

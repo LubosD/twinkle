@@ -268,6 +268,9 @@ t_sip_transport t_user::str2sip_transport(const string &s) const {
 	if (s == "udp") return SIP_TRANS_UDP;
 	if (s == "tcp") return SIP_TRANS_TCP;
 	if (s == "auto") return SIP_TRANS_AUTO;
+#ifdef HAVE_GNUTLS
+	if (s == "tls_tcp") return SIP_TRANS_TLS_TCP;
+#endif
 	return SIP_TRANS_AUTO;
 }
 
@@ -276,6 +279,9 @@ string t_user::sip_transport2str(t_sip_transport transport) const {
 	case SIP_TRANS_UDP:	return "udp";
 	case SIP_TRANS_TCP:	return "tcp";
 	case SIP_TRANS_AUTO:	return "auto";
+#ifdef HAVE_GNUTLS
+	case SIP_TRANS_TLS_TCP: return "tls_tcp";
+#endif
 	default:
 		assert(false);
 	}
@@ -3055,6 +3061,11 @@ string t_user::create_user_contact(bool anonymous, const string &auto_ip) {
 		case SIP_TRANS_TCP:
 			s += ";transport=tcp";
 			break;
+#ifdef HAVE_GNUTLS
+		case SIP_TRANS_TLS_TCP:
+			s += ";transport=tls";
+			break;
+#endif
 		default:
 			break;
 		}

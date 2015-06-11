@@ -29,6 +29,10 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include "twinkle_config.h"
+#ifdef HAVE_GNUTLS
+#	include <gnutls/gnutls.h>
+#endif
 
 using namespace std;
 
@@ -179,7 +183,7 @@ public:
 	 * @param dest_port [in] Destination port.
 	 * @throw int Errno
 	 */
-	void connect(unsigned long dest_addr, unsigned short dest_port);
+	virtual void connect(unsigned long dest_addr, unsigned short dest_port);
 	
 	/** Send data */
 	virtual ssize_t send(const void *data, int data_size);
@@ -196,6 +200,28 @@ public:
 	 */
 	void get_remote_address(unsigned long &remote_addr, unsigned short &remote_port);
 };
+
+#ifdef HAVE_GNUTLS
+class t_socket_tcp_tls : public t_socket_tcp {
+public:
+	t_socket_tcp_tls();
+	virtual ~t_socket_tcp_tls();
+
+	virtual void connect(unsigned long dest_addr, unsigned short dest_port) override;
+
+	/** Send data */
+	virtual ssize_t send(const void *data, int data_size) override;
+
+
+	/** Receive data */
+	virtual ssize_t recv(void *buf, int buf_size) override;
+private:
+	static int vertify_certificate_callback(gnutls_session_t session);
+private:
+	gnutls_session_t m_session;
+	gnutls_certificate_credentials_t m_xcred;
+};
+#endif
 
 /** Local socket */
 class t_socket_local : public t_socket {	

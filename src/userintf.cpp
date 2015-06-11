@@ -20,6 +20,7 @@
 #include <cstdlib>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "twinkle_config.h"
 #include "address_book.h"
 #include "events.h"
 #include "line.h"
@@ -152,11 +153,22 @@ string t_userintf::expand_destination(t_user *user_config, const string &dst, co
 			s += user_config->get_domain();
 		}
 	}
+
+#ifdef HAVE_GNUTLS
+	if (user_config->get_sip_transport() == SIP_TRANS_TLS_TCP)
+	{
+		if (s.substr(0, 4) == "sip:" || s.substr(0, 4) == "tel:")
+			s = s.substr(4);
+
+		s.insert(0, "sips:");
+	}
+#else
 	
 	// Add sip-scheme if a scheme is missing
 	if (s.substr(0, 4) != "sip:" && s.substr(0, 4) != "tel:") {
 		s = "sip:" + s;
 	}
+#endif
 
 	// RFC 3261 19.1.1
 	// Add user=phone for telehpone numbers in a SIP-URI

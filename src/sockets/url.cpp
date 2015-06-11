@@ -30,6 +30,7 @@
 #include "url.h"
 #include "user.h"
 #include "util.h"
+#include "twinkle_config.h"
 
 using namespace std;
 
@@ -556,7 +557,18 @@ list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 	// RFC 3263 4.2
 	// Only do an SRV lookup if host is a hostname and no port is specified.
 	if (!is_ipaddr(host) && port == 0) {
-		int ret = insrv_lookup(scheme.c_str(), transport.c_str(), 
+		std::string lltransport = transport;
+		std::string myscheme = scheme;
+
+#ifdef HAVE_GNUTLS
+		if (transport == "tls_tcp")
+		{
+			myscheme = "sips";
+			lltransport = "tcp";
+		}
+#endif
+
+		int ret = insrv_lookup(myscheme.c_str(), lltransport.c_str(),
 				host.c_str(), srv_list);
 		
 		if (ret >= 0 && !srv_list.empty()) {

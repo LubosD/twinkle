@@ -361,6 +361,67 @@ void t_socket_tcp::get_remote_address(unsigned long &remote_addr, unsigned short
 	remote_port = ntohs(addr.sin_port);
 };
 
+#ifdef HAVE_GNUTLS
+/////////////////
+// t_socket_tcp_tls
+/////////////////
+
+t_socket_tcp_tls::t_socket_tcp_tls()
+{
+	gnutls_certificate_allocate_credentials(&m_xcred);
+	gnutls_init(&m_session, GNUTLS_CLIENT);
+
+	gnutls_certificate_set_verify_function(m_xcred, vertify_certificate_callback);
+}
+
+t_socket_tcp_tls::~t_socket_tcp_tls()
+{
+	gnutls_deinit(m_session);
+	gnutls_certificate_free_credentials(m_xcred);
+}
+
+void t_socket_tcp_tls::connect(unsigned long dest_addr, unsigned short dest_port)
+{
+	int ret;
+
+	gnutls_set_default_priority(m_session);
+	gnutls_credentials_set(m_session, GNUTLS_CRD_CERTIFICATE, m_xcred);
+
+	t_socket_tcp::connect(dest_addr, dest_port);
+
+	gnutls_transport_set_int(m_session, get_descriptor());
+	gnutls_handshake_set_timeout(m_session, GNUTLS_DEFAULT_HANDSHAKE_TIMEOUT);
+
+	do
+	{
+		ret = gnutls_handshake(m_session);
+	}
+	while (ret < 0 && gnutls_error_is_fatal(ret) == 0);
+
+	if (ret < 0)
+		throw ret;
+}
+
+/** Send data */
+ssize_t t_socket_tcp_tls::send(const void *data, int data_size)
+{
+	return gnutls_record_send(m_session, data, data_size);
+}
+
+
+/** Receive data */
+ssize_t t_socket_tcp_tls::recv(void *buf, int buf_size)
+{
+	return gnutls_record_recv(m_session, buf, buf_size);
+}
+
+int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
+{
+	// TODO: certificate verification
+	return 0; // accept all (insecure)
+}
+#endif
+
 /////////////////
 // t_socket_local
 /////////////////

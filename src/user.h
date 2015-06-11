@@ -31,6 +31,7 @@
 #include "sockets/url.h"
 #include "threads/mutex.h"
 #include "boost/regex.hpp"
+#include "twinkle_config.h"
 
 // Forward declaration
 class t_request;
@@ -60,7 +61,10 @@ enum t_hold_variant {
 enum t_sip_transport {
 	SIP_TRANS_UDP,	/**< SIP over UDP */
 	SIP_TRANS_TCP,	/**< SIP over TCP */
-	SIP_TRANS_AUTO	/**< UDP for small messages, TCP for large messages */
+	SIP_TRANS_AUTO,	/**< UDP for small messages, TCP for large messages */
+#ifdef HAVE_GNUTLS
+	SIP_TRANS_TLS_TCP /**< SIP over TLS/TCP */
+#endif
 };
 
 enum t_ext_support {

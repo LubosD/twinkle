@@ -35,6 +35,7 @@
 #include "numberconversionform.h"
 #include "util.h"
 #include "userprofileform.h"
+#include "twinkle_config.h"
 
 
 // Indices of categories in the category list box
@@ -109,6 +110,9 @@
 #define idxSipTransportAuto	0
 #define idxSipTransportUDP	1
 #define idxSipTransportTCP	2
+#ifdef HAVE_GNUTLS
+#	define idxSipTransportTLSTCP	3
+#endif
 
 /*
  *  Constructs a UserProfileForm as a child of 'parent', with the
@@ -543,8 +547,12 @@ void UserProfileForm::populate()
 	transferConsultInprogCheckBox->setChecked(
 			current_profile->get_allow_transfer_consultation_inprog());
 	pPreferredIdCheckBox->setChecked(current_profile->get_send_p_preferred_id());
-	
+
 	// Transport/NAT
+#ifdef HAVE_GNUTLS
+	sipTransportComboBox->addItem(tr("TLS/TCP"));
+#endif
+	
 	switch (current_profile->get_sip_transport()) {
 	case SIP_TRANS_UDP:
         sipTransportComboBox->setCurrentIndex(idxSipTransportUDP);
@@ -552,6 +560,11 @@ void UserProfileForm::populate()
 	case SIP_TRANS_TCP:
         sipTransportComboBox->setCurrentIndex(idxSipTransportTCP);
 		break;
+#ifdef HAVE_GNUTLS
+	case SIP_TRANS_TLS_TCP:
+		sipTransportComboBox->setCurrentIndex(idxSipTransportTLSTCP);
+		break;
+#endif
 	default:
         sipTransportComboBox->setCurrentIndex(idxSipTransportAuto);
 		break;
@@ -577,7 +590,17 @@ void UserProfileForm::populate()
 	stunServerLineEdit->setText(current_profile->get_stun_server().
 				    encode_noscheme().c_str());
 	persistentTcpCheckBox->setChecked(current_profile->get_persistent_tcp());
-	persistentTcpCheckBox->setEnabled(current_profile->get_sip_transport() == SIP_TRANS_TCP);
+
+	{
+		const t_sip_transport transport = current_profile->get_sip_transport();
+
+#ifdef HAVE_GNUTLS
+		persistentTcpCheckBox->setEnabled(transport == SIP_TRANS_TCP || transport == SIP_TRANS_TLS_TCP);
+#else
+		persistentTcpCheckBox->setEnabled(transport == SIP_TRANS_TCP);
+#endif
+	}
+
 	natKeepaliveCheckBox->setChecked(current_profile->get_enable_nat_keepalive());
 	natKeepaliveCheckBox->setDisabled(current_profile->get_use_stun());
 	
@@ -1173,6 +1196,11 @@ bool UserProfileForm::validateValues()
 	case idxSipTransportTCP:
 		current_profile->set_sip_transport(SIP_TRANS_TCP);
 		break;
+#ifdef HAVE_GNUTLS
+	case idxSipTransportTLSTCP:
+		current_profile->set_sip_transport(SIP_TRANS_TLS_TCP);
+		break;
+#endif
 	default:
 		current_profile->set_sip_transport(SIP_TRANS_AUTO);
 		break;
@@ -1538,5 +1566,10 @@ void UserProfileForm::changeMWIType(int idxMWIType) {
 void UserProfileForm::changeSipTransportProtocol(int idx) {
 	udpThresholdTextLabel->setEnabled(idx == idxSipTransportAuto);
 	udpThresholdSpinBox->setEnabled(idx == idxSipTransportAuto);
+
+#ifdef HAVE_GNUTLS
+	persistentTcpCheckBox->setEnabled(idx == idxSipTransportTCP || idx == idxSipTransportTLSTCP);
+#else
 	persistentTcpCheckBox->setEnabled(idx == idxSipTransportTCP);
+#endif
 }

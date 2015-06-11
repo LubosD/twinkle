@@ -14,6 +14,7 @@ OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 OPTION(WITH_QT4			"Enable Qt 4 GUI" OFF)
 OPTION(WITH_QT5			"Enable Qt 5 GUI" OFF)
 OPTION(WITH_G729		"Enable G.729A support" OFF)
+OPTION(WITH_GNUTLS		"Enable TLS support (via GnuTLS)" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
@@ -115,6 +116,18 @@ if (WITH_G729)
 	endif (G729_FOUND)
 endif (WITH_G729)
 
+if (WITH_GNUTLS)
+	find_package(GnuTLS REQUIRED)
+
+	if (GNUTLS_FOUND)
+		message(STATUS "GnuTLS OK")
+		set(HAVE_GNUTLS TRUE)
+
+		include_directories(${GNUTLS_INCLUDE_DIR})
+	else (GNUTLS_FOUND)
+		message(FATAL_ERROR "GnuTLS not found!")
+	endif (GNUTLS_FOUND)
+endif (WITH_GNUTLS)
 
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)

@@ -293,6 +293,7 @@ static void process_sip_msg(t_sip_message *msg, const string &raw_headers, const
 	ev_network->src_addr = msg->src_ip_port.ipaddr;
 	ev_network->src_port = msg->src_ip_port.port;
 	ev_network->transport = msg->src_ip_port.transport;
+
 	evq_trans_mgr->push(ev_network);
 }
 

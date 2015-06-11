@@ -38,6 +38,7 @@
 #include "parser/sip_message.h"
 #include "audits/memman.h"
 #include "stun/stun.h"
+#include "twinkle_config.h"
 
 #define MAX_TRANSMIT_RETRIES	3
 
@@ -180,7 +181,7 @@ static void send_sip_udp(t_event *event) {
 	}
 }
 
-static void send_sip_tcp(t_event *event) {
+static void send_sip_tcp(t_event *event, std::string transport_type) {
 	t_event_network	*e;
 	bool new_connection = false;
 	
@@ -225,7 +226,14 @@ static void send_sip_tcp(t_event *event) {
 			dst_port = dst_ip_port.port;
 		}
 		
-		t_socket_tcp *tcp = new t_socket_tcp();
+		t_socket_tcp *tcp;
+#ifdef HAVE_GNUTLS
+		if (transport_type == "tls_tcp")
+			tcp = new t_socket_tcp_tls;
+		else
+#endif
+		tcp = new t_socket_tcp;
+
 		MEMMAN_NEW(tcp);
 		
 		log_file->write_header("::send_sip_tcp", LOG_SIP, LOG_DEBUG);
@@ -233,6 +241,7 @@ static void send_sip_tcp(t_event *event) {
 		log_file->write_raw(h_ip2str(dst_addr));
 		log_file->write_raw(":");
 		log_file->write_raw(dst_port);
+		log_file->write_raw(" (" + transport_type + ")");
 		log_file->write_endl();
 		log_file->write_footer();
 		
@@ -528,7 +537,11 @@ void *sender_loop(void *arg) {
 			if (ev_network->transport == "udp") {
 				send_sip_udp(event);
 			} else if (ev_network->transport == "tcp") {
-				send_sip_tcp(event);
+				send_sip_tcp(event, ev_network->transport);
+#ifdef HAVE_GNUTLS
+			} else if (ev_network->transport == "tls_tcp") {
+				send_sip_tcp(event, ev_network->transport);
+#endif
 			} else {
 				log_file->write_header("::sender_loop", LOG_NORMAL, LOG_WARNING);
 				log_file->write_raw("Received unsupported transport: ");

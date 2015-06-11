@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>582</height>
+    <width>777</width>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2708,7 +2708,7 @@ This format is what most SIP phones use.
             </property>
             <item>
              <property name="text">
-              <string>Auto</string>
+              <string>Auto (UDP/TCP)</string>
              </property>
             </item>
             <item>

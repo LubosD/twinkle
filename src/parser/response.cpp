@@ -22,6 +22,7 @@
 #include "util.h"
 #include "parse_ctrl.h"
 #include "audits/memman.h"
+#include "twinkle_config.h"
 
 t_response::t_response() : t_sip_message() {}
 
@@ -216,7 +217,11 @@ bool t_response::must_authenticate(void) const {
 void t_response::get_destination(t_ip_port &ip_port) const {
 	assert(hdr_via.is_populated());
 	
+#ifdef HAVE_GNUTLS
+	if (src_ip_port_request.transport == "tcp" || src_ip_port_request.transport == "tls_tcp" ) {
+#else
 	if (src_ip_port_request.transport == "tcp") {
+#endif
 		// RFC 3261 18.2.2
 		// For TCP the response should be sent on the connection on which
 		// the request was received. So the address returned here is the

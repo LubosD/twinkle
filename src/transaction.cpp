@@ -26,6 +26,7 @@
 #include "user.h"
 #include "util.h"
 #include "audits/memman.h"
+#include "twinkle_config.h"
 
 extern t_event_queue		*evq_sender;
 extern t_event_queue		*evq_trans_layer;
