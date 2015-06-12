@@ -1046,7 +1046,7 @@ bool UserProfileForm::validateValues()
 	// RTP AUDIO
 	// Codecs
 	list<t_audio_codec> audio_codecs;
-	for (size_t i = 0; i < activeCodecListBox->count(); i++) {
+	for (int i = 0; i < activeCodecListBox->count(); i++) {
         audio_codecs.push_back(label2codec(activeCodecListBox->item(i)->text()));
 	}
 	current_profile->set_codecs(audio_codecs);
@@ -1347,7 +1347,7 @@ void UserProfileForm::chooseRemoteReleaseScript()
 }
 
 void UserProfileForm::addCodec() {
-	for (size_t i = 0; i < availCodecListBox->count(); i++) {
+	for (int i = 0; i < availCodecListBox->count(); i++) {
 
         if (availCodecListBox->item(i)->isSelected()) {
             activeCodecListBox->addItem(availCodecListBox->item(i)->text());
@@ -1359,7 +1359,7 @@ void UserProfileForm::addCodec() {
 }
 
 void UserProfileForm::removeCodec() {
-	for (size_t i = 0; i < activeCodecListBox->count(); i++) {
+	for (int i = 0; i < activeCodecListBox->count(); i++) {
         if (activeCodecListBox->item(i)->isSelected()) {
             availCodecListBox->addItem(activeCodecListBox->item(i)->text());
             availCodecListBox->item(availCodecListBox->count() - 1)->setSelected(true);

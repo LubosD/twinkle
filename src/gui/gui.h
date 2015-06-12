@@ -148,7 +148,7 @@ protected:
 	virtual void do_quit(void);
 	virtual void do_help(const list<t_command_arg> &al);
 private slots:
-	bool gui_do_invite(const QString &destination, const QString &display,
+	void gui_do_invite(const QString &destination, const QString &display,
 			   const QString &subject, bool immediate,
 			   bool anonymous);
 	void gui_do_redial(void);
@@ -165,7 +165,7 @@ private slots:
 	void gui_do_bye(void);
 	void gui_do_hold(void);
 	void gui_do_retrieve(void);
-	bool gui_do_refer(const QString &destination,
+	void gui_do_refer(const QString &destination,
 			  t_transfer_type transfer_type, bool immediate);
 	void gui_do_conference(void);
 	void gui_do_mute(bool toggle, bool enable);

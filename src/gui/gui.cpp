@@ -492,7 +492,7 @@ void t_gui::do_help(const list<t_command_arg> &al) {
 	return;
 }
 
-bool t_gui::gui_do_invite(const QString &destination, const QString &display,
+void t_gui::gui_do_invite(const QString &destination, const QString &display,
 		const QString &subject, bool immediate,
 		bool anonymous)
 {
@@ -671,7 +671,7 @@ void t_gui::gui_do_retrieve(void)
 	}
 }
 
-bool t_gui::gui_do_refer(const QString &destination, t_transfer_type transfer_type,
+void t_gui::gui_do_refer(const QString &destination, t_transfer_type transfer_type,
 	bool immediate)
 {
 	if (mainWindow->callTransfer->isEnabled() &&
@@ -2789,7 +2789,8 @@ void t_gui::cmd_quit(void) {
 void t_gui::cmd_show(void) {
 	lock();
 	if (mainWindow->isMinimized()) {
-		mainWindow->setWindowState(mainWindow->windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+		mainWindow->setWindowState((mainWindow->windowState() & ~Qt::WindowMinimized) |
+					   Qt::WindowActive);
 		mainWindow->raise();
 	} else {
 		mainWindow->show();
