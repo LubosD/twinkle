@@ -111,56 +111,62 @@ private:
 	
 protected:
 	// The do_* methods perform the commands parsed by the exec_* methods.
-	virtual bool do_invite(const string &destination, const string &display, 
-			const string &subject, bool immediate,
-			bool anonymous);
+	virtual bool do_invite(const string &destination, const string &display,
+			       const string &subject, bool immediate,
+			       bool anonymous);
 	virtual void do_redial(void);
 	virtual void do_answer(void);
 	virtual void do_answerbye(void);
 	virtual void do_reject(void);
-	virtual void do_redirect(bool show_status, bool type_present, t_cf_type cf_type, 
-		bool action_present, bool enable, int num_redirections,
-		const list<string> &dest_strlist, bool immediate);
+	virtual void do_redirect(bool show_status, bool type_present,
+				 t_cf_type cf_type, bool action_present,
+				 bool enable, int num_redirections,
+				 const list<string> &dest_strlist,
+				 bool immediate);
 	virtual void do_dnd(bool show_status, bool toggle, bool enable);
 	virtual void do_auto_answer(bool show_status, bool toggle, bool enable);
 	virtual void do_bye(void);
 	virtual void do_hold(void);
 	virtual void do_retrieve(void);
-	virtual bool do_refer(const string &destination, t_transfer_type transfer_type,
-		bool immediate);
+	virtual bool do_refer(const string &destination,
+			      t_transfer_type transfer_type, bool immediate);
 	virtual void do_conference(void);
 	virtual void do_mute(bool show_status, bool toggle, bool enable);
 	virtual void do_dtmf(const string &digits);
 	virtual void do_register(bool reg_all_profiles);
-	virtual void do_deregister(bool dereg_all_profiles, bool dereg_all_devices);
+	virtual void do_deregister(bool dereg_all_profiles,
+				   bool dereg_all_devices);
 	virtual void do_fetch_registrations(void);
-	virtual bool do_options(bool dest_set, const string &destination, bool immediate);
+	virtual bool do_options(bool dest_set, const string &destination,
+				bool immediate);
 	virtual void do_line(int line);
 	virtual void do_user(const string &profile_name);
 	virtual void do_zrtp(t_zrtp_cmd zrtp_cmd);
-	virtual bool do_message(const string &destination, const string &display,
-				const im::t_msg &msg);
+	virtual bool do_message(const string &destination,
+				const string &display, const im::t_msg &msg);
 	virtual void do_presence(t_presence_state::t_basic_state basic_state);
 	virtual void do_quit(void);
 	virtual void do_help(const list<t_command_arg> &al);
 private slots:
 	bool gui_do_invite(const QString &destination, const QString &display,
-			const QString &subject, bool immediate,
-			bool anonymous);
+			   const QString &subject, bool immediate,
+			   bool anonymous);
 	void gui_do_redial(void);
 	void gui_do_answer(void);
 	void gui_do_answerbye(void);
 	void gui_do_reject(void);
 	void gui_do_redirect(bool type_present, t_cf_type cf_type,
-		bool action_present, bool enable, int num_redirections,
-		const std::list<std::string> &dest_strlist, bool immediate);
+			     bool action_present, bool enable,
+			     int num_redirections,
+			     const std::list<std::string> &dest_strlist,
+			     bool immediate);
 	void gui_do_dnd(bool toggle, bool enable);
 	void gui_do_auto_answer(bool toggle, bool enable);
 	void gui_do_bye(void);
 	void gui_do_hold(void);
 	void gui_do_retrieve(void);
-	bool gui_do_refer(const QString &destination, t_transfer_type transfer_type,
-		bool immediate);
+	bool gui_do_refer(const QString &destination,
+			  t_transfer_type transfer_type, bool immediate);
 	void gui_do_conference(void);
 	void gui_do_mute(bool toggle, bool enable);
 	void gui_do_dtmf(const QString &digits);

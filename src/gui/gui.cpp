@@ -211,9 +211,12 @@ void t_gui::displayPhoto(const QImage &photo) {
 bool t_gui::do_invite(const string &destination, const string &display, 
 			const string &subject, bool immediate, bool anonymous)
 {
-	QMetaObject::invokeMethod(this, "gui_do_invite", Q_ARG(QString, QString::fromStdString(destination)),
-							  Q_ARG(QString, QString::fromStdString(display)), Q_ARG(QString, QString::fromStdString(subject)),
-							  Q_ARG(bool, immediate), Q_ARG(bool, anonymous));
+	QMetaObject::invokeMethod(this, "gui_do_invite",
+				  Q_ARG(QString, QString::fromStdString(destination)),
+				  Q_ARG(QString, QString::fromStdString(display)),
+				  Q_ARG(QString, QString::fromStdString(subject)),
+				  Q_ARG(bool, immediate),
+				  Q_ARG(bool, anonymous));
 
 	return true;
 }
@@ -244,10 +247,15 @@ void t_gui::do_redirect(bool show_status, bool type_present, t_cf_type cf_type,
 		return;
 	}
 
-	QMetaObject::invokeMethod(this, "gui_do_redirect", Qt::BlockingQueuedConnection,
-							  Q_ARG(bool, type_present), Q_ARG(t_cf_type, cf_type),
-							  Q_ARG(bool, action_present), Q_ARG(bool, enable), Q_ARG(int, num_redirections),
-							  Q_ARG(std::list<std::string>, dest_strlist), Q_ARG(bool, immediate));
+	QMetaObject::invokeMethod(this, "gui_do_redirect",
+				  Qt::BlockingQueuedConnection,
+				  Q_ARG(bool, type_present),
+				  Q_ARG(t_cf_type, cf_type),
+				  Q_ARG(bool, action_present),
+				  Q_ARG(bool, enable),
+				  Q_ARG(int, num_redirections),
+				  Q_ARG(std::list<std::string>, dest_strlist),
+				  Q_ARG(bool, immediate));
 	
 }
 
@@ -257,7 +265,8 @@ void t_gui::do_dnd(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	QMetaObject::invokeMethod(this, "gui_do_dnd", Q_ARG(bool, toggle), Q_ARG(bool, enable));
+	QMetaObject::invokeMethod(this, "gui_do_dnd",
+				  Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
@@ -266,7 +275,8 @@ void t_gui::do_auto_answer(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	QMetaObject::invokeMethod(this, "gui_do_auto_answer", Q_ARG(bool, toggle), Q_ARG(bool, enable));
+	QMetaObject::invokeMethod(this, "gui_do_auto_answer",
+				  Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_bye(void) {
@@ -286,9 +296,10 @@ void t_gui::do_retrieve(void) {
 
 bool t_gui::do_refer(const string &destination, t_transfer_type transfer_type, bool immediate) {
 
-	QMetaObject::invokeMethod(this, "gui_do_refer", Q_ARG(QString, QString::fromStdString(destination)),
-							  Q_ARG(t_transfer_type, transfer_type),
-							  Q_ARG(bool, immediate));
+	QMetaObject::invokeMethod(this, "gui_do_refer",
+				  Q_ARG(QString, QString::fromStdString(destination)),
+				  Q_ARG(t_transfer_type, transfer_type),
+				  Q_ARG(bool, immediate));
 	
 	return true;
 }
@@ -303,12 +314,14 @@ void t_gui::do_mute(bool show_status, bool toggle, bool enable) {
 		return;
 	}
 	
-	QMetaObject::invokeMethod(this, "gui_do_mute", Q_ARG(bool, toggle), Q_ARG(bool, enable));
+	QMetaObject::invokeMethod(this, "gui_do_mute",
+				  Q_ARG(bool, toggle), Q_ARG(bool, enable));
 }
 
 void t_gui::do_dtmf(const string &digits) {
 
-	QMetaObject::invokeMethod(this, "gui_do_dtmf", Q_ARG(QString, QString::fromStdString(digits)));
+	QMetaObject::invokeMethod(this, "gui_do_dtmf",
+				  Q_ARG(QString, QString::fromStdString(digits)));
 }
 
 void t_gui::do_register(bool reg_all_profiles) {
@@ -320,7 +333,9 @@ void t_gui::do_register(bool reg_all_profiles) {
 		QString profile;
 		t_user *user;
 
-		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+		QMetaObject::invokeMethod(this, "gui_get_current_profile",
+					  Qt::BlockingQueuedConnection,
+					  Q_RETURN_ARG(QString, profile));
 
 		user = phone->ref_user_profile(profile.toStdString());
 		l.push_back(user);
@@ -338,7 +353,9 @@ void t_gui::do_deregister(bool dereg_all_profiles, bool dereg_all_devices) {
 		QString profile;
 		t_user *user;
 
-		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+		QMetaObject::invokeMethod(this, "gui_get_current_profile",
+					  Qt::BlockingQueuedConnection,
+					  Q_RETURN_ARG(QString, profile));
 
 		user = phone->ref_user_profile(profile.toStdString());
 		l.push_back(user);
@@ -368,7 +385,9 @@ bool t_gui::do_options(bool dest_set, const string &destination, bool immediate)
 		QString profile;
 		t_user *user;
 
-		QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+		QMetaObject::invokeMethod(this, "gui_get_current_profile",
+					  Qt::BlockingQueuedConnection,
+					  Q_RETURN_ARG(QString, profile));
 
 		user = phone->ref_user_profile(profile.toStdString());
 		t_url dst_url(expand_destination(user, destination));
@@ -377,7 +396,9 @@ bool t_gui::do_options(bool dest_set, const string &destination, bool immediate)
 			mainWindow->do_phoneTermCap(user, dst_url);
 		}
 	} else {
-		QMetaObject::invokeMethod(mainWindow, "phoneTermCap", Q_ARG(QString, QString::fromStdString(destination)));
+		QMetaObject::invokeMethod(mainWindow, "phoneTermCap",
+					  Q_ARG(QString,
+					  QString::fromStdString(destination)));
 	}
 	
 	return true;
@@ -392,7 +413,8 @@ void t_gui::do_line(int line) {
 }
 
 void t_gui::do_user(const string &profile_name) {
-	QMetaObject::invokeMethod(this, "gui_do_user", Q_ARG(QString, QString::fromStdString(profile_name)));
+	QMetaObject::invokeMethod(this, "gui_do_user",
+				  Q_ARG(QString, QString::fromStdString(profile_name)));
 }
 
 QString t_gui::gui_get_current_profile()
@@ -406,7 +428,9 @@ bool t_gui::do_message(const string &destination, const string &display,
 	t_user *user;
 	QString profile;
 
-	QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+	QMetaObject::invokeMethod(this, "gui_get_current_profile",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(QString, profile));
 
 	user = phone->ref_user_profile(profile.toStdString());
 	
@@ -423,7 +447,9 @@ void t_gui::do_presence(t_presence_state::t_basic_state basic_state) {
 	QString profile;
 	t_user *user;
 
-	QMetaObject::invokeMethod(this, "gui_get_current_profile", Qt::BlockingQueuedConnection, Q_RETURN_ARG(QString, profile));
+	QMetaObject::invokeMethod(this, "gui_get_current_profile",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(QString, profile));
 
 	user = phone->ref_user_profile(profile.toStdString());
 	
@@ -435,10 +461,12 @@ void t_gui::do_zrtp(t_zrtp_cmd zrtp_cmd) {
 	
 	switch (zrtp_cmd) {
 	case ZRTP_ENCRYPT:
-		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp", Q_ARG(bool, true));
+		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp",
+					  Q_ARG(bool, true));
 		break;
 	case ZRTP_GO_CLEAR:
-		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp", Q_ARG(bool, false));
+		QMetaObject::invokeMethod(mainWindow, "phoneEnableZrtp",
+					  Q_ARG(bool, false));
 		break;
 	case ZRTP_CONFIRM_SAS:
 		QMetaObject::invokeMethod(mainWindow, "phoneConfirmZrtpSas");
@@ -1612,8 +1640,10 @@ void t_gui::do_cb_register_inprog(t_user *user_config, t_register_type register_
 }
 
 void t_gui::cb_register_inprog(t_user *user_config, t_register_type register_type) {
-    QMetaObject::invokeMethod(this, "do_cb_register_inprog", Qt::QueuedConnection,
-                              Q_ARG(t_user*, user_config), Q_ARG(t_register_type, register_type));
+    QMetaObject::invokeMethod(this, "do_cb_register_inprog",
+			      Qt::QueuedConnection,
+			      Q_ARG(t_user*, user_config),
+			      Q_ARG(t_register_type, register_type));
 
 }
 
@@ -2119,9 +2149,12 @@ bool t_gui::cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &des
 					   const string &display)
 {
 	bool retval;
-	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_invite", Qt::BlockingQueuedConnection,
-							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
-							  Q_ARG(const t_url&, destination), Q_ARG(const string&, display));
+	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_invite",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(bool, retval),
+				  Q_ARG(t_user*, user_config),
+				  Q_ARG(const t_url&, destination),
+				  Q_ARG(const string&, display));
 
 	return retval;
 }
@@ -2131,10 +2164,13 @@ bool t_gui::cb_ask_user_to_redirect_request(t_user *user_config,
 					    const string &display, t_method method)
 {
 	bool retval;
-	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_request", Qt::BlockingQueuedConnection,
-							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
-							  Q_ARG(const t_url&, destination), Q_ARG(const string&, display),
-							  Q_ARG(t_method, method));
+	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_redirect_request",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(bool, retval),
+				  Q_ARG(t_user*, user_config),
+				  Q_ARG(const t_url&, destination),
+				  Q_ARG(const string&, display),
+				  Q_ARG(t_method, method));
 
 	return retval;
 }
@@ -2166,10 +2202,13 @@ bool t_gui::cb_ask_credentials(t_user *user_config, const string &realm, string 
 			       string &password)
 {
 	bool retval;
-	QMetaObject::invokeMethod(this, "do_cb_ask_credentials", Qt::BlockingQueuedConnection,
-							  Q_RETURN_ARG(bool, retval),  Q_ARG(t_user*, user_config),
-							  Q_ARG(const string&, realm), Q_ARG(string&, username),
-							  Q_ARG(string&, password));
+	QMetaObject::invokeMethod(this, "do_cb_ask_credentials",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(bool, retval),
+				  Q_ARG(t_user*, user_config),
+				  Q_ARG(const string&, realm),
+				  Q_ARG(string&, username),
+				  Q_ARG(string&, password));
 
 	return retval;
 }
