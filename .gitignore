@@ -18,6 +18,8 @@ src/gui/twinkle
 src/gui/twinkle_automoc.cpp
 src/gui/qrc_icons.cpp
 src/gui/qrc_icons.cxx
+src/gui/qrc_qml.cpp
+src/gui/qrc_qml.cxx
 src/parser/parser.cxx
 src/parser/parser.hxx
 src/parser/scanner.cxx
