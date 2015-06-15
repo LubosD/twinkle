@@ -110,6 +110,11 @@ t_audio_tx::t_audio_tx(t_audio_session *_audio_session,
 	map_audio_decoder[CODEC_G726_40] = new t_g726_audio_decoder(
 			t_g726_audio_decoder::BIT_RATE_40, _ptime, user_config);
 	MEMMAN_NEW(map_audio_decoder[CODEC_G726_40]);
+#ifdef HAVE_BCG729
+	map_audio_decoder[CODEC_G729A] = new t_g729a_audio_decoder(
+			_ptime, user_config);
+	MEMMAN_NEW(map_audio_decoder[CODEC_G729A]);
+#endif
 
 	ptime = map_audio_decoder[codec]->get_default_ptime();
 

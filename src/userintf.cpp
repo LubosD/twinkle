@@ -2172,6 +2172,7 @@ string t_userintf::format_codec(t_audio_codec codec) const {
 	case CODEC_G726_24:	return "g726-24";
 	case CODEC_G726_32:	return "g726-32";
 	case CODEC_G726_40:	return "g726-40";
+	case CODEC_G729A: return "g729a";
 	default:		return "???";
 	}
 }

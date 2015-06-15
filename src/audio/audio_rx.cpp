@@ -341,6 +341,13 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 				t_g726_audio_encoder::BIT_RATE_40, user_config);
 		MEMMAN_NEW(audio_encoder);
 		break;
+#ifdef HAVE_BCG729
+	case CODEC_G729A:
+		audio_encoder = new t_g729a_audio_encoder(_payload_id, _ptime,
+												  user_config);
+		MEMMAN_NEW(audio_encoder);
+		break;
+#endif
 	default:
 		assert(false);
 	}

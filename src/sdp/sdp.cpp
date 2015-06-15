@@ -138,6 +138,9 @@ string get_rtpmap(unsigned format, t_audio_codec codec) {
 	case CODEC_G726_40:
 		rtpmap += SDP_RTPMAP_G726_40;
 		break;
+	case CODEC_G729A:
+		rtpmap += SDP_RTPMAP_G729A;
+		break;
 	case CODEC_TELEPHONE_EVENT:
 		rtpmap += SDP_RTPMAP_TELEPHONE_EV;
 		break;

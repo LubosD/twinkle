@@ -1056,6 +1056,11 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 #endif
+#ifdef HAVE_BCG729
+	s += TRANSLATE("* G729A codec (http://www.linphone.org/technical-corner/bcg729/overview");
+	if (html) s += "<BR>";
+	s += "\n";
+#endif
 	
 	s += TRANSLATE("* Parts of the STUN project at http://sourceforge.net/projects/stun");
 	if (html) s += "<BR>";
@@ -1146,6 +1151,10 @@ string t_sys_settings::get_options_built(void) const {
 #ifdef HAVE_ILBC
 	if (!options_built.empty()) options_built += ", ";
 	options_built += "iLBC";
+#endif
+#ifdef HAVE_BCG729
+	if (!options_built.empty()) options_built += ", ";
+	options_built += "G729";
 #endif
 #ifdef HAVE_ZRTP
 	if (!options_built.empty()) options_built += ", ";

@@ -81,6 +81,7 @@
 #define labelCodecG726_24		"G.726 24 kbps"
 #define labelCodecG726_32		"G.726 32 kbps"
 #define labelCodecG726_40		"G.726 40 kbps"
+#define labelCodecG729A			"G.729A"
 
 // Indices of iLBC modes
 #define idxIlbcMode20	0
@@ -252,6 +253,8 @@ t_audio_codec UserProfileForm::label2codec(const QString &label) {
 		return CODEC_G726_32;
 	} else if (label == labelCodecG726_40) {
 		return CODEC_G726_40;
+	} else if (label == labelCodecG729A) {
+		return CODEC_G729A;
 	}
 	return CODEC_NULL;
 }
@@ -281,6 +284,8 @@ QString UserProfileForm::codec2label(t_audio_codec &codec) {
 		return labelCodecG726_32;
 	case CODEC_G726_40:
 		return labelCodecG726_40;
+	case CODEC_G729A:
+		return labelCodecG729A;
 	default:
 		return "";
 	}
@@ -418,6 +423,9 @@ void UserProfileForm::populate()
 	allCodecs.append(labelCodecG726_24);
 	allCodecs.append(labelCodecG726_32);
 	allCodecs.append(labelCodecG726_40);
+#ifdef HAVE_BCG729
+	allCodecs.append(labelCodecG729A);
+#endif
 	activeCodecListBox->clear();
 	list<t_audio_codec> audio_codecs = current_profile->get_codecs();
 	for (list<t_audio_codec>::iterator i = audio_codecs.begin(); i != audio_codecs.end(); i++)

@@ -114,6 +114,7 @@ t_session::t_session(t_dialog *_dialog, string _receive_host,
 	recv_ac2payload[CODEC_G711_ULAW] = SDP_FORMAT_G711_ULAW;
 	recv_ac2payload[CODEC_G711_ALAW] = SDP_FORMAT_G711_ALAW;
 	recv_ac2payload[CODEC_GSM] = SDP_FORMAT_GSM;
+	recv_ac2payload[CODEC_G729A] = SDP_FORMAT_G729;
 	recv_ac2payload[CODEC_SPEEX_NB] = user_config->get_speex_nb_payload_type();
 	recv_ac2payload[CODEC_SPEEX_WB] = user_config->get_speex_wb_payload_type();
 	recv_ac2payload[CODEC_SPEEX_UWB] = user_config->get_speex_uwb_payload_type();
@@ -129,6 +130,7 @@ t_session::t_session(t_dialog *_dialog, string _receive_host,
 	recv_payload2ac[SDP_FORMAT_G711_ULAW] = CODEC_G711_ULAW;
 	recv_payload2ac[SDP_FORMAT_G711_ALAW] = CODEC_G711_ALAW;
 	recv_payload2ac[SDP_FORMAT_GSM] = CODEC_GSM;
+	recv_payload2ac[SDP_FORMAT_G729] = CODEC_G729A;
 	recv_payload2ac[user_config->get_speex_nb_payload_type()] = CODEC_SPEEX_NB;
 	recv_payload2ac[user_config->get_speex_wb_payload_type()] = CODEC_SPEEX_WB;
 	recv_payload2ac[user_config->get_speex_uwb_payload_type()] = CODEC_SPEEX_UWB;
