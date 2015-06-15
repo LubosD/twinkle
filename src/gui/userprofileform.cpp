@@ -37,6 +37,9 @@
 #include "userprofileform.h"
 #include "twinkle_config.h"
 
+#ifdef HAVE_GNUTLS
+#	include <gnutls/x509.h>
+#endif
 
 // Indices of categories in the category list box
 #define idxCatUser	0
@@ -651,6 +654,12 @@ void UserProfileForm::populate()
 	zrtpSendIfSupportedCheckBox->setChecked(current_profile->get_zrtp_send_if_supported());
 	zrtpSdpCheckBox->setChecked(current_profile->get_zrtp_sdp());
 	zrtpGoClearWarningCheckBox->setChecked(current_profile->get_zrtp_goclear_warning());
+
+#ifdef HAVE_GNUTLS
+    textCACert->setPlainText(QString::fromStdString(current_profile->get_tls_ca_cert()));
+#else
+	textCACert->setEnabled(false);
+#endif
 }
 
 void UserProfileForm::initProfileList(list<t_user *> profiles, QString show_profile_name)
@@ -937,6 +946,43 @@ bool UserProfileForm::validateValues()
 			return false;
 		}
 	}
+
+#ifdef HAVE_GNUTLS
+	// Security / TLS
+	{
+		QString pem = textCACert->toPlainText().trimmed();
+		if (!pem.isEmpty())
+		{
+			gnutls_x509_crt_t cert;
+			gnutls_datum_t data;
+			QByteArray asciiData;
+            int error;
+
+			asciiData = pem.toLatin1();
+			gnutls_x509_crt_init(&cert);
+
+            data.data = (unsigned char*) asciiData.data();
+            data.size = asciiData.size();
+
+            error = gnutls_x509_crt_import(cert, &data, GNUTLS_X509_FMT_PEM);
+            gnutls_x509_crt_deinit(cert);
+
+            if (error != GNUTLS_E_SUCCESS)
+            {
+                categoryListBox->setCurrentRow(idxCatSecurity);
+                settingsWidgetStack->setCurrentWidget(pageSecurity);
+
+                QString err = tr("TLS CA certificate is invalid: %1").arg(gnutls_strerror(error));
+                ((t_gui *)ui)->cb_show_msg(this, err.toStdString(), MSG_CRITICAL);
+
+                textCACert->setFocus();
+                textCACert->selectAll();
+
+                return false;
+            }
+		}
+	}
+#endif
 	
 	// Clear outbound proxy if not used
 	if (!useProxyCheckBox->isChecked()) {
@@ -1267,6 +1313,7 @@ bool UserProfileForm::validateValues()
 	current_profile->set_zrtp_send_if_supported(zrtpSendIfSupportedCheckBox->isChecked());
 	current_profile->set_zrtp_sdp(zrtpSdpCheckBox->isChecked());
 	current_profile->set_zrtp_goclear_warning(zrtpGoClearWarningCheckBox->isChecked());
+    current_profile->set_tls_ca_cert(textCACert->toPlainText().toStdString());
 	
 	// Save user config
 	string error_msg;

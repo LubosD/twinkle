@@ -224,6 +224,7 @@ private:
 	gnutls_certificate_credentials_t m_xcred;
 	t_user* m_user;
 	std::string m_hostname;
+    bool m_custom_ca;
 };
 #endif
 

@@ -120,7 +120,11 @@ if (WITH_GNUTLS)
 	find_package(GnuTLS REQUIRED)
 
 	if (GNUTLS_FOUND)
-		message(STATUS "GnuTLS OK")
+		if (GNUTLS_VERSION_STRING VERSION_LESS "3.3.0")
+			message(FATAL_ERROR "Your GnuTLS is too old, at least 3.3.0 is needed")
+		endif (GNUTLS_VERSION_STRING VERSION_LESS "3.3.0")
+
+		message(STATUS "GnuTLS OK (${GNUTLS_VERSION_STRING})")
 		set(HAVE_GNUTLS TRUE)
 
 		include_directories(${GNUTLS_INCLUDE_DIR})

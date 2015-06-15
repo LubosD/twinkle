@@ -4038,8 +4038,13 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
       </layout>
      </widget>
      <widget class="QWidget" name="pageSecurity">
-      <layout class="QVBoxLayout">
-       <item>
+      <property name="whatsThis">
+       <string>The CA certificate to be (exclusively) trusted when setting up TLS connections.
+
+If empty, Twinkle will use your system's default CA certificate collection.</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
         <widget class="QLabel" name="securityTitleTextLabel">
          <property name="font">
           <font>
@@ -4060,26 +4065,50 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="whatsThis">
+          <string>The combination of TLS and SRTP is useful for protecting the communication between you and your VoIP provider, TLS takes care of encrypting the signalling channel (e.g. phone numbers you dial), whilst SRTP protects the voice packets.
+
+TLS &amp; SRTP prevent others from eavesdropping on your communication in transit. For confidential VoIP-only calls, use ZRTP.</string>
+         </property>
+         <property name="title">
+          <string>TLS &amp;&amp; SRTP settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Provider's CA certificate in PEM format (optional):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPlainTextEdit" name="textCACert"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
         <widget class="QCheckBox" name="zrtpEnabledCheckBox">
          <property name="whatsThis">
           <string>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</string>
          </property>
          <property name="text">
-          <string>&amp;Enable ZRTP/SRTP encryption</string>
+          <string>&amp;Enable ZRTP end-to-end encryption</string>
          </property>
          <property name="shortcut">
           <string>Alt+E</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="3" column="0">
         <widget class="QGroupBox" name="zrtpSettingsGroupBox">
          <property name="title">
           <string>ZRTP settings</string>
          </property>
-         <layout class="QVBoxLayout">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
            <widget class="QCheckBox" name="zrtpSendIfSupportedCheckBox">
             <property name="whatsThis">
              <string>A SIP endpoint supporting ZRTP may indicate ZRTP support during call setup in its signalling. Enabling this option will cause Twinkle only to encrypt calls when the remote party indicates ZRTP support.</string>
@@ -4092,7 +4121,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0">
            <widget class="QCheckBox" name="zrtpSdpCheckBox">
             <property name="whatsThis">
              <string>Twinkle will indicate ZRTP support during call setup in its signalling.</string>
@@ -4105,7 +4134,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
             </property>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0">
            <widget class="QCheckBox" name="zrtpGoClearWarningCheckBox">
             <property name="whatsThis">
              <string>A remote party of an encrypted call may send a ZRTP go-clear command to stop encryption. When Twinkle receives this command it will popup a warning if this option is enabled.</string>
@@ -4121,7 +4150,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
          </layout>
         </widget>
        </item>
-       <item>
+       <item row="4" column="0">
         <spacer name="spacer33">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

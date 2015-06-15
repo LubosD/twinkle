@@ -161,6 +161,7 @@ extern t_phone		*phone;
 #define FLD_ZRTP_GOCLEAR_WARNING	"zrtp_goclear_warning"
 #define FLD_ZRTP_SDP			"zrtp_sdp"
 #define FLD_ZRTP_SEND_IF_SUPPORTED	"zrtp_send_if_supported"
+#define FLD_TLS_CA_CERT                 "tls_ca_cert"
 
 // MWI
 #define FLD_MWI_SOLLICITED		"mwi_sollicited"
@@ -582,6 +583,7 @@ t_user::t_user(const t_user &u) {
 	zrtp_goclear_warning = u.zrtp_goclear_warning;
 	zrtp_sdp = u.zrtp_sdp;
 	zrtp_send_if_supported = u.zrtp_send_if_supported;
+		tls_ca_cert = u.tls_ca_cert;
 	mwi_sollicited = u.mwi_sollicited;
 	mwi_user = u.mwi_user;
 	mwi_server = u.mwi_server;
@@ -1344,6 +1346,14 @@ list<t_number_conversion> t_user::get_number_conversions(void) const {
 	return result;	
 }
 
+string t_user::get_tls_ca_cert() const {
+	string pem;
+	mtx_user.lock();
+	pem = tls_ca_cert;
+	mtx_user.unlock();
+	return pem;
+}
+
 bool t_user::get_zrtp_enabled(void) const {
 	bool result;
 	mtx_user.lock();
@@ -2036,6 +2046,12 @@ void t_user::set_number_conversions(const list<t_number_conversion> &l) {
 	mtx_user.unlock();
 }
 
+void t_user::set_tls_ca_cert(string pem) {
+	mtx_user.lock();
+	tls_ca_cert = pem;
+	mtx_user.unlock();
+}
+
 void t_user::set_zrtp_enabled(bool b) {
 	mtx_user.lock();
 	zrtp_enabled = b;
@@ -2157,6 +2173,8 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 	log_file->write_raw(filename);
 	log_file->write_endl();
 	log_file->write_footer();
+
+	tls_ca_cert.clear();
 
 	while (!config.eof()) {
 		string line;
@@ -2512,6 +2530,9 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 			zrtp_sdp = yesno2bool(value);
 		} else if (parameter == FLD_ZRTP_SEND_IF_SUPPORTED) {
 			zrtp_send_if_supported = yesno2bool(value);
+		} else if (parameter == FLD_TLS_CA_CERT) {
+			tls_ca_cert += value;
+			tls_ca_cert += '\n';
 		} else if (parameter == FLD_MWI_SOLLICITED) {
 			mwi_sollicited = yesno2bool(value);
 		} else if (parameter == FLD_MWI_USER) {
@@ -2851,6 +2872,15 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 	config << FLD_ZRTP_GOCLEAR_WARNING << '=' << bool2yesno(zrtp_goclear_warning) << endl;
 	config << FLD_ZRTP_SDP << '=' << bool2yesno(zrtp_sdp) << endl;
 	config << FLD_ZRTP_SEND_IF_SUPPORTED << '=' << bool2yesno(zrtp_send_if_supported) << endl;
+
+	if (!tls_ca_cert.empty())
+	{
+		std::stringstream ss(tls_ca_cert);
+		std::string line;
+
+		while (std::getline(ss, line))
+			config << FLD_TLS_CA_CERT << '=' << line << endl;
+	}
 	config << endl;
 	
 	// Write MWI settings

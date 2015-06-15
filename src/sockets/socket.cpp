@@ -372,13 +372,42 @@ void t_socket_tcp::get_remote_address(unsigned long &remote_addr, unsigned short
 /////////////////
 
 t_socket_tcp_tls::t_socket_tcp_tls(t_user* user, std::string hostname)
-	: m_user(user), m_hostname(hostname)
+    : m_user(user), m_hostname(hostname), m_custom_ca(false)
 {
+    std::string pem;
+
 	gnutls_certificate_allocate_credentials(&m_xcred);
 	gnutls_init(&m_session, GNUTLS_CLIENT);
 
 	gnutls_certificate_set_verify_function(m_xcred, vertify_certificate_callback);
-	gnutls_certificate_set_x509_system_trust(m_xcred);
+
+    pem = user->get_tls_ca_cert();
+
+    if (pem.empty())
+    {
+        gnutls_certificate_set_x509_system_trust(m_xcred);
+    }
+    else
+    {
+        gnutls_x509_crt_t cert;
+        gnutls_datum_t data;
+        int error;
+
+        gnutls_x509_crt_init(&cert);
+
+        data.data = (unsigned char*) pem.c_str();
+        data.size = pem.length();
+
+        error = gnutls_x509_crt_import(cert, &data, GNUTLS_X509_FMT_PEM);
+
+        if (error == GNUTLS_E_SUCCESS)
+        {
+            gnutls_certificate_set_x509_trust(m_xcred, &cert, 1);
+            m_custom_ca = true;
+        }
+
+        gnutls_x509_crt_deinit(cert);
+    }
 
 	gnutls_session_set_ptr(m_session, this);
 }
@@ -437,13 +466,16 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 
 	std::memset(data, 0, sizeof(data));
 
-	data[0].type = GNUTLS_DT_DNS_HOSTNAME;
-	data[0].data = (unsigned char*) This->m_hostname.c_str();
+    if (!This->m_custom_ca)
+    {
+        data[1].type = GNUTLS_DT_DNS_HOSTNAME;
+        data[1].data = (unsigned char*) This->m_hostname.c_str();
+    }
 
-	data[1].type = GNUTLS_DT_KEY_PURPOSE_OID;
-	data[1].data = (unsigned char*) GNUTLS_KP_ANY;
+    data[0].type = GNUTLS_DT_KEY_PURPOSE_OID;
+    data[0].data = (unsigned char*) GNUTLS_KP_ANY;
 
-	ret = gnutls_certificate_verify_peers(session, data, 2, &status);
+    ret = gnutls_certificate_verify_peers(session, data, This->m_custom_ca ? 1 : 2, &status);
 
 	type = gnutls_certificate_type_get(session);
 	gnutls_certificate_verification_status_print(status, type, &out, 0);
