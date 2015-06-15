@@ -13,6 +13,7 @@ OPTION(WITH_ALSA		"Enable ALSA support" ON)
 OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 OPTION(WITH_QT4			"Enable Qt 4 GUI" OFF)
 OPTION(WITH_QT5			"Enable Qt 5 GUI" OFF)
+OPTION(WITH_G729		"Enable G.729A support (incomplete)" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
@@ -100,6 +101,20 @@ if (WITH_ILBC)
 		message(FATAL_ERROR "iLBC not found!")
 	endif (ILBC_FOUND)
 endif (WITH_ILBC)
+
+if (WITH_G729)
+	find_package(G729)
+	
+	if (G729_FOUND)
+		message(STATUS "bcg729 OK")
+		set(HAVE_BCG729 TRUE)
+		
+		include_directories(${G729_INCLUDE_DIR})
+	else (G729_FOUND)
+		message(FATAL_ERROR "bcg729 not found!")
+	endif (G729_FOUND)
+endif (WITH_G729)
+
 
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)
