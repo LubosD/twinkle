@@ -428,3 +428,34 @@ uint16 t_g726_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 	
 	return 0;
 }
+
+#ifdef HAVE_BCG729
+
+t_g729a_audio_encoder::t_g729a_audio_encoder(uint16 payload_id, uint16 ptime, t_user *user_config)
+	: t_audio_encoder(payload_id, ptime, user_config)
+{
+	_context = initBcg729EncoderChannel();
+}
+
+t_g729a_audio_encoder::~t_g729a_audio_encoder()
+{
+	closeBcg729EncoderChannel(_context);
+}
+
+uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
+		uint8 *payload, uint16 payload_size, bool &silence)
+{
+	assert ((nsamples % 80) == 0);
+	assert (payload_size >= (nsamples/8));
+
+	silence = false;
+
+	for (uint16 done = 0; done < nsamples; done += 80)
+	{
+		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8]);
+	}
+
+	return nsamples / 8;
+}
+
+#endif

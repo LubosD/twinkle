@@ -36,6 +36,12 @@
 #include <speex/speex_preprocess.h> 
 #endif
 
+#ifdef HAVE_BCG729
+extern "C" {
+#	include <bcg729/decoder.h>
+}
+#endif
+
 #ifdef HAVE_ILBC
 #ifndef HAVE_ILBC_CPP
 extern "C" {
@@ -196,5 +202,24 @@ public:
 			int16 *pcm_buf, uint16 pcm_buf_size);
 	virtual bool valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const;
 };
+
+#ifdef HAVE_BCG729
+
+// G.729A
+class t_g729a_audio_decoder : public t_audio_decoder {
+public:
+	t_g729a_audio_decoder(uint16 default_ptime, t_user *user_config);
+	~t_g729a_audio_decoder();
+
+	virtual uint16 get_ptime(uint16 payload_size) const override;
+	virtual uint16 decode(uint8 *payload, uint16 payload_size,
+			int16 *pcm_buf, uint16 pcm_buf_size) override;
+	virtual bool valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const override;
+	virtual uint16 conceal(int16 *pcm_buf, uint16 pcm_buf_size) override;
+private:
+	bcg729DecoderChannelContextStruct* _context;
+};
+
+#endif
 
 #endif

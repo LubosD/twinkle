@@ -521,3 +521,50 @@ bool t_g726_audio_decoder::valid_payload_size(uint16 payload_size,
 	
 	return (payload_size * 8 / _bits_per_sample ) <= sample_buf_size;
 }
+
+#ifdef HAVE_BCG729
+
+t_g729a_audio_decoder::t_g729a_audio_decoder(uint16 default_ptime, t_user *user_config)
+	: t_audio_decoder(default_ptime, true, user_config)
+{
+	_context = initBcg729DecoderChannel();
+}
+
+t_g729a_audio_decoder::~t_g729a_audio_decoder()
+{
+	closeBcg729DecoderChannel(_context);
+}
+
+uint16 t_g729a_audio_decoder::get_ptime(uint16 payload_size) const
+{
+	return (payload_size * 8) / (audio_sample_rate(_codec) / 1000);
+}
+
+uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
+		int16 *pcm_buf, uint16 pcm_buf_size)
+{
+	assert((payload_size % 10) == 0);
+	assert(pcm_buf_size >= payload_size*8);
+
+	for (uint16 done = 0; done < payload_size; done += 10)
+	{
+		bcg729Decoder(_context, &payload[done], false, &pcm_buf[done * 8]);
+	}
+
+	return payload_size * 8;
+}
+
+bool t_g729a_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const
+{
+	return payload_size > 0 && (payload_size % 10) == 0;
+}
+
+uint16 t_g729a_audio_decoder::conceal(int16 *pcm_buf, uint16 pcm_buf_size)
+{
+	assert(pcm_buf_size >= 80);
+
+	bcg729Decoder(_context, nullptr, true, pcm_buf);
+	return 80;
+}
+
+#endif

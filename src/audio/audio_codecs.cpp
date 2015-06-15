@@ -26,6 +26,7 @@ unsigned short audio_sample_rate(t_audio_codec codec) {
 	case CODEC_GSM:
 	case CODEC_SPEEX_NB:
 	case CODEC_ILBC:
+	case CODEC_G729A:
 	case CODEC_G726_16:
 	case CODEC_G726_24:
 	case CODEC_G726_32:
