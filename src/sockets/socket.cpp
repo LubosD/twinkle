@@ -483,8 +483,19 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 	printf("(for hostname %s): %s\n", This->m_hostname.c_str(), out.data);
 	gnutls_free(out.data);
 
-	// TODO: certificate verification
-	return 0; // accept all (insecure)
+    if (This->m_custom_ca)
+    {
+        // If the user specified a custom CA, then we don't prompt the user
+        // to accept the certificate. We rely solely on the verification result.
+        return ret;
+    }
+    else if (ret != GNUTLS_E_SUCCESS)
+    {
+        // TODO: Ask user to accept/remember/reject certificate.
+        return 0; // accept all for now (insecure)
+    }
+    else
+        return 0;
 }
 #endif
 
