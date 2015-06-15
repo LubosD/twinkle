@@ -369,12 +369,12 @@ t_user::t_user() {
 #ifdef HAVE_ILBC
 	codecs.push_back(CODEC_ILBC);
 #endif
-#ifdef HAVE_BCG729
-	codecs.push_back(CODEC_G729A);
-#endif
 	codecs.push_back(CODEC_G711_ALAW);
 	codecs.push_back(CODEC_G711_ULAW);
 	codecs.push_back(CODEC_GSM);
+#ifdef HAVE_BCG729
+	codecs.push_back(CODEC_G729A);
+#endif
 	ptime = 20;
 	out_obey_far_end_codec_pref = true;
 	in_obey_far_end_codec_pref = true;

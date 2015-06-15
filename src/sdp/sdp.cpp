@@ -661,6 +661,8 @@ t_audio_codec t_sdp::get_rtpmap_codec(const string &rtpmap) const {
 		return CODEC_G726_32;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G726_40) == 0 && sample_rate == 8000) {
 		return CODEC_G726_40;
+	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G729) == 0 && sample_rate == 8000) {
+		return CODEC_G729A;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_TELEPHONE_EV) == 0) {
 		return CODEC_TELEPHONE_EVENT;
 	}
