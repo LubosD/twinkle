@@ -231,9 +231,13 @@ void SelectProfileForm::runProfile()
     for (int i = 0; i < profileListView->count(); i++)
     {
         QListWidgetItem* item = profileListView->item(i);
-        QString profile = item->text();
-		profile.append(USER_FILE_EXT);
-        selectedProfiles.push_back(profile.toStdString());
+
+        if (item->checkState() == Qt::Checked)
+        {
+            QString profile = item->text();
+            profile.append(USER_FILE_EXT);
+            selectedProfiles.push_back(profile.toStdString());
+        }
 	}
 	
 	if (selectedProfiles.empty()) {
