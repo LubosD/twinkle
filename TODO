@@ -1,14 +1,3 @@
-* finish conversion to native Qt4 classes
-
-	Most forms still use classes from Qt3Support module which has been
-	dropped in Qt5. Most of the time the migration is simple but still
-	tedious enough. The ultimate goal is allow twinkle to be built against
-	either of Qt4 and Qt5.
-
-	Remaining .ui/cpp/h files:
-	* mphoneform
-	* gui
-
 * make KDE support work again
 
 	After cleaning up the autotools config, twinkle only builds with

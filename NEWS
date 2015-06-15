@@ -1,3 +1,14 @@
+Git version - 1.9.0
+=======================
+- Ported to Qt4 and Qt5.
+- Added in-call OSD.
+- Added a new incoming call notification screen/dialog.
+- Support the G.729A codec.
+- Made Diamondcard support optional.
+- Save window geometry and state.
+- Visual feedback (button presses) in DTMF window when pushing keyboard buttons.
+- Support clipboard paste in DTMF window.
+
 25 february 2009 - 1.4.2
 ========================
 - Integration with Diamondcard Worldwide Communication Service
