@@ -27,6 +27,9 @@ src/sdp/sdp_parser.cxx
 src/sdp/sdp_parser.hxx
 src/sdp/sdp_scanner.cxx
 
+# Qt Creator files
+CMakeLists.txt.user*
+
 # generic
 *~
 
