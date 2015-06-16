@@ -71,6 +71,7 @@
 #include "qtextcodec.h"
 #include "qtooltip.h"
 #include <QSettings>
+#include "tlswarningform.h"
 
 extern string user_host;
 extern pthread_t thread_id_main;
@@ -3207,4 +3208,35 @@ void t_gui::open_url_in_browser(const QString &url) {
 		msg += qApp->translate("GUI", "Configure your web browser in the system settings.");
         cb_show_msg(msg.toStdString(), MSG_CRITICAL);
 	}
+}
+
+t_userintf::CertTrustResult t_gui::cb_tls_cert_untrusted(const string& msg, const string& cert)
+{
+	int result;
+
+	QMetaObject::invokeMethod(this, "do_cb_tls_cert_untrusted",
+							  Qt::BlockingQueuedConnection, Q_RETURN_ARG(int, result),
+							  Q_ARG(QString, QString::fromStdString(msg)),
+							  Q_ARG(QString, QString::fromStdString(cert)));
+
+	switch (result)
+	{
+	case QDialog::Accepted:
+		return t_userintf::CertTrustAccept;
+	case TLSWarningForm::AcceptAlways:
+		return t_userintf::CertTrustRemember;
+	case QDialog::Rejected:
+	default:
+		return t_userintf::CertTrustReject;
+	}
+}
+
+int t_gui::do_cb_tls_cert_untrusted(QString msg, QString cert)
+{
+	TLSWarningForm dlg(mainWindow);
+
+	dlg.labelMessage->setText(msg);
+	dlg.textCertificate->setPlainText(cert);
+
+	return dlg.exec();
 }

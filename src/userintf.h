@@ -369,6 +369,10 @@ public:
 	virtual void cb_update_mwi(void);
 	virtual void cb_mwi_subscribe_failed(t_user *user_config, t_response *r, bool first_failure);
 	virtual void cb_mwi_terminated(t_user *user_config, const string &reason);
+
+	// TLS
+	enum CertTrustResult { CertTrustAccept, CertTrustRemember, CertTrustReject };
+	virtual CertTrustResult cb_tls_cert_untrusted(const string& msg, const string& cert);
 	
 	/** @name Instant messaging */
 	//@{

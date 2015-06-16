@@ -29,6 +29,7 @@ set(twinkle_ui_SRC
 	transferform.ui
 	userprofileform.ui
 	wizardform.ui
+	tlswarningform.ui
 )
 
 set (twinkle_lang_SRC
@@ -110,6 +111,7 @@ set(TWINKLE_GUI-SRCS
 	textbrowsernoautolink.cpp
 	osd.cpp
 	incoming_call_popup.cpp
+	tlswarningform.cpp
 
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>

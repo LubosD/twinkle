@@ -24,6 +24,7 @@
 #include "socket.h"
 #include "audits/memman.h"
 #include "user.h"
+#include "userintf.h"
 
 #ifdef HAVE_GNUTLS
 #	include <gnutls/x509.h>
@@ -40,6 +41,9 @@
 #ifdef HAVE_LINUX_ERRQUEUE_H
 #include <linux/errqueue.h>
 #endif
+
+// UI is needed for TLS
+extern t_userintf *ui;
 
 /////////////////
 // t_icmp_msg
@@ -383,31 +387,10 @@ t_socket_tcp_tls::t_socket_tcp_tls(t_user* user, std::string hostname)
 
     pem = user->get_tls_ca_cert();
 
-    if (pem.empty())
-    {
-        gnutls_certificate_set_x509_system_trust(m_xcred);
-    }
-    else
-    {
-        gnutls_x509_crt_t cert;
-        gnutls_datum_t data;
-        int error;
-
-        gnutls_x509_crt_init(&cert);
-
-        data.data = (unsigned char*) pem.c_str();
-        data.size = pem.length();
-
-        error = gnutls_x509_crt_import(cert, &data, GNUTLS_X509_FMT_PEM);
-
-        if (error == GNUTLS_E_SUCCESS)
-        {
-            gnutls_certificate_set_x509_trust(m_xcred, &cert, 1);
-            m_custom_ca = true;
-        }
-
-        gnutls_x509_crt_deinit(cert);
-    }
+	if (pem.empty())
+		gnutls_certificate_set_x509_system_trust(m_xcred);
+	else
+		m_custom_ca = import_trusted_cert(pem);
 
 	gnutls_session_set_ptr(m_session, this);
 }
@@ -416,6 +399,29 @@ t_socket_tcp_tls::~t_socket_tcp_tls()
 {
 	gnutls_deinit(m_session);
 	gnutls_certificate_free_credentials(m_xcred);
+}
+
+bool t_socket_tcp_tls::import_trusted_cert(const std::string& pem)
+{
+	gnutls_x509_crt_t cert;
+	gnutls_datum_t data;
+	int error;
+
+	gnutls_x509_crt_init(&cert);
+
+	data.data = (unsigned char*) pem.c_str();
+	data.size = pem.length();
+
+	error = gnutls_x509_crt_import(cert, &data, GNUTLS_X509_FMT_PEM);
+
+	if (error == GNUTLS_E_SUCCESS)
+	{
+		gnutls_certificate_set_x509_trust(m_xcred, &cert, 1);
+	}
+
+	gnutls_x509_crt_deinit(cert);
+
+	return (error == GNUTLS_E_SUCCESS);
 }
 
 void t_socket_tcp_tls::connect(unsigned long dest_addr, unsigned short dest_port)
@@ -437,7 +443,7 @@ void t_socket_tcp_tls::connect(unsigned long dest_addr, unsigned short dest_port
 	while (ret < 0 && gnutls_error_is_fatal(ret) == 0);
 
 	if (ret < 0)
-		throw ret;
+		throw EACCES;
 }
 
 /** Send data */
@@ -461,6 +467,7 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 	unsigned int status;
 	gnutls_typed_vdata_st data[2];
 	t_socket_tcp_tls* This;
+	std::stringstream msg;
 
 	This = static_cast<t_socket_tcp_tls*>(gnutls_session_get_ptr(session));
 
@@ -475,28 +482,112 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
     data[0].type = GNUTLS_DT_KEY_PURPOSE_OID;
     data[0].data = (unsigned char*) GNUTLS_KP_ANY;
 
+	// Check the peer certificate
     ret = gnutls_certificate_verify_peers(session, data, This->m_custom_ca ? 1 : 2, &status);
 
 	type = gnutls_certificate_type_get(session);
 	gnutls_certificate_verification_status_print(status, type, &out, 0);
 
-	printf("(for hostname %s): %s\n", This->m_hostname.c_str(), out.data);
+	msg << "The certificate for host " << This->m_hostname << " is untrusted.\n";
+	msg << out.data;
+
 	gnutls_free(out.data);
 
     if (This->m_custom_ca)
     {
         // If the user specified a custom CA, then we don't prompt the user
         // to accept the certificate. We rely solely on the verification result.
-        return ret;
+		return status;
     }
-    else if (ret != GNUTLS_E_SUCCESS)
+	else if (status != 0) // Cert not accepted, ask the user
     {
-        // TODO: Ask user to accept/remember/reject certificate.
-        return 0; // accept all for now (insecure)
+		t_userintf::CertTrustResult trustResult;
+		std::string certString;
+		const gnutls_datum_t* peerCertChain;
+		unsigned int listSize = 0;
+
+		// Get remote peer's certificate chain
+		peerCertChain = gnutls_certificate_get_peers(session, &listSize);
+
+		// Is this a certificate the user has accepted (and remembered) before?
+		if (get_der_fingerprint(peerCertChain[0]) == This->m_user->get_tls_remembered_cert())
+			return 0;
+
+		// Enumerate through it
+		for (unsigned int i = 0; i < listSize && peerCertChain != nullptr; i++)
+		{
+			gnutls_x509_crt_t cert;
+
+			gnutls_x509_crt_init(&cert);
+
+			// Pretty print every certificate
+			if (gnutls_x509_crt_import(cert, &peerCertChain[i], GNUTLS_X509_FMT_DER) == GNUTLS_E_SUCCESS)
+			{
+				gnutls_x509_crt_print(cert, GNUTLS_CRT_PRINT_FULL, &out);
+
+				if (!certString.empty())
+					certString += "\n\nNext in chain:\n\n";
+
+				certString += (char*) out.data;
+
+				gnutls_free(out.data);
+			}
+
+			gnutls_x509_crt_deinit(cert);
+		}
+
+		// Ask user to accept/remember/reject certificate.
+		trustResult = ui->cb_tls_cert_untrusted(msg.str(), certString);
+
+		switch (trustResult)
+		{
+			case t_userintf::CertTrustRemember:
+			if (listSize > 0 && peerCertChain != nullptr)
+			{
+				// remember
+				std::string fp, error_msg;
+
+				fp = get_der_fingerprint(peerCertChain[0]);
+				This->m_user->set_tls_remembered_cert(fp);
+
+				if (!This->m_user->write_config(This->m_user->get_filename(), error_msg))
+					std::cerr << "Failed to save user profile: " << error_msg << std::endl;
+			}
+			case t_userintf::CertTrustAccept:
+				return 0;
+			case t_userintf::CertTrustReject:
+			default:
+				return status;
+		}
     }
     else
         return 0;
 }
+
+std::string t_socket_tcp_tls::get_der_fingerprint(const gnutls_datum_t& in)
+{
+	gnutls_x509_crt_t cert;
+	std::string hexstring;
+
+	gnutls_x509_crt_init(&cert);
+	if (gnutls_x509_crt_import(cert, &in, GNUTLS_X509_FMT_DER)
+			== GNUTLS_E_SUCCESS)
+	{
+		size_t bufSize = 64;
+		uint8_t hash[64];
+
+		if (gnutls_x509_crt_get_fingerprint(cert, GNUTLS_DIG_SHA512, hash, &bufSize)
+				== GNUTLS_E_SUCCESS)
+		{
+			hexstring = binary2hex(hash, bufSize);
+		}
+	}
+
+	gnutls_x509_crt_deinit(cert);
+
+	return hexstring;
+}
+
 #endif
 
 /////////////////

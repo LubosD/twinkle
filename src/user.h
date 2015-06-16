@@ -484,8 +484,10 @@ private:
 	// Only negotiate zrtp if far-end signalled support for zrtp
 	bool		zrtp_send_if_supported;
 
-        // CA certificate to be trusted when setting up TLS connections.
-        string          tls_ca_cert;
+	// CA certificate to be trusted when setting up TLS connections.
+	string          tls_ca_cert;
+	// Cert the user chose to always trust
+	string			tls_remembered_cert;
 	
 	// MWI
 	// Indicate if MWI is sollicited or unsollicited.
@@ -670,7 +672,8 @@ public:
 	unsigned long get_pres_subscription_time(void) const;
 	unsigned long get_pres_publication_time(void) const;
 	bool get_pres_publish_startup(void) const;
-        string get_tls_ca_cert() const;
+	string get_tls_ca_cert() const;
+	string get_tls_remembered_cert() const;
 	//@}
 
 	
@@ -789,7 +792,8 @@ public:
 	void set_pres_subscription_time(unsigned long t);
 	void set_pres_publication_time(unsigned long t);
 	void set_pres_publish_startup(bool b);
-        void set_tls_ca_cert(string pem);
+	void set_tls_ca_cert(string pem);
+	void set_tls_remembered_cert(string pem);
 	//@}
 
 	// Read and parse a config file into the user object.

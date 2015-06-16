@@ -326,6 +326,9 @@ public:
 	void cb_im_iscomposing_request(t_user *user_config, t_request *r,
 			im::t_composing_state state, time_t refresh);
 	void cb_im_iscomposing_not_supported(t_user *user_config, t_response *r);
+
+	// TLS
+	CertTrustResult cb_tls_cert_untrusted(const string& msg, const string& cert);
 	
 	// Execute external commands
 	void cmd_call(const string &destination, bool immediate);
@@ -437,6 +440,8 @@ private slots:
 	bool do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
 			string &password);
     void do_cb_register_inprog(t_user *user_config, t_register_type register_type);
+
+	int do_cb_tls_cert_untrusted(QString msg, QString cert);
 };
 
 #endif

@@ -166,5 +166,6 @@
         <file>images/osd_mic_on.png</file>
         <file>images/popup_incoming_answer.png</file>
         <file>images/popup_incoming_reject.png</file>
+        <file>images/tls_warning.png</file>
     </qresource>
 </RCC>

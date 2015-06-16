@@ -29,6 +29,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <vector>
 #include "twinkle_config.h"
 #ifdef HAVE_GNUTLS
 #	include <gnutls/gnutls.h>
@@ -218,7 +219,9 @@ public:
 	/** Receive data */
 	virtual ssize_t recv(void *buf, int buf_size) override;
 private:
+	bool import_trusted_cert(const std::string& pem);
 	static int vertify_certificate_callback(gnutls_session_t session);
+	static std::string get_der_fingerprint(const gnutls_datum_t& in);
 private:
 	gnutls_session_t m_session;
 	gnutls_certificate_credentials_t m_xcred;

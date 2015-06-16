@@ -3297,6 +3297,14 @@ bool t_userintf::cb_nat_discovery_cancelled(void) {
 	return false;
 }
 
+t_userintf::CertTrustResult t_userintf::cb_tls_cert_untrusted(const string& msg, const string& cert)
+{
+	std::cout << std::endl;
+	std::cout << "Certificate not trusted. " << msg << std::endl;
+
+	return t_userintf::CertTrustReject;
+}
+
 void t_userintf::cb_line_encrypted(int line, bool encrypted, const string &cipher_mode) {
 	if (line >= NUM_USER_LINES) return;
 	
