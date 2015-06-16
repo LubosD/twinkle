@@ -203,6 +203,11 @@ void UserProfileForm::init()
     openRingtoneToolButton->setIcon(i);
     openRingbackToolButton->setIcon(i);
     openIncomingCallScriptToolButton->setIcon(i);
+
+	// Transport/NAT
+#ifdef HAVE_GNUTLS
+	sipTransportComboBox->addItem(tr("TLS/TCP"));
+#endif
 }
 
 void UserProfileForm::showCategory( int index )
@@ -550,11 +555,6 @@ void UserProfileForm::populate()
 	transferConsultInprogCheckBox->setChecked(
 			current_profile->get_allow_transfer_consultation_inprog());
 	pPreferredIdCheckBox->setChecked(current_profile->get_send_p_preferred_id());
-
-	// Transport/NAT
-#ifdef HAVE_GNUTLS
-	sipTransportComboBox->addItem(tr("TLS/TCP"));
-#endif
 	
 	switch (current_profile->get_sip_transport()) {
 	case SIP_TRANS_UDP:

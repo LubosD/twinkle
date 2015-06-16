@@ -241,6 +241,9 @@ static void send_sip_tcp(t_event *event, std::string transport_type) {
 			{
 				pu = phone->find_phone_user(req->hdr_to.uri);
 
+				if (pu == nullptr)
+					pu = phone->find_phone_user(req->hdr_from.uri);
+
 				if (pu != nullptr)
 					user_config = pu->get_user_profile();
 			}

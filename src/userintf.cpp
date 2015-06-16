@@ -162,13 +162,13 @@ string t_userintf::expand_destination(t_user *user_config, const string &dst, co
 
 		s.insert(0, "sips:");
 	}
-#else
+	else
+#endif
 	
 	// Add sip-scheme if a scheme is missing
 	if (s.substr(0, 4) != "sip:" && s.substr(0, 4) != "tel:") {
 		s = "sip:" + s;
 	}
-#endif
 
 	// RFC 3261 19.1.1
 	// Add user=phone for telehpone numbers in a SIP-URI
