@@ -13,7 +13,7 @@ OPTION(WITH_ALSA		"Enable ALSA support" ON)
 OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 OPTION(WITH_QT4			"Enable Qt 4 GUI" OFF)
 OPTION(WITH_QT5			"Enable Qt 5 GUI" OFF)
-OPTION(WITH_G729		"Enable G.729A support (incomplete)" OFF)
+OPTION(WITH_G729		"Enable G.729A support" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
