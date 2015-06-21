@@ -92,6 +92,7 @@ t_sdp_addr_type str2sdp_addr_type(string s);
 enum t_sdp_transport {
 	SDP_TRANS_RTP,		/**< RTP/AVP */
 	SDP_TRANS_UDP,		/**< UDP */
+    SDP_TRANS_SRTP,     /**< RTP/SAVP */
 	SDP_TRANS_OTHER		/**< Another protocol not yet supported */
 };
 
@@ -199,10 +200,15 @@ public:
 	t_sdp_media(t_sdp_media_type _media_type,
 		    unsigned short _port, const list<t_audio_codec> &_formats,
 	            unsigned short _format_dtmf, 
-	            const map<t_audio_codec, unsigned short> &ac2format);
+				const map<t_audio_codec, unsigned short> &ac2format,
+				bool savp = false);
 
 	string encode(void) const;
 	void add_format(unsigned short f, t_audio_codec codec);
+	void add_crypto(int encryption, int authentication,
+					const std::vector<uint8_t>& masterKey,
+					const std::vector<uint8_t>& masterSalt,
+					int kdr); // TODO
 	t_sdp_attr *get_attribute(const string &name);
 	list<t_sdp_attr *>get_attributes(const string &name);
 	t_sdp_media_direction get_direction(void) const;

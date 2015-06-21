@@ -27,6 +27,7 @@
 #include "parser/hdr_warning.h"
 #include "parser/parameter.h"
 #include "audits/memman.h"
+#include <ccrtp/CryptoContext.h>
 
 using namespace std;
 
@@ -68,15 +69,46 @@ string sdp_transport2str(t_sdp_transport t) {
 	switch(t) {
 	case SDP_TRANS_RTP:	return "RTP/AVP";
 	case SDP_TRANS_UDP:	return "udp";
+	case SDP_TRANS_SRTP: return "RTP/SAVP";
 	default:
 		assert(false);
 	}
 	return "";
 }
 
+std::string cipherauth2str(int cipher, int auth, int tagLength)
+{
+	std::string out;
+
+	switch (cipher)
+	{
+	case SrtpEncryptionAESCM:
+		out = "AES_CM_128_";
+
+		assert(tagLength == 32 || tagLength == 80);
+
+		break;
+	case SrtpEncryptionAESF8:
+		assert(tagLength == 80);
+		out = "F8_128_";
+		break;
+	default:
+		assert(false);
+	}
+
+	if (auth != SrtpAuthenticationSha1Hmac)
+		assert(false);
+
+	out += "HMAC_SHA1_";
+
+	out += std::to_string(tagLength);
+	return out;
+}
+
 t_sdp_transport str2sdp_transport(string s) {
 	if (s == "RTP/AVP") return SDP_TRANS_RTP;
 	if (s == "udp") return SDP_TRANS_UDP;
+	if (s == "RTP/SAVP") return SDP_TRANS_SRTP;
 
 	// Other transports are not recognized and are mapped to other.
 	return SDP_TRANS_OTHER;
@@ -268,11 +300,17 @@ t_sdp_media::t_sdp_media() {
 t_sdp_media::t_sdp_media(t_sdp_media_type _media_type,
 			 unsigned short _port, const list<t_audio_codec> &_formats,
 			 unsigned short _format_dtmf,
-			 const map<t_audio_codec, unsigned short> &ac2format)
+			 const map<t_audio_codec, unsigned short> &ac2format,
+			 bool savp)
 {
 	media_type = sdp_media_type2str(_media_type);
 	port = _port;
-	transport = sdp_transport2str(SDP_TRANS_RTP);
+
+	if (!savp)
+		transport = sdp_transport2str(SDP_TRANS_RTP);
+	else
+		transport = sdp_transport2str(SDP_TRANS_SRTP);
+
 	format_dtmf = _format_dtmf;
 
 	for (list<t_audio_codec>::const_iterator i = _formats.begin();
