@@ -155,6 +155,9 @@ string t_userintf::expand_destination(t_user *user_config, const string &dst, co
 	}
 
 #ifdef HAVE_GNUTLS
+	// FIXME: This is essentially a hack forcing the right default SIP/TLS port (5061)
+	// to be returned from get_default_port().
+	// But the same should be achieved even with plain sip: URL when TLS is on.
 	if (user_config->get_sip_transport() == SIP_TRANS_TLS_TCP)
 	{
 		if (s.substr(0, 4) == "sip:" || s.substr(0, 4) == "tel:")

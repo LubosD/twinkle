@@ -763,3 +763,113 @@ string get_error_str(int errnum) {
 #endif
 	return errmsg;
 }
+
+int b64_enc(const uint8_t * src, uint8_t * dst, int len)
+{
+	static char tbl[64] = {
+		'A','B','C','D','E','F','G','H',
+		'I','J','K','L','M','N','O','P',
+		'Q','R','S','T','U','V','W','X',
+		'Y','Z','a','b','c','d','e','f',
+		'g','h','i','j','k','l','m','n',
+		'o','p','q','r','s','t','u','v',
+		'w','x','y','z','0','1','2','3',
+		'4','5','6','7','8','9','+','/'
+	};
+	uint8_t * dst0 = dst;
+	int i, v, div = len / 3, mod = len % 3;
+
+	for (i = 0; i < div * 3; i += 3) {
+
+		v = (src[i+0] & 0xfc) >> 2;
+		*(dst++) = tbl[v];
+
+		v  = (src[i+0] & 0x03) << 4;
+		v |= (src[i+1] & 0xf0) >> 4;
+		*(dst++) = tbl[v];
+
+		v  = (src[i+1] & 0x0f) << 2;
+		v |= (src[i+2] & 0xc0) >> 6;
+		*(dst++) = tbl[v];
+
+		v = src[i+2] & 0x3f;
+		*(dst++) = tbl[v];
+	}
+
+	if (mod == 1) {
+		v = (src[i+0] & 0xfc) >> 2;
+		*(dst++) = tbl[v];
+
+		v = (src[i+0] & 0x03) << 4;
+		*(dst++) = tbl[v];
+
+		*(dst++) = '=';
+		*(dst++) = '=';
+	} else if (mod == 2) {
+		v = (src[i+0] & 0xfc) >> 2;
+		*(dst++) = tbl[v];
+
+		v  = (src[i+0] & 0x03) << 4;
+		v |= (src[i+1] & 0xf0) >> 4;
+		*(dst++) = tbl[v];
+
+		v = (src[i+1] & 0x0f) << 2;
+		*(dst++) = tbl[v];
+
+		*(dst++) = '=';
+	}
+
+	return dst - dst0;
+}
+
+static int b64_val(uint8_t x)
+{
+	if (x >= 'A' && x <= 'Z')
+		return x - 'A';
+	else if (x >= 'a' && x <= 'z')
+		return x - 'a' + 26;
+	else if (x >= '0' && x <= '9')
+		return x - '0' + 52;
+	else if (x == '+')
+		return 62;
+	else if (x == '/')
+		return 63;
+	//else if (x == '=')
+		return -1;
+}
+
+int b64_dec(const uint8_t * src, uint8_t * dst, int len)
+{
+	uint8_t * dst0 = dst;
+	int i, x1, x2, x3, x4;
+
+	if (len % 4)
+		return 0;
+
+	for (i=0; i+4 < len; i += 4) {
+		x1 = b64_val(*(src++));
+		x2 = b64_val(*(src++));
+		x3 = b64_val(*(src++));
+		x4 = b64_val(*(src++));
+
+		*(dst++) = (x1 << 2) | ((x2 & 0x30) >> 4);
+		*(dst++) = ((x2 & 0x0F) << 4) | ((x3 & 0x3C) >> 2);
+		*(dst++) = ((x3 & 0x03) << 6) | (x4 & 0x3F);
+	}
+
+	if (len) {
+		x1 = b64_val(*(src++));
+		x2 = b64_val(*(src++));
+		x3 = b64_val(*(src++));
+		x4 = b64_val(*(src++));
+
+		*(dst++) = (x1 << 2) | ((x2 & 0x30) >> 4);
+		if (x3 != -1) {
+			*(dst++) = ((x2 & 0x0F) << 4) | ((x3 & 0x3C) >> 2);
+			if (x4 != -1)
+				*(dst++) = ((x3 & 0x03) << 6) | (x4 & 0x3F);
+		}
+	}
+
+	return dst - dst0;
+}

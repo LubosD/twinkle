@@ -20,6 +20,8 @@
 #include <assert.h>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
+#include <cmath>
 #include "protocol.h"
 #include "sdp_parse_ctrl.h"
 #include "sdp.h"
@@ -76,6 +78,85 @@ string sdp_transport2str(t_sdp_transport t) {
 	return "";
 }
 
+bool parse_cryptoline(const std::string& attr_value,
+							 int& option,
+							 std::string& cipher_and_auth,
+							 std::vector<uint8_t>& key_and_salt,
+							 int64_t& lifetime, std::string& mki_and_length)
+{
+	std::vector<std::string> parts;
+	int len;
+
+	cipher_and_auth.clear();
+	key_and_salt.clear();
+	lifetime = 0;
+	mki_and_length.clear();
+
+	// Cannot handle multiple master keys yet
+	if (attr_value.find(';') != std::string::npos)
+		return false;
+
+	parts = split(attr_value, ' ');
+
+	// Cannot handle this yet
+	if (parts.size() != 3)
+		return false;
+	if (parts[2].find("inline:") != 0)
+		return false;
+
+	try
+	{
+		option = std::stoi(parts[0]);
+	}
+	catch (...)
+	{
+		return false;
+	}
+
+	cipher_and_auth = parts[1];
+
+	parts = split(parts[2], '|');
+
+	key_and_salt.resize(parts[0].size());
+	len = b64_dec((const uint8_t*) parts[0].c_str() + 7, (uint8_t*) &key_and_salt[0], parts[0].length());
+	key_and_salt.resize(len);
+
+	if (parts.size() > 1) // lifetime present?
+	{
+		if (parts[1].find('^') != std::string::npos)
+		{
+			// Uses exponent
+			std::vector<std::string> exp;
+
+			exp = split(parts[1], '^');
+
+			if (exp.size() == 2)
+				lifetime = (int64_t) std::pow(std::stoi(exp[0]), std::stoi(exp[1]));
+			else
+				return false;
+		}
+		else
+		{
+			// Ordinary number
+			try
+			{
+				lifetime = std::stoi(parts[1]);
+			}
+			catch (...)
+			{
+				return false;
+			}
+		}
+
+		if (parts.size() > 2)
+		{
+			mki_and_length = parts[2];
+		}
+	}
+
+	return true;
+}
+
 std::string cipherauth2str(int cipher, int auth, int tagLength)
 {
 	std::string out;
@@ -103,6 +184,52 @@ std::string cipherauth2str(int cipher, int auth, int tagLength)
 
 	out += std::to_string(tagLength);
 	return out;
+}
+
+bool str2cipherauth(std::string str, int& cipher, int& auth, int& tagLength)
+{
+	if (str.find("AES_CM_128_") == 0)
+	{
+		cipher = SrtpEncryptionAESCM;
+		str = str.substr(11);
+	}
+	else if (str.find("F8_128_") == 0)
+	{
+		cipher = SrtpEncryptionAESF8;
+		str = str.substr(7);
+	}
+	else
+		return false;
+
+	if (str.find("HMAC_SHA1_") == 0)
+	{
+		auth = SrtpAuthenticationSha1Hmac;
+		str = str.substr(10);
+	}
+	else
+		return false;
+
+	try
+	{
+		tagLength = std::stoi(str);
+	}
+	catch (...)
+	{
+		return false;
+	}
+
+	if (cipher == SrtpEncryptionAESCM)
+	{
+		if (tagLength != 32 && tagLength != 80)
+			return false;
+	}
+	else if (cipher == SrtpEncryptionAESF8)
+	{
+		if (tagLength != 80)
+			return false;
+	}
+
+	return true;
 }
 
 t_sdp_transport str2sdp_transport(string s) {
@@ -586,8 +713,13 @@ bool t_sdp::is_supported(int &warn_code, string &warn_text) const {
 	}
 
 	if (m->get_transport() != SDP_TRANS_RTP) {
-		warn_code = W_302_INCOMPATIBLE_TRANS_PROT;
-		return false;
+#ifdef HAVE_GNUTLS
+		if (m->get_transport() != SDP_TRANS_SRTP)
+#endif
+		{
+			warn_code = W_302_INCOMPATIBLE_TRANS_PROT;
+			return false;
+		}
 	}
 
 	t_sdp_media *m2 = const_cast<t_sdp_media *>(m);
@@ -608,6 +740,48 @@ bool t_sdp::is_supported(int &warn_code, string &warn_text) const {
 			return false;
 		}
 
+	}
+
+	// TODO: Move into session.cpp!
+	std::list<t_sdp_attr*> crypto;
+	crypto = m2->get_attributes("crypto");
+
+	// Check crypto lines
+	if (!crypto.empty())
+	{
+		bool found_supported_crypto = false;
+
+		for (t_sdp_attr* c : crypto)
+		{
+			int option;
+			std::string cipher_and_auth;
+			std::vector<uint8_t> key_and_salt;
+			int64_t lifetime;
+			std::string mki_and_length;
+			int cipher, auth, tagLength;
+
+			// Check crypto line validity
+			if (!parse_cryptoline(c->value, option, cipher_and_auth, key_and_salt, lifetime, mki_and_length))
+				continue;
+
+			// Check cipher/auth/taglen validity
+			if (!str2cipherauth(cipher_and_auth, cipher, auth, tagLength))
+				continue;
+
+			// Check if given key&salt length match selected cipher/auth
+			// always 128+112=240 bits=30 bytes
+			if (key_and_salt.size() != 30)
+				continue;
+
+			found_supported_crypto = true;
+		}
+
+		if (!found_supported_crypto)
+		{
+			warn_code = W_308_UNSUPPORTED_CRYPTO;
+			warn_text = "No supported crypto line found";
+			return false;
+		}
 	}
 
 	return true;

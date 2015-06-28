@@ -270,4 +270,22 @@ string to_printable(const string &s);
  */
 string get_error_str(int errnum);
 
+/**
+ * Encode input data using base64 encoding.
+ * @param src Source (possibly binary) data (input buffer).
+ * @param dst Output buffer buffer.
+ * @param len Input buffer length. Output buffer must be 33% larger.
+ * @return Number of bytes in output buffer.
+ */
+int b64_enc(const uint8_t * src, uint8_t * dst, int len);
+
+/**
+ * Decode base64-encoded data.
+ * @param src Input buffer.
+ * @param dst Output buffer.
+ * @param len Number of input bytes.
+ * @return Number of bytes in output buffer.
+ */
+int b64_dec(const uint8_t * src, uint8_t * dst, int len);
+
 #endif
