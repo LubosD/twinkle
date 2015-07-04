@@ -473,17 +473,17 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 
 	std::memset(data, 0, sizeof(data));
 
-    if (!This->m_custom_ca)
-    {
-        data[1].type = GNUTLS_DT_DNS_HOSTNAME;
-        data[1].data = (unsigned char*) This->m_hostname.c_str();
-    }
+	if (!This->m_custom_ca)
+	{
+		data[1].type = GNUTLS_DT_DNS_HOSTNAME;
+		data[1].data = (unsigned char*) This->m_hostname.c_str();
+	}
 
-    data[0].type = GNUTLS_DT_KEY_PURPOSE_OID;
-    data[0].data = (unsigned char*) GNUTLS_KP_ANY;
+	data[0].type = GNUTLS_DT_KEY_PURPOSE_OID;
+	data[0].data = (unsigned char*) GNUTLS_KP_ANY;
 
 	// Check the peer certificate
-    ret = gnutls_certificate_verify_peers(session, data, This->m_custom_ca ? 1 : 2, &status);
+	ret = gnutls_certificate_verify_peers(session, data, This->m_custom_ca ? 1 : 2, &status);
 
 	type = gnutls_certificate_type_get(session);
 	gnutls_certificate_verification_status_print(status, type, &out, 0);
@@ -493,14 +493,15 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 
 	gnutls_free(out.data);
 
-    if (This->m_custom_ca)
-    {
-        // If the user specified a custom CA, then we don't prompt the user
-        // to accept the certificate. We rely solely on the verification result.
+	if (This->m_custom_ca)
+	{
+		// If the user specified a custom CA, then we don't prompt the user
+		// to accept the certificate. We rely solely on the verification result.
+		// TODO: Don't do this if we're not connecting to our registrar (i.e. we're making a direct call).
 		return status;
-    }
+	}
 	else if (status != 0) // Cert not accepted, ask the user
-    {
+	{
 		t_userintf::CertTrustResult trustResult;
 		std::string certString;
 		const gnutls_datum_t* peerCertChain;
@@ -559,9 +560,9 @@ int t_socket_tcp_tls::vertify_certificate_callback(gnutls_session_t session)
 			default:
 				return status;
 		}
-    }
-    else
-        return 0;
+	}
+	else
+		return 0;
 }
 
 std::string t_socket_tcp_tls::get_der_fingerprint(const gnutls_datum_t& in)

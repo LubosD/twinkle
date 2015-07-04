@@ -34,10 +34,15 @@
 
 using namespace std;
 
-unsigned short get_default_port(const string &protocol) {
+unsigned short get_default_port(const string &protocol, const string& transport) {
 	if (protocol == "mailto")	return 25;
 	if (protocol == "http")		return 80;
-	if (protocol == "sip")		return 5060;
+	if (protocol == "sip")
+	{
+		if (icompare(transport, "tls"))
+			return 5061;
+		return 5060;
+	}
 	if (protocol == "sips")		return 5061;
 	if (protocol == "stun")		return 3478;
 
@@ -506,7 +511,7 @@ int t_url::get_nport(void) const {
 
 int t_url::get_hport(void) const {
 	if (port != 0) return port;
-	return get_default_port(scheme);
+	return get_default_port(scheme, transport);
 }
 
 int t_url::get_port(void) const {

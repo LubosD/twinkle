@@ -288,4 +288,10 @@ int b64_enc(const uint8_t * src, uint8_t * dst, int len);
  */
 int b64_dec(const uint8_t * src, uint8_t * dst, int len);
 
+/**
+ * Compare two string case insensitively.
+ * @return True if strings are equal.
+ */
+bool icompare(const std::string& a, const std::string& b);
+
 #endif

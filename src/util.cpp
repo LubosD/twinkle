@@ -873,3 +873,13 @@ int b64_dec(const uint8_t * src, uint8_t * dst, int len)
 
 	return dst - dst0;
 }
+
+bool icompare(const std::string& a, const std::string& b)
+{
+	return std::lexicographical_compare(a.begin(), a.end(),
+										b.begin(), b.end(),
+										[](char a, char b) {
+		return std::tolower(a) == std::tolower(b);
+	});
+}
+
