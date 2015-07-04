@@ -288,9 +288,9 @@ bool t_call_record::populate_from_file_record(const vector<string> &v) {
 	// Check number of fields
 	if (v.size() != 20) return false;
 	
-	time_start = strtoul(v[0].c_str(), NULL, 10);
-	time_answer = strtoul(v[1].c_str(), NULL, 10);
-	time_end = strtoul(v[2].c_str(), NULL, 10);
+    time_start = std::stoul(v[0], NULL, 10);
+    time_answer = std::stoul(v[1], NULL, 10);
+    time_end = std::stoul(v[2], NULL, 10);
 	
 	if (!set_direction(v[3])) return false;
 	

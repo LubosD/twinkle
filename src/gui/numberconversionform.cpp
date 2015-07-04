@@ -67,8 +67,8 @@ void NumberConversionForm::validate()
 	}
 
 	try {
-        boost::regex re(expr.toStdString());
-	} catch (boost::bad_expression) {
+        std::regex re(expr.toStdString());
+    } catch (std::regex_error) {
 		((t_gui *)ui)->cb_show_msg(this,
             tr("Invalid regular expression.").toStdString(), MSG_CRITICAL);
 		exprLineEdit->setFocus();

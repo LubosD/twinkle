@@ -9,7 +9,6 @@ To compile Twinkle you need the following libraries:
 * commoncpp2 and ucommon (version >= 1.4.2) - [GNU Common C++](http://www.gnu.org/software/commoncpp/)
 * ccRTP (version >= 1.5.0) [GNU RTP Stack](http://www.gnu.org/software/ccrtp/)
 * libxml2
-* Boost regex
 * libsndfile
 * Qt 4 or Qt 5
 
