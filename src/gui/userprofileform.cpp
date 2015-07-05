@@ -656,9 +656,11 @@ void UserProfileForm::populate()
 	zrtpGoClearWarningCheckBox->setChecked(current_profile->get_zrtp_goclear_warning());
 
 #ifdef HAVE_GNUTLS
-    textCACert->setPlainText(QString::fromStdString(current_profile->get_tls_ca_cert()));
+	textCACert->setPlainText(QString::fromStdString(current_profile->get_tls_ca_cert()));
+	comboSrtpMode->setCurrentIndex(current_profile->get_srtp_mode());
 #else
 	textCACert->setEnabled(false);
+	comboSrtpMode->setEnabled(false);
 #endif
 }
 
@@ -1313,7 +1315,8 @@ bool UserProfileForm::validateValues()
 	current_profile->set_zrtp_send_if_supported(zrtpSendIfSupportedCheckBox->isChecked());
 	current_profile->set_zrtp_sdp(zrtpSdpCheckBox->isChecked());
 	current_profile->set_zrtp_goclear_warning(zrtpGoClearWarningCheckBox->isChecked());
-    current_profile->set_tls_ca_cert(textCACert->toPlainText().toStdString());
+	current_profile->set_tls_ca_cert(textCACert->toPlainText().toStdString());
+	current_profile->set_srtp_mode(t_srtp_mode(comboSrtpMode->currentIndex()));
 	
 	// Save user config
 	string error_msg;

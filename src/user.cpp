@@ -163,6 +163,7 @@ extern t_phone		*phone;
 #define FLD_ZRTP_SEND_IF_SUPPORTED	"zrtp_send_if_supported"
 #define FLD_TLS_CA_CERT                 "tls_ca_cert"
 #define FLD_TLS_REMEMBERED_CERT                 "tls_remembered_cert"
+#define FLD_SRTP_MODE			"srtp_mode"
 
 // MWI
 #define FLD_MWI_SOLLICITED		"mwi_sollicited"
@@ -189,7 +190,7 @@ extern t_phone		*phone;
 // Private
 ////////////////////
 
-t_ext_support t_user::str2ext_support(const string &s) const {
+t_ext_support t_user::str2ext_support(const string &s) {
 	if (s == "disabled") return EXT_DISABLED;
 	if (s == "supported") return EXT_SUPPORTED;
 	if (s == "preferred") return EXT_PREFERRED;
@@ -197,7 +198,7 @@ t_ext_support t_user::str2ext_support(const string &s) const {
 	return EXT_INVALID;
 }
 
-string t_user::ext_support2str(t_ext_support e) const {
+string t_user::ext_support2str(t_ext_support e) {
 	switch(e) {
 	case EXT_INVALID:	return "invalid";
 	case EXT_DISABLED:	return "disabled";
@@ -211,14 +212,14 @@ string t_user::ext_support2str(t_ext_support e) const {
 	return "";
 }
 
-t_bit_rate_type t_user::str2bit_rate_type(const string &s) const {
+t_bit_rate_type t_user::str2bit_rate_type(const string &s) {
 	if (s == "cbr") return BIT_RATE_CBR;
 	if (s == "vbr") return BIT_RATE_VBR;
 	if (s == "abr") return BIT_RATE_ABR;
 	return BIT_RATE_INVALID;
 }
 
-string t_user::bit_rate_type2str(t_bit_rate_type b) const {
+string t_user::bit_rate_type2str(t_bit_rate_type b) {
 	switch (b) {
 	case BIT_RATE_INVALID:	return "invalid";
 	case BIT_RATE_CBR:	return "cbr";
@@ -230,7 +231,7 @@ string t_user::bit_rate_type2str(t_bit_rate_type b) const {
 	return "";
 }
 
-t_dtmf_transport t_user::str2dtmf_transport(const string &s) const {
+t_dtmf_transport t_user::str2dtmf_transport(const string &s) {
 	if (s == "inband") return DTMF_INBAND;
 	if (s == "rfc2833") return DTMF_RFC2833;
 	if (s == "auto") return DTMF_AUTO;
@@ -238,7 +239,7 @@ t_dtmf_transport t_user::str2dtmf_transport(const string &s) const {
 	return DTMF_AUTO;
 }
 
-string t_user::dtmf_transport2str(t_dtmf_transport d) const {
+string t_user::dtmf_transport2str(t_dtmf_transport d) {
 	switch (d) {
 	case DTMF_INBAND:	return "inband";
 	case DTMF_RFC2833:	return "rfc2833";
@@ -250,13 +251,13 @@ string t_user::dtmf_transport2str(t_dtmf_transport d) const {
 	return "";
 }
 
-t_g726_packing t_user::str2g726_packing(const string &s) const {
+t_g726_packing t_user::str2g726_packing(const string &s) {
 	if (s == "rfc3551") return G726_PACK_RFC3551;
 	if (s == "aal2") return G726_PACK_AAL2;
 	return G726_PACK_AAL2;
 }
 
-string t_user::g726_packing2str(t_g726_packing packing) const {
+string t_user::g726_packing2str(t_g726_packing packing) {
 	switch (packing) {
 	case G726_PACK_RFC3551:	return "rfc3551";
 	case G726_PACK_AAL2:	return "aal2";
@@ -266,7 +267,7 @@ string t_user::g726_packing2str(t_g726_packing packing) const {
 	return "";
 }
 
-t_sip_transport t_user::str2sip_transport(const string &s) const {
+t_sip_transport t_user::str2sip_transport(const string &s) {
 	if (s == "udp") return SIP_TRANS_UDP;
 	if (s == "tcp") return SIP_TRANS_TCP;
 	if (s == "auto") return SIP_TRANS_AUTO;
@@ -276,7 +277,7 @@ t_sip_transport t_user::str2sip_transport(const string &s) const {
 	return SIP_TRANS_AUTO;
 }
 
-string t_user::sip_transport2str(t_sip_transport transport) const {
+string t_user::sip_transport2str(t_sip_transport transport) {
 	switch (transport) {
 	case SIP_TRANS_UDP:	return "udp";
 	case SIP_TRANS_TCP:	return "tcp";
@@ -288,6 +289,37 @@ string t_user::sip_transport2str(t_sip_transport transport) const {
 		assert(false);
 	}
 	return "";
+}
+
+t_srtp_mode t_user::str2srtp_mode(const string& s)
+{
+	if (s == "disabled")
+		return SRTP_DISABLED;
+	else if (s == "accept_incoming")
+		return SRTP_ACCEPT_INCOMING;
+	else if (s == "offered")
+		return SRTP_OFFERED;
+	else if (s == "required")
+		return SRTP_REQUIRED;
+	else
+		assert(false);
+}
+
+string t_user::srtp_mode2str(t_srtp_mode mode)
+{
+	switch (mode)
+	{
+	case SRTP_DISABLED:
+		return "disabled";
+	case SRTP_ACCEPT_INCOMING:
+		return "accept_incoming";
+	case SRTP_OFFERED:
+		return "offered";
+	case SRTP_REQUIRED:
+		return "required";
+	default:
+		assert(false);
+	}
 }
 
 string t_user::expand_filename(const string &filename) {
@@ -436,6 +468,7 @@ t_user::t_user() {
 	dtmf_pause = 40;
 	dtmf_payload_type = 101;
 	dtmf_volume = 10;
+	srtp_mode = SRTP_ACCEPT_INCOMING;
 	display_useronly_phone = true;
 	numerical_user_is_phone = false;
 	remove_special_phone_symbols = true;
@@ -586,6 +619,7 @@ t_user::t_user(const t_user &u) {
 	zrtp_send_if_supported = u.zrtp_send_if_supported;
 	tls_ca_cert = u.tls_ca_cert;
 	tls_remembered_cert = u.tls_remembered_cert;
+	srtp_mode = u.srtp_mode;
 	mwi_sollicited = u.mwi_sollicited;
 	mwi_user = u.mwi_user;
 	mwi_server = u.mwi_server;
@@ -1348,6 +1382,10 @@ list<t_number_conversion> t_user::get_number_conversions(void) const {
 	return result;	
 }
 
+t_srtp_mode t_user::get_srtp_mode() const {
+	return srtp_mode;
+}
+
 string t_user::get_tls_ca_cert() const {
 	string pem;
 	mtx_user.lock();
@@ -2056,6 +2094,10 @@ void t_user::set_number_conversions(const list<t_number_conversion> &l) {
 	mtx_user.unlock();
 }
 
+void t_user::set_srtp_mode(t_srtp_mode mode) {
+	srtp_mode = mode;
+}
+
 void t_user::set_tls_ca_cert(string pem) {
 	mtx_user.lock();
 	tls_ca_cert = pem;
@@ -2554,6 +2596,8 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 			if (!tls_remembered_cert.empty())
 				tls_remembered_cert += '\n';
 			tls_remembered_cert += value;
+		} else if (parameter == FLD_SRTP_MODE) {
+			srtp_mode = str2srtp_mode(value);
 		} else if (parameter == FLD_MWI_SOLLICITED) {
 			mwi_sollicited = yesno2bool(value);
 		} else if (parameter == FLD_MWI_USER) {
@@ -2910,6 +2954,7 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 		while (std::getline(ss, line))
 			config << FLD_TLS_REMEMBERED_CERT << '=' << line << endl;
 	}
+	config << FLD_SRTP_MODE << '=' << srtp_mode2str(srtp_mode) << endl;
 	config << endl;
 	
 	// Write MWI settings

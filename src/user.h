@@ -89,6 +89,13 @@ enum t_dtmf_transport {
 	DTMF_INFO
 };
 
+enum t_srtp_mode {
+	SRTP_DISABLED,
+	SRTP_ACCEPT_INCOMING,
+	SRTP_OFFERED,
+	SRTP_REQUIRED
+};
+
 enum t_g726_packing {
 	G726_PACK_RFC3551,
 	G726_PACK_AAL2
@@ -488,6 +495,8 @@ private:
 	string          tls_ca_cert;
 	// Cert the user chose to always trust
 	string			tls_remembered_cert;
+	// Whether SRTP is supported/required/etc.
+	t_srtp_mode		srtp_mode;
 	
 	// MWI
 	// Indicate if MWI is sollicited or unsollicited.
@@ -531,16 +540,18 @@ private:
 	bool		pres_publish_startup;
 	//@}
 
-	t_ext_support str2ext_support(const string &s) const;
-	string ext_support2str(t_ext_support e) const;
-	t_bit_rate_type str2bit_rate_type(const string &s) const;
-	string bit_rate_type2str(t_bit_rate_type b) const;
-	t_dtmf_transport str2dtmf_transport(const string &s) const;
-	string dtmf_transport2str(t_dtmf_transport d) const;
-	t_g726_packing str2g726_packing(const string &s) const;
-	string g726_packing2str(t_g726_packing packing) const;
-	t_sip_transport str2sip_transport(const string &s) const;
-	string sip_transport2str(t_sip_transport transport) const;
+	static t_ext_support str2ext_support(const string &s);
+	static string ext_support2str(t_ext_support e);
+	static t_bit_rate_type str2bit_rate_type(const string &s);
+	static string bit_rate_type2str(t_bit_rate_type b);
+	static t_dtmf_transport str2dtmf_transport(const string &s);
+	static string dtmf_transport2str(t_dtmf_transport d);
+	static t_g726_packing str2g726_packing(const string &s);
+	static string g726_packing2str(t_g726_packing packing);
+	static t_sip_transport str2sip_transport(const string &s);
+	static string sip_transport2str(t_sip_transport transport);
+	static t_srtp_mode str2srtp_mode(const string& s);
+	static string srtp_mode2str(t_srtp_mode mode);
 	
 	// Parse a number conversion rule
 	// If the rule can be parsed, then c contains the conversion rule and
@@ -674,6 +685,7 @@ public:
 	bool get_pres_publish_startup(void) const;
 	string get_tls_ca_cert() const;
 	string get_tls_remembered_cert() const;
+	t_srtp_mode get_srtp_mode() const;
 	//@}
 
 	
@@ -794,6 +806,7 @@ public:
 	void set_pres_publish_startup(bool b);
 	void set_tls_ca_cert(string pem);
 	void set_tls_remembered_cert(string pem);
+	void set_srtp_mode(t_srtp_mode mode);
 	//@}
 
 	// Read and parse a config file into the user object.
