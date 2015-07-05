@@ -465,7 +465,7 @@ void t_request::add_destinations(const t_user &user_profile, const t_url &dst_ur
 			(dest.get_transport().empty() ||
 			 cmp_nocase(dest.get_transport(), "tls") == 0))
 	{
-		list<t_ip_port> l = dest.get_h_ip_srv("tls_tcp");
+		list<t_ip_port> l = dest.get_h_ip_srv("tls");
 		destinations.insert(destinations.end(), l.begin(), l.end());
 	}
 #endif

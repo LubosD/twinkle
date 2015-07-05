@@ -49,7 +49,7 @@ public:
 };
 
 // Return the default port for a protocol (host order)
-unsigned short get_default_port(const string &protocol);
+unsigned short get_default_port(const string &protocol, const string& transport);
 
 // Return the first IP address of host name.
 // Return 0 if no IP address can be found.

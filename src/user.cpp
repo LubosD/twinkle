@@ -271,7 +271,7 @@ t_sip_transport t_user::str2sip_transport(const string &s) const {
 	if (s == "tcp") return SIP_TRANS_TCP;
 	if (s == "auto") return SIP_TRANS_AUTO;
 #ifdef HAVE_GNUTLS
-	if (s == "tls_tcp") return SIP_TRANS_TLS_TCP;
+	if (s == "tls") return SIP_TRANS_TLS_TCP;
 #endif
 	return SIP_TRANS_AUTO;
 }
@@ -282,7 +282,7 @@ string t_user::sip_transport2str(t_sip_transport transport) const {
 	case SIP_TRANS_TCP:	return "tcp";
 	case SIP_TRANS_AUTO:	return "auto";
 #ifdef HAVE_GNUTLS
-	case SIP_TRANS_TLS_TCP: return "tls_tcp";
+	case SIP_TRANS_TLS_TCP: return "tls";
 #endif
 	default:
 		assert(false);
@@ -3103,31 +3103,35 @@ string t_user::create_user_contact(bool anonymous, const string &auto_ip) {
 	
 	s += USER_HOST(this, auto_ip);
 
-	if (PUBLIC_SIP_PORT(this) != get_default_port(USER_SCHEME)) {
-		s += ':';
-		s += int2str(PUBLIC_SIP_PORT(this));
-	}
-	
+	std::string tp;
 	if (phone->use_stun(this)) {
 		// The port discovered via STUN can only be used for UDP.
-		s += ";transport=udp";
+		tp = "udp";
 	} else {
 		// Add transport parameter if a single transport is provisioned only.
 		switch (sip_transport) {
 		case SIP_TRANS_UDP:
-			s += ";transport=udp";
+			tp = "udp";
 			break;
 		case SIP_TRANS_TCP:
-			s += ";transport=tcp";
+			tp = "tcp";
 			break;
 #ifdef HAVE_GNUTLS
 		case SIP_TRANS_TLS_TCP:
-			s += ";transport=tls";
+			tp = "tls";
 			break;
 #endif
 		default:
 			break;
 		}
+	}
+
+	if (!tp.empty())
+		s += ";transport=" + tp;
+
+	if (PUBLIC_SIP_PORT(this) != get_default_port(USER_SCHEME, tp)) {
+		s += ':';
+		s += int2str(PUBLIC_SIP_PORT(this));
 	}
 
 	if (!anonymous && 

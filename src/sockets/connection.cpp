@@ -166,7 +166,7 @@ t_sip_message *t_connection::get_sip_msg(string &raw_headers, string &raw_body, 
 
 #ifdef HAVE_GNUTLS
 		if (dynamic_cast<t_socket_tcp_tls*>(socket_) != nullptr)
-			sip_msg_->src_ip_port.transport = "tls_tcp";
+			sip_msg_->src_ip_port.transport = "tls";
 #endif
 		
 		// Remove the processed headers from the read buffer.

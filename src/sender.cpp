@@ -231,7 +231,7 @@ static void send_sip_tcp(t_event *event, std::string transport_type) {
 		
 		t_socket_tcp *tcp;
 #ifdef HAVE_GNUTLS
-		if (transport_type == "tls_tcp")
+		if (transport_type == "tls")
 		{
 			t_request *req = dynamic_cast<t_request *>(sip_msg);
 			t_phone_user *pu;
@@ -559,7 +559,7 @@ void *sender_loop(void *arg) {
 			} else if (ev_network->transport == "tcp") {
 				send_sip_tcp(event, ev_network->transport);
 #ifdef HAVE_GNUTLS
-			} else if (ev_network->transport == "tls_tcp") {
+			} else if (ev_network->transport == "tls") {
 				send_sip_tcp(event, ev_network->transport);
 #endif
 			} else {

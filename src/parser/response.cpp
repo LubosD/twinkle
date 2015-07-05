@@ -218,7 +218,7 @@ void t_response::get_destination(t_ip_port &ip_port) const {
 	assert(hdr_via.is_populated());
 	
 #ifdef HAVE_GNUTLS
-	if (src_ip_port_request.transport == "tcp" || src_ip_port_request.transport == "tls_tcp" ) {
+	if (src_ip_port_request.transport == "tcp" || src_ip_port_request.transport == "tls" ) {
 #else
 	if (src_ip_port_request.transport == "tcp") {
 #endif

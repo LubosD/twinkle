@@ -38,7 +38,7 @@ t_via::t_via(const string &_host, const int _port, bool add_rport) {
 	host = _host;
 	branch = RFC3261_COOKIE + random_token(8);
 
-	if (_port != get_default_port("sip")) {
+    if (_port != get_default_port("sip", transport)) {
 		port = _port;
 	} else {
 		port = 0;

@@ -1266,7 +1266,7 @@ void t_phone_user::send_nat_keepalive(void) {
 
 void t_phone_user::send_tcp_ping(void) {
 	if (register_ip_port.ipaddr != 0 && register_ip_port.port != 0 &&
-		(register_ip_port.transport == "tcp" || register_ip_port.transport == "tls_tcp"))
+		(register_ip_port.transport == "tcp" || register_ip_port.transport == "tls"))
 	{
 		evq_sender->push_tcp_ping(user_config->create_user_uri(false),
 				register_ip_port.ipaddr, register_ip_port.port);

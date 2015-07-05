@@ -24,6 +24,7 @@
 #include <list>
 #include <map>
 #include <string>
+#include <vector>
 #include "audio/audio_codecs.h"
 #include "parser/sip_body.h"
 
