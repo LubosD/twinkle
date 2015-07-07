@@ -2242,6 +2242,9 @@ void t_userintf::process_events(void) {
 		case EV_QUIT:
 			quit = true;
 			break;
+		case EV_FN_CALL:
+			static_cast<t_event_fncall*>(event)->invoke();
+			break;
 		default:
 			assert(false);
 			break;
