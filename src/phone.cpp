@@ -154,7 +154,7 @@ void t_phone::move_releasing_lines_to_background(void) {
 void t_phone::cleanup_3way_state(unsigned short lineno) {
 	assert(lineno < lines.size());
 
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	// Clean up 3-way data if the line was involved in a 3-way
 	if (is_3way)
@@ -199,7 +199,6 @@ void t_phone::cleanup_3way_state(unsigned short lineno) {
 		}
 	}
 
-	unlock();
 }
 
 void t_phone::cleanup_3way(void) {
@@ -2051,8 +2050,6 @@ void t_phone::handle_event_timeout(t_event_timeout *e) {
 	t_tmr_publish		*tmr_publish;
 	t_object_id		line_id;
 	
-	lock();
-	
 	switch (t->get_type()) {
 	case TMR_PHONE:
 		tmr_phone = dynamic_cast<t_tmr_phone *>(t);
@@ -2085,8 +2082,6 @@ void t_phone::handle_event_timeout(t_event_timeout *e) {
 		assert(false);
 		break;
 	}
-	
-	unlock();
 }
 
 void t_phone::line_timeout(t_object_id id, t_line_timer timer, t_object_id did) {
@@ -2599,7 +2594,7 @@ t_phone_state t_phone::get_state(void) const {
 	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < NUM_USER_LINES; i++) {
 		if (lines[i]->get_state() == LS_IDLE) {
-			unlock();
+
 			return PS_IDLE;
 		}
 	}
@@ -2612,7 +2607,7 @@ bool t_phone::all_lines_idle(void) const {
 	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < NUM_USER_LINES; i++) {
 		if (lines[i]->get_substate() != LSSUB_IDLE) {
-			unlock();
+
 			return false;
 		}
 	}
@@ -2847,41 +2842,34 @@ string t_phone::get_remote_display(unsigned short lineno) const {
 }
 
 bool t_phone::part_of_3way(unsigned short lineno) {
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	if (!is_3way) {
-		unlock();
 		return false;
 	}
 
 	if (line1_3way->get_line_number() == lineno) {
-		unlock();
 		return true;
 	}
 
 	if (line2_3way->get_line_number() == lineno) {
-		unlock();
 		return true;
 	}
 
-	unlock();
 	return false;
 }
 
 t_line *t_phone::get_3way_peer_line(unsigned short lineno) {
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	if (!is_3way) {
-		unlock();
 		return NULL;
 	}
 
 	if (line1_3way->get_line_number() == lineno) {
-		unlock();
 		return line2_3way;
 	}
 
-	unlock();
 	return line1_3way;
 }
 
@@ -2889,12 +2877,11 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	assert(lineno1 < NUM_USER_LINES);
 	assert(lineno2 < NUM_USER_LINES);
 
-	lock();
+	t_mutex_guard x3(mutex_3way);
 	t_rwmutex_reader x(lines_mtx);
 
 	// Check if there isn't a 3-way already
 	if (is_3way) {
-		unlock();
 		return false;
 	}
 
@@ -2902,7 +2889,6 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	if (lines[lineno1]->get_substate() != LSSUB_ESTABLISHED ||
 	    lines[lineno2]->get_substate() != LSSUB_ESTABLISHED)
 	{
-		unlock();
 		return false;
 	}
 
@@ -2915,7 +2901,6 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 		held_line = lines[lineno2];
 		talking_line = lines[lineno1];
 	} else {
-		unlock();
 		return false;
 	}
 
@@ -2940,7 +2925,6 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	// Retrieve the held call
 	held_line->retrieve();
 
-	unlock();
 	return true;
 }
 
@@ -3086,7 +3070,7 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 		if (!existing_phone_user->is_active()) {
 			existing_phone_user->activate(user_config);
 		}
-		unlock();
+
 		return true;
 	}
 	
