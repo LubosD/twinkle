@@ -811,7 +811,9 @@ void t_gui::run(void) {
 	restore_state();
 	
 	// Initialize phone functions
-	phone->init();
+	run_on_event_queue([=]() {
+		phone->init();
+	});
 	
 	// Set controls in correct status
 	mainWindow->updateState();
@@ -2830,26 +2832,32 @@ string t_gui::get_name_from_abook(t_user *user_config, const t_url &u) {
 // User invoked actions on the phone object
 
 void t_gui::action_register(list<t_user *> user_list) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		phone->pub_registration(*i, REG_REGISTER, 
-			DUR_REGISTRATION(*i));
-	}
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			phone->pub_registration(*i, REG_REGISTER,
+				DUR_REGISTRATION(*i));
+		}
+	});
 }
 
 void t_gui::action_deregister(list<t_user *> user_list, bool dereg_all) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		if (dereg_all) {
-			phone->pub_registration(*i, REG_DEREGISTER_ALL);
-		} else {
-			phone->pub_registration(*i, REG_DEREGISTER);
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			if (dereg_all) {
+				phone->pub_registration(*i, REG_DEREGISTER_ALL);
+			} else {
+				phone->pub_registration(*i, REG_DEREGISTER);
+			}
 		}
-	}
+	});
 }
 
 void t_gui::action_show_registrations(list<t_user *> user_list) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		phone->pub_registration(*i, REG_QUERY);
-	}
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			phone->pub_registration(*i, REG_QUERY);
+		}
+	});
 }
 
 void t_gui::action_invite(t_user *user_config, const t_url &destination,
@@ -2885,7 +2893,9 @@ void t_gui::action_invite(t_user *user_config, const t_url &destination,
 	
 	displaySubject(subject.c_str());
 	
-	phone->pub_invite(user_config, destination, display, subject.c_str(), anonymous);
+	run_on_event_queue([=]() {
+		phone->pub_invite(user_config, destination, display, subject.c_str(), anonymous);
+	});
 }
 
 void t_gui::action_answer(void) {
@@ -2967,7 +2977,9 @@ void t_gui::action_options(void) {
 }
 
 void t_gui::action_options(t_user *user_config, const t_url &contact) {
-	phone->pub_options(user_config, contact);
+	run_on_event_queue([=]() {
+		phone->pub_options(user_config, contact);
+	});
 }
 
 void t_gui::action_dtmf(const string &digits) {
