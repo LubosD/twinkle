@@ -116,11 +116,13 @@ private:
 
 	// Phone users
 	list<t_phone_user *>	phone_users;
+	mutable t_rwmutex phone_users_mtx;
 
 	// Phone lines
 	// The first NUM_CALL_LINES are for making phone calls.
 	// The tail of the vector is for releasing lines in the background.
 	vector<t_line *>	lines;
+	mutable t_rwmutex lines_mtx;
 
 	// Operations like invite, end_call work on the active line
 	unsigned short		active_line;

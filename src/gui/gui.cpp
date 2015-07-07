@@ -758,14 +758,14 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	
 	MEMMAN_NEW(mainWindow);
 
-	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()));
-	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()));
-	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()));
-	connect(this, SIGNAL(mw_display(const QString&)), mainWindow, SLOT(display(const QString&)));
-	connect(this, SIGNAL(mw_display_header()), mainWindow, SLOT(displayHeader()));
-	connect(this, SIGNAL(mw_update_log(bool)), mainWindow, SLOT(updateLog(bool)));
-	connect(this, SIGNAL(mw_update_call_history()), mainWindow, SLOT(updateCallHistory()));
-	connect(this, SIGNAL(mw_update_missed_call_status(int)), mainWindow, SLOT(updateMissedCallStatus(int)));
+	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()), Qt::QueuedConnection);
+	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()), Qt::QueuedConnection);
+	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_display(const QString&)), mainWindow, SLOT(display(const QString&)), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_display_header()), mainWindow, SLOT(displayHeader()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_log(bool)), mainWindow, SLOT(updateLog(bool)), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_call_history()), mainWindow, SLOT(updateCallHistory()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_missed_call_status(int)), mainWindow, SLOT(updateMissedCallStatus(int)), Qt::QueuedConnection);
 }
 
 t_gui::~t_gui() {
@@ -3194,7 +3194,6 @@ void t_gui::open_url_in_browser(const QString &url) {
 		}
 	}
 #endif
-	QProcess process;
 	bool process_started = false;
 	
 	QStringList browsers;
@@ -3208,8 +3207,7 @@ void t_gui::open_url_in_browser(const QString &url) {
 	
 	for (QStringList::Iterator it = browsers.begin(); it != browsers.end(); ++it)
 	{
-		process.start(*it, QStringList(url));
-		process_started = process.waitForStarted(1000);
+		process_started = QProcess::startDetached(*it, QStringList(url));
 		if (process_started) break;
 	}
 	

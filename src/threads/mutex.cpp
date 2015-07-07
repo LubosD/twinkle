@@ -20,6 +20,7 @@
 #include <iostream>
 #include "mutex.h"
 #include "thread.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -87,4 +88,40 @@ t_mutex_guard::t_mutex_guard(t_mutex &mutex) : mutex_(mutex) {
 
 t_mutex_guard::~t_mutex_guard() {
 	mutex_.unlock();
+}
+
+
+///////////////////////////
+// t_rwmutex
+///////////////////////////
+
+t_rwmutex::t_rwmutex()
+{
+	int ret = pthread_rwlock_init(&_lock, nullptr);
+	if (ret != 0) throw string(
+		"t_rwmutex::t_rwmutex failed to create a r/w mutex.");
+}
+
+t_rwmutex::~t_rwmutex()
+{
+	pthread_rwlock_destroy(&_lock);
+}
+
+void t_rwmutex::lockRead()
+{
+	int err = pthread_rwlock_rdlock(&_lock);
+	if (err != 0)
+		throw std::logic_error("Mutex lock failed");
+}
+
+void t_rwmutex::lockWrite()
+{
+	int err = pthread_rwlock_wrlock(&_lock);
+	if (err != 0)
+		throw std::logic_error("Mutex lock failed");
+}
+
+void t_rwmutex::unlock()
+{
+	pthread_rwlock_unlock(&_lock);
 }
