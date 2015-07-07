@@ -3105,7 +3105,9 @@ string t_user::convert_number(const string &number, const list<t_number_conversi
 		
 		try {
             if (std::regex_match(number, m, std::regex(i->re))) {
-				string result = m.format(i->fmt);
+				string result;
+
+				m.format(std::back_inserter(result), i->fmt);
 			
 				log_file->write_header("t_user::convert_number", 
 					LOG_NORMAL, LOG_DEBUG);
