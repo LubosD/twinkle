@@ -1,6 +1,7 @@
 Author of Twinkle:
 
 Michel de Boer <michel@twinklephone.com> designed and implemented Twinkle.
+Lubos Dolezel <lubos@dolezel.info> ported Twinkle to Qt4/5 and took over further development.
 
 Contributions:
 * Werner Dittmann (ZRTP/SRTP)

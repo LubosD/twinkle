@@ -1273,6 +1273,13 @@ Om uw gebruikersprofielen makkelijk uit elkaar te houden kunt u uw SIP gebruiker
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -3749,6 +3756,10 @@ Als voor het beantwoorden van een inkomend gesprek, de microfoon of speaker onbe
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
@@ -6182,6 +6193,17 @@ Dit kan de host naam of IP adres van uw PC zijn als u direct van PC naar PC wilt
     <message>
         <source>&amp;No</source>
         <translation>&amp;Nee</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished">Afwijzen</translation>
     </message>
 </context>
 </TS>

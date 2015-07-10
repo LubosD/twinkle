@@ -1227,6 +1227,13 @@ Es bietet sich an, hier Ihre SIP-Adresse als Name zu verwenden, also &lt;b&gt;me
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -3692,6 +3699,10 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
@@ -6143,6 +6154,17 @@ Für direct-IP-to-IP, also ohne SIP-Provider, ist dies der (dyndns-)Name oder di
     <message>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -125,11 +125,11 @@
     </message>
     <message>
         <source>Your password for authentication.</source>
-        <translation>Vaše přijhlašovací heslo.</translation>
+        <translation>Vaše přihlašovací heslo.</translation>
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
-        <translation>Vaše přihlašovací SIP jméno. Často je identické s vaším uživatelským SIP jménem. Pokud ne, zeptejte se na něj vašeho VoIP poskytovatele.</translation>
+        <translation>Vaše přihlašovací SIP jméno. Často je identické s vaším uživatelským SIP jménem, ale může se i lišit.</translation>
     </message>
     <message>
         <source>&amp;User name:</source>
@@ -141,7 +141,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Login required for realm:</source>
@@ -161,7 +161,7 @@
     <name>BuddyForm</name>
     <message>
         <source>Twinkle - Buddy</source>
-        <translation>Twinkle - Buddy</translation>
+        <translation>Twinkle - Kontakt</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>vybrat adresu z adresáře .</translation>
+        <translation>Vybrat adresu z adresáře .</translation>
     </message>
     <message>
         <source>&amp;Phone:</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Name of your buddy.</source>
-        <translation>Jméno vašeho Buddy.</translation>
+        <translation>Jméno vašeho kontaktu.</translation>
     </message>
     <message>
         <source>&amp;Show availability</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Check this option if you want to see the availability of your buddy. This will only work if your provider offers a presence agent.</source>
-        <translation>Vybrat tuto volbu pokud chcete vidět dostupnost vašeho buddy. Toto bude fungovat pouze pokud váš VoIP poskytovatel nabízí funkci &quot;prezenčního agenta&quot;.</translation>
+        <translation>Vybrat tuto volbu pokud chcete vidět dostupnost vytvořeného kontaktu. Toto bude fungovat pouze pokud váš poskytovatel tuto funkčnost nabízí.</translation>
     </message>
     <message>
         <source>&amp;Name:</source>
@@ -197,7 +197,7 @@
     </message>
     <message>
         <source>SIP address your buddy.</source>
-        <translation>SIP adresa vašeho buddy.</translation>
+        <translation>SIP adresa vašeho kontaktu.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -209,7 +209,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -221,11 +221,11 @@
     </message>
     <message>
         <source>Invalid phone.</source>
-        <translation>neplatné telefonní číslo.</translation>
+        <translation>Neplatné telefonní číslo.</translation>
     </message>
     <message>
         <source>Failed to save buddy list: %1</source>
-        <translation>Nepodařilo se uložit buddy seznam: %1</translation>
+        <translation>Nepodařilo se uložit seznam kontaktů: %1</translation>
     </message>
 </context>
 <context>
@@ -264,7 +264,7 @@
     </message>
     <message>
         <source>Click right to add a buddy.</source>
-        <translation>pravým kliknutím přidat buddyho.</translation>
+        <translation>Pravým kliknutím přidáte kontakt.</translation>
     </message>
 </context>
 <context>
@@ -279,11 +279,11 @@
     </message>
     <message>
         <source>Failed to create audio receiver thread.</source>
-        <translation>Nepodařilo se vytvořit proces pro audio příjem.</translation>
+        <translation>Nepodařilo se vytvořit vlákno pro nahrávání zvuku.</translation>
     </message>
     <message>
         <source>Failed to create audio transmitter thread.</source>
-        <translation>Nepodařilo se vytvořit proces pro audio přenos.</translation>
+        <translation>Nepodařilo se vytvořit vlákno pro přehrávání zvuku.</translation>
     </message>
 </context>
 <context>
@@ -329,7 +329,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
 </context>
 <context>
@@ -340,15 +340,15 @@
     </message>
     <message>
         <source>Fill in your account ID.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Fill in your PIN code.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>A user profile with name %1 already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -371,7 +371,7 @@
     </message>
     <message>
         <source>Over decadic A. Normally not needed.</source>
-        <translation>Funkční klávesa A. Normálně nepoužívaná.</translation>
+        <translation>Funkční klávesa A. Používaná zřídka.</translation>
     </message>
     <message>
         <source>4</source>
@@ -387,7 +387,7 @@
     </message>
     <message>
         <source>Over decadic B. Normally not needed.</source>
-        <translation>Funkční klávesa B. Používaná zřídka používaná.</translation>
+        <translation>Funkční klávesa B. Používaná zřídka.</translation>
     </message>
     <message>
         <source>7</source>
@@ -626,7 +626,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: far end does not support DTMF telephone events.</source>
-        <translation>Linka %1: Protistrana nepodporuje žádný DTMF dotaz.</translation>
+        <translation>Linka %1: Protistrana nepodporuje události DTMF.</translation>
     </message>
     <message>
         <source>Line %1: received notification.</source>
@@ -890,7 +890,7 @@ Zavření a opětovné otevření okna &lt;i&gt;nevede&lt;/i&gt; k novému načt
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -951,7 +951,7 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>Edit a contact from the local address book.</source>
-        <translation>Upavit vybraný kontakt z lokálního adresáře.</translation>
+        <translation>Upravit vybraný kontakt z lokálního adresáře.</translation>
     </message>
     <message>
         <source>&lt;p&gt;You seem not to have any contacts with a phone number in &lt;b&gt;KAddressBook&lt;/b&gt;, KDE&apos;s address book application. Twinkle retrieves all contacts with a phone number from KAddressBook. To manage your contacts you have to use KAddressBook.&lt;p&gt;As an alternative you may use Twinkle&apos;s local address book.&lt;/p&gt;</source>
@@ -971,7 +971,7 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Enter a name for your profile:</source>
@@ -985,21 +985,21 @@ A profile contains your user settings, e.g. your user name and password. You hav
 If you have multiple SIP accounts, you can create multiple profiles. When you startup Twinkle it will show you the list of profile names from which you can select the profile you want to run.
 &lt;br&gt;&lt;br&gt;
 To remember your profiles easily you could use your SIP user name as a profile name, e.g. &lt;b&gt;example@example.com&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Jméno pod kterým bude založen nový profil&lt;/b&gt;
+        <translation>&lt;b&gt;Název, pod kterým bude založen nový profil&lt;/b&gt;
 &lt;br&gt;&lt;br&gt;
-Profil obsahuje všechna uživateslká nastavení jako je VoIP poskytovatel, uživatelské jméno SIP, Heslo atd. Pokus spustíte Twinkle bude zobrazen seznam všech profilů, ze kterého si lze vybrat ten se kterým má být pracováno.
+Profil obsahuje všechna uživatelská nastavení, např. uživatelské jméno SIP, heslo atd. Pokud spustíte Twinkle, bude zobrazen seznam všech profilů, ze kterého si lze vybrat ten, se kterým má být pracováno.
 &lt;br&gt;&lt;br&gt;
 Ke snadnému zapamatování si profilu je možné použít k označení profilu uživatelské jméno. Např. &lt;b&gt;example@example.com&lt;/b&gt;
-&lt;p&gt;Před založením prvního profilu je vhodné si nejprve vyřídit registraci u vašeho SIP poskytovatele a poznačit si jaké &lt;b&gt;SIP přístupové parametry&lt;/b&gt; jsou k přihlášení potřebné.
+&lt;p&gt;Před založením prvního profilu je vhodné si nejprve vyřídit registraci u vašeho SIP poskytovatele a poznačit si, jaké &lt;b&gt;přístupové parametry SIP&lt;/b&gt; jsou k přihlášení potřebné.
 &lt;/p&gt;</translation>
     </message>
     <message>
         <source>Cannot find .twinkle directory in your home directory.</source>
-        <translation>Nelze najít adresář &quot;.twinkle&quot; ve vašem domovském adresáři (&quot;/home/vase-jmeno/&quot;).</translation>
+        <translation>Nelze najít adresář .twinkle ve vašem domovském adresáři.</translation>
     </message>
     <message>
         <source>Profile already exists.</source>
-        <translation>Profil s tímto jménem již existuje.</translation>
+        <translation>Profil s tímto názvem již existuje.</translation>
     </message>
     <message>
         <source>Rename profile &apos;%1&apos; to:</source>
@@ -1034,7 +1034,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Call details</source>
-        <translation>Detaily hovoru</translation>
+        <translation>Podrobnosti hovoru</translation>
     </message>
     <message>
         <source>Details of the selected call record.</source>
@@ -1054,7 +1054,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Check this option to show incoming calls.</source>
-        <translation>Zaškrtnut tuto volbu, pokud mají být signalizovány příchozí hovory.</translation>
+        <translation>Zaškrtněte tuto volbu pro zobrazení příchozích hovorů.</translation>
     </message>
     <message>
         <source>&amp;Outgoing calls</source>
@@ -1066,7 +1066,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Check this option to show outgoing calls.</source>
-        <translation>Pokud je aktivováno, budou zobrazeny jen odchozí hovory.</translation>
+        <translation>Zaškrtněte tuto volbu pro zobrazení odchozích hovorů.</translation>
     </message>
     <message>
         <source>&amp;Answered calls</source>
@@ -1078,7 +1078,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Check this option to show answered calls.</source>
-        <translation>Pokud je aktivováno, budou zobrazeny jen přijaté hovory.</translation>
+        <translation>Zaškrtněte tuto volbu pro zobrazení přijatých hovorů.</translation>
     </message>
     <message>
         <source>&amp;Missed calls</source>
@@ -1090,7 +1090,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Check this option to show missed calls.</source>
-        <translation>Pokud je aktivováno, budou zobrazeny jen zmeškaná volání.</translation>
+        <translation>Zaškrtněte tuto volbu pro zobrazení zmeškaných hovorů.</translation>
     </message>
     <message>
         <source>Current &amp;user profiles only</source>
@@ -1102,7 +1102,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Check this option to show only calls associated with this user profile.</source>
-        <translation>Pokud je aktivováno, budou zobrazeny jen hovory, které byly provedeny pod právě aktivovním uživatelským profilem.</translation>
+        <translation>Pokud je aktivováno, budou zobrazeny jen hovory, které byly provedeny pod tímto uživatelským profilem.</translation>
     </message>
     <message>
         <source>C&amp;lear</source>
@@ -1164,11 +1164,11 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Subject:</source>
-        <translation>Název:</translation>
+        <translation>Předmět:</translation>
     </message>
     <message>
         <source>Released by:</source>
-        <translation>Ukončeno:</translation>
+        <translation>Ukončil:</translation>
     </message>
     <message>
         <source>Status:</source>
@@ -1184,15 +1184,15 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>conversation</source>
-        <translation>Rozhovor</translation>
+        <translation>rozhovor</translation>
     </message>
     <message>
         <source>Call...</source>
-        <translation>Volat (dvojitý klik)...</translation>
+        <translation>Volat...</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Smazat záznam</translation>
+        <translation>Smazat</translation>
     </message>
     <message>
         <source>Re:</source>
@@ -1228,6 +1228,13 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation>%1 volá</translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -1239,7 +1246,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Optionally you can provide a subject here. This might be shown to the callee.</source>
-        <translation>Zde můžete zadat nějaký název, který bude spolu s vaším jménem zobrazen na volané stanici.</translation>
+        <translation>Zde můžete volitelně zadat předmět hovoru, který může být zobrazen volanému.</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -1247,15 +1254,15 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat adresu z KDE-Adressbook.</translation>
+        <translation>Vybrat adresu z adresáře.</translation>
     </message>
     <message>
         <source>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresu, kterou chcete volat.  Toto může být plnohodnotná SIP adresa jako např. &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen pouze telefonní číslo. Pokud není zadaná kompletní adresa twinkle ji doplní o doménové jméno aktuálního uživatelského profilu.</translation>
+        <translation>Adresa, kterou chcete volat.  Toto může být plnohodnotná SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo. Pokud není zadaná úplná adresa, Twinkle ji doplní o doménové jméno aktuálního uživatelského profilu.</translation>
     </message>
     <message>
         <source>The user that will make the call.</source>
-        <translation>Uživatelský profil a současně i VoIP poskytovatel, se kterým bylo volání iniciováno.</translation>
+        <translation>Uživatel, který uskuteční hovor.</translation>
     </message>
     <message>
         <source>&amp;Subject:</source>
@@ -1271,11 +1278,11 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>&amp;Hide identity</source>
-        <translation>&amp;skrýt identitu volajícího</translation>
+        <translation>&amp;Skrýt identitu volajícího</translation>
     </message>
     <message>
         <source>Alt+H</source>
@@ -1288,12 +1295,12 @@ With this option you request your SIP provider to hide your identity from the ca
 &lt;p&gt;
 &lt;b&gt;Warning:&lt;/b&gt; not all providers support identity hiding.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;S touto volbou dáváte najevo vašemu SIP poskytovateli, že nechcete aby byly na protistranu zaslánu informace o vaší identitě. Např. vaše SIP adresa nebo telefonná číslo. Nicméně vaše IP adresa bude protistraně &lt;b&gt;vždy&lt;/b&gt; sdělena.&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Upozornění: &lt;/b&gt;Tuto možnost nenenabízejí všichni VoIP poskytovatelé!&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;S touto volbou dáváte najevo vašemu SIP poskytovateli, že nechcete aby byly na protistranu zaslánu informace o vaší identitě. Např. vaše SIP adresa nebo telefonní číslo. Nicméně vaše IP adresa bude protistraně &lt;b&gt;vždy&lt;/b&gt; sdělena.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Upozornění: &lt;/b&gt;Tuto možnost nenenabízejí všichni poskytovatelé!&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Not all SIP providers support identity hiding. Make sure your SIP provider supports it if you really need it.</source>
-        <translation>Ne všichni VoIP poskytovatelé umožňují skrytí identity. Ujistěte se o tom, pokud se na tuto funkci chcete spolehnout.</translation>
+        <translation>Ne všichni poskytovatelé SIP umožňují skrytí identity. Pokud funkci skutečně potřebujete, ujistěte se, že ji váš poskytovatel SIP nabízí.</translation>
     </message>
     <message>
         <source>F10</source>
@@ -1308,7 +1315,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Contents of the current log file (~/.twinkle/twinkle.log)</source>
-        <translation>Obsah aktuálního protokolovacího souboru (~/.twinkle/twinkle.log)</translation>
+        <translation>Obsah aktuálního logu (~/.twinkle/twinkle.log)</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -1328,14 +1335,14 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Clear the log window. This does &lt;b&gt;not&lt;/b&gt; clear the log file itself.</source>
-        <translation>Smazat protokolovací okno. Obsah samotného souboru s protokolem smazán &lt;b&gt;nebude&lt;/b&gt;.</translation>
+        <translation>Vyčistit okno s logem. Obsah samotného souboru s logem smazán &lt;b&gt;nebude&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
     <name>MessageForm</name>
     <message>
         <source>Twinkle - Instant message</source>
-        <translation>Twinkle - instantní zpráva</translation>
+        <translation>Twinkle - textová zpráva</translation>
     </message>
     <message>
         <source>&amp;To:</source>
@@ -1347,7 +1354,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>The address of the user that you want to send a message. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresa uživatele, kterému má být zpráva poslána. To může být buď SIP adresa, jako např. &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo telefonní číslo z kompletní adresy uživatele.  Pokud se neuvede celá adresa, Twinkle doplni adresu hodnotou &quot;Domain&quot; z nastaveni uživatele v uživatelského profilu.</translation>
+        <translation>Adresa uživatele, kterému má být zpráva poslána. To může být buď SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo z úplné adresy.  Pokud se neuvede celá adresa, Twinkle doplní adresu doménou z uživatelského profilu.</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -1367,7 +1374,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Type your message here and then press &quot;send&quot; to send it.</source>
-        <translation>Sem napsat zprávu a poté pro odeslání stisknout &quot;Odeslat&quot;. </translation>
+        <translation>Sem napište zprávu a poté pro odeslání stiskněte &quot;Odeslat&quot;. </translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -1423,7 +1430,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Failed to save attachment.</source>
-        <translation>Selhalo uložení přílohy.</translation>
+        <translation>Uložení přílohy selhalo.</translation>
     </message>
     <message>
         <source>%1 is typing a message.</source>
@@ -1458,15 +1465,15 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresa protistrany, kterou chcete volat. Může to být kompletní SIP adresa ve formě &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo také telefonní číslo, popř. uživatelské část SIP adresy. Pokud není zadána celá adresa, twinkle doplní chybějící část doménovým jménem aktivního uživatelského profilu.</translation>
+        <translation>Adresa, na kterou chcete zavolat. Může to být úplné SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo z úplné adresy. Pokud není zadána celá adresa, Twinkle doplní chybějící část doménovým jménem z vašeho uživatelského profilu.</translation>
     </message>
     <message>
         <source>The user that will make the call.</source>
-        <translation>Uživatel, který zahájí volání.</translation>
+        <translation>Uživatel, který uskuteční volání.</translation>
     </message>
     <message>
         <source>&amp;User:</source>
-        <translation>&amp;Profil:</translation>
+        <translation>&amp;Uživatel:</translation>
     </message>
     <message>
         <source>Dial</source>
@@ -1482,27 +1489,27 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat volané číslo nebo SIP adresu z adresáře.</translation>
+        <translation>Vybrat adresu z adresáře.</translation>
     </message>
     <message>
         <source>Auto answer indication.</source>
-        <translation>Zobrazení a nastavení služby &quot;Automatické přijmutí hovoru&quot;.</translation>
+        <translation>Indikátor automatického příjmu hovoru.</translation>
     </message>
     <message>
         <source>Call redirect indication.</source>
-        <translation>Zobrazení a nastavení služby &quot;Přesměrování hovoru&quot;.</translation>
+        <translation>Indikátor přesměrování hovoru.</translation>
     </message>
     <message>
         <source>Do not disturb indication.</source>
-        <translation>Zobrazení a nastavení služby &quot;Nerušit&quot;.</translation>
+        <translation>Indikátor stavu nerušit.</translation>
     </message>
     <message>
         <source>Missed call indication.</source>
-        <translation>Zobrazení &quot;Volání v nepřítomnosti&quot; a otevření seznamu volání.</translation>
+        <translation>Indikátor zmeškaných hovorů.</translation>
     </message>
     <message>
         <source>Registration status.</source>
-        <translation>Zobrazení stavu přihlášení.</translation>
+        <translation>Stav registrace.</translation>
     </message>
     <message>
         <source>Display</source>
@@ -1522,7 +1529,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Click to switch to line 1.</source>
-        <translation>Zde klikněte pro přepnutí na linku 1.</translation>
+        <translation>Klikněte pro přepnutí na linku 1.</translation>
     </message>
     <message>
         <source>From:</source>
@@ -1591,7 +1598,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Short authentication string</source>
-        <translation>SAS - značka (Short authentication string)</translation>
+        <translation>Krátký ověřovací řetězec</translation>
     </message>
     <message>
         <source>g711a/g711a</source>
@@ -1608,32 +1615,31 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Call duration</source>
-        <translation>Doba trvání hovoru</translation>
+        <translation>Trvání hovoru</translation>
     </message>
     <message>
         <source>sip:from</source>
         <comment>No need to translate</comment>
-        <translation>sip:od</translation>
+        <translation></translation>
     </message>
     <message>
         <source>sip:to</source>
         <comment>No need to translate</comment>
-        <translation>sip:komu</translation>
+        <translation></translation>
     </message>
     <message>
         <source>subject</source>
         <comment>No need to translate</comment>
-        <translation>předmět</translation>
+        <translation></translation>
     </message>
     <message>
         <source>photo</source>
         <comment>No need to translate</comment>
-        <translation>foto</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Line &amp;2:</source>
-        <translation>Linka &amp;2:
-</translation>
+        <translation>Linka &amp;2:</translation>
     </message>
     <message>
         <source>Alt+2</source>
@@ -1641,7 +1647,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Click to switch to line 2.</source>
-        <translation>Naklikněte k přepojení na linku 2 (nebo Alt+2).</translation>
+        <translation>Klikněte pro přepnutí na linku 2.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -1701,7 +1707,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Call someone</source>
-        <translation>Volat - rozšířené zadávání čísel</translation>
+        <translation>Zavolat někomu</translation>
     </message>
     <message>
         <source>F5</source>
@@ -1733,11 +1739,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Redirect incoming call without answering</source>
-        <translation>Přesměrovat příchozí hovor bez přijmutí hovoru</translation>
+        <translation>Přesměrovat příchozí hovor bez přijetí hovoru</translation>
     </message>
     <message>
         <source>Open keypad to enter digits for voice menu&apos;s</source>
-        <translation>Otevřít numerickou klávesnici pro zadávání tónových příkazů (např. ovládání telefonních záznamníků)</translation>
+        <translation>Otevřít numerickou klávesnici pro hlasová menu</translation>
     </message>
     <message>
         <source>Register</source>
@@ -1757,7 +1763,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Deregister this device</source>
-        <translation>Odhlásit tento telefon</translation>
+        <translation>Odhlásit toto zařízení</translation>
     </message>
     <message>
         <source>Show registrations</source>
@@ -1777,11 +1783,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Do not disturb</source>
-        <translation>Prosím nerušit</translation>
+        <translation>Nerušit</translation>
     </message>
     <message>
         <source>&amp;Do not disturb</source>
-        <translation>&amp;Prosím nerušit</translation>
+        <translation>&amp;Nerušit</translation>
     </message>
     <message>
         <source>Call redirection</source>
@@ -1801,11 +1807,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>About Qt</source>
-        <translation>O prostředí Qt</translation>
+        <translation>O Qt</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>O prostředí &amp;Qt</translation>
+        <translation>O &amp;Qt</translation>
     </message>
     <message>
         <source>User profile</source>
@@ -1817,15 +1823,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Join two calls in a 3-way conference</source>
-        <translation>Připojit se ke konferenčnímu hovoru 2 uživatelů</translation>
+        <translation>Spojit dva hovory do konference</translation>
     </message>
     <message>
         <source>Mute a call</source>
-        <translation>Vypnout/zapnout mikrofon</translation>
+        <translation>Vypnout mikrofon</translation>
     </message>
     <message>
         <source>Transfer call</source>
-        <translation>Přesměrování hovoru</translation>
+        <translation>Přesměrovat hovoru</translation>
     </message>
     <message>
         <source>System settings</source>
@@ -1837,15 +1843,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Deregister all</source>
-        <translation>Odhlásit se od všech účtů</translation>
+        <translation>Odhlásit vše</translation>
     </message>
     <message>
         <source>Deregister &amp;all</source>
-        <translation>&amp;Odhlásit se od všech účtů</translation>
+        <translation>&amp;Odhlásit vše</translation>
     </message>
     <message>
         <source>Deregister all your registered devices</source>
-        <translation>Odhlásit všechny zařízení pod tímto uživatelským profilem</translation>
+        <translation>Odhlásit všechna registrovaná zařízení</translation>
     </message>
     <message>
         <source>Auto answer</source>
@@ -1857,19 +1863,19 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Log</source>
-        <translation>Protokol</translation>
+        <translation>Log</translation>
     </message>
     <message>
         <source>&amp;Log...</source>
-        <translation>&amp;Protokol...</translation>
+        <translation>&amp;Log...</translation>
     </message>
     <message>
         <source>Call history</source>
-        <translation>Seznam všech volání</translation>
+        <translation>Seznam volání</translation>
     </message>
     <message>
         <source>Call &amp;history...</source>
-        <translation>&amp;Seznam všech volání...</translation>
+        <translation>&amp;Seznam volání...</translation>
     </message>
     <message>
         <source>F9</source>
@@ -1877,15 +1883,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Change user ...</source>
-        <translation>Změnit uživatelský profil ...</translation>
+        <translation>Změnit uživatele ...</translation>
     </message>
     <message>
         <source>&amp;Change user ...</source>
-        <translation>&amp;Změnit uživatelský profil ...</translation>
+        <translation>&amp;Změnit uživatele ...</translation>
     </message>
     <message>
         <source>Activate or de-activate users</source>
-        <translation>Aktivovat/deaktivovat uživatelský profil</translation>
+        <translation>Aktivovat nebo deaktivovat uživatele</translation>
     </message>
     <message>
         <source>What&apos;s This?</source>
@@ -1914,7 +1920,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>dialing</source>
-        <translation>vytáčení</translation>
+        <translation>vytáčím</translation>
     </message>
     <message>
         <source>attempting call, please wait</source>
@@ -1922,23 +1928,23 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>incoming call</source>
-        <translation>Příchozí volání</translation>
+        <translation>příchozí volání</translation>
     </message>
     <message>
         <source>establishing call, please wait</source>
-        <translation>Pokus o spojení, prosím čekejte</translation>
+        <translation>navazuji hovor, prosím čekejte</translation>
     </message>
     <message>
         <source>established</source>
-        <translation>Spojení navázáno</translation>
+        <translation>navázáno</translation>
     </message>
     <message>
         <source>established (waiting for media)</source>
-        <translation>Spojení navázáno (čeká se na data)</translation>
+        <translation>navázáno (čeká se na zvuk)</translation>
     </message>
     <message>
         <source>releasing call, please wait</source>
-        <translation>Odpojení spojení, prosím čekejte</translation>
+        <translation>zavěšuji, prosím čekejte</translation>
     </message>
     <message>
         <source>unknown state</source>
@@ -1946,15 +1952,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Voice is encrypted</source>
-        <translation>Přenos hovoru je zašifrován</translation>
+        <translation>Hovor je zašifrován</translation>
     </message>
     <message>
         <source>Click to confirm SAS.</source>
-        <translation>Potvrdit značku SAS.</translation>
+        <translation>Klikněte pro potvrzení SAS.</translation>
     </message>
     <message>
         <source>Click to clear SAS verification.</source>
-        <translation>Smazat SAS potvrzení.</translation>
+        <translation>Klikněte pro smazání ověření SAS.</translation>
     </message>
     <message>
         <source>User:</source>
@@ -1966,11 +1972,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Registration status:</source>
-        <translation>Stav VOIP registrace:</translation>
+        <translation>Stav registrace:</translation>
     </message>
     <message>
         <source>Registered</source>
-        <translation>Registrováno</translation>
+        <translation>Registrován</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -1982,11 +1988,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>No users are registered.</source>
-        <translation>Nepřihlášen žádný uživatel.</translation>
+        <translation>Není přihlášen žádný uživatel.</translation>
     </message>
     <message>
         <source>Do not disturb active for:</source>
-        <translation>&quot;Nerušit&quot; aktivováno pro:</translation>
+        <translation>Nerušit aktivováno pro:</translation>
     </message>
     <message>
         <source>Redirection active for:</source>
@@ -1994,11 +2000,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Auto answer active for:</source>
-        <translation>&quot;Automaticky přijmout&quot; aktivováno pro:</translation>
+        <translation>Automatické přijetí hovorů aktivováno pro:</translation>
     </message>
     <message>
         <source>Do not disturb is not active.</source>
-        <translation>&quot;Nerušit&quot; není aktivní.</translation>
+        <translation>Nerušit není aktivní.</translation>
     </message>
     <message>
         <source>Redirection is not active.</source>
@@ -2006,35 +2012,35 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Auto answer is not active.</source>
-        <translation>&quot;Automaticky přijmout&quot; není aktivováno.</translation>
+        <translation>Automatické přijetí hovorů není aktivní.</translation>
     </message>
     <message>
         <source>You have no missed calls.</source>
-        <translation>Žádná volání v nepřítomnosti.</translation>
+        <translation>Nemáte žádné zmeškané hovory.</translation>
     </message>
     <message>
         <source>You missed 1 call.</source>
-        <translation>1 zmeškané volání v nepřítomnosti.</translation>
+        <translation>1 zmeškaný hovor.</translation>
     </message>
     <message>
         <source>You missed %1 calls.</source>
-        <translation>%1 volání v nepřítomnosti.</translation>
+        <translation>%1 zmeškaných hovorů.</translation>
     </message>
     <message>
         <source>Click to see call history for details.</source>
-        <translation>Kliknutím se otevře detailní záznam hovorů.</translation>
+        <translation>Kliknutím se otevře podrobný seznam hovorů.</translation>
     </message>
     <message>
         <source>Starting user profiles...</source>
-        <translation>Otevřít uživatelský profil...</translation>
+        <translation>Spouštím uživatelské profily...</translation>
     </message>
     <message>
         <source>The following profiles are both for user %1</source>
-        <translation>Následující uživatelské profily používají stejnou SIP adresu %1</translation>
+        <translation>Následující uživatelské profily používají stejné uživatele %1</translation>
     </message>
     <message>
         <source>You can only run multiple profiles for different users.</source>
-        <translation>Na jeden SIP účet je možné aktivovat pouze jeden uživatelský profil.</translation>
+        <translation>Různé profily musejí mít odlišné uživatele.</translation>
     </message>
     <message>
         <source>You have changed the SIP UDP port. This setting will only become active when you restart Twinkle.</source>
@@ -2046,7 +2052,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Transfer consultation</source>
-        <translation>Zpětný dotaz</translation>
+        <translation>Asistované přesměrování</translation>
     </message>
     <message>
         <source>Hide identity</source>
@@ -2054,7 +2060,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Click to show registrations.</source>
-        <translation>Kliknutím se zobrazí VOIP registrace.</translation>
+        <translation>Kliknutím se zobrazí registrace.</translation>
     </message>
     <message>
         <source>%1 new, 1 old message</source>
@@ -2114,15 +2120,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>not provisioned</source>
-        <translation>nezanesený</translation>
+        <translation>není poskytováno</translation>
     </message>
     <message>
         <source>You must provision your voice mail address in your user profile, before you can access it.</source>
-        <translation>Předtím než může být hlasová schránka používána, je nutné ji nastavit ve vašem uživatelském profilu.</translation>
+        <translation>Předtím než může být hlasová schránka používána, je nutné nastavit její adresu v uživatelském profilu.</translation>
     </message>
     <message>
         <source>The line is busy. Cannot access voice mail.</source>
-        <translation>Hlasovou schránku nelze otevřít - linka je obsazená.</translation>
+        <translation>Hlasovou schránku nelze otevřít. Linka je obsazená.</translation>
     </message>
     <message>
         <source>The voice mail address %1 is an invalid address. Please provision a valid address in your user profile.</source>
@@ -2245,19 +2251,19 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Message waiting indication.</source>
-        <translation>Zobrazení čekání na zprávu.</translation>
+        <translation>Zobrazení čekajících zpráv.</translation>
     </message>
     <message>
         <source>Voice mail</source>
-        <translation>Hlasový záznamník</translation>
+        <translation>Hlasová schránka</translation>
     </message>
     <message>
         <source>&amp;Voice mail</source>
-        <translation>&amp;Hlasový záznamník</translation>
+        <translation>&amp;Hlasová schránka</translation>
     </message>
     <message>
         <source>Access voice mail</source>
-        <translation>Přístup na zvukový záznamník</translation>
+        <translation>Vstoupit do hlasové schránky</translation>
     </message>
     <message>
         <source>F11</source>
@@ -2265,7 +2271,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Buddy list</source>
-        <translation>Buddy seznam</translation>
+        <translation>Seznam kontaktů</translation>
     </message>
     <message>
         <source>&amp;Message</source>
@@ -2277,15 +2283,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Instant &amp;message...</source>
-        <translation>Instantní &amp;zpráva...</translation>
+        <translation>Textová &amp;zpráva...</translation>
     </message>
     <message>
         <source>Instant message</source>
-        <translation>Instantní zpráva</translation>
+        <translation>Textová zpráva</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
-        <translation>Volat (&amp;Call)...</translation>
+        <translation>&amp;Volat...</translation>
     </message>
     <message>
         <source>&amp;Edit...</source>
@@ -2309,19 +2315,19 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Add buddy...</source>
-        <translation>&amp;Přidat buddy...</translation>
+        <translation>&amp;Přidat kontakt...</translation>
     </message>
     <message>
         <source>Failed to save buddy list: %1</source>
-        <translation>Selhalo uložení seznamu s buddy: %1</translation>
+        <translation>Selhalo uložení seznamu kontaktů: %1</translation>
     </message>
     <message>
         <source>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</source>
-        <translation>Je možné vytvořit oddělený buddy seznam pro každý uživatelský profil. Dostupnost vaších buddy a dostupnost vlastní lze zjistit a využívat jen pokud VoIP poskytovatel provozuje prezenční server.</translation>
+        <translation>Je možné vytvořit oddělený seznam kontaktů pro každý uživatelský profil. Dostupnost vašich kontaktů a vlastní dostupnost lze zjistit a využívat jen pokud toto váš poskytovatel podporuje.</translation>
     </message>
     <message>
         <source>&amp;Buddy list</source>
-        <translation>&amp;Buddy seznam</translation>
+        <translation>&amp;Seznam kontaktů</translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -2333,7 +2339,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Diamondcard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Manual</source>
@@ -2345,39 +2351,39 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Sign up</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Sign up...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Recharge...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Balance history...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Call history...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Admin center...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Recharge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Balance history</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Admin center</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Call</source>
@@ -2393,7 +2399,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Bye</source>
-        <translation>Zavěsit (&amp;Bye)</translation>
+        <translation>&amp;Zavěsit</translation>
     </message>
     <message>
         <source>Bye</source>
@@ -2461,11 +2467,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Trans&amp;fer...</source>
-        <translation>&amp;Zprostředkovat...</translation>
+        <translation>Přep&amp;ojit...</translation>
     </message>
     <message>
         <source>Xfer</source>
-        <translation>Zprostředkovat</translation>
+        <translation>Přepojit</translation>
     </message>
 </context>
 <context>
@@ -2484,11 +2490,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Perl style format string for the replacement number.</source>
-        <translation>Perl formát řetězce pro nahrazované tel. číslo.</translation>
+        <translation>Formátovací řetězec (styl Perlu) s nahrazeným číslem.</translation>
     </message>
     <message>
         <source>Perl style regular expression matching the number format you want to modify.</source>
-        <translation>Regulární výraz (Perl regex) pro nahrazované tel. číslo. </translation>
+        <translation>Regulární výraz (styl Perlu) pro nahrazované číslo.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -2500,7 +2506,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2512,7 +2518,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Replace value may not be empty.</source>
-        <translation>Nahrazovaná hodnota nesmí být prázdná.</translation>
+        <translation>Nahrazený text nesmí být prázdná.</translation>
     </message>
     <message>
         <source>Invalid regular expression.</source>
@@ -2523,7 +2529,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     <name>RedirectForm</name>
     <message>
         <source>Twinkle - Redirect</source>
-        <translation>Twinkle - Přesměrování volání</translation>
+        <translation>Twinkle - Přesměrování</translation>
     </message>
     <message>
         <source>Redirect incoming call to</source>
@@ -2535,15 +2541,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;3rd choice destination:</source>
-        <translation>&amp;3. Cíl:</translation>
+        <translation>&amp;3. cíl:</translation>
     </message>
     <message>
         <source>&amp;2nd choice destination:</source>
-        <translation>&amp;2. Cíl:</translation>
+        <translation>&amp;2. cíl:</translation>
     </message>
     <message>
         <source>&amp;1st choice destination:</source>
-        <translation>&amp;1. Cíl:</translation>
+        <translation>&amp;1. cíl:</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -2551,15 +2557,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat tel. číslo / SIP adresu z adresáře.</translation>
+        <translation>Výběr adresy z adresáře.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>F10</source>
@@ -2578,7 +2584,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     <name>SelectNicForm</name>
     <message>
         <source>Twinkle - Select NIC</source>
-        <translation>Twinkle - výběr síťového připojení</translation>
+        <translation>Twinkle - výběr síťového rozhraní</translation>
     </message>
     <message>
         <source>Select the network interface/IP address that you want to use:</source>
@@ -2590,7 +2596,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Set as default &amp;IP</source>
-        <translation>&amp;Nastavit jako standardní IP adresu</translation>
+        <translation>&amp;Nastavit jako výchozí IP adresu</translation>
     </message>
     <message>
         <source>Alt+I</source>
@@ -2598,11 +2604,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Make the selected IP address the default IP address. The next time you start Twinkle, this IP address will be automatically selected.</source>
-        <translation>Nastavit vybranou IP Adresu jako standardní. Při přístím startu Twinkle bude zvolena automaticky tato adresa.</translation>
+        <translation>Nastavit vybranou IP adresu jako výchozí. Při přístím startu Twinkle bude automaticky zvolena tato adresa.</translation>
     </message>
     <message>
         <source>Set as default &amp;NIC</source>
-        <translation>Nastavit jako &amp;standardní připojení</translation>
+        <translation>Nastavit jako &amp;výchozí rozhraní</translation>
     </message>
     <message>
         <source>Alt+N</source>
@@ -2610,7 +2616,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Make the selected network interface the default interface. The next time you start Twinkle, this interface will be automatically selected.</source>
-        <translation>Nastavit vybrané síťové rozhraní jako standardní. Při příštím startu Twinkle bude toto rozhraní automaticky zvoleno.</translation>
+        <translation>Nastavit vybrané síťové rozhraní jako výchozí. Při příštím startu Twinkle bude toto rozhraní automaticky zvoleno.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -2622,7 +2628,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>If you want to remove or change the default at a later time, you can do that via the system settings.</source>
-        <translation>Standardní nastavení je možné změnit kdykoliv později v konfiguraci systému.</translation>
+        <translation>Výchozí nastavení je možné změnit kdykoliv později v systémovém nastavení.</translation>
     </message>
 </context>
 <context>
@@ -2641,7 +2647,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
-        <translation>Označte uživatelský profil, se kterým by měl Twinkle pracovat a stiskněte potom &quot;Použít&quot;.</translation>
+        <translation>Označte uživatelský profil, se kterým by měl Twinkle pracovat a stiskněte &quot;Spustit&quot;.</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -2653,15 +2659,15 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Wizard</source>
-        <translation>&amp;Wizard</translation>
+        <translation>Průvodc&amp;e</translation>
     </message>
     <message>
         <source>Alt+W</source>
-        <translation></translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>Create a new profile with the wizard.</source>
-        <translation>Pomocí wizardu založit nový uživatelský profil.</translation>
+        <translation>Vytvořit nový uživatelský profil pomocí průvodce.</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -2669,7 +2675,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+E</source>
-        <translation></translation>
+        <translation>Alt+P</translation>
     </message>
     <message>
         <source>Edit the highlighted profile.</source>
@@ -2681,7 +2687,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+D</source>
-        <translation>Alt+L</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Delete the highlighted profile.</source>
@@ -2693,7 +2699,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+A</source>
-        <translation>Alt+U</translation>
+        <translation>Alt+P</translation>
     </message>
     <message>
         <source>Rename the highlighted profile.</source>
@@ -2705,11 +2711,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+S</source>
-        <translation></translation>
+        <translation>Alt+V</translation>
     </message>
     <message>
         <source>Make the selected profiles the default profiles. The next time you start Twinkle, these profiles will be automatically run.</source>
-        <translation>Použít vybrané profily jako standardní. Twinkle je použije automaticky při příštím startu.</translation>
+        <translation>Nastavit vybrané profily jako výchozí. Twinkle je použije automaticky při příštím startu.</translation>
     </message>
     <message>
         <source>&amp;Run</source>
@@ -2717,7 +2723,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+R</source>
-        <translation></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Run Twinkle with the selected profiles.</source>
@@ -2729,7 +2735,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Alt+Y</source>
-        <translation></translation>
+        <translation>Alt+Y</translation>
     </message>
     <message>
         <source>Edit the system settings.</source>
@@ -2737,11 +2743,11 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation></translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>&lt;html&gt;Before you can use Twinkle, you must create a user profile.&lt;br&gt;Click OK to create a profile.&lt;/html&gt;</source>
@@ -2753,12 +2759,13 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&lt;html&gt;Next you may adjust the system settings. You can change these settings always at a later time.&lt;br&gt;&lt;br&gt;Click OK to view and adjust the system settings.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;V dalším kroku byste si měli překontrolovat a popřípadě upravit systémová nastavení. Obzvláště potom, zda-li v oblasti Audio je v pořádku nastavení mikrofonu a reproduktorů.&lt;br&gt;&lt;br&gt;Klikněte na OK pro přístup k systémovým nastavením. Systémová nastavení můžete upravit i kdykoliv později.&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;V dalším kroku můžete upravit systémová nastavení. Můžete tak učinit i kdykoliv později.&lt;br&gt;&lt;br&gt;Klikněte na OK pro přístup k systémovým nastavením.&lt;/html&gt;</translation>
     </message>
     <message>
         <source>You did not select any user profile to run.
 Please select a profile.</source>
-        <translation>Nevybrali jste k použití žádný uživatelský profil. Vyberte prosím aspoň jeden profil.</translation>
+        <translation>Nevybrali jste k použití žádný uživatelský profil.
+Vyberte prosím aspoň jeden profil.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete profile &apos;%1&apos;?</source>
@@ -2766,23 +2773,23 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Delete profile</source>
-        <translation>Smazat uživatelský profil</translation>
+        <translation>Smazat profil</translation>
     </message>
     <message>
         <source>Failed to delete profile.</source>
-        <translation>Chyba při mazání uživatelského profilu.</translation>
+        <translation>Chyba při mazání profilu.</translation>
     </message>
     <message>
         <source>Failed to rename profile.</source>
-        <translation>Chyba při přejmenování uživatelského profilu.</translation>
+        <translation>Chyba při přejmenování profilu.</translation>
     </message>
     <message>
         <source>&lt;p&gt;If you want to remove or change the default at a later time, you can do that via the system settings.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Standardní nastavení je možné kdykoliv smazat nebo změnit v systémovém nastavení. &lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Výchozí nastavení je možné kdykoliv smazat nebo změnit v systémovém nastavení. &lt;/p&gt;</translation>
     </message>
     <message>
         <source>Cannot find .twinkle directory in your home directory.</source>
-        <translation>Nelze nalézt skrytý adresář &quot;.twinkle&quot; ve vašem domovském adresáři (&quot;/home/vasejmeno/&quot;) .</translation>
+        <translation>Nelze nalézt adresář .twinkle ve vašem domovském adresáři.</translation>
     </message>
     <message>
         <source>&amp;Profile editor</source>
@@ -2790,66 +2797,66 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Create profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit profil</translation>
     </message>
     <message>
         <source>Ed&amp;itor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ed&amp;itace</translation>
     </message>
     <message>
         <source>Alt+I</source>
-        <translation type="unfinished">Alt+I</translation>
+        <translation>Alt+I</translation>
     </message>
     <message>
         <source>Dia&amp;mondcard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Alt+M</source>
-        <translation type="unfinished">Alt+M</translation>
+        <translation>Alt+M</translation>
     </message>
     <message>
         <source>Modify profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit profil</translation>
     </message>
     <message>
         <source>Startup profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil při spuštění</translation>
     </message>
     <message>
         <source>&amp;Diamondcard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Create a profile for a Diamondcard account. With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;html&gt;You can use the profile editor to create a profile. With the profile editor you can change many settings to tune the SIP protocol, RTP and many other things.&lt;br&gt;&lt;br&gt;Alternatively you can use the wizard to quickly setup a user profile. The wizard asks you only a few essential settings. If you create a user profile with the wizard you can still edit the full profile with the profile editor at a later time.&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>You can create a Diamondcard account to make worldwide calls to regular and cell phones and send SMS messages.&lt;br&gt;&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Choose what method you wish to use.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>SelectUserForm</name>
     <message>
         <source>Twinkle - Select user</source>
-        <translation>Twinkle - Výběr uživatelského profilu</translation>
+        <translation>Twinkle - Výběr uživatele</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>&amp;Select all</source>
@@ -2857,7 +2864,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation>Alt+S</translation>
+        <translation>Alt+V</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -2869,11 +2876,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>C&amp;lear all</source>
-        <translation>Vybrat &amp;vše</translation>
+        <translation>O&amp;dznačit vše</translation>
     </message>
     <message>
         <source>Alt+L</source>
-        <translation>Alt+L</translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>purpose</source>
@@ -2890,31 +2897,31 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Select users that you want to register.</source>
-        <translation>Vybrat uživatelský profil k přihlášení.</translation>
+        <translation>Vybrat uživatele k přihlášení.</translation>
     </message>
     <message>
         <source>Deregister</source>
-        <translation>Odhlásit</translation>
+        <translation>Odhlásit se</translation>
     </message>
     <message>
         <source>Select users that you want to deregister.</source>
-        <translation>Vybrat uživatelský profil k odhlášení.</translation>
+        <translation>Vybrat uživatele k odhlášení.</translation>
     </message>
     <message>
         <source>Deregister all devices</source>
-        <translation>Odhlásit všechny zařízení</translation>
+        <translation>Odhlásit všechna zařízení</translation>
     </message>
     <message>
         <source>Select users for which you want to deregister all devices.</source>
-        <translation>Vybrat uživatelský profil od něhož mají být odhlášena všechna zařízení.</translation>
+        <translation>Vybrat uživatele, u kterého mají být odhlášena všechna zařízení.</translation>
     </message>
     <message>
         <source>Do not disturb</source>
-        <translation>Prosím nerušit</translation>
+        <translation>Nerušit</translation>
     </message>
     <message>
         <source>Select users for which you want to enable &apos;do not disturb&apos;.</source>
-        <translation>Vybrat uživatelský profil, pro který má být aktivován režim &quot;Nerušit&quot;.</translation>
+        <translation>Vybrat uživatele, pro který má být aktivován režim &quot;Nerušit&quot;.</translation>
     </message>
     <message>
         <source>Auto answer</source>
@@ -2922,7 +2929,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Select users for which you want to enable &apos;auto answer&apos;.</source>
-        <translation>Vybrat uživatelský profil, pro který má být aktivován režim &quot;Automaticky vzít volání&quot;.</translation>
+        <translation>Vybrat uživatelský profil, pro který má být aktivován režim &quot;Automaticky přijmout volání&quot;.</translation>
     </message>
 </context>
 <context>
@@ -2953,11 +2960,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>File does not exist.</source>
@@ -2989,23 +2996,22 @@ Please select a profile.</source>
 &lt;b&gt;No answer:&lt;/b&gt; redirect a call when the no-answer timer expires
 &lt;/p&gt;</source>
         <translation>Existují 3 způsoby přesměrování volání:&lt;p&gt;
-&lt;b&gt;Trvale:&lt;/b&gt; přesměrovat všechny hovory
+&lt;b&gt;Nepodmíněné:&lt;/b&gt; přesměrovat všechny hovory
 &lt;/p&gt;
 &lt;p&gt;
-&lt;b&gt;Obsazeno:&lt;/b&gt; Přesměrovat hovor, pokud jsou obě linky obsazené
+&lt;b&gt;Obsazeno:&lt;/b&gt; přesměrovat hovor, pokud jsou obě linky obsazené
 &lt;/p&gt;
 &lt;p&gt;
-&lt;b&gt;Žádná odpověď:&lt;/b&gt; Přesměrovat volání po uplynutí čekací prodlevy
+&lt;b&gt;Nepřijímá:&lt;/b&gt; přesměrovat volání po uplynutí čekací prodlevy
 &lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Unconditional</source>
-        <translation>&amp;Trvale</translation>
+        <translation>N&amp;epodmíněné</translation>
     </message>
     <message>
         <source>&amp;Redirect all calls</source>
-        <translation>&amp;Přesměrovat všechna volání
-</translation>
+        <translation>&amp;Přesměrovat všechna volání</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -3013,7 +3019,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Activate the unconditional redirection service.</source>
-        <translation>Aktivovat službu &quot;přesměrovat všechna volání&quot;.</translation>
+        <translation>Aktivovat službu přesměrovat všechna volání.</translation>
     </message>
     <message>
         <source>Redirect to</source>
@@ -3025,15 +3031,15 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;3rd choice destination:</source>
-        <translation>&amp;3. Cíl:</translation>
+        <translation>&amp;3. cíl:</translation>
     </message>
     <message>
         <source>&amp;2nd choice destination:</source>
-        <translation>&amp;2. Cíl:</translation>
+        <translation>&amp;2. cíl:</translation>
     </message>
     <message>
         <source>&amp;1st choice destination:</source>
-        <translation>&amp;1. Cíl:</translation>
+        <translation>&amp;1. cíl:</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -3041,7 +3047,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat z adresáře volané číslo / SIP adresu.</translation>
+        <translation>Výběr adresy z adresáře.</translation>
     </message>
     <message>
         <source>&amp;Busy</source>
@@ -3057,11 +3063,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;No answer</source>
-        <translation>&amp;Žádná odpověď</translation>
+        <translation>&amp;Neodpovídá</translation>
     </message>
     <message>
         <source>&amp;Redirect calls when I do not answer</source>
-        <translation>&amp;Přesměrovat volání, pokud uživatel neodpovídá</translation>
+        <translation>&amp;Přesměrovat volání, pokud hovor nepřijímám</translation>
     </message>
     <message>
         <source>Activate the redirection on no answer service.</source>
@@ -3081,11 +3087,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation></translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>Undo your changes and close the window.</source>
@@ -3140,7 +3146,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Select a category for which you want to see or modify the settings.</source>
-        <translation>Vybrat skupinu vlastností u které chcete změnit nastavení.</translation>
+        <translation>Vybrat skupinu vlastností, u které chcete změnit nastavení.</translation>
     </message>
     <message>
         <source>Sound Card</source>
@@ -3148,19 +3154,19 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Select the sound card for playing the ring tone for incoming calls.</source>
-        <translation>Vybrat audio připojení pro přehrávání vyzváněcího tónu příchozího volání.</translation>
+        <translation>Vyberte zvukovou kartu pro přehrávání vyzváněcího tónu příchozího volání.</translation>
     </message>
     <message>
         <source>Select the sound card to which your microphone is connected.</source>
-        <translation>Vybrat audio připojení pro mikrofon.</translation>
+        <translation>Vyberte zvukovou kartu, ke které máte připojen mikrofon.</translation>
     </message>
     <message>
         <source>Select the sound card for the speaker function during a call.</source>
-        <translation>Vybrat audio připojení pro sluchátka/reproduktoru. Může být shodné s audio připojením pro vyzváněcí tón.</translation>
+        <translation>Vyberte zvukovou kartu pro sluchátka nebo reproduktor.</translation>
     </message>
     <message>
         <source>&amp;Speaker:</source>
-        <translation>&amp;Sluchátka/Reproduktor:</translation>
+        <translation>&amp;Sluchátka/reproduktor:</translation>
     </message>
     <message>
         <source>&amp;Ring tone:</source>
@@ -3168,7 +3174,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Other device:</source>
-        <translation>Jiné připojení:</translation>
+        <translation>Jiné zařízení:</translation>
     </message>
     <message>
         <source>&amp;Microphone:</source>
@@ -3194,7 +3200,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>OSS &amp;fragment size:</source>
-        <translation>Velikost OSS &amp;fragmentů:</translation>
+        <translation>Velikost &amp;fragmentů OSS:</translation>
     </message>
     <message>
         <source>16</source>
@@ -3218,43 +3224,43 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>The ALSA play period size influences the real time behaviour of your soundcard for playing sound. If your sound frequently drops while using ALSA, you might try a different value here.</source>
-        <translation>ALSA play perioda ovlivňuje zjednodušeně řečeno velikost paketů, pomocí kterých jsou posílána data na zvukovou kartu. Hodně malých paketů zatěžuje více procesor, ale ztráta nějakého paketu není tolik vážná. Při problémech s vypadáváním nebo přeskakováním zvuku je možné zaexperimentovat s jinými hodnotami.</translation>
+        <translation>Nastavení přehrávací periody ALSA ovlivňuje zpoždění zvuku na zvukové kartě. Při problémech s vypadáváním nebo přeskakováním zvuku zkuste jinou hodnotu.</translation>
     </message>
     <message>
         <source>ALSA &amp;play period size:</source>
-        <translation>Velikost ALSA &amp;play (LS) periody:</translation>
+        <translation>Velikost ALSA &amp;periody přehrávání:</translation>
     </message>
     <message>
         <source>&amp;ALSA capture period size:</source>
-        <translation>Velikost &amp;ALSA capture (MIC) periody:</translation>
+        <translation>Velikost &amp;ALSA periody nahrávání:</translation>
     </message>
     <message>
         <source>The OSS fragment size influences the real time behaviour of your soundcard. If your sound frequently drops while using OSS, you might try a different value here.</source>
-        <translation>OSS fragment size ovlivňuje zjednodušeně řečeno velikost paketů, pomocí kterých jsou posílána data na zvukovou kartu. Hodně malých paketů zatěžuje více procesor, ale ztráta nějakého paketu není tolik vážná. Při problémech s vypadáváním nebo přeskakováním zvuku je možně zaexperimentovat s jinými hodnotami.</translation>
+        <translation>Velikost fragmentu OSS ovlivňuje zpoždění zvuku na zvukové kartě. Při problémech s vypadáváním nebo přeskakováním zvuku zkuste jinou hodnotu.</translation>
     </message>
     <message>
         <source>The ALSA capture period size influences the real time behaviour of your soundcard for capturing sound. If the other side of your call complains about frequently dropping sound, you might try a different value here.</source>
-        <translation>Velikost capture periody ovlivňuje zjednodušeně řečeno velikost paketů, pomocí kterých jsou posílána data na zvukovou kartu. Hodně malých paketů zatěžuje více procesor, ale ztráta nějakého paketu není tolik vážná. Při problémech s vypadáváním nebo přeskakováním zvuku je možně zaexperimentovat s jinými hodnotami.</translation>
+        <translation>Velikost periody nahrávání ALSA ovlivňuje zpoždění zvuku. Pokud si protistrana stěžuje na časté výpadky zvuku, zkuste použít jinou hodnotu.</translation>
     </message>
     <message>
         <source>&amp;Max log size:</source>
-        <translation>&amp;Maximální velikost systémového logu:</translation>
+        <translation>&amp;Maximální velikost logu:</translation>
     </message>
     <message>
         <source>The maximum size of a log file in MB. When the log file exceeds this size, a backup of the log file is created and the current log file is zapped. Only one backup log file will be kept.</source>
-        <translation>Systémový log je používán experty pro hledání problémů. Zde je možné nastavit jeho maximální velikost. Při dosažení logu této velikosti je twinkle.log přejmenováno na twinkle.old Pokud již soubor twinkle.old existuje, je přepsán.</translation>
+        <translation>Maximální velikost souboru s logem v MB. Při dosažení této velikosti je twinkle.log přejmenováno na twinkle.old. Uchovává se jen jeden starý soubor s logem.</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Log &amp;debug reports</source>
-        <translation>Zapsat i &apos;&amp;debug&apos; hlášky</translation>
+        <translation>Zapsat &amp;hlášky pro ladění</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation></translation>
+        <translation>ALt+H</translation>
     </message>
     <message>
         <source>Indicates if reports marked as &quot;debug&quot; will be logged.</source>
@@ -3294,7 +3300,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Indicates if reports concerning memory management will be logged.</source>
-        <translation>Aktivuje zápis protokolů o přidělení/uvolnění RAM paměti.</translation>
+        <translation>Aktivuje zápis protokolů o správě paměti.</translation>
     </message>
     <message>
         <source>System tray</source>
@@ -3302,15 +3308,15 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Create &amp;system tray icon on startup</source>
-        <translation>Při spuštění vytvořit &amp;ikonku v systémové liště</translation>
+        <translation>Při spuštění vytvořit &amp;ikonu v systémové liště</translation>
     </message>
     <message>
         <source>Enable this option if you want a system tray icon for Twinkle. The system tray icon is created when you start Twinkle.</source>
-        <translation>S touto volbou vytvoří Twinkle při startu v systémové liště symbol hvězdičky. Přes tento lze kdykoliv program vyvolat do popředí. Rovněž je přes jeho vzhled signalizován aktuální stav telefonní linky.</translation>
+        <translation>Povolí ikonu Twinkle v systémové liště. Ta se vytváří při spuštění Twinkle.</translation>
     </message>
     <message>
         <source>&amp;Hide in system tray when closing main window</source>
-        <translation>Přesunout do systémové lišty při zavření &amp;hlavního okna programu</translation>
+        <translation>Skrýt v systémové liště při zavření &amp;hlavního okna</translation>
     </message>
     <message>
         <source>Alt+H</source>
@@ -3318,7 +3324,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Enable this option if you want Twinkle to hide in the system tray when you close the main window.</source>
-        <translation>Pokud je aktivováno, je twinkle při zavření hlavního okna přesunuto do systémové lišty. K úplnému ukončení programu je nutné vybrat volbu &quot;ukončit&quot; v menu &quot;Soubor&quot; nebo v kontextovém menu symbolu Twinkle v systémové liště.</translation>
+        <translation>Povolte, pokud chcete, aby se Twinkle při zavření hlavního okna skryl v systémové liště.</translation>
     </message>
     <message>
         <source>Startup</source>
@@ -3346,7 +3352,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Next time you start Twinkle it will immediately hide in the system tray. This works best when you also select a default user profile.</source>
-        <translation>Při startu Twinkle neotevírat hlavní okno, nýbrž spustit zminimalizované do systémové lišty. Měl by být rovněž přednastaven standarní profil, jinak dojde k vyvolání okna s výběrem profilu.</translation>
+        <translation>Při příštím startu se Twinkle ihned ukryje v systémové liště. Pro nejlepší výsledky také zvolte výchozí profil.</translation>
     </message>
     <message>
         <source>Default user profiles</source>
@@ -3354,7 +3360,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>If you always use the same profile(s), then you can mark these profiles as default here. The next time you start Twinkle, you will not be asked to select which profiles to run. The default profiles will automatically run.</source>
-        <translation>Zde nastavené uživatelské profily budou při startu programu automaticky aktivovány. Kdykoliv je můžete přes &quot;Soubor&quot; -&gt; &quot;Změnit uživatelské profily&quot; aktivovat nebo deaktivovat.</translation>
+        <translation>Pokud vždy používáte ty samé profily, pak je zde můžete označit jako výchozí. Při příštím spuštění Twinkle nebudete na výběr profilů dotazováni. Automaticky budou spuštěny výchozí profily.</translation>
     </message>
     <message>
         <source>Services</source>
@@ -3362,19 +3368,19 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Call &amp;waiting</source>
-        <translation>Detekce &amp;příchozího hovoru</translation>
+        <translation>Čekající hovor&amp;y</translation>
     </message>
     <message>
         <source>Alt+W</source>
-        <translation></translation>
+        <translation>Alt+Y</translation>
     </message>
     <message>
         <source>With call waiting an incoming call is accepted when only one line is busy. When you disable call waiting an incoming call will be rejected when one line is busy.</source>
-        <translation>Pokud je aktivována funkce &quot;Detekce příchozího hovoru&quot;, může být v případě obsazené linky volání přesměrováno na druhou linku. Pokud je funkce deaktivována, je volajícímu signalizováno &quot;obsazeno&quot;.</translation>
+        <translation>S funkcí čekajících hovorů jsou příchozí hovory přijímány, jen pokud je využita jen jedna linka. Pokud tuto funkci zakážete, pak budou odmítány hovory, i když je používána jen jediná linka.</translation>
     </message>
     <message>
         <source>Hang up &amp;both lines when ending a 3-way conference call.</source>
-        <translation>Při ukončení konferenčního hovoru budou &amp;obě linky &quot;zavěšeny&quot;.</translation>
+        <translation>Zavěsit o&amp;bě linky při ukončování konferenčního hovoru.</translation>
     </message>
     <message>
         <source>Alt+B</source>
@@ -3382,7 +3388,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Hang up both lines when you press bye to end a 3-way conference call. When this option is disabled, only the active line will be hung up and you can continue talking with the party on the other line.</source>
-        <translation>Pokud je aktivováno budou při &quot;zavěšení&quot; odpojeny obě linky. Jinak dojde jen k ukončení volání na aktivní lince a je možné pokračovat v hovoru na druhé lince.</translation>
+        <translation>Pokud je aktivováno budou při &quot;zavěšení&quot; zavěšeny obě linky. Jinak dojde jen k ukončení volání na aktivní lince a je možné pokračovat v hovoru na druhé lince.</translation>
     </message>
     <message>
         <source>&amp;Maximum calls in call history:</source>
@@ -3394,23 +3400,23 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>&amp;Auto show main window on incoming call after</source>
-        <translation>Při hovoru &amp;otevřít automaticky hlavní okno</translation>
+        <translation>Při hovoru zobrazit &amp;automaticky hlavní okno</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>When the main window is hidden, it will be automatically shown on an incoming call after the number of specified seconds.</source>
-        <translation>Pokud je hlavní okno programu skryto, bude při příchozím hovoru po zadaném počtu sekund zobrazeno do popředí.</translation>
+        <translation>Pokud je hlavní okno programu skryto, bude při příchozím hovoru po zadaném počtu sekund automaticky zobrazeno.</translation>
     </message>
     <message>
         <source>Number of seconds after which the main window should be shown.</source>
-        <translation>Čas v sekundách po kterém bude hlavní okno programu obnoveno do popředí.</translation>
+        <translation>Čas v sekundách, po kterém bude hlavní okno programu zobrazeno.</translation>
     </message>
     <message>
         <source>secs</source>
-        <translation>Sekund</translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <source>The UDP port used for sending and receiving SIP messages.</source>
@@ -3434,7 +3440,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>&amp;Play ring tone on incoming call</source>
-        <translation>Při příchozím volání &amp;spustit vyzváněcí tón</translation>
+        <translation>Při příchozím volání &amp;přehrávat vyzváněcí tón</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -3442,19 +3448,19 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Indicates if a ring tone should be played when a call comes in.</source>
-        <translation>Pokud je aktivováno, spustí Twinkle při příchozím volání vyzváněcí tón přes přednastavené audio připojení.</translation>
+        <translation>Indikuje, zda má při příchozích hovorech znít vyzvánění.</translation>
     </message>
     <message>
         <source>&amp;Default ring tone</source>
-        <translation>&amp;Standardní vyzváněcí tón</translation>
+        <translation>&amp;Výchozí vyzváněcí tón</translation>
     </message>
     <message>
         <source>Play the default ring tone when a call comes in.</source>
-        <translation>Spustí standardní vyzváněcí tón při příchozím volání.</translation>
+        <translation>Spustí výchozí vyzváněcí tón při příchozím volání.</translation>
     </message>
     <message>
         <source>C&amp;ustom ring tone</source>
-        <translation>individuální vyzváněcí &amp;tón</translation>
+        <translation>Individ&amp;uální vyzváněcí tón</translation>
     </message>
     <message>
         <source>Alt+U</source>
@@ -3466,7 +3472,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>Specify the file name of a .wav file that you want to be played as ring tone.</source>
-        <translation>Zadejte jméno .wav souboru pro vlastní vyzváněcí tón.</translation>
+        <translation>Zadejte název .wav souboru s vlastním vyzváněcím tónem.</translation>
     </message>
     <message>
         <source>Ring back tone</source>
@@ -3474,7 +3480,7 @@ Algoritmus je velmi jednoduchý. Zvuk je navzorkován jako 16 bitový PCM vzorek
     </message>
     <message>
         <source>P&amp;lay ring back tone when network does not play ring back tone</source>
-        <translation>Přehrát tón pro &amp;vyzvánění u volaného, pokud telefonní síť žádný tón neposkytuje</translation>
+        <translation>Přehrát tón pro vyzvánění u vo&amp;laného, pokud telefonní síť žádný tón neposkytuje</translation>
     </message>
     <message>
         <source>Alt+L</source>
@@ -3489,35 +3495,35 @@ Depending on your SIP provider the network might provide ring back tone or an an
 &lt;/p&gt;</source>
         <translation>&lt;p&gt;Přehrát tón pro vyzvánění u volaného, pokud telefonní síť žádný takový tón neposkytuje.&lt;/p&gt;
 
-&lt;p&gt;Tento tón je závislý od vašeho SIP poskytovatele.&lt;/p&gt;</translation>
+&lt;p&gt;Přítomnost tohoto tónu závisí na vašem poskytovateli.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>D&amp;efault ring back tone</source>
-        <translation>&amp;Standardní tón pro vyzvánění u volaného</translation>
+        <translation>Výchozí tón pro vyzvánění u volan&amp;ého</translation>
     </message>
     <message>
         <source>Play the default ring back tone.</source>
-        <translation>Přehrávat standardní tón vyzvánění u volaného.</translation>
+        <translation>Přehrávat výchozí tón vyzvánění u volaného.</translation>
     </message>
     <message>
         <source>Cu&amp;stom ring back tone</source>
-        <translation>&amp;Individuální tón vyzvánění u volaného</translation>
+        <translation>Vla&amp;stní tón vyzvánění u volaného</translation>
     </message>
     <message>
         <source>Play a custom ring back tone.</source>
-        <translation>Použít individuální vyzváněcí tón u volaného. </translation>
+        <translation>Použít vlastní vyzváněcí tón u volaného.</translation>
     </message>
     <message>
         <source>Specify the file name of a .wav file that you want to be played as ring back tone.</source>
-        <translation>Zadat jméno .wav souboru pro váš indiviuální tón vyzvánění u volaného.</translation>
+        <translation>Zadat jméno .wav souboru pro váš vlastní tón vyzvánění u volaného.</translation>
     </message>
     <message>
         <source>&amp;Lookup name for incoming call</source>
-        <translation>Podle čísla &amp;zjistit volajícího</translation>
+        <translation>Podle čísla &amp;zjistit jméno volajícího</translation>
     </message>
     <message>
         <source>Ove&amp;rride received display name</source>
-        <translation>&amp;Přepisovat jméno volajícího</translation>
+        <translation>P&amp;řepisovat jméno volajícího</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -3545,19 +3551,19 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>Accept and save your changes.</source>
-        <translation>Převzít změny a uložit.</translation>
+        <translation>Přijmout změny a uložit.</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation></translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>Undo all your changes and close the window.</source>
-        <translation>Vrátit zpět všechny změny a uzavřít.</translation>
+        <translation>Vrátit zpět všechny změny a zavřít okno.</translation>
     </message>
     <message>
         <source>none</source>
@@ -3589,11 +3595,11 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>Choose ring back tone</source>
-        <translation>Vybrat tón pro signalizaci volné linky</translation>
+        <translation>Vybrat tón vyzvánění u volaného</translation>
     </message>
     <message>
         <source>&amp;Validate devices before usage</source>
-        <translation>Ověřit audio nasta&amp;vení před prvním použití</translation>
+        <translation>Ověřit nasta&amp;vení zvuku před použitím</translation>
     </message>
     <message>
         <source>Alt+V</source>
@@ -3608,7 +3614,8 @@ On startup of Twinkle a warning is given if an audio device is inaccessible.
 If before making a call, the microphone or speaker appears to be invalid, a warning is given and no call can be made.
 &lt;p&gt;
 If before answering a call, the microphone or speaker appears to be invalid, a warning is given and the call will not be answered.</source>
-        <translation>&lt;p&gt;Pokud je aktivováno, Twinkle při startu zkontroluje zdali je zadané audio zařízení přístupné.&lt;/p&gt;
+        <translation>&lt;p&gt;Twinkle ověřuje zvuková zařízení před použitím, aby se nestalo, že při hovoru nebude fungovat zvuk.
+&lt;p&gt;Pokud je aktivováno, Twinkle při startu zkontroluje zdali je zadané audio zařízení přístupné.&lt;/p&gt;
 &lt;p&gt;Pokud se zdá, že mikrofon nebo reproduktory/sluchátko nejsou v pořádku, bude zobrazeno varovné hlášení a žádné volání nebude dovoleno.&lt;/p&gt;
 &lt;p&gt;Rovněž v případě, že je detekováno příchozí volání a audio zařízení není v pořádku, zobrazí se varování a hovor nebude možné přijmout.
 </translation>
@@ -3619,15 +3626,15 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Select ring tone file.</source>
-        <translation>Výběr souboru s vyzváněcím tónem.</translation>
+        <translation>Vybrat soubor s vyzváněcím tónem.</translation>
     </message>
     <message>
         <source>Select ring back tone file.</source>
-        <translation>Výběr souboru pro vyzváněcí tón u protistrany.</translation>
+        <translation>Vybrat soubor vyzváněcího tónu u protistrany.</translation>
     </message>
     <message>
         <source>Maximum allowed size (0-65535) in bytes of an incoming SIP message over UDP.</source>
-        <translation>Maximálně povolená velikost příchozí SIP zprávy přes UDP, v Bajtech (0-65535).</translation>
+        <translation>Maximálně povolená velikost příchozí SIP zprávy přes UDP v bajtech (0-65535).</translation>
     </message>
     <message>
         <source>&amp;SIP port:</source>
@@ -3647,7 +3654,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Maximum allowed size (0-4294967295) in bytes of an incoming SIP message over TCP.</source>
-        <translation>Maximálně povolená velikost příchozí SIP zprávy přes TCP,  v Bajtech (0-4294967295).</translation>
+        <translation>Maximálně povolená velikost příchozí SIP zprávy přes TCP v bajtech (0-4294967295).</translation>
     </message>
     <message>
         <source>W&amp;eb browser command:</source>
@@ -3667,7 +3674,11 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
-        <translation>Tip: při praskajícím zvuku s PulseAudio nastavte nejvyšší periodu pro ALSA play.</translation>
+        <translation>Tip: při praskajícím zvuku s PulseAudio nastavte nejvyšší periodu pro přehrávání ALSA.</translation>
+    </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation>Povolit OSD během hovoru</translation>
     </message>
 </context>
 <context>
@@ -3689,7 +3700,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     <name>TermCapForm</name>
     <message>
         <source>Twinkle - Terminal Capabilities</source>
-        <translation>Twinkle - parametry protistrany</translation>
+        <translation>Twinkle - Parametry protistrany</translation>
     </message>
     <message>
         <source>&amp;From:</source>
@@ -3697,7 +3708,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Get terminal capabilities of</source>
-        <translation>Dotázat se na parametry následující protistrany</translation>
+        <translation>Dotázat se na parametry protistrany</translation>
     </message>
     <message>
         <source>&amp;To:</source>
@@ -3705,7 +3716,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>The address that you want to query for capabilities (OPTION request). This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresa nebo číslo protistrany jejíž parametry se mají zjistit (OPTION request). Může to být kompletní SIP adresa ve formátu &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen telefonní číslo celé adresy. Pokud není adresa kompletní, Twinkle doplní jméno domény podle standardního uživatelského profilu.</translation>
+        <translation>Adresa nebo číslo protistrany jejíž parametry se mají zjistit (OPTION request). Může to být úplná SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo z úplné adresy. Pokud není adresa kompletní, Twinkle doplní adresu o doménu z vašeho profilu.</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -3713,7 +3724,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat z adresáře volané číslo nebo SIP adresu.</translation>
+        <translation>Výběr adresy z adresáře.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -3721,7 +3732,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>F10</source>
@@ -3732,11 +3743,11 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     <name>TransferForm</name>
     <message>
         <source>Twinkle - Transfer</source>
-        <translation>Twinkle - převedení</translation>
+        <translation>Twinkle - Přepojení</translation>
     </message>
     <message>
         <source>Transfer call to</source>
-        <translation>Převést hovor na</translation>
+        <translation>Přepojit hovor na</translation>
     </message>
     <message>
         <source>&amp;To:</source>
@@ -3744,7 +3755,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>The address of the person you want to transfer the call to. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresa nebo číslo protistrany, na které má být hovor přesměrován. Může to být kompletní SIP adresa jako např. &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen telefonní číslo. Pokud není zadána plná SIP adresa, Twinkle doplní adresu jménem domény aktivního uživatelského profilu.</translation>
+        <translation>Adresa nebo číslo protistrany, na kterou má být hovor přepojen. Může to být úplná SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo z úplné adresy. Pokud není zadána plná SIP adresa, Twinkle doplní adresu o doménu z uživatelského profilu.</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -3752,7 +3763,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Vybrat z adresáře volané číslo nebo SIP adresu.</translation>
+        <translation>Výběr adresy z adresáře.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -3764,7 +3775,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Type of transfer</source>
@@ -3772,7 +3783,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>&amp;Blind transfer</source>
-        <translation>&amp;Bez zpětného přesměrování</translation>
+        <translation>&amp;Slepé přesměrování</translation>
     </message>
     <message>
         <source>Alt+B</source>
@@ -3780,15 +3791,15 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Transfer the call to a third party without contacting that third party yourself.</source>
-        <translation>Hovor přímo přesměrovat na nového účastníka, aniž by bylo nutné ho nejdříve kontaktovat.</translation>
+        <translation>Hovor přímo přesměrovat na nového účastníka, aniž by byl nejdřív kontaktován.</translation>
     </message>
     <message>
         <source>T&amp;ransfer with consultation</source>
-        <translation>Přesměrovat se &amp;zpětným dotazem</translation>
+        <translation>Asistované p&amp;řepojení</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation></translation>
+        <translation>Alt+R</translation>
     </message>
     <message>
         <source>Before transferring the call to a third party, first consult the party yourself.</source>
@@ -3804,7 +3815,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Connect the remote party on the active line with the remote party on the other line.</source>
-        <translation>Propojit obě protistrany na lince 1 a 2. Protistrana, která je právě na aktivní lince bude ta, která bude hovor přesměrovat.</translation>
+        <translation>Přepojit hovor na aktivní lince s hovorem na druhé lince.</translation>
     </message>
     <message>
         <source>F10</source>
@@ -3819,19 +3830,19 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Cannot open file for reading: %1</source>
-        <translation>Nelze otevřít ke čtení soubor &quot;%1&quot;</translation>
+        <translation>Nelze otevřít soubor %1 ke čtení</translation>
     </message>
     <message>
         <source>File system error while reading file %1 .</source>
-        <translation>Systémová chyba při čtení souboru &quot;%1&quot;.</translation>
+        <translation>Chyba systému souborů při čtení souboru %1.</translation>
     </message>
     <message>
         <source>Cannot open file for writing: %1</source>
-        <translation>Nelze otevřít k zápisu soubor &quot;%1&quot;</translation>
+        <translation>Nelze otevřít soubor %1 pro zápis</translation>
     </message>
     <message>
         <source>File system error while writing file %1 .</source>
-        <translation>Systémová chyba při zápisu do &quot;%1&quot;.</translation>
+        <translation>Chyba systému souborů při zápisu do %1.</translation>
     </message>
     <message>
         <source>Excessive number of socket errors.</source>
@@ -3875,27 +3886,27 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Translated to english by &lt;your name&gt;</source>
-        <translation type="unfinished">Český překlad vypracoval Marek Straka, ©20090701, (http://marek.straka.info)</translation>
+        <translation>Do češtiny přeložil Luboš Doležel</translation>
     </message>
     <message>
         <source>Directory %1 does not exist.</source>
-        <translation>Složka &quot;%1&quot; nenalezena.</translation>
+        <translation>Adresář &quot;%1&quot; neexistuje.</translation>
     </message>
     <message>
         <source>Cannot open file %1 .</source>
-        <translation>Soubor &quot;%1&quot; nelze otevřít.</translation>
+        <translation>Soubor %1 nelze otevřít.</translation>
     </message>
     <message>
         <source>%1 is not set to your home directory.</source>
-        <translation>&quot;%1&quot; neukazuje na vaši domovskou složku.</translation>
+        <translation>&quot;%1&quot; nní vaším domovským adresářem.</translation>
     </message>
     <message>
         <source>Directory %1 (%2) does not exist.</source>
-        <translation>Složka &quot;%1&quot; (%2) neexistuje.</translation>
+        <translation>Adresář %1 (%2) neexistuje.</translation>
     </message>
     <message>
         <source>Cannot create directory %1 .</source>
-        <translation>Složku &quot;%1&quot; nelze vytvořit.</translation>
+        <translation>Adresář &quot;%1&quot; nelze vytvořit.</translation>
     </message>
     <message>
         <source>Lock file %1 already exist, but cannot be opened.</source>
@@ -3904,7 +3915,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     <message>
         <source>%1 is already running.
 Lock file %2 already exists.</source>
-        <translation>&quot;%1&quot; již běží.
+        <translation>%1 již běží.
 Zamykací soubor &quot;%2&quot; již existuje.</translation>
     </message>
     <message>
@@ -3921,15 +3932,15 @@ Zamykací soubor &quot;%2&quot; již existuje.</translation>
     </message>
     <message>
         <source>Failed to backup %1 to %2</source>
-        <translation>Chyba při záloze z &quot;%1&quot; do &quot;%2&quot;</translation>
+        <translation>Chyba při zálohování %1 do %2</translation>
     </message>
     <message>
         <source>unknown name (device is busy)</source>
-        <translation>Neznámé zařízení nebo je již obsazené </translation>
+        <translation>neznámý název (zařízení je zaneprázdněné)</translation>
     </message>
     <message>
         <source>Default device</source>
-        <translation>Standardní zařízení</translation>
+        <translation>Výchozí zařízení</translation>
     </message>
     <message>
         <source>Anonymous</source>
@@ -3937,15 +3948,15 @@ Zamykací soubor &quot;%2&quot; již existuje.</translation>
     </message>
     <message>
         <source>Warning:</source>
-        <translation>Upozornění:</translation>
+        <translation>Varování:</translation>
     </message>
     <message>
         <source>Call transfer - %1</source>
-        <translation>Přesměrování - %1</translation>
+        <translation>Přesměrování hovoru - %1</translation>
     </message>
     <message>
         <source>Sound card cannot be set to full duplex.</source>
-        <translation>Audio zařízení nelze nastavit na &quot;voll duplex&quot;.</translation>
+        <translation>Zvuková karta nefunguje v režimu full duplex.</translation>
     </message>
     <message>
         <source>Cannot set buffer size on sound card.</source>
@@ -3957,7 +3968,7 @@ Zamykací soubor &quot;%2&quot; již existuje.</translation>
     </message>
     <message>
         <source>Cannot set sound card to 16 bits recording.</source>
-        <translation>Audio zařízení nelze nastavit na 16 bitový záznam.</translation>
+        <translation>Audio zařízení nelze nastavit na 16 bitové nahrávání.</translation>
     </message>
     <message>
         <source>Cannot set sound card to 16 bits playing.</source>
@@ -3965,50 +3976,49 @@ Zamykací soubor &quot;%2&quot; již existuje.</translation>
     </message>
     <message>
         <source>Cannot set sound card sample rate to %1</source>
-        <translation>Nelze nastavit vzorkovací frekvenci audio zařízení na %1 </translation>
+        <translation>Nelze nastavit vzorkovací frekvenci audio zařízení na %1</translation>
     </message>
     <message>
         <source>Opening ALSA driver failed</source>
-        <translation>Chyba při otevírání ALSA ovladačů</translation>
+        <translation>Chyba při otevírání ovladače ALSA</translation>
     </message>
     <message>
         <source>Cannot open ALSA driver for PCM playback</source>
-        <translation>Nelze otevřít ALSA ovladač pro PCM přehrávání</translation>
+        <translation>Nelze otevřít ovladač ALSA pro přehrávání PCM</translation>
     </message>
     <message>
         <source>Cannot resolve STUN server: %1</source>
-        <translation>Nelze identifikovat URL STUN serveru: %1</translation>
+        <translation>Nelze vyhledat adresu STUN serveru: %1</translation>
     </message>
     <message>
         <source>You are behind a symmetric NAT.
 STUN will not work.
 Configure a public IP address in the user profile
 and create the following static bindings (UDP) in your NAT.</source>
-        <translation>Nacházíte se za &quot;symetric NAT&quot;.
+        <translation>Nacházíte se za symetrickým NATem.
 STUN nebude fungovat.
-Je nutné nastavit v uživatelském profilu veřejně dostupnou IP adresu
-a na vašem routeru/firewallu/NATu vytvořit veřejně přístupné porty
-nasměrované na lokální porty na vašem počítači.</translation>
+Je nutné nastavit v uživatelském profilu veřejnou IP adresu
+a na vašem NATu namapovat (UDP) porty.</translation>
     </message>
     <message>
         <source>public IP: %1 --&gt; private IP: %2 (SIP signaling)</source>
-        <translation>veřejná IP: %1 --&gt; privátní IP: %2 (SIP Protokol)</translation>
+        <translation>veřejná IP: %1 --&gt; privátní IP: %2 (signalizace SIP)</translation>
     </message>
     <message>
         <source>public IP: %1-%2 --&gt; private IP: %3-%4 (RTP/RTCP)</source>
-        <translation>Veřejná IP: %1 - %2 --&gt; privátní IP: %3 - %4 (RTP/RTCP)</translation>
+        <translation>veřejná IP: %1 - %2 --&gt; privátní IP: %3 - %4 (RTP/RTCP)</translation>
     </message>
     <message>
         <source>Cannot reach the STUN server: %1</source>
-        <translation>Nelze připojit na STUN server: &quot;%1&quot;</translation>
+        <translation>Nelze se připojit na STUN server: %1</translation>
     </message>
     <message>
         <source>Port %1 (SIP signaling)</source>
-        <translation>Port %1 (SIP Protokol)</translation>
+        <translation>Port %1 (signalizace SIP)</translation>
     </message>
     <message>
         <source>NAT type discovery via STUN failed.</source>
-        <translation>Analýza NAT pomocí STUN selhala.</translation>
+        <translation>Detekce typu NATu pomocí STUN selhala.</translation>
     </message>
     <message>
         <source>If you are behind a firewall then you need to open the following UDP ports.</source>
@@ -4020,27 +4030,27 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>Cannot access the ring tone device (%1).</source>
-        <translation>Audio zařízení &quot;%1&quot; pro vyzváněcí tón není přístupné.</translation>
+        <translation>Zvukové zařízení &quot;%1&quot; pro vyzváněcí tón není přístupné.</translation>
     </message>
     <message>
         <source>Cannot access the speaker (%1).</source>
-        <translation>Audio zařízení &quot;%1&quot; pro reproduktory/sluchátka není přístupné.</translation>
+        <translation>Zvukové zařízení &quot;%1&quot; pro reproduktory/sluchátka není přístupné.</translation>
     </message>
     <message>
         <source>Cannot access the microphone (%1).</source>
-        <translation>Audio zařízení &quot;%1&quot; pro mikrofon není přístupné.</translation>
+        <translation>Zvukové zařízení %1 pro mikrofon není přístupné.</translation>
     </message>
     <message>
         <source>Cannot open ALSA driver for PCM capture</source>
-        <translation>Nelze otevřít ALSA ovladač pro PCM nahrávání</translation>
+        <translation>Nelze otevřít ovladač ALSA pro nahrávání PCM</translation>
     </message>
     <message>
         <source>Cannot receive incoming TCP connections.</source>
-        <translation>Nelze přijmout příchozí TCP spojení.</translation>
+        <translation>Nelze přijímat příchozí TCP spojení.</translation>
     </message>
     <message>
         <source>Failed to create file %1</source>
-        <translation>selhalo vytvoření souboru %1</translation>
+        <translation>Selhalo vytvoření souboru %1</translation>
     </message>
     <message>
         <source>Failed to write data to file %1</source>
@@ -4059,7 +4069,7 @@ nasměrované na lokální porty na vašem počítači.</translation>
     <name>UserProfileForm</name>
     <message>
         <source>Twinkle - User Profile</source>
-        <translation>Twinkle - uživatelský profil</translation>
+        <translation>Twinkle - Uživatelský profil</translation>
     </message>
     <message>
         <source>User profile:</source>
@@ -4067,7 +4077,7 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>Select which profile you want to edit.</source>
-        <translation>Vybrat profil k úpravě.</translation>
+        <translation>Vyberte profil, který chcete upravit.</translation>
     </message>
     <message>
         <source>User</source>
@@ -4075,15 +4085,15 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>SIP server</source>
-        <translation>SIP Server</translation>
+        <translation>SIP server</translation>
     </message>
     <message>
         <source>RTP audio</source>
-        <translation>RTP Audio</translation>
+        <translation>RTP audio</translation>
     </message>
     <message>
         <source>SIP protocol</source>
-        <translation>SIP protokol</translation>
+        <translation>Protokol SIP</translation>
     </message>
     <message>
         <source>NAT</source>
@@ -4095,7 +4105,7 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>Timers</source>
-        <translation>Časovač</translation>
+        <translation>Časovače</translation>
     </message>
     <message>
         <source>Ring tones</source>
@@ -4127,11 +4137,11 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation></translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>Undo all your changes and close the window.</source>
@@ -4139,15 +4149,15 @@ nasměrované na lokální porty na vašem počítači.</translation>
     </message>
     <message>
         <source>SIP account</source>
-        <translation>Údaje SIP účtu</translation>
+        <translation>Účet SIP</translation>
     </message>
     <message>
         <source>&amp;User name*:</source>
-        <translation>Uživatelské &amp;jméno *:</translation>
+        <translation>Uživatelské &amp;jméno*:</translation>
     </message>
     <message>
         <source>&amp;Domain*:</source>
-        <translation></translation>
+        <translation>&amp;Doména*:</translation>
     </message>
     <message>
         <source>Or&amp;ganization:</source>
@@ -4157,44 +4167,39 @@ nasměrované na lokální porty na vašem počítači.</translation>
         <source>The SIP user name given to you by your provider. It is the user part in your SIP address, &lt;b&gt;username&lt;/b&gt;@domain.com This could be a telephone number.
 &lt;br&gt;&lt;br&gt;
 This field is mandatory.</source>
-        <translation>Uživatelské jméno, které vám bylo přiděleno vaším VoIP poskytovatelem. Je první částí vaší kompletní SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com
-Mnozí VoIP poskytovatelé toto označují jako telefonní číslo.
+        <translation>Uživatelské jméno, které vám bylo přiděleno vaším poskytovatelem,.je první částí vaší úplné SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com
+Může se jednat o telefonní číslo.
 &lt;br&gt;&lt;br&gt;
-*ÚDAJE V TOMTO ŘÁDKU JSOU POVINNÉ.</translation>
+Toto pole je povinné.</translation>
     </message>
     <message>
         <source>The domain part of your SIP address, username@&lt;b&gt;domain.com&lt;/b&gt;. Instead of a real domain this could also be the hostname or IP address of your &lt;b&gt;SIP proxy&lt;/b&gt;. If you want direct IP phone to IP phone communications then you fill in the hostname or IP address of your computer.
 &lt;br&gt;&lt;br&gt;
 This field is mandatory.</source>
-        <translation>Doména nebo IP adresa, pod kterou jste vedeni u vašeho VoIP poskytovatele, popř. dosažitelný v internetu. Je to druhá část vaší kompletní SIP adresy uzivatel@&lt;b&gt;domain.com&lt;/b&gt;, popř. doména vaší SIP proxy.
-U mnohých VoIP poskytovatelů je totožná s doménou poskytovatele.
-Pro přímé propojení IP-to-IP se zde uvede jméno nebo IP, pod kterým je váš počítač dosažitelný v internetu.
+        <translation>Doménová část vaší adresy SIP, uzivatel@&lt;b&gt;domain.com&lt;/b&gt;. Místo skutečné domény zde může být také název hostitele nebo IP adresa vaší &lt;b&gt;SIP proxy&lt;/b&gt;
+Pro přímé volání mezi IP adresami se zde uvede název hostitele nebo IP, pod kterým je váš počítač dosažitelný v internetu.
 &lt;br&gt;&lt;br&gt;
-*ÚDAJE V TOMTO ŘÁDKU JSOU POVINNÉ.</translation>
+Toto pole je povinné.</translation>
     </message>
     <message>
         <source>You may fill in the name of your organization. When you make a call, this might be shown to the called party.</source>
-        <translation>Zde je možné uvést jméno vaší organizace. Pokud někomu voláte, může být tento údaj zobrazen protistraně. 
-Není bezpodmínečně nutné.
-Vyhněte se písmenům s diakritikou. Některé VoIP přístroje s tím mohou mít problémy.</translation>
+        <translation>Zde je možné uvést jméno vaší organizace. Pokud někomu voláte, může být tento údaj zobrazen protistraně.</translation>
     </message>
     <message>
         <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation>Vaše jméno nebo přezdívka. Tato položka je volané protistraně zobrazována jako jméno volajícího.
-Údaj není nutný.
-Vyhněte se používání písmen s diakritrikou. Některé VoIP přístroje s tím mohou mít problémy.</translation>
+        <translation>Vaše jméno nebo přezdívka. Tato položka je volané protistraně zobrazována jako jméno volajícího.</translation>
     </message>
     <message>
         <source>&amp;Your name:</source>
-        <translation>&amp;Jméno:</translation>
+        <translation>Vaše &amp;jméno:</translation>
     </message>
     <message>
         <source>SIP authentication</source>
-        <translation>SIP přihlašovací údaje</translation>
+        <translation>Přihlašovací údaje SIP</translation>
     </message>
     <message>
         <source>&amp;Realm:</source>
-        <translation></translation>
+        <translation>&amp;Realm:</translation>
     </message>
     <message>
         <source>Authentication &amp;name:</source>
@@ -4206,15 +4211,15 @@ Vyhněte se používání písmen s diakritrikou. Některé VoIP přístroje s t
     </message>
     <message>
         <source>The realm for authentication. This value must be provided by your SIP provider. If you leave this field empty, then Twinkle will try the user name and password for any realm that it will be challenged with.</source>
-        <translation>&quot;Realm&quot; hodnota pro přihlášení. Možné přeložit jako &quot;oblast&quot;. Tento údaj vám poskytne váš SIP poskytovatel. Pokud zůstane pole prázdné, pokusí se Twinkle při každém Realm dotazu o přihlášení s vaším uživatelským jménem a heslem.</translation>
+        <translation>Hodnota &quot;realm&quot; pro přihlášení. Tento údaj vám musí poskytnout váš poskytovatel SIP. Pokud zůstane pole prázdné, pak se Twinkle pokusí o přihlášení s vaším uživatelským jménem a heslem při libovolném realmu.</translation>
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
-        <translation>Vaše přihlašovací SIP jméno. Je často identické s vaším uživatelským SIP jménem. Potom jej lze vynechat. Pokud tomu tak není, poskytne vám ho váš SIP poskytovatel.</translation>
+        <translation>Vaše přihlašovací SIP jméno. Je často identické s vaším uživatelským SIP jménem. Může se ale také lišit.</translation>
     </message>
     <message>
         <source>Your password for authentication.</source>
-        <translation>Vaše přihlašovací SIP heslo. Pokud toto políčko zůstane nevyplněné, je nutné heslo zadat vždy při spuštění programu při navázání kontaktu. </translation>
+        <translation>Vaše přihlašovací heslo.</translation>
     </message>
     <message>
         <source>Registrar</source>
@@ -4226,7 +4231,7 @@ Vyhněte se používání písmen s diakritrikou. Některé VoIP přístroje s t
     </message>
     <message>
         <source>The hostname, domain name or IP address of your registrar. If you use an outbound proxy that is the same as your registrar, then you may leave this field empty and only fill in the address of the outbound proxy.</source>
-        <translation>Doména, IP adresa nebo jméno vašeho SIP přihlašovacího serveru. Pokud použijete outbond proxy, která je totožná s vaším SIP poskytovatelem, lze toto políčko nechat prázdné a vyplnit pouze adresu outbond proxy.</translation>
+        <translation>Název hostitele, doménové jméno nebo IP adresa přihlašovacího serveru. Pokud používáte odchozí proxy, která je stejná jako váš přihlašovací server, pak je možné toto pole ponechat prázdné a vyplnit jen adresu odchozí proxy.</translation>
     </message>
     <message>
         <source>&amp;Expiry:</source>
@@ -4234,8 +4239,7 @@ Vyhněte se používání písmen s diakritrikou. Některé VoIP přístroje s t
     </message>
     <message>
         <source>The registration expiry time that Twinkle will request.</source>
-        <translation>Doba platnosti přihlášení v sekundách, kterou si Twinkle při přihlášení vyžádá. Po uplynutí této doby se Twinkle přihlásí automaticky znovu. Pokud tak neučiní, váš poskytovatel to vyhodnotí jako stav, že je váš telefon offline a tedy nedostupný pro volání. Také změny vaší IP adresy, např. po odpojení a opětovném připojení do sítě s přidělením nové IP adresy jsou brány do úvahy až po uplynutí této doby.
-Hodnoty pod 120 nejsou doporučeny. Standardně: 3600 (=1h).</translation>
+        <translation>Doba platnosti přihlášení v sekundách, kterou si Twinkle vyžádá.</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -4243,65 +4247,63 @@ Hodnoty pod 120 nejsou doporučeny. Standardně: 3600 (=1h).</translation>
     </message>
     <message>
         <source>Re&amp;gister at startup</source>
-        <translation>Přihlásit při spuštění &amp;profilu</translation>
+        <translation>Při&amp;hlásit při spuštění</translation>
     </message>
     <message>
         <source>Alt+G</source>
-        <translation></translation>
+        <translation>Alt+H</translation>
     </message>
     <message>
         <source>Indicates if Twinkle should automatically register when you run this user profile. You should disable this when you want to do direct IP phone to IP phone communication without a SIP proxy.</source>
-        <translation>Pokud je aktivováno, Twinkle se při otevření tohoto uživatelského profilu automaticky pokouší přihlásit k vašemu poskytovateli. Přesněji řečeno k přihlašovacímu SIP serveru.
-Pro přímé propojení telefonů IP-to-IP neexistuje žádný poskytovatel a tato volba by měla být vypnutá.</translation>
+        <translation>Značí, zda se má Twinkle automaticky přihlásit při spuštění tohoto profilu. Toto byste měli zakázat, pokud chcete přímé volání mezi IP adresami bez SIP proxy.</translation>
     </message>
     <message>
         <source>Outbound Proxy</source>
-        <translation></translation>
+        <translation>Odchozí proxy</translation>
     </message>
     <message>
         <source>&amp;Use outbound proxy</source>
-        <translation>&amp;Použít Outbound-Proxy</translation>
+        <translation>Po&amp;užít odchozí-proxy</translation>
     </message>
     <message>
         <source>Alt+U</source>
-        <translation></translation>
+        <translation>Alt+U</translation>
     </message>
     <message>
         <source>Indicates if Twinkle should use an outbound proxy. If an outbound proxy is used then all SIP requests are sent to this proxy. Without an outbound proxy, Twinkle will try to resolve the SIP address that you type for a call invitation for example to an IP address and send the SIP request there.</source>
-        <translation>Pokud je aktivováno, použije Twinkle outbound proxy pro odcházející volání na kterou budou zasílány SIP dotazy. Outbond proxy je možno přeložit jako &quot;zprostředkovatele&quot;. Toto může být např. SIP gateway vaší firemní sítě. 
-Bez uvedení outbound proxy se Twinkle sám pokusí zjistit IP adresu k volané telefonnímu číslu/adrese.</translation>
+        <translation>Značí, zda má Twinkle používat odchozí proxy. Pokud se používá odchozí proxy, pak jsou všechny požadavky SIP posílány na tuto proxy. Bez odchozí proxy se Twinkle pokusí použít název hostitele z adresy SIP a směrovat hovor přímo tam.</translation>
     </message>
     <message>
         <source>Outbound &amp;proxy:</source>
-        <translation>Outbound &amp;proxy:</translation>
+        <translation>Odchozí &amp;proxy:</translation>
     </message>
     <message>
         <source>&amp;Send in-dialog requests to proxy</source>
-        <translation>Poslat In-&amp;Dialog dotaz na proxy</translation>
+        <translation>Poslat in-&amp;dialog dotazy na proxy</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>SIP requests within a SIP dialog are normally sent to the address in the contact-headers exchanged during call setup. If you tick this box, that address is ignored and in-dialog request are also sent to the outbound proxy.</source>
-        <translation>Pokud je aktivováno, jsou SIP dotazy posílány &lt;b&gt;vždy&lt;/b&gt; na Outbound-Proxy. Normálně totiž Twinkle posílá SIP dotazy během SIP dialogu (t.j během probíhajícího hovoru) na adresu obdrženou na počátku volání v kontaktní hlavičce. Tedy přímo protistraně.</translation>
+        <translation>Požadavky SIP se běžně posílají na adresu v kontaktních hlavičkách vyměněných při sestavování hovoru. Pokud je toto pole zaškrtnuté, pak je tato adresa ignorována a všechny žádosti se rovněž zasílají na odchozí proxy.</translation>
     </message>
     <message>
         <source>&amp;Don&apos;t send a request to proxy if its destination can be resolved locally.</source>
-        <translation>&amp;Neposílat SIP dotazy na proxy, pokud tato není dosažitelná. Dotazy poslat přímo.</translation>
+        <translation>Neposílat žá&amp;dosti SIP na proxy, pokud lze cíl spojit lokálně.</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>When you tick this option Twinkle will first try to resolve a SIP address to an IP address itself. If it can, then the SIP request will be sent there. Only when it cannot resolve the address, it will send the SIP request to the proxy (note that an in-dialog request will only be sent to the proxy in this case when you also ticked the previous option.)</source>
-        <translation>Pokud je aktivováno, pokusí se nejprve Twinkle najít k cílové adrese odpovídající IP adresu a poslat SIP dotaz přímo tam. Pokud se nepodaří IP adresu zjistit, je dotaz poslán na proxy. (Upozornění: In-Dialog dotaz bude v tomto případě poslán na proxy, jen pokud je aktivována předchozí volba)</translation>
+        <translation>Pokud je aktivováno, pokusí se nejprve Twinkle najít k cílové adrese odpovídající IP adresu a poslat SIP dotaz přímo tam. Pokud se nepodaří IP adresu zjistit, je dotaz poslán na proxy. (Upozornění:in-dialog žádosti budou v tomto případě posílány na proxy, jen pokud je aktivována i předchozí volba.)</translation>
     </message>
     <message>
         <source>The hostname, domain name or IP address of your outbound proxy.</source>
-        <translation>Doménové jméno, IP adresa nebo jméno vaší outbound proxy.</translation>
+        <translation>Doménové jméno, IP adresa nebo jméno vaší odchozí proxy.</translation>
     </message>
     <message>
         <source>Co&amp;decs</source>
@@ -4309,7 +4311,7 @@ Bez uvedení outbound proxy se Twinkle sám pokusí zjistit IP adresu k volané 
     </message>
     <message>
         <source>Codecs</source>
-        <translation>kodeky</translation>
+        <translation>Kodeky</translation>
     </message>
     <message>
         <source>Available codecs:</source>
@@ -4341,8 +4343,7 @@ Bez uvedení outbound proxy se Twinkle sám pokusí zjistit IP adresu k volané 
     </message>
     <message>
         <source>List of available codecs.</source>
-        <translation>Seznam dostupných, neaktivovaných kodeků.
-V závislosti od nastavení při kompilaci mohou být některé kodeky nepřístupné.</translation>
+        <translation>Seznam dostupných, kodeků.</translation>
     </message>
     <message>
         <source>Move a codec from the list of available codecs to the list of active codecs.</source>
@@ -4358,23 +4359,23 @@ V závislosti od nastavení při kompilaci mohou být některé kodeky nepříst
     </message>
     <message>
         <source>List of active codecs. These are the codecs that will be used for media negotiation during call setup. The order of the codecs is the order of preference of use.</source>
-        <translation>Seznam aktivních kodeků. Tyto budou použity při navázání spojení s protistranou. Pořadí zde uvedených kodeků je zároveň pořadím v jakém budou kodeky upřednostňovány v použití.</translation>
+        <translation>Seznam aktivních kodeků. Tyto budou použity při navázání spojení s protistranou. Pořadí zde uvedených kodeků je zároveň pořadím v jakém budou kodeky upřednostňovány.</translation>
     </message>
     <message>
         <source>Move a codec upwards in the list of active codecs, i.e. increase its preference of use.</source>
-        <translation>Přesunout tento kodek směrem nahoru v seznamu kodeků. Tzn. zvýšit jeho prioritu pro použií při navázání spojení.</translation>
+        <translation>Přesunout tento kodek směrem nahoru v seznamu kodeků, tzn. zvýšit jeho prioritu.</translation>
     </message>
     <message>
         <source>Move a codec downwards in the list of active codecs, i.e. decrease its preference of use.</source>
-        <translation>Přesunout tento kodek směrem dolů v seznamu kodeků. Tzn. znížit jeho prioritu pro použií při navázání spojení.</translation>
+        <translation>Přesunout tento kodek směrem dolů v seznamu kodeků, tzn. snížit jeho prioritu.</translation>
     </message>
     <message>
         <source>&amp;G.711/G.726 payload size:</source>
-        <translation>&amp;G.711/G.726 payload hodnota:</translation>
+        <translation>&amp;G.711/G.726 velikost payloadu:</translation>
     </message>
     <message>
         <source>The preferred payload size for the G.711 and G.726 codecs.</source>
-        <translation>Upřednostňovaná payload hodnota pro kodeky G.711 a G.726.</translation>
+        <translation>Upřednostňovaná velikost payloadu pro kodeky G.711 a G.726.</translation>
     </message>
     <message>
         <source>ms</source>
@@ -4390,15 +4391,15 @@ V závislosti od nastavení při kompilaci mohou být některé kodeky nepříst
     </message>
     <message>
         <source>i&amp;LBC payload type:</source>
-        <translation>i&amp;LBC payload type:</translation>
+        <translation>i&amp;LBC typ payloadu:</translation>
     </message>
     <message>
         <source>iLBC &amp;payload size (ms):</source>
-        <translation>iLBC &amp;payload &amp;hodnota (ms):</translation>
+        <translation>iLBC velikost &amp;payloadu (ms):</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for iLBC.</source>
-        <translation>Typ dynamické hodnoty pro použití v iLBC (96 nebo více).</translation>
+        <translation>Dynamická hodnota typu pro iLBC (96 nebo více).</translation>
     </message>
     <message>
         <source>20</source>
@@ -4410,7 +4411,7 @@ V závislosti od nastavení při kompilaci mohou být některé kodeky nepříst
     </message>
     <message>
         <source>The preferred payload size for iLBC.</source>
-        <translation>Upřednostňovaná velikost payload hodnot RTP paketu pro iLBC.</translation>
+        <translation>Upřednostňovaná velikost payloadu pro iLBC.</translation>
     </message>
     <message>
         <source>&amp;Speex</source>
@@ -4430,11 +4431,11 @@ V závislosti od nastavení při kompilaci mohou být některé kodeky nepříst
     </message>
     <message>
         <source>Perceptual enhancement is a part of the decoder which, when turned on, tries to reduce (the perception of) the noise produced by the coding/decoding process. In most cases, perceptual enhancement make the sound further from the original objectively (if you use SNR), but in the end it still sounds better (subjective improvement).</source>
-        <translation>&quot;Vylepšení kvality zvuku&quot; (anglicky: perceptual enhancement) jsou určité funkce daného kodeku, které mají zajistit potlačení šumu při přihlédnutí k vlastnostem lidského sluchu. Ačkoliv dojde při použití těchto funkcí z hlediska technických parametrů přenosu k jeho zhoršení (S/N odstup šumu) a odchýlení se od originálu, je nakonec pociťováno zlepšení kvality zvuku.</translation>
+        <translation>Vylepšení vnímané kvality zvuku je součástí dekodéru, která se snaží snížit (vnímaný) šum vzniklý při procesu kódování/dekódování. Ve většině případů vede tato funkce k většímu objektivnímu odchýlení zvuku od originálu (z hlediska SNR), ale zní přesto lépe (subjektivní vylepšení).</translation>
     </message>
     <message>
         <source>&amp;Ultra wide band payload type:</source>
-        <translation>&amp;Ultra wide band payload type:</translation>
+        <translation>Typ payload&amp;u pro ultra široké pásmo:</translation>
     </message>
     <message>
         <source>Alt+V</source>
@@ -4447,7 +4448,7 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>&amp;Wide band payload type:</source>
-        <translation>&amp;Wide band payload type:</translation>
+        <translation>Typ payloadu pro široké pásm&amp;o:</translation>
     </message>
     <message>
         <source>Alt+B</source>
@@ -4455,11 +4456,11 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>Variable bit-rate (VBR) allows a codec to change its bit-rate dynamically to adapt to the &quot;difficulty&quot; of the audio being encoded. In the example of Speex, sounds like vowels and high-energy transients require a higher bit-rate to achieve good quality, while fricatives (e.g. s,f sounds) can be coded adequately with less bits. For this reason, VBR can achieve a lower bit-rate for the same quality, or a better quality for a certain bit-rate. Despite its advantages, VBR has two main drawbacks: first, by only specifying quality, there&apos;s no guarantee about the final average bit-rate. Second, for some real-time applications like voice over IP (VoIP), what counts is the maximum bit-rate, which must be low enough for the communication channel.</source>
-        <translation>Proměnná vzorkovací frekvence (VBR) umožní danému kodeku přizpůsobit množství dat potřebných k přenosu hovoru charakteru audio signálu. Zatímco např. některé ostré samohlásky nebo velmi proměnné pasáže potřebují velkou vzorkovací frekvenci a tím velký datový tok, tak měkké souhlásky a zvláště přestávky v hovoru (viz VAD) vystačí s malým datovým tokem. Díky VBR tak lze při dané datové rychlosti docílit lepší kvality zvuku. Anebo při dané kvalitě hovoru vystačit s nižším datovým tokem. Nevýhodou je, že při zadané kvalitě nelze předpovědět jaký velký datový tok bude ve skutečnosti. A také, že v aplikacích pracujících v reálném čase (jako je právě VoIP) je rozhodující maximální vzorkovací frekvence a ne průměrná.</translation>
+        <translation>Variabilní šířka pásma (VBR) umožní danému kodeku přizpůsobit množství dat potřebných k přenosu hovoru charakteru audio signálu. Zatímco např. některé ostré samohlásky nebo velmi proměnné pasáže potřebují velkou vzorkovací frekvenci a tím velký datový tok, tak měkké souhlásky vystačí s malým datovým tokem. Díky VBR tak lze při dané datové rychlosti docílit lepší kvality zvuku nebo při dané kvalitě hovoru vystačit s nižším datovým tokem. Nevýhodou je, že při zadané kvalitě nelze předpovědět jaký velký datový tok bude ve skutečnosti. A také, že v aplikacích pracujících v reálném čase (jako je právě VoIP) je rozhodující maximální šířka pásma, kterou musí zvládnout komunikační kanál.</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for speex wide band.</source>
-        <translation>Dynamická typová hodnota pro speex wide band (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro speex wide band (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>Co&amp;mplexity:</source>
@@ -4467,19 +4468,19 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows to stop transmitting completely when the background noise is stationary.</source>
-        <translation>Discontinuous transmission, přeloženo jako nesouvislý datový přenos, je rozšíření VAD/VBR přenosu. Při neměnícím se audio signálu (především v odmlkách mezi slovy) nejsou odesílána stále stejná data nýbrž dojde k úplnému přerušení posílání dat. Vede to k částečnému snížení průměrného datového toku. Při nekvalitním přenosu však tato volba může vést k poruchám zvuku, jako např. k zaseknutí určitého tónu nebo různým zkreslením.</translation>
+        <translation>Nesouvislé vysílání je rozšířením funkčnosi VAD/VBR, kdy je možné úplně přestat odesílat data v případě ticha.</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for speex narrow band.</source>
-        <translation>Dynamická hodnota pro speex narrow band (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro speex narrow band (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>With Speex, it is possible to vary the complexity allowed for the encoder. This is done by controlling how the search is performed with an integer ranging from 1 to 10 in a way that&apos;s similar to the -1 to -9 options to gzip and bzip2 compression utilities. For normal use, the noise level at complexity 1 is between 1 and 2 dB higher than at complexity 10, but the CPU requirements for complexity 10 is about 5 times higher than for complexity 1. In practice, the best trade-off is between complexity 2 and 4, though higher settings are often useful when encoding non-speech sounds like DTMF tones.</source>
-        <translation>S použitím funkce Speex může být určena komplexita (přesnost) pro daný kodek. Slouží to k zadání hloubky hledání v rozsahu od 1 do 10. Podobný princip je zaveden v kompresních programech gzip a bzip2 s volbou -1 až -9 . Za normálních podmínek je odstup šumu při komplexitě 1 o 1 až 2dB vyšší než při komplexitě 10. Nicméně CPU vytížení je asi 5x vyšší než při komplexitě 1. V praxi se osvědčilo nastavení mezi 2 až 4. Vyšší nastavení jsou vhodné přenos DTMF signálů nebo hudebního signálu.</translation>
+        <translation>V případě Speexu je možné měnit komplexitu kodéru. Slouží to k zadání hloubky hledání v rozsahu od 1 do 10. Podobný princip je zaveden v kompresních programech gzip a bzip2 s volbou -1 až -9 . Za normálních podmínek je odstup šumu při komplexitě 1 o 1 až 2dB vyšší než při komplexitě 10. Nicméně CPU vytížení je asi 5x vyšší než při komplexitě 1. V praxi se osvědčilo nastavení mezi 2 až 4. Vyšší nastavení jsou vhodná pro přenos tónů DTMF nebo hudebního signálu.</translation>
     </message>
     <message>
         <source>&amp;Narrow band payload type:</source>
-        <translation>&amp;Narrow band payload type:</translation>
+        <translation>Typ payloadu pro úz&amp;ké pásmo:</translation>
     </message>
     <message>
         <source>G.726</source>
@@ -4487,35 +4488,35 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>G.726 &amp;40 kbps payload type:</source>
-        <translation>payload type hodnota pro G.726 &amp;40 kb/s :</translation>
+        <translation>Typ payloadu pro G.726 &amp;40 kb/s:</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for G.726 40 kbps.</source>
-        <translation>Dynamická typová hodnota pro G.726 40 kb/s (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro G.726 40 kb/s (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for G.726 32 kbps.</source>
-        <translation>Dynamická typová hodnota pro G.726 32 kb/s (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro G.726 32 kb/s (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>G.726 &amp;24 kbps payload type:</source>
-        <translation>Payload hodnota pro G.726 &amp;24 kb/s :</translation>
+        <translation>Typ payloadu pro G.726 &amp;24 kb/s:</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for G.726 24 kbps.</source>
-        <translation>Dynamická typová hodnota pro G.726 24 kb/s (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro G.726 24 kb/s (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>G.726 &amp;32 kbps payload type:</source>
-        <translation>Payload type hodnota pro G.726 &amp;32 kb/s :</translation>
+        <translation>Typ payloadu pro G.726 &amp;32 kb/s:</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for G.726 16 kbps.</source>
-        <translation>Dynamická typová hodnota pro G.726 16 kb/s (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro G.726 16 kb/s (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>G.726 &amp;16 kbps payload type:</source>
-        <translation>Payload type hodnota pro  G.726 &amp;16 kb/s :</translation>
+        <translation>Typ payloadu pro G.726 &amp;16 kb/s:</translation>
     </message>
     <message>
         <source>DT&amp;MF</source>
@@ -4527,31 +4528,31 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for DTMF events (RFC 2833).</source>
-        <translation>Dynamická typová hodnota pro (RFC2833) (ne méně než 96).</translation>
+        <translation>Dynamická hodnota typu pro události DTMF (RFC 2833) (96 nebo vyšší).</translation>
     </message>
     <message>
         <source>DTMF vo&amp;lume:</source>
-        <translation>DTMF &amp;hlasitost:</translation>
+        <translation>H&amp;lasitost DTMF:</translation>
     </message>
     <message>
         <source>The power level of the DTMF tone in dB.</source>
-        <translation>Hlasitost vysílaných DTMF tónů v dB. Jak pro reálné tóny tak i pro rozpoznávání hladiny úrovní dle RFC2833. Měla by být mezi -10 až -6.</translation>
+        <translation>Hlasitost vysílaných DTMF tónů v dB.</translation>
     </message>
     <message>
         <source>The pause after a DTMF tone.</source>
-        <translation>Doba prodlevy mezi dvěmi DTMF tóny. Příliš malé hodnoty mohou vést k tomu, že dva po sobě následující stejné tóny mohou splynout a nebudou rozpoznány jako dvě stejná čísla. Vyšší hodnoty nejsou na závadu, pokud ovšem není žádáno co nejrychlejší přenos DTMF signálů.</translation>
+        <translation>Doba prodlevy mezi dvěmi DTMF tóny.</translation>
     </message>
     <message>
         <source>DTMF &amp;duration:</source>
-        <translation>DTMF &amp;trvání: </translation>
+        <translation>Trvání &amp;DTMF:</translation>
     </message>
     <message>
         <source>DTMF payload &amp;type:</source>
-        <translation>DTMF payload &amp;type:</translation>
+        <translation>&amp;Typ payloadu DTMF:</translation>
     </message>
     <message>
         <source>DTMF &amp;pause:</source>
-        <translation>DTMF &amp;pauza:</translation>
+        <translation>&amp;Prodleva DTMF:</translation>
     </message>
     <message>
         <source>dB</source>
@@ -4559,27 +4560,27 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
     </message>
     <message>
         <source>Duration of a DTMF tone.</source>
-        <translation>Doba trvání jednoho DTMF tónu v milisekundách. Při příliš malé hodnotě nemusí přijímací stanice odpovídající &quot;hodnoty&quot; správně rozpoznat. Hodnota 200 by měla vyhovovat u většiny i starších přístrojů.</translation>
+        <translation>Doba trvání tónu DTMF.</translation>
     </message>
     <message>
         <source>DTMF t&amp;ransport:</source>
-        <translation>DTMF &amp;režim:</translation>
+        <translation>P&amp;řenos DTMF:</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation></translation>
+        <translation>Automaticky</translation>
     </message>
     <message>
         <source>RFC 2833</source>
-        <translation></translation>
+        <translation>RFC 2833</translation>
     </message>
     <message>
         <source>Inband</source>
-        <translation></translation>
+        <translation>Zvukově</translation>
     </message>
     <message>
         <source>Out-of-band (SIP INFO)</source>
-        <translation></translation>
+        <translation>SIP INFO</translation>
     </message>
     <message>
         <source>&lt;h2&gt;RFC 2833&lt;/h2&gt;
@@ -4594,13 +4595,13 @@ Systém VAD je vždy aktivován, pokud je nastaveno kódováni s VBR.</translati
 Send DTMF out-of-band via a SIP INFO request.
 &lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;h3&gt;RFC 2833&lt;/h3&gt;
-Vysílá DTMF tóny jako RFC 2833 telefonní signály (symboly v RTP datovém audio toku).&lt;/p&gt;
-&lt;p&gt;&lt;h3&gt;Inband&lt;/h3&gt;
+Vysílá DTMF tóny jako telefonní události dle RFC 2833.&lt;/p&gt;
+&lt;p&gt;&lt;h3&gt;Zvukově&lt;/h3&gt;
 Vysílá DTMF inband (skutečné tóny, které Twinkle přimíchá do audio signálu).&lt;/p&gt;
 &lt;p&gt;&lt;h3&gt;Auto&lt;/h3&gt;
-Pokud protistrana podporuje RFC 2833 jsou použity DTMF tóny dle RFC 2833 standardu, jinak jako Inband.&lt;/p&gt;
-&lt;p&gt;&lt;h3&gt;Out-of-band (SIP INFO)&lt;/h3&gt;
-Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translation>
+Pokud protistrana podporuje RFC 2833, jsou použity DTMF tóny dle RFC 2833 standardu, jinak jako inband.&lt;/p&gt;
+&lt;p&gt;&lt;h3&gt;SIP INFO&lt;/h3&gt;
+Vysílá DTMF out-of-band přes požadavek SIP INFO.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>General</source>
@@ -4608,11 +4609,11 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>Redirection</source>
-        <translation>Přesměrování pro odchozí volání</translation>
+        <translation>Přesměrování</translation>
     </message>
     <message>
         <source>&amp;Allow redirection</source>
-        <translation>Povolit &amp;přesměrování</translation>
+        <translation>Povolit přesměrov&amp;ání</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -4620,7 +4621,7 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>Indicates if Twinkle should redirect a request if a 3XX response is received.</source>
-        <translation>Pokud je aktivováno, Twinkle sleduje zda volaná protistrana vyšle požadavek (3XX). Pokud ano, dojde k přesměrování.</translation>
+        <translation>Značí, zda má Twinkle přesměrovat požadavek při odpovědi 3XX.</translation>
     </message>
     <message>
         <source>Ask user &amp;permission to redirect</source>
@@ -4632,7 +4633,7 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>Indicates if Twinkle should ask the user before redirecting a request when a 3XX response is received.</source>
-        <translation>Pokud je aktivováno, dotáže se Twinkle při přijmutí požadavku 3XX uživatele, zdali má být odchozí volání přesměrováno na nový cíl.</translation>
+        <translation>Pokud je aktivováno, dotáže se Twinkle při přijmutí požadavku 3XX uživatele, zda-li má být odchozí volání přesměrováno na nový cíl.</translation>
     </message>
     <message>
         <source>Max re&amp;directions:</source>
@@ -4640,15 +4641,15 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>The number of redirect addresses that Twinkle tries at a maximum before it gives up redirecting a request. This prevents a request from getting redirected forever.</source>
-        <translation>Počet přesměrování odchozího volání (z A do B do C atd.), po kterém Twinkle ukončí pokusy navázat spojení. Zabraňuje zacyklení při přesměrování (A -&gt; B -&gt; A...).</translation>
+        <translation>Počet přesměrování odchozího volání, po kterém Twinkle ukončí pokusy navázat spojení. Zabraňuje zacyklení při přesměrování.</translation>
     </message>
     <message>
         <source>Protocol options</source>
-        <translation>Nastavení SIP protokolu</translation>
+        <translation>Nastavení protokolu SIP</translation>
     </message>
     <message>
         <source>Call &amp;Hold variant:</source>
-        <translation>Standard volání a &amp;podržení volání:</translation>
+        <translation>Způsob přidržení &amp;hovoru:</translation>
     </message>
     <message>
         <source>RFC 2543</source>
@@ -4660,7 +4661,7 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>Indicates if RFC 2543 (set media IP address in SDP to 0.0.0.0) or RFC 3264 (use direction attributes in SDP) is used to put a call on-hold.</source>
-        <translation>Výběr zdali bude k podržení hovoru použito RFC 2543 (set media IP address in SDP to 0.0.0.0) nebo RFC 3264 (use direction attributes in SDP).</translation>
+        <translation>Značí, zda-li bude k podržení hovoru použito RFC 2543 (nastavení IP adresy v SDP na 0.0.0.0) nebo RFC 3264 (použít směrové atributy v SDP).</translation>
     </message>
     <message>
         <source>Allow m&amp;issing Contact header in 200 OK on REGISTER</source>
@@ -4672,11 +4673,11 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>A 200 OK response on a REGISTER request must contain a Contact header. Some registrars however, do not include a Contact header or include a wrong Contact header. This option allows for such a deviation from the specs.</source>
-        <translation>Odpověď &quot;200 OK&quot; na požadavek &quot;REGISTER&quot; musí obsahovat kontaktní hlavičku. Někteří poskytovatelé buď neposílají kontaktní hlavičku anebo posílají chybnou kontaktní hlavičku. Pokud je aktivováno, pokusí se Twinkle tuto chybu opravit.</translation>
+        <translation>Odpověď 200 OK na požadavek REGISTER musí obsahovat hlavičku Contact. Někteří poskytovatelé buď hlavičku Contact neposílají, nebo je chybná. Tato možnost povolí takové odchýlení od specifikací.</translation>
     </message>
     <message>
         <source>&amp;Max-Forwards header is mandatory</source>
-        <translation>&amp;Max-Forwards-Header je vyžadován</translation>
+        <translation>Hlavička &amp;Max-Forwards je vyžadována</translation>
     </message>
     <message>
         <source>Alt+M</source>
@@ -4684,7 +4685,7 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>According to RFC 3261 the Max-Forwards header is mandatory. But many implementations do not send this header. If you tick this box, Twinkle will reject a SIP request if Max-Forwards is missing.</source>
-        <translation>Podle RFC3261 je Max-Forwards header povinný. Často však není posílán. Pokud je aktivováno, odmítne Twinkle SIP požadavky, které neobsahují Max-Forwards header.</translation>
+        <translation>Podle RFC3261 je hlavička Max-Forwards povinná. Často však není posílána. Pokud je aktivováno, pak Twinkle odmítne SIP požadavky, které hlavičku Max-Forwards neobsahují.</translation>
     </message>
     <message>
         <source>Put &amp;registration expiry time in contact header</source>
@@ -4696,25 +4697,25 @@ Vysílá DTMF out-of-band pouze přes SIP INFO požadavek.&lt;/p&gt;</translatio
     </message>
     <message>
         <source>In a REGISTER message the expiry time for registration can be put in the Contact header or in the Expires header. If you tick this box it will be put in the Contact header, otherwise it goes in the Expires header.</source>
-        <translation>Doba vypršení platnosti přihlášení v REGISTER požadavku může být přenášena jak v Contact-Header tak i v Expires-Header. Pokud je aktivováno, posílá ji Twinkle v Contact-header. Jinak v Expires-header.</translation>
+        <translation>Doba vypršení platnosti přihlášení v požadavku REGISTER může být přenášena jak v hlavičce Contact, tak i v hlavičce Expires. Pokud je aktivováno, posílá ji Twinkle v hlavičce Contact, jinak v hlavičce Expires.</translation>
     </message>
     <message>
         <source>&amp;Use compact header names</source>
-        <translation>Použít &amp;kompaktní jména hlaviček</translation>
+        <translation>Použít &amp;kompaktní názvy hlaviček</translation>
     </message>
     <message>
         <source>Indicates if compact header names should be used for headers that have a compact form.</source>
-        <translation>Pokud je aktivováno, bude pro jména hlaviček použita krátká forma (pokud existuje).</translation>
+        <translation>Pokud je aktivováno, bude pro názvy hlaviček použita krátká forma, pokud existuje.</translation>
     </message>
     <message>
         <source>Allow SDP change during call setup</source>
-        <translation>Povolit SDP změny při navázání volání</translation>
+        <translation>Povolit změny v SDP při navázání volání</translation>
     </message>
     <message>
         <source>&lt;p&gt;A SIP UAS may send SDP in a 1XX response for early media, e.g. ringing tone. When the call is answered the SIP UAS should send the same SDP in the 200 OK response according to RFC 3261. Once SDP has been received, SDP in subsequent responses should be discarded.&lt;/p&gt;
 &lt;p&gt;By allowing SDP to change during call setup, Twinkle will not discard SDP in subsequent responses and modify the media stream if the SDP is changed. When the SDP in a response is changed, it must have a new version number in the o= line.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;SIP UAS může odesílat SDP v 1XX odpovědi na &quot;early media&quot;, např. &quot;vyzváněcí tón&quot;. Pokud bude volání přijmuto, měl by poslat SIP UAS to samé SDP v odpovědí &quot;200 OK&quot;. Po přijmutí SDP by měly být všechny následující SDP odpovědi ignorovány. Takto je to definováno v RFC 3261.&lt;/p&gt;
-&lt;p&gt;Pokud je povoleno, že se SDP během navázání hovoru může změnit, Twinkle neignoruje v následujících odpovědích SDP, nýbrž změní požadovaným způsobem vlastnosti RTP média streamu (např. kodek). Změněné SDP musí mít v &quot;o=&quot; řádku nové číslo verze.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;SIP UAS může odesílat SDP v 1XX odpovědi na zvuk zkraje hovoru, např. vyzváněcí tón. Pokud bude volání přijmuto, měl by SIP UAS dle RFC 3261 poslat to samé SDP v odpovědi 200 OK. Po přijmutí SDP by měly být všechny následující odpovědi SDP být zahozeny.&lt;/p&gt;
+&lt;p&gt;Pokud je povoleno, že se SDP během navázání hovoru může změnit, Twinkle nebude v následujících odpovědích ignorovat SDP, nýbrž změní požadovaným způsobem vlastnosti proudu RTP. Změněné SDP musí mít v &quot;o=&quot; řádku nové číslo verze.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -4740,18 +4741,16 @@ This format is what most SIP phones use.
 &lt;tt&gt;&amp;nbsp;user_domain@local_ip&lt;/tt&gt;
 &lt;/p&gt;
 &lt;p&gt;
-Je tím umožněno vytvoření vícera uživatelských profilů se stejným uživatelským SIP jménem ale s rozdílnými kontaktními adresami v doméně. Tyto profily lze potom použít současně.
+Je tím umožněno vytvoření vícero uživatelských profilů se stejným uživatelským jménem, ale rozdílnou doménou, které pak mají odlišné kontaktní adresy a proto tyto profily lze použít současně.
 &lt;/p&gt;
 &lt;p&gt;
-Mnohé proxy nemusí s takovýmito kontaktními hlavičkami umět zacházet. Pokud je tato volba deaktivována, posílá Twinkle kontaktní hlavičku v následujícím formátu:
+Některé proxy nemusí s takovýmito kontaktními hlavičkami umět zacházet. Pokud je tato volba deaktivována, posílá Twinkle kontaktní hlavičku v následujícím formátu:
 &lt;br&gt;
 &lt;tt&gt;&amp;nbsp;user@local_ip&lt;/tt&gt;
 &lt;/p&gt;
 &lt;p&gt;
-Tento formát je používán téměř všemi SIP telefony.
-&lt;/p&gt;
-&lt;p&gt;
-&lt;b&gt;Používejte tuto volbu jen pokud ji skutečně potřebujete! Tedy pokud máte vícero profilů se stejným uživatelským jménem.&lt;/b&gt;&lt;/p&gt;</translation>
+Tento formát je používán většinou SIP telefonů.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Encode Via, Route, Record-Route as list</source>
@@ -4759,11 +4758,11 @@ Tento formát je používán téměř všemi SIP telefony.
     </message>
     <message>
         <source>The Via, Route and Record-Route headers can be encoded as a list of comma separated values or as multiple occurrences of the same header.</source>
-        <translation>Via-, Route- und Record-Route-Header mohou posílány zakódované jako seznam čárkou oddělených hodnot nebo jako jednotlivé hodnoty. Každá ve zvláštní hlavičce.</translation>
+        <translation>Via-, Route- und Record-Route-Header mohou posílány zakódované jako seznam čárkou oddělených hodnot nebo jako jednotlivé hodnoty, každá ve své hlavičce.</translation>
     </message>
     <message>
         <source>SIP extensions</source>
-        <translation>SIP rozšíření</translation>
+        <translation>Rozšíření SIP</translation>
     </message>
     <message>
         <source>&amp;100 rel (PRACK):</source>
@@ -4794,16 +4793,14 @@ Tento formát je používán téměř všemi SIP telefony.
 &lt;b&gt;required&lt;/b&gt;: 100rel is required (it is put in the require header of an outgoing INVITE). If an incoming INVITE indicates that it supports 100rel, then Twinkle will require a PRACK when sending a 1xx response. A call will fail when the far-end does not support 100rel.
 &lt;br&gt;&lt;br&gt;
 &lt;b&gt;preferred&lt;/b&gt;: Similar to required, but if a call fails because the far-end indicates it does not support 100rel (420 response) then the call will be re-attempted without the 100rel requirement.</source>
-        <translation>Definuje způsob podpory 100rel extension (PRACK):&lt;br&gt;&lt;br&gt;
-&lt;b&gt;deaktivováno&lt;/b&gt;: 100rel rozšíření není podporováno
+        <translation>Definuje způsob podpory rozšíření 100rel(PRACK):&lt;br&gt;&lt;br&gt;
+&lt;b&gt;deaktivováno&lt;/b&gt;: rozšíření 100rel není podporováno
 &lt;br&gt;&lt;br&gt;
 &lt;b&gt;povoleno&lt;/b&gt;: 100rel je podporováno (je přidáno do odchozího INVITE jako podporovaná hlavička). Protistrana si potom může vyžádat PRACK na 1xx odpověď.
 &lt;br&gt;&lt;br&gt;
-&lt;b&gt;vyžadováno&lt;/b&gt;: 100rel je vyžádán. Požadavek je vložen do hlavičky &quot;require header&quot; v odchozím INVITE. Pokud protistrana pošle INVITE (=zavolá) a následně signalizuje, že je 100rel podporován, Twinkle si vyžádá PRACK při zasílání odpovědi 1xx. Pokud protistrana 100rel nepodporuje, nedojde k navázání spojení.
+&lt;b&gt;vyžadováno&lt;/b&gt;: 100rel je vyžadováno. Požadavek je vložen do hlavičky require v odchozím INVITE. Pokud je v příchotím INVITE značeno, že je 100rel podporováno, pak bude Twinkle vyžadovat PRACK v odpovědi 1xx Pokud protistrana 100rel nepodporuje, nedojde k navázání spojení.
 &lt;br&gt;&lt;br&gt;
-&lt;b&gt;Upřednostňováno&lt;/b&gt;: Podobně jako &quot;vyžadováno&quot;, kromě toho, že dojde k navázání hovoru i když protistrana 100rel nepodporuje.
-
-Toto nastavení ovlivňuje chování při &quot;early media&quot; (např. při znaku &quot;volné linky&quot;).</translation>
+&lt;b&gt;upřednostňováno&lt;/b&gt;: Podobné jako &quot;vyžadováno&quot;, akorát že v případě, že hovor selže, jelikož protistrana nepodporuje 100rel (odpověď 420), pak se Twinkle pokusí hovor znovu navázat bez vyžadování 100rel.</translation>
     </message>
     <message>
         <source>REFER</source>
@@ -4823,11 +4820,11 @@ Toto nastavení ovlivňuje chování při &quot;early media&quot; (např. při z
     </message>
     <message>
         <source>Indicates if Twinkle should transfer a call if a REFER request is received.</source>
-        <translation>Pokud je aktivováno, Twinkle následuje požadavek protistrany (REFER) přesměrovat volání na jinou adresu. Při tomto vám mohou vzniknout dodatečné finanční výdaje.</translation>
+        <translation>Pokud je aktivováno, Twinkle následuje požadavek protistrany (REFER) přesměrovat volání na jinou adresu.</translation>
     </message>
     <message>
         <source>As&amp;k user permission to transfer</source>
-        <translation>Dotázat se uživatele na &amp;povolení</translation>
+        <translation>Dotázat se uživatele na &amp;povolení přesměrování</translation>
     </message>
     <message>
         <source>Alt+K</source>
@@ -4835,23 +4832,23 @@ Toto nastavení ovlivňuje chování při &quot;early media&quot; (např. při z
     </message>
     <message>
         <source>Indicates if Twinkle should ask the user before transferring a call when a REFER request is received.</source>
-        <translation>Pokud je aktivováno, dotazuje se Twinkle při příchozím (REFER) požadavku na povolení přesměrování. Oproti pevné nebo GSM síti nepřebírá náklady hovoru ten, kdo volání přesměrovává, nýbrž ten kdo volání iniciuje.</translation>
+        <translation>Pokud je aktivováno, dotazuje se Twinkle při příchozím (REFER) požadavku na povolení přesměrování.</translation>
     </message>
     <message>
         <source>Hold call &amp;with referrer while setting up call to transfer target</source>
-        <translation>T&amp;winkle mezitím co zprostředkuje přesměrování, podrží hovor</translation>
+        <translation>Podržet ho&amp;vor, zatím co se spojuje cíl přepojení</translation>
     </message>
     <message>
         <source>Alt+W</source>
-        <translation></translation>
+        <translation>Alt+V</translation>
     </message>
     <message>
         <source>Indicates if Twinkle should put the current call on hold when a REFER request to transfer a call is received.</source>
-        <translation>Pokud je aktivováno, Twinkle při příchozím požadavku REFER na přesměrování podrží stávající hovor. Normálně by to měla provést zprostředkovávající protistrana. Viz následující volbu. Standardně je to vypnuto.</translation>
+        <translation>Pokud je aktivováno, Twinkle při příchozím požadavku REFER na přesměrování podrží stávající hovor.</translation>
     </message>
     <message>
         <source>Ho&amp;ld call with referee before sending REFER</source>
-        <translation>Twink&amp;le předtím než pošle signál REFER, podrží hovor jako zprostředkovatel</translation>
+        <translation>Podržet hovor před odes&amp;láním REFER</translation>
     </message>
     <message>
         <source>Alt+L</source>
@@ -4859,8 +4856,7 @@ Toto nastavení ovlivňuje chování při &quot;early media&quot; (např. při z
     </message>
     <message>
         <source>Indicates if Twinkle should put the current call on hold when you transfer a call.</source>
-        <translation>Pokud je aktivováno, Twinkle jako zprostředkovatel, předtím než pošle protistraně požadavek REFER o přesměrování, přepne stávající hovor do stavu podržení. Viz předchozí volba.
-Standardně: aktivováno.</translation>
+        <translation>Značí, zda má Twinkle přidržet hovor při jeho přesměrování.</translation>
     </message>
     <message>
         <source>Auto re&amp;fresh subscription to refer event while call transfer is not finished</source>
@@ -4876,11 +4872,11 @@ Standardně: aktivováno.</translation>
     </message>
     <message>
         <source>NAT traversal</source>
-        <translation>NAT traversal</translation>
+        <translation>Překonání NATu</translation>
     </message>
     <message>
         <source>&amp;NAT traversal not needed</source>
-        <translation>&amp;NAT traversal není nutný</translation>
+        <translation>Překonání &amp;NATu není nutné</translation>
     </message>
     <message>
         <source>Alt+N</source>
@@ -4888,18 +4884,16 @@ Standardně: aktivováno.</translation>
     </message>
     <message>
         <source>Choose this option when there is no NAT device between you and your SIP proxy or when your SIP provider offers hosted NAT traversal.</source>
-        <translation>Vybrat tuto volbu, pokud se mezi Twinkle a vaší SIP proxy nenachází žádný NAT (router).
-Anebo pokud sice NAT existuje, ale je konfigurovaný tak, že potřebné porty jsou již na vás přesměrované. Popřípadě pokud váš SIP poskytovatel podporuje &quot;hosted NAT traversal&quot; (způsob jak VoIP poskytovatelé dokáží obejít problémy s NAT).</translation>
+        <translation>Zvolte tuto volbu, pokud se mezi Twinkle a vaší SIP proxy nenachází žádný NAT nebo pokud váš poskytovatel umí sám NAT překonat.</translation>
     </message>
     <message>
         <source>&amp;Use statically configured public IP address inside SIP messages</source>
-        <translation>V SIP telegramech použít &amp;pevně nastavenou IP adresu</translation>
+        <translation>Ve zprávách SIP použít &amp;pevně nastavenou veřejnou IP adresu</translation>
     </message>
     <message>
         <source>Indicates if Twinkle should use the public IP address specified in the next field inside SIP message, i.e. in SIP headers and SDP body instead of the IP address of your network interface.&lt;br&gt;&lt;br&gt;
 When you choose this option you have to create static address mappings in your NAT device as well. You have to map the RTP ports on the public IP address to the same ports on the private IP address of your PC.</source>
-        <translation>Pokud je aktivováno, Twinkle použije uvnitř SIP zpráv (v SIP hlavičce a SDP obsahu) veřejnou IP adresu, namísto IP adresy vašeho síťového rozhraní.
-
+        <translation>Pokud je aktivováno, Twinkle použije uvnitř zpráv SIP (v hlavičce SIP a těle SDP) veřejnou IP adresu, namísto IP adresy vašeho síťového rozhraní.&lt;br&gt;&lt;br&gt;
 Pokud si tuto volbu vyberete, musíte rovněž na vašem NAT zařízení nasměrovat odpovídající RTP porty na váš počítač.</translation>
     </message>
     <message>
@@ -4908,7 +4902,7 @@ Pokud si tuto volbu vyberete, musíte rovněž na vašem NAT zařízení nasměr
     </message>
     <message>
         <source>Choose this option when your SIP provider offers a STUN server for NAT traversal.</source>
-        <translation>Vybrat tuto volbu, pokud váš SIP poskytovatel nabízí STUN server k přemostění vaší NAT.</translation>
+        <translation>Vyberte tuto volbu, pokud váš poskytovatel SIP nabízí STUN server k přemostění vašeho NATu.</translation>
     </message>
     <message>
         <source>S&amp;TUN server:</source>
@@ -4916,15 +4910,15 @@ Pokud si tuto volbu vyberete, musíte rovněž na vašem NAT zařízení nasměr
     </message>
     <message>
         <source>The hostname, domain name or IP address of the STUN server.</source>
-        <translation>Doménové jméno, IP adresa nebo jméno STUN serveru (podle potřeby též včetně &quot;:&lt;portnr&gt;&quot;, např. &quot;stunsrv.cz:10000&quot;).</translation>
+        <translation>Doménové jméno, IP adresa nebo jméno STUN serveru.</translation>
     </message>
     <message>
         <source>&amp;Public IP address:</source>
-        <translation>Veřejná &amp;adresa:</translation>
+        <translation>Veřejná IP &amp;adresa:</translation>
     </message>
     <message>
         <source>The public IP address of your NAT.</source>
-        <translation>Veřejná adresa (IP, DynDNS-doména), pod kterou je váš NAT (realizovaný např. na vám nejbližším routeru) dosažitelný v internetu. Tato volba má smysl jen při neměnné adrese.</translation>
+        <translation>Veřejná adresa vašeho NATu.</translation>
     </message>
     <message>
         <source>Telephone numbers</source>
@@ -4936,7 +4930,7 @@ Pokud si tuto volbu vyberete, musíte rovněž na vašem NAT zařízení nasměr
     </message>
     <message>
         <source>If a URI indicates a telephone number, then only display the user part. E.g. if a call comes in from sip:123456@twinklephone.com then display only &quot;123456&quot; to the user. A URI indicates a telephone number if it contains the &quot;user=phone&quot; parameter or when it has a numerical user part and you ticked the next option.</source>
-        <translation>Pokud URI zjistí telefonní číslo, zobrazí se jen uživatelská část adresy. Např. pokud přijde volání od sip:12345@voipprovider.com, ukáže Twinkle jako adresu jen &quot;12345&quot;. URI je považováno jako &quot;Telefonní číslo&quot;, pokud obsahuje parametr &quot;user=phone&quot; nebo pokud je aktivní následující volba a uživatelská část adresy je numerická.</translation>
+        <translation>Pokud URI značí telefonní číslo, zobrazí se jen uživatelská část adresy. Např. pokud přijde volání od sip:12345@voipprovider.com, ukáže Twinkle jako adresu jen &quot;12345&quot;. URI je považováno za telefonní číslo, pokud obsahuje parametr &quot;user=phone&quot; nebo pokud je aktivní následující volba a uživatelská část adresy je numerická.</translation>
     </message>
     <message>
         <source>&amp;URI with numerical user part is a telephone number</source>
@@ -4944,20 +4938,19 @@ Pokud si tuto volbu vyberete, musíte rovněž na vašem NAT zařízení nasměr
     </message>
     <message>
         <source>If you tick this option, then Twinkle considers a SIP address that has a user part that consists of digits, *, #, + and special symbols only as a telephone number. In an outgoing message, Twinkle will add the &quot;user=phone&quot; parameter to such a URI.</source>
-        <translation>Pokud je aktivováno, považuje Twinkle každou SIP adresu jako &quot;Telefonní číslo&quot;, které může mít v uživatelské části pouze číslice, *, #, + a zvláštní znaky (viz výše). V odchozím SIP zprávách označí Twinkle takové adresy parametrem &quot;user=phone&quot;.
-Pozor: Např. poskytovatel Sipgate měnil/mění výrazně své chování v mnohých funkcích, jakmile je tento parametr detekován.</translation>
+        <translation>Pokud je aktivováno, považuje Twinkle každou SIP adresu za telefonní číslo, pokud má v uživatelské části pouze číslice, *, #, + a zvláštní znaky. V odchozím SIP zprávách označí Twinkle takové adresy parametrem &quot;user=phone&quot;.</translation>
     </message>
     <message>
         <source>&amp;Remove special symbols from numerical dial strings</source>
-        <translation>&amp;Odstranit z vytáčecího řetězce zvláštní znaky</translation>
+        <translation>&amp;Odstranit z telefonního čísla zvláštní znaky</translation>
     </message>
     <message>
         <source>Telephone numbers are often written with special symbols like dashes and brackets to make them readable to humans. When you dial such a number the special symbols must not be dialed. To allow you to simply copy/paste such a number into Twinkle, Twinkle can remove these symbols when you hit the dial button.</source>
-        <translation>Aby byla telefonní čísla snázeji čitelná, bývají často zadána s použitím zvláštních znaků jako např. &quot;(&quot;, &quot;)&quot;, &quot; &quot;(prázdný znak), &quot;-&quot;. Při vytáčení, obzvláště nějaké SIP adresy, nesmí být tyto znaky vysílány. Aby bylo možné zjednodušit vytáčení pomocí copy/paste nebo přímým nakliknutím v adresáři, lze Twinkle zadat seznam nepřípustných znaků. Ty budou před samotným vytáčením automaticky z adresy odstraněny.</translation>
+        <translation>Aby byla telefonní čísla snázeji čitelná, bývají často zadána s použitím zvláštních znaků jako např. &quot;(&quot;, &quot;)&quot;, &quot; &quot;(prázdný znak), &quot;-&quot;. Při vytáčení, obzvláště nějaké SIP adresy, nesmí být tyto znaky vysílány. Aby bylo možné zjednodušit vytáčení pomocí copy/paste, Twinkle může tyto znaky při vytáčení automaticky odstranit.</translation>
     </message>
     <message>
         <source>&amp;Special symbols:</source>
-        <translation>nepřípustné &amp;zvláštní znaky:</translation>
+        <translation>&amp;Zvláštní znaky:</translation>
     </message>
     <message>
         <source>The special symbols that may be part of a telephone number for nice formatting, but must be removed when dialing.</source>
@@ -5076,15 +5069,15 @@ Poznámka: Toto pravidlo nelze nastavit jednoduše jako třetí pravidlo ke dvou
     </message>
     <message>
         <source>Type a telephone number here an press the Test button to see how it is converted by the list of number conversion rules.</source>
-        <translation>Pro ověření funkčnosti vytvořeného konverzního pravidla, napište zde zkušební telefonní číslo a stiskněte &quot;Test&quot;.</translation>
+        <translation>Pro ověření funkčnosti vytvořeného konverzního pravidla sem napište zkušební telefonní číslo a stiskněte Test.</translation>
     </message>
     <message>
         <source>&amp;Test</source>
-        <translation>&amp;Otestovat</translation>
+        <translation>&amp;Test</translation>
     </message>
     <message>
         <source>Test how a number is converted by the number conversion rules.</source>
-        <translation>Otestovat jak bude číslo převedeno konverzními pravidly.</translation>
+        <translation>Otestovat, jak bude číslo převedeno konverzními pravidly.</translation>
     </message>
     <message>
         <source>for STUN</source>
@@ -5096,19 +5089,19 @@ Poznámka: Toto pravidlo nelze nastavit jednoduše jako třetí pravidlo ke dvou
     </message>
     <message>
         <source>When an incoming call is received, this timer is started. If the user answers the call, the timer is stopped. If the timer expires before the user answers the call, then Twinkle will reject the call with a &quot;480 User Not Responding&quot;.</source>
-        <translation>Pokud je detekováno příchozí volání, spustí se tento časovač. Pokud nebude volání do konce vypršení časové prodlevy přijato, vyšle Twinkle signál &quot;480 User Not Responding&quot; a hovor odmítne.</translation>
+        <translation>Tento časovač je spuštěn při příchozím hovoru. Pokud nebude volání do konce vypršení časové prodlevy přijato, pak Twinkle hovor odmítne zprávou &quot;480 User Not Responding&quot;.</translation>
     </message>
     <message>
         <source>NAT &amp;keep alive:</source>
-        <translation>&amp;STUN NAT-keep-alive:</translation>
+        <translation>&amp;Keep alive NATu:</translation>
     </message>
     <message>
         <source>&amp;No answer:</source>
-        <translation>&quot;&amp;Nedostupný&quot; po:</translation>
+        <translation>&amp;Nedostupný po:</translation>
     </message>
     <message>
         <source>Ring &amp;back tone:</source>
-        <translation>Tón &amp;volné linky:</translation>
+        <translation>Tón zv&amp;onění u volaného:</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5117,9 +5110,9 @@ Specify the file name of a .wav file that you want to be played as ring back ton
 &lt;p&gt;
 This ring back tone overrides the ring back tone settings in the system settings.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;Zadejte zde jméno .wav souboru pro signál volné linky v tomto uživatelském profilu.&lt;/p&gt;
+        <translation>&lt;p&gt;Zadejte zde jméno .wav souboru pro indikaci zvonění u volaného pro tohoto uživatele.&lt;/p&gt;
 
-&lt;p&gt;Tento tón nahrazuje tón volné linky ze systémového nastavení.&lt;/p&gt;</translation>
+&lt;p&gt;Tento tón nahrazuje tón zvonění u volaného ze systémového nastavení.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5331,23 +5324,23 @@ Obsahy všech SIP hlaviček odeslaných SIP INVITE požadavků budou předány t
     </message>
     <message>
         <source>&amp;Enable ZRTP/SRTP encryption</source>
-        <translation>Aktivovat ZRTP/SRTP &amp;šifrování</translation>
+        <translation>Povolit &amp;šifrování ZRTP/SRTP</translation>
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</source>
-        <translation>Pokud je aktivováno, pokusí se Twinkle při všech odchozích a příchozích hovorech zašifrovat zvuková data. Aby byl hovor opravdu zašifrován musí i protistrana podporovat šifrování ZRTP/SRTP. Jinak zůstane hovor nezakódován.</translation>
+        <translation>Pokud je aktivováno, pokusí se Twinkle při všech odchozích a příchozích hovorech zašifrovat zvuková data. Aby byl hovor opravdu zašifrován musí i protistrana podporovat šifrování ZRTP/SRTP. Jinak zůstane hovor nešifrovaný.</translation>
     </message>
     <message>
         <source>ZRTP settings</source>
-        <translation>ZRTP nastavení</translation>
+        <translation>Nastavení ZRTP</translation>
     </message>
     <message>
         <source>O&amp;nly encrypt audio if remote party indicated ZRTP support in SDP</source>
-        <translation>&amp;Zašifrovat jen pokud protistrana potvrdí podporu ZRTP </translation>
+        <translation>&amp;Zašifrovat, jen pokud protistrana potvrdí podporu ZRTP v SDP</translation>
     </message>
     <message>
         <source>A SIP endpoint supporting ZRTP may indicate ZRTP support during call setup in its signalling. Enabling this option will cause Twinkle only to encrypt calls when the remote party indicates ZRTP support.</source>
-        <translation>Protistrana schopná ZRTP může toto oznámit již na začátku navázání rozhovoru. Pokud je aktivována tato volba, pokusí se Twinkle v takových případech použít zašifrovaného přenosu hovoru.</translation>
+        <translation>Protistrana podporující ZRTP může toto oznámit již na začátku navázání rozhovoru. Pokud je aktivována tato volba, pokusí se Twinkle v takových případech použít zašifrovaný přenos hovoru.</translation>
     </message>
     <message>
         <source>&amp;Indicate ZRTP support in SDP</source>
@@ -5367,7 +5360,7 @@ Obsahy všech SIP hlaviček odeslaných SIP INVITE požadavků budou předány t
     </message>
     <message>
         <source>Dynamic payload type %1 is used more than once.</source>
-        <translation>Dynamický payload typ %1 je použit vícekrát.</translation>
+        <translation>Dynamický typ payloadu %1 je použit vícekrát.</translation>
     </message>
     <message>
         <source>You must fill in a user name for your SIP account.</source>
@@ -5376,10 +5369,8 @@ Obsahy všech SIP hlaviček odeslaných SIP INVITE požadavků budou předány t
     <message>
         <source>You must fill in a domain name for your SIP account.
 This could be the hostname or IP address of your PC if you want direct PC to PC dialing.</source>
-        <translation>K vašemu SIP účtu musíte vyplnit doménové jméno. (část vpravo od znaku @)
-Často je shodné s doménovým jménem vašeho SIP poskytovatele.
-
-Pro přímé IP-to-IP spojení, tedy bez SIP poskytovatele, je to doménové jméno nebo veřejná IP adresa vašeho počítače. </translation>
+        <translation>K vašemu SIP účtu musíte vyplnit doménové jméno)
+Pro přímé volání mezi IP adresami je to doménové jméno nebo veřejná IP adresa vašeho počítače. </translation>
     </message>
     <message>
         <source>Invalid user name.</source>
@@ -5387,7 +5378,7 @@ Pro přímé IP-to-IP spojení, tedy bez SIP poskytovatele, je to doménové jm�
     </message>
     <message>
         <source>Invalid domain.</source>
-        <translation>Chybné jméno domény.</translation>
+        <translation>Chybný název domény.</translation>
     </message>
     <message>
         <source>Invalid value for registrar.</source>
@@ -5395,7 +5386,7 @@ Pro přímé IP-to-IP spojení, tedy bez SIP poskytovatele, je to doménové jm�
     </message>
     <message>
         <source>Invalid value for outbound proxy.</source>
-        <translation>Chybné jméno outbound proxy.</translation>
+        <translation>Chybné jméno odchozí proxy.</translation>
     </message>
     <message>
         <source>Value for public IP address missing.</source>
@@ -5425,7 +5416,7 @@ Pro přímé IP-to-IP spojení, tedy bez SIP poskytovatele, je to doménové jm�
     </message>
     <message>
         <source>Choose incoming call script</source>
-        <translation>Výběr skriptu ke spuštění při &quot;příchozím volání&quot;</translation>
+        <translation>Vyberte skript ke spuštění při příchozím volání</translation>
     </message>
     <message>
         <source>Choose incoming call answered script</source>
@@ -5433,47 +5424,47 @@ Pro přímé IP-to-IP spojení, tedy bez SIP poskytovatele, je to doménové jm�
     </message>
     <message>
         <source>Choose incoming call failed script</source>
-        <translation>Výběr skriptu ke spuštění po selhání příchozího volání</translation>
+        <translation>Vyberte skript ke spuštění po selhání příchozího volání</translation>
     </message>
     <message>
         <source>Choose outgoing call script</source>
-        <translation>Výběr skriptu ke spuštění při odchozím volání</translation>
+        <translation>Vyberte skript ke spuštění při odchozím volání</translation>
     </message>
     <message>
         <source>Choose outgoing call answered script</source>
-        <translation>Výběr skriptu ke spuštění při přijetí volání protistranou</translation>
+        <translation>Vyberte skript ke spuštění při přijetí volání protistranou</translation>
     </message>
     <message>
         <source>Choose outgoing call failed script</source>
-        <translation>Výběr skriptu ke spuštění při selhání odchozího volání</translation>
+        <translation>Vyberte skript ke spuštění při selhání odchozího volání</translation>
     </message>
     <message>
         <source>Choose local release script</source>
-        <translation>Výběr skriptu ke spuštění při vlastním ukončení hovoru</translation>
+        <translation>Vyberte skript ke spuštění při vlastním ukončení hovoru</translation>
     </message>
     <message>
         <source>Choose remote release script</source>
-        <translation>Výběr skriptu ke spuštění při ukončení hovoru protistranou</translation>
+        <translation>Vyberte skript ke spuštění při ukončení hovoru protistranou</translation>
     </message>
     <message>
         <source>Voice mail</source>
-        <translation>Záznamník hovorů</translation>
+        <translation>Hlasová schránka</translation>
     </message>
     <message>
         <source>&amp;Follow codec preference from far end on incoming calls</source>
-        <translation>Kodeky pro přenos hlasu při příchozím volání &amp;vybere protistrana</translation>
+        <translation>U příchozích hovorů dávat přednost kodekům dle pre&amp;ferencí protistrany</translation>
     </message>
     <message>
         <source>&lt;p&gt;
 For incoming calls, follow the preference from the far-end (SDP offer). Pick the first codec from the SDP offer that is also in the list of active codecs.
 &lt;p&gt;
 If you disable this option, then the first codec from the active codecs that is also in the SDP offer is picked.</source>
-        <translation>Pokud je aktivováno, Twinkle upřednostní při příchozím volání povolené kodeky protistrany (SDP offer). Konkrétně bude použit první kodek, který je protistranou nabízen a rovněž se nachází v seznamu lokálních Twinkle kodeků.
+        <translation>Pokud je aktivováno, Twinkle upřednostní při příchozím volání povolené kodeky protistrany (SDP offer). Konkrétně bude použit první kodek, který je protistranou nabízen a rovněž se nachází v seznamu lokálních kodeků.
 Pokud je deaktivováno, použije Twinkle první kodek ve vlastním seznamu, který je rovněž podporován protistranou.</translation>
     </message>
     <message>
         <source>Follow codec &amp;preference from far end on outgoing calls</source>
-        <translation>Následovat &amp;upřednostněné kodeky protistranou při odchozím volání</translation>
+        <translation>U odchozích hovorů dávat přednost kodekům dle pre&amp;ferencí protistrany</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5497,40 +5488,39 @@ Pokud je deaktivováno, použije Twinkle první kodek z vlastního seznamu, kter
     </message>
     <message>
         <source>There are 2 standards to pack the G.726 codewords into an RTP packet. RFC 3551 is the default packing method. Some SIP devices use ATM AAL2 however. If you experience bad quality using G.726 with RFC 3551 packing, then try ATM AAL2 packing.</source>
-        <translation>Existují dvě metody zařazení datových paketů G.726 do RTP paketu. Standardně je to RFC 3551. Někteří SIP poskytovatelé používají ovšem ATM AAL2. Pokud je přenos zvuku při použití kodeku G.726 zarušen, je možné zde zkusit jiné nastavení.</translation>
+        <translation>Existují dvě metody balení datových paketů G.726 do RTP paketu. Standardně je to RFC 3551. Někteří SIP poskytovatelé používají ovšem ATM AAL2. Pokud je přenos zvuku při použití kodeku G.726 zarušen, je možné zde zkusit jiné nastavení.</translation>
     </message>
     <message>
         <source>Replaces</source>
-        <translation>Nahrazení</translation>
+        <translation>Rozšíření Replaces</translation>
     </message>
     <message>
         <source>Indicates if the Replaces-extenstion is supported.</source>
-        <translation>Pokud je aktivováno, podporuje Twinkle Replaces-Extension u metody PRACK.</translation>
+        <translation>Indikuje, zda je rozšíření Replaces podporováno.</translation>
     </message>
     <message>
         <source>Attended refer to AoR (Address of Record)</source>
-        <translation>Přesměrování se zpětným dotazem použije &quot;Address of Record&quot;</translation>
+        <translation>Asistovaně přepojovat na AoR (Address of Record)</translation>
     </message>
     <message>
         <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endoint.</source>
-        <translation>Přesměrování se zpětným dotazem by mělo používat Contact-URI jako cílovou adresu pro sdělení nového spojení přesměrovávané protistraně. Tato adresa nemusí být ovšem globálně platná. Může být tzv. &quot;neroutovatelná&quot;. Přesměrované volání se pak nemusí dostat k cíli. 
-Alternativně může Twinkle použít AoR (Address of Record). Nevýhodou je, že při více uživatelských SIP účtech nejsou přihlášená koncová zařízení jednoznačně určená. Tzn. že přeměrovávací protistranou (vlastně SIP poskytovatelem) budou oslovena všechna koncová zařízení a budou signalizovat příchozí volání.</translation>
+        <translation>Asistované přepojení by mělo používat Contact-URI jako cílovou adresu pro sdělení nového spojení přesměrovávané protistraně. Tato adresa nemusí být ovšem globálně platná. Alternativně se může použít AoR (Address of Record). Nevýhodou je, že při více koncových zařízeních není AoR jednoznačné, zatímco URI kontaktu směřuje na jediné zařízení.</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation>Ochrana soukromých data</translation>
+        <translation>Soukromí</translation>
     </message>
     <message>
         <source>Privacy options</source>
-        <translation>Nastavení ochrany soukromých dat</translation>
+        <translation>Nastavení ochrany soukromí</translation>
     </message>
     <message>
         <source>&amp;Send P-Preferred-Identity header when hiding user identity</source>
-        <translation>&amp;Posílat &quot;P-Preferred-Identity Header&quot; při skrytí identity uživatele</translation>
+        <translation>&amp;Posílat hlavičku P-Preferred-Identity při skrývání identity uživatele</translation>
     </message>
     <message>
         <source>Include a P-Preferred-Identity header with your identity in an INVITE request for a call with identity hiding.</source>
-        <translation>Pokud je vybráno a je aktivována volba &quot;skrýt odesilatele&quot;, bude spolu s údajem odesilatele odeslán při požadavku INVITE &quot;P-Preferred-Identity Header&quot;.</translation>
+        <translation>Pokud je vybráno a je aktivována volba &quot;skrýt odesilatele&quot;, bude spolu s údajem odesilatele odeslána při požadavku INVITE hlacička P-Preferred-Identity.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5586,17 +5576,17 @@ The values of all SIP headers in the incoming INVITE message are passed in envir
 &lt;p&gt;
 TWINKLE_TRIGGER=in_call. SIPREQUEST_METHOD=INVITE. The request-URI of the INVITE will be passed in &lt;b&gt;SIPREQUEST_URI&lt;/b&gt;. The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
         <translation>&lt;p&gt;
-Tento skript bude vyvolán, pokud bude detekován požadavek INVITE (volání). &lt;br&gt;
-Prostudujte si prosím příručku v &quot;/usr/share/doc/packages/twinkle/...&quot; nebo podrobnou dokumentaci na &quot;http://twinklephone.com&quot; !
+Zde můžete upravit, jak Twinkle obslouží příchozí hovory. Twinkle může při příchozích hovorech spustit skript. V závislosti na výstupu skriptu Twinkle přijme, odmítne nebo přesměruje hovor. Skript může ovlivnit také vyzváněcí tón. Může se jednat o libovolný spustitelný program.
 &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Poznámka:&lt;/b&gt; Twinkle přestane po dobu běhu skriptu pracovat. Doporučujeme, aby skript neběžel déle než 200 ms. Pokud potřebujete více času, můžete po odeslání parametrů poslat &lt;b&gt;end&lt;/b&gt; a pokračovat v běhu. Twinkle bude sám po přijetí parametru &lt;b&gt;end&lt;/b&gt; pokračovat v běhu.
 &lt;h3&gt;Vrácené hodnoty&lt;/h3&gt; -   print po STDOUT (např. `echo &quot;action=dnd&quot;`), jedna hodnota na řádek: &lt;br&gt;
 &lt;tt&gt;action=[ continue | reject | dnd | redirect | autoanswer ]&lt;br&gt;&lt;/tt&gt;
 &lt;blockquote&gt;
-&lt;i&gt;continue&lt;/i&gt; - pokračovat v normálním zpracování volání (default)&lt;br&gt;
+&lt;i&gt;continue&lt;/i&gt; - pokračovat v normálním zpracování volání (výchozí)&lt;br&gt;
 &lt;i&gt;reject&lt;/i&gt; - odmítnout volání&lt;br&gt;
-&lt;i&gt;dnd&lt;/i&gt; - odmítnout volání s poznámkou &quot;do not disturb&quot;&lt;br&gt;
-&lt;i&gt;redirect&lt;/i&gt; - přesměrovat volání na &lt;tt&gt;contact&lt;/tt&gt; (viz tam)&lt;br&gt;
-&lt;i&gt;autoanswer&lt;/i&gt; - volání &quot;automaticky&quot; přijmout&lt;br&gt;
+&lt;i&gt;dnd&lt;/i&gt; - odmítnout volání s poznámkou &quot;nerušit&quot;&lt;br&gt;
+&lt;i&gt;redirect&lt;/i&gt; - přesměrovat volání na &lt;tt&gt;contact&lt;/tt&gt;&lt;br&gt;
+&lt;i&gt;autoanswer&lt;/i&gt; - volání automaticky přijmout&lt;br&gt;
 &lt;/blockquote&gt;
 &lt;br&gt;
 &lt;tt&gt;reason=&amp;lt;string&amp;gt;   &lt;/tt&gt;pro dnd a reject (zobrazení u protistrany)&lt;br&gt;
@@ -5620,19 +5610,19 @@ TWINKLE_USER_PROFILE obsahuje jméno uživatelského profilu, pro který je př�
     </message>
     <message>
         <source>&amp;Voice mail address:</source>
-        <translation>&amp;Adresa záznamníku hovorů:</translation>
+        <translation>&amp;Adresa hlasové schránky:</translation>
     </message>
     <message>
         <source>The SIP address or telephone number to access your voice mail.</source>
-        <translation>SIP adresa nebo telefonní číslo, pod kterým je dosažitelný záznamník hovorů vašeho SIP poskytovatele. Někdy jsou dána dvě čísla. Jedno pro přístup z libovolného telefonu, např. &quot;00420 211 58000111&quot;) a jedno SIP číslo, např. &quot;50000&quot;. Potom by zde mělo být uvedeno SIP číslo.</translation>
+        <translation>SIP adresa nebo telefonní číslo pro přístup k vaší hlasové schránce.</translation>
     </message>
     <message>
         <source>Unsollicited</source>
-        <translation>Asterisk režim</translation>
+        <translation>Nevyžádané</translation>
     </message>
     <message>
         <source>Sollicited</source>
-        <translation>RFC 3842</translation>
+        <translation>Vyžádané</translation>
     </message>
     <message>
         <source>&lt;H2&gt;Message waiting indication type&lt;/H2&gt;
@@ -5647,98 +5637,98 @@ Asterisk provides unsollicited message waiting indication.
 &lt;p&gt;
 Sollicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</source>
-        <translation>&lt;H2&gt;Message waiting indication Typ&lt;/H2&gt;
+        <translation>&lt;H2&gt;Typ indikace čekajících zpráv&lt;/H2&gt;
 &lt;p&gt;
-Pokud váš SIP poskytovatel nabízí &quot;message waiting indication&quot; = upozornění na uložené zprávy v záznamníku, může vás Twinkle informovat o nových i již vyslechnutých zprávách na vašem SIP záznamníku. V závisloti od vašeho poskytovatele, popř. jím používaným typem záznamníkové služby, je nutné zde nastavit jednu z náledujících metod přístupu:
+Pokud váš SIP poskytovatel nabízí upozornění na uložené zprávy v hlasové schránce, může vás Twinkle informovat o nových i již vyslechnutých zprávách ve vaší hlasové schránce. Zeptejte se vašeho poskytovatele, jaký typ indikace čekajících zpráv je používán
 &lt;/p&gt;
-&lt;H3&gt;Asterisk&lt;/H3&gt;
+&lt;H3&gt;Nevyžádané&lt;/H3&gt;
 &lt;p&gt;
-Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
+Asterisk podporuje nevyžádané indikování čekajících zpráv.
 &lt;/p&gt;
-&lt;H3&gt;RFC 3842&lt;/H3&gt;
+&lt;H3&gt;Vyžádané&lt;/H3&gt;
 &lt;p&gt;
-&quot;Sollicited message waiting indication&quot; dle specifikace RFC 3842.
+Vyžádaná indikace čekajících zpráv dle RFC 3842.
 &lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;MWI type:</source>
-        <translation>&amp;MWI Typ:</translation>
+        <translation>Typ &amp;MWI:</translation>
     </message>
     <message>
         <source>Sollicited MWI</source>
-        <translation>RFC 3842</translation>
+        <translation>Vyžádané MWI</translation>
     </message>
     <message>
         <source>Subscription &amp;duration:</source>
-        <translation>Doba &amp;platnosti přihlášení:</translation>
+        <translation>Doba &amp;platnosti odběru:</translation>
     </message>
     <message>
         <source>Mailbox &amp;user name:</source>
-        <translation>Uživatelské jméno &amp;mailboxu:</translation>
+        <translation>Uživatelské jméno &amp;hlasové schránky:</translation>
     </message>
     <message>
         <source>The hostname, domain name or IP address of your voice mailbox server.</source>
-        <translation>Síťové jméno stanice, doménové jméno nebo IP adresa hlasového Voice-Mailbox serveru. Pokud vám váš poskytovatel k záznamníku neposkytl žádné údaje, zkuste jméno domény vašeho uživatelského účtu.</translation>
+        <translation>Jméno hostitele, doménové jméno nebo IP adresa serveru vaší hlasové schránky.</translation>
     </message>
     <message>
         <source>For sollicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
-        <translation>Ve specifikaci RFC 3842 MWI se koncové zařízení (Twinkle) hlásí na serveru k příjmu zpráv (SUBSCRIBE) na určitou dobu a před vypršením této doby by se přihlášení mělo znovu obnovit. Podobně jako &quot;expiry time&quot; / &quot;doba platnosti&quot; pro REGISTER. Viz SIP server.</translation>
+        <translation>Dle specifikace MWI se koncové zařízení hlásí na serveru k příjmu zpráv na určitou dobu a před vypršením této doby by se přihlášení mělo znovu obnovit.</translation>
     </message>
     <message>
         <source>Your user name for accessing your voice mailbox.</source>
-        <translation>Uživatelské jméno k přístupu na váš Voice-Mailbox (záznamník hovorů). Pokud vám váš poskytovatel toto nesdělí, zkuste to s vaším SIP jménem.</translation>
+        <translation>Uživatelské jméno pro přístup k vaší hlasové schránce.</translation>
     </message>
     <message>
         <source>Mailbox &amp;server:</source>
-        <translation>Mailbox &amp;server:</translation>
+        <translation>&amp;Server hlasové schránky:</translation>
     </message>
     <message>
         <source>Via outbound &amp;proxy</source>
-        <translation>Přes Outbound &amp;proxy</translation>
+        <translation>Přes odchozí &amp;proxy</translation>
     </message>
     <message>
         <source>Check this option if Twinkle should send SIP messages to the mailbox server via the outbound proxy.</source>
-        <translation>Pokud je aktivováno, zasílá Twinkle SIP požadavky na Mailbox přes outbound proxy.</translation>
+        <translation>Pokud je aktivováno, pak Twinkle zasílá SIP zprávy na server hlasové schránky přes odchozí proxy.</translation>
     </message>
     <message>
         <source>You must fill in a mailbox user name.</source>
-        <translation>Musíte zadat uživatelské jméno pro Mailbox.</translation>
+        <translation>Musíte vyplnit uživatelské jméno hlasové schránky.</translation>
     </message>
     <message>
         <source>You must fill in a mailbox server</source>
-        <translation>Musíte zadat Mailbox-Server</translation>
+        <translation>Musíte vyplnit server hlasové schránky</translation>
     </message>
     <message>
         <source>Invalid mailbox server.</source>
-        <translation>Neplatné jméno pro Mailbox-Server.</translation>
+        <translation>Neplatný server hlasové schránky.</translation>
     </message>
     <message>
         <source>Invalid mailbox user name.</source>
-        <translation>Nepřípustné jméno Mailboxu.</translation>
+        <translation>Neplatné uživatelské jméno hlasové schránky.</translation>
     </message>
     <message>
         <source>Use domain &amp;name to create a unique contact header value</source>
-        <translation>Použít doménové &amp;jméno pro vytvoření jednoznačné kontaktní hlavičky</translation>
+        <translation>Použít doménové &amp;jméno pro vytvoření jednoznačné hlavičky Contact</translation>
     </message>
     <message>
         <source>Select ring back tone file.</source>
-        <translation>Výběr souboru pro vyzváněcí tón u protistrany.</translation>
+        <translation>Vyberte soubor pro vyzváněcí tón u protistrany.</translation>
     </message>
     <message>
         <source>Select ring tone file.</source>
-        <translation>Výběr souboru pro vyzváněcí tón.</translation>
+        <translation>Vyberte soubor s vyzváněcím tónem.</translation>
     </message>
     <message>
         <source>Select script file.</source>
-        <translation>Výběr souboru se skriptem.</translation>
+        <translation>Vyberte soubor se skriptem.</translation>
     </message>
     <message>
         <source>%1 converts to %2</source>
-        <translation>%1 převést na %2</translation>
+        <translation>%1 převádí na %2</translation>
     </message>
     <message>
         <source>Instant message</source>
-        <translation>Instantní zpráva</translation>
+        <translation>Textová zpráva</translation>
     </message>
     <message>
         <source>Presence</source>
@@ -5746,43 +5736,43 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>&amp;Maximum number of sessions:</source>
-        <translation>&amp;Maximální počet seancí:</translation>
+        <translation>&amp;Maximální počet sezení:</translation>
     </message>
     <message>
         <source>When you have this number of instant message sessions open, new incoming message sessions will be rejected.</source>
-        <translation>Pokud je již otevřen tento počet seancí s instantními zprávami, nově příchozí seance budou odmítnuty.</translation>
+        <translation>Pokud je již otevřen tento počet sezení s textovými zprávami, nově příchozí sezení budou odmítnuta.</translation>
     </message>
     <message>
         <source>Your presence</source>
-        <translation>Vaše přítomnost</translation>
+        <translation>Vaše dostupnosti</translation>
     </message>
     <message>
         <source>&amp;Publish availability at startup</source>
-        <translation>&amp;Publikovat dostupnost při startu</translation>
+        <translation>&amp;Zveřejnit dostupnost při spuštění</translation>
     </message>
     <message>
         <source>Publish your availability at startup.</source>
-        <translation>Publikovat vaši dostupnost při startu.</translation>
+        <translation>Zveřejnit vaši dostupnost při spuštění.</translation>
     </message>
     <message>
         <source>Buddy presence</source>
-        <translation>Přítomnost buddyho</translation>
+        <translation>Přítomnost kontaktů</translation>
     </message>
     <message>
         <source>Publication &amp;refresh interval (sec):</source>
-        <translation>Interval &amp;obnovení publikování (sec):</translation>
+        <translation>Interval &amp;odesílání stavu (s):</translation>
     </message>
     <message>
         <source>Refresh rate of presence publications.</source>
-        <translation>Obnovovací frekvence publikování.</translation>
+        <translation>Obnovovací frekvence odesílání vlastní dostupnosti.</translation>
     </message>
     <message>
         <source>&amp;Subscription refresh interval (sec):</source>
-        <translation>&amp;Interval obnovení přihlášení (sec):</translation>
+        <translation>&amp;Interval obnovení příjmu dostupnosti (s):</translation>
     </message>
     <message>
         <source>Refresh rate of presence subscriptions.</source>
-        <translation>Obnovovací frekvence přihlášení o přítomnosti.</translation>
+        <translation>Obnovovací frekvence příjmu dostupnosti kontaktů.</translation>
     </message>
     <message>
         <source>Transport/NAT</source>
@@ -5802,7 +5792,7 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>SIP transport</source>
-        <translation>SIP transport</translation>
+        <translation>Přenos SIP</translation>
     </message>
     <message>
         <source>UDP</source>
@@ -5814,19 +5804,19 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Transport mode for SIP. In auto mode, the size of a message determines which transport protocol is used. Messages larger than the UDP threshold are sent via TCP. Smaller messages are sent via UDP.</source>
-        <translation>Transportní mód pro SIP. V auto módu je velikost zpráv určena tím, jaký transportní protokol je použit. Zprávy větší než UDP threshold jsou posílány přes TCP. Menší zprávy jsou posílány přes UDP.</translation>
+        <translation>Režim přenosu pro SIP. V automatickém režimu je velikost zpráv určuje, jaký transportní protokol je použit. Zprávy větší než hranice pro UDP jsou posílány přes TCP. Menší zprávy jsou posílány přes UDP.</translation>
     </message>
     <message>
         <source>T&amp;ransport protocol:</source>
-        <translation>T&amp;ransportní protokol:</translation>
+        <translation>P&amp;řenosový protokol:</translation>
     </message>
     <message>
         <source>UDP t&amp;hreshold:</source>
-        <translation>UDP t&amp;hreshold:</translation>
+        <translation>&amp;Hranice použití UDP:</translation>
     </message>
     <message>
         <source>Messages larger than the threshold are sent via TCP. Smaller messages are sent via UDP.</source>
-        <translation>Zprávy větší než threshold jsou odeslány přes TCP. Menší zprávy přes UDP.</translation>
+        <translation>Zprávy větší než stanovená hranice jsou odeslány přes TCP. Menší zprávy přes UDP.</translation>
     </message>
     <message>
         <source>Use &amp;STUN (does not work for incoming TCP)</source>
@@ -5838,31 +5828,31 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Keep the TCP connection established during registration open such that the SIP proxy can reuse this connection to send incoming requests. Application ping packets are sent to test if the connection is still alive.</source>
-        <translation>Podržet otevřené TCP spojení vytvořené během registrace tak, aby SIP Proxy mohla využít tohoto spojení k vysílání příchozích požadavků. Aplikací jsou vysílány ping pakety aby se testovalo, zda-li je spojení stále aktivní.</translation>
+        <translation>Podržet otevřené TCP spojení vytvořené během registrace tak, aby SIP proxy mohla využít tohoto spojení k vysílání příchozích požadavků. Aplikace odesílá ping pakety tak, aby se zjistilo, zda-li je spojení stále aktivní.</translation>
     </message>
     <message>
         <source>&amp;Send composing indications when typing a message.</source>
-        <translation>Při psaní zprávy vždy &amp;vysílat příznaky editace.</translation>
+        <translation>Při psaní zprávy &amp;odesílat o tomto posílat indikaci.</translation>
     </message>
     <message>
         <source>Twinkle sends a composing indication when you type a message. This way the recipient can see that you are typing.</source>
-        <translation>Twinkle vysílá při psaní zprávy příznak editace. Díky tomu je příjemce informován o tom, že je připravována nějaká zpráva.</translation>
+        <translation>Pokud píšete zprávu, pak o tomto Twinkle informuje protistranu. Takto se příjemce může dozvědět, že něco píšete.</translation>
     </message>
     <message>
         <source>AKA AM&amp;F:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>A&amp;KA OP:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Authentication management field for AKAv1-MD5 authentication.</source>
-        <translation type="unfinished">Parametry autentizačního managementu pro AKAv1-MD5 autentizaci.</translation>
+        <translation>Parametry autentizačního managementu pro AKAv1-MD5 autentizaci.</translation>
     </message>
     <message>
         <source>Operator variant key for AKAv1-MD5 authentication.</source>
-        <translation type="unfinished">Operátorová varianta klíče pro AKAv1-MD5 autentizaci.</translation>
+        <translation>Operátorová varianta klíče pro autentizaci AKAv1-MD5.</translation>
     </message>
     <message>
         <source>Prepr&amp;ocessing</source>
@@ -5878,7 +5868,7 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Automatic gain control (AGC) is a feature that deals with the fact that the recording volume may vary by a large amount between different setups. The AGC provides a way to adjust a signal to a reference volume. This is useful because it removes the need for manual adjustment of the microphone gain. A secondary advantage is that by setting the microphone gain to a conservative (low) level, it is easier to avoid clipping.</source>
-        <translation>Z  důvodu velkého rozdílu hlasitosti nahrávání v různých nastavení byla zavedena funkce &amp;Automatického řízení hlasitosti (AGC - Automatic gain control). AGC umožňuje nastavit úroveň signálu na přednastavenou hodnotu. Díky tomu není nutné pokaždé manuálně nastavovat hlasitost mikrofonu. Další výhodou je, že nastavení hlasitosti mikrofonu je většinou na nižší (konzervativní) úrovni, čímž se předchází zpětnovazebnímu efektům.</translation>
+        <translation>Z důvodu velkého rozdílu hlasitosti nahrávání v různých nastavení byla zavedena funkce automatického řízení hlasitosti (AGC - Automatic gain control). AGC umožňuje nastavit úroveň signálu na přednastavenou hodnotu. Díky tomu není nutné pokaždé manuálně nastavovat hlasitost mikrofonu. Další výhodou je, že nastavení hlasitosti mikrofonu je většinou na nižší (konzervativní) úrovni, čímž se předchází ořezávání příliš hlasitého zvuku.</translation>
     </message>
     <message>
         <source>Automatic gain control &amp;level:</source>
@@ -5890,11 +5880,11 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>&amp;Voice activity detection</source>
-        <translation>Detekce &amp;hlasové aktivity</translation>
+        <translation>Detekce &amp;hlasu</translation>
     </message>
     <message>
         <source>When enabled, voice activity detection detects whether the input signal represents a speech or a silence/background noise.</source>
-        <translation>Pokud je aktivováno testuje funkce detekce hlasové aktivity zdali je vstupní signál hovor (hlas) nebo rušivé okolní zvuky.</translation>
+        <translation>Pokud je aktivní, pak detekce hlasu zjišťuje, zda je na zvukovém vstupu hlas nebo ticho/šum na pozadí.</translation>
     </message>
     <message>
         <source>&amp;Noise reduction</source>
@@ -5910,11 +5900,11 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>In any VoIP communication, if a speech from the remote end is played in the local loudspeaker, then it propagates in the room and is captured by the microphone. If the audio captured from the microphone is sent directly to the remote end, then the remote user hears an echo of his voice. An acoustic echo cancellation is designed to remove the acoustic echo before it is sent to the remote end. It is important to understand that the echo canceller is meant to improve the quality on the remote end.</source>
-        <translation>Pokud je při VoIP komunikaci příchozí zvuk přehráván v reproduktorech může se šířit v místnosti a dostávat se zpět do mikrofonu. Pokud je tento signál poslán zpět volajícímu stává se, že slyší dozvuk vlastního hlasu. Funkce potlačení &amp;akustické ozvěny je navržena k potlačení těchto zvuků před tím než jsou odeslány volajícímu. Je důležité si uvědomit, že tato funkce je určena pro zlepšení kvality přenosu hlasu na straně volajícího. Nikoliv na vlastní straně.</translation>
+        <translation>Pokud je při VoIP komunikaci příchozí zvuk přehráván na hlasitý odposlech v reproduktorech, může se šířit místností a dostávat se zpět do mikrofonu. Pokud je tento signál poslán zpět volajícímu, stává se, že slyší ozvěnu vlastního hlasu. Funkce potlačení akustické ozvěny je navržena k potlačení těchto zvuků před tím, než jsou odeslány volajícímu. Je důležité si uvědomit, že tato funkce je určena pro zlepšení kvality přenosu hlasu na druhé straně hovoru.</translation>
     </message>
     <message>
         <source>Variable &amp;bit-rate</source>
-        <translation>Proměnná &amp;vzorkovaci frekvence</translation>
+        <translation>Proměnný &amp;datový tok</translation>
     </message>
     <message>
         <source>Discontinuous &amp;Transmission</source>
@@ -5926,7 +5916,7 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Speex is a lossy codec, which means that it achives compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
-        <translation>Speex je ztrátový kodek. To znamená, že na úkor kvality je možné docílit redukce datového toku. Na rozdíl od jiných hlasových kodeků je možné nastavit kompromis mezi kvalitou a vzorkovací frekvencí. Kódovací proces u tohoto kodeku je po většinu doby řízen nastavením parametru kvality v rozsahu od 0 do 10.</translation>
+        <translation>Speex je ztrátový kodek, což znamená, že je na úkor kvality možné docílit redukce datového toku. Na rozdíl od jiných hlasových kodeků je možné nastavit kompromis mezi kvalitou a datovým tokem. Kódovací proces u tohoto kodeku je zpravidla řízen nastavením parametru kvality v rozsahu od 0 do 10.</translation>
     </message>
     <message>
         <source>bytes</source>
@@ -5938,23 +5928,23 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>Expand a dialed telephone number to a tel-URI instead of a sip-URI.</source>
-        <translation>Rozšířit vytáčené telefonní číslo o tel-URI namísto sip-URI.</translation>
+        <translation>Rozšířit vytáčené telefonní číslo na tel-URI namísto sip-URI.</translation>
     </message>
     <message>
         <source>Accept call &amp;transfer request (incoming REFER)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přijímat žádosti o &amp;přepojení hovoru (příchozí REFER)</translation>
     </message>
     <message>
         <source>Allow call transfer while consultation in progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit přepojení hovoru v průběhu asistovaného přepojení</translation>
     </message>
     <message>
         <source>When you perform an attended call transfer, you normally transfer the call after you established a consultation call. If you enable this option you can transfer the call while the consultation call is still in progress. This is a non-standard implementation and may not work with all SIP devices.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud děláte asistované přepojení, pak obvykle přepojíte hovor poté, co proběhla konzultace s protistranou. Jakmile povolíte tuto volbu, pak můžete přepojit hovor, zatímco konzultace stále probíhá. Toto je nestandardní implementace, která nemusí správně pracovat se všemi zařízeními SIP.</translation>
     </message>
     <message>
         <source>Enable NAT &amp;keep alive</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit NAT &amp;keep alive</translation>
     </message>
     <message>
         <source>Send UDP NAT keep alive packets.</source>
@@ -5962,21 +5952,18 @@ Asterisk podporuje &quot;unsollicited message waiting indication&quot;.
     </message>
     <message>
         <source>If you have enabled STUN or NAT keep alive, then Twinkle will send keep alive packets at this interval rate to keep the address bindings in your NAT device alive.</source>
-        <translation>Pokud máte povolený STUN nebo NAT keep alive, pak bude Twinkle zasílat udržovací pakety s tímto intervalem, aby byla udržena mapování na vašem NATu.</translation>
+        <translation>Pokud máte povolený STUN nebo NAT keep alive, pak bude Twinkle zasílat udržovací pakety v tomto intervalu, aby byla udržena mapování na vašem NATu.</translation>
     </message>
 </context>
 <context>
     <name>WizardForm</name>
     <message>
         <source>Twinkle - Wizard</source>
-        <translation></translation>
+        <translation>Twinkle - Průvodce</translation>
     </message>
     <message>
         <source>The hostname, domain name or IP address of the STUN server.</source>
-        <translation>Doménové jméno, IP adresa nebo jméno STUN serveru.
-
-Twinkle se pokouší pod touto doménou zjistit u DNS serveru potřebné údaje (RFC 2782).
-Stačí proto u poskytovatelů internetové připojení, kteří toto podporují, uvést doménové jméno přihlašovacího serveru.</translation>
+        <translation>Doménové jméno, IP adresa nebo jméno hostitele STUN serveru.</translation>
     </message>
     <message>
         <source>S&amp;TUN server:</source>
@@ -5986,21 +5973,19 @@ Stačí proto u poskytovatelů internetové připojení, kteří toto podporují
         <source>The SIP user name given to you by your provider. It is the user part in your SIP address, &lt;b&gt;username&lt;/b&gt;@domain.com This could be a telephone number.
 &lt;br&gt;&lt;br&gt;
 This field is mandatory.</source>
-        <translation>Uživatelské jméno, které vám bylo přiděleno vaším VoIP poskytovatelem. Je také první částí vaší kompletní SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com  U mnohých VoIp poskytovatelů to bývá označeno jako telefonní číslo.
+        <translation>Uživatelské jméno, které vám bylo přiděleno vaším poskytovatelem SIP. Je také první částí vaší kompletní SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com  Může se také jednat o telefonní číslo.
 &lt;br&gt;&lt;br&gt;
-*TYTO ÚDAJE JSOU POVINNÉ.</translation>
+Tento údaj je povinný.</translation>
     </message>
     <message>
         <source>&amp;Domain*:</source>
-        <translation></translation>
+        <translation>&amp;Doména*:</translation>
     </message>
     <message>
         <source>Choose your SIP service provider. If your SIP service provider is not in the list, then select &lt;b&gt;Other&lt;/b&gt; and fill in the settings you received from your provider.&lt;br&gt;&lt;br&gt;
 If you select one of the predefined SIP service providers then you only have to fill in your name, user name, authentication name and password.</source>
         <translation>Vyberte vašeho SIP poskytovatele a uveďte zde vaše plné jméno, vaše uživatelské SIP jméno, popřípadě přihlašovací jméno a heslo.&lt;br&gt;
-Pokud váš SIP poskytovatel není v seznamu, vyberte &lt;b&gt;Jiný&lt;/b&gt; a uveďte požadované údaje.
-&lt;p&gt;
-Prakticky kdekoliv v Twinkle lze pomocí klávesové kombinace &lt;b&gt;Shift-F1&lt;/b&gt; nebo &lt;b&gt;pravým tlačítkem myši&lt;/b&gt; vyvolat nápovědu k jednotlivým políčkům nebo tlačítkům.</translation>
+Pokud váš SIP poskytovatel není v seznamu, vyberte &lt;b&gt;Jiný&lt;/b&gt; a uveďte požadované údaje.</translation>
     </message>
     <message>
         <source>&amp;Authentication name:</source>
@@ -6012,20 +5997,19 @@ Prakticky kdekoliv v Twinkle lze pomocí klávesové kombinace &lt;b&gt;Shift-F1
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
-        <translation>Vaše přihlašovací SIP jméno. Často shodné s vaším uživatelským SIP jménem. Nicméně může být i jiné. Dostanete ho od vašeho VoIP poskytovatele.</translation>
+        <translation>Vaše přihlašovací SIP jméno. Často shodné s vaším uživatelským SIP jménem. Nicméně může být i jiné.</translation>
     </message>
     <message>
         <source>The domain part of your SIP address, username@&lt;b&gt;domain.com&lt;/b&gt;. Instead of a real domain this could also be the hostname or IP address of your &lt;b&gt;SIP proxy&lt;/b&gt;. If you want direct IP phone to IP phone communications then you fill in the hostname or IP address of your computer.
 &lt;br&gt;&lt;br&gt;
 This field is mandatory.</source>
-        <translation>Doména nebo IP adresa, pod kterou je v internetu dostupný váš VoIP poskytovatel. Je to druhá část vaší úplné  SIP adresy uzivatel@&lt;b&gt;domain.com&lt;/b&gt;. U mnohých poskytovatelů je shodná s vlastní doménou poskytovatele.
-Pro přímé spojení IP-to-IP (viz uživ. příručka) se zde uvede adresa (DynDNS nebo IP), pod kterou je &lt;b&gt;váš počítač&lt;/b&gt; dostupný.
+        <translation>Doménová část vaší úplné  SIP adresy uzivatel@&lt;b&gt;domain.com&lt;/b&gt;. Mimo skutečné domény se může jednat také o jméno hostitele nebo IP adresu vaší &lt;b&gt;SIP proxy&lt;/b&gt;. Pro přímé volání mezi IP adresami zde můžete vyplnit jméno hostitele nebo IP adresu vašeho počítače.
 &lt;br&gt;&lt;br&gt;
-*TYTO ÚDAJE JSOU POVINNÉ.</translation>
+Tento údaj je povinný.</translation>
     </message>
     <message>
         <source>This is just your full name, e.g. John Doe. It is used as a display name. When you make a call, this display name might be shown to the called party.</source>
-        <translation>Vaše plné jméno nebo přezdívka. Tento údaj je jednou z částí, které jsou přenášeny při volání protistraně a eventuálně tam zobrazeny. Může být uvedeno cokoliv a není nutně vyžadováno.</translation>
+        <translation>Vaše plné jméno, např. Jan Novák. Používá se jen pro účely zobrazení. Jakmile uskutečníte hovor, tak toto jméno může být zobrazeno volanému.</translation>
     </message>
     <message>
         <source>SIP pro&amp;xy:</source>
@@ -6033,11 +6017,11 @@ Pro přímé spojení IP-to-IP (viz uživ. příručka) se zde uvede adresa (Dyn
     </message>
     <message>
         <source>The hostname, domain name or IP address of your SIP proxy. If this is the same value as your domain, you may leave this field empty.</source>
-        <translation>Doménové jméno, IP adresa nebo jméno vaší proxy. Pokud je shodné s adresou vašeho počítače je možné tento údaj vynechat.</translation>
+        <translation>Doménové jméno, IP adresa nebo jméno vaší proxy. Pokud se shoduje s doménou, pak je možné toto pole ponechat nevyplněné.</translation>
     </message>
     <message>
         <source>&amp;SIP service provider:</source>
-        <translation>&amp;SIP VoIP poskytovatel (Shift-F1 pro nápovědu):</translation>
+        <translation>&amp;SIP VoIP poskytovatel:</translation>
     </message>
     <message>
         <source>&amp;Password:</source>
@@ -6045,15 +6029,15 @@ Pro přímé spojení IP-to-IP (viz uživ. příručka) se zde uvede adresa (Dyn
     </message>
     <message>
         <source>&amp;User name*:</source>
-        <translation>&amp;Uživatelské jméno *:</translation>
+        <translation>&amp;Uživatelské jméno*:</translation>
     </message>
     <message>
         <source>Your password for authentication.</source>
-        <translation>Vaše přihlašovací heslo. Pokud necháte toto políčko prázdné, musíte heslo při každém přihlášení vyplnit do objevivšího se dialogového okna. </translation>
+        <translation>Vaše přihlašovací heslo.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -6061,15 +6045,15 @@ Pro přímé spojení IP-to-IP (viz uživ. příručka) se zde uvede adresa (Dyn
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Zrušit (Es&amp;c)</translation>
+        <translation>&amp;Zrušit</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation></translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>None (direct IP to IP calls)</source>
-        <translation>Žádné (přímé IP to IP volání)</translation>
+        <translation>Žádné (přímé volání mezi IP adresami)</translation>
     </message>
     <message>
         <source>Other</source>
@@ -6087,17 +6071,15 @@ Pro přímé spojení IP-to-IP (viz uživ. příručka) se zde uvede adresa (Dyn
         <source>You must fill in a domain name for your SIP account.
 This could be the hostname or IP address of your PC if you want direct PC to PC dialing.</source>
         <translation>Je nutné zadat doménové jméno vašeho SIP účtu (část vpravo od symbolu &quot;@&quot;).
-Často je shodné s doménovým jménem vašeho SIP poskytovatele.
-
-Pro přímé spojení IP-to-IP, tedy bez SIP poskytovatele, je to doménové jméno nebo veřejná IP vašeho počítače.</translation>
+V případě přímého volání mezi IP adresami se může jednat o jméno hostitele nebo IP adresu vašeho PC.</translation>
     </message>
     <message>
         <source>Invalid value for SIP proxy.</source>
-        <translation>Nepřípustná hodnota pro SIP proxy.</translation>
+        <translation>Neplatná hodnota pro SIP proxy.</translation>
     </message>
     <message>
         <source>Invalid value for STUN server.</source>
-        <translation>Nepřípustná hodnota pro STUN server.</translation>
+        <translation>Neplatná hodnota pro STUN server.</translation>
     </message>
 </context>
 <context>
@@ -6109,6 +6091,17 @@ Pro přímé spojení IP-to-IP, tedy bez SIP poskytovatele, je to doménové jm�
     <message>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation>Přijmout</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation>Odmítnout</translation>
     </message>
 </context>
 </TS>
