@@ -14,3 +14,6 @@ Thanks to Joerg Reisenweber for his excellent testing and debugging.
 Thanks to Treeve Jelbert for helping me catching build errors in release 0.4
 
 Thanks to James Le Cuirot for helping me debug several ALSA and RTP problems.
+
+Qt 4 & 5 porting done by Lubos Dolezel and Michal Kubecek.
+
