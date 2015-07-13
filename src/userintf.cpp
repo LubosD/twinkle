@@ -2226,6 +2226,10 @@ void t_userintf::run(void) {
 	cout << endl;
 }
 
+void t_userintf::run_on_event_queue(std::function<void()> fn) {
+	evq_ui_events.push_fncall(fn);
+}
+
 void t_userintf::process_events(void) {
 	t_event		*event;
 	t_event_ui	*ui_event;
@@ -2241,6 +2245,9 @@ void t_userintf::process_events(void) {
 			break;
 		case EV_QUIT:
 			quit = true;
+			break;
+		case EV_FN_CALL:
+			static_cast<t_event_fncall*>(event)->invoke();
 			break;
 		default:
 			assert(false);

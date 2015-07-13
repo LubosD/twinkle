@@ -309,7 +309,7 @@ bool t_user::parse_num_conversion(const string &value, t_number_conversion &c) {
 	try {
 		c.re.assign(l[0]);
 		c.fmt = l[1];
-	} catch (boost::bad_expression) {
+    } catch (std::regex_error) {
 		// Invalid regular expression
 		log_file->write_header("t_user::parse_num_conversion", 
 				LOG_NORMAL, LOG_WARNING);
@@ -2832,7 +2832,7 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 	     i != number_conversions.end(); i++)
 	{
 		config << FLD_NUMBER_CONVERSION << '=';
-		config << escape(i->re.str(), ',');
+        config << escape(i->re, ',');
 		config << ',';
 		config << escape(i->fmt, ',');
 		config << endl;
@@ -3101,11 +3101,13 @@ string t_user::convert_number(const string &number, const list<t_number_conversi
 	for (list<t_number_conversion>::const_iterator i = l.begin();
 	     i != l.end(); i++)
 	{
-		boost::smatch m;
+        std::smatch m;
 		
 		try {
-			if (boost::regex_match(number, m, i->re)) {
-				string result = m.format(i->fmt);
+            if (std::regex_match(number, m, std::regex(i->re))) {
+				string result;
+
+				m.format(std::back_inserter(result), i->fmt);
 			
 				log_file->write_header("t_user::convert_number", 
 					LOG_NORMAL, LOG_DEBUG);

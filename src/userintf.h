@@ -437,6 +437,9 @@ public:
 	// Get all command names
 	const list<string>& get_all_commands(void);
 
+	// Asynchronously run a function on this class' event queue
+	void run_on_event_queue(std::function<void()> fn);
+
 };
 
 void *process_events_main(void *arg);

@@ -82,6 +82,12 @@ public:
 	
 	/** Constructor. */
 	t_call_record();
+
+	/** Copy constructor */
+	t_call_record(const t_call_record& that);
+
+	/** Assignment operator */
+	t_call_record& operator=(const t_call_record& that);
 	
 	/**
 	 * Clear current settings and get a new record id.
@@ -177,6 +183,10 @@ public:
 	
 	/** Get the record id. */
 	unsigned short get_id(void) const;
+private:
+	// Guarded by a mutex, because contents of this class are updated from other threads.
+	// The main thread always creates a copy (snapshot) of current state.
+	mutable t_mutex mutex;
 };
 
 /** History of calls. */

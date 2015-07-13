@@ -80,6 +80,8 @@ t_phone_user *t_transfer_data::get_phone_user(void) const {
 ///////////
 
 void t_phone::move_line_to_background(unsigned short lineno) {
+	// R/W lock is held by callers
+
 	// The line will be released in the background. It should
 	// immediately release its RTP ports as these maybe needed
 	// for new calls.
@@ -115,6 +117,8 @@ void t_phone::move_line_to_background(unsigned short lineno) {
 }
 
 void t_phone::cleanup_dead_lines(void) {
+	t_rwmutex_writer x(lines_mtx);
+
 	// Only remove idle lines at the end of the dead pool to avoid
 	// moving lines in the vector.
 	while (lines.size() > NUM_CALL_LINES && lines.back()->get_state() == LS_IDLE)
@@ -134,6 +138,8 @@ void t_phone::cleanup_dead_lines(void) {
 }
 
 void t_phone::move_releasing_lines_to_background(void) {
+	t_rwmutex_writer x(lines_mtx);
+
 	// NOTE: the line on the REFERRER position is not moved to the
 	//       background as a subscription may still be active.
 	for (int i = 0; i < NUM_USER_LINES; i++) {
@@ -148,7 +154,7 @@ void t_phone::move_releasing_lines_to_background(void) {
 void t_phone::cleanup_3way_state(unsigned short lineno) {
 	assert(lineno < lines.size());
 
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	// Clean up 3-way data if the line was involved in a 3-way
 	if (is_3way)
@@ -193,7 +199,6 @@ void t_phone::cleanup_3way_state(unsigned short lineno) {
 		}
 	}
 
-	unlock();
 }
 
 void t_phone::cleanup_3way(void) {
@@ -209,6 +214,8 @@ void t_phone::cleanup_3way(void) {
 void t_phone::invite(t_phone_user *pu, const t_url &to_uri, const string &to_display,
 		const string &subject, bool no_fork, bool anonymous)
 {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Ignore if active line is not idle
 	if (lines[active_line]->get_state() != LS_IDLE) {
 		return;
@@ -218,6 +225,8 @@ void t_phone::invite(t_phone_user *pu, const t_url &to_uri, const string &to_dis
 }
 
 void t_phone::answer(void) {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Ignore if active line is idle
 	if (lines[active_line]->get_state() == LS_IDLE) return;
 
@@ -225,6 +234,8 @@ void t_phone::answer(void) {
 }
 
 void t_phone::reject(void) {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Ignore if active line is idle
 	if (lines[active_line]->get_state() == LS_IDLE) return;
 
@@ -232,6 +243,8 @@ void t_phone::reject(void) {
 }
 
 void t_phone::reject(unsigned short line) {
+	t_rwmutex_reader x(lines_mtx);
+
 	if (line > NUM_USER_LINES) return;
 	if (lines[line]->get_state() == LS_IDLE) return;
 	
@@ -240,6 +253,8 @@ void t_phone::reject(unsigned short line) {
 
 void t_phone::redirect(const list<t_display_url> &destinations, int code, string reason)
 {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Ignore if active line is idle
 	if (lines[active_line]->get_state() == LS_IDLE) return;
 
@@ -247,6 +262,8 @@ void t_phone::redirect(const list<t_display_url> &destinations, int code, string
 }
 
 void t_phone::end_call(void) {
+	t_rwmutex_writer x(lines_mtx);
+
 	// If 3-way is active then end call on both lines
 	if (is_3way && (
 	    active_line == line1_3way->get_line_number() ||
@@ -263,6 +280,8 @@ void t_phone::end_call(void) {
 			move_line_to_background(lineno1);
 			move_line_to_background(lineno2);
 		} else {
+			t_rwmutex_reader x(lines_mtx);
+
 			// Hangup the active line, and make the next
 			// line active.
 			int l = active_line;
@@ -278,6 +297,7 @@ void t_phone::end_call(void) {
 	if (lines.at(active_line)->get_state() == LS_IDLE) return;
 
 	lines.at(active_line)->end_call();
+
 	move_line_to_background(active_line);
 }
 
@@ -292,6 +312,8 @@ void t_phone::options(t_phone_user *pu, const t_url &to_uri, const string &to_di
 }
 
 void t_phone::options(void) {
+	t_rwmutex_reader x(lines_mtx);
+
 	lines[active_line]->options();
 }
 
@@ -304,19 +326,24 @@ bool t_phone::hold(bool rtponly) {
 		return false;
 	}
 
+	t_rwmutex_reader x(lines_mtx);
 	return lines[active_line]->hold(rtponly);
 }
 
 void t_phone::retrieve(void) {
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->retrieve();
 }
 
 void t_phone::refer(const t_url &uri, const string &display) {
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->refer(uri, display);
 }
 
 void t_phone::refer(unsigned short lineno_from, unsigned short lineno_to) 
 {
+	t_rwmutex_reader x(lines_mtx);
+
 	// The nicest transfer is an attended transfer. An attended transfer
 	// is only possible of the transfer target supports the 'replaces'
 	// extension (RFC 3891).
@@ -349,6 +376,8 @@ void t_phone::refer(unsigned short lineno_from, unsigned short lineno_to)
 // See draft-ietf-sipping-cc-transfer-07 7.3
 void t_phone::refer_attended(unsigned short lineno_from, unsigned short lineno_to) 
 {
+	t_rwmutex_reader x(lines_mtx);
+
 	t_line *line = lines.at(lineno_to);
 	
 	switch (line->get_substate())
@@ -435,6 +464,7 @@ void t_phone::refer_attended(unsigned short lineno_from, unsigned short lineno_t
 // See draft-ietf-sipping-cc-transfer-07 7
 void t_phone::refer_consultation(unsigned short lineno_from, unsigned short lineno_to) 
 {
+	t_rwmutex_writer x(lines_mtx);
 	t_line *line = lines.at(lineno_to);
 	
 	if (line->get_substate() != LSSUB_ESTABLISHED) {
@@ -447,6 +477,7 @@ void t_phone::refer_consultation(unsigned short lineno_from, unsigned short line
 	
 	// End consultation call
 	line->end_call();
+
 	move_line_to_background(lineno_to);
 	
 	// Transfer call
@@ -506,6 +537,7 @@ void t_phone::setup_consultation_call(const t_url &uri, const string &display) {
 	
 	invite(pu, uri, display, subject, no_fork, false);
 	
+	t_rwmutex_reader x(lines_mtx);
 	lines.at(consult_line)->set_is_transfer_consult(true, xfer_line);
 	lines.at(xfer_line)->set_to_be_transferred(true, consult_line);
 	
@@ -562,6 +594,8 @@ void t_phone::activate_line(unsigned short l) {
 
 	set_active_line(l);
 
+	t_rwmutex_reader x(lines_mtx);
+
 	// Retrieve the call on the new active line unless that line
 	// is transferring a call and the user profile indicates that
 	// the referrer holds the call during call transfer.
@@ -582,6 +616,7 @@ void t_phone::activate_line(unsigned short l) {
 }
 
 void t_phone::send_dtmf(char digit, bool inband, bool info) {
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->send_dtmf(digit, inband, info);
 }
 
@@ -686,6 +721,8 @@ void t_phone::handle_response_out_of_dialog(StunMessage *r, t_tuid tuid) {
 }
 
 t_phone_user *t_phone::find_phone_user(const string &profile_name) const {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::const_iterator i = phone_users.begin();
 	     i != phone_users.end(); ++i)
 	{
@@ -701,6 +738,8 @@ t_phone_user *t_phone::find_phone_user(const string &profile_name) const {
 }
 
 t_phone_user *t_phone::find_phone_user(const t_url &user_uri) const {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::const_iterator i = phone_users.begin();
 		     i != phone_users.end(); ++i)
 	{
@@ -716,6 +755,8 @@ t_phone_user *t_phone::find_phone_user(const t_url &user_uri) const {
 }
 
 t_phone_user *t_phone::match_phone_user(t_response *r, t_tuid tuid, bool active_only) {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); ++i)
 	{
@@ -727,6 +768,8 @@ t_phone_user *t_phone::match_phone_user(t_response *r, t_tuid tuid, bool active_
 }
 
 t_phone_user *t_phone::match_phone_user(t_request *r, bool active_only) {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); ++i)
 	{
@@ -738,6 +781,8 @@ t_phone_user *t_phone::match_phone_user(t_request *r, bool active_only) {
 }
 
 t_phone_user *t_phone::match_phone_user(StunMessage *r, t_tuid tuid, bool active_only) {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); ++i)
 	{
@@ -749,6 +794,8 @@ t_phone_user *t_phone::match_phone_user(StunMessage *r, t_tuid tuid, bool active
 }
 
 int t_phone::hunt_line(void) {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Send incoming call to active line if it is idle.
 	if (lines.at(active_line)->get_substate() == LSSUB_IDLE) {
 		return active_line;
@@ -771,6 +818,8 @@ int t_phone::hunt_line(void) {
 //////////////
 
 void t_phone::recvd_provisional(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_provisional(r, tuid, tid);
@@ -785,6 +834,8 @@ void t_phone::recvd_provisional(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_success(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_success(r, tuid, tid);
@@ -797,6 +848,8 @@ void t_phone::recvd_success(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_redirect(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_redirect(r, tuid, tid);
@@ -809,6 +862,8 @@ void t_phone::recvd_redirect(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_client_error(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_client_error(r, tuid, tid);
@@ -821,6 +876,8 @@ void t_phone::recvd_client_error(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_server_error(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_server_error(r, tuid, tid);
@@ -833,6 +890,8 @@ void t_phone::recvd_server_error(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_global_error(t_response *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_global_error(r, tuid, tid);
@@ -851,6 +910,8 @@ void t_phone::post_process_response(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_invite(t_request *r, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	// Check if this INVITE is a retransmission.
 	// Once the TU sent a 2XX repsonse on an INVITE it has to deal
 	// with retransmissions.
@@ -927,6 +988,8 @@ void t_phone::recvd_initial_invite(t_request *r, t_tid tid) {
 			r->hdr_request_disposition.is_populated() &&
 			r->hdr_request_disposition.fork_directive == t_hdr_request_disposition::NO_FORK;
 		
+		t_rwmutex_reader x(lines_mtx);
+
 		for (size_t i = 0; i < lines.size(); i++) {
 			if (lines.at(i)->match_replaces(r->hdr_replaces.call_id,
 				r->hdr_replaces.to_tag,
@@ -1214,6 +1277,7 @@ void t_phone::recvd_initial_invite(t_request *r, t_tid tid) {
 		log_file->write_report("End call due to Replaces header.",
 				"t_phone::recvd_initial_invite");
 				
+		t_rwmutex_writer x(lines_mtx);
 		if (lines.at(replace_line)->get_substate() == LSSUB_INCOMING_PROGRESS) {
 			ui->cb_stop_call_notification(replace_line);
 			lines.at(replace_line)->reject();
@@ -1229,6 +1293,7 @@ void t_phone::recvd_initial_invite(t_request *r, t_tid tid) {
 	if (hunted_line == active_line) {
 		// Auto-answer is only applicable to the active line.
 		
+		t_rwmutex_reader x(lines_mtx);
 		if (replace_line >= 0 && auto_answer_replace_call) {
 			// RFC 3891
 			// This call replaces an existing established call, answer immediate.
@@ -1243,6 +1308,7 @@ void t_phone::recvd_initial_invite(t_request *r, t_tid tid) {
 		}
 	}
 	
+	t_rwmutex_reader x(lines_mtx);
 	// Send INVITE to hunted line
 	if (hunted_line >= 0) {
 		lines.at(hunted_line)->recvd_invite(pu, r, tid,
@@ -1293,6 +1359,7 @@ void t_phone::recvd_initial_invite(t_request *r, t_tid tid) {
 void t_phone::recvd_re_invite(t_request *r, t_tid tid) {
 	t_response *resp;
 	list <string> unsupported;
+	t_rwmutex_reader x(lines_mtx);
 
 	// RFC 3261 12.2.2
 	// A To-header with a tag is a mid-dialog request.
@@ -1329,6 +1396,7 @@ void t_phone::recvd_re_invite(t_request *r, t_tid tid) {
 
 void t_phone::recvd_ack(t_request *r, t_tid tid) {
 	t_response *resp;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
@@ -1347,6 +1415,7 @@ void t_phone::recvd_cancel(t_request *r, t_tid cancel_tid,
 		t_tid target_tid)
 {
 	t_response *resp;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match_cancel(r, target_tid)) {
@@ -1364,6 +1433,7 @@ void t_phone::recvd_cancel(t_request *r, t_tid cancel_tid,
 void t_phone::recvd_bye(t_request *r, t_tid tid) {
 	t_response *resp;
 	list <string> unsupported;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
@@ -1444,6 +1514,7 @@ t_phone_user *t_phone::find_phone_user_out_dialog_request(t_request *r, t_tid ti
 t_line *t_phone::find_line_in_dialog_request(t_request *r, t_tid tid) {
 	t_response *resp;
 	list <string> unsupported;
+	t_rwmutex_reader x(lines_mtx);
 	
 	// RFC 3261 12.2.2
 	// A To-header with a tag is a mid-dialog request.
@@ -1551,6 +1622,7 @@ void t_phone::recvd_register(t_request *r, t_tid tid) {
 
 void t_phone::recvd_prack(t_request *r, t_tid tid) {
 	t_response *resp;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
@@ -1578,6 +1650,7 @@ void t_phone::recvd_subscribe(t_request *r, t_tid tid) {
 		return;
 	}
 
+	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
 			lines[i]->recvd_subscribe(r, tid);
@@ -1636,6 +1709,7 @@ void t_phone::recvd_notify(t_request *r, t_tid tid) {
 	}
 
 	// REFER notification
+	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
 			lines[i]->recvd_notify(r, tid);
@@ -1697,6 +1771,7 @@ void t_phone::recvd_notify(t_request *r, t_tid tid) {
 
 void t_phone::recvd_refer(t_request *r, t_tid tid) {
 	t_response *resp;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
@@ -1801,6 +1876,7 @@ void t_phone::recvd_refer_permission(bool permission) {
 	t_phone_user *pu = incoming_refer_data->get_phone_user();
 	t_user *user_config = pu->get_user_profile();
 			
+	t_rwmutex_reader x(lines_mtx);
 	lines[i]->recvd_refer_permission(permission, r);
 	
 	if (!permission) {
@@ -1896,6 +1972,7 @@ void t_phone::recvd_refer_permission(bool permission) {
 void t_phone::recvd_info(t_request *r, t_tid tid) {
 	t_response *resp;
 	list <string> unsupported;
+	t_rwmutex_reader x(lines_mtx);
 
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
@@ -1952,6 +2029,8 @@ void t_phone::failure(t_failure failure, t_tid tid) {
 }
 
 void t_phone::recvd_stun_resp(StunMessage *r, t_tuid tuid, t_tid tid) {
+	t_rwmutex_reader x(lines_mtx);
+
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r, tuid)) {
 			lines[i]->recvd_stun_resp(r, tuid, tid);
@@ -1970,8 +2049,6 @@ void t_phone::handle_event_timeout(t_event_timeout *e) {
 	t_tmr_subscribe		*tmr_subscribe;
 	t_tmr_publish		*tmr_publish;
 	t_object_id		line_id;
-	
-	lock();
 	
 	switch (t->get_type()) {
 	case TMR_PHONE:
@@ -2005,8 +2082,6 @@ void t_phone::handle_event_timeout(t_event_timeout *e) {
 		assert(false);
 		break;
 	}
-	
-	unlock();
 }
 
 void t_phone::line_timeout(t_object_id id, t_line_timer timer, t_object_id did) {
@@ -2031,6 +2106,8 @@ void t_phone::line_timeout_sub(t_object_id id, t_subscribe_timer timer, t_object
 
 void t_phone::subscription_timeout(t_subscribe_timer timer, t_object_id id_timer)
 {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 		     i != phone_users.end(); i++)
 	{
@@ -2041,6 +2118,8 @@ void t_phone::subscription_timeout(t_subscribe_timer timer, t_object_id id_timer
 }
 
 void t_phone::publication_timeout(t_publish_timer timer, t_object_id id_timer) {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 		     i != phone_users.end(); i++)
 	{
@@ -2051,7 +2130,7 @@ void t_phone::publication_timeout(t_publish_timer timer, t_object_id id_timer) {
 }
 
 void t_phone::timeout(t_phone_timer timer, unsigned short id_timer) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 
 	switch (timer) {
 	case PTMR_REGISTRATION:
@@ -2084,11 +2163,11 @@ void t_phone::timeout(t_phone_timer timer, unsigned short id_timer) {
 	default:
 		assert(false);
 	}
-
-	unlock();
 }
 
 void t_phone::handle_broken_connection(t_event_broken_connection *e) {
+	t_rwmutex_reader x(phone_users_mtx);
+
 	// Find the phone user that was associated with the connection.
 	// This phone user has to handle the event.
 	t_phone_user *pu = find_phone_user(e->get_user_uri());
@@ -2151,6 +2230,7 @@ t_phone::~t_phone() {
 		delete lines[i];
 	}
 	
+	t_rwmutex_writer x(phone_users_mtx);
 	// Delete all phone users
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); i++)
@@ -2164,7 +2244,7 @@ void t_phone::pub_invite(t_user *user,
 		const t_url &to_uri, const string &to_display,
 		const string &subject, bool anonymous)
 {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2175,8 +2255,6 @@ void t_phone::pub_invite(t_user *user,
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_answer(void) {
@@ -2214,7 +2292,7 @@ void t_phone::pub_registration(t_user *user,
 		t_register_type register_type,
 		unsigned long expires)
 {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2225,14 +2303,12 @@ void t_phone::pub_registration(t_user *user,
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_options(t_user *user,
 		const t_url &to_uri, const string &to_display) 
 {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2243,8 +2319,6 @@ void t_phone::pub_options(t_user *user,
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_options(void) {
@@ -2297,6 +2371,7 @@ void t_phone::mute(bool enable) {
 	}
 	else
 	{
+		t_rwmutex_reader x(lines_mtx);
 		lines[active_line]->mute(enable);
 	}
 
@@ -2317,10 +2392,9 @@ void t_phone::pub_send_dtmf(char digit, bool inband, bool info) {
 
 bool t_phone::pub_seize(void) {
 	bool retval;
+	t_rwmutex_reader x(lines_mtx);
 	
-	lock();
 	retval = lines[active_line]->seize();
-	unlock();
 	
 	return retval;
 }
@@ -2328,75 +2402,66 @@ bool t_phone::pub_seize(void) {
 bool t_phone::pub_seize(unsigned short line) {
 	assert(line < NUM_USER_LINES);
 	bool retval;
+	t_rwmutex_reader x(lines_mtx);
 	
-	lock();
 	retval = lines[line]->seize();
-	unlock();
 	
 	return retval;
 }
 
 void t_phone::pub_unseize(void) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->unseize();
-	unlock();
 }
 
 void t_phone::pub_unseize(unsigned short line) {
 	assert(line < NUM_USER_LINES);
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[line]->unseize();
-	unlock();
 }
 
 void t_phone::pub_confirm_zrtp_sas(unsigned short line) {
 	assert(line < NUM_USER_LINES);
-	lock();
+
+	t_rwmutex_reader x(lines_mtx);
 	lines[line]->confirm_zrtp_sas();
-	unlock();
 }
 
 void t_phone::pub_confirm_zrtp_sas(void) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->confirm_zrtp_sas();
-	unlock();
 }
 
 void t_phone::pub_reset_zrtp_sas_confirmation(unsigned short line) {
 	assert(line < NUM_USER_LINES);
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[line]->reset_zrtp_sas_confirmation();
-	unlock();
 }
 
 void t_phone::pub_reset_zrtp_sas_confirmation(void) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->reset_zrtp_sas_confirmation();
-	unlock();
 }
 
 void t_phone::pub_enable_zrtp(void) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->enable_zrtp();
-	unlock();
 }
 
 void t_phone::pub_zrtp_request_go_clear(void) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[active_line]->zrtp_request_go_clear();
-	unlock();
 }
 
 void t_phone::pub_zrtp_go_clear_ok(unsigned short line) {
 	assert(line < NUM_USER_LINES);
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	lines[line]->zrtp_go_clear_ok();
-	unlock();
 }
 
 void t_phone::pub_subscribe_mwi(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2407,12 +2472,10 @@ void t_phone::pub_subscribe_mwi(t_user *user) {
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_unsubscribe_mwi(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2423,12 +2486,10 @@ void t_phone::pub_unsubscribe_mwi(t_user *user) {
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_subscribe_presence(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2439,12 +2500,10 @@ void t_phone::pub_subscribe_presence(t_user *user) {
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_unsubscribe_presence(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2455,12 +2514,10 @@ void t_phone::pub_unsubscribe_presence(t_user *user) {
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_publish_presence(t_user *user, t_presence_state::t_basic_state basic_state) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2471,12 +2528,10 @@ void t_phone::pub_publish_presence(t_user *user, t_presence_state::t_basic_state
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 void t_phone::pub_unpublish_presence(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2487,8 +2542,6 @@ void t_phone::pub_unpublish_presence(t_user *user) {
 		log_file->write_raw(user->get_profile_name());
 		log_file->write_footer();
 	}
-	
-	unlock();
 }
 
 bool t_phone::pub_send_message(t_user *user, const t_url &to_uri, const string &to_display,
@@ -2496,7 +2549,7 @@ bool t_phone::pub_send_message(t_user *user, const t_url &to_uri, const string &
 {
 	bool retval = true;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2511,8 +2564,6 @@ bool t_phone::pub_send_message(t_user *user, const t_url &to_uri, const string &
 		retval = false;
 	}
 	
-	unlock();
-	
 	return retval;
 }
 
@@ -2521,7 +2572,7 @@ bool t_phone::pub_send_im_iscomposing(t_user *user, const t_url &to_uri, const s
 {
 	bool retval = true;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
@@ -2536,41 +2587,37 @@ bool t_phone::pub_send_im_iscomposing(t_user *user, const t_url &to_uri, const s
 		retval = false;
 	}
 	
-	unlock();
-	
 	return retval;
 }
 
 t_phone_state t_phone::get_state(void) const {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < NUM_USER_LINES; i++) {
 		if (lines[i]->get_state() == LS_IDLE) {
-			unlock();
+
 			return PS_IDLE;
 		}
 	}
 
 	// All lines are busy, so the phone is busy.
-	unlock();
 	return PS_BUSY;
 }
 
 bool t_phone::all_lines_idle(void) const {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	for (unsigned short i = 0; i < NUM_USER_LINES; i++) {
 		if (lines[i]->get_substate() != LSSUB_IDLE) {
-			unlock();
+
 			return false;
 		}
 	}
 	
 	// All lines are idle
-	unlock();
 	return true;
 }
 
 bool t_phone::get_idle_line(unsigned short &lineno) const {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	
 	bool found_idle_line = false;
 	for (unsigned short i = 0; i < NUM_USER_LINES; i++) {
@@ -2581,15 +2628,13 @@ bool t_phone::get_idle_line(unsigned short &lineno) const {
 		}
 	}
 	
-	unlock();
 	return found_idle_line;
 }
 
 void t_phone::set_active_line(unsigned short l) {
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	assert (l < NUM_USER_LINES);
 	active_line = l;
-	unlock();
 }
 
 unsigned short t_phone::get_active_line(void) const {
@@ -2597,6 +2642,7 @@ unsigned short t_phone::get_active_line(void) const {
 }
 
 t_line *t_phone::get_line_by_id(t_object_id id) const {
+	t_rwmutex_reader x(lines_mtx);
 	for (size_t i = 0; i < lines.size(); i++) {
 		if (lines[i]->get_object_id() == id) {
 			return lines[i];
@@ -2615,28 +2661,25 @@ bool t_phone::authorize(t_user *user, t_request *r, t_response *resp)
 {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->authorize(r, resp);
-	unlock();
 	
 	return result;
 }
 
 void t_phone::remove_cached_credentials(t_user *user, const string &realm) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) pu->remove_cached_credentials(realm);
-	unlock();
 }
 
 bool t_phone::get_is_registered(t_user *user) {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->get_is_registered();
-	unlock();
 	
 	return result;
 }
@@ -2644,10 +2687,9 @@ bool t_phone::get_is_registered(t_user *user) {
 bool t_phone::get_last_reg_failed(t_user *user) {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->get_last_reg_failed();
-	unlock();
 	
 	return result;
 }
@@ -2655,36 +2697,32 @@ bool t_phone::get_last_reg_failed(t_user *user) {
 t_line_state t_phone::get_line_state(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_line_state s = get_line(lineno)->get_state();
-	unlock();
 	return s;
 }
 
 t_line_substate t_phone::get_line_substate(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_line_substate s = get_line(lineno)->get_substate();
-	unlock();
 	return s;
 }
 
 bool t_phone::is_line_on_hold(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_is_on_hold();
-	unlock();
 	return b;
 }
 
 bool t_phone::is_line_muted(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_is_muted();
-	unlock();
 	return b;
 }
 
@@ -2693,9 +2731,8 @@ bool t_phone::is_line_transfer_consult(unsigned short lineno,
 {
 	assert(lineno < lines.size());
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_is_transfer_consult(transfer_from_line);
-	unlock();
 	return b;	
 }
 
@@ -2704,63 +2741,56 @@ bool t_phone::line_to_be_transferred(unsigned short lineno,
 {
 	assert(lineno < lines.size());
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_to_be_transferred(transfer_to_line);
-	unlock();
 	return b;
 }
 
 bool t_phone::is_line_encrypted(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_is_encrypted();
-	unlock();
 	return b;
 }
 
 bool t_phone::is_line_auto_answered(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->get_auto_answer();
-	unlock();
 	return b;
 }
 
 t_refer_state t_phone::get_line_refer_state(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_refer_state s = get_line(lineno)->get_refer_state();
-	unlock();
 	return s;
 }
 
 t_user *t_phone::get_line_user(unsigned short lineno) {
 	assert(lineno < lines.size());
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_user *user = get_line(lineno)->get_user();
-	unlock();
 	return user;
 }
 
 bool t_phone::has_line_media(unsigned short lineno) const {
 	assert(lineno < lines.size());
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	bool b = get_line(lineno)->has_media();
-	unlock();
 	return b;
 }
 
 bool t_phone::is_mwi_subscribed(t_user *user) const {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->is_mwi_subscribed();
-	unlock();
 	
 	return result;
 }
@@ -2768,10 +2798,9 @@ bool t_phone::is_mwi_subscribed(t_user *user) const {
 bool t_phone::is_mwi_terminated(t_user *user) const {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->is_mwi_terminated();
-	unlock();
 	
 	return result;
 }
@@ -2779,10 +2808,9 @@ bool t_phone::is_mwi_terminated(t_user *user) const {
 t_mwi t_phone::get_mwi(t_user *user) const {
 	t_mwi result;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->mwi;
-	unlock();
 	
 	return result;
 }
@@ -2790,10 +2818,9 @@ t_mwi t_phone::get_mwi(t_user *user) const {
 bool t_phone::is_presence_terminated(t_user *user) const {
 	bool result = false;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) result = pu->is_presence_terminated();
-	unlock();
 	
 	return result;
 }
@@ -2801,57 +2828,48 @@ bool t_phone::is_presence_terminated(t_user *user) const {
 t_url t_phone::get_remote_uri(unsigned short lineno) const {
 	assert(lineno < lines.size());
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_url uri = get_line(lineno)->get_remote_uri();
-	unlock();
 	return uri;
 }
 
 string t_phone::get_remote_display(unsigned short lineno) const {
 	assert(lineno < lines.size());
 	
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	string display = get_line(lineno)->get_remote_display();
-	unlock();
 	return display;
 }
 
 bool t_phone::part_of_3way(unsigned short lineno) {
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	if (!is_3way) {
-		unlock();
 		return false;
 	}
 
 	if (line1_3way->get_line_number() == lineno) {
-		unlock();
 		return true;
 	}
 
 	if (line2_3way->get_line_number() == lineno) {
-		unlock();
 		return true;
 	}
 
-	unlock();
 	return false;
 }
 
 t_line *t_phone::get_3way_peer_line(unsigned short lineno) {
-	lock();
+	t_mutex_guard x(mutex_3way);
 
 	if (!is_3way) {
-		unlock();
 		return NULL;
 	}
 
 	if (line1_3way->get_line_number() == lineno) {
-		unlock();
 		return line2_3way;
 	}
 
-	unlock();
 	return line1_3way;
 }
 
@@ -2859,11 +2877,11 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	assert(lineno1 < NUM_USER_LINES);
 	assert(lineno2 < NUM_USER_LINES);
 
-	lock();
+	t_mutex_guard x3(mutex_3way);
+	t_rwmutex_reader x(lines_mtx);
 
 	// Check if there isn't a 3-way already
 	if (is_3way) {
-		unlock();
 		return false;
 	}
 
@@ -2871,7 +2889,6 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	if (lines[lineno1]->get_substate() != LSSUB_ESTABLISHED ||
 	    lines[lineno2]->get_substate() != LSSUB_ESTABLISHED)
 	{
-		unlock();
 		return false;
 	}
 
@@ -2884,7 +2901,6 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 		held_line = lines[lineno2];
 		talking_line = lines[lineno1];
 	} else {
-		unlock();
 		return false;
 	}
 
@@ -2909,11 +2925,12 @@ bool t_phone::join_3way(unsigned short lineno1, unsigned short lineno2) {
 	// Retrieve the held call
 	held_line->retrieve();
 
-	unlock();
 	return true;
 }
 
 void t_phone::notify_refer_progress(t_response *r, unsigned short referee_lineno) {
+	t_rwmutex_reader x(lines_mtx);
+
 	if (lines[LINENO_REFERRER]->get_state() != LS_IDLE) {
 		lines[LINENO_REFERRER]->notify_refer_progress(r);
 
@@ -2976,27 +2993,24 @@ void t_phone::notify_refer_progress(t_response *r, unsigned short referee_lineno
 t_call_info t_phone::get_call_info(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_call_info call_info = get_line(lineno)->get_call_info();
-	unlock();
 	return call_info;
 }
 
 t_call_record t_phone::get_call_hist(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	t_call_record call_hist = get_line(lineno)->call_hist_record;
-	unlock();
 	return call_hist;
 }
 
 string t_phone::get_ringtone(unsigned short lineno) const {
 	assert(lineno < lines.size());
 
-	lock();
+	t_rwmutex_reader x(lines_mtx);
 	string ringtone = get_line(lineno)->get_ringtone();
-	unlock();
 	return ringtone;
 }
 
@@ -3005,16 +3019,17 @@ time_t t_phone::get_startup_time(void) const {
 }
 
 void t_phone::init_rtp_ports(void) {
+	t_rwmutex_reader x(lines_mtx);
 	for (size_t i = 0; i < lines.size(); i++) {
 		lines[i]->init_rtp_port();
 	}
 }
 
 bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
-	lock();
 	
 	t_phone_user *existing_phone_user = NULL;
-	
+	t_rwmutex_writer x(phone_users_mtx);
+
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); i++)
 	{
@@ -3036,7 +3051,6 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 		    (*i)->is_active())
 		{
 			*dup_user = user;
-			unlock();
 			return false;
 		}
 		
@@ -3047,7 +3061,6 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 		    (*i)->is_active())
 		{
 			*dup_user = user;
-			unlock();
 			return false;
 		}
 	}
@@ -3057,7 +3070,7 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 		if (!existing_phone_user->is_active()) {
 			existing_phone_user->activate(user_config);
 		}
-		unlock();
+
 		return true;
 	}
 	
@@ -3065,29 +3078,26 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 	t_phone_user *pu = new t_phone_user(user_config);
 	MEMMAN_NEW(pu);
 	phone_users.push_back(pu);
-	unlock();
 	
 	return true;
 }
 
 void t_phone::remove_phone_user(const t_user &user_config) {
-	lock();
+	t_rwmutex_writer x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user_config.get_profile_name());
 	if (pu) pu->deactivate();
-	unlock();
 }
 
 list<t_user *> t_phone::ref_users(void) {
 	list<t_user *> l;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); i++)
 	{
 		if (!(*i)->is_active()) continue;
 		l.push_back((*i)->get_user_profile());
 	}
-	unlock();
 	
 	return l;
 }
@@ -3095,7 +3105,7 @@ list<t_user *> t_phone::ref_users(void) {
 t_user *t_phone::ref_user_display_uri(const string &display_uri) {
 	t_user *u = NULL;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); i++)
 	{
@@ -3105,7 +3115,6 @@ t_user *t_phone::ref_user_display_uri(const string &display_uri) {
 			break;
 		}
 	}
-	unlock();
 	
 	return u;
 }
@@ -3113,10 +3122,9 @@ t_user *t_phone::ref_user_display_uri(const string &display_uri) {
 t_user *t_phone::ref_user_profile(const string &profile_name) {
 	t_user *u = NULL;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(profile_name);
 	if (pu) u = pu->get_user_profile();
-	unlock();
 	
 	return u;
 }
@@ -3125,10 +3133,9 @@ t_service *t_phone::ref_service(t_user *user) {
 	assert(user);
 	t_service *srv = NULL;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) srv = pu->service;
-	unlock();
 	
 	return srv;
 }
@@ -3137,10 +3144,9 @@ t_buddy_list *t_phone::ref_buddy_list(t_user *user) {
 	assert(user);
 	t_buddy_list *l = NULL;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) l = pu->get_buddy_list();
-	unlock();
 	
 	return l;
 }
@@ -3149,10 +3155,9 @@ t_presence_epa *t_phone::ref_presence_epa(t_user *user) {
 	assert(user);
 	t_presence_epa *epa = NULL;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) epa = pu->get_presence_epa();
-	unlock();
 	
 	return epa;
 }
@@ -3160,14 +3165,13 @@ t_presence_epa *t_phone::ref_presence_epa(t_user *user) {
 string t_phone::get_ip_sip(const t_user *user, const string &auto_ip) const {
 	string result;
 
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		result = pu->get_ip_sip(auto_ip);
 	} else {
 		result = LOCAL_IP;
 	}
-	unlock();
 	
 	if (result == AUTO_IP4_ADDRESS) result = auto_ip;
 	
@@ -3177,14 +3181,13 @@ string t_phone::get_ip_sip(const t_user *user, const string &auto_ip) const {
 unsigned short t_phone::get_public_port_sip(const t_user *user) const {
 	unsigned short result;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		result = pu->get_public_port_sip();
 	} else {
 		result = sys_config->get_sip_port();
 	}
-	unlock();
 	
 	return result;
 }
@@ -3192,14 +3195,13 @@ unsigned short t_phone::get_public_port_sip(const t_user *user) const {
 bool t_phone::use_stun(t_user *user) {
 	bool result;
 
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		result = pu->use_stun;
 	} else {
 		result = false;
 	}
-	unlock();
 	
 	return result;
 }
@@ -3207,36 +3209,33 @@ bool t_phone::use_stun(t_user *user) {
 bool t_phone::use_nat_keepalive(t_user *user) {
 	bool result;
 
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		result = pu->use_nat_keepalive;
 	} else {
 		result = false;
 	}
-	unlock();
 	
 	return result;	
 }
 
 void t_phone::disable_stun(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) pu->use_stun = false;
-	unlock();
 }
 
 void t_phone::sync_nat_keepalive(t_user *user) {
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) pu->sync_nat_keepalive();
-	unlock();
 }
 
 bool t_phone::stun_discover_nat(list<string> &msg_list) {
 	bool retval = true;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	for (list<t_phone_user *>::iterator i = phone_users.begin();
 	     i != phone_users.end(); ++i)
 	{
@@ -3264,7 +3263,6 @@ bool t_phone::stun_discover_nat(list<string> &msg_list) {
 			}
 		}
 	}
-	unlock();
 	
 	return retval;
 }
@@ -3272,7 +3270,7 @@ bool t_phone::stun_discover_nat(list<string> &msg_list) {
 bool t_phone::stun_discover_nat(t_user *user, string &msg) {
 	bool retval = true;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	if (user->get_sip_transport() == SIP_TRANS_UDP ||
 	    user->get_sip_transport() == SIP_TRANS_AUTO)
 	{
@@ -3285,7 +3283,6 @@ bool t_phone::stun_discover_nat(t_user *user, string &msg) {
 			if (pu) pu->use_nat_keepalive = user->get_enable_nat_keepalive();
 		}
 	}
-	unlock();
 	
 	return retval;
 }
@@ -3295,20 +3292,18 @@ t_response *t_phone::create_options_response(t_user *user, t_request *r,
 {
 	t_response *resp;
 	
-	lock();
+	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		resp = pu->create_options_response(r, in_dialog);
 	} else {
 		resp = r->create_response(R_500_INTERNAL_SERVER_ERROR);
 	}
-	unlock();
 	
 	return resp;
 }
 
 void t_phone::init(void) {
-	lock();
 	
 	list<t_user *> user_list = ref_users();
 	
@@ -3326,8 +3321,6 @@ void t_phone::init(void) {
 		//       This way STUN will have set the correct
 		//       IP adres (STUN is done as part of registration.)
 	}
-	
-	unlock();
 }
 
 void t_phone::init_extensions(t_user *user_config) {
@@ -3361,8 +3354,8 @@ bool t_phone::set_sighandler(void) const {
 
 void t_phone::terminate(void) {
 	string msg;
-	lock();
 	
+	lines_mtx.lockRead();
 	// Clear all lines
 	log_file->write_report("Clear all lines.",
 		"t_phone::terminate", LOG_NORMAL, LOG_DEBUG);
@@ -3387,6 +3380,7 @@ void t_phone::terminate(void) {
 			break;
 		}
 	}
+	lines_mtx.unlock();
 	
 	// Deactivate phone
 	is_active = false;
@@ -3421,8 +3415,6 @@ void t_phone::terminate(void) {
 			pub_registration(*i, REG_DEREGISTER);
 		}
 	}
-	
-	unlock();
 	
 	// Wait till phone is deregistered.
 	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++)
@@ -3473,7 +3465,7 @@ void t_phone::terminate(void) {
 		
 	// Force lines to idle state if they could not be cleared
 	// gracefully
-	lock();
+	lines_mtx.lockRead();
 	for (size_t i = 0; i < lines.size(); i++) {
 		if (lines[i]->get_substate() != LSSUB_IDLE) {
 			msg = "Force line %1 to idle state.";
@@ -3483,10 +3475,10 @@ void t_phone::terminate(void) {
 			lines[i]->force_idle();
 		}
 	}
+	lines_mtx.unlock();
 	
 	log_file->write_report("Finished phone termination.",
 		"t_phone::terminate",  LOG_NORMAL, LOG_DEBUG);
-	unlock();
 }
 
 void *phone_uas_main(void *arg) {

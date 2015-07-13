@@ -1,4 +1,4 @@
-Git version - 1.9.0
+10 July 2015 - 1.9.0
 =======================
 - Ported to Qt4 and Qt5.
 - Added in-call OSD.
@@ -8,6 +8,8 @@ Git version - 1.9.0
 - Save window geometry and state.
 - Visual feedback (button presses) in DTMF window when pushing keyboard buttons.
 - Support clipboard paste in DTMF window.
+- Removed Boost Regex dependency.
+- Eliminated some GUI freezes/stalls.
 
 25 february 2009 - 1.4.2
 ========================

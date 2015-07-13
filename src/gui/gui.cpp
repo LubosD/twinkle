@@ -758,14 +758,14 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	
 	MEMMAN_NEW(mainWindow);
 
-	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()));
-	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()));
-	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()));
-	connect(this, SIGNAL(mw_display(const QString&)), mainWindow, SLOT(display(const QString&)));
-	connect(this, SIGNAL(mw_display_header()), mainWindow, SLOT(displayHeader()));
-	connect(this, SIGNAL(mw_update_log(bool)), mainWindow, SLOT(updateLog(bool)));
-	connect(this, SIGNAL(mw_update_call_history()), mainWindow, SLOT(updateCallHistory()));
-	connect(this, SIGNAL(mw_update_missed_call_status(int)), mainWindow, SLOT(updateMissedCallStatus(int)));
+	connect(this, SIGNAL(update_reg_status()), mainWindow, SLOT(updateRegStatus()), Qt::QueuedConnection);
+	connect(this, SIGNAL(update_mwi()), mainWindow, SLOT(updateMwi()), Qt::QueuedConnection);
+	connect(this, SIGNAL(update_state()), mainWindow, SLOT(updateState()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_display(const QString&)), mainWindow, SLOT(display(const QString&)), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_display_header()), mainWindow, SLOT(displayHeader()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_log(bool)), mainWindow, SLOT(updateLog(bool)), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_call_history()), mainWindow, SLOT(updateCallHistory()), Qt::QueuedConnection);
+	connect(this, SIGNAL(mw_update_missed_call_status(int)), mainWindow, SLOT(updateMissedCallStatus(int)), Qt::QueuedConnection);
 }
 
 t_gui::~t_gui() {
@@ -811,7 +811,9 @@ void t_gui::run(void) {
 	restore_state();
 	
 	// Initialize phone functions
-	phone->init();
+	run_on_event_queue([=]() {
+		phone->init();
+	});
 	
 	// Set controls in correct status
 	mainWindow->updateState();
@@ -2830,26 +2832,32 @@ string t_gui::get_name_from_abook(t_user *user_config, const t_url &u) {
 // User invoked actions on the phone object
 
 void t_gui::action_register(list<t_user *> user_list) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		phone->pub_registration(*i, REG_REGISTER, 
-			DUR_REGISTRATION(*i));
-	}
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			phone->pub_registration(*i, REG_REGISTER,
+				DUR_REGISTRATION(*i));
+		}
+	});
 }
 
 void t_gui::action_deregister(list<t_user *> user_list, bool dereg_all) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		if (dereg_all) {
-			phone->pub_registration(*i, REG_DEREGISTER_ALL);
-		} else {
-			phone->pub_registration(*i, REG_DEREGISTER);
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			if (dereg_all) {
+				phone->pub_registration(*i, REG_DEREGISTER_ALL);
+			} else {
+				phone->pub_registration(*i, REG_DEREGISTER);
+			}
 		}
-	}
+	});
 }
 
 void t_gui::action_show_registrations(list<t_user *> user_list) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		phone->pub_registration(*i, REG_QUERY);
-	}
+	run_on_event_queue([=]() {
+		for (list<t_user *>::const_iterator i = user_list.begin(); i != user_list.end(); i++) {
+			phone->pub_registration(*i, REG_QUERY);
+		}
+	});
 }
 
 void t_gui::action_invite(t_user *user_config, const t_url &destination,
@@ -2885,7 +2893,9 @@ void t_gui::action_invite(t_user *user_config, const t_url &destination,
 	
 	displaySubject(subject.c_str());
 	
-	phone->pub_invite(user_config, destination, display, subject.c_str(), anonymous);
+	run_on_event_queue([=]() {
+		phone->pub_invite(user_config, destination, display, subject.c_str(), anonymous);
+	});
 }
 
 void t_gui::action_answer(void) {
@@ -2967,7 +2977,9 @@ void t_gui::action_options(void) {
 }
 
 void t_gui::action_options(t_user *user_config, const t_url &contact) {
-	phone->pub_options(user_config, contact);
+	run_on_event_queue([=]() {
+		phone->pub_options(user_config, contact);
+	});
 }
 
 void t_gui::action_dtmf(const string &digits) {
@@ -3182,7 +3194,6 @@ void t_gui::open_url_in_browser(const QString &url) {
 		}
 	}
 #endif
-	QProcess process;
 	bool process_started = false;
 	
 	QStringList browsers;
@@ -3196,8 +3207,7 @@ void t_gui::open_url_in_browser(const QString &url) {
 	
 	for (QStringList::Iterator it = browsers.begin(); it != browsers.end(); ++it)
 	{
-		process.start(*it, QStringList(url));
-		process_started = process.waitForStarted(1000);
+		process_started = QProcess::startDetached(*it, QStringList(url));
 		if (process_started) break;
 	}
 	

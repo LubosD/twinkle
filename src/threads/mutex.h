@@ -21,6 +21,7 @@
 
 #include <errno.h>
 #include <pthread.h>
+// #include <iostream>
 
 /**
  * @file
@@ -82,5 +83,46 @@ public:
 	 */
 	~t_mutex_guard();
 };
+
+class t_rwmutex {
+protected:
+	pthread_rwlock_t _lock;
+public:
+	t_rwmutex();
+	~t_rwmutex();
+
+	void lockRead();
+	void lockWrite();
+	void unlock();
+};
+
+class t_rwmutex_reader {
+private:
+	t_rwmutex& _mutex;
+public:
+	t_rwmutex_reader(t_rwmutex& mutex) : _mutex(mutex) {
+		// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
+		_mutex.lockRead();
+	}
+	~t_rwmutex_reader() {
+		// std::cout << "mtx rd unlock " << (void*)&_mutex << std::endl;
+		_mutex.unlock();
+	}
+};
+
+class t_rwmutex_writer {
+private:
+	t_rwmutex& _mutex;
+public:
+	t_rwmutex_writer(t_rwmutex& mutex) : _mutex(mutex) {
+		// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
+		_mutex.lockWrite();
+	}
+	~t_rwmutex_writer() {
+		// std::cout << "mtx wr unlock " << (void*)&_mutex << std::endl;
+		_mutex.unlock();
+	}
+};
+
 
 #endif

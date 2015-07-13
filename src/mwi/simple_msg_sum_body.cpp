@@ -20,7 +20,7 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <boost/regex.hpp>
+#include <regex>
 
 #include "protocol.h"
 #include "util.h"
@@ -43,20 +43,20 @@ bool t_msg_summary::parse(const string &s) {
 	// msg-summary-line = message-context-class HCOLON newmsgs SLASH oldmsgs
         //                    [ LPAREN new-urgentmsgs SLASH old-urgentmsgs RPAREN ]
         // This regex matches the part after HCOLON
-	boost::regex re("(\\d+)\\s*/\\s*(\\d+)(?:\\s*\\((\\d+)\\s*/\\s*(\\d+)\\s*\\))?");
+    std::regex re("(\\d+)\\s*/\\s*(\\d+)(?:\\s*\\((\\d+)\\s*/\\s*(\\d+)\\s*\\))?");
 	
-	boost::smatch m;
-	if (!boost::regex_match(s, m, re)) return false;
+    std::smatch m;
+    if (!std::regex_match(s, m, re)) return false;
 	
 	if (m.size() == 3) {
-		newmsgs = strtoul(m.str(1).c_str(), NULL, 10);
-		oldmsgs = strtoul(m.str(2).c_str(), NULL, 10);
+        newmsgs = std::stoul(m.str(1), NULL, 10);
+        oldmsgs = std::stoul(m.str(2), NULL, 10);
 		return true;
 	} else if (m.size() == 5) {
-		newmsgs = strtoul(m.str(1).c_str(), NULL, 10);
-		oldmsgs = strtoul(m.str(2).c_str(), NULL, 10);
-		newmsgs_urgent = strtoul(m.str(3).c_str(), NULL, 10);
-		oldmsgs_urgent = strtoul(m.str(4).c_str(), NULL, 10);
+        newmsgs = std::stoul(m.str(1), NULL, 10);
+        oldmsgs = std::stoul(m.str(2), NULL, 10);
+        newmsgs_urgent = std::stoul(m.str(3), NULL, 10);
+        oldmsgs_urgent = std::stoul(m.str(4), NULL, 10);
 		return true;
 	}
 	

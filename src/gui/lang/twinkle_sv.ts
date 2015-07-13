@@ -1236,6 +1236,13 @@ För att enkelt komma ihåg dina profiler kan du använda ditt SIP-användarnamn
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -3588,6 +3595,10 @@ Depending on your SIP provider the network might provide ring back tone or an an
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
@@ -5816,6 +5827,17 @@ Detta kan vara värdnamnet eller IP-adressen för din dator, om du vill ha direk
     <message>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished">Svara</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished">Avvisa</translation>
     </message>
 </context>
 </TS>

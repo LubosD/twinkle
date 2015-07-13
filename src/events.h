@@ -58,6 +58,7 @@ enum t_event_type {
 	EV_ASYNC_RESPONSE,	/**< Response on an asynchronous question */
 	EV_BROKEN_CONNECTION,	/**< Persitent connection to SIP proxy broken */
 	EV_TCP_PING,		/**< Send a TCP ping (double CRLF) */
+	EV_FN_CALL,		/**< Queued function call */
 };
 
 /** Abstract parent class for all events */
@@ -627,6 +628,14 @@ public:
 	//@}
 };
 
+class t_event_fncall : public t_event {
+public:
+	t_event_fncall(std::function<void()> fn);
+	void invoke();
+	virtual t_event_type get_type(void) const override;
+private:
+	std::function<void()> m_fn;
+};
 
 /**
  * Event queue.
@@ -662,6 +671,9 @@ public:
 	
 	/** Push a quit event into the queue. */
 	void push_quit(void);
+
+	/** Push a queued function call */
+	void push_fncall(std::function<void()> fn);
 
 	/**
 	 * Create a network event and push it into the queue.

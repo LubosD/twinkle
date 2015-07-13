@@ -598,7 +598,7 @@ void UserProfileForm::populate()
     int j = 0;
     for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++, j++)
 	{
-        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(i->re.str()));
+        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(i->re));
         conversionListView->setItem(j, 0, item);
         item = new QTableWidgetItem(QString::fromStdString(i->fmt));
         conversionListView->setItem(j, 1, item);
@@ -712,7 +712,7 @@ list<t_number_conversion> UserProfileForm::get_number_conversions()
             item = conversionListView->item(0, 1);
             c.fmt = item->text().toStdString();
 			conversions.push_back(c);
-		} catch (boost::bad_expression) {
+        } catch (std::regex_error) {
 			// Should never happen as validity has been
 			// checked already. Just being defensive here.
 		}

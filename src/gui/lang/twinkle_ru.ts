@@ -1224,6 +1224,13 @@ To remember your profiles easily you could use your SIP user name as a profile n
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -3587,6 +3594,10 @@ Depending on your SIP provider the network might provide ring back tone or an an
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
@@ -5780,6 +5791,17 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     <message>
         <source>&amp;No</source>
         <translation>&amp;Нет</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

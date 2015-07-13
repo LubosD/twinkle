@@ -55,6 +55,8 @@ t_call_record::t_call_record() {
 }
 
 void t_call_record::renew() {
+	t_mutex_guard x(mutex);
+
 	mtx_class.lock();
 	id = next_id++;
 	if (next_id == 65535) next_id = 1;
@@ -87,6 +89,7 @@ void t_call_record::start_call(const t_request *invite, t_direction dir,
 {
 	assert(invite->method == INVITE);
 
+	t_mutex_guard x(mutex);
 	struct timeval t;
 	
 	gettimeofday(&t, NULL);
@@ -128,6 +131,7 @@ void t_call_record::fail_call(const t_response *resp) {
 	assert(resp->get_class() >= 3);
 	assert(resp->hdr_cseq.method == INVITE);
 	
+	t_mutex_guard x(mutex);
 	struct timeval t;
 	
 	gettimeofday(&t, NULL);
@@ -148,6 +152,7 @@ void t_call_record::fail_call(const t_response *resp) {
 void t_call_record::answer_call(const t_response *resp) {
 	assert(resp->is_success());
 	
+	t_mutex_guard x(mutex);
 	struct timeval t;
 	
 	gettimeofday(&t, NULL);
@@ -166,6 +171,7 @@ void t_call_record::answer_call(const t_response *resp) {
 
 void t_call_record::end_call(t_rel_cause cause) {
 	struct timeval t;
+	t_mutex_guard x(mutex);
 	
 	gettimeofday(&t, NULL);
 	time_end = t.tv_sec;
@@ -285,12 +291,14 @@ bool t_call_record::create_file_record(vector<string> &v) const {
 }
 
 bool t_call_record::populate_from_file_record(const vector<string> &v) {
+	t_mutex_guard x(mutex);
+
 	// Check number of fields
 	if (v.size() != 20) return false;
 	
-	time_start = strtoul(v[0].c_str(), NULL, 10);
-	time_answer = strtoul(v[1].c_str(), NULL, 10);
-	time_end = strtoul(v[2].c_str(), NULL, 10);
+    time_start = std::stoul(v[0], NULL, 10);
+    time_answer = std::stoul(v[1], NULL, 10);
+    time_end = std::stoul(v[2], NULL, 10);
 	
 	if (!set_direction(v[3])) return false;
 	
@@ -331,6 +339,40 @@ bool t_call_record::is_valid(void) const {
 
 unsigned short t_call_record::get_id(void) const {
 	return id;
+}
+
+t_call_record::t_call_record(const t_call_record& that) {
+	*this = that;
+}
+
+t_call_record& t_call_record::operator=(const t_call_record& that) {
+	t_mutex_guard x1(that.mutex);
+	t_mutex_guard x2(this->mutex);
+
+	id = that.id;
+
+	time_start = that.time_start;
+	time_answer = that.time_answer;
+	time_end = that.time_end;
+	direction = that.direction;
+	from_display = that.from_display;
+	from_uri = that.from_uri;
+	from_organization = that.from_organization;
+	to_display = that.to_display;
+	to_uri = that.to_uri;
+	to_organization = that.to_organization;
+	reply_to_display = that.reply_to_display;
+	reply_to_uri = that.reply_to_uri;
+	referred_by_display = that.referred_by_display;
+	referred_by_uri = that.referred_by_uri;
+	subject = that.subject;
+	rel_cause = that.rel_cause;
+	invite_resp_code = that.invite_resp_code;
+	invite_resp_reason = that.invite_resp_reason;
+	far_end_device = that.far_end_device;
+	user_profile = that.user_profile;
+
+	return *this;
 }
 
 ////////////////////////

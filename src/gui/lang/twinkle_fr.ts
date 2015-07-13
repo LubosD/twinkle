@@ -1234,6 +1234,13 @@ Pour vous rappeler facilement de vos profils, vous pouvez utiliser votre nom d&a
     </message>
 </context>
 <context>
+    <name>IncomingCallPopup</name>
+    <message>
+        <source>%1 calling</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InviteForm</name>
     <message>
         <source>Twinkle - Call</source>
@@ -3688,6 +3695,10 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable in-call OSD</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SysTrayPopup</name>
@@ -6118,6 +6129,17 @@ il est également possible de saisir le nom de l&apos;hôte ou l&apos;adresse IP
     <message>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
+    </message>
+</context>
+<context>
+    <name>incoming_call</name>
+    <message>
+        <source>Answer</source>
+        <translation type="unfinished">Répondre</translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <translation type="unfinished">Refuser</translation>
     </message>
 </context>
 </TS>

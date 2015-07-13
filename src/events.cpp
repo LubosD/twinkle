@@ -506,6 +506,22 @@ unsigned short t_event_tcp_ping::get_dst_port(void) const {
 }
 
 ///////////////////////////////////////////////////////////
+// class t_event_fncall
+///////////////////////////////////////////////////////////
+
+t_event_fncall::t_event_fncall(std::function<void()> fn)
+	: m_fn(fn) {
+
+}
+void t_event_fncall::invoke() {
+	m_fn();
+}
+
+t_event_type t_event_fncall::get_type(void) const {
+	return EV_FN_CALL;
+}
+
+///////////////////////////////////////////////////////////
 // class t_event_queue
 ///////////////////////////////////////////////////////////
 
@@ -541,6 +557,12 @@ void t_event_queue::push(t_event *e) {
 
 void t_event_queue::push_quit(void) {
 	t_event_quit *event = new t_event_quit();
+	MEMMAN_NEW(event);
+	push(event);
+}
+
+void t_event_queue::push_fncall(std::function<void()> fn) {
+	t_event_fncall* event = new t_event_fncall(fn);
 	MEMMAN_NEW(event);
 	push(event);
 }
