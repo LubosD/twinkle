@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Infix name of contact.</source>
-        <translation type="unfinished">Prostřední jméno.</translation>
+        <translation>Prostřední jméno.</translation>
     </message>
     <message>
         <source>First name of contact.</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>&amp;Infix name:</source>
-        <translation type="unfinished">&amp;Prostřední jméno:</translation>
+        <translation>&amp;Prostřední jméno:</translation>
     </message>
     <message>
         <source>Phone number or SIP address of contact.</source>
@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Last name of contact.</source>
-        <translation type="unfinished">Příjmení kontaktu.</translation>
+        <translation>Příjmení kontaktu.</translation>
     </message>
     <message>
         <source>&amp;Last name:</source>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+Z</translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>You must fill in a name.</source>
@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>You must fill in a phone number or SIP address.</source>
-        <translation type="unfinished">Musíte zadat telefonní číslo nebo SIP adresu.</translation>
+        <translation>Musíte zadat telefonní číslo nebo SIP adresu.</translation>
     </message>
 </context>
 <context>
@@ -109,7 +109,7 @@
     </message>
     <message>
         <source>The user profile of the user for which authentication is requested.</source>
-        <translation type="unfinished">Profil uživatele, pro kterého je vyžadováno přihlášení.</translation>
+        <translation>Profil uživatele, pro kterého je vyžadováno přihlášení.</translation>
     </message>
     <message>
         <source>User profile:</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>Login required for realm:</source>
-        <translation type="unfinished">Přihlášení vyžadováno pro realm:</translation>
+        <translation>Přihlášení vyžadováno pro realm:</translation>
     </message>
     <message>
         <source>realm</source>
@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>&amp;Show availability</source>
-        <translation type="unfinished">Ukázat dostupno&amp;st</translation>
+        <translation>Ukázat dostupno&amp;st</translation>
     </message>
     <message>
         <source>Alt+S</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Check this option if you want to see the availability of your buddy. This will only work if your provider offers a presence agent.</source>
-        <translation type="unfinished">Vyberte tuto volbu, pokud chcete vidět dostupnost vytvořeného kontaktu. Toto bude fungovat, pouze pokud váš poskytovatel tuto funkčnost nabízí.</translation>
+        <translation>Vyberte tuto volbu, pokud chcete vidět dostupnost vytvořeného kontaktu. Toto bude fungovat, pouze pokud váš poskytovatel tuto funkčnost nabízí.</translation>
     </message>
     <message>
         <source>&amp;Name:</source>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+Z</translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>You must fill in a name.</source>
@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>unknown</source>
-        <translation type="unfinished">neznámá</translation>
+        <translation>neznámá</translation>
     </message>
     <message>
         <source>offline</source>
@@ -252,11 +252,11 @@
     </message>
     <message>
         <source>not published</source>
-        <translation type="unfinished">není zveřejněna</translation>
+        <translation>není zveřejněna</translation>
     </message>
     <message>
         <source>failed to publish</source>
-        <translation type="unfinished">zveřejnění selhalho</translation>
+        <translation>zveřejnění selhalho</translation>
     </message>
     <message>
         <source>request failed</source>
@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>failure</source>
-        <translation type="unfinished">chyba</translation>
+        <translation>chyba</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <source>deregister all devices</source>
-        <translation type="unfinished">odhlásit všechna zařízení</translation>
+        <translation>odhlásit všechna zařízení</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -359,7 +359,7 @@
     </message>
     <message>
         <source>Keypad</source>
-        <translation type="unfinished">Numerická klávesnice</translation>
+        <translation>Numerická klávesnice</translation>
     </message>
     <message>
         <source>2</source>
@@ -427,7 +427,7 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zavřít</translation>
+        <translation>&amp;Zavřít</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -453,15 +453,15 @@
     </message>
     <message>
         <source>The following profiles are both for user %1</source>
-        <translation type="unfinished">Následující uživatelské profily používají stejnou SIP adresu %1</translation>
+        <translation>Následující uživatelské profily používají stejnou SIP adresu %1</translation>
     </message>
     <message>
         <source>You can only run multiple profiles for different users.</source>
-        <translation type="unfinished">Na jeden SIP účet si nemůžete současně aktivovat více profilů.</translation>
+        <translation>Na jeden SIP účet si nemůžete současně aktivovat více profilů.</translation>
     </message>
     <message>
         <source>Cannot find a network interface. Twinkle will use 127.0.0.1 as the local IP address. When you connect to the network you have to restart Twinkle to use the correct IP address.</source>
-        <translation type="unfinished">Twinkle nemůže najít žádné aktivní síťové rozhraní a používá nyní 127.0.0.1 jako svoji lokální IP adresu. Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu, aby používal správnou IP adresu.</translation>
+        <translation>Twinkle nemůže najít žádné aktivní síťové rozhraní a používá nyní 127.0.0.1 jako svoji lokální IP adresu. Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu, aby používal správnou IP adresu.</translation>
     </message>
     <message>
         <source>Line %1: incoming call for %2</source>
@@ -473,7 +473,7 @@
     </message>
     <message>
         <source>Line %1: far end cancelled call.</source>
-        <translation type="unfinished">Linka %1: protistrana přerušila hovor.</translation>
+        <translation>Linka %1: protistrana přerušila hovor.</translation>
     </message>
     <message>
         <source>Line %1: far end released call.</source>
@@ -489,11 +489,11 @@
     </message>
     <message>
         <source>Line %1: Unsupported content type in answer from far end.</source>
-        <translation type="unfinished">Linka %1: Typ obsahu v odpovědi protistrany není podporován.</translation>
+        <translation>Linka %1: Typ obsahu v odpovědi protistrany není podporován.</translation>
     </message>
     <message>
         <source>Line %1: no ACK received, call will be terminated.</source>
-        <translation type="unfinished">Linka %1: žádný ACK od protistrany, volání bude ukončeno.</translation>
+        <translation>Linka %1: žádný ACK od protistrany, volání bude ukončeno.</translation>
     </message>
     <message>
         <source>Line %1: no PRACK received, call will be terminated.</source>
@@ -501,35 +501,35 @@
     </message>
     <message>
         <source>Line %1: PRACK failed.</source>
-        <translation type="unfinished">Linka %1:  PRACK selhalo.</translation>
+        <translation>Linka %1:  PRACK selhalo.</translation>
     </message>
     <message>
         <source>Line %1: failed to cancel call.</source>
-        <translation type="unfinished">Linka %1:  chyba při pokusu o ukončení hovoru.</translation>
+        <translation>Linka %1:  chyba při pokusu o ukončení hovoru.</translation>
     </message>
     <message>
         <source>Line %1: far end answered call.</source>
-        <translation type="unfinished">Linka %1: protistrana přijala hovor.</translation>
+        <translation>Linka %1: protistrana přijala hovor.</translation>
     </message>
     <message>
         <source>Line %1: call failed.</source>
-        <translation type="unfinished">Linka %1: volání selhalo.</translation>
+        <translation>Linka %1: volání selhalo.</translation>
     </message>
     <message>
         <source>The call can be redirected to:</source>
-        <translation type="unfinished">Hovor může být přesměrován na:</translation>
+        <translation>Hovor může být přesměrován na:</translation>
     </message>
     <message>
         <source>Line %1: call released.</source>
-        <translation type="unfinished">Linka %1: hovor ukončen.</translation>
+        <translation>Linka %1: hovor ukončen.</translation>
     </message>
     <message>
         <source>Line %1: call established.</source>
-        <translation type="unfinished">Linka %1: spojení navázáno.</translation>
+        <translation>Linka %1: spojení navázáno.</translation>
     </message>
     <message>
         <source>Response on terminal capability request: %1 %2</source>
-        <translation type="unfinished">Odpověď protistrany na dotaz o výpis schopností: %1 %2</translation>
+        <translation>Odpověď protistrany na dotaz o výpis schopností: %1 %2</translation>
     </message>
     <message>
         <source>Terminal capabilities of %1</source>
@@ -545,7 +545,7 @@
     </message>
     <message>
         <source>Accepted encodings:</source>
-        <translation type="unfinished">Akceptovaná kódování:</translation>
+        <translation>Akceptovaná kódování:</translation>
     </message>
     <message>
         <source>Accepted languages:</source>
@@ -553,11 +553,11 @@
     </message>
     <message>
         <source>Allowed requests:</source>
-        <translation type="unfinished">Povolené požadavky:</translation>
+        <translation>Povolené požadavky:</translation>
     </message>
     <message>
         <source>Supported extensions:</source>
-        <translation type="unfinished">Podporovaná rozšíření:</translation>
+        <translation>Podporovaná rozšíření:</translation>
     </message>
     <message>
         <source>none</source>
@@ -569,47 +569,47 @@
     </message>
     <message>
         <source>Line %1: call retrieve failed.</source>
-        <translation type="unfinished">Linka %1: chyba při pokusu o obnovení hovoru.</translation>
+        <translation>Linka %1: chyba při pokusu o obnovení hovoru.</translation>
     </message>
     <message>
         <source>%1, registration failed: %2 %3</source>
-        <translation type="unfinished">%1, neúspěšné přihlášení: %2 %3</translation>
+        <translation>%1, neúspěšné přihlášení: %2 %3</translation>
     </message>
     <message>
         <source>%1, registration succeeded (expires = %2 seconds)</source>
-        <translation type="unfinished">%1, registrace úspěšná (platná na %2 sekund)</translation>
+        <translation>%1, registrace úspěšná (platná na %2 sekund)</translation>
     </message>
     <message>
         <source>%1, registration failed: STUN failure</source>
-        <translation type="unfinished">%1, registrace selhala: chyba STUN</translation>
+        <translation>%1, registrace selhala: chyba STUN</translation>
     </message>
     <message>
         <source>%1, de-registration succeeded: %2 %3</source>
-        <translation type="unfinished">%1, úspěšné odhlášení: %2 %3</translation>
+        <translation>%1, úspěšné odhlášení: %2 %3</translation>
     </message>
     <message>
         <source>%1, fetching registrations failed: %2 %3</source>
-        <translation type="unfinished">%1, chyba při dotazu na registrace: %2 %3</translation>
+        <translation>%1, chyba při dotazu na registrace: %2 %3</translation>
     </message>
     <message>
         <source>: you are not registered</source>
-        <translation type="unfinished">: nejste registrován</translation>
+        <translation>: nejste registrován</translation>
     </message>
     <message>
         <source>: you have the following registrations</source>
-        <translation type="unfinished">: jsou aktivní následující registrace</translation>
+        <translation>: jsou aktivní následující registrace</translation>
     </message>
     <message>
         <source>: fetching registrations...</source>
-        <translation type="unfinished">: probíhá dotaz na registrace...</translation>
+        <translation>: probíhá dotaz na registrace...</translation>
     </message>
     <message>
         <source>Line %1: redirecting request to</source>
-        <translation type="unfinished">Linka %1: požadavek přesměrováván na </translation>
+        <translation>Linka %1: požadavek přesměrováván na </translation>
     </message>
     <message>
         <source>Redirecting request to: %1</source>
-        <translation type="unfinished">Přesměrovat požadavek na: %1</translation>
+        <translation>Přesměrovat požadavek na: %1</translation>
     </message>
     <message>
         <source>Line %1: DTMF detected:</source>
@@ -617,19 +617,19 @@
     </message>
     <message>
         <source>invalid DTMF telephone event (%1)</source>
-        <translation type="unfinished">neplatná událost DTMF (%1)</translation>
+        <translation>neplatná událost DTMF (%1)</translation>
     </message>
     <message>
         <source>Line %1: send DTMF %2</source>
-        <translation type="unfinished">Linka %1: odesílá se DTMF %2</translation>
+        <translation>Linka %1: odesílá se DTMF %2</translation>
     </message>
     <message>
         <source>Line %1: far end does not support DTMF telephone events.</source>
-        <translation type="unfinished">Linka %1: protistrana nepodporuje události DTMF.</translation>
+        <translation>Linka %1: protistrana nepodporuje události DTMF.</translation>
     </message>
     <message>
         <source>Line %1: received notification.</source>
-        <translation type="unfinished">Linka %1: přijata notifikace.</translation>
+        <translation>Linka %1: přijata notifikace.</translation>
     </message>
     <message>
         <source>Event: %1</source>
@@ -641,43 +641,43 @@
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation type="unfinished">Důvod: %1</translation>
+        <translation>Důvod: %1</translation>
     </message>
     <message>
         <source>Progress: %1 %2</source>
-        <translation type="unfinished">Průběh: %1 %2</translation>
+        <translation>Průběh: %1 %2</translation>
     </message>
     <message>
         <source>Line %1: call transfer failed.</source>
-        <translation type="unfinished">Linka %1: přepojení hovoru selhalo.</translation>
+        <translation>Linka %1: přepojení hovoru selhalo.</translation>
     </message>
     <message>
         <source>Line %1: call succesfully transferred.</source>
-        <translation type="unfinished">Linka %1: hovor byl přepojen.</translation>
+        <translation>Linka %1: hovor byl přepojen.</translation>
     </message>
     <message>
         <source>Line %1: call transfer still in progress.</source>
-        <translation type="unfinished">Linka %1: přepojení hovoru stále probíhá.</translation>
+        <translation>Linka %1: přepojení hovoru stále probíhá.</translation>
     </message>
     <message>
         <source>No further notifications will be received.</source>
-        <translation type="unfinished">Nebudou přijímány další notifikace.</translation>
+        <translation>Nebudou přijímány další notifikace.</translation>
     </message>
     <message>
         <source>Line %1: transferring call to %2</source>
-        <translation type="unfinished">Linka %1: hovor se přepojuje na %2</translation>
+        <translation>Linka %1: hovor se přepojuje na %2</translation>
     </message>
     <message>
         <source>Transfer requested by %1</source>
-        <translation type="unfinished">Přepojení vyžádal %1</translation>
+        <translation>Přepojení vyžádal %1</translation>
     </message>
     <message>
         <source>Line %1: Call transfer failed. Retrieving original call.</source>
-        <translation type="unfinished">Linka %1:  Přepojení hovoru selhalo. Obnovuji původní hovor.</translation>
+        <translation>Linka %1:  Přepojení hovoru selhalo. Obnovuji původní hovor.</translation>
     </message>
     <message>
         <source>Redirecting call</source>
-        <translation type="unfinished">Přesměrovávám hovor</translation>
+        <translation>Přesměrovávám hovor</translation>
     </message>
     <message>
         <source>User profile:</source>
@@ -689,15 +689,15 @@
     </message>
     <message>
         <source>Do you allow the call to be redirected to the following destination?</source>
-        <translation type="unfinished">Souhlasíte, aby hovor byl přesměrován na následující cíl?</translation>
+        <translation>Souhlasíte, aby hovor byl přesměrován na následující cíl?</translation>
     </message>
     <message>
         <source>If you don&apos;t want to be asked this anymore, then you must change the settings in the SIP protocol section of the user profile.</source>
-        <translation type="unfinished">Pokud nechcete, abyste byl nadále dotazován, musíte změnit nastavení v sekci protokol SIP v uživatelském profilu.</translation>
+        <translation>Pokud nechcete, abyste byl nadále dotazován, musíte změnit nastavení v sekci protokol SIP v uživatelském profilu.</translation>
     </message>
     <message>
         <source>Redirecting request</source>
-        <translation type="unfinished">Přesměrovávám požadavek</translation>
+        <translation>Přesměrovávám požadavek</translation>
     </message>
     <message>
         <source>Do you allow the %1 request to be redirected to the following destination?</source>
@@ -705,15 +705,15 @@
     </message>
     <message>
         <source>Transferring call</source>
-        <translation type="unfinished">Přepojování hovoru</translation>
+        <translation>Přepojování hovoru</translation>
     </message>
     <message>
         <source>Request to transfer call received from:</source>
-        <translation type="unfinished">Požadavek na přepojení hovoru přijat od:</translation>
+        <translation>Požadavek na přepojení hovoru přijat od:</translation>
     </message>
     <message>
         <source>Do you allow the call to be transferred to the following destination?</source>
-        <translation type="unfinished">Povolit přepojení hovoru k následujícímu cíli?</translation>
+        <translation>Povolit přepojení hovoru k následujícímu cíli?</translation>
     </message>
     <message>
         <source>Info:</source>
@@ -721,7 +721,7 @@
     </message>
     <message>
         <source>Warning:</source>
-        <translation type="unfinished">Varování:</translation>
+        <translation>Varování:</translation>
     </message>
     <message>
         <source>Critical:</source>
@@ -729,7 +729,7 @@
     </message>
     <message>
         <source>Firewall / NAT discovery...</source>
-        <translation type="unfinished">Detekce firewallu / NATu...</translation>
+        <translation>Detekce firewallu / NATu...</translation>
     </message>
     <message>
         <source>Abort</source>
@@ -745,7 +745,7 @@
     </message>
     <message>
         <source>The remote user on line %1 disabled the encryption.</source>
-        <translation type="unfinished">Protistrana na lince %1 vypnula zašifrování.</translation>
+        <translation>Protistrana na lince %1 vypnula zašifrování.</translation>
     </message>
     <message>
         <source>Line %1: SAS confirmed.</source>
@@ -761,15 +761,15 @@
     </message>
     <message>
         <source>Line %1: call redirected.</source>
-        <translation type="unfinished">Linka %1: hovor přesměrován.</translation>
+        <translation>Linka %1: hovor přesměrován.</translation>
     </message>
     <message>
         <source>Failed to start conference.</source>
-        <translation type="unfinished">Nepodařilo se zahájit konferenci.</translation>
+        <translation>Nepodařilo se zahájit konferenci.</translation>
     </message>
     <message>
         <source>Override lock file and start anyway?</source>
-        <translation type="unfinished">Ignorovat soubor se zámkem a přesto spustit?</translation>
+        <translation>Ignorovat soubor se zámkem a přesto spustit?</translation>
     </message>
     <message>
         <source>%1, STUN request failed: %2 %3</source>
@@ -781,7 +781,7 @@
     </message>
     <message>
         <source>%1, voice mail status failure.</source>
-        <translation type="unfinished">%1, chyba stavu hlasové schránky.</translation>
+        <translation>%1, chyba stavu hlasové schránky.</translation>
     </message>
     <message>
         <source>%1, voice mail status rejected.</source>
@@ -797,19 +797,19 @@
     </message>
     <message>
         <source>%1, de-registration failed: %2 %3</source>
-        <translation type="unfinished">%1, deregistrace selhala: %2 %3</translation>
+        <translation>%1, deregistrace selhala: %2 %3</translation>
     </message>
     <message>
         <source>Request to transfer call received.</source>
-        <translation type="unfinished">Přijat požadavek na přepojení hovoru.</translation>
+        <translation>Přijat požadavek na přepojení hovoru.</translation>
     </message>
     <message>
         <source>If these are users for different domains, then enable the following option in your user profile (SIP protocol)</source>
-        <translation type="unfinished">Pokud jsou toto uživatelé pro různé domény, potom aktivujte následující volbu ve vašem uživatelském profilu (Protokol SIP)</translation>
+        <translation>Pokud jsou toto uživatelé pro různé domény, potom aktivujte následující volbu ve vašem uživatelském profilu (Protokol SIP)</translation>
     </message>
     <message>
         <source>Use domain name to create a unique contact header</source>
-        <translation type="unfinished">Použít doménové jméno k vytvoření jedinečné kontaktní hlavičky</translation>
+        <translation>Použít doménové jméno k vytvoření jedinečné kontaktní hlavičky</translation>
     </message>
     <message>
         <source>Failed to create a %1 socket (SIP) on port %2</source>
@@ -825,7 +825,7 @@
     </message>
     <message>
         <source>Transferred by: %1</source>
-        <translation type="unfinished">Přepojil: %1</translation>
+        <translation>Přepojil: %1</translation>
     </message>
     <message>
         <source>Cannot open web browser: %1</source>
@@ -833,14 +833,14 @@
     </message>
     <message>
         <source>Configure your web browser in the system settings.</source>
-        <translation type="unfinished">Nastavte svůj webový prohlížeč v systémovém nastavení.</translation>
+        <translation>Nastavte svůj webový prohlížeč v systémovém nastavení.</translation>
     </message>
 </context>
 <context>
     <name>GetAddressForm</name>
     <message>
         <source>Twinkle - Select address</source>
-        <translation>Twinkle - Výběr adres</translation>
+        <translation>Twinkle - Výběr adresy</translation>
     </message>
     <message>
         <source>Name</source>
@@ -872,12 +872,11 @@
     </message>
     <message>
         <source>Alt+R</source>
-        <translation>Alt+R</translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>Reload the list of addresses from KAddressbook.</source>
-        <translation>Znovu načíst seznam adres z KAddressbook.
-Zavření a opětovné otevření okna &lt;i&gt;nevede&lt;/i&gt; k novému načtení. Změny v adresáři budou v Twinkle viditelné až po aktivaci &quot;Aktualizace&quot;.</translation>
+        <translation>Znovu načíst seznam adres z KAddressbook.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -893,7 +892,7 @@ Zavření a opětovné otevření okna &lt;i&gt;nevede&lt;/i&gt; k novému načt
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation>Alt+Z</translation>
     </message>
     <message>
         <source>&amp;KAddressBook</source>
@@ -901,12 +900,11 @@ Zavření a opětovné otevření okna &lt;i&gt;nevede&lt;/i&gt; k novému načt
     </message>
     <message>
         <source>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</source>
-        <translation>Tento seznam kontaktů pochází z &lt;b&gt;KAddressbook&lt;/b&gt;. Kontakty, které neobsahují telefonní číslo nebo SIP adresu zde nejsou uvedeny. 
-K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translation>
+        <translation>Tento seznam kontaktů pochází z &lt;b&gt;KAddressbook&lt;/b&gt;. Kontakty, které neobsahují telefonní číslo nebo SIP adresu zde nejsou uvedeny. K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translation>
     </message>
     <message>
         <source>&amp;Local address book</source>
-        <translation>&amp;Lokální adresář</translation>
+        <translation>&amp;Místní adresář</translation>
     </message>
     <message>
         <source>Remark</source>
@@ -918,7 +916,7 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation>&amp;Přidat</translation>
+        <translation>Přid&amp;at</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -926,19 +924,19 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>Add a new contact to the local address book.</source>
-        <translation>Založit v lokálním adresáři nový kontakt.</translation>
+        <translation>Založit v místním adresáři nový kontakt.</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Smazat</translation>
+        <translation>Smaza&amp;t</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation>Alt+D</translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>Delete a contact from the local address book.</source>
-        <translation>Smazat vybraný kontakt z lokálního adresáře.</translation>
+        <translation>Smazat vybraný kontakt z místního adresáře.</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -946,23 +944,23 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>Alt+E</source>
-        <translation>Alt+E</translation>
+        <translation>Alt+U</translation>
     </message>
     <message>
         <source>Edit a contact from the local address book.</source>
-        <translation>Upravit vybraný kontakt z lokálního adresáře.</translation>
+        <translation>Upravit vybraný kontakt v místním adresáři.</translation>
     </message>
     <message>
         <source>&lt;p&gt;You seem not to have any contacts with a phone number in &lt;b&gt;KAddressBook&lt;/b&gt;, KDE&apos;s address book application. Twinkle retrieves all contacts with a phone number from KAddressBook. To manage your contacts you have to use KAddressBook.&lt;p&gt;As an alternative you may use Twinkle&apos;s local address book.&lt;/p&gt;</source>
         <translation>Zdá se, že &lt;p&gt;&lt;b&gt;KAddressbook&lt;/b&gt; neobsahuje žádné záznamy s telefonními čísly, které by Twinkle mohl načíst. Použijte prosím tento program k úpravě nebo zanesení vašich kontaktů.&lt;/p&gt;
-&lt;p&gt;Jako alternativa je vám k dispozici lokální adresář Twinkles, bez nutnosti mít výše jmenovaný program.&lt;/p&gt;</translation>
+&lt;p&gt;Druhou možností je používat místní adresář v Twinkle.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
     <name>GetProfileNameForm</name>
     <message>
         <source>Twinkle - Profile name</source>
-        <translation>Twinkle - Jméno uživatelského programu</translation>
+        <translation>Twinkle - Název profilu</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -974,7 +972,7 @@ K vytvoření nebo úpravě kontaktů použijte program KAddressbook.</translati
     </message>
     <message>
         <source>Enter a name for your profile:</source>
-        <translation>Vložte jméno pro nový profil:</translation>
+        <translation>Zadejte název profilu:</translation>
     </message>
     <message>
         <source>&lt;b&gt;The name of your profile&lt;/b&gt;
@@ -984,12 +982,13 @@ A profile contains your user settings, e.g. your user name and password. You hav
 If you have multiple SIP accounts, you can create multiple profiles. When you startup Twinkle it will show you the list of profile names from which you can select the profile you want to run.
 &lt;br&gt;&lt;br&gt;
 To remember your profiles easily you could use your SIP user name as a profile name, e.g. &lt;b&gt;example@example.com&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Název, pod kterým bude založen nový profil&lt;/b&gt;
+        <translation>&lt;b&gt;Název vašeho profilu&lt;/b&gt;
 &lt;br&gt;&lt;br&gt;
-Profil obsahuje všechna uživatelská nastavení, např. uživatelské jméno SIP, heslo atd. Pokud spustíte Twinkle, bude zobrazen seznam všech profilů, ze kterého si lze vybrat ten, se kterým má být pracováno.
+Profil obsahuje všechna uživatelská nastavení, např. uživatelské jméno SIP, heslo. Každý profil musí být pojmenován.
 &lt;br&gt;&lt;br&gt;
-Ke snadnému zapamatování si profilu je možné použít k označení profilu uživatelské jméno. Např. &lt;b&gt;example@example.com&lt;/b&gt;
-&lt;p&gt;Před založením prvního profilu je vhodné si nejprve vyřídit registraci u vašeho SIP poskytovatele a poznačit si, jaké &lt;b&gt;přístupové parametry SIP&lt;/b&gt; jsou k přihlášení potřebné.
+Pokud máte vícero účtů SIP, můžete si vytvořit několik profilů. Při spuštění vám Twinkle zobrazí seznam názvů profilů, ze kterých si můžete vybrat ty, které chcete spustit.
+&lt;br&gt;&lt;br&gt;
+Ke snadnému zapamatování si profilu je možné použít k označení profilu uživatelské jméno, např. &lt;b&gt;example@example.com&lt;/b&gt;
 &lt;/p&gt;</translation>
     </message>
     <message>
@@ -1002,7 +1001,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Rename profile &apos;%1&apos; to:</source>
-        <translation>Profil &quot;%1&quot; přejmenovat na:</translation>
+        <translation>Přejmenovat profil %1 na:</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1080,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>&amp;Missed calls</source>
-        <translation>&amp;Zmeškaná volání</translation>
+        <translation>&amp;Zmeškané hovory</translation>
     </message>
     <message>
         <source>Alt+M</source>
@@ -1119,7 +1118,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Close this window.</source>
@@ -1219,7 +1218,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>###</source>
-        <translation># # #</translation>
+        <translation>###</translation>
     </message>
     <message>
         <source>Total call duration:</source>
@@ -1257,7 +1256,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation>Adresa, kterou chcete volat.  Toto může být plnohodnotná SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo. Pokud není zadaná úplná adresa, Twinkle ji doplní o doménové jméno aktuálního uživatelského profilu.</translation>
+        <translation>Adresa, na kterou chcete zavolat. Toto může být plnohodnotná SIP adresa jako &lt;b&gt;sip:example@example.com&lt;/b&gt; nebo jen uživatel nebo telefonní číslo. Pokud není zadaná úplná adresa, Twinkle ji doplní o doménové jméno aktuálního uživatelského profilu.</translation>
     </message>
     <message>
         <source>The user that will make the call.</source>
