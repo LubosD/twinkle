@@ -1150,7 +1150,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>To:</source>
-        <translation>Komu:</translation>
+        <translation>Kam:</translation>
     </message>
     <message>
         <source>Reply to:</source>
@@ -1240,7 +1240,7 @@ Ke snadnému zapamatování si profilu je možné použít k označení profilu 
     </message>
     <message>
         <source>&amp;To:</source>
-        <translation>Komu (&amp;Telnr):</translation>
+        <translation>K&amp;am:</translation>
     </message>
     <message>
         <source>Optionally you can provide a subject here. This might be shown to the callee.</source>
@@ -1325,11 +1325,11 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>C&amp;lear</source>
-        <translation>&amp;Smazat</translation>
+        <translation>&amp;Vymazat</translation>
     </message>
     <message>
         <source>Alt+L</source>
-        <translation>Alt+L</translation>
+        <translation>Alt+V</translation>
     </message>
     <message>
         <source>Clear the log window. This does &lt;b&gt;not&lt;/b&gt; clear the log file itself.</source>
@@ -1535,7 +1535,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>To:</source>
-        <translation>Komu:</translation>
+        <translation>Kam:</translation>
     </message>
     <message>
         <source>Subject:</source>
@@ -1665,7 +1665,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>&amp;Registration</source>
-        <translation>&amp;Přihlášení</translation>
+        <translation>&amp;Registrace</translation>
     </message>
     <message>
         <source>&amp;Services</source>
@@ -1745,31 +1745,31 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Register</source>
-        <translation>Přihlásit se</translation>
+        <translation>Registrovat se</translation>
     </message>
     <message>
         <source>&amp;Register</source>
-        <translation>&amp;Přihlásit se</translation>
+        <translation>&amp;Registrovat se</translation>
     </message>
     <message>
         <source>Deregister</source>
-        <translation>Odhlásit se</translation>
+        <translation>Deregistrovat se</translation>
     </message>
     <message>
         <source>&amp;Deregister</source>
-        <translation>&amp;Odhlásit se</translation>
+        <translation>&amp;Deregistrovat se</translation>
     </message>
     <message>
         <source>Deregister this device</source>
-        <translation>Odhlásit toto zařízení</translation>
+        <translation>Deregistrovat toto zařízení</translation>
     </message>
     <message>
         <source>Show registrations</source>
-        <translation>Zobrazit přihlášení</translation>
+        <translation>Zobrazit registrace</translation>
     </message>
     <message>
         <source>&amp;Show registrations</source>
-        <translation>&amp;Zobrazit přihlášení</translation>
+        <translation>&amp;Zobrazit registrace</translation>
     </message>
     <message>
         <source>Terminal capabilities</source>
@@ -1829,7 +1829,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Transfer call</source>
-        <translation>Přesměrovat hovoru</translation>
+        <translation>Přesměrovat hovor</translation>
     </message>
     <message>
         <source>System settings</source>
@@ -2637,7 +2637,7 @@ Pokud je SAS shodný na obou stranách, klikněte na ikonku zámečku. Lze se o 
     </message>
     <message>
         <source>Select user profile(s) to run:</source>
-        <translation>Výběr uživatelského profilu (popř. profilů), které mají být aktivovány:</translation>
+        <translation>Zvolte uživatelské profily, které mají být aktivovány:</translation>
     </message>
     <message>
         <source>User profile</source>
