@@ -998,7 +998,7 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 
-	s += "http://www.twinklephone.com";
+	s += "http://twinkle.dolezel.info";
 	if (html) s += "<BR><BR>";
 	s += "\n\n";
 	
