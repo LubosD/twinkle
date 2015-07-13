@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Infix name of contact.</source>
-        <translation>Prostřední jméno nebo titul.</translation>
+        <translation type="unfinished">Prostřední jméno.</translation>
     </message>
     <message>
         <source>First name of contact.</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>&amp;Infix name:</source>
-        <translation>&amp;Titul:</translation>
+        <translation type="unfinished">&amp;Prostřední jméno:</translation>
     </message>
     <message>
         <source>Phone number or SIP address of contact.</source>
@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Last name of contact.</source>
-        <translation>Příjmení. </translation>
+        <translation type="unfinished">Příjmení kontaktu.</translation>
     </message>
     <message>
         <source>&amp;Last name:</source>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation type="unfinished">Alt+Z</translation>
     </message>
     <message>
         <source>You must fill in a name.</source>
@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>You must fill in a phone number or SIP address.</source>
-        <translation>Musíte zadat jméno nebo SIP adresu.</translation>
+        <translation type="unfinished">Musíte zadat telefonní číslo nebo SIP adresu.</translation>
     </message>
 </context>
 <context>
@@ -109,7 +109,7 @@
     </message>
     <message>
         <source>The user profile of the user for which authentication is requested.</source>
-        <translation>Profil uživatele, pro kterého je přihlášení vyžadováno.</translation>
+        <translation type="unfinished">Profil uživatele, pro kterého je vyžadováno přihlášení.</translation>
     </message>
     <message>
         <source>User profile:</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>Login required for realm:</source>
-        <translation>Pro Realm je nutné přihlášení:</translation>
+        <translation type="unfinished">Přihlášení vyžadováno pro realm:</translation>
     </message>
     <message>
         <source>realm</source>
@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>&amp;Show availability</source>
-        <translation>&amp;Ukázat dostupnost</translation>
+        <translation type="unfinished">Ukázat dostupno&amp;st</translation>
     </message>
     <message>
         <source>Alt+S</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Check this option if you want to see the availability of your buddy. This will only work if your provider offers a presence agent.</source>
-        <translation>Vybrat tuto volbu pokud chcete vidět dostupnost vytvořeného kontaktu. Toto bude fungovat pouze pokud váš poskytovatel tuto funkčnost nabízí.</translation>
+        <translation type="unfinished">Vyberte tuto volbu, pokud chcete vidět dostupnost vytvořeného kontaktu. Toto bude fungovat, pouze pokud váš poskytovatel tuto funkčnost nabízí.</translation>
     </message>
     <message>
         <source>&amp;Name:</source>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation type="unfinished">Alt+Z</translation>
     </message>
     <message>
         <source>You must fill in a name.</source>
@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>unknown</source>
-        <translation>neznámý</translation>
+        <translation type="unfinished">neznámá</translation>
     </message>
     <message>
         <source>offline</source>
@@ -252,11 +252,11 @@
     </message>
     <message>
         <source>not published</source>
-        <translation>nepublikováno</translation>
+        <translation type="unfinished">není zveřejněna</translation>
     </message>
     <message>
         <source>failed to publish</source>
-        <translation>publikování selhalho</translation>
+        <translation type="unfinished">zveřejnění selhalho</translation>
     </message>
     <message>
         <source>request failed</source>
@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>failure</source>
-        <translation>Chyba</translation>
+        <translation type="unfinished">chyba</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <source>deregister all devices</source>
-        <translation>Odhlásit všechny koncové přístroje</translation>
+        <translation type="unfinished">odhlásit všechna zařízení</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -359,7 +359,7 @@
     </message>
     <message>
         <source>Keypad</source>
-        <translation>Klávesnice</translation>
+        <translation type="unfinished">Numerická klávesnice</translation>
     </message>
     <message>
         <source>2</source>
@@ -427,7 +427,7 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>Za&amp;vřít</translation>
+        <translation type="unfinished">&amp;Zavřít</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -453,16 +453,15 @@
     </message>
     <message>
         <source>The following profiles are both for user %1</source>
-        <translation>Následující uživatelské profily používají stejnou SIP Adresu %1</translation>
+        <translation type="unfinished">Následující uživatelské profily používají stejnou SIP adresu %1</translation>
     </message>
     <message>
         <source>You can only run multiple profiles for different users.</source>
-        <translation>Na jeden SIP účet si nemůžete aktivovat současně více profilů.</translation>
+        <translation type="unfinished">Na jeden SIP účet si nemůžete současně aktivovat více profilů.</translation>
     </message>
     <message>
         <source>Cannot find a network interface. Twinkle will use 127.0.0.1 as the local IP address. When you connect to the network you have to restart Twinkle to use the correct IP address.</source>
-        <translation>Twinkle nemůže najít žádné aktivní síťové rozhraní a používá nyní 127.0.0.1 jako svoji lokální IP adresu.
-Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. Tím umožníte nalezení nové a funkční síťové adresy.</translation>
+        <translation type="unfinished">Twinkle nemůže najít žádné aktivní síťové rozhraní a používá nyní 127.0.0.1 jako svoji lokální IP adresu. Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu, aby používal správnou IP adresu.</translation>
     </message>
     <message>
         <source>Line %1: incoming call for %2</source>
@@ -474,7 +473,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: far end cancelled call.</source>
-        <translation>Linka %1: Protistrana přerušila hovor.</translation>
+        <translation type="unfinished">Linka %1: protistrana přerušila hovor.</translation>
     </message>
     <message>
         <source>Line %1: far end released call.</source>
@@ -490,11 +489,11 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: Unsupported content type in answer from far end.</source>
-        <translation>Linka %1: Typ obsahu v odpovědi protistrany není podporována.</translation>
+        <translation type="unfinished">Linka %1: Typ obsahu v odpovědi protistrany není podporován.</translation>
     </message>
     <message>
         <source>Line %1: no ACK received, call will be terminated.</source>
-        <translation>Linka %1: žádný ACK od protistrany, volání ukončeno.</translation>
+        <translation type="unfinished">Linka %1: žádný ACK od protistrany, volání bude ukončeno.</translation>
     </message>
     <message>
         <source>Line %1: no PRACK received, call will be terminated.</source>
@@ -502,35 +501,35 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: PRACK failed.</source>
-        <translation>Linka %1:  PRACK chyba.</translation>
+        <translation type="unfinished">Linka %1:  PRACK selhalo.</translation>
     </message>
     <message>
         <source>Line %1: failed to cancel call.</source>
-        <translation>Linka %1:  Chyba při pokusu o ukončení hovoru.</translation>
+        <translation type="unfinished">Linka %1:  chyba při pokusu o ukončení hovoru.</translation>
     </message>
     <message>
         <source>Line %1: far end answered call.</source>
-        <translation>Linka %1: Protistrana odpověděla na volání.</translation>
+        <translation type="unfinished">Linka %1: protistrana přijala hovor.</translation>
     </message>
     <message>
         <source>Line %1: call failed.</source>
-        <translation>Linka %1: Volání selhalo.</translation>
+        <translation type="unfinished">Linka %1: volání selhalo.</translation>
     </message>
     <message>
         <source>The call can be redirected to:</source>
-        <translation>Hovor může být přepojen na:</translation>
+        <translation type="unfinished">Hovor může být přesměrován na:</translation>
     </message>
     <message>
         <source>Line %1: call released.</source>
-        <translation>Linka %1: Hovor ukončen.</translation>
+        <translation type="unfinished">Linka %1: hovor ukončen.</translation>
     </message>
     <message>
         <source>Line %1: call established.</source>
-        <translation>Linka %1: Spojení navázáno.</translation>
+        <translation type="unfinished">Linka %1: spojení navázáno.</translation>
     </message>
     <message>
         <source>Response on terminal capability request: %1 %2</source>
-        <translation>Odpověď protistrany na dotaz o výpis možností: %1 %2</translation>
+        <translation type="unfinished">Odpověď protistrany na dotaz o výpis schopností: %1 %2</translation>
     </message>
     <message>
         <source>Terminal capabilities of %1</source>
@@ -546,7 +545,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Accepted encodings:</source>
-        <translation>Akceptovaná &quot;encodings&quot;:</translation>
+        <translation type="unfinished">Akceptovaná kódování:</translation>
     </message>
     <message>
         <source>Accepted languages:</source>
@@ -554,11 +553,11 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Allowed requests:</source>
-        <translation>Povolené &quot;requests&quot;:</translation>
+        <translation type="unfinished">Povolené požadavky:</translation>
     </message>
     <message>
         <source>Supported extensions:</source>
-        <translation>Podporované &quot;extensions&quot;:</translation>
+        <translation type="unfinished">Podporovaná rozšíření:</translation>
     </message>
     <message>
         <source>none</source>
@@ -570,47 +569,47 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: call retrieve failed.</source>
-        <translation>Linka %1: Chyba při pokusu o znovunavázání hovoru.</translation>
+        <translation type="unfinished">Linka %1: chyba při pokusu o obnovení hovoru.</translation>
     </message>
     <message>
         <source>%1, registration failed: %2 %3</source>
-        <translation>%1, Neúspěšné přihlášení: %2 %3</translation>
+        <translation type="unfinished">%1, neúspěšné přihlášení: %2 %3</translation>
     </message>
     <message>
         <source>%1, registration succeeded (expires = %2 seconds)</source>
-        <translation>%1, Přihlášení úspěšné (platné na %2 Sek.)</translation>
+        <translation type="unfinished">%1, registrace úspěšná (platná na %2 sekund)</translation>
     </message>
     <message>
         <source>%1, registration failed: STUN failure</source>
-        <translation>%1, Přihlášení neúspěšné: STUN chyba</translation>
+        <translation type="unfinished">%1, registrace selhala: chyba STUN</translation>
     </message>
     <message>
         <source>%1, de-registration succeeded: %2 %3</source>
-        <translation>%1, Odhlášení proběhlo: %2 %3</translation>
+        <translation type="unfinished">%1, úspěšné odhlášení: %2 %3</translation>
     </message>
     <message>
         <source>%1, fetching registrations failed: %2 %3</source>
-        <translation>%1, Chyba při dotazu na registraci: %2 %3</translation>
+        <translation type="unfinished">%1, chyba při dotazu na registrace: %2 %3</translation>
     </message>
     <message>
         <source>: you are not registered</source>
-        <translation>: Nejste přihlášen</translation>
+        <translation type="unfinished">: nejste registrován</translation>
     </message>
     <message>
         <source>: you have the following registrations</source>
-        <translation>: jsou aktivní následující přihlášení</translation>
+        <translation type="unfinished">: jsou aktivní následující registrace</translation>
     </message>
     <message>
         <source>: fetching registrations...</source>
-        <translation>: probíhá dotaz na přihlášení...</translation>
+        <translation type="unfinished">: probíhá dotaz na registrace...</translation>
     </message>
     <message>
         <source>Line %1: redirecting request to</source>
-        <translation>Linka %1: převést dotaz na </translation>
+        <translation type="unfinished">Linka %1: požadavek přesměrováván na </translation>
     </message>
     <message>
         <source>Redirecting request to: %1</source>
-        <translation>Převést dotaz na: %1</translation>
+        <translation type="unfinished">Přesměrovat požadavek na: %1</translation>
     </message>
     <message>
         <source>Line %1: DTMF detected:</source>
@@ -618,19 +617,19 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>invalid DTMF telephone event (%1)</source>
-        <translation>Neplatné vyhodnocení DTMF (%1)</translation>
+        <translation type="unfinished">neplatná událost DTMF (%1)</translation>
     </message>
     <message>
         <source>Line %1: send DTMF %2</source>
-        <translation>Linka %1: vyšli DTMF %2</translation>
+        <translation type="unfinished">Linka %1: odesílá se DTMF %2</translation>
     </message>
     <message>
         <source>Line %1: far end does not support DTMF telephone events.</source>
-        <translation>Linka %1: Protistrana nepodporuje události DTMF.</translation>
+        <translation type="unfinished">Linka %1: protistrana nepodporuje události DTMF.</translation>
     </message>
     <message>
         <source>Line %1: received notification.</source>
-        <translation>Linka %1: Oznámení přijato.</translation>
+        <translation type="unfinished">Linka %1: přijata notifikace.</translation>
     </message>
     <message>
         <source>Event: %1</source>
@@ -642,43 +641,43 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Reason: %1</source>
-        <translation>Příčina: %1</translation>
+        <translation type="unfinished">Důvod: %1</translation>
     </message>
     <message>
         <source>Progress: %1 %2</source>
-        <translation>Postup: %1 %2</translation>
+        <translation type="unfinished">Průběh: %1 %2</translation>
     </message>
     <message>
         <source>Line %1: call transfer failed.</source>
-        <translation>Linka %1: Přesměrování hovoru selhalo.</translation>
+        <translation type="unfinished">Linka %1: přepojení hovoru selhalo.</translation>
     </message>
     <message>
         <source>Line %1: call succesfully transferred.</source>
-        <translation>Linka %1: Hovor byl přesměrován.</translation>
+        <translation type="unfinished">Linka %1: hovor byl přepojen.</translation>
     </message>
     <message>
         <source>Line %1: call transfer still in progress.</source>
-        <translation>Linka %1: Přesměrování hovoru probíhá.</translation>
+        <translation type="unfinished">Linka %1: přepojení hovoru stále probíhá.</translation>
     </message>
     <message>
         <source>No further notifications will be received.</source>
-        <translation>Protistrana zastavila zasílání zpráv.</translation>
+        <translation type="unfinished">Nebudou přijímány další notifikace.</translation>
     </message>
     <message>
         <source>Line %1: transferring call to %2</source>
-        <translation>Linka %1: Přesměrování hovoru na %2</translation>
+        <translation type="unfinished">Linka %1: hovor se přepojuje na %2</translation>
     </message>
     <message>
         <source>Transfer requested by %1</source>
-        <translation>Přesněrování hovoru vyžádáno od %1</translation>
+        <translation type="unfinished">Přepojení vyžádal %1</translation>
     </message>
     <message>
         <source>Line %1: Call transfer failed. Retrieving original call.</source>
-        <translation>Linka %1:  Přesměrování hovoru bylo neúspěšné. V původním hovoru bude pokračováno.</translation>
+        <translation type="unfinished">Linka %1:  Přepojení hovoru selhalo. Obnovuji původní hovor.</translation>
     </message>
     <message>
         <source>Redirecting call</source>
-        <translation>Hovor bude přesměrován</translation>
+        <translation type="unfinished">Přesměrovávám hovor</translation>
     </message>
     <message>
         <source>User profile:</source>
@@ -690,15 +689,15 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Do you allow the call to be redirected to the following destination?</source>
-        <translation>Chcete dovolit aby hovor byl přesměrován na následující cíl?</translation>
+        <translation type="unfinished">Souhlasíte, aby hovor byl přesměrován na následující cíl?</translation>
     </message>
     <message>
         <source>If you don&apos;t want to be asked this anymore, then you must change the settings in the SIP protocol section of the user profile.</source>
-        <translation>Pokud nechcete, aby jste zde byl neustále dotazován, musíte změnit nastavení v sekci SIP protokol v uživatelském profilu.</translation>
+        <translation type="unfinished">Pokud nechcete, abyste byl nadále dotazován, musíte změnit nastavení v sekci protokol SIP v uživatelském profilu.</translation>
     </message>
     <message>
         <source>Redirecting request</source>
-        <translation>Přesměrovat dotaz</translation>
+        <translation type="unfinished">Přesměrovávám požadavek</translation>
     </message>
     <message>
         <source>Do you allow the %1 request to be redirected to the following destination?</source>
@@ -706,15 +705,15 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Transferring call</source>
-        <translation>Přesměrování hovoru</translation>
+        <translation type="unfinished">Přepojování hovoru</translation>
     </message>
     <message>
         <source>Request to transfer call received from:</source>
-        <translation>Požadavek na přesměrování hovoru přijat od:</translation>
+        <translation type="unfinished">Požadavek na přepojení hovoru přijat od:</translation>
     </message>
     <message>
         <source>Do you allow the call to be transferred to the following destination?</source>
-        <translation>Povolit přesměrování hovoru k následujícímu cíli?</translation>
+        <translation type="unfinished">Povolit přepojení hovoru k následujícímu cíli?</translation>
     </message>
     <message>
         <source>Info:</source>
@@ -722,7 +721,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Warning:</source>
-        <translation>Upozornění:</translation>
+        <translation type="unfinished">Varování:</translation>
     </message>
     <message>
         <source>Critical:</source>
@@ -730,7 +729,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Firewall / NAT discovery...</source>
-        <translation>Firewall / NAT Analýza...</translation>
+        <translation type="unfinished">Detekce firewallu / NATu...</translation>
     </message>
     <message>
         <source>Abort</source>
@@ -746,7 +745,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>The remote user on line %1 disabled the encryption.</source>
-        <translation>protistrana na lince %1 vypnula zašifrování.</translation>
+        <translation type="unfinished">Protistrana na lince %1 vypnula zašifrování.</translation>
     </message>
     <message>
         <source>Line %1: SAS confirmed.</source>
@@ -762,15 +761,15 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Line %1: call redirected.</source>
-        <translation>Linka %1: Hovor přesměrován.</translation>
+        <translation type="unfinished">Linka %1: hovor přesměrován.</translation>
     </message>
     <message>
         <source>Failed to start conference.</source>
-        <translation>Nepodařilo se otevřít konferenci.</translation>
+        <translation type="unfinished">Nepodařilo se zahájit konferenci.</translation>
     </message>
     <message>
         <source>Override lock file and start anyway?</source>
-        <translation>Ignorovat blokovací soubor a přesto spustit?</translation>
+        <translation type="unfinished">Ignorovat soubor se zámkem a přesto spustit?</translation>
     </message>
     <message>
         <source>%1, STUN request failed: %2 %3</source>
@@ -782,7 +781,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>%1, voice mail status failure.</source>
-        <translation>%1, Chyba stavu hlasové schránky.</translation>
+        <translation type="unfinished">%1, chyba stavu hlasové schránky.</translation>
     </message>
     <message>
         <source>%1, voice mail status rejected.</source>
@@ -798,19 +797,19 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>%1, de-registration failed: %2 %3</source>
-        <translation>%1, Neúspěšné odhlášení: %2 %3</translation>
+        <translation type="unfinished">%1, deregistrace selhala: %2 %3</translation>
     </message>
     <message>
         <source>Request to transfer call received.</source>
-        <translation>Protistrana si vyžádala přenos.</translation>
+        <translation type="unfinished">Přijat požadavek na přepojení hovoru.</translation>
     </message>
     <message>
         <source>If these are users for different domains, then enable the following option in your user profile (SIP protocol)</source>
-        <translation>Pokud jsou toto uživatelé pro různé domény, potom aktivujte následující volbu ve vašem uživatelském profilu (SIP protocol)</translation>
+        <translation type="unfinished">Pokud jsou toto uživatelé pro různé domény, potom aktivujte následující volbu ve vašem uživatelském profilu (Protokol SIP)</translation>
     </message>
     <message>
         <source>Use domain name to create a unique contact header</source>
-        <translation>Použijte doménové jméno k vytvoření jedinečné kontaktní hlavičky</translation>
+        <translation type="unfinished">Použít doménové jméno k vytvoření jedinečné kontaktní hlavičky</translation>
     </message>
     <message>
         <source>Failed to create a %1 socket (SIP) on port %2</source>
@@ -826,7 +825,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Transferred by: %1</source>
-        <translation>Přesměroval: %1</translation>
+        <translation type="unfinished">Přepojil: %1</translation>
     </message>
     <message>
         <source>Cannot open web browser: %1</source>
@@ -834,7 +833,7 @@ Pokud se připojíte k nějaké síti později, musíte Twinkle spustit znovu. T
     </message>
     <message>
         <source>Configure your web browser in the system settings.</source>
-        <translation>Změňte nastavení vašeho prohlížeče v systémovém nastavení.</translation>
+        <translation type="unfinished">Nastavte svůj webový prohlížeč v systémovém nastavení.</translation>
     </message>
 </context>
 <context>
