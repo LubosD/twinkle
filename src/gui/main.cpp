@@ -1046,6 +1046,24 @@ int main( int argc, char ** argv )
 		ui->cb_show_msg(msg, MSG_CRITICAL);
 		sys_config->delete_lock_file();
 		exit(1);
+	} catch (int e) {
+		string msg = "Error code exception: ";
+		msg += e;
+		log_file->write_report(msg, "::main", LOG_NORMAL, LOG_CRITICAL);
+		ui->cb_show_msg(msg, MSG_CRITICAL);
+		sys_config->delete_lock_file();
+		exit(1);
+	} catch (const std::exception& e) {
+		string msg = "std::exception exception: ";
+		msg += e.what();
+		msg += " (";
+		msg += typeid(e).name();
+		msg += ")";
+		
+		log_file->write_report(msg, "::main", LOG_NORMAL, LOG_CRITICAL);
+		ui->cb_show_msg(msg, MSG_CRITICAL);
+		sys_config->delete_lock_file();
+		exit(1);
 	} catch (...) {
 		string msg = "Unknown exception";
 		log_file->write_report(msg, "::main", LOG_NORMAL, LOG_CRITICAL);
