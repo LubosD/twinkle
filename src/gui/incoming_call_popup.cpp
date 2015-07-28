@@ -13,6 +13,7 @@ IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 	// Qt5 QQuickView: setFlags()
 	m_view->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
 
+	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/incoming_call.qml"));
 
     // Place into the middle of the screen
