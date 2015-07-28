@@ -39,6 +39,8 @@ t_call_info::t_call_info() {
 }
 
 void t_call_info::clear(void) {
+	t_mutex_guard g(mutex);
+
 	from_uri.set_url("");
 	from_display.clear();
 	from_display_override.clear();
@@ -56,6 +58,8 @@ void t_call_info::clear(void) {
 }
 
 string t_call_info::get_from_display_presentation(void) const {
+	t_mutex_guard g(mutex);
+
 	if (from_display_override.empty()) {
 		return from_display;
 	} else {
@@ -599,6 +603,7 @@ void t_line::invite(t_phone_user *pu, const t_url &to_uri, const string &to_disp
 	phone_user = pu;
 	t_user *user_config = pu->get_user_profile();
 
+	call_info.mutex.lock();
 	call_info.from_uri = create_user_uri(); // NOTE: hide_user is not set yet
 	call_info.from_display = user_config->get_display(false);
 	call_info.from_organization = user_config->get_organization();
@@ -607,6 +612,7 @@ void t_line::invite(t_phone_user *pu, const t_url &to_uri, const string &to_disp
 	call_info.to_organization.clear();
 	call_info.subject = subject;
 	call_info.hdr_referred_by = hdr_referred_by;
+	call_info.mutex.unlock();
 	
 	try_to_encrypt = user_config->get_zrtp_enabled();
 
@@ -1452,6 +1458,7 @@ void t_line::recvd_invite(t_phone_user *pu, t_request *r, t_tid tid, const strin
 		user_config = phone_user->get_user_profile();
 		user_defined_ringtone = ringtone;
 		
+		call_info.mutex.lock();
 		call_info.from_uri = r->hdr_from.uri;
 		call_info.from_display = r->hdr_from.display;
 		call_info.from_display_override = r->hdr_from.display_override;
@@ -1464,6 +1471,7 @@ void t_line::recvd_invite(t_phone_user *pu, t_request *r, t_tid tid, const strin
 		call_info.to_display = r->hdr_to.display;
 		call_info.to_organization.clear();
 		call_info.subject = r->hdr_subject.subject;
+		call_info.mutex.unlock();
 		
 		try_to_encrypt = user_config->get_zrtp_enabled();
 
@@ -2120,6 +2128,7 @@ void t_line::retry_retrieve_succeeded(void) {
 }
 
 t_call_info t_line::get_call_info(void) const {
+	t_mutex_guard g(call_info.mutex);
 	return call_info;
 }
 

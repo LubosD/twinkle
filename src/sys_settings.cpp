@@ -195,10 +195,10 @@ t_win_geometry::t_win_geometry(const string &value) {
 	vector<string> v = split(value, ',');
 	
 	if (v.size() == 4) {
-		x = atoi(v[0].c_str());
-		y = atoi(v[1].c_str());
-		width = atoi(v[2].c_str());
-		height = atoi(v[3].c_str());
+		x = std::stoi(v[0]);
+		y = std::stoi(v[1]);
+		width = std::stoi(v[2]);
+		height = std::stoi(v[3]);
 	}
 }
 
@@ -1126,8 +1126,8 @@ string t_sys_settings::get_product_date(void) const {
 	vector<string> l = split(PRODUCT_DATE, ' ');
 	assert(l.size() == 3);
 	t.tm_mon = str2month_full(l[0]);
-	t.tm_mday = atoi(l[1].c_str());
-	t.tm_year = atoi(l[2].c_str()) - 1900;
+	t.tm_mday = std::stoi(l[1]);
+	t.tm_year = std::stoi(l[2]) - 1900;
 	
 	char buf[64];
 	strftime(buf, 64, "%d %B %Y", &t);

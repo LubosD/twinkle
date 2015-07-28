@@ -44,6 +44,7 @@ class t_phone;
 // call state to the user.
 class t_call_info {
 public:
+	mutable t_mutex	mutex;
 	t_url			from_uri;
 	string			from_display;
 	
