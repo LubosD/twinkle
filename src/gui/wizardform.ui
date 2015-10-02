@@ -317,7 +317,7 @@ This field is mandatory.</string>
     </connection>
     <connection>
       <sender>authNameLineEdit</sender>
-      <signal>lostFocus()</signal>
+      <signal>editingFinished()</signal>
       <receiver>WizardForm</receiver>
       <slot>disableSuggestAuthName()</slot>
     </connection>
