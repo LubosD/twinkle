@@ -27,6 +27,7 @@
 #include "qicon.h"
 #include "audits/memman.h"
 #include "historyform.h"
+#include <QDateTime>
 
 #define HISTCOL_TIMESTAMP 	0
 #define HISTCOL_DIRECTION	1
@@ -174,8 +175,7 @@ void HistoryForm::loadHistory()
             {
                 case HISTCOL_TIMESTAMP:
                 {
-                    QString time = QString::fromStdString(time2str(cr->time_start,  "%d %b %Y %H:%M:%S"));
-                    m_model->setData(index, time);
+                    m_model->setData(index, QDateTime::fromTime_t(cr->time_start));
                     break;
                 }
                 case HISTCOL_DIRECTION:
