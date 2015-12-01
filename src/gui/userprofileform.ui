@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>582</height>
+    <width>777</width>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -294,7 +294,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="domainTextLabel">
             <property name="text">
-             <string>&amp;Domain*:</string>
+             <string>Do&amp;main*:</string>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -307,7 +307,7 @@
           <item row="3" column="0">
            <widget class="QLabel" name="organizationTextLabel">
             <property name="text">
-             <string>Or&amp;ganization:</string>
+             <string>Organi&amp;zation:</string>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -547,7 +547,7 @@ This field is mandatory.</string>
           <item row="1" column="0">
            <widget class="QLabel" name="expiryTextLabel">
             <property name="text">
-             <string>&amp;Expiry:</string>
+             <string>E&amp;xpiry:</string>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -2173,7 +2173,7 @@ Send DTMF out-of-band via a SIP INFO request.
               <item row="0" column="0">
                <widget class="QLabel" name="holdVariantTextLabel">
                 <property name="text">
-                 <string>Call &amp;Hold variant:</string>
+                 <string>Call Hold &amp;variant:</string>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -2372,7 +2372,7 @@ This format is what most SIP phones use.
               <item row="2" column="0">
                <widget class="QLabel" name="maxRedirectTextLabel">
                 <property name="text">
-                 <string>Max re&amp;directions:</string>
+                 <string>&amp;Max redirections:</string>
                 </property>
                 <property name="wordWrap">
                  <bool>false</bool>
@@ -2869,7 +2869,7 @@ When you choose this option you have to create static address mappings in your N
              <string>Choose this option when your SIP provider offers a STUN server for NAT traversal.</string>
             </property>
             <property name="text">
-             <string>Use &amp;STUN (does not work for incoming TCP)</string>
+             <string>Use STUN (does not wor&amp;k for incoming TCP)</string>
             </property>
             <property name="shortcut">
              <string>Alt+S</string>
@@ -2881,7 +2881,7 @@ When you choose this option you have to create static address mappings in your N
             <item>
              <widget class="QLabel" name="stunServerTextLabel">
               <property name="text">
-               <string>S&amp;TUN server:</string>
+               <string>STUN ser&amp;ver:</string>
               </property>
               <property name="wordWrap">
                <bool>false</bool>
@@ -4823,8 +4823,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>showCategory(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>31</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -4839,8 +4839,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>126</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -4855,8 +4855,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>validate()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>39</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -4871,12 +4871,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>329</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>357</y>
     </hint>
    </hints>
   </connection>
@@ -4887,12 +4887,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>329</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>353</x>
+     <y>357</y>
     </hint>
    </hints>
   </connection>
@@ -4903,12 +4903,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>329</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>387</y>
     </hint>
    </hints>
   </connection>
@@ -4919,12 +4919,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>456</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>484</y>
     </hint>
    </hints>
   </connection>
@@ -4935,12 +4935,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>456</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>512</y>
     </hint>
    </hints>
   </connection>
@@ -4951,12 +4951,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>456</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>358</x>
+     <y>512</y>
     </hint>
    </hints>
   </connection>
@@ -4967,12 +4967,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>329</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>240</x>
+     <y>415</y>
     </hint>
    </hints>
   </connection>
@@ -4983,12 +4983,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>174</y>
     </hint>
    </hints>
   </connection>
@@ -4999,12 +4999,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>170</y>
     </hint>
    </hints>
   </connection>
@@ -5015,8 +5015,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>changeProfile(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>116</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5031,8 +5031,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseRingtone()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>60</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5047,8 +5047,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseRingback()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>64</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5063,8 +5063,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseIncomingCallScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>60</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5079,8 +5079,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>addCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>451</x>
+     <y>266</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5095,8 +5095,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>removeCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>451</x>
+     <y>300</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5111,8 +5111,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>upCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>702</x>
+     <y>266</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5127,8 +5127,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>downCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>702</x>
+     <y>300</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5143,8 +5143,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>addCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>243</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5159,8 +5159,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>removeCodec()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>493</x>
+     <y>211</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5175,8 +5175,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseInCallAnsweredScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>62</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5191,8 +5191,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseInCallFailedScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5207,8 +5207,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseLocalReleaseScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>68</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5223,8 +5223,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseOutCallAnsweredScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5239,8 +5239,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseOutCallFailedScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>67</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5255,8 +5255,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseOutgoingCallScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>64</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5271,8 +5271,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>chooseRemoteReleaseScript()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>281</x>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5287,8 +5287,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>upConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>266</x>
+     <y>101</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5303,8 +5303,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>downConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>266</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5319,8 +5319,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>addConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>228</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5335,8 +5335,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>editConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>260</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5351,8 +5351,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>removeConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>244</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5367,8 +5367,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>testConversion()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>267</x>
+     <y>80</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5383,12 +5383,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>225</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>225</x>
+     <y>62</y>
     </hint>
    </hints>
   </connection>
@@ -5399,8 +5399,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>changeMWIType(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>269</x>
+     <y>64</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5415,12 +5415,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>241</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>447</x>
+     <y>250</y>
     </hint>
    </hints>
   </connection>
@@ -5431,8 +5431,8 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>changeSipTransportProtocol(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>368</x>
+     <y>158</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -5447,12 +5447,12 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>179</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>258</x>
+     <y>179</y>
     </hint>
    </hints>
   </connection>
@@ -5463,12 +5463,44 @@ Sollicited message waiting indication as specified by RFC 3842.
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>242</x>
+     <y>179</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>274</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>natStunRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>stunServerLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>418</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>natStaticRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>publicIPLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>334</x>
+     <y>285</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>312</y>
     </hint>
    </hints>
   </connection>
