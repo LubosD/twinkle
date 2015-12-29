@@ -14,6 +14,7 @@ OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 OPTION(WITH_QT4			"Enable Qt 4 GUI" OFF)
 OPTION(WITH_QT5			"Enable Qt 5 GUI" OFF)
 OPTION(WITH_G729		"Enable G.729A support" OFF)
+OPTION(WITH_GSM			"Use external GSM library" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
@@ -114,6 +115,18 @@ if (WITH_G729)
 	endif (G729_FOUND)
 endif (WITH_G729)
 
+if (WITH_GSM)
+	find_package(Gsm)
+
+	if (GSM_FOUND)
+		message(STATUS "gsm OK")
+		set(HAVE_GSM TRUE)
+
+		include_directories(${GSM_INCLUDE_DIR})
+	else (GSM_FOUND)
+		message(FATAL_ERROR "gsm not found!")
+	endif (GSM_FOUND)
+endif (WITH_GSM)
 
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)

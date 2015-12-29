@@ -30,10 +30,15 @@
 #include "rtp_telephone_event.h"
 #include "user.h"
 #include "threads/mutex.h"
-#include "gsm/inc/gsm.h"
 #include "audio_device.h"
 #include "twinkle_rtp_session.h"
 #include "twinkle_config.h"
+
+#ifdef HAVE_GSM
+#include <gsm/gsm.h>
+#else
+#include "gsm/inc/gsm.h"
+#endif
 
 using namespace std;
 using namespace ost;

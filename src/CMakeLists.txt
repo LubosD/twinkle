@@ -3,7 +3,9 @@ project(libtwinkle)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_subdirectory(audio)
-add_subdirectory(audio/gsm/src)
+if (NOT WITH_GSM)
+	add_subdirectory(audio/gsm/src)
+endif (NOT WITH_GSM)
 add_subdirectory(audits)
 add_subdirectory(im)
 add_subdirectory(mwi)
@@ -57,7 +59,6 @@ add_library(libtwinkle OBJECT ${LIBTWINKLE_SRCS})
 set(twinkle_OBJS
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>
-	$<TARGET_OBJECTS:libtwinkle-gsm>
 	$<TARGET_OBJECTS:libtwinkle-audits>
 	$<TARGET_OBJECTS:libtwinkle-im>
 	$<TARGET_OBJECTS:libtwinkle-mwi>
@@ -70,6 +71,9 @@ set(twinkle_OBJS
 	$<TARGET_OBJECTS:libtwinkle-threads>
 	$<TARGET_OBJECTS:libtwinkle-utils>
 )
+if (NOT WITH_GSM)
+	list(APPEND twinkle_OBJS $<TARGET_OBJECTS:libtwinkle-gsm>)
+endif (NOT WITH_GSM)
 
 add_executable(twinkle-console
 	main.cpp
@@ -92,6 +96,9 @@ set(twinkle_LIBS
 	${ALSA_LIBRARY}
 	${G729_LIBRARY}
 )
+if (WITH_GSM)
+	list(APPEND twinkle_LIBS ${GSM_LIBRARY})
+endif (WITH_GSM)
 
 if (WITH_QT4 OR WITH_QT5)
 	add_subdirectory(gui)
