@@ -54,8 +54,7 @@ set(LIBTWINKLE_SRCS
 
 add_library(libtwinkle OBJECT ${LIBTWINKLE_SRCS})
 
-add_executable(twinkle-console
-	main.cpp
+set(twinkle_OBJS
 	$<TARGET_OBJECTS:libtwinkle>
 	$<TARGET_OBJECTS:libtwinkle-audio>
 	$<TARGET_OBJECTS:libtwinkle-gsm>
@@ -70,6 +69,11 @@ add_executable(twinkle-console
 	$<TARGET_OBJECTS:libtwinkle-stun>
 	$<TARGET_OBJECTS:libtwinkle-threads>
 	$<TARGET_OBJECTS:libtwinkle-utils>
+)
+
+add_executable(twinkle-console
+	main.cpp
+	${twinkle_OBJS}
 )
 
 if (WITH_QT4 OR WITH_QT5)

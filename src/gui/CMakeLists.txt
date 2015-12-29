@@ -111,20 +111,7 @@ set(TWINKLE_GUI-SRCS
 	osd.cpp
 	incoming_call_popup.cpp
 
-	$<TARGET_OBJECTS:libtwinkle>
-	$<TARGET_OBJECTS:libtwinkle-audio>
-	$<TARGET_OBJECTS:libtwinkle-gsm>
-	$<TARGET_OBJECTS:libtwinkle-audits>
-	$<TARGET_OBJECTS:libtwinkle-im>
-	$<TARGET_OBJECTS:libtwinkle-mwi>
-	$<TARGET_OBJECTS:libtwinkle-parser>
-	$<TARGET_OBJECTS:libtwinkle-patterns>
-	$<TARGET_OBJECTS:libtwinkle-presence>
-	$<TARGET_OBJECTS:libtwinkle-sdp>
-	$<TARGET_OBJECTS:libtwinkle-sockets>
-	$<TARGET_OBJECTS:libtwinkle-stun>
-	$<TARGET_OBJECTS:libtwinkle-threads>
-	$<TARGET_OBJECTS:libtwinkle-utils>
+	${twinkle_OBJS}
 	${twinkle_UIS}
 	${twinkle_QRC}
 	${twinkle_LANG}
