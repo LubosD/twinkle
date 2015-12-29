@@ -76,14 +76,28 @@ add_executable(twinkle-console
 	${twinkle_OBJS}
 )
 
+set(twinkle_LIBS
+	-lpthread
+	-lresolv
+	${LibMagic_LIBRARY}
+	${LIBXML2_LIBRARIES}
+	${Readline_LIBRARY}
+	${ILBC_LIBRARIES}
+	${SPEEX_LIBRARIES}
+	${ZRTPCPP_LIBRARIES}
+	${CCRTP_LIBRARIES}
+	${COMMONCPP_LIBRARIES}
+	${UCOMMON_LIBRARIES}
+	${LIBSNDFILE_LIBRARY}
+	${ALSA_LIBRARY}
+	${G729_LIBRARY}
+)
+
 if (WITH_QT4 OR WITH_QT5)
 	add_subdirectory(gui)
 endif (WITH_QT4 OR WITH_QT5)
 
-target_link_libraries(twinkle-console -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
-	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
-	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-	${ALSA_LIBRARY} ${G729_LIBRARY})
+target_link_libraries(twinkle-console ${twinkle_LIBS})
 
 install(TARGETS twinkle-console DESTINATION bin)
 

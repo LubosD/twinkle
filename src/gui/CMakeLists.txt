@@ -118,10 +118,7 @@ set(TWINKLE_GUI-SRCS
 )
 
 add_executable(twinkle ${TWINKLE_GUI-SRCS})
-target_link_libraries(twinkle -lpthread -lresolv ${LibMagic_LIBRARY} ${LIBXML2_LIBRARIES}
-	${Readline_LIBRARY} ${ILBC_LIBRARIES} ${SPEEX_LIBRARIES} ${ZRTPCPP_LIBRARIES}
-	${CCRTP_LIBRARIES} ${COMMONCPP_LIBRARIES} ${UCOMMON_LIBRARIES} ${LIBSNDFILE_LIBRARY}
-	${ALSA_LIBRARY} ${qt_LIBS} ${G729_LIBRARY})
+target_link_libraries(twinkle ${twinkle_LIBS} ${qt_LIBS})
 
 install(TARGETS twinkle DESTINATION bin)
 install(FILES ${twinkle_LANG} DESTINATION share/twinkle/lang)
