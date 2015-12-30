@@ -131,7 +131,7 @@ endif (WITH_GSM)
 
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)
-check_include_files("sys/time.h;linux/errqueue.h" HAVE_LINUX_ERRQUEUE_H)
+check_include_files("sys/socket.h;linux/errqueue.h" HAVE_LINUX_ERRQUEUE_H)
 
 set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)
