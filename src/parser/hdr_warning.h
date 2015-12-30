@@ -43,14 +43,14 @@
 #define WARNING_300	"Incompatible network protocol"
 #define WARNING_301	"Incompatible network address formats"
 #define WARNING_302	"Incompatible transport protocol"
-#define WARNING_303	"Incompatible bandwith units"
+#define WARNING_303	"Incompatible bandwidth units"
 #define WARNING_304	"Media type not available"
 #define WARNING_305	"Incompatible media format"
 #define WARNING_306	"Attribute not understood"
 #define WARNING_307	"Session description parameter not understood"
 #define WARNING_330	"Multicast not available"
 #define WARNING_331	"Unicast not available"
-#define WARNING_370	"Insufficient bandwith"
+#define WARNING_370	"Insufficient bandwidth"
 #define WARNING_399	"Miscellanous warning"
 
 using namespace std;

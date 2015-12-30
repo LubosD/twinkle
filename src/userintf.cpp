@@ -3063,7 +3063,7 @@ void t_userintf::cb_refer_result_success(int line) {
 	if (line >= NUM_USER_LINES) return;
 	
 	cout << endl;
-	cout << "Line " << line + 1 << ": call succesfully referred.\n";
+	cout << "Line " << line + 1 << ": call successfully referred.\n";
 	cout << endl;
 	cout.flush();
 }

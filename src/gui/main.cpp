@@ -269,7 +269,7 @@ void parse_main_args(int argc, char **argv, bool &cli_mode, bool &override_lock_
 			cout << endl;
 			cout << " --set-profile <profile>\n";
 			cout << "\t\tMake <profile> the active profile.\n";
-			cout << "\t\tWhen using this option in conjuction with --call and --cmd,\n";
+			cout << "\t\tWhen using this option in conjunction with --call and --cmd,\n";
 			cout << "\t\tthen the profile is activated before executing --call or \n";
 			cout << "\t\t--cmd.\n";
 			cout << endl;
@@ -278,7 +278,7 @@ void parse_main_args(int argc, char **argv, bool &cli_mode, bool &override_lock_
 			cout << "\t\tand take focus.\n";
 			cout << endl;
 			cout << " --hide";
-			cout << "\t\tInstruct a running instance of Twinkle to hide in the sytem tray.\n";
+			cout << "\t\tInstruct a running instance of Twinkle to hide in the system tray.\n";
 			cout << "\t\tIf no system tray is used, then Twinkle will minimize.\n";
 			cout << endl;
 			cout << " --help-cli [cli command]\n";
@@ -667,7 +667,7 @@ int main( int argc, char ** argv )
 		// Activate a profile in the running Twinkle process.
 		if (already_running && !g_cmd_args.cmd_set_profile.isEmpty()) {
             cmdsocket::cmd_cli(string("user ") + g_cmd_args.cmd_set_profile.toStdString(), true);
-			// Do not exit now as this option may be used in conjuction
+			// Do not exit now as this option may be used in conjunction
 			// with --call or --cmd
 			must_exit = true;
 		}

@@ -1896,7 +1896,7 @@ stunSendTest( StunSocket myFd, StunAddress4& dest,
          discard=true;
          break;
       default:
-         cerr << "Test " << testNum <<" is unkown\n";
+         cerr << "Test " << testNum <<" is unknown\n";
          assert(0);
    }
 	

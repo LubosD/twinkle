@@ -49,7 +49,7 @@ public:
 	/**
 	 * Create a record to write to a file.
 	 * @param v [out] Vector of fields of record.
-	 * @return true, if record is succesfully created.
+	 * @return true, if record is successfully created.
 	 * @return false, otherwise.
 	 */
 	virtual bool create_file_record(vector<string> &v) const = 0;
@@ -57,7 +57,7 @@ public:
 	/**
 	 * Populate from a file record.
 	 * @param v [in] Vector containing the fields of the record.
-	 * @return true, if record is succesfully populated.
+	 * @return true, if record is successfully populated.
 	 * @return false, if file record could not be parsed.
 	 */
 	virtual bool populate_from_file_record(const vector<string> &v) = 0;	
@@ -132,7 +132,7 @@ public:
 	/** 
 	 * Load records from file. 
 	 * @param error_msg [out] Error message on failure return.
-	 * @return true, if file was read succesfully.
+	 * @return true, if file was read successfully.
 	 * @return false, if it fails. error_msg is an error to be given to
 	 * the user.
 	 */
@@ -141,7 +141,7 @@ public:
 	/** 
 	 * Save records to file.
 	 * @param error_msg [out] Error message on failure return.
-	 * @return true, if file was saved succesfully.
+	 * @return true, if file was saved successfully.
 	 * @return false, if it fails. error_msg is an error to be given to
 	 * the user.
 	 */

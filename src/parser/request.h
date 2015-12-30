@@ -64,7 +64,7 @@ private:
 	 * @param passwd [in] Authentication password.
 	 * @param nc [in] Nonce count
 	 * @param cnonce [in] Client nonce
-	 * @param cr [out] Credentials on succesful return.
+	 * @param cr [out] Credentials on successful return.
 	 * @param fail_reason [out] Failure reason on failure return.
 	 * @return false, if authorization fails.
 	 * @return true, if authorization succeeded
@@ -82,7 +82,7 @@ private:
 	 * @param nc [in] Nonce count
 	 * @param cnonce [in] Client nonce
 	 * @param qop [in] Quality of protection
-	 * @param resp [out] Response on succesful return.
+	 * @param resp [out] Response on successful return.
 	 * @param fail_reason [out] Failure reason on failure return.
 	 * @return false, if authorization fails.
 	 * @return true, if authorization succeeded
@@ -102,7 +102,7 @@ private:
 	 * @param nc [in] Nonce count
 	 * @param cnonce [in] Client nonce
 	 * @param qop [in] Quality of protection
-	 * @param resp [out] Response on succesful return.
+	 * @param resp [out] Response on successful return.
 	 * @param fail_reason [out] Failure reason on failure return.
 	 * @return false, if authorization fails.
 	 * @return true, if authorization succeeded
@@ -174,7 +174,7 @@ public:
 	 * @param passwd [in] Authentication password.
 	 * @param nc [in] Nonce count
 	 * @param cnonce [in] Client nonce
-	 * @param cr [out] Credentials on succesful return.
+	 * @param cr [out] Credentials on successful return.
 	 * @param fail_reason [out] Failure reason on failure return.
 	 * @return false, if challenge is not supported.
 	 * @return true, if authorization succeeded
@@ -191,7 +191,7 @@ public:
 	 * @param passwd [in] Authentication password.
 	 * @param nc [in] Nonce count
 	 * @param cnonce [in] Client nonce
-	 * @param cr [out] Credentials on succesful return.
+	 * @param cr [out] Credentials on successful return.
 	 * @param fail_reason [out] Failure reason on failure return.
 	 * @return false, if challenge is not supported.
 	 * @return true, if authorization succeeded

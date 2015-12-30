@@ -660,7 +660,7 @@
         <translation>Ligne %1: transfert d&apos;appel échoué.</translation>
     </message>
     <message>
-        <source>Line %1: call succesfully transferred.</source>
+        <source>Line %1: call successfully transferred.</source>
         <translation>Ligne %1: transfert d&apos;appel réussi.</translation>
     </message>
     <message>
@@ -4481,7 +4481,7 @@ Ce champ est obligatoire.</translation>
         <translation>Co&amp;mplexité:</translation>
     </message>
     <message>
-        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows to stop transmitting completely when the background noise is stationary.</source>
+        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows one to stop transmitting completely when the background noise is stationary.</source>
         <translation>La transmission discontinue est un ajout à VAD/VBR, qui permet d&apos;arrêter totalement la transmission quand le bruit de fond est stationnaire.</translation>
     </message>
     <message>
@@ -5536,7 +5536,7 @@ Si vous désactivez cette option, c&apos;est le premier codec de la liste des co
     </message>
     <message>
         <source>&lt;p&gt;
-You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the ouput of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
+You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the output of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;Note:&lt;/b&gt; Twinkle pauses while your script runs. It is recommended that your script does not take more than 200 ms. When you need more time, you can send the parameters followed by &lt;b&gt;end&lt;/b&gt; and keep on running. Twinkle will continue when it receives the &lt;b&gt;end&lt;/b&gt; parameter.
