@@ -476,9 +476,8 @@ bool open_sip_socket(bool cli_mode) {
 	return true;
 }
 
-QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *qtranslator) {
-	QApplication *qa = NULL;
 QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *qtranslator, QTranslator *qtTranslator) {
+	QApplication *qa = NULL;
 	
 	if (cli_mode) {
 		// CLI mode
@@ -698,7 +697,6 @@ int main( int argc, char ** argv )
 	
 	// Read system configuration
 	bool sys_config_read = sys_config->read_config(error_msg);
-	qa = create_user_interface(cli_mode, remain_argc, remain_argv, qtranslator);
 	qa = create_user_interface(cli_mode, remain_argc, remain_argv, qtranslator, qtTranslator);
 	if (!sys_config_read) {
 		ui->cb_show_msg(error_msg, MSG_CRITICAL);
