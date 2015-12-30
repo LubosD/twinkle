@@ -63,6 +63,7 @@
 #include "threads/thread.h"
 #include "utils/mime_database.h"
 #include "audits/memman.h"
+#include <QLibraryInfo>
 
 using namespace std;
 using namespace utils;
@@ -477,6 +478,7 @@ bool open_sip_socket(bool cli_mode) {
 
 QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *qtranslator) {
 	QApplication *qa = NULL;
+QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *qtranslator, QTranslator *qtTranslator) {
 	
 	if (cli_mode) {
 		// CLI mode
@@ -522,6 +524,7 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		// Do not report to memman as the translator will be deleted
 		// automatically when the QApplication is deleted.
 		qtranslator = new QTranslator(0);
+		qtTranslator = new QTranslator(0);
 
 		QString langName = QLocale::system().name().left(2);
 
@@ -529,6 +532,9 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		qtranslator->load(QString("twinkle_") + langName,
 			QString(sys_config->get_dir_lang().c_str()));
 		qa->installTranslator(qtranslator);
+		
+		qtTranslator->load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+		qa->installTranslator(qtTranslator);
 
 		qa->setQuitOnLastWindowClosed(false);
 		
@@ -591,6 +597,7 @@ int main( int argc, char ** argv )
 
 	QApplication *qa = NULL;
 	QTranslator *qtranslator = NULL;
+	QTranslator *qtTranslator = NULL;
 	
 	// Store id of main thread
 	thread_id_main = t_thread::self();
@@ -692,6 +699,7 @@ int main( int argc, char ** argv )
 	// Read system configuration
 	bool sys_config_read = sys_config->read_config(error_msg);
 	qa = create_user_interface(cli_mode, remain_argc, remain_argv, qtranslator);
+	qa = create_user_interface(cli_mode, remain_argc, remain_argv, qtranslator, qtTranslator);
 	if (!sys_config_read) {
 		ui->cb_show_msg(error_msg, MSG_CRITICAL);
 		exit(1);
