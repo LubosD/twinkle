@@ -144,7 +144,7 @@ protected:
 	 *
 	 * @param cr [in] The request.
 	 * @param resp [in] The failure response that was received on the request. 
-	 * @param contact [out] Contains on succesful return the contact to which the request is sent.
+	 * @param contact [out] Contains on successful return the contact to which the request is sent.
 	 * @return true, if the request is sent to a next destination.
 	 * @return false, if no next destination exists.
 	 */

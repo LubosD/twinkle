@@ -89,7 +89,7 @@ public:
 	
 	/**
 	 * Delete an address.
-	 * @return true, if the address was succesfully deleted.
+	 * @return true, if the address was successfully deleted.
 	 * @return false, if the address does not exist.
 	 */
 	bool del_address(const t_address_card &address);

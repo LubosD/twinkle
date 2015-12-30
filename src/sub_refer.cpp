@@ -263,7 +263,7 @@ bool t_sub_refer::recv_subscribe(t_request *r, t_tuid tuid, t_tid tid) {
 	delete resp;
 
 	// RFC 3265 3.2.2
-	// After a succesful SUBSCRIBE the notifier must immediately
+	// After a successful SUBSCRIBE the notifier must immediately
 	// send a NOTIFY.
 	// If no last response has been kept then this is probably a
 	// first SUBSCRIBE. The dialog has to send the initial NOTIFY.

@@ -551,7 +551,7 @@ public:
 	 * @return false, if there is already a phone user with the same name
 	 * and domain. In this case dup_user is a pointer to the user config
 	 * of that user.
-	 * @return true, if the phone user was added succesfully.
+	 * @return true, if the phone user was added successfully.
 	 * @note if there is already a user with exactly the same user config
 	 * then true is returned, but the user is not added again. The user
 	 * will be activated if it was inactive though.
@@ -685,7 +685,7 @@ public:
 	
 	/**
 	 * Set the signal handler to handler for LinuxThreads.
-	 * @return True if succesful, false otherwise.
+	 * @return True if successful, false otherwise.
 	 */
 	bool set_sighandler(void) const;
 	

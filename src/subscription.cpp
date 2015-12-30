@@ -555,7 +555,7 @@ bool t_subscription::recv_subscribe_response(t_response *r, t_tuid tuid, t_tid t
 			
 			log_file->write_header("t_subscription::recv_subscribe_response", 
 				LOG_NORMAL, LOG_DEBUG);
-			log_file->write_raw("Unsubcription succesful.\n");
+			log_file->write_raw("Unsubcription successful.\n");
 			log_event();
 			log_file->write_footer();
 		} else {

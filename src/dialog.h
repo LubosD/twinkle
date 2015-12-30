@@ -597,7 +597,7 @@ public:
 	/**
 	 * Redirect INVITE to the next destination.
 	 * @param resp The response on the INVITE.
-	 * @return true, if INIVTE was redirected succesfully.
+	 * @return true, if INIVTE was redirected successfully.
 	 * @return false, if there is no next destination.
 	 *
 	 * @pre The response must be a 3XX.
@@ -606,7 +606,7 @@ public:
 	
 	/**
 	 * Failover INVITE to the next destination from DNS lookup.
-	 * @return true, if INIVTE was succesfully sent.
+	 * @return true, if INIVTE was successfully sent.
 	 * @return false, if there is no next destination.
 	 */
 	bool failover_invite(void);

@@ -129,7 +129,7 @@ public:
 	 * @param resp [in] The response containing the challenge.
 	 * @return true, if authorization succeeds.
 	 * @return false, if authorization fails.
-	 * @post On succesful authorization, the credentials has been added to
+	 * @post On successful authorization, the credentials has been added to
 	 * the request in the proper header (Authorization or Proxy-Authorization).
 	 */
 	bool authorize(t_user *user_config, t_request *r, t_response *resp);

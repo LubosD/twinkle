@@ -652,7 +652,7 @@
         <translation>Leitung %1: Rufweitervermittlung erfolglos.</translation>
     </message>
     <message>
-        <source>Line %1: call succesfully transferred.</source>
+        <source>Line %1: call successfully transferred.</source>
         <translation>Leitung %1: Ruf wurde weitervermittelt.</translation>
     </message>
     <message>
@@ -4500,7 +4500,7 @@ VBR (siehe dort) macht VAD unnötig.</translation>
         <translation type="obsolete">Alt+X</translation>
     </message>
     <message>
-        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows to stop transmitting completely when the background noise is stationary.</source>
+        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows one to stop transmitting completely when the background noise is stationary.</source>
         <translation>Discontinuous transmission (deutsch etwa: nicht kontinuierliche Datenübertragung) ist eine Erweiterung der VAD/VBR-Übertragung. Bei gleichbleibenden Audiosignal (insbesondere bei erkannten Sprechpausen) wird statt ständig der gleichen Nutzdaten einfach gar nichts übertragen. Senkt die durchschnittliche Datenrate etwas. Bei Störungen auf dem Übertragungsweg kann diese Option zu den von Mobiltelefonen der Anfangszeit bekannten absurden Tonstörungen (hängenbleiben des Tons, Artefakte) führen.</translation>
     </message>
     <message>
@@ -5571,7 +5571,7 @@ Alternativ kann Twinkle die AoR (Address of Record) nutzen. Nachteil hierbei: di
     </message>
     <message>
         <source>&lt;p&gt;
-You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the ouput of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
+You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the output of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;Note:&lt;/b&gt; Twinkle pauses while your script runs. It is recommended that your script does not take more than 200 ms. When you need more time, you can send the parameters followed by &lt;b&gt;end&lt;/b&gt; and keep on running. Twinkle will continue when it receives the &lt;b&gt;end&lt;/b&gt; parameter.

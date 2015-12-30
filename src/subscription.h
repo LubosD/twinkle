@@ -39,7 +39,7 @@ enum t_subscription_state {
 	SS_NULL,		/**< Initial state */
 	SS_ESTABLISHED,		/**< Subscription is in place */
 	SS_UNSUBSCRIBING,	/**< A request to unsubscribe has been sent */
-	SS_UNSUBSCRIBED,	/**< An outoging unsubscribe was succesful. Waiting for the final NOTIFY. */
+	SS_UNSUBSCRIBED,	/**< An outoging unsubscribe was successful. Waiting for the final NOTIFY. */
 	SS_TERMINATED,		/**< Subscription ended */
 };
 

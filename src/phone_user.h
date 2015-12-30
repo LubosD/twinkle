@@ -449,7 +449,7 @@ public:
 	 * @param r [inout] The request to be authorized.
 	 * @param resp [in] The response containing the challenge (401/407).
 	 * @param True if authorization succeeds, false otherwise.
-	 * @post On succesful return the request r contains the correct authorization
+	 * @post On successful return the request r contains the correct authorization
 	 * header (based on 401/407 response).
 	 */
 	bool authorize(t_request *r, t_response *resp);

@@ -653,7 +653,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Line %1: call succesfully transferred.</source>
+        <source>Line %1: call successfully transferred.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4197,7 +4197,7 @@ If you disable this option, then the first codec from the active codecs that is 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows to stop transmitting completely when the background noise is stationary.</source>
+        <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows one to stop transmitting completely when the background noise is stationary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4902,7 +4902,7 @@ The values of all SIP headers of the incoming SIP BYE request are passed in envi
     </message>
     <message>
         <source>&lt;p&gt;
-You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the ouput of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
+You can customize the way Twinkle handles incoming calls. Twinkle can call a script when a call comes in. Based on the output of the script Twinkle accepts, rejects or redirects the call. When accepting the call, the ring tone can be customized by the script as well. The script can be any executable program.
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;Note:&lt;/b&gt; Twinkle pauses while your script runs. It is recommended that your script does not take more than 200 ms. When you need more time, you can send the parameters followed by &lt;b&gt;end&lt;/b&gt; and keep on running. Twinkle will continue when it receives the &lt;b&gt;end&lt;/b&gt; parameter.

@@ -971,7 +971,7 @@ void MphoneForm::updateRegStatus()
 	toolTip.append("</b><br>");
 	toolTip.append("<table>");
 	
-	// Count number of succesful and failed registrations.
+	// Count number of successful and failed registrations.
 	// Determine tool tip showing registration details for all users.
 	list<t_user *>user_list = phone->ref_users();
 	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {

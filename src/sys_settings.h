@@ -499,7 +499,7 @@ public:
 	 * @param error_msg [out] Error message if the operation fails.
 	 * @param already_running [out] If the operation fails, this flag indicates Twinkle
 	 *        is already running.
-	 * @return True if the file is locked succesfully.
+	 * @return True if the file is locked successfully.
 	 * @return False if the file could not be locked.
 	 */
 	bool create_lock_file(bool shared_lock, string &error_msg, bool &already_running);

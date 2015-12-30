@@ -188,7 +188,7 @@ public:
 	void stop_resubscribe_presence_timer(void);
 	
 	/**
-	 * By calling this method, succesful STUN completion is signalled to
+	 * By calling this method, successful STUN completion is signalled to
 	 * the buddy. It will subscribe to presence if it was waiting for STUN.
 	 */
 	void stun_completed(void);
@@ -302,7 +302,7 @@ public:
 	bool match_timer(t_subscribe_timer timer, t_object_id id_timer, t_buddy **buddy);
 	
 	/**
-	 * By calling this method, succesful STUN completion is signalled to the buddy
+	 * By calling this method, successful STUN completion is signalled to the buddy
 	 * list. The buddy list will now start presence subscriptions that were waiting
 	 * for STUN to complete.
 	 */

@@ -1963,7 +1963,7 @@ void t_gui::cb_refer_result_success(int line) {
 	QString s;
 	
 	emit mw_display_header();
-	s = qApp->translate("GUI", "Line %1: call succesfully transferred.").arg(line + 1);
+	s = qApp->translate("GUI", "Line %1: call successfully transferred.").arg(line + 1);
 	emit mw_display(s);
 	
 	// The refer state has changed, so update the main window.

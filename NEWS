@@ -653,7 +653,7 @@ Build improvements
 - Fixed several build problams with KDE include files and
   libraries.
 
-If you already succesfully installed release 0.3.1 then there is
+If you already successfully installed release 0.3.1 then there is
 no need to upgrade to 0.3.2 as there is no new functionality.
 
 16 oct 2005 - Release 0.3.1
