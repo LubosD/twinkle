@@ -476,7 +476,7 @@ bool open_sip_socket(bool cli_mode) {
 	return true;
 }
 
-QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *qtranslator, QTranslator *qtTranslator) {
+QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTranslator *appTranslator, QTranslator *qtTranslator) {
 	QApplication *qa = NULL;
 	
 	if (cli_mode) {
@@ -522,15 +522,15 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		// Install Qt translator
 		// Do not report to memman as the translator will be deleted
 		// automatically when the QApplication is deleted.
-		qtranslator = new QTranslator(0);
+		appTranslator = new QTranslator(0);
 		qtTranslator = new QTranslator(0);
 
 		QString langName = QLocale::system().name().left(2);
 
 		qDebug() << "Language name:" << langName;
-		qtranslator->load(QString("twinkle_") + langName,
+		appTranslator->load(QString("twinkle_") + langName,
 			QString(sys_config->get_dir_lang().c_str()));
-		qa->installTranslator(qtranslator);
+		qa->installTranslator(appTranslator);
 		
 		qtTranslator->load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 		qa->installTranslator(qtTranslator);
@@ -595,7 +595,7 @@ int main( int argc, char ** argv )
 	blockSignals();
 
 	QApplication *qa = NULL;
-	QTranslator *qtranslator = NULL;
+	QTranslator *appTranslator = NULL;
 	QTranslator *qtTranslator = NULL;
 	
 	// Store id of main thread
@@ -697,7 +697,7 @@ int main( int argc, char ** argv )
 	
 	// Read system configuration
 	bool sys_config_read = sys_config->read_config(error_msg);
-	qa = create_user_interface(cli_mode, remain_argc, remain_argv, qtranslator, qtTranslator);
+	qa = create_user_interface(cli_mode, remain_argc, remain_argv, appTranslator, qtTranslator);
 	if (!sys_config_read) {
 		ui->cb_show_msg(error_msg, MSG_CRITICAL);
 		exit(1);
@@ -1219,9 +1219,9 @@ int main( int argc, char ** argv )
 		translator = NULL;
 	}
 	
-	if (qtranslator) {
-		MEMMAN_DELETE(qtranslator);
-		delete(qtranslator);
+	if (appTranslator) {
+		MEMMAN_DELETE(appTranslator);
+		delete(appTranslator);
 	}
 	
 	if (qa) {
