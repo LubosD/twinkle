@@ -77,7 +77,7 @@ void HistoryForm::init()
     m_model->setColumnCount(5);
 
     m_model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("In/Out") << tr("From/To") << tr("Subject") << tr("Status"));
-    historyListView->sortByColumn(HISTCOL_TIMESTAMP, Qt::DescendingOrder);
+    historyListView->horizontalHeader()->setSortIndicator(HISTCOL_TIMESTAMP, Qt::DescendingOrder);
 
     historyListView->setColumnWidth(HISTCOL_FROMTO, 200);
     historyListView->setColumnWidth(HISTCOL_SUBJECT, 200);
@@ -228,6 +228,8 @@ void HistoryForm::loadHistory()
 	durationText += ")";
 	totalDurationValueTextLabel->setText(durationText);
 	
+	// Sort entries using currently selected sort column and order.
+	historyListView->sortByColumn(historyListView->horizontalHeader()->sortIndicatorSection(), historyListView->horizontalHeader()->sortIndicatorOrder());
 	// Make the first entry the selected entry.
     historyListView->selectRow(0);
 
