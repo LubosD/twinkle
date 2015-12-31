@@ -20,7 +20,6 @@ public slots:
 	virtual void update();
 	virtual void show();
 	virtual void closeEvent( QCloseEvent * e );
-    virtual void showCallDetails( QModelIndex item );
     virtual void popupMenu( QPoint pos );
     virtual void call( QModelIndex index );
 	virtual void call( void );
@@ -45,6 +44,8 @@ private:
 	void init();
 	void destroy();
 
+private slots:
+	void showCallDetails(const QModelIndex &);
 };
 
 

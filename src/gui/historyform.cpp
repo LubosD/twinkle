@@ -84,6 +84,8 @@ void HistoryForm::init()
 #else
     historyListView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
+
+    connect(historyListView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(showCallDetails(QModelIndex)));
 	
 	inCheckBox->setChecked(true);
 	outCheckBox->setChecked(true);
@@ -236,9 +238,7 @@ void HistoryForm::loadHistory()
 	// Sort entries using currently selected sort column and order.
 	historyListView->sortByColumn(historyListView->horizontalHeader()->sortIndicatorSection(), historyListView->horizontalHeader()->sortIndicatorOrder());
 	// Make the first entry the selected entry.
-    historyListView->selectRow(0);
-
-    //	showCallDetails(first);
+	if (numberOfCalls) historyListView->selectRow(0);
 }
 
 // Update history when triggered by a call back function on the user
@@ -279,13 +279,14 @@ void HistoryForm::closeEvent( QCloseEvent *e )
 	QDialog::closeEvent(e);
 }
 
-void HistoryForm::showCallDetails(QModelIndex index)
+void HistoryForm::showCallDetails(const QModelIndex &index)
 {
-	QString s;
+	cdrTextEdit->clear();
+
+	if (!index.isValid()) return;
 	
     int x = m_model->data(index, Qt::UserRole).toInt();
     const t_call_record& cr = m_history[x];
-	cdrTextEdit->clear();
 	
 	t_user *user_config = phone->ref_user_profile(cr.user_profile);
 	// If the user profile is not active, then use the
@@ -294,7 +295,7 @@ void HistoryForm::showCallDetails(QModelIndex index)
 		user_config = phone->ref_users().front();
 	}
 	
-	s = "<table>";
+	QString s = "<table>";
 	
 	// Left column: header names
 	s += "<tr><td><b>";
