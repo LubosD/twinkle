@@ -125,6 +125,8 @@ void HistoryForm::loadHistory()
 	unsigned long totalCallDuration = 0;
 	unsigned long totalConversationDuration = 0;
 
+	m_model->setRowCount(0);
+
     std::list<t_call_record> history;
 
     call_history->get_history(history);
