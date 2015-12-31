@@ -79,8 +79,11 @@ void HistoryForm::init()
     m_model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("In/Out") << tr("From/To") << tr("Subject") << tr("Status"));
     historyListView->horizontalHeader()->setSortIndicator(HISTCOL_TIMESTAMP, Qt::DescendingOrder);
 
-    historyListView->setColumnWidth(HISTCOL_FROMTO, 200);
-    historyListView->setColumnWidth(HISTCOL_SUBJECT, 200);
+#if QT_VERSION >= 0x050000
+    historyListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+    historyListView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
 	
 	inCheckBox->setChecked(true);
 	outCheckBox->setChecked(true);
