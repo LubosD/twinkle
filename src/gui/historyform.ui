@@ -25,6 +25,9 @@
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
      </property>
+     <property name="editTriggers">
+      <enum>QAbstractItemView::NoEditTriggers</enum>
+     </property>
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
@@ -442,26 +445,9 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>historyListView</sender>
-   <signal>activated(QModelIndex)</signal>
-   <receiver>HistoryForm</receiver>
-   <slot>showCallDetails(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>743</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>658</x>
-     <y>300</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
   <slot>call(QModelIndex)</slot>
   <slot>popupMenu(QPoint)</slot>
-  <slot>showCallDetails(QModelIndex)</slot>
  </slots>
 </ui>
