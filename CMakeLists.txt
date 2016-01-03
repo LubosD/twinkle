@@ -155,4 +155,20 @@ install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/twinkle.desktop
 	DESTINATION share/applications)
 
+install(FILES src/gui/images/twinkle16.png
+	RENAME twinkle.png
+	DESTINATION share/icons/hicolor/16x16/apps)
+install(FILES src/gui/images/twinkle24.png
+	RENAME twinkle.png
+	DESTINATION share/icons/hicolor/24x24/apps)
+install(FILES src/gui/images/twinkle32.png
+	RENAME twinkle.png
+	DESTINATION share/icons/hicolor/32x32/apps)
+install(FILES src/gui/images/twinkle48.png
+	RENAME twinkle.png
+	DESTINATION share/icons/hicolor/48x48/apps)
+install(FILES data/twinkle.svg
+	DESTINATION share/icons/hicolor/scalable/apps)
+
 add_subdirectory(src)
+
