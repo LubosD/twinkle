@@ -737,7 +737,6 @@ t_phone_user *t_phone::find_phone_user(const string &profile_name) const {
 }
 
 t_phone_user *t_phone::find_phone_user(const t_url &user_uri) const {
-	t_rwmutex_reader x(phone_users_mtx);
 
 	for (list<t_phone_user *>::const_iterator i = phone_users.begin();
 		     i != phone_users.end(); ++i)
