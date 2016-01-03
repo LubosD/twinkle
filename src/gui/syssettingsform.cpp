@@ -396,7 +396,8 @@ void SysSettingsForm::validate()
     for (int i = 0; i < profileListView->count(); i++)
     {
         QListWidgetItem *item = profileListView->item(i);
-        start_user_profiles.push_back(item->text().toStdString());
+		if (item->checkState() == Qt::Checked)
+			start_user_profiles.push_back(item->text().toStdString());
 	}
 	sys_config->set_start_user_profiles(start_user_profiles);
 	
