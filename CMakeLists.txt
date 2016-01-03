@@ -170,5 +170,8 @@ install(FILES src/gui/images/twinkle48.png
 install(FILES data/twinkle.svg
 	DESTINATION share/icons/hicolor/scalable/apps)
 
+install(FILES data/twinkle.1
+	DESTINATION share/man/man1)
+
 add_subdirectory(src)
 
