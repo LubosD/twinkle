@@ -1,0 +1,17 @@
+language: cpp
+dist: trusty
+sudo: required
+
+env:
+  - FLAGS="-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=ON" PACKAGES="libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev libzrtpcpp-dev qtdeclarative5-dev qtquick1-5-dev qtscript5-dev qttools5-dev qttools5-dev-tools"
+  - FLAGS="-DWITH_QT4=ON -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF" PACKAGES="libqt4-dev qt4-qmake"
+
+install:
+  - sudo apt-get update
+  - sudo apt-get -y install bison cmake flex libccrtp-dev libcommoncpp2-dev libmagic-dev libreadline-dev libsndfile1-dev libxml2-dev linux-libc-dev $PACKAGES
+
+script:
+  - mkdir _build
+  - cd _build
+  - cmake -DCMAKE_INSTALL_PREFIX=../_install $FLAGS ..
+  - cmake --build . --target install
