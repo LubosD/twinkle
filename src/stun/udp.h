@@ -2,7 +2,7 @@
 #define udp_h
 
 
-#ifdef __MACH__
+#if defined(__APPLE__) && defined(__MACH__)
 typedef int socklen_t;
 #endif
 
