@@ -207,19 +207,19 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 		A2 = method2str(method, unknown_method) + ":" + uri.encode();
 		A2 += ":";
 		if (body) {
-			digest_t MD5body = "md5";
+			digest_t MD5body("md5");
 			MD5body.puts(body->encode().c_str());
-			A2 += std::string(MD5body.c_str());
+			A2 += std::string(MD5body.str());
 		} else {
-			digest_t MD5body = "md5";
+			digest_t MD5body("md5");
 			MD5body.puts("");
-			A2 += std::string(MD5body.c_str());
+			A2 += std::string(MD5body.str());
 		}
 	}
 	// RFC 2716 3.2.2.1
 	// Caculate digest
-	digest_t MD5A1 = "md5";
-	digest_t MD5A2 = "md5";
+	digest_t MD5A1("md5");
+	digest_t MD5A2("md5");
 
 	MD5A1.puts(A1.c_str());
 	MD5A2.puts(A2.c_str());
@@ -227,24 +227,24 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 	std::string x;
 
 	if (cmp_nocase(qop, QOP_AUTH) == 0 || cmp_nocase(qop, QOP_AUTH_INT) == 0) {
-	        x = std::string(MD5A1.c_str());
+	        x = std::string(MD5A1.str());
 		x += ":";
 		x += dchlg.nonce + ":";
 		x += int2str(nc, "%08x") + ":";
 		x += cnonce + ":";
 		x += qop + ":";
-		x += std::string(MD5A2.c_str());
+		x += std::string(MD5A2.str());
 	} else {
-                x = std::string(MD5A1.c_str());
+		x = std::string(MD5A1.str());
 		x += ":";
 		x += dchlg.nonce + ":";
-		x += std::string(MD5A2.c_str());
+		x += std::string(MD5A2.str());
 	}
 
-	digest_t digest = "md5";
+	digest_t digest("md5");
 	digest.puts(x.c_str());
 
-	resp = std::string(digest.c_str());
+	resp = std::string(digest.str());
 
 	return true;
 }
