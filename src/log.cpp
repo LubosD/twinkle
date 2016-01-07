@@ -350,11 +350,11 @@ void t_log::enable_inform_user(bool on) {
 		
 		if (!thr_logview) {
 			thr_logview = new t_thread(main_logview, NULL);
-			thr_logview->detach();
 		}
 	} else {
 		if (thr_logview) {
 			thr_logview->cancel();
+			thr_logview->join();
 			delete thr_logview;
 			thr_logview = NULL;
 		}
