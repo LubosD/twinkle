@@ -170,11 +170,20 @@ char **t_call_script::create_env(t_sip_message *m) const {
 		var_twinkle += m->hdr_to.display;
 		l.push_back(var_twinkle);
 		
-		environ_size += l.size();
+		// Add Twinkle specific environment variables
+		var_twinkle = "TWINKLE_USER_PROFILE=";
+		var_twinkle += user_config->get_profile_name();
+		l.push_back(var_twinkle);
+
+		var_twinkle = "TWINKLE_TRIGGER=";
+		var_twinkle += trigger2str(trigger);
+		l.push_back(var_twinkle);
+
+		var_twinkle = "TWINKLE_LINE=";
+		var_twinkle += ulong2str(line_number);
+		l.push_back(var_twinkle);
 		
-		// Number of Twinkle environment variables
-		int start_twinkle_env = environ_size; // Position of Twinkle variables
-		environ_size += 3;
+		environ_size += l.size();
 		
 		// MEMMAN not called on purpose
 		char **env = new char *[environ_size + 1];
@@ -189,19 +198,6 @@ char **t_call_script::create_env(t_sip_message *m) const {
 		for (list<string>::iterator i = l.begin(); i != l.end(); i++, j++) {
 			env[j] = strdup(i->c_str());
 		}
-		
-		// Add Twinkle specific environment variables
-		var_twinkle = "TWINKLE_USER_PROFILE=";
-		var_twinkle += user_config->get_profile_name();
-		env[start_twinkle_env] = strdup(var_twinkle.c_str());
-		
-		var_twinkle = "TWINKLE_TRIGGER=";
-		var_twinkle += trigger2str(trigger);
-		env[start_twinkle_env + 1] = strdup(var_twinkle.c_str());
-		
-		var_twinkle = "TWINKLE_LINE=";
-		var_twinkle += ulong2str(line_number);
-		env[start_twinkle_env + 2] = strdup(var_twinkle.c_str());
 		
 		// Terminate array with NULL
 		env[environ_size] = NULL;
