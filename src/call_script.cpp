@@ -21,8 +21,13 @@
 #include <unistd.h>
 #include "call_script.h"
 #include "log.h"
+#include "phone.h"
+#include "phone_user.h"
+#include "service.h"
 #include "userintf.h"
 #include "util.h"
+
+extern t_phone *phone;
 
 // Maximum length of the reason value
 #define MAX_LEN_REASON		50
@@ -133,6 +138,19 @@ string t_call_script::trigger2str(t_trigger t) const {
 	}
 }
 
+string t_call_script::cf_dest2str(const list<t_display_url> &cf_dest) const {
+	string s;
+
+	for (list<t_display_url>::const_iterator i = cf_dest.begin();
+	     i != cf_dest.end(); i++)
+	{
+		if (i != cf_dest.begin()) s += ",";
+		s += i->encode();
+	}
+
+	return s;
+}
+
 char **t_call_script::create_env(t_sip_message *m) const {
 		string var_twinkle;
 
@@ -182,6 +200,42 @@ char **t_call_script::create_env(t_sip_message *m) const {
 		var_twinkle = "TWINKLE_LINE=";
 		var_twinkle += ulong2str(line_number);
 		l.push_back(var_twinkle);
+
+		// Add service-based environment variables
+		t_phone_user *pu = phone->find_phone_user(user_config->get_profile_name());
+		if (pu) {
+			var_twinkle = "TWINKLE_DO_NOT_DISTURB=";
+			if (pu->service->is_dnd_active()) {
+				var_twinkle += "1";
+			}
+			l.push_back(var_twinkle);
+
+			var_twinkle = "TWINKLE_AUTO_ANSWER=";
+			if (pu->service->is_auto_answer_active()) {
+				var_twinkle += "1";
+			}
+			l.push_back(var_twinkle);
+
+			list<t_display_url> cf_dest; // call forwarding destinations
+
+			var_twinkle = "TWINKLE_REDIRECT_ALWAYS=";
+			if (pu->service->get_cf_active(CF_ALWAYS, cf_dest)) {
+				var_twinkle += cf_dest2str(cf_dest);
+			}
+			l.push_back(var_twinkle);
+
+			var_twinkle = "TWINKLE_REDIRECT_BUSY=";
+			if (pu->service->get_cf_active(CF_BUSY, cf_dest)) {
+				var_twinkle += cf_dest2str(cf_dest);
+			}
+			l.push_back(var_twinkle);
+
+			var_twinkle = "TWINKLE_REDIRECT_NO_ANSWER=";
+			if (pu->service->get_cf_active(CF_NOANSWER, cf_dest)) {
+				var_twinkle += cf_dest2str(cf_dest);
+			}
+			l.push_back(var_twinkle);
+		}
 		
 		environ_size += l.size();
 		
