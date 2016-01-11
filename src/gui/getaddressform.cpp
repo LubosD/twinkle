@@ -48,6 +48,14 @@ GetAddressForm::GetAddressForm(QWidget *parent)
 
 	m_model = new AddressTableModel(this, ab_local->get_address_list());
 	localListView->setModel(m_model);
+
+	localListView->sortByColumn(COL_ADDR_NAME, Qt::AscendingOrder);
+
+#if QT_VERSION >= 0x050000
+	localListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+#else
+	localListView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+#endif
 }
 
 GetAddressForm::~GetAddressForm()

@@ -23,6 +23,11 @@
 #include <QAbstractTableModel>
 #include <QList>
 
+// Columns
+#define COL_ADDR_NAME		0
+#define COL_ADDR_PHONE	1
+#define COL_ADDR_REMARK	2
+
 class AddressTableModel : public QAbstractTableModel
 {
 private:

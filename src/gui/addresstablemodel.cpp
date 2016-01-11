@@ -19,11 +19,6 @@
 #include "addresstablemodel.h"
 #include <QtDebug>
 
-// Columns
-#define COL_ADDR_NAME		0
-#define COL_ADDR_PHONE	1
-#define COL_ADDR_REMARK	2
-
 AddressTableModel::AddressTableModel(QObject *parent, const list<t_address_card>& data)
 	: QAbstractTableModel(parent)
 {
