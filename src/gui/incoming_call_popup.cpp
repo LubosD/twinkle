@@ -1,17 +1,16 @@
 #include "incoming_call_popup.h"
 #include <QDesktopWidget>
 #include <QApplication>
-#include <QDeclarativeContext>
+#include <QQmlContext>
 #include <QSettings>
 
 extern QSettings* g_gui_state;
 
 IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 {
-	m_view = new QDeclarativeView;
+	m_view = new QQuickView;
 
-	// Qt5 QQuickView: setFlags()
-	m_view->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
+	m_view->setFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
 
 	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/incoming_call.qml"));
@@ -27,7 +26,7 @@ IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 	button = m_view->rootObject()->findChild<QObject*>("buttonReject");
 	connect(button, SIGNAL(clicked()), this, SLOT(onRejectClicked()));
 
-	m_callerText = m_view->rootObject()->findChild<QDeclarativeItem*>("callerText");
+	m_callerText = m_view->rootObject()->findChild<QQuickItem*>("callerText");
 	connect(m_view->rootObject(), SIGNAL(moved()), this, SLOT(saveState()));
 }
 
@@ -54,19 +53,19 @@ void IncomingCallPopup::positionWindow()
 	if (y > desktop->height() || y < 0)
 		y = defaultY;
 
-	m_view->move(x, y);
+	m_view->setPosition(x, y);
 }
 
 void IncomingCallPopup::saveState()
 {
-	QPoint pos = m_view->pos();
+	QPoint pos = m_view->position();
 	g_gui_state->setValue("incoming_popup/x", pos.x());
 	g_gui_state->setValue("incoming_popup/y", pos.y());
 }
 
 void IncomingCallPopup::move(int x, int y)
 {
-    m_view->move(QPoint(x, y));
+	m_view->setPosition(QPoint(x, y));
 }
 
 void IncomingCallPopup::setCallerName(const QString& name)

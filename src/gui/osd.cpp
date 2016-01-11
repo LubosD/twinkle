@@ -1,27 +1,20 @@
 #include "osd.h"
 #include <QtDebug>
 
-#if 0 //QT_VERSION >= 0x050000
-#	include <QQuickView>
-#	include <QQmlContext>
-#	include <QQuickItem>
-#else
-#	include <QDeclarativeView>
-#	include <QDeclarativeContext>
-#	include <QDeclarativeItem>
-#endif
 #include <QDesktopWidget>
 #include <QSettings>
 #include <QApplication>
+#include <QQuickView>
+#include <QQuickItem>
+#include <QQmlContext>
 
 extern QSettings* g_gui_state;
 
 OSD::OSD(QObject* parent)
 	: QObject(parent)
 {
-	m_view = new OSD_VIEWCLASS;
-	// Qt5 QQuickView: setFlags()
-	m_view->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
+	m_view = new QQuickView;
+	m_view->setFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::ToolTip);
 
 	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/osd.qml"));
@@ -33,9 +26,9 @@ OSD::OSD(QObject* parent)
 
 	connect(buttonHangup, SIGNAL(clicked()), this, SLOT(onHangupClicked()));
 
-	m_caller = m_view->rootObject()->findChild<QML_ITEMTYPE*>("callerName");
-	m_time = m_view->rootObject()->findChild<QML_ITEMTYPE*>("callTime");
-	m_mute = m_view->rootObject()->findChild<QML_ITEMTYPE*>("mute");
+	m_caller = m_view->rootObject()->findChild<QQuickItem*>("callerName");
+	m_time = m_view->rootObject()->findChild<QQuickItem*>("callTime");
+	m_mute = m_view->rootObject()->findChild<QQuickItem*>("mute");
 
 	connect(m_mute, SIGNAL(clicked()), this, SLOT(onMuteClicked()));
 
@@ -65,12 +58,12 @@ void OSD::positionWindow()
 	if (y > desktop->height() || y < 0)
 		y = defaultY;
 
-	m_view->move(x, y);
+	m_view->setPosition(x, y);
 }
 
 void OSD::saveState()
 {
-	QPoint pos = m_view->pos();
+	QPoint pos = m_view->position();
 	g_gui_state->setValue("osd/x", pos.x());
 	g_gui_state->setValue("osd/y", pos.y());
 }
@@ -109,8 +102,7 @@ void OSD::setTime(const QString& timeText)
 
 void OSD::move(int x, int y)
 {
-	// Qt5 QQuickView: setPosition
-	m_view->move(x, y);
+	m_view->setPosition(x, y);
 }
 
 void OSD::show()

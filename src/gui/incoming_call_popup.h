@@ -1,8 +1,8 @@
 #ifndef T_INCOMING_CALL_POPUP_H
 #define T_INCOMING_CALL_POPUP_H
 
-#include <QDeclarativeItem>
-#include <QDeclarativeView>
+#include <QQuickItem>
+#include <QQuickView>
 
 class IncomingCallPopup : public QObject
 {
@@ -27,8 +27,8 @@ public slots:
 	void onRejectClicked();
 	void saveState();
 private:
-	QDeclarativeView* m_view;
-	QDeclarativeItem* m_callerText;
+	QQuickView* m_view;
+	QQuickItem* m_callerText;
 };
 
 #endif // T_INCOMING_CALL_POPUP_H

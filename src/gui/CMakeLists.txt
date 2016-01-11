@@ -40,22 +40,6 @@ set (twinkle_lang_SRC
 	lang/twinkle_sv.ts
 )
 
-if (WITH_QT4)
-qt4_wrap_ui(
-	twinkle_UIS
-	${twinkle_ui_SRC}
-)
-
-qt4_add_resources(twinkle_QRC icons.qrc qml/qml.qrc)
-
-qt4_add_translation(twinkle_LANG
-	${twinkle_lang_SRC}
-)
-
-set(qt_LIBS Qt4::QtGui Qt4::QtDeclarative)
-
-elseif (WITH_QT5)
-
 qt5_wrap_ui(
 	twinkle_UIS
 	${twinkle_ui_SRC}
@@ -67,8 +51,7 @@ qt5_add_translation(twinkle_LANG
 	${twinkle_lang_SRC}
 )
 
-set(qt_LIBS Qt5::Widgets Qt5::Quick Qt5::Declarative)
-endif (WITH_QT4)
+set(qt_LIBS Qt5::Widgets Qt5::Quick)
 
 set(CMAKE_AUTOMOC ON)
 

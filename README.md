@@ -10,7 +10,7 @@ To compile Twinkle you need the following libraries:
 * ccRTP (version >= 1.5.0) [GNU RTP Stack](http://www.gnu.org/software/ccrtp/)
 * libxml2
 * libsndfile
-* Qt 4 or Qt 5
+* Qt 5
 
 ### Optional dependencies
 
@@ -23,13 +23,10 @@ To compile Twinkle you need the following libraries:
 ## Build
 
 First of all, choose which options you want to have enabled.
-As a very minimum, you should choose Qt 4 (`-DWITH_QT4=On`) or
-Qt 5 (`-DWITH_QT5=On`). These two options are mutually exclusive.
 
 All possible options are:
 
-* Qt 5 GUI: `-DWITH_QT5=On`
-* Qt 4 GUI: `-DWITH_QT4=On`
+* Qt 5 GUI: `-DWITH_QT5=On` (on by default)
 * ALSA support: `-DWITH_ALSA=On` (on by default)
 * ZRTP support: `-DWITH_ZRTP=On`
 * G.729A codec support: `-DWITH_G729=On`

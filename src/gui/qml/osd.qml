@@ -1,4 +1,4 @@
-import QtQuick 1.1
+import QtQuick 2.0
 
 Rectangle {
     id: rectangleOsd
@@ -79,20 +79,14 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        property variant previousPosition
+        property real lastMouseX: 0
+        property real lastMouseY: 0
         onPressed: {
-            previousPosition = Qt.point(mouseX, mouseY)
+            lastMouseX = mouseX
+            lastMouseY = mouseY
         }
-        onPositionChanged: {
-            if (pressedButtons == Qt.LeftButton) {
-                var dx = mouseX - previousPosition.x
-                var dy = mouseY - previousPosition.y
-                viewerWidget.pos = Qt.point(viewerWidget.pos.x + dx,
-                                            viewerWidget.pos.y + dy)
-
-                rectangleOsd.moved()
-            }
-        }
+        onMouseXChanged: viewerWidget.x += (mouseX - lastMouseX)
+        onMouseYChanged: viewerWidget.y += (mouseY - lastMouseY)
     }
 }
 
