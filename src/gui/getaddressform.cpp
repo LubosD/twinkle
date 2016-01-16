@@ -216,6 +216,8 @@ void GetAddressForm::addLocalAddress()
 		ab_local->add_address(card);
 
 		m_model->appendAddress(card);
+
+		localListView->sortByColumn(localListView->horizontalHeader()->sortIndicatorSection(), localListView->horizontalHeader()->sortIndicatorOrder());
 		
 		string error_msg;
 		if (!ab_local->save(error_msg)) {
@@ -254,6 +256,8 @@ void GetAddressForm::editLocalAddress()
 	if (f.exec(newCard)) {
 		if (ab_local->update_address(oldCard, newCard)) {
 			m_model->modifyAddress(sel[0].row(), newCard);
+
+			localListView->sortByColumn(localListView->horizontalHeader()->sortIndicatorSection(), localListView->horizontalHeader()->sortIndicatorOrder());
 			
 			string error_msg;
 			if (!ab_local->save(error_msg)) {
