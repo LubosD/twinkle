@@ -17,12 +17,14 @@
 */
 
 #include "getaddressform.h"
+#include <QMessageBox>
 #include <QRegExp>
 #include "sys_settings.h"
 #include "gui.h"
 #include "address_book.h"
 #include "addresstablemodel.h"
 #include "addresscardform.h"
+#include "audits/memman.h"
 #define TAB_KABC	0
 #define TAB_LOCAL	1
 
@@ -216,6 +218,8 @@ void GetAddressForm::addLocalAddress()
 		ab_local->add_address(card);
 
 		m_model->appendAddress(card);
+
+		localListView->sortByColumn(localListView->horizontalHeader()->sortIndicatorSection(), localListView->horizontalHeader()->sortIndicatorOrder());
 		
 		string error_msg;
 		if (!ab_local->save(error_msg)) {
@@ -232,14 +236,29 @@ void GetAddressForm::deleteLocalAddress()
 
 	t_address_card card = m_model->getAddress(sel[0].row());
 
-	if (ab_local->del_address(card)) {
-		m_model->removeAddress(sel[0].row());
+	QString card_name = QString::fromStdString(card.get_display_name());
+	QString msg = tr("Are you sure you want to delete contact '%1' from the local address book?").arg(card_name);
+	QMessageBox *mb = new QMessageBox(tr("Delete contact"), msg,
+			QMessageBox::Warning,
+			QMessageBox::Yes,
+			QMessageBox::No,
+			QMessageBox::NoButton,
+			this);
+	MEMMAN_NEW(mb);
 
-		string error_msg;
-		if (!ab_local->save(error_msg)) {
-			ui->cb_show_msg(error_msg, MSG_CRITICAL);
+	if (mb->exec() == QMessageBox::Yes) {
+		if (ab_local->del_address(card)) {
+			m_model->removeAddress(sel[0].row());
+
+			string error_msg;
+			if (!ab_local->save(error_msg)) {
+				ui->cb_show_msg(error_msg, MSG_CRITICAL);
+			}
 		}
 	}
+
+	MEMMAN_DELETE(mb);
+	delete mb;
 }
 
 void GetAddressForm::editLocalAddress()
@@ -254,6 +273,8 @@ void GetAddressForm::editLocalAddress()
 	if (f.exec(newCard)) {
 		if (ab_local->update_address(oldCard, newCard)) {
 			m_model->modifyAddress(sel[0].row(), newCard);
+
+			localListView->sortByColumn(localListView->horizontalHeader()->sortIndicatorSection(), localListView->horizontalHeader()->sortIndicatorOrder());
 			
 			string error_msg;
 			if (!ab_local->save(error_msg)) {
