@@ -964,6 +964,14 @@ Pour ajouter, supprimer, ou modifier une information de contact, vous devez util
         <translation>&lt;p&gt;Il semble qu&apos;il n&apos;y ait aucun contact avec un numéro de téléphone dans &lt;b&gt;KAddressBook&lt;/b&gt;, le carnet d&apos;adresse de KDE. Twinkle récupère tous les contacts avec un numéro de téléphone de KAddressBook. Pour gérer vos contacts utilisez KadressBook.&lt;/p&gt;
 &lt;p&gt;Comme alternative, vous pouvez utiliser le carnet d&apos;adresse local de Twinkle.&lt;/p&gt;</translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
+        <translation>Etes-vous sûr de vouloir supprimer le contact &apos;%1&apos; du carnet d&apos;adresses local?</translation>
+    </message>
+    <message>
+        <source>Delete contact</source>
+        <translation>Supprimer un contact.</translation>
+    </message>
 </context>
 <context>
     <name>GetProfileNameForm</name>
