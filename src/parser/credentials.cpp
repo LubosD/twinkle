@@ -143,7 +143,7 @@ string t_credentials::encode(void) const {
 	string s = auth_scheme;
 	s += ' ';
 
-	if (auth_scheme == AUTH_DIGEST) {
+	if (cmp_nocase(auth_scheme,AUTH_DIGEST) == 0) {
 		s += digest_response.encode();
 	} else {
 		for (list<t_parameter>::const_iterator i = auth_params.begin();
