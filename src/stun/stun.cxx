@@ -1025,7 +1025,7 @@ string stunMsg2Str(const StunMessage &m) {
         s += "\n";
 	
 	if (m.hasMappedAddress) {
-		s += "Mapped Addres = ";
+		s += "Mapped Address = ";
 		s += h_ip2str(m.mappedAddress.ipv4.addr);
 		s += ':';
 		s += int2str(m.mappedAddress.ipv4.port);
@@ -1034,7 +1034,7 @@ string stunMsg2Str(const StunMessage &m) {
 	
 	
 	if (m.hasResponseAddress) {
-		s += "Response Addres = ";
+		s += "Response Address = ";
 		s += h_ip2str(m.responseAddress.ipv4.addr);
 		s += ':';
 		s += int2str(m.responseAddress.ipv4.port);
@@ -1058,7 +1058,7 @@ string stunMsg2Str(const StunMessage &m) {
 	}
 	
 	if (m.hasSourceAddress) {
-		s += "Source Addres = ";
+		s += "Source Address = ";
 		s += h_ip2str(m.sourceAddress.ipv4.addr);
 		s += ':';
 		s += int2str(m.sourceAddress.ipv4.port);
@@ -1066,7 +1066,7 @@ string stunMsg2Str(const StunMessage &m) {
 	}
 
 	if (m.hasChangedAddress) {
-		s += "Changed Addres = ";
+		s += "Changed Address = ";
 		s += h_ip2str(m.changedAddress.ipv4.addr);
 		s += ':';
 		s += int2str(m.changedAddress.ipv4.port);
