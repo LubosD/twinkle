@@ -5528,7 +5528,7 @@ You can customize the way Twinkle handles incoming calls. Twinkle can call a scr
 &lt;b&gt;Note:&lt;/b&gt; Twinkle pauses while your script runs. It is recommended that your script does not take more than 200 ms. When you need more time, you can send the parameters followed by &lt;b&gt;end&lt;/b&gt; and keep on running. Twinkle will continue when it receives the &lt;b&gt;end&lt;/b&gt; parameter.
 &lt;/p&gt;
 &lt;p&gt;
-With your script you can customize call handling by outputing one or more of the following parameters to stdout. Each parameter should be on a separate line.
+With your script you can customize call handling by outputting one or more of the following parameters to stdout. Each parameter should be on a separate line.
 &lt;/p&gt;
 &lt;p&gt;
 &lt;blockquote&gt;
