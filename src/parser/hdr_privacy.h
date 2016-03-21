@@ -20,7 +20,7 @@
 // Privacy header
 
 #ifndef _H_HDR_PRIVACY
-#define _H_HDR_PRICACY
+#define _H_HDR_PRIVACY
 
 #include <list>
 #include <string>

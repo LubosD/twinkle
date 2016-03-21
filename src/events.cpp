@@ -41,6 +41,7 @@ string event_type2str(t_event_type t) {
 	case EV_ASYNC_RESPONSE:	return "EV_ASYNC_RESPONSE";
 	case EV_BROKEN_CONNECTION: return "EV_BROKEN_CONNECTION";
 	case EV_TCP_PING:	return "EV_TCP_PING";
+	case EV_FN_CALL:	return "EV_FN_CALL";
 	}
 
 	return "UNKNOWN";
