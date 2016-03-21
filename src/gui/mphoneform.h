@@ -143,8 +143,8 @@ public slots:
 	void showAddressBook();
 	void selectedAddress( const QString & address );
 	void enableCallOptions( bool enable );
-	void keyPressEvent( QKeyEvent * e );
-	void mouseReleaseEvent( QMouseEvent * e );
+	virtual void keyPressEvent( QKeyEvent * e ) override;
+	virtual void mouseReleaseEvent( QMouseEvent * e ) override;
 	void processLeftMouseButtonRelease( QMouseEvent * e );
 	void processRightMouseButtonRelease( QMouseEvent * e );
 	void processCryptLabelClick( int line );
