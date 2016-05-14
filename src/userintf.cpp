@@ -3097,7 +3097,7 @@ void t_userintf::cb_call_referred(t_user *user_config, int line, t_request *r) {
 	cout << endl;
 
 	if (r->hdr_referred_by.is_populated()) {
-		cout << "Tranfer requested by ";
+		cout << "Transfer requested by ";
 		cout << format_sip_address(user_config, r->hdr_referred_by.display,
 			r->hdr_referred_by.uri);
 		cout << endl;
