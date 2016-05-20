@@ -385,7 +385,7 @@ void t_event_ui::set_codec(t_audio_codec _codec) {
 	codec = _codec;
 }
 
-void t_event_ui::set_dtmf_event(char _dtmf_event) {
+void t_event_ui::set_dtmf_event(t_dtmf_ev _dtmf_event) {
 	dtmf_event = _dtmf_event;
 }
 

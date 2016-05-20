@@ -270,10 +270,10 @@ public:
         virtual void cb_stop_tone(int line);
         virtual void cb_notify_call(int line, string from_party);
         virtual void cb_stop_call_notification(int line);
-	virtual void cb_dtmf_detected(int line, char dtmf_event);
-	virtual void cb_async_dtmf_detected(int line, char dtmf_event);
-	virtual void cb_send_dtmf(int line, char dtmf_event);
-	virtual void cb_async_send_dtmf(int line, char dtmf_event);
+	virtual void cb_dtmf_detected(int line, t_dtmf_ev dtmf_event);
+	virtual void cb_async_dtmf_detected(int line, t_dtmf_ev dtmf_event);
+	virtual void cb_send_dtmf(int line, t_dtmf_ev dtmf_event);
+	virtual void cb_async_send_dtmf(int line, t_dtmf_ev dtmf_event);
 	virtual void cb_dtmf_not_supported(int line);
 	virtual void cb_dtmf_supported(int line);
 	virtual void cb_line_state_changed(void);

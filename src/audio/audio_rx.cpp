@@ -657,7 +657,7 @@ void t_audio_rx::set_pt_telephone_event(int pt) {
 
 void t_audio_rx::push_dtmf(char digit, bool inband) {
 	// Ignore invalid DTMF digits
-	if (!VALID_DTMF_SYM(digit)) return;
+	if (!is_valid_dtmf_sym(digit)) return;
 
 	// Ignore DTMF tones in a 3-way conference
 	if (is_3way) return;

@@ -247,7 +247,7 @@ bool t_sip_body_dtmf_relay::parse(const string &s) {
 		if (value.empty()) continue;
 		
 		if (parameter == "signal") {
-			if (!VALID_DTMF_SYM(value[0])) return false;
+			if (!is_valid_dtmf_sym(value[0])) return false;
 			signal = value[0];
 			valid = true;
 		} else if (parameter == "duration") {

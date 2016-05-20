@@ -1822,7 +1822,7 @@ void t_gui::cb_stop_call_notification(int line) {
 	unlock();
 }
 
-void t_gui::cb_dtmf_detected(int line, char dtmf_event) {
+void t_gui::cb_dtmf_detected(int line, t_dtmf_ev dtmf_event) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
@@ -1831,7 +1831,7 @@ void t_gui::cb_dtmf_detected(int line, char dtmf_event) {
 	emit mw_display_header();
 	s = qApp->translate("GUI", "Line %1: DTMF detected:").arg(line + 1).append(" ");
 	
-	if (VALID_DTMF_EV(dtmf_event)) {
+	if (is_valid_dtmf_ev(dtmf_event)) {
 		s.append(dtmf_ev2char(dtmf_event));
 	} else {
 		s.append(qApp->translate("GUI", "invalid DTMF telephone event (%1)").arg(
@@ -1843,13 +1843,13 @@ void t_gui::cb_dtmf_detected(int line, char dtmf_event) {
 	unlock();
 }
 
-void t_gui::cb_send_dtmf(int line, char dtmf_event) {
+void t_gui::cb_send_dtmf(int line, t_dtmf_ev dtmf_event) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
 	QString s;
 	
-	if (!VALID_DTMF_EV(dtmf_event)) return;
+	if (!is_valid_dtmf_ev(dtmf_event)) return;
 	
 	emit mw_display_header();
 	s = qApp->translate("GUI", "Line %1: send DTMF %2").arg(line + 1).arg(
@@ -2988,7 +2988,7 @@ void t_gui::action_dtmf(const string &digits) {
 	if (!call_info.dtmf_supported) return;
 	
 	for (string::const_iterator i = digits.begin(); i != digits.end(); i++) {
-		if (VALID_DTMF_SYM(*i)) {
+		if (is_valid_dtmf_sym(*i)) {
 			phone->pub_send_dtmf(*i, call_info.dtmf_inband, call_info.dtmf_info);
 		}
 	}

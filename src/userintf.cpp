@@ -1001,7 +1001,7 @@ void t_userintf::do_dtmf(const string &digits) {
 	if (!call_info.dtmf_supported) return;
 	
 	for (string::const_iterator i = digits.begin(); i != digits.end(); i++) {
-		if (VALID_DTMF_SYM(*i)) {
+		if (is_valid_dtmf_sym(*i)) {
 			phone->pub_send_dtmf(*i, call_info.dtmf_inband, call_info.dtmf_info);
 		}
 	}
@@ -2939,13 +2939,13 @@ void t_userintf::cb_stop_call_notification(int line) {
 	cb_stop_tone(line);
 }
 
-void t_userintf::cb_dtmf_detected(int line, char dtmf_event) {
+void t_userintf::cb_dtmf_detected(int line, t_dtmf_ev dtmf_event) {
 	if (line >= NUM_USER_LINES) return;
 	
 	cout << endl;
 	cout << "Line " << line + 1 << ": DTMF detected: ";
 
-	if (VALID_DTMF_EV(dtmf_event)) {
+	if (is_valid_dtmf_ev(dtmf_event)) {
 		cout << dtmf_ev2char(dtmf_event) << endl;
 	} else {
 		cout << "invalid DTMF telephone event (" << (int)dtmf_event << endl;
@@ -2955,22 +2955,22 @@ void t_userintf::cb_dtmf_detected(int line, char dtmf_event) {
 	cout.flush();
 }
 
-void t_userintf::cb_async_dtmf_detected(int line, char dtmf_event) {
+void t_userintf::cb_async_dtmf_detected(int line, t_dtmf_ev dtmf_event) {
 	if (line >= NUM_USER_LINES) return;
 	
 	t_event_ui *event = new t_event_ui(TYPE_UI_CB_DTMF_DETECTED);
 	MEMMAN_NEW(event);
 	
 	event->set_line(line);
-	event->set_dtmf_event(dtmf_event);	
+	event->set_dtmf_event(dtmf_event);
 	evq_ui_events.push(event);
 }
 
-void t_userintf::cb_send_dtmf(int line, char dtmf_event) {
+void t_userintf::cb_send_dtmf(int line, t_dtmf_ev dtmf_event) {
 	// No feed back in CLI
 }
 
-void t_userintf::cb_async_send_dtmf(int line, char dtmf_event) {
+void t_userintf::cb_async_send_dtmf(int line, t_dtmf_ev dtmf_event) {
 	t_event_ui *event = new t_event_ui(TYPE_UI_CB_SEND_DTMF);
 	MEMMAN_NEW(event);
 	

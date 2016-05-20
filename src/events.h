@@ -29,6 +29,7 @@
 #include "timekeeper.h"
 #include "stun/stun.h"
 #include "audio/audio_codecs.h"
+#include "audio/rtp_telephone_event.h"
 #include "parser/sip_message.h"
 #include "sockets/socket.h"
 #include "sockets/url.h"
@@ -497,7 +498,7 @@ private:
 	//@{
 	int		line;		/**< Line number. */
 	t_audio_codec	codec;		/**< Audio codec. */
-	char		dtmf_event;	/**< DTMF event. */
+	t_dtmf_ev	dtmf_event;	/**< DTMF event. */
 	bool		encrypted;	/**< Encryption indication. */
 	string		cipher_mode;	/**< Cipher mode (algorithm name). */
 	string		zrtp_sas;	/**< ZRTP SAS/ */
@@ -518,7 +519,7 @@ public:
 	//@{
 	void set_line(int _line);
 	void set_codec(t_audio_codec _codec);
-	void set_dtmf_event(char _dtmf_event);
+	void set_dtmf_event(t_dtmf_ev _dtmf_event);
 	void set_encrypted(bool on);
 	void set_cipher_mode(const string &_cipher_mode);
 	void set_zrtp_sas(const string &sas);

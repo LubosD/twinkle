@@ -35,7 +35,7 @@ t_freq_gen::t_freq_gen(vector<uint16> frequencies, int8 db_level) {
 	_amplitude = int16(pow(10.0, db_level / 20.0) * 32767 / _frequencies.size());
 }
 
-t_freq_gen::t_freq_gen(uint8 dtmf, int8 db_level) : _frequencies(2)
+t_freq_gen::t_freq_gen(t_dtmf_ev dtmf, int8 db_level) : _frequencies(2)
 {
 	assert(db_level <= 0);
 	
@@ -106,6 +106,7 @@ t_freq_gen::t_freq_gen(uint8 dtmf, int8 db_level) : _frequencies(2)
 		break;
 	default:
 		assert(false);
+		_frequencies.clear();
 	}
 		
 	// dB = 20 * log(amplitude / 32768)

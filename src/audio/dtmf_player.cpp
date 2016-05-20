@@ -30,7 +30,7 @@
 /////////////////////////////////////////
 
 t_dtmf_player::t_dtmf_player(t_audio_rx *audio_rx, t_audio_encoder *audio_encoder, 
-			t_user *user_config, uint8 dtmf_tone, uint32 dtmf_timestamp,
+			t_user *user_config, t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 			uint16 nsamples) :
 	_audio_rx(audio_rx),
 	_user_config(user_config),
@@ -57,7 +57,7 @@ bool t_dtmf_player::finished(void) {
 
 t_rtp_event_dtmf_player::t_rtp_event_dtmf_player(t_audio_rx *audio_rx, 
 			t_audio_encoder *audio_encoder, t_user *user_config,
-			uint8 dtmf_tone, uint32 dtmf_timestamp,
+			t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 			uint16 nsamples) : 
 	t_dtmf_player(audio_rx, audio_encoder, user_config, dtmf_tone, dtmf_timestamp, 
 			nsamples)
@@ -125,7 +125,7 @@ uint16 t_rtp_event_dtmf_player::get_payload(uint8 *payload,
 
 t_inband_dtmf_player::t_inband_dtmf_player(t_audio_rx *audio_rx, 
 		t_audio_encoder *audio_encoder, t_user *user_config,
-		uint8 dtmf_tone, uint32 dtmf_timestamp,
+		t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 		uint16 nsamples) :
 	t_dtmf_player(audio_rx, audio_encoder, user_config, dtmf_tone, dtmf_timestamp, 
 			nsamples),
