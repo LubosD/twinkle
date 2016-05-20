@@ -28,6 +28,8 @@
 #include <vector>
 #include <commoncpp/config.h>
 
+#include "rtp_telephone_event.h"
+
 using namespace std;
 
 class t_freq_gen {
@@ -37,7 +39,7 @@ private:
 	
 public:
 	t_freq_gen(vector<uint16> frequencies, int8 db_level);
-	t_freq_gen(uint8 dtmf, int8 db_level);
+	t_freq_gen(t_dtmf_ev dtmf, int8 db_level);
 	
 	// Get sound sample on a particular timestamp in us.
 	int16 get_sample(uint32 ts_usec) const;

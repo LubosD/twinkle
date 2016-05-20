@@ -1268,7 +1268,7 @@ void t_dialog::process_info(t_request *r, t_tuid tuid, t_tid tid) {
 	}
 	
 	char dtmf_signal = ((t_sip_body_dtmf_relay *)r->body)->signal;
-	if (!VALID_DTMF_SYM(dtmf_signal)) {
+	if (!is_valid_dtmf_sym(dtmf_signal)) {
 		resp = r->create_response(R_400_BAD_REQUEST, "Invalid DTMF signal");
 		line->send_response(resp, tuid, tid);
 		MEMMAN_DELETE(resp);

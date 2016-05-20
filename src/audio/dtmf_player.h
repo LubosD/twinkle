@@ -41,14 +41,14 @@ protected:
 	// Settings for current DTMF tone
 	bool		_dtmf_pause;      // indicates if playing is in the pause phase
 	bool		_dtmf_stop;	  // indicates if DTMF should be stopped
-	uint8		_dtmf_current;    // Currently played DTMF tone
+	t_dtmf_ev	_dtmf_current;    // Currently played DTMF tone
 	uint32		_dtmf_timestamp;  // RTP timestamp (start of tone)
 	uint16		_dtmf_duration;   // Duration of the tone currently played
 	uint16		_nsamples; 	  // number of samples taken per packet
 	
 public:
 	t_dtmf_player(t_audio_rx *audio_rx, t_audio_encoder *audio_encoder,
-		t_user *user_config, uint8 dtmf_tone, uint32 dtmf_timestamp,
+		t_user *user_config, t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 		uint16 nsamples);
 		
 	virtual ~t_dtmf_player() {};
@@ -71,7 +71,7 @@ public:
 class t_rtp_event_dtmf_player : public t_dtmf_player {
 public:
 	t_rtp_event_dtmf_player(t_audio_rx *audio_rx, t_audio_encoder *audio_encoder,
-		t_user *user_config, uint8 dtmf_tone, uint32 dtmf_timestamp,
+		t_user *user_config,  t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 		uint16 nsamples);
 	
 	virtual uint16 get_payload(uint8 *payload, uint16 payload_size,
@@ -87,7 +87,7 @@ private:
 	
 public:
 	t_inband_dtmf_player(t_audio_rx *audio_rx, t_audio_encoder *audio_encoder,
-		t_user *user_config, uint8 dtmf_tone, uint32 dtmf_timestamp,
+		t_user *user_config, t_dtmf_ev dtmf_tone, uint32 dtmf_timestamp,
 		uint16 nsamples);
 	
 	virtual uint16 get_payload(uint8 *payload, uint16 payload_size,

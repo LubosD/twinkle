@@ -25,6 +25,8 @@
 
 // RFC 2833 3.10
 // DTMF events
+typedef unsigned char t_dtmf_ev;
+
 #define	TEL_EV_DTMF_0		0
 #define	TEL_EV_DTMF_1		1
 #define	TEL_EV_DTMF_2		2
@@ -41,12 +43,25 @@
 #define	TEL_EV_DTMF_B		13
 #define	TEL_EV_DTMF_C		14
 #define	TEL_EV_DTMF_D		15
+#define	TEL_EV_DTMF_INVALID	((t_dtmf_ev) 0xff)
 
-#define VALID_DTMF_EV(ev)	( (ev) <= TEL_EV_DTMF_D )
-#define VALID_DTMF_SYM(s)	( ((s) >= '0' && (s) <= '9') || \
-				  ((s) >= 'a' && (s) <= 'd') || \
-				  ((s) >= 'A' && (s) <= 'D') || \
-				  (s) == '*' || (s) == '#' )
+static inline bool is_valid_dtmf_ev(t_dtmf_ev ev)
+{
+	return (ev <= TEL_EV_DTMF_D);
+}
+
+static inline bool is_valid_dtmf_sym(char s)
+{
+	if (s >= '0' && s <= '9')
+		return true;
+	if (s >= 'a' && s <= 'd')
+		return true;
+	if (s >= 'A' && s <= 'D')
+		return true;
+	if (s == '*' || s == '#')
+		return true;
+	return false;
+}
 
 // RFC 2833 3.5
 // Payload format (in network order!!)

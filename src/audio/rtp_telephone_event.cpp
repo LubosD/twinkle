@@ -60,16 +60,18 @@ unsigned short t_rtp_telephone_event::get_duration(void) const {
 	return ntohs(duration);
 }
 
-unsigned char char2dtmf_ev(char sym) {
+t_dtmf_ev char2dtmf_ev(char sym) {
 	if (sym >= '0' && sym <= '9') return (sym - '0' + TEL_EV_DTMF_0);
 	if (sym >= 'A' && sym <= 'D') return (sym - 'A' + TEL_EV_DTMF_A);
 	if (sym >= 'a' && sym <= 'd') return (sym-  'a' + TEL_EV_DTMF_A);
 	if (sym == '*') return TEL_EV_DTMF_STAR;
 	if (sym == '#') return TEL_EV_DTMF_POUND;
+
 	assert(false);
+	return TEL_EV_DTMF_INVALID;
 }
 
-char dtmf_ev2char(unsigned char ev) {
+char dtmf_ev2char(t_dtmf_ev ev) {
 	if (ev <= TEL_EV_DTMF_9) {
 		return ev + '0' - TEL_EV_DTMF_0;
 	}
@@ -78,6 +80,8 @@ char dtmf_ev2char(unsigned char ev) {
 	}
 	if (ev == TEL_EV_DTMF_STAR) return '*';
 	if (ev == TEL_EV_DTMF_POUND) return '#';
+
 	assert(false);
+	return '?';
 }
 

@@ -109,8 +109,8 @@ private:
 
 	// Queue of DTMF tones to be sent
 	struct t_dtmf_event {
-		uint8	dtmf_tone;
-		bool	inband;
+		t_dtmf_ev	dtmf_tone;
+		bool		inband;
 	};
 	
 	queue<t_dtmf_event>	dtmf_queue;
