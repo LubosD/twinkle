@@ -302,7 +302,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 <C_NEW>\n		{ return T_CRLF; }
 
 	/* Authorization scheme */
-<C_AUTH_SCHEME>Digest		{ return T_AUTH_DIGEST; }
+<C_AUTH_SCHEME>[Dd][Ii][Gg][Ee][Ss][Tt]	{ return T_AUTH_DIGEST; }
 <C_AUTH_SCHEME>{TOKEN_SYM}+ 	{ yylval.yyt_str = new string(yytext);
 			 	  MEMMAN_NEW(yylval.yyt_str);
 				  return T_AUTH_OTHER; }

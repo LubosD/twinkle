@@ -134,7 +134,7 @@ bool t_auth::authorize(t_user *user_config, t_request *r, t_response *resp) {
 	}
 
 	// Only DIGEST is supported
-	if (c.auth_scheme != AUTH_DIGEST) {
+	if (cmp_nocase(c.auth_scheme, AUTH_DIGEST) != 0) {
 		log_file->write_header("t_auth::authorize");
 		log_file->write_raw("Unsupported authentication scheme: ");
 		log_file->write_raw(c.auth_scheme);
