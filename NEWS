@@ -1,3 +1,14 @@
+15 July 2016 - 1.10.0
+=======================
+- Supports newest Qt5, drops support for Qt4.
+- Source code cleanups, spelling error fixes.
+- Handle digest authentication scheme case insensitively.
+- Address book UI fixes.
+- Fix build with ucommon 7.0.
+- Call history UI fixes.
+- Support using an external GSM library.
+- Various other bug fixes.
+
 10 July 2015 - 1.9.0
 =======================
 - Ported to Qt4 and Qt5.
