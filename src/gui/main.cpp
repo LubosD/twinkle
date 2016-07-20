@@ -18,6 +18,7 @@
 
 #include "twinkle_config.h"
 #include <QtDebug>
+#include <QtGlobal>
 
 #ifdef HAVE_KDE
 #include <kapplication.h>
@@ -597,6 +598,9 @@ int main( int argc, char ** argv )
 	QApplication *qa = NULL;
 	QTranslator *appTranslator = NULL;
 	QTranslator *qtTranslator = NULL;
+
+  // Set phone role
+  qputenv("PULSE_PROP_media.role", "phone");
 	
 	// Store id of main thread
 	thread_id_main = t_thread::self();
