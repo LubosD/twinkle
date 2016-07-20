@@ -26,7 +26,9 @@
 #include "user.h"
 
 #ifdef HAVE_GSM
+extern "C" {
 #include <gsm/gsm.h>
+}
 #else
 #include "gsm/inc/gsm.h"
 #endif
