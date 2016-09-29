@@ -7,7 +7,7 @@ env:
 
 install:
   - sudo apt-get update
-  - sudo apt-get -y install bison cmake flex libccrtp-dev libcommoncpp2-dev libmagic-dev libreadline-dev libsndfile1-dev libxml2-dev linux-libc-dev $PACKAGES
+  - sudo apt-get -y install bison cmake flex libccrtp-dev libmagic-dev libreadline-dev libsndfile1-dev libucommon-dev libxml2-dev linux-libc-dev $PACKAGES
 
 script:
   - mkdir _build
