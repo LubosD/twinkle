@@ -96,7 +96,7 @@ void SelectUserForm::show(t_select_purpose purpose)
 	
 	// Fill list view
 	list<t_user *> user_list = phone->ref_users();
-	for (list<t_user *>::reverse_iterator i = user_list.rbegin(); i != user_list.rend(); i++) {
+	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
         QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i)->get_profile_name()), userListView);
 
         item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
