@@ -707,9 +707,9 @@ list<t_number_conversion> UserProfileForm::get_number_conversions()
 		t_number_conversion c;
 		
 		try {
-            item = conversionListView->item(0, 0);
+            item = conversionListView->item(i, 0);
             c.re.assign(item->text().toStdString());
-            item = conversionListView->item(0, 1);
+            item = conversionListView->item(i, 1);
             c.fmt = item->text().toStdString();
 			conversions.push_back(c);
         } catch (std::regex_error) {
