@@ -133,7 +133,6 @@ void SelectUserForm::validate()
 			not_selected_list.push_back(phone->
                 ref_user_profile(item->text().toStdString()));
 		}
-		i++;
 	}
 	
 	emit (selection(selected_list));
