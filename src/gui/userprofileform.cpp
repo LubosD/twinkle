@@ -596,7 +596,7 @@ void UserProfileForm::populate()
     conversionListView->setRowCount(conversions.size());
 
     int j = 0;
-    for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++, j++)
+    for (list<t_number_conversion>::iterator i = conversions.begin(); i != conversions.end(); i++, j++)
 	{
         QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(i->re));
         conversionListView->setItem(j, 0, item);
