@@ -165,11 +165,11 @@
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;Phone:</source>
@@ -913,7 +913,7 @@ Pour ajouter, supprimer, ou modifier une information de contact, vous devez util
     </message>
     <message>
         <source>&amp;Local address book</source>
-        <translation>Carnet d&apos;adresse &amp;local</translation>
+        <translation>Carnet d&apos;adresses &amp;local</translation>
     </message>
     <message>
         <source>Remark</source>
@@ -933,7 +933,7 @@ Pour ajouter, supprimer, ou modifier une information de contact, vous devez util
     </message>
     <message>
         <source>Add a new contact to the local address book.</source>
-        <translation>Ajouter un nouveau contact au carnet d&apos;adresse local.</translation>
+        <translation>Ajouter un nouveau contact au carnet d&apos;adresses local.</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -945,7 +945,7 @@ Pour ajouter, supprimer, ou modifier une information de contact, vous devez util
     </message>
     <message>
         <source>Delete a contact from the local address book.</source>
-        <translation>Supprimer un contact du carnet d&apos;adresse local.</translation>
+        <translation>Supprimer un contact du carnet d&apos;adresses local.</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -957,12 +957,20 @@ Pour ajouter, supprimer, ou modifier une information de contact, vous devez util
     </message>
     <message>
         <source>Edit a contact from the local address book.</source>
-        <translation>Editer un contact du carnet d&apos;adresse local.</translation>
+        <translation>Editer un contact du carnet d&apos;adresses local.</translation>
     </message>
     <message>
         <source>&lt;p&gt;You seem not to have any contacts with a phone number in &lt;b&gt;KAddressBook&lt;/b&gt;, KDE&apos;s address book application. Twinkle retrieves all contacts with a phone number from KAddressBook. To manage your contacts you have to use KAddressBook.&lt;p&gt;As an alternative you may use Twinkle&apos;s local address book.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Il semble qu&apos;il n&apos;y ait aucun contact avec un numéro de téléphone dans &lt;b&gt;KAddressBook&lt;/b&gt;, le carnet d&apos;adresse de KDE. Twinkle récupère tous les contacts avec un numéro de téléphone de KAddressBook. Pour gérer vos contacts utilisez KadressBook.&lt;/p&gt;
-&lt;p&gt;Comme alternative, vous pouvez utiliser le carnet d&apos;adresse local de Twinkle.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Il semble qu&apos;il n&apos;y ait aucun contact avec un numéro de téléphone dans &lt;b&gt;KAddressBook&lt;/b&gt;, le carnet d&apos;adresses de KDE. Twinkle récupère tous les contacts avec un numéro de téléphone de KAddressBook. Pour gérer vos contacts utilisez KadressBook.&lt;/p&gt;
+&lt;p&gt;Comme alternative, vous pouvez utiliser le carnet d&apos;adresses local de Twinkle.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
+        <translation>Etes-vous sûr de vouloir supprimer le contact &apos;%1&apos; du carnet d&apos;adresses local?</translation>
+    </message>
+    <message>
+        <source>Delete contact</source>
+        <translation>Supprimer un contact.</translation>
     </message>
 </context>
 <context>
@@ -1256,11 +1264,11 @@ Pour vous rappeler facilement de vos profils, vous pouvez utiliser votre nom d&a
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
@@ -1364,11 +1372,11 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;User profile:</source>
@@ -1495,11 +1503,11 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>Auto answer indication.</source>
@@ -2565,11 +2573,11 @@ Si le SAS est égal, vous devez le confirmer en cliquant sur le clavier pour une
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -3058,11 +3066,11 @@ Merci de sélectionner un profil.</translation>
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;Busy</source>
@@ -3149,7 +3157,7 @@ Merci de sélectionner un profil.</translation>
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Network</source>
@@ -3550,7 +3558,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>The caller may have provided a display name already. Tick this box if you want to override that name with the name you have in your address book.</source>
-        <translation>L&apos;appelant peut avoir défini un nom d&apos;affichage. Cochez cette case si vous voulez le remplacer par celui défini dans votre carnet d&apos;adresse.</translation>
+        <translation>L&apos;appelant peut avoir défini un nom d&apos;affichage. Cochez cette case si vous voulez le remplacer par celui défini dans votre carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>Lookup &amp;photo for incoming call</source>
@@ -3558,7 +3566,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>Lookup the photo of a caller in your address book and display it on an incoming call.</source>
-        <translation>Visionner la photo de l&apos;appelant dans votre carnet d&apos;adresse et l&apos;afficher pour les appels entrants.</translation>
+        <translation>Visionner la photo de l&apos;appelant dans votre carnet d&apos;adresses et l&apos;afficher pour les appels entrants.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -3641,7 +3649,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>On an incoming call, Twinkle will try to find the name belonging to the incoming SIP address in your address book. This name will be displayed.</source>
-        <translation>Lors d&apos;un appel entrant, Twinkle essaiera de trouve le nom correspondant à l&apos;adresse SIP dans votre carnet d&apos;adresse. Ce nom sera affiché.</translation>
+        <translation>Lors d&apos;un appel entrant, Twinkle essaiera de trouve le nom correspondant à l&apos;adresse SIP dans votre carnet d&apos;adresses. Ce nom sera affiché.</translation>
     </message>
     <message>
         <source>Select ring tone file.</source>
@@ -3739,11 +3747,11 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -3778,11 +3786,11 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>Address book</source>
-        <translation>Carnet d&apos;adresse</translation>
+        <translation>Carnet d&apos;adresses</translation>
     </message>
     <message>
         <source>Select an address from the address book.</source>
-        <translation>Sélectionner une adresse du carnet d&apos;adresse.</translation>
+        <translation>Sélectionner une adresse du carnet d&apos;adresses.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -5015,7 +5023,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
 &lt;/tt&gt;
 &lt;/blockquote&gt;</source>
         <translation>&lt;p&gt;
-Souvent le format des numéros de téléphone que vous devez composer est différent du format eregistré dans votre carnet d&apos;adresse, ex: votre numéro commence par &quot;+&quot; suivi du code pays, mais votre fournisseur de service attend &quot;00&quot; à la plase de &quot;+&quot;, ou vous êtes au bureau et tous les numéros sortants doivent être précédés de &quot;0&quot;. Vous pouvez spécifier ici une conversion de numéro en expression régulière Perl ou chaine formatée.
+Souvent le format des numéros de téléphone que vous devez composer est différent du format eregistré dans votre carnet d&apos;adresses, ex: votre numéro commence par &quot;+&quot; suivi du code pays, mais votre fournisseur de service attend &quot;00&quot; à la plase de &quot;+&quot;, ou vous êtes au bureau et tous les numéros sortants doivent être précédés de &quot;0&quot;. Vous pouvez spécifier ici une conversion de numéro en expression régulière Perl ou chaine formatée.
 &lt;/p&gt;
 &lt;p&gt;
 Pour tous les numéros que vous compsez, Twinkle essaiera de trouver une occurence dans la liste des expressions. Lors de la première concordance, le numéro sera remplacé en suivant le formatage par chaine. Si aucune occurence n&apos;est rencontrée, le numéro reste inchangé.
@@ -5025,7 +5033,7 @@ Les règes de conversion des numéro sont également appliquées aux appels entr
 &lt;/p&gt;
 &lt;h3&gt;Exemple 1&lt;/h3&gt;
 &lt;p&gt;
-En considérant que votre code pays est 33 et que vous avez enregistré tous les numéros de votre carnet d&apos;adresse au format internationnal, ex +338712345678. Pour la numéroation des numéro de votre propre pays, vous voulez remplacer &quot;+33&quot; par &quot;0&quot;. Pour les numéros à l&apos;étranger, vous voulez remplacer &quot;+&quot; par &quot;00&quot;.
+En considérant que votre code pays est 33 et que vous avez enregistré tous les numéros de votre carnet d&apos;adresses au format internationnal, ex +338712345678. Pour la numéroation des numéro de votre propre pays, vous voulez remplacer &quot;+33&quot; par &quot;0&quot;. Pour les numéros à l&apos;étranger, vous voulez remplacer &quot;+&quot; par &quot;00&quot;.
 &lt;/p&gt;
 &lt;p&gt;
 Voici les règles à créer:
