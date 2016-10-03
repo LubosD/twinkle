@@ -38,6 +38,43 @@ t_call_info::t_call_info() {
 	clear();
 }
 
+t_call_info::t_call_info(const t_call_info& that) {
+	*this = that;
+}
+
+t_call_info& t_call_info::operator=(const t_call_info& that) {
+	if (this != &that) {
+		// FIXME: This may deadlock if "a=b" and "b=a" are run in
+		//        parallel.  The proper solution would be to switch
+		//        to std::mutex and call std::lock(this,that).
+		t_mutex_guard x1(that.mutex);
+		t_mutex_guard x2(this->mutex);
+
+		from_uri = that.from_uri;
+		from_display = that.from_display;
+
+		from_display_override = that.from_display_override;
+
+		from_organization = that.from_organization;
+		to_uri = that.to_uri;
+		to_display = that.to_display;
+		to_organization = that.to_organization;
+		subject = that.subject;
+		dtmf_supported = that.dtmf_supported;
+		dtmf_inband = that.dtmf_inband;
+		dtmf_info = that.dtmf_info;
+		hdr_referred_by = that.hdr_referred_by;
+
+		last_provisional_reason = that.last_provisional_reason;
+
+		send_codec = that.send_codec;
+		recv_codec = that.recv_codec;
+		refer_supported = that.refer_supported;
+	}
+
+	return *this;
+}
+
 void t_call_info::clear(void) {
 	t_mutex_guard g(mutex);
 
@@ -2128,7 +2165,6 @@ void t_line::retry_retrieve_succeeded(void) {
 }
 
 t_call_info t_line::get_call_info(void) const {
-	t_mutex_guard g(call_info.mutex);
 	return call_info;
 }
 

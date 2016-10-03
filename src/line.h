@@ -71,6 +71,9 @@ public:
 	bool		refer_supported;
 	
 	t_call_info();
+	t_call_info(const t_call_info&);
+	t_call_info& operator=(const t_call_info&);
+
 	void clear(void);
 	
 	// Get the from display name to show to the user.
