@@ -171,6 +171,10 @@ private slots:
 	void gui_do_dtmf(const QString &digits);
 	void gui_do_user(const QString &profile_name);
 	QString gui_get_current_profile();
+
+	void gui_cmd_call(const string &destination, bool immediate);
+	void gui_cmd_show(void);
+	void gui_cmd_hide(void);
 public:
 	t_gui(t_phone *_phone);
 	virtual ~t_gui();
