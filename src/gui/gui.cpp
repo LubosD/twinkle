@@ -744,6 +744,7 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
     qRegisterMetaType<t_register_type>("t_register_type");
 	qRegisterMetaType<t_transfer_type>("t_transfer_type");
 	qRegisterMetaType<t_cf_type>("t_cf_type");
+	qRegisterMetaType<string>("string");
 	qRegisterMetaType<std::list<std::string>>("std::list<std::string>");
 	
     mainWindow = new MphoneForm;
@@ -2289,15 +2290,16 @@ bool t_gui::do_cb_ask_user_to_redirect_request(t_user *user_config, const t_url 
 	return permission;
 }
 
-void t_gui::cb_ask_user_to_refer(t_user *user_config, const t_url &refer_to_uri,
+void t_gui::do_cb_ask_user_to_refer(t_user *user_config, const string &refer_to_uri_str,
 				 const string &refer_to_display,
-				 const t_url &referred_by_uri,
+				 const string &referred_by_uri_str,
 				 const string &referred_by_display)
 {
+	t_url refer_to_uri(refer_to_uri_str);
+	t_url referred_by_uri(referred_by_uri_str);
+
 	QString s;
 	QString title;
-	
-	lock();
 	
 	title = PRODUCT_NAME;
 	title.append(" - ").append(qApp->translate("GUI", "Transferring call"));
@@ -2333,8 +2335,19 @@ void t_gui::cb_ask_user_to_refer(t_user *user_config, const t_url &refer_to_uri,
 	ReferPermissionDialog *dialog = new ReferPermissionDialog(mainWindow, title, s);
 	// Do not report to MEMMAN as Qt will auto destruct this dialog on close.
 	dialog->show();
-	
-	unlock();
+}
+
+void t_gui::cb_ask_user_to_refer(t_user *user_config, const t_url &refer_to_uri,
+				 const string &refer_to_display,
+				 const t_url &referred_by_uri,
+				 const string &referred_by_display)
+{
+	QMetaObject::invokeMethod(this, "do_cb_ask_user_to_refer",
+				  Q_ARG(t_user*, user_config),
+				  Q_ARG(const string&, refer_to_uri.encode()),
+				  Q_ARG(const string&, refer_to_display),
+				  Q_ARG(const string&, referred_by_uri.encode()),
+				  Q_ARG(const string&, referred_by_display));
 }
 
 void t_gui::cb_show_msg(const string &msg, t_msg_priority prio) {
