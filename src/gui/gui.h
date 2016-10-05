@@ -436,6 +436,10 @@ private slots:
 			const string &display, t_method method);
 	bool do_cb_ask_credentials(t_user *user_config, const string &realm, string &username,
 			string &password);
+	void do_cb_ask_user_to_refer(t_user *user_config, const string &refer_to_uri_str,
+			const string &refer_to_display,
+			const string &referred_by_uri_str,
+			const string &referred_by_display);
     void do_cb_register_inprog(t_user *user_config, t_register_type register_type);
 };
 
