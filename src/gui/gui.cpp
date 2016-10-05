@@ -730,6 +730,44 @@ void t_gui::gui_do_user(const QString &profile_name)
 	}
 }
 
+void t_gui::gui_cmd_call(const string &destination, bool immediate) {
+	string subject;
+	string dst_no_headers;
+	t_display_url du;
+
+	t_user *user = phone->ref_user_profile(
+            mainWindow->userComboBox->currentText().toStdString());
+	expand_destination(user, destination, du, subject, dst_no_headers);
+	if (!du.is_valid()) return;
+
+	if (immediate) {
+		mainWindow->do_phoneInvite(user, du.display.c_str(), du.url,
+					   subject.c_str(), false);
+	} else {
+		mainWindow->phoneInvite(dst_no_headers.c_str(), subject.c_str(), false);
+	}
+}
+
+void t_gui::gui_cmd_show(void) {
+	if (mainWindow->isMinimized()) {
+		mainWindow->setWindowState((mainWindow->windowState() & ~Qt::WindowMinimized) |
+					   Qt::WindowActive);
+		mainWindow->raise();
+	} else {
+		mainWindow->show();
+		mainWindow->raise();
+        mainWindow->activateWindow();
+	}
+}
+
+void t_gui::gui_cmd_hide(void) {
+	if (sys_config->get_gui_use_systray()) {
+		mainWindow->hide();
+	} else {
+		mainWindow->setWindowState(mainWindow->windowState() | Qt::WindowMinimized);
+	}
+}
+
 /////////////////////////////////////////////////
 // PUBLIC
 /////////////////////////////////////////////////
@@ -2779,24 +2817,6 @@ void t_gui::cmd_call(const string &destination, bool immediate) {
 				  Q_ARG(bool, immediate));
 }
 
-void t_gui::gui_cmd_call(const string &destination, bool immediate) {
-	string subject;
-	string dst_no_headers;
-	t_display_url du;
-	
-	t_user *user = phone->ref_user_profile(
-            mainWindow->userComboBox->currentText().toStdString());
-	expand_destination(user, destination, du, subject, dst_no_headers);
-	if (!du.is_valid()) return;
-	
-	if (immediate) {
-		mainWindow->do_phoneInvite(user, du.display.c_str(), du.url, 
-					   subject.c_str(), false);
-	} else {
-		mainWindow->phoneInvite(dst_no_headers.c_str(), subject.c_str(), false);
-	}
-}
-
 void t_gui::cmd_quit(void) {
 	lock();
 	mainWindow->fileExit();
@@ -2807,28 +2827,8 @@ void t_gui::cmd_show(void) {
 	QMetaObject::invokeMethod(this, "gui_cmd_show");
 }
 
-void t_gui::gui_cmd_show(void) {
-	if (mainWindow->isMinimized()) {
-		mainWindow->setWindowState((mainWindow->windowState() & ~Qt::WindowMinimized) |
-					   Qt::WindowActive);
-		mainWindow->raise();
-	} else {
-		mainWindow->show();
-		mainWindow->raise();
-        mainWindow->activateWindow();
-	}
-}
-
 void t_gui::cmd_hide(void) {
 	QMetaObject::invokeMethod(this, "gui_cmd_hide");
-}
-
-void t_gui::gui_cmd_hide(void) {
-	if (sys_config->get_gui_use_systray()) {
-		mainWindow->hide();
-	} else {
-		mainWindow->setWindowState(mainWindow->windowState() | Qt::WindowMinimized);
-	}
 }
 
 string t_gui::get_name_from_abook(t_user *user_config, const t_url &u) {
