@@ -86,7 +86,7 @@ t_socket_udp::t_socket_udp() {
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	addr.sin_port = htons(0);
-	ret = bind(sd, (struct sockaddr *)&addr, sizeof(addr));
+	ret = ::bind(sd, (struct sockaddr *)&addr, sizeof(addr));
 	if (ret < 0) throw errno;
 }
 
@@ -100,7 +100,7 @@ t_socket_udp::t_socket_udp(unsigned short port) {
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	addr.sin_port = htons(port);
-	ret = bind(sd, (struct sockaddr *)&addr, sizeof(addr));
+	ret = ::bind(sd, (struct sockaddr *)&addr, sizeof(addr));
 	if (ret < 0) throw errno;
 }
 
@@ -295,7 +295,7 @@ t_socket_tcp::t_socket_tcp(unsigned short port) {
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	addr.sin_port = htons(port);
-	ret = bind(sd, (struct sockaddr *)&addr, sizeof(addr));
+	ret = ::bind(sd, (struct sockaddr *)&addr, sizeof(addr));
 	if (ret < 0) throw errno;
 }
 
