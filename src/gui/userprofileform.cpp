@@ -595,7 +595,7 @@ void UserProfileForm::populate()
     conversionListView->setRowCount(conversions.size());
 
     int j = 0;
-    for (list<t_number_conversion>::reverse_iterator i = conversions.rbegin(); i != conversions.rend(); i++, j++)
+    for (list<t_number_conversion>::iterator i = conversions.begin(); i != conversions.end(); i++, j++)
 	{
         QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(i->re));
         conversionListView->setItem(j, 0, item);
@@ -706,9 +706,9 @@ list<t_number_conversion> UserProfileForm::get_number_conversions()
 		t_number_conversion c;
 		
 		try {
-            item = conversionListView->item(0, 0);
+            item = conversionListView->item(i, 0);
             c.re.assign(item->text().toStdString());
-            item = conversionListView->item(0, 1);
+            item = conversionListView->item(i, 1);
             c.fmt = item->text().toStdString();
 			conversions.push_back(c);
         } catch (std::regex_error) {
