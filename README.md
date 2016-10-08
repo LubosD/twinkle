@@ -46,7 +46,7 @@ All possible options are:
 * G.729A codec support: `-DWITH_G729=On`
 * Speex codec support: `-DWITH_SPEEX=On`
 * iLBC codec support: `-DWITH_ILBC=On`
-* Diamondcard support: `-DWITH_DIAMONDCARD=On` (currently broken)
+* Diamondcard support: `-DWITH_DIAMONDCARD=On`
 
 ### Build instructions
 
