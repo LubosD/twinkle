@@ -23,8 +23,8 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the "sign up" link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
-       &lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the "sign up" link.&lt;/p&gt;</string>
+      <string>&lt;p&gt;With a Diamondcard account you can make worldwide calls to regular and cell phones and send SMS messages. To sign up for a Diamondcard account click on the &quot;sign up&quot; link below. Once you have signed up you receive an account ID and PIN code. Enter the account ID and PIN code below to create a Twinkle user profile for your Diamondcard account.&lt;/p&gt;
+       &lt;p&gt;For call rates see the sign up web page that will be shown to you when you click on the &quot;sign up&quot; link.&lt;/p&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -129,7 +129,7 @@
      <item>
       <widget class="QLabel" name="signUpTextLabel">
        <property name="text">
-        <string>&lt;p align="center"&gt;&lt;a href=&quot;#signup&quot;&gt;Sign up for a Diamondcard account&lt;/a&gt;&lt;/p&gt;</string>
+        <string>&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;#signup&quot;&gt;Sign up for a Diamondcard account&lt;/a&gt;&lt;/p&gt;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignVCenter</set>
