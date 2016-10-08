@@ -5,7 +5,7 @@
 #include "user.h"
 #include "ui_diamondcardprofileform.h"
 
-class DiamondcardProfileForm : public QDialog, public Ui::DiamondcardProfileForm
+class DiamondcardProfileForm : public QDialog, public Ui_DiamondcardProfileForm
 {
 	Q_OBJECT
 
@@ -19,8 +19,7 @@ public slots:
 	virtual void destroyOldUserConfig();
 	virtual void show( t_user * user );
 	virtual void validate();
-	virtual void mouseReleaseEvent( QMouseEvent * e );
-	virtual void processLeftMouseButtonRelease( QMouseEvent * e );
+	virtual void signUpLinkActivated();
 
 signals:
 	void success();
@@ -32,10 +31,6 @@ protected slots:
 private:
 	t_user *user_config;
 	bool destroy_user_config;
-	QLineEdit *accountIdLineEdit;
-	QLineEdit *pinCodeLineEdit;
-	QLineEdit *nameLineEdit;
-	QLabel *signUpTextLabel;
 
 	void init();
 	void destroy();
