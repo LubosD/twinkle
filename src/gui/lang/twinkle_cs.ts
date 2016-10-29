@@ -5913,7 +5913,7 @@ Vyžádaná indikace čekajících zpráv dle RFC 3842.
         <translation>&amp;Kvalita:</translation>
     </message>
     <message>
-        <source>Speex is a lossy codec, which means that it achives compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
+        <source>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
         <translation>Speex je ztrátový kodek, což znamená, že je na úkor kvality možné docílit redukce datového toku. Na rozdíl od jiných hlasových kodeků je možné nastavit kompromis mezi kvalitou a datovým tokem. Kódovací proces u tohoto kodeku je zpravidla řízen nastavením parametru kvality v rozsahu od 0 do 10.</translation>
     </message>
     <message>

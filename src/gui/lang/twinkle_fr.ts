@@ -5959,7 +5959,7 @@ Signalisation de message en attente sollicité com spécifié par le RFC 3842.(n
         <translation>&amp;Qualité:</translation>
     </message>
     <message>
-        <source>Speex is a lossy codec, which means that it achives compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
+        <source>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
         <translation>Speex est un codec à perte, ce qui signifie qu&apos;il assure la compression au dépend de la fidélité au son d&apos;entrée. A la différence de quelques autres codecs, il est possible de contrôler l&apos;équilibre entre qualité et compression. Le pocessus d&apos;encodage Speex est contrôlé la plupart du temps par un paramêtre de qualité entre 0 et 10.</translation>
     </message>
     <message>

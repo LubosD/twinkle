@@ -1498,7 +1498,7 @@ If you disable this option, then the first codec from the active codecs that is 
                 <item row="0" column="2">
                  <widget class="QSpinBox" name="spxQualitySpinBox">
                   <property name="whatsThis">
-                   <string>Speex is a lossy codec, which means that it achives compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</string>
+                   <string>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</string>
                   </property>
                   <property name="minimum">
                    <number>0</number>

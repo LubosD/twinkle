@@ -5407,7 +5407,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
         <translation>&amp;Качество:</translation>
     </message>
     <message>
-        <source>Speex is a lossy codec, which means that it achives compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
+        <source>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
         <translation type="unfinished"/>
     </message>
     <message>
