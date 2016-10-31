@@ -50,7 +50,7 @@
 #define WARNING_330	"Multicast not available"
 #define WARNING_331	"Unicast not available"
 #define WARNING_370	"Insufficient bandwidth"
-#define WARNING_399	"Miscellanous warning"
+#define WARNING_399	"Miscellaneous warning"
 
 using namespace std;
 
