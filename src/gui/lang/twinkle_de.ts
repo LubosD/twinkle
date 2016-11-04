@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -76,27 +76,26 @@
     <name>AddressTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Phone</source>
-        <translation type="unfinished">Telefon</translation>
+        <translation>Telefon</translation>
     </message>
     <message>
         <source>Remark</source>
-        <translation type="unfinished">Anmerkung</translation>
+        <translation>Anmerkung</translation>
     </message>
 </context>
 <context>
     <name>AuthenticationForm</name>
     <message>
         <source>Twinkle - Authentication</source>
-        <translation>Twinkle - Anmeldung</translation>
+        <translation>Twinkle - Authentifizierung</translation>
     </message>
     <message>
         <source>user</source>
-        <comment>No need to translate</comment>
-        <translation></translation>
+        <translation>Benutzer</translation>
     </message>
     <message>
         <source>The user for which authentication is requested.</source>
@@ -104,8 +103,7 @@
     </message>
     <message>
         <source>profile</source>
-        <comment>No need to translate</comment>
-        <translation></translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <source>The user profile of the user for which authentication is requested.</source>
@@ -125,7 +123,7 @@
     </message>
     <message>
         <source>Your password for authentication.</source>
-        <translation>Ihr Anmeldepasswort.</translation>
+        <translation>Ihr Passwort für die Authentifizierung.</translation>
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
@@ -133,24 +131,23 @@
     </message>
     <message>
         <source>&amp;User name:</source>
-        <translation>N&amp;utzername :</translation>
+        <translation>N&amp;utzername:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Login required for realm:</source>
-        <translation>Login nötig für Realm:</translation>
+        <translation>Anmeldung für Realm erforderlich:</translation>
     </message>
     <message>
         <source>realm</source>
-        <comment>No need to translate</comment>
-        <translation></translation>
+        <translation>Realm</translation>
     </message>
     <message>
         <source>The realm for which you need to authenticate.</source>
@@ -161,7 +158,7 @@
     <name>BuddyForm</name>
     <message>
         <source>Twinkle - Buddy</source>
-        <translation>Twinkle - Buddy</translation>
+        <translation>Twinkle - Kumpel</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -177,11 +174,11 @@
     </message>
     <message>
         <source>Name of your buddy.</source>
-        <translation>Lokaler Name für Buddy-Eintrag.</translation>
+        <translation>Name Ihres Kumpels.</translation>
     </message>
     <message>
         <source>&amp;Show availability</source>
-        <translation>Online-&amp;Status anzeigen</translation>
+        <translation>&amp;Erreichbarkeit anzeigen</translation>
     </message>
     <message>
         <source>Alt+S</source>
@@ -197,7 +194,7 @@
     </message>
     <message>
         <source>SIP address your buddy.</source>
-        <translation>SIP-Adresse des  Buddy.</translation>
+        <translation>SIP-Adresse Ihres Kumpels.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -209,7 +206,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -225,14 +222,14 @@
     </message>
     <message>
         <source>Failed to save buddy list: %1</source>
-        <translation>Fehler beim Speichern der Buddyliste: &quot;%1&quot;</translation>
+        <translation>Fehler beim Speichern der Kumpelliste: %1</translation>
     </message>
 </context>
 <context>
     <name>BuddyList</name>
     <message>
         <source>Availability</source>
-        <translation>Online-Status</translation>
+        <translation>Erreichbarkeit</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -264,18 +261,18 @@
     </message>
     <message>
         <source>Click right to add a buddy.</source>
-        <translation>Mit Rechtsklick Buddy hinzufügen.</translation>
+        <translation>Mit Rechtsklick Kumpel hinzufügen.</translation>
     </message>
 </context>
 <context>
     <name>CoreAudio</name>
     <message>
         <source>Failed to open sound card</source>
-        <translation>Fehler beim Öffnen Soundkarte</translation>
+        <translation>Fehler beim Öffnen der Soundkarte</translation>
     </message>
     <message>
         <source>Failed to create a UDP socket (RTP) on port %1</source>
-        <translation>Fehler beim Erzeugen des UDP socket (RTP) für Port %1</translation>
+        <translation>Fehler beim Erzeugen des UDP-Socket (RTP) für Port %1</translation>
     </message>
     <message>
         <source>Failed to create audio receiver thread.</source>
@@ -290,7 +287,7 @@
     <name>CoreCallHistory</name>
     <message>
         <source>local user</source>
-        <translation>lokal</translation>
+        <translation>lokaler Benutzer</translation>
     </message>
     <message>
         <source>remote user</source>
@@ -325,18 +322,18 @@
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
 </context>
 <context>
     <name>DiamondcardProfileForm</name>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="obsolete">Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Fill in your account ID.</source>
@@ -829,11 +826,11 @@
     </message>
     <message>
         <source>Cannot open web browser: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Webbrowser nicht öffnen: %1</translation>
     </message>
     <message>
         <source>Configure your web browser in the system settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurieren Sie Ihren Webbrowser in den Systemeinstellungen.</translation>
     </message>
 </context>
 <context>
@@ -890,7 +887,7 @@ Ein Schliessen und erneutes Öffnen des Fensters führt &lt;i&gt;nicht&lt;/i&gt;
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -971,7 +968,7 @@ Nutzen Sie zum Anlegen und Bearbeiten Ihrer systemweiten Adressinformationen das
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Enter a name for your profile:</source>
@@ -1215,22 +1212,22 @@ Es bietet sich an, hier Ihre SIP-Adresse als Name zu verwenden, also &lt;b&gt;me
     </message>
     <message>
         <source>Number of calls:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl der Anrufe:</translation>
     </message>
     <message>
         <source>###</source>
-        <translation type="unfinished"></translation>
+        <translation>###</translation>
     </message>
     <message>
         <source>Total call duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gesamte Anrufdauer:</translation>
     </message>
 </context>
 <context>
     <name>IncomingCallPopup</name>
     <message>
         <source>%1 calling</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ruft an</translation>
     </message>
 </context>
 <context>
@@ -1277,7 +1274,7 @@ Es bietet sich an, hier Ihre SIP-Adresse als Name zu verwenden, also &lt;b&gt;me
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>&amp;Hide identity</source>
@@ -1303,7 +1300,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -1441,11 +1438,11 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe</translation>
     </message>
 </context>
 <context>
@@ -2146,72 +2143,72 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     <message>
         <source>Call</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Anruf+</translation>
+        <translation>Anruf</translation>
     </message>
     <message>
         <source>&amp;Call...</source>
         <comment>call menu text</comment>
-        <translation type="obsolete">Anruf+...  (&amp;Call)</translation>
+        <translation>&amp;Anruf...</translation>
     </message>
     <message>
         <source>Answer</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Ja?</translation>
+        <translation>Annehmen</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
         <comment>menu text</comment>
-        <translation type="obsolete">&amp;Annehmen</translation>
+        <translation>&amp;Annehmen</translation>
     </message>
     <message>
         <source>Bye</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Ende</translation>
+        <translation>Auflegen</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Auflegen (&amp;Bye)</translation>
+        <translation>Auf&amp;legen</translation>
     </message>
     <message>
         <source>Reject</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Nein!</translation>
+        <translation>Abweisen</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Ab&amp;weisen</translation>
+        <translation>Ab&amp;weisen</translation>
     </message>
     <message>
         <source>Hold</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Halten</translation>
+        <translation>Halten</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
         <comment>menu text</comment>
-        <translation type="obsolete">&amp;Halten</translation>
+        <translation>&amp;Halten</translation>
     </message>
     <message>
         <source>Redirect</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Umleit</translation>
+        <translation>Umleiten</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Uml&amp;eiten...</translation>
+        <translation>Uml&amp;eiten...</translation>
     </message>
     <message>
         <source>Dtmf</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">DTMF</translation>
+        <translation>DTMF</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
         <comment>menu text</comment>
-        <translation type="obsolete">&amp;DTMF...</translation>
+        <translation>&amp;DTMF...</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
@@ -2221,38 +2218,38 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     <message>
         <source>Redial</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">-&gt; -&gt;</translation>
+        <translation>Wahlwiederholung</translation>
     </message>
     <message>
         <source>&amp;Redial</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Wahlwiederholun&amp;g</translation>
+        <translation>Wahlwiederholun&amp;g</translation>
     </message>
     <message>
         <source>Conf</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">3er-K.</translation>
+        <translation>Konf.</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Konferen&amp;z</translation>
+        <translation>Konferen&amp;z</translation>
     </message>
     <message>
         <source>Mute</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Stumm</translation>
+        <translation>Stumm</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
         <comment>menu text</comment>
-        <translation type="obsolete">Stu&amp;mm
+        <translation>Stu&amp;mm
 </translation>
     </message>
     <message>
         <source>Xfer</source>
         <comment>toolbar text</comment>
-        <translation type="obsolete">Vmtlg</translation>
+        <translation>Vmtlg</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
@@ -2273,11 +2270,11 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     </message>
     <message>
         <source>F11</source>
-        <translation></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>Buddy list</source>
-        <translation>Buddyliste</translation>
+        <translation>Kumpelliste</translation>
     </message>
     <message>
         <source>&amp;Message</source>
@@ -2297,7 +2294,7 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     </message>
     <message>
         <source>&amp;Call...</source>
-        <translation>Anrufen (&amp;Call)...</translation>
+        <translation>&amp;Anrufen...</translation>
     </message>
     <message>
         <source>&amp;Edit...</source>
@@ -2317,11 +2314,11 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     </message>
     <message>
         <source>&amp;Change availability</source>
-        <translation>Online-&amp;Status ändern</translation>
+        <translation>Errei&amp;chbarkeit ändern</translation>
     </message>
     <message>
         <source>&amp;Add buddy...</source>
-        <translation>Neuen Buddy &amp;anlegen...</translation>
+        <translation>&amp;Kumpel hinzufügen...</translation>
     </message>
     <message>
         <source>Failed to save buddy list: %1</source>
@@ -2338,7 +2335,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Buddy list</source>
-        <translation>&amp;Buddyliste </translation>
+        <translation>&amp;Kempelliste </translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -2346,7 +2343,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>Diamondcard</source>
@@ -2362,11 +2359,11 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Sign up</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrieren</translation>
     </message>
     <message>
         <source>&amp;Sign up...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Registrieren</translation>
     </message>
     <message>
         <source>Recharge...</source>
@@ -2398,55 +2395,55 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Call</source>
-        <translation type="unfinished">Anruf+</translation>
+        <translation>Anruf</translation>
     </message>
     <message>
         <source>&amp;Answer</source>
-        <translation type="unfinished">&amp;Annehmen</translation>
+        <translation>&amp;Annehmen</translation>
     </message>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Annehmen</translation>
     </message>
     <message>
         <source>&amp;Bye</source>
-        <translation type="unfinished">Auflegen (&amp;Bye)</translation>
+        <translation>Auf&amp;legen</translation>
     </message>
     <message>
         <source>Bye</source>
-        <translation type="unfinished">Ende</translation>
+        <translation>Auflegen</translation>
     </message>
     <message>
         <source>&amp;Reject</source>
-        <translation type="unfinished">Ab&amp;weisen</translation>
+        <translation>Ab&amp;weisen</translation>
     </message>
     <message>
         <source>Reject</source>
-        <translation type="unfinished"></translation>
+        <translation >Abweisen</translation>
     </message>
     <message>
         <source>&amp;Hold</source>
-        <translation type="unfinished">&amp;Halten</translation>
+        <translation>&amp;Halten</translation>
     </message>
     <message>
         <source>Hold</source>
-        <translation type="unfinished">Halten</translation>
+        <translation>Halten</translation>
     </message>
     <message>
         <source>R&amp;edirect...</source>
-        <translation type="unfinished">Uml&amp;eiten...</translation>
+        <translation>Uml&amp;eiten...</translation>
     </message>
     <message>
         <source>Redirect</source>
-        <translation type="unfinished">Umleit</translation>
+        <translation>Umleiten</translation>
     </message>
     <message>
         <source>&amp;Dtmf...</source>
-        <translation type="unfinished">&amp;DTMF...</translation>
+        <translation>&amp;DTMF...</translation>
     </message>
     <message>
         <source>Dtmf</source>
-        <translation type="unfinished">DTMF</translation>
+        <translation>DTMF</translation>
     </message>
     <message>
         <source>&amp;Terminal capabilities...</source>
@@ -2454,43 +2451,43 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Redial</source>
-        <translation type="unfinished">Wahlwiederholun&amp;g</translation>
+        <translation>Wahlwiederholun&amp;g</translation>
     </message>
     <message>
         <source>Redial</source>
-        <translation type="unfinished">-&gt; -&gt;</translation>
+        <translation>Wahlwiederholung</translation>
     </message>
     <message>
         <source>&amp;Conference</source>
-        <translation type="unfinished">Konferen&amp;z</translation>
+        <translation>Konferen&amp;z</translation>
     </message>
     <message>
         <source>Conf</source>
-        <translation type="unfinished">3er-K.</translation>
+        <translation>Konf.</translation>
     </message>
     <message>
         <source>&amp;Mute</source>
-        <translation type="unfinished">Stu&amp;mm
+        <translation>Stu&amp;mm
 </translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished">Stumm</translation>
+        <translation>Stumm</translation>
     </message>
     <message>
         <source>Trans&amp;fer...</source>
-        <translation type="unfinished">Vermitte&amp;ln...</translation>
+        <translation>Vermitte&amp;ln...</translation>
     </message>
     <message>
         <source>Xfer</source>
-        <translation type="unfinished">Vmtlg</translation>
+        <translation>Vmtlg</translation>
     </message>
 </context>
 <context>
     <name>NumberConversionForm</name>
     <message>
         <source>Twinkle - Number conversion</source>
-        <translation>Twinkle - Umwandlung Rufnummer</translation>
+        <translation>Twinkle - Rufnummernumwandlung</translation>
     </message>
     <message>
         <source>&amp;Match expression:</source>
@@ -2510,7 +2507,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -2518,7 +2515,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2526,15 +2523,15 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Match expression may not be empty.</source>
-        <translation>Leerer Suchausdruck ist ungültig.</translation>
+        <translation>Suchausdruck darf nicht leer sein.</translation>
     </message>
     <message>
         <source>Replace value may not be empty.</source>
-        <translation>Leerer Ersetzungsausdruck ist ungültig.</translation>
+        <translation>Ersetzungswert darf nicht leer sein.</translation>
     </message>
     <message>
         <source>Invalid regular expression.</source>
-        <translation>Ungültige regular expression.</translation>
+        <translation>Ungültiger regulärer Ausdruck.</translation>
     </message>
 </context>
 <context>
@@ -2573,30 +2570,30 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation type="unfinished"></translation>
+        <translation>F12</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
 </context>
 <context>
     <name>SelectNicForm</name>
     <message>
         <source>Twinkle - Select NIC</source>
-        <translation>Twinkle - Netzwerkanschluss wählen</translation>
+        <translation>Twinkle - Netzwerkanschluss auswählen</translation>
     </message>
     <message>
         <source>Select the network interface/IP address that you want to use:</source>
@@ -2608,7 +2605,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Set as default &amp;IP</source>
-        <translation>&amp;IP-Adr. als Standard</translation>
+        <translation>&amp;IP-Adr. als Standard festlegen</translation>
     </message>
     <message>
         <source>Alt+I</source>
@@ -2620,7 +2617,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Set as default &amp;NIC</source>
-        <translation>A&amp;nschl. als Standard</translation>
+        <translation>A&amp;nschl. als Standard festlegen</translation>
     </message>
     <message>
         <source>Alt+N</source>
@@ -2632,7 +2629,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -2647,7 +2644,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     <name>SelectProfileForm</name>
     <message>
         <source>Twinkle - Select user profile</source>
-        <translation>Twinkle - Auswahl Benutzerprofil</translation>
+        <translation>Twinkle - Benutzerprofil auswählen</translation>
     </message>
     <message>
         <source>Select user profile(s) to run:</source>
@@ -2655,7 +2652,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>User profile</source>
-        <translation type="obsolete">Benutzerprofil</translation>
+        <translation>Benutzerprofil</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -2663,11 +2660,11 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;New</source>
-        <translation type="obsolete">&amp;Neu</translation>
+        <translation>&amp;Neu</translation>
     </message>
     <message>
         <source>Alt+N</source>
-        <translation type="obsolete">Alt+N</translation>
+        <translation>Alt+N</translation>
     </message>
     <message>
         <source>Create a new profile with the profile editor.</source>
@@ -2675,7 +2672,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Wizard</source>
-        <translation></translation>
+        <translation>&amp;Assistent</translation>
     </message>
     <message>
         <source>Alt+W</source>
@@ -2683,7 +2680,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Create a new profile with the wizard.</source>
-        <translation>Anlegen eines neuen Benutzerprofils mit dem Wizard.</translation>
+        <translation>Anlegen eines neuen Benutzerprofils mit dem Assistenten.</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -2695,7 +2692,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Edit the highlighted profile.</source>
-        <translation>Das ausgewählte Benutzerprofil bearbeiten.</translation>
+        <translation>Hervorgehobenes Profil bearbeiten.</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -2707,7 +2704,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Delete the highlighted profile.</source>
-        <translation>Das ausgewählte Benutzerprofil löschen.</translation>
+        <translation>Ausgewähltes Profil löschen.</translation>
     </message>
     <message>
         <source>Ren&amp;ame</source>
@@ -2719,11 +2716,11 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Rename the highlighted profile.</source>
-        <translation>Das ausgewählte Benutzerprofil umbenennen.</translation>
+        <translation>Hervorgehobenes Profil umbenennen.</translation>
     </message>
     <message>
         <source>&amp;Set as default</source>
-        <translation>Als &amp;Standard</translation>
+        <translation>Als &amp;Standard festlegen</translation>
     </message>
     <message>
         <source>Alt+S</source>
@@ -2735,7 +2732,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Run</source>
-        <translation>&amp;Anwenden</translation>
+        <translation>&amp;Ausführen</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -2759,7 +2756,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2788,15 +2785,15 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Delete profile</source>
-        <translation>Benutzerprofil löschen</translation>
+        <translation>Profil löschen</translation>
     </message>
     <message>
         <source>Failed to delete profile.</source>
-        <translation>Fehler beim Löschen des Benutzerprofils.</translation>
+        <translation>Fehler beim Löschen des Profils.</translation>
     </message>
     <message>
         <source>Failed to rename profile.</source>
-        <translation>Fehler beim Umbenennen des Benutzerprofils.</translation>
+        <translation>Fehler beim Umbenennen des Profils.</translation>
     </message>
     <message>
         <source>&lt;p&gt;If you want to remove or change the default at a later time, you can do that via the system settings.&lt;/p&gt;</source>
@@ -2812,15 +2809,15 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Create profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil erstellen</translation>
     </message>
     <message>
         <source>Ed&amp;itor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ed&amp;itor</translation>
     </message>
     <message>
         <source>Alt+I</source>
-        <translation type="unfinished">Alt+I</translation>
+        <translation>Alt+I</translation>
     </message>
     <message>
         <source>Dia&amp;mondcard</source>
@@ -2828,11 +2825,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Alt+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+M</translation>
     </message>
     <message>
         <source>Modify profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil ändern</translation>
     </message>
     <message>
         <source>Startup profile</source>
@@ -2863,11 +2860,11 @@ Please select a profile.</source>
     <name>SelectUserForm</name>
     <message>
         <source>Twinkle - Select user</source>
-        <translation>Twinkle - Auswahl Benutzerprofile</translation>
+        <translation>Twinkle - Benutzer auswählen</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2883,7 +2880,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -2899,12 +2896,11 @@ Please select a profile.</source>
     </message>
     <message>
         <source>purpose</source>
-        <comment>No need to translate</comment>
-        <translation></translation>
+        <translation>Zweck</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="obsolete">Benutzer</translation>
+        <translation>Benutzer</translation>
     </message>
     <message>
         <source>Register</source>
@@ -2924,7 +2920,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Deregister all devices</source>
-        <translation>Abmelden aller Geräte</translation>
+        <translation>Alle Geräte abmelden</translation>
     </message>
     <message>
         <source>Select users for which you want to deregister all devices.</source>
@@ -2940,7 +2936,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Auto answer</source>
-        <translation>Autom. Annehmen</translation>
+        <translation>Autom. annehmen</translation>
     </message>
     <message>
         <source>Select users for which you want to enable &apos;auto answer&apos;.</source>
@@ -2951,11 +2947,11 @@ Please select a profile.</source>
     <name>SendFileForm</name>
     <message>
         <source>Twinkle - Send File</source>
-        <translation>Twinkle - Sende Datei</translation>
+        <translation>Twinkle - Datei senden</translation>
     </message>
     <message>
         <source>Select file to send.</source>
-        <translation>Dateiauswahl für Senden.</translation>
+        <translation>Datei zum Senden auswählen.</translation>
     </message>
     <message>
         <source>&amp;File:</source>
@@ -2975,7 +2971,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2987,7 +2983,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Send file...</source>
-        <translation>Sende Datei...</translation>
+        <translation>Datei senden...</translation>
     </message>
 </context>
 <context>
@@ -3090,7 +3086,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -3102,7 +3098,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -3110,23 +3106,23 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Undo your changes and close the window.</source>
-        <translation>Änderungen verwerfen und Fenster schliessen.</translation>
+        <translation>Ihre Änderungen verwerfen und Fenster schließen.</translation>
     </message>
     <message>
         <source>You have entered an invalid destination.</source>
-        <translation>Ungültige Zieladresse eingegeben.</translation>
+        <translation>Sie haben eine ungültige Zieladresse eingegeben.</translation>
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation type="unfinished"></translation>
+        <translation>F12</translation>
     </message>
 </context>
 <context>
@@ -3157,7 +3153,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Log</source>
-        <translation>Log</translation>
+        <translation>Protokoll</translation>
     </message>
     <message>
         <source>Select a category for which you want to see or modify the settings.</source>
@@ -3165,7 +3161,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Sound Card</source>
-        <translation>Audiogeräte</translation>
+        <translation>Soundkarte</translation>
     </message>
     <message>
         <source>Select the sound card for playing the ring tone for incoming calls.</source>
@@ -3189,7 +3185,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>Other device:</source>
-        <translation>Anderer Anschluss:</translation>
+        <translation>Anderes Gerät:</translation>
     </message>
     <message>
         <source>&amp;Microphone:</source>
@@ -3217,31 +3213,31 @@ Im Normalfall führt das Aktivieren eher zu einer kaum bemerkbaren Verschlechter
     </message>
     <message>
         <source>Advanced</source>
-        <translation>Spezielle Einstellungen</translation>
+        <translation>Erweitert</translation>
     </message>
     <message>
         <source>OSS &amp;fragment size:</source>
-        <translation>OSS &amp;Fragmentgrösse:</translation>
+        <translation>OSS &amp;Fragmentgröße:</translation>
     </message>
     <message>
         <source>16</source>
-        <translation></translation>
+        <translation>16</translation>
     </message>
     <message>
         <source>32</source>
-        <translation></translation>
+        <translation>32</translation>
     </message>
     <message>
         <source>64</source>
-        <translation></translation>
+        <translation>64</translation>
     </message>
     <message>
         <source>128</source>
-        <translation></translation>
+        <translation>128</translation>
     </message>
     <message>
         <source>256</source>
-        <translation></translation>
+        <translation>256</translation>
     </message>
     <message>
         <source>The ALSA play period size influences the real time behaviour of your soundcard for playing sound. If your sound frequently drops while using ALSA, you might try a different value here.</source>
@@ -3249,11 +3245,11 @@ Im Normalfall führt das Aktivieren eher zu einer kaum bemerkbaren Verschlechter
     </message>
     <message>
         <source>ALSA &amp;play period size:</source>
-        <translation>ALSA &amp;play (LS) period size:</translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;ALSA capture period size:</source>
-        <translation>&amp;ALSA capture (MIC) period size:</translation>
+        <translation></translation>
     </message>
     <message>
         <source>The OSS fragment size influences the real time behaviour of your soundcard. If your sound frequently drops while using OSS, you might try a different value here.</source>
@@ -3273,7 +3269,7 @@ Im Normalfall führt das Aktivieren eher zu einer kaum bemerkbaren Verschlechter
     </message>
     <message>
         <source>MB</source>
-        <translation></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>Log &amp;debug reports</source>
@@ -3576,7 +3572,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -3681,7 +3677,7 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>W&amp;eb browser command:</source>
-        <translation type="unfinished"></translation>
+        <translation>W&amp;ebbrowser-Befehl:</translation>
     </message>
     <message>
         <source>Command to start your web browser. If you leave this field empty Twinkle will try to figure out your default web browser.</source>
@@ -3689,11 +3685,11 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>512</source>
-        <translation type="unfinished"></translation>
+        <translation>512</translation>
     </message>
     <message>
         <source>1024</source>
-        <translation type="unfinished"></translation>
+        <translation>1024</translation>
     </message>
     <message>
         <source>Tip: for crackling sound with PulseAudio, set play period size to maximum.</source>
@@ -3716,7 +3712,7 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>Incoming Call</source>
-        <translation type="unfinished"></translation>
+        <translation>Eingehender Anruf</translation>
     </message>
 </context>
 <context>
@@ -3755,11 +3751,11 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -3798,7 +3794,7 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Type of transfer</source>
@@ -3842,7 +3838,7 @@ Stattdessen zeigt Twinkle in beiden Fällen eine Warnung.&lt;/p&gt;
     </message>
     <message>
         <source>F10</source>
-        <translation type="unfinished"></translation>
+        <translation>F10</translation>
     </message>
 </context>
 <context>
@@ -4157,7 +4153,7 @@ In Ihrem Router/Firewall/NAT leiten Sie bitte folgende öffentliche Ports auf lo
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -5340,15 +5336,15 @@ Die Inhalte aller SIP header der abgesendeten SIP INVITE Anforderung werden in E
     </message>
     <message>
         <source>Outgoing call a&amp;nswered:</source>
-        <translation>Abgehe&amp;nder Ruf angenommen:</translation>
+        <translation>Abgehe&amp;nder Anruf angenommen:</translation>
     </message>
     <message>
         <source>Incoming call &amp;failed:</source>
-        <translation>Eingehender Ruf er&amp;folglos:</translation>
+        <translation>Eingehender Anruf er&amp;folglos:</translation>
     </message>
     <message>
         <source>&amp;Incoming call:</source>
-        <translation>E&amp;ingehender Ruf:</translation>
+        <translation>E&amp;ingehender Anruf:</translation>
     </message>
     <message>
         <source>Call released &amp;remotely:</source>
@@ -5356,19 +5352,19 @@ Die Inhalte aller SIP header der abgesendeten SIP INVITE Anforderung werden in E
     </message>
     <message>
         <source>Incoming call &amp;answered:</source>
-        <translation>Eingehender Ruf &amp;angenommen:</translation>
+        <translation>Eingehender Anruf &amp;angenommen:</translation>
     </message>
     <message>
         <source>O&amp;utgoing call:</source>
-        <translation>Abgehender R&amp;uf:</translation>
+        <translation>Ausgehender Anr&amp;uf:</translation>
     </message>
     <message>
         <source>Out&amp;going call failed:</source>
-        <translation>Ab&amp;gehender Ruf erfolglos:</translation>
+        <translation>Aus&amp;gehender Anruf erfolglos:</translation>
     </message>
     <message>
         <source>&amp;Enable ZRTP/SRTP encryption</source>
-        <translation>ZRTP/SRTP V&amp;erschlüsselung</translation>
+        <translation>ZRTP/SRTP-V&amp;erschlüsselung aktivieren</translation>
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</source>
@@ -5376,7 +5372,7 @@ Die Inhalte aller SIP header der abgesendeten SIP INVITE Anforderung werden in E
     </message>
     <message>
         <source>ZRTP settings</source>
-        <translation>ZRTP Einstellungen</translation>
+        <translation>ZRTP-Einstellungen</translation>
     </message>
     <message>
         <source>O&amp;nly encrypt audio if remote party indicated ZRTP support in SDP</source>
@@ -5420,36 +5416,36 @@ Für direct-IP-to-IP, also ohne SIP-Provider, ist dies der (dyndns-)Name oder di
     </message>
     <message>
         <source>Invalid user name.</source>
-        <translation>Unzulässiger Benutzername.</translation>
+        <translation>Ungültiger Benutzername.</translation>
     </message>
     <message>
         <source>Invalid domain.</source>
-        <translation>Unzulässige Benutzerdomain.</translation>
+        <translation>Ungültige Domäne.</translation>
     </message>
     <message>
         <source>Invalid value for registrar.</source>
-        <translation>Unzulässiger Wert für Registrar.</translation>
+        <translation>Ungültiger Wert für Registrar.</translation>
     </message>
     <message>
         <source>Invalid value for outbound proxy.</source>
-        <translation>Unzulässiger Wert für outbound proxy.</translation>
+        <translation>Ungültiger Wert für ausgehenden Proxy.</translation>
     </message>
     <message>
         <source>Value for public IP address missing.</source>
-        <translation>Keine öffentliche Adresse angegeben.</translation>
+        <translation>Wert für öffentliche IP-Adresse fehlt.</translation>
     </message>
     <message>
         <source>Invalid value for STUN server.</source>
-        <translation>Unzulässiger Wert für STUN-Server.</translation>
+        <translation>Ungültiger Wert für STUN-Server.</translation>
     </message>
     <message>
         <source>Ring tones</source>
         <comment>Description of .wav files in file dialog</comment>
-        <translation>Signaltöne</translation>
+        <translation>Klingeltöne</translation>
     </message>
     <message>
         <source>Choose ring tone</source>
-        <translation>Auswahl Klingelton</translation>
+        <translation>Klingelton auswählen</translation>
     </message>
     <message>
         <source>Ring back tones</source>
@@ -5526,11 +5522,11 @@ Wenn deaktiviert, verwendet Twinkle den ertsen Codec der eigenen Liste, der auch
     </message>
     <message>
         <source>RFC 3551</source>
-        <translation></translation>
+        <translation>RFC 3551</translation>
     </message>
     <message>
         <source>ATM AAL2</source>
-        <translation></translation>
+        <translation>ATM AAL2</translation>
     </message>
     <message>
         <source>There are 2 standards to pack the G.726 codewords into an RTP packet. RFC 3551 is the default packing method. Some SIP devices use ATM AAL2 however. If you experience bad quality using G.726 with RFC 3551 packing, then try ATM AAL2 packing.</source>
@@ -5538,7 +5534,7 @@ Wenn deaktiviert, verwendet Twinkle den ertsen Codec der eigenen Liste, der auch
     </message>
     <message>
         <source>Replaces</source>
-        <translation>Replaces</translation>
+        <translation>Ersetzt</translation>
     </message>
     <message>
         <source>Indicates if the Replaces-extenstion is supported.</source>
@@ -5559,7 +5555,7 @@ Alternativ kann Twinkle die AoR (Address of Record) nutzen. Nachteil hierbei: di
     </message>
     <message>
         <source>Privacy options</source>
-        <translation>Datenschutz-Einstellungen</translation>
+        <translation>Datenschutzoptionen</translation>
     </message>
     <message>
         <source>&amp;Send P-Preferred-Identity header when hiding user identity</source>
@@ -5747,11 +5743,11 @@ Asterisk unterstützt im allg. &quot;unsollicited message waiting indication&quo
     </message>
     <message>
         <source>Invalid mailbox server.</source>
-        <translation>Unzulässiger Name für Mailbox-Server.</translation>
+        <translation>Ungültiger Name für Mailbox-Server.</translation>
     </message>
     <message>
         <source>Invalid mailbox user name.</source>
-        <translation>Unzulässiger Mailbox-Benutzername.</translation>
+        <translation>Ungültiger Mailbox-Benutzername.</translation>
     </message>
     <message>
         <source>Use domain &amp;name to create a unique contact header value</source>
@@ -5759,15 +5755,15 @@ Asterisk unterstützt im allg. &quot;unsollicited message waiting indication&quo
     </message>
     <message>
         <source>Select ring back tone file.</source>
-        <translation>Dateiauswahl Freizeichen.</translation>
+        <translation>Freizeichentondatei auswählen.</translation>
     </message>
     <message>
         <source>Select ring tone file.</source>
-        <translation>Dateiauswahl Klingelton.</translation>
+        <translation>Klingeltondatei auswählen.</translation>
     </message>
     <message>
         <source>Select script file.</source>
-        <translation>Dateiauswahl Scriptfile / Programm.</translation>
+        <translation>Skriptdatei auswählen.</translation>
     </message>
     <message>
         <source>%1 converts to %2</source>
@@ -5780,7 +5776,7 @@ Nach  Konvertierung: &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Presence</source>
-        <translation>Online-Status</translation>
+        <translation>Präsenz</translation>
     </message>
     <message>
         <source>&amp;Maximum number of sessions:</source>
@@ -5794,7 +5790,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source>Your presence</source>
-        <translation>Ihr Online-Status</translation>
+        <translation>Ihre Präsenz</translation>
     </message>
     <message>
         <source>&amp;Publish availability at startup</source>
@@ -5806,7 +5802,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source>Buddy presence</source>
-        <translation>Buddy Online-Status</translation>
+        <translation>Kumpelpräsenz</translation>
     </message>
     <message>
         <source>Publication &amp;refresh interval (sec):</source>
@@ -5842,7 +5838,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source>SIP transport</source>
-        <translation>SIP Übertragung</translation>
+        <translation>SIP-Übertragung</translation>
     </message>
     <message>
         <source>UDP</source>
@@ -5866,7 +5862,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source> bytes</source>
-        <translation type="obsolete"> Bytes</translation>
+        <translation> Bytes</translation>
     </message>
     <message>
         <source>Messages larger than the threshold are sent via TCP. Smaller messages are sent via UDP.</source>
@@ -5966,7 +5962,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source>&amp;Quality:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Qualität:</translation>
     </message>
     <message>
         <source>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
@@ -5974,7 +5970,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     </message>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bytes</translation>
     </message>
     <message>
         <source>Use tel-URI for telephone &amp;number</source>
@@ -6013,7 +6009,7 @@ Sie können diese Einstellung auf 0 setzen, wenn Sie keine ankommenden Instant M
     <name>WizardForm</name>
     <message>
         <source>Twinkle - Wizard</source>
-        <translation></translation>
+        <translation>Twinkle - Assistent</translation>
     </message>
     <message>
         <source>The hostname, domain name or IP address of the STUN server.</source>
@@ -6036,7 +6032,7 @@ This field is mandatory.</source>
     </message>
     <message>
         <source>&amp;Domain*:</source>
-        <translation></translation>
+        <translation>&amp;Domäne*:</translation>
     </message>
     <message>
         <source>Choose your SIP service provider. If your SIP service provider is not in the list, then select &lt;b&gt;Other&lt;/b&gt; and fill in the settings you received from your provider.&lt;br&gt;&lt;br&gt;
@@ -6053,7 +6049,7 @@ Praktisch überall in Twinkle bekommen Sie mit &lt;b&gt;Umschalt-F1&lt;/b&gt; od
     </message>
     <message>
         <source>&amp;Your name:</source>
-        <translation>Ihr &amp;Absendername:</translation>
+        <translation>Ihr &amp;Name:</translation>
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
@@ -6090,7 +6086,7 @@ Für direct-IP-to-IP (siehe Handbuch) ist hier die Adresse (DynDNS oder IP) einz
     </message>
     <message>
         <source>&amp;User name*:</source>
-        <translation>N&amp;utzername *:</translation>
+        <translation>Ben&amp;utzername *:</translation>
     </message>
     <message>
         <source>Your password for authentication.</source>
@@ -6106,7 +6102,7 @@ Für direct-IP-to-IP (siehe Handbuch) ist hier die Adresse (DynDNS oder IP) einz
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>Abbruch (Es&amp;c)</translation>
+        <translation>Abbru&amp;ch</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -6138,11 +6134,11 @@ Für direct-IP-to-IP, also ohne SIP-Provider, ist dies der (dyndns-)Name oder di
     </message>
     <message>
         <source>Invalid value for SIP proxy.</source>
-        <translation>Unzulässiger Wert für SIP-Proxy.</translation>
+        <translation>Ungültiger Wert für SIP-Proxy.</translation>
     </message>
     <message>
         <source>Invalid value for STUN server.</source>
-        <translation>Unzulässiger Wert für STUN-Server.</translation>
+        <translation>Ungültiger Wert für STUN-Server.</translation>
     </message>
 </context>
 <context>
@@ -6160,11 +6156,11 @@ Für direct-IP-to-IP, also ohne SIP-Provider, ist dies der (dyndns-)Name oder di
     <name>incoming_call</name>
     <message>
         <source>Answer</source>
-        <translation type="unfinished"></translation>
+        <translation>Annehmen</translation>
     </message>
     <message>
         <source>Reject</source>
-        <translation type="unfinished"></translation>
+        <translation>Abweisen</translation>
     </message>
 </context>
 </TS>
