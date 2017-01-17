@@ -17,6 +17,12 @@ To compile Twinkle you need the following libraries:
   * declarative
   * tools
 
+The following tools are also required:
+
+* cmake
+* bison
+* flex
+
 ### Optional dependencies
 
 * alsa-lib
