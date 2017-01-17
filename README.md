@@ -10,6 +10,8 @@ To compile Twinkle you need the following libraries:
 * ccRTP (version >= 1.5.0) [GNU RTP Stack](http://www.gnu.org/software/ccrtp/)
 * libxml2
 * libsndfile
+* libmagic
+* libreadline
 * Qt 5
 
 ### Optional dependencies
