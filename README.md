@@ -12,7 +12,10 @@ To compile Twinkle you need the following libraries:
 * libsndfile
 * libmagic
 * libreadline
-* Qt 5
+* Qt 5 -- more specifically, the following submodules:
+  * base
+  * declarative
+  * tools
 
 ### Optional dependencies
 
