@@ -3,7 +3,7 @@ dist: trusty
 sudo: required
 
 env:
-  - FLAGS="-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=ON" PACKAGES="libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev libzrtpcpp-dev qtdeclarative5-dev qtscript5-dev qttools5-dev qttools5-dev-tools"
+  - FLAGS="-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=ON" PACKAGES="libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev libzrtpcpp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools"
 
 install:
   - sudo apt-get update
