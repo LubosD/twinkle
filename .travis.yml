@@ -3,6 +3,7 @@ dist: trusty
 sudo: required
 
 env:
+  # (qttools5-dev-tools is explicitly included because of Debian bug #835295)
   - FLAGS="-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=ON" PACKAGES="libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev libzrtpcpp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools"
 
 install:
