@@ -2335,7 +2335,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>&amp;Buddy list</source>
-        <translation>&amp;Kempelliste </translation>
+        <translation>&amp;Kumpelliste </translation>
     </message>
     <message>
         <source>&amp;Display</source>
