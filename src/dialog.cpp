@@ -2420,6 +2420,13 @@ void t_dialog::send_invite(const t_url &to_uri, const string &to_display,
 		identity.set_display(user_config->get_display(false));
 		invite.hdr_p_preferred_identity.add_identity(identity);
 	}
+	// Set P-Asserted-Identity header
+	if (anonymous && user_config->get_send_p_asserted_id()) {
+		t_identity identity;
+		identity.set_uri(user_config->create_user_uri(false));
+		identity.set_display(user_config->get_display(false));
+		invite.hdr_p_asserted_identity.add_identity(identity);
+	}
 
 	// Set CSeq header
 	local_seqnr = rand() % 1000 + 1;

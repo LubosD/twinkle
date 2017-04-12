@@ -359,6 +359,13 @@ private:
 	bool			send_p_preferred_id;
 	//@}
 	
+	/** @name Privacy options */
+	//@{
+	// Send P-Assrted-Identity header in initial INVITE when hiding
+	// user identity.
+	bool			send_p_asserted_id;
+	//@}
+	
 	/** @name Transport */
 	//@{
 	/** SIP transport protocol */
@@ -620,6 +627,7 @@ public:
 	bool get_attended_refer_to_aor(void) const;
 	bool get_allow_transfer_consultation_inprog(void) const;
 	bool get_send_p_preferred_id(void) const;
+	bool get_send_p_asserted_id(void) const;
 	t_sip_transport get_sip_transport(void) const;
 	unsigned short get_sip_transport_udp_threshold(void) const;
 	bool get_use_nat_public_ip(void) const;
@@ -738,6 +746,7 @@ public:
 	void set_attended_refer_to_aor(bool b);
 	void set_allow_transfer_consultation_inprog(bool b);
 	void set_send_p_preferred_id(bool b);
+	void set_send_p_asserted_id(bool b);
 	void set_sip_transport(t_sip_transport transport);
 	void set_sip_transport_udp_threshold(unsigned short threshold);
 	void set_use_nat_public_ip(bool b);
