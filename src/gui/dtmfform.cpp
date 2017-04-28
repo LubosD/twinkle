@@ -131,7 +131,6 @@ void DtmfForm::keyPressEvent(QKeyEvent *e)
 		case Qt::Key_E:
 		case Qt::Key_F:
 			threePushButton->animateClick();
-			dtmf3();
 			break;
 		case Qt::Key_4:
 		case Qt::Key_G:
