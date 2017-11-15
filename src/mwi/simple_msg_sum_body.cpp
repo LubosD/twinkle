@@ -54,8 +54,12 @@ bool t_msg_summary::parse(const string &s) {
 	} else if (m.size() == 5) {
         newmsgs = std::stoul(m.str(1), NULL, 10);
         oldmsgs = std::stoul(m.str(2), NULL, 10);
-        newmsgs_urgent = std::stoul(m.str(3), NULL, 10);
-        oldmsgs_urgent = std::stoul(m.str(4), NULL, 10);
+
+        if (!m.str(3).empty())
+            newmsgs_urgent = std::stoul(m.str(3), NULL, 10);
+        if (!m.str(4).empty())
+            oldmsgs_urgent = std::stoul(m.str(4), NULL, 10);
+
 		return true;
 	}
 	
