@@ -1565,7 +1565,7 @@ void t_userintf::do_help(const list<t_command_arg> &al) {
 		cout << "Usage:\n";
 		cout << "\treject\n";
 		cout << "Description:\n";
-		cout << "\tReject an incoming call. A 603 Decline response\n";
+		cout << "\tReject an incoming call. A 486 Busy Here response\n";
 		cout << "\twill be sent.\n";
 		cout << endl;
 
