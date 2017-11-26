@@ -117,6 +117,7 @@ extern t_phone		*phone;
 #define FLD_ATTENDED_REFER_TO_AOR	"attended_refer_to_aor"
 #define FLD_ALLOW_XFER_CONSULT_INPROG	"allow_xfer_consult_inprog"
 #define FLD_SEND_P_PREFERRED_ID		"send_p_preferred_id"
+#define FLD_SEND_P_ASSERTED_ID		"send_p_asserted_id"
 
 // Transport/NAT fields
 #define FLD_SIP_TRANSPORT		"sip_transport"
@@ -440,6 +441,7 @@ t_user::t_user() {
 	attended_refer_to_aor = false;
 	allow_transfer_consultation_inprog = false;
 	send_p_preferred_id = false;
+	send_p_asserted_id = false;
 	sip_transport = SIP_TRANS_AUTO;
 	sip_transport_udp_threshold = 1300; // RFC 3261 18.1.1
 	ringtone_file.clear();
@@ -544,6 +546,7 @@ t_user::t_user(const t_user &u) {
 	attended_refer_to_aor = u.attended_refer_to_aor;
 	allow_transfer_consultation_inprog = u.allow_transfer_consultation_inprog;
 	send_p_preferred_id = u.send_p_preferred_id;
+	send_p_asserted_id = u.send_p_asserted_id;
 	sip_transport = u.sip_transport;
 	sip_transport_udp_threshold = u.sip_transport_udp_threshold;
 	use_nat_public_ip = u.use_nat_public_ip;
@@ -1135,6 +1138,14 @@ bool t_user::get_send_p_preferred_id(void) const {
 	bool result;
 	mtx_user.lock();
 	result = send_p_preferred_id;
+	mtx_user.unlock();
+	return result;
+}
+
+bool t_user::get_send_p_asserted_id(void) const {
+	bool result;
+	mtx_user.lock();
+	result = send_p_asserted_id;
 	mtx_user.unlock();
 	return result;
 }
@@ -1873,6 +1884,12 @@ void t_user::set_send_p_preferred_id(bool b) {
 	mtx_user.unlock();
 }
 
+void t_user::set_send_p_asserted_id(bool b) {
+	mtx_user.lock();
+	send_p_asserted_id = b;
+	mtx_user.unlock();
+}
+
 void t_user::set_sip_transport(t_sip_transport transport) {
 	t_mutex_guard guard(mtx_user);
 	sip_transport = transport;
@@ -2325,6 +2342,8 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 			allow_transfer_consultation_inprog = yesno2bool(value);
 		} else if (parameter == FLD_SEND_P_PREFERRED_ID) {
 			send_p_preferred_id = yesno2bool(value);
+		} else if (parameter == FLD_SEND_P_ASSERTED_ID) {
+			send_p_asserted_id = yesno2bool(value);
 		} else if (parameter == FLD_SIP_TRANSPORT) {
 			sip_transport = str2sip_transport(value);
 		} else if (parameter == FLD_SIP_TRANSPORT_UDP_THRESHOLD) {
@@ -2766,6 +2785,8 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 	config << bool2yesno(allow_transfer_consultation_inprog) << endl;
 	config << FLD_SEND_P_PREFERRED_ID << '=';
 	config << bool2yesno(send_p_preferred_id) << endl;
+	config << FLD_SEND_P_ASSERTED_ID << '=';
+	config << bool2yesno(send_p_asserted_id) << endl;
 	config << endl;
 
 	// Write Transport/NAT settings

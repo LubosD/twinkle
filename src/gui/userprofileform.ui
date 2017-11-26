@@ -2647,6 +2647,19 @@ This format is what most SIP phones use.
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QCheckBox" name="pAssertedIdCheckBox">
+                <property name="whatsThis">
+                 <string>Include a P-Asserted-Identity header with your identity in an INVITE request for a call with identity hiding.</string>
+                </property>
+                <property name="text">
+                 <string>&amp;Send P-Asserted-Identity header when hiding user identity</string>
+                </property>
+                <property name="shortcut">
+                 <string>Alt+A</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -4761,6 +4774,7 @@ Sollicited message waiting indication as specified by RFC 3842.
   <tabstop>refreshReferSubCheckBox</tabstop>
   <tabstop>referAorCheckBox</tabstop>
   <tabstop>pPreferredIdCheckBox</tabstop>
+  <tabstop>pAssertedIdCheckBox</tabstop>
   <tabstop>sipTransportComboBox</tabstop>
   <tabstop>udpThresholdSpinBox</tabstop>
   <tabstop>displayTelUserCheckBox</tabstop>
