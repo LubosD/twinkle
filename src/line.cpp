@@ -700,7 +700,7 @@ void t_line::reject(void) {
 	stop_timer(LTMR_NO_ANSWER);
 
 	try {
-		active_dialog->reject(R_603_DECLINE);
+		active_dialog->reject(R_486_BUSY_HERE);
 	}
 	catch (t_exception x) {
 		// TODO: there is no call to reject
