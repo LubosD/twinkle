@@ -433,7 +433,11 @@ uint16 t_g726_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 t_g729a_audio_encoder::t_g729a_audio_encoder(uint16 payload_id, uint16 ptime, t_user *user_config)
 	: t_audio_encoder(payload_id, ptime, user_config)
 {
+#ifdef HAVE_BCG729_API_1_0_2
+	_context = initBcg729EncoderChannel(false);
+#else
 	_context = initBcg729EncoderChannel();
+#endif
 }
 
 t_g729a_audio_encoder::~t_g729a_audio_encoder()
@@ -451,7 +455,11 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 
 	for (uint16 done = 0; done < nsamples; done += 80)
 	{
+#ifdef HAVE_BCG729_API_1_0_2
+		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8], 0);
+#else
 		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8]);
+#endif
 	}
 
 	return nsamples / 8;

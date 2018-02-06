@@ -97,6 +97,10 @@ if (WITH_G729)
 	if (G729_FOUND)
 		message(STATUS "bcg729 OK")
 		set(HAVE_BCG729 TRUE)
+
+		if (NOT G729_OLD_API)
+			set(HAVE_BCG729_API_1_0_2 TRUE)
+		endif (NOT G729_OLD_API)
 		
 		include_directories(${G729_INCLUDE_DIR})
 	else (G729_FOUND)
