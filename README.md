@@ -10,14 +10,25 @@ To compile Twinkle you need the following libraries:
 * ccRTP (version >= 1.5.0) [GNU RTP Stack](http://www.gnu.org/software/ccrtp/)
 * libxml2
 * libsndfile
-* Qt 5
+* libmagic
+* libreadline
+* Qt 5 -- more specifically, the following submodules:
+  * base
+  * declarative
+  * tools
+
+The following tools are also required:
+
+* cmake
+* bison
+* flex
 
 ### Optional dependencies
 
-* alsa-lib
+* alsa-lib (also known as libasound)
 * libzrtpcpp (version >= 0.9.0) [ZRTP library, ccRTP support must be enabled](http://www.gnutelephony.org/index.php/GNU_ZRTP)
 * bcg729 [G.729A codec library](http://www.linphone.org/technical-corner/bcg729/overview)
-* speex [Speex codec library](http://www.speex.org/)
+* Speex and SpeexDSP [Speex codec library](http://www.speex.org/)
 * iLBC [iLBC codec library](http://www.ilbcfreeware.org/)
 
 ## Build
