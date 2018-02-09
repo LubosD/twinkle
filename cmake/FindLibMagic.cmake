@@ -13,9 +13,9 @@
 #
 # Variables defined by this module:
 #
-#  LIBMAGIC_FOUND              System has libmagic, magic.h, and file
-#  LibMagic_FILE_EXE           Path to the 'file' command
-#  LibMagic_VERSION            Version of libmagic
+#  LIBMAGIC_FOUND              System has libmagic and magic.h
+#  LibMagic_FILE_EXE           Path to the 'file' command (if available)
+#  LibMagic_VERSION            Version of libmagic (if available)
 #  LibMagic_LIBRARY            The libmagic library
 #  LibMagic_INCLUDE_DIR        The location of magic.h
 
@@ -31,7 +31,7 @@ else ()
     set(libmagic_names magic)
 endif ()
 
-find_file(LibMagic_FILE_EXE
+find_program(LibMagic_FILE_EXE
     NAMES file
     HINTS ${LibMagic_ROOT_DIR}/bin
 )
@@ -61,8 +61,6 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(LibMagic DEFAULT_MSG
     LibMagic_LIBRARY
     LibMagic_INCLUDE_DIR
-    LibMagic_FILE_EXE
-    LibMagic_VERSION
 )
 
 mark_as_advanced(
