@@ -78,11 +78,7 @@ void HistoryForm::init()
     m_model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("In/Out") << tr("From/To") << tr("Subject") << tr("Status"));
     historyListView->horizontalHeader()->setSortIndicator(HISTCOL_TIMESTAMP, Qt::DescendingOrder);
 
-#if QT_VERSION >= 0x050000
     historyListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-    historyListView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
 
     connect(historyListView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(showCallDetails(QModelIndex)));
 	
