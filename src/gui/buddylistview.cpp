@@ -70,11 +70,7 @@ void BuddyListViewItem::set_icon(void) {
 	QString address = QString::fromStdString(ui->format_sip_address(user_config, buddy->get_name(), t_url(url_str)));
 	
 	tip = "<html>";
-#if QT_VERSION >= 0x050000
 	tip += address.toHtmlEscaped().replace(' ', "&nbsp;");
-#else
-	tip += Qt::escape(address).replace(' ', "&nbsp;");
-#endif
 	
 	if (!buddy->get_may_subscribe_presence()) {
         setData(0, Qt::DecorationRole, QPixmap(":/icons/images/buddy.png"));
@@ -163,11 +159,7 @@ void BLViewUserItem::set_icon(void) {
     QString profile_name = QString::fromStdString(presence_epa->get_user_profile()->get_profile_name());
 	
 	tip = "<html>";
-#if QT_VERSION >= 0x050000
 	tip += profile_name.toHtmlEscaped();
-#else
-    tip += Qt::escape(profile_name);
-#endif
 	tip += "<br>";
 	tip += "<b>";
 	tip += qApp->translate("BuddyList", "Availability");

@@ -52,11 +52,7 @@ GetAddressForm::GetAddressForm(QWidget *parent)
 
 	localListView->sortByColumn(COL_ADDR_NAME, Qt::AscendingOrder);
 
-#if QT_VERSION >= 0x050000
 	localListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-	localListView->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
 }
 
 GetAddressForm::~GetAddressForm()
