@@ -511,10 +511,6 @@ QApplication *create_user_interface(bool cli_mode, int argc, char **argv, QTrans
 		qa = new t_twinkle_application(tmp, argv);
 		MEMMAN_NEW(qa);
 #endif
-#if QT_VERSION < 0x050000 // In Qt5, these functions are removed. UTF-8 is the default.
-		QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
-		QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-#endif
 
         g_gui_state = new QSettings(QDir::home().absoluteFilePath(QString("%1/%2").arg(DIR_USER).arg("gui_state.ini")),
                                     QSettings::IniFormat, qa);
