@@ -20,6 +20,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
 include (CheckSymbolExists)
+include (CMakePushCheckState)
 include (CheckCXXSourceCompiles)
 
 find_package(LibXml2 REQUIRED)
@@ -136,6 +137,18 @@ if (HAVE_STRERROR_R)
 		}
 	" STRERROR_R_CHAR_P)
 endif (HAVE_STRERROR_R)
+
+cmake_push_check_state()
+list(APPEND CMAKE_REQUIRED_LIBRARIES "-lresolv")
+check_cxx_source_compiles("
+	#include <sys/types.h>
+	#include <netinet/in.h>
+	#include <arpa/nameser.h>
+	#include <resolv.h>
+
+	int main() { res_init(); return 0; }
+" HAVE_RES_INIT)
+cmake_pop_check_state()
 
 set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)

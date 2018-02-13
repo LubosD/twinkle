@@ -10,6 +10,7 @@
 #cmakedefine HAVE_LINUX_ERRQUEUE_H
 #cmakedefine HAVE_STRERROR_R
 #cmakedefine STRERROR_R_CHAR_P
+#cmakedefine HAVE_RES_INIT
 #cmakedefine HAVE_LIBASOUND
 
 #define VERSION		"${PRODUCT_VERSION}"
