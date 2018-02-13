@@ -19,6 +19,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
+include (CheckSymbolExists)
+include (CheckCXXSourceCompiles)
 
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
@@ -120,6 +122,20 @@ endif (WITH_GSM)
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)
 check_include_files("sys/socket.h;linux/errqueue.h" HAVE_LINUX_ERRQUEUE_H)
+
+check_symbol_exists(strerror_r "string.h" HAVE_STRERROR_R)
+if (HAVE_STRERROR_R)
+	# Check whether the return type is (int) or (char *)
+	# Code taken from Apache Thrift's ConfigureChecks.cmake
+	check_cxx_source_compiles("
+		#include <string.h>
+		int main() {
+			char b;
+			char *a = strerror_r(0, &b, 0);
+			return 0;
+		}
+	" STRERROR_R_CHAR_P)
+endif (HAVE_STRERROR_R)
 
 set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)

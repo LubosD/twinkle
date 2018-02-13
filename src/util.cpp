@@ -742,10 +742,10 @@ string to_printable(const string &s) {
 }
 
 string get_error_str(int errnum) {
-#if HAVE_STRERROR_R
+#ifdef HAVE_STRERROR_R
 	char buf[81];
 	memset(buf, 0, sizeof(buf));
-#if STRERROR_R_CHAR_P
+#ifdef STRERROR_R_CHAR_P
 	string errmsg(strerror_r(errnum, buf, sizeof(buf)-1));
 #else
 	string errmsg;
