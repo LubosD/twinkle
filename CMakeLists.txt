@@ -22,6 +22,7 @@ include (CheckIncludeFiles)
 include (CheckSymbolExists)
 include (CMakePushCheckState)
 include (CheckCXXSourceCompiles)
+include (TestBigEndian)
 
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
@@ -149,6 +150,8 @@ check_cxx_source_compiles("
 	int main() { res_init(); return 0; }
 " HAVE_RES_INIT)
 cmake_pop_check_state()
+
+test_big_endian(WORDS_BIGENDIAN)
 
 set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)
