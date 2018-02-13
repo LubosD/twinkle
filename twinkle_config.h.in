@@ -1,6 +1,7 @@
 #cmakedefine WITH_DIAMONDCARD
 #cmakedefine HAVE_SPEEX
 #cmakedefine HAVE_ILBC
+#cmakedefine HAVE_ILBC_CPP
 #cmakedefine HAVE_ZRTP
 #cmakedefine HAVE_BCG729
 #cmakedefine HAVE_GSM
