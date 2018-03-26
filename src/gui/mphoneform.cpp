@@ -249,6 +249,8 @@ void MphoneForm::init()
 		sysTray->show();
 	}
 
+	updateSSDNDUi();
+
 #ifndef WITH_DIAMONDCARD
 	Diamondcard->menuAction()->setVisible(false);
 #endif
@@ -1221,16 +1223,20 @@ void MphoneForm::updateServicesStatus()
 	tipAa.append("</table><br>");
 	tipAa.append(footer);
 	
-	// Set service status
-	if (num_dnd == user_list.size()) {
-		// All users enabled dnd
-		statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
-	} else if (num_dnd > 0) {
-		// Some users enabled dnd
-		statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
+	if (!sys_config->get_ssdnd_enabled()) {
+		// Set service status
+		if (num_dnd == user_list.size()) {
+			// All users enabled dnd
+			statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
+		} else if (num_dnd > 0) {
+			// Some users enabled dnd
+			statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
+		} else {
+			// No users enabeld dnd
+			statDndLabel->setPixmap(QPixmap(":/icons/images/cancel-disabled.png"));
+		}
 	} else {
-		// No users enabeld dnd
-		statDndLabel->setPixmap(QPixmap(":/icons/images/cancel-disabled.png"));
+		statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
 	}
 	
 	if (num_cf == user_list.size()) {
@@ -1266,14 +1272,18 @@ void MphoneForm::updateServicesStatus()
 	clickToActivate += tr("Click to activate").replace(' ', "&nbsp;");
 	clickToActivate += "</i>";
 	if (num_dnd > 0) {
-        statDndLabel->setToolTip(tipDnd);
+		statDndLabel->setToolTip(tipDnd);
 	} else {
 		QString status("<p>");
 		status += tr("Do not disturb is not active.").replace(' ', "&nbsp;");
 		status += "</p>";
 		status += clickToActivate;
-        statDndLabel->setToolTip(status);
-	}		
+		statDndLabel->setToolTip(status);
+	}
+	if (sys_config->get_ssdnd_enabled()) {
+		statDndLabel->setToolTip(tr("Click to activate"));
+		statDndLabel2->setToolTip(tr("Click to deactivate"));
+	}
 	
 	if (num_cf > 0) {
         statCfLabel->setToolTip(tipCf);
@@ -2336,9 +2346,27 @@ void MphoneForm::editSysSettings()
 			this, SLOT(updateSipUdpPort()));
 		connect(sysSettingsForm, SIGNAL(rtpPortChanged()),
 			this, SLOT(updateRtpPorts()));
+		connect(sysSettingsForm, SIGNAL(ssdndToggled()),
+				this, SLOT(updateSSDNDUi()));
 	}
 	
 	sysSettingsForm->show();
+}
+
+void MphoneForm::updateSSDNDUi()
+{
+	if (sys_config->get_ssdnd_enabled())
+	{
+		statDndLabel->setPixmap(QPixmap(":/icons/images/cancel.png"));
+		statDndLabel2->setPixmap(QPixmap(":/icons/images/cancel-disabled.png"));
+		statDndLabel2->setVisible(true);
+		serviceDnd->setDisabled(true);
+	}
+	else
+	{
+		statDndLabel2->setVisible(false);
+		serviceDnd->setDisabled(false);
+	}
 }
 
 void MphoneForm::selectProfile()
@@ -2808,11 +2836,18 @@ void MphoneForm::processLeftMouseButtonRelease(QMouseEvent *e)
 		} else {
 			srvAutoAnswer();
 		}
-    } else if (statDndLabel->testAttribute(Qt::WA_UnderMouse)) {
+	} else if (statDndLabel->testAttribute(Qt::WA_UnderMouse) || statDndLabel2->testAttribute(Qt::WA_UnderMouse)) {
+		bool ssdnd = sys_config->get_ssdnd_enabled();
+
 		if (phone->ref_users().size() == 1) {
-            bool enable = !serviceDnd->isChecked();
+			bool enable;
+
+			if (!ssdnd)
+				enable = !serviceDnd->isChecked();
+			else
+				enable = statDndLabel->testAttribute(Qt::WA_UnderMouse);
 			srvDnd(enable);
-            serviceDnd->setChecked(enable);
+			serviceDnd->setChecked(enable);
 		} else {
 			srvDnd();
 		}

@@ -270,6 +270,9 @@ private:
 	
 	// One time warnings
 	bool		warn_hide_user; // Warn use that provider may not support hiding.
+
+	bool ssdnd_enable;
+	string ssdnd_enable_ext, ssdnd_disable_ext;
 	
 public:
 	/** Constructor */
@@ -543,6 +546,16 @@ public:
 	// If force_active == true, then always the SIP UDP port is returned
 	// and made active
 	unsigned short get_sip_port(bool force_active = false);
+
+	// Server-side DND
+	bool get_ssdnd_enabled() const;
+	void set_ssdnd_enabled(bool enable);
+
+	string get_ssdnd_enable_ext() const;
+	void set_ssdnd_enable_ext(string ext);
+
+	string get_ssdnd_disable_ext() const;
+	void set_ssdnd_disable_ext(string ext);
 };
 
 extern t_sys_settings *sys_config;

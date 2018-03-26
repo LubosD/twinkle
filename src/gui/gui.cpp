@@ -3055,11 +3055,24 @@ void  t_gui::action_zrtp_go_clear_ok(unsigned short line) {
 }
 
 void t_gui::srv_dnd(list<t_user *> user_list, bool on) {
-	for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
-		if (on) {
-			phone->ref_service(*i)->enable_dnd();
-		} else {
-			phone->ref_service(*i)->disable_dnd();
+	if (!sys_config->get_ssdnd_enabled()) {
+		for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
+			if (on) {
+				phone->ref_service(*i)->enable_dnd();
+			} else {
+				phone->ref_service(*i)->disable_dnd();
+			}
+		}
+	} else {
+		string number = on ? sys_config->get_ssdnd_enable_ext() : sys_config->get_ssdnd_disable_ext();
+		if (number.empty())
+			return;
+
+		for (list<t_user *>::iterator i = user_list.begin(); i != user_list.end(); i++) {
+			string display, dst;
+
+			expand_destination(*i, number, display, dst);
+			action_invite(*i, t_url(dst), display, "DND", false);
 		}
 	}
 }

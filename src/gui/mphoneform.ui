@@ -246,6 +246,25 @@
                </widget>
               </item>
               <item>
+               <widget class="QLabel" name="statDndLabel2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="whatsThis">
+                 <string>Do not disturb indication.</string>
+                </property>
+                <property name="pixmap">
+                 <pixmap resource="icons.qrc">:/icons/images/cancel.png</pixmap>
+                </property>
+                <property name="wordWrap">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QLabel" name="statMWILabel">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

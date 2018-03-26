@@ -130,6 +130,11 @@ using namespace utils;
 // Mime settings
 #define FLD_MIME_SHARED_DATABASE	"mime_shared_database"
 
+// Server-side DND
+#define FLD_SSDND_ENABLE "ssdnd_enable"
+#define FLD_SSDND_ENABLE_EXT "ssdnd_enable_ext"
+#define FLD_SSDND_DISABLE_EXT "ssdnd_disable_ext"
+
 /////////////////////////
 // class t_audio_device
 /////////////////////////
@@ -297,6 +302,7 @@ t_sys_settings::t_sys_settings() {
 	ui_session_id.clear();
 	
 	mime_shared_database = DFLT_SHARED_MIME_DB;
+	ssdnd_enable = false;
 }
 
 // Getters
@@ -1246,6 +1252,37 @@ bool t_sys_settings::check_environment(string &error_msg) const {
 	return true;
 }
 
+bool t_sys_settings::get_ssdnd_enabled() const
+{
+	return ssdnd_enable;
+}
+void t_sys_settings::set_ssdnd_enabled(bool enable)
+{
+	ssdnd_enable = enable;
+}
+
+string t_sys_settings::get_ssdnd_enable_ext() const
+{
+	t_mutex_guard guard(mtx_sys);
+	return ssdnd_enable_ext;
+}
+void t_sys_settings::set_ssdnd_enable_ext(string ext)
+{
+	t_mutex_guard guard(mtx_sys);
+	ssdnd_enable_ext = ext;
+}
+
+string t_sys_settings::get_ssdnd_disable_ext() const
+{
+	t_mutex_guard guard(mtx_sys);
+	return ssdnd_disable_ext;
+}
+void t_sys_settings::set_ssdnd_disable_ext(string ext)
+{
+	t_mutex_guard guard(mtx_sys);
+	ssdnd_disable_ext = ext;
+}
+
 void t_sys_settings::set_dir_share(const string &dir) {
 	mtx_sys.lock();
 	dir_share = dir;
@@ -1660,6 +1697,12 @@ bool t_sys_settings::read_config(string &error_msg) {
 			warn_hide_user = yesno2bool(value);
 		} else if (parameter == FLD_MIME_SHARED_DATABASE) {
 			mime_shared_database = value;
+		} else if (parameter == FLD_SSDND_ENABLE) {
+			ssdnd_enable = yesno2bool(value);
+		} else if (parameter == FLD_SSDND_ENABLE_EXT) {
+			ssdnd_enable_ext = value;
+		} else if (parameter == FLD_SSDND_DISABLE_EXT) {
+			ssdnd_disable_ext = value;
 		}
 			
 		// Unknown field names are skipped.
@@ -1815,6 +1858,12 @@ bool t_sys_settings::write_config(string &error_msg) {
 	config << FLD_UI_SESSION_MAIN_GEOMETRY << '=' << ui_session_main_geometry.encode() << endl;
 	config << FLD_UI_SESSION_MAIN_HIDDEN << '=' << bool2yesno(ui_session_main_hidden) << endl;
 	config << FLD_UI_SESSION_MAIN_STATE << '=' << ui_session_main_state << endl;
+	config << endl;
+
+	// Server-side DND
+	config << FLD_SSDND_ENABLE << '=' << bool2yesno(ssdnd_enable) << endl;
+	config << FLD_SSDND_ENABLE_EXT << '=' << ssdnd_enable_ext << endl;
+	config << FLD_SSDND_DISABLE_EXT << '=' << ssdnd_disable_ext << endl;
 	
 	config << endl;
 	

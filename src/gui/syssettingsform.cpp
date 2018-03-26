@@ -68,6 +68,7 @@ void SysSettingsForm::languageChange()
 #define idxCatAddressBook	3
 #define idxCatNetwork	4
 #define idxCatLog		5
+#define idxCatSSDND	6
 
 void SysSettingsForm::init()
 {
@@ -101,6 +102,8 @@ void SysSettingsForm::showCategory( int index )
         settingsWidgetStack->setCurrentWidget(pageNetwork);
 	} else if (index == idxCatLog) {
         settingsWidgetStack->setCurrentWidget(pageLog);
+	} else if (index == idxCatSSDND) {
+		settingsWidgetStack->setCurrentWidget(pageSSDND);
 	}
 }
 
@@ -335,6 +338,13 @@ void SysSettingsForm::populate()
 	abOverrideDisplayCheckBox->setChecked(sys_config->get_ab_override_display());
 	abOverrideDisplayCheckBox->setEnabled(sys_config->get_ab_lookup_name());
 	abLookupPhotoCheckBox->setChecked(sys_config->get_ab_lookup_photo());
+
+	// Server-side DND
+	checkBoxSSDND->setChecked(sys_config->get_ssdnd_enabled());
+	lineDNDEnableExt->setEnabled(sys_config->get_ssdnd_enabled());
+	lineDNDEnableExt->setText(QString::fromStdString(sys_config->get_ssdnd_enable_ext()));
+	lineDNDDisableExt->setEnabled(sys_config->get_ssdnd_enabled());
+	lineDNDDisableExt->setText(QString::fromStdString(sys_config->get_ssdnd_disable_ext()));
 }
 
 void SysSettingsForm::validate()
@@ -444,6 +454,14 @@ void SysSettingsForm::validate()
 	sys_config->set_ab_lookup_name(abLookupNameCheckBox->isChecked());
 	sys_config->set_ab_override_display(abOverrideDisplayCheckBox->isChecked());
 	sys_config->set_ab_lookup_photo(abLookupPhotoCheckBox->isChecked());
+
+	if (checkBoxSSDND->isChecked() != sys_config->get_ssdnd_enabled())
+	{
+		sys_config->set_ssdnd_enabled(checkBoxSSDND->isChecked());
+		emit ssdndToggled();
+	}
+	sys_config->set_ssdnd_enable_ext(lineDNDEnableExt->text().toStdString());
+	sys_config->set_ssdnd_disable_ext(lineDNDDisableExt->text().toStdString());
 	
 	// Save user config
 	string error_msg;

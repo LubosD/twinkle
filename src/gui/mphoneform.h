@@ -175,6 +175,7 @@ public slots:
 
 	void osdMuteClicked();
 
+	void updateSSDNDUi();
 private:
 	void init();
 	void destroy();

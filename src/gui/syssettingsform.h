@@ -33,6 +33,7 @@ public slots:
 signals:
 	void sipUdpPortChanged();
 	void rtpPortChanged();
+	void ssdndToggled();
 
 protected slots:
 	virtual void languageChange();
