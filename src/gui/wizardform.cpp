@@ -23,6 +23,7 @@
 #include <QTextStream>
 #include "gui.h"
 #include <QFile>
+#include <QRegExpValidator>
 #include "wizardform.h"
 
 #define PROV_NONE	QT_TRANSLATE_NOOP("WizardForm", "None (direct IP to IP calls)")

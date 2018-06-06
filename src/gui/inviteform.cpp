@@ -7,6 +7,7 @@
 #include "sys_settings.h"
 #include <QRegExp>
 #include <QValidator>
+#include <QRegExpValidator>
 
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>

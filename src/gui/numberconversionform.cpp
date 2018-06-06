@@ -1,5 +1,6 @@
 #include "numberconversionform.h"
 
+#include <QRegExpValidator>
 #include "gui.h"
 
 /*

@@ -1,7 +1,7 @@
 #include "getprofilenameform.h"
-
 #include <QDir>
 #include <QMessageBox>
+#include <QRegExpValidator>
 #include "user.h"
 #include "protocol.h"
 
