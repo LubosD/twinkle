@@ -31,6 +31,7 @@
 #include <QStringList>
 #include "twinkle_config.h"
 #include <QListWidget>
+#include <QRegExpValidator>
 #include "numberconversionform.h"
 #include "util.h"
 #include "userprofileform.h"

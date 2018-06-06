@@ -54,6 +54,7 @@
 #include <QRegExp>
 #include <QValidator>
 #include <QSettings>
+#include <QRegExpValidator>
 #include "buddyform.h"
 #include "diamondcardprofileform.h"
 #include "osd.h"

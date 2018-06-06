@@ -21,6 +21,7 @@
 
 #include <QRegExp>
 #include <QValidator>
+#include <QRegExpValidator>
 #include "gui.h"
 #include "diamondcard.h"
 #include "getprofilenameform.h"

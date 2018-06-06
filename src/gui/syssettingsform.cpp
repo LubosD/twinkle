@@ -28,6 +28,7 @@
 #include "twinkle_config.h"
 #include <QRegExp>
 #include <QValidator>
+#include <QRegExpValidator>
 #include "syssettingsform.h"
 /*
  *  Constructs a SysSettingsForm as a child of 'parent', with the
