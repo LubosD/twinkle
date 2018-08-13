@@ -274,7 +274,7 @@ bool t_epa::recv_response(t_response *r, t_tuid tuid, t_tid tid) {
 			log_file->write_footer();
 		} else {
 			log_file->write_header("t_epa::recv_response");
-			log_file->write_raw("Publication sucessful.\n");
+			log_file->write_raw("Publication successful.\n");
 			log_publication();
 			log_file->write_footer();
 		
