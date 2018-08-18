@@ -72,6 +72,7 @@ using namespace utils;
 // GUI settings
 #define FLD_GUI_USE_SYSTRAY	"gui_use_systray"
 #define FLD_GUI_HIDE_ON_CLOSE	"gui_hide_on_close"
+#define FLD_GUI_SHOW_INCOMING_POPUP	"gui_show_incoming_popup"
 #define FLD_GUI_AUTO_SHOW_INCOMING	"gui_auto_show_incoming"
 #define FLD_GUI_AUTO_SHOW_TIMEOUT	"gui_auto_show_timeout"
 #define FLD_GUI_BROWSER_CMD	"gui_browser_cmd"
@@ -252,6 +253,7 @@ t_sys_settings::t_sys_settings() {
 	
 	gui_use_systray = true;
 	gui_hide_on_close = true;
+	gui_show_incoming_popup = true;
 	gui_auto_show_incoming = false;
 	gui_auto_show_timeout = 10;
 	gui_show_call_osd = true;
@@ -399,6 +401,11 @@ bool t_sys_settings::get_log_show_debug(void) const {
 bool t_sys_settings::get_gui_use_systray(void) const {
 	t_mutex_guard guard(mtx_sys);
 	return gui_use_systray;
+}
+
+bool t_sys_settings::get_gui_show_incoming_popup(void) const {
+	t_mutex_guard guard(mtx_sys);
+	return gui_show_incoming_popup;
 }
 
 bool t_sys_settings::get_gui_auto_show_incoming(void) const {
@@ -753,6 +760,11 @@ void t_sys_settings::set_gui_use_systray(bool b) {
 void t_sys_settings::set_gui_hide_on_close(bool b) {
 	t_mutex_guard guard(mtx_sys);
 	gui_hide_on_close = b;
+}
+
+void t_sys_settings::set_gui_show_incoming_popup(bool b) {
+	t_mutex_guard guard(mtx_sys);
+	gui_show_incoming_popup = b;
 }
 
 void t_sys_settings::set_gui_auto_show_incoming(bool b) {
@@ -1579,6 +1591,8 @@ bool t_sys_settings::read_config(string &error_msg) {
 			gui_use_systray = yesno2bool(value);
 		} else if (parameter == FLD_GUI_HIDE_ON_CLOSE) {
 			gui_hide_on_close = yesno2bool(value);
+		} else if (parameter == FLD_GUI_SHOW_INCOMING_POPUP) {
+			gui_show_incoming_popup = yesno2bool(value);
 		} else if (parameter == FLD_GUI_AUTO_SHOW_INCOMING) {
 			gui_auto_show_incoming = yesno2bool(value);
 		} else if (parameter == FLD_GUI_AUTO_SHOW_TIMEOUT) {
@@ -1723,6 +1737,7 @@ bool t_sys_settings::write_config(string &error_msg) {
 	config << "# GUI\n";
 	config << FLD_GUI_USE_SYSTRAY << '=' << bool2yesno(gui_use_systray) << endl;
 	config << FLD_GUI_HIDE_ON_CLOSE << '=' << bool2yesno(gui_hide_on_close) << endl;
+	config << FLD_GUI_SHOW_INCOMING_POPUP << '=' << bool2yesno(gui_show_incoming_popup) << endl;
 	config << FLD_GUI_AUTO_SHOW_INCOMING << '=' << bool2yesno(gui_auto_show_incoming) << endl;
 	config << FLD_GUI_AUTO_SHOW_TIMEOUT << '=' << gui_auto_show_timeout << endl;
 	config << FLD_GUI_BROWSER_CMD << '=' << gui_browser_cmd << endl;

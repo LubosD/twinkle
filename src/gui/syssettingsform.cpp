@@ -268,6 +268,9 @@ void SysSettingsForm::populate()
 	// Call history
 	histSizeSpinBox->setValue(sys_config->get_ch_max_size());
 	
+	// Show popup on incoming call
+	incomingPopupCheckBox->setChecked(sys_config->get_gui_show_incoming_popup());
+
 	// Auto show on incoming call
 	autoShowCheckBox->setChecked(sys_config->get_gui_auto_show_incoming());
 	autoShowTimeoutSpinBox->setValue(sys_config->get_gui_auto_show_timeout());
@@ -377,6 +380,9 @@ void SysSettingsForm::validate()
 	sys_config->set_gui_hide_on_close(guiHideCheckBox->isChecked());
 	sys_config->set_gui_show_call_osd(osdCheckBox->isChecked());
 	
+	// Show popup on incoming call
+	sys_config->set_gui_show_incoming_popup(incomingPopupCheckBox->isChecked());
+
 	// Auto show on incoming call
 	sys_config->set_gui_auto_show_incoming(autoShowCheckBox->isChecked());
 	sys_config->set_gui_auto_show_timeout(autoShowTimeoutSpinBox->value());
