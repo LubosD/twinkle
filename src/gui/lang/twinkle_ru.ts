@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ru">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -436,7 +438,7 @@
     </message>
     <message>
         <source>Override lock file and start anyway?</source>
-        <translation>Перехватить файл блокировки и запуститься сейчас? </translation>
+        <translation>Перехватить файл блокировки и запуститься сейчас?</translation>
     </message>
     <message>
         <source>The following profiles are both for user %1</source>
@@ -808,7 +810,7 @@
     </message>
     <message>
         <source>Cannot open web browser: %1</source>
-        <translation>Не могу открыть веб-браузер: %1 </translation>
+        <translation>Не могу открыть веб-браузер: %1</translation>
     </message>
     <message>
         <source>Configure your web browser in the system settings.</source>
@@ -823,7 +825,7 @@
     </message>
     <message>
         <source>&amp;KAddressBook</source>
-        <translation>Адресная книга &amp;KDE </translation>
+        <translation>Адресная книга &amp;KDE</translation>
     </message>
     <message>
         <source>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</source>
@@ -1631,15 +1633,15 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>About Twinkle</source>
-        <translation>О программе Twinkle </translation>
+        <translation>О программе Twinkle</translation>
     </message>
     <message>
         <source>&amp;About Twinkle</source>
-        <translation>&amp;О программе Twinkle </translation>
+        <translation>&amp;О программе Twinkle</translation>
     </message>
     <message>
         <source>Call someone</source>
-        <translation>Позвонить кому-либо </translation>
+        <translation>Позвонить кому-либо</translation>
     </message>
     <message>
         <source>F5</source>
@@ -2978,7 +2980,7 @@ Please select a profile.</source>
     </message>
     <message>
         <source>&amp;Ring tone:</source>
-        <translation>&amp;Сигнал вызова: </translation>
+        <translation>&amp;Сигнал вызова:</translation>
     </message>
     <message>
         <source>Other device:</source>
@@ -3005,7 +3007,14 @@ On startup of Twinkle a warning is given if an audio device is inaccessible.
 If before making a call, the microphone or speaker appears to be invalid, a warning is given and no call can be made.
 &lt;p&gt;
 If before answering a call, the microphone or speaker appears to be invalid, a warning is given and the call will not be answered.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Twinkle проверяет аудиоустройства перед использованием, чтобы предотвратить работу звука в вызове.
+&lt;p&gt;
+Если включено, Twinkle проверяет, доступно ли указанное аудиоустройство при запуске.
+&lt;p&gt;
+Если микрофон или громкоговорители выглядят неисправными, будет отображаться предупреждающее сообщение, и вызовы не будут разрешены.
+&lt;p&gt;
+Кроме того, когда обнаружен входящий вызов, и звуковое устройство не в порядке, будет отображаться предупреждение, и вызов не будет принят.</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -3037,7 +3046,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>The ALSA play period size influences the real time behaviour of your soundcard for playing sound. If your sound frequently drops while using ALSA, you might try a different value here.</source>
-        <translation type="unfinished"/>
+        <translation>Установка периода воспроизведения ALSA влияет на задержку звука на звуковой карте. Если у вас есть проблемы с сбросом или пропуском звука, попробуйте другое значение.</translation>
     </message>
     <message>
         <source>ALSA &amp;play period size:</source>
@@ -3049,11 +3058,11 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
     </message>
     <message>
         <source>The OSS fragment size influences the real time behaviour of your soundcard. If your sound frequently drops while using OSS, you might try a different value here.</source>
-        <translation type="unfinished"/>
+        <translation>Размер фрагмента OSS влияет на задержку звука на звуковой карте. Если у вас есть проблемы со сбросом или пропуском звука, попробуйте другое значение.</translation>
     </message>
     <message>
         <source>The ALSA capture period size influences the real time behaviour of your soundcard for capturing sound. If the other side of your call complains about frequently dropping sound, you might try a different value here.</source>
-        <translation type="unfinished"/>
+        <translation>Размер периода записи ALSA влияет на задержку звука. Если контрагент жалуется на частое прерывание звука, попробуйте использовать другое значение.</translation>
     </message>
     <message>
         <source>&amp;Max log size:</source>
@@ -3306,7 +3315,12 @@ Play ring back tone while you are waiting for the far-end to answer your call.
 &lt;p&gt;
 Depending on your SIP provider the network might provide ring back tone or an announcement.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Воспроизведение мелодии звонка для вызывающего абонента, если телефонная сеть не обеспечивает такой тон.
+&lt;/p&gt;
+&lt;p&gt;
+Наличие этого тона зависит от вашего провайдера.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>D&amp;efault ring back tone</source>
@@ -3438,7 +3452,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>The address that you want to query for capabilities (OPTION request). This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</source>
-        <translation type="unfinished"/>
+        <translation>Адрес или номер партнёра, параметры которого должны быть определены (запрос OPTION). Это может быть полный SIP-адрес, например &lt;b&gt;sip:example@example.com&lt;/b&gt; или только пользователь, или номер телефона с полного адреса. Если адрес не завершён, Twinkle добавит адрес домена из вашего профиля.</translation>
     </message>
     <message>
         <source>Address book</source>
@@ -3497,7 +3511,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
     </message>
     <message>
         <source>Transfer the call to a third party without contacting that third party yourself.</source>
-        <translation>Передача звонка другому абоненту без разговора с ним. </translation>
+        <translation>Передача звонка другому абоненту без разговора с ним.</translation>
     </message>
     <message>
         <source>T&amp;ransfer with consultation</source>
@@ -3725,7 +3739,10 @@ Lock file %2 already exists.</source>
 STUN will not work.
 Configure a public IP address in the user profile
 and create the following static bindings (UDP) in your NAT.</source>
-        <translation type="unfinished"/>
+        <translation>Вы находитесь за симметричным NAT.
+STUN не работает.
+Вы должны установить общедоступный IP-адрес в профиле пользователя
+и сопоставьте свои NAT (UDP) порты.</translation>
     </message>
     <message>
         <source>public IP: %1 --&gt; private IP: %2 (SIP signaling)</source>
@@ -4000,7 +4017,7 @@ This field is mandatory.</source>
     </message>
     <message>
         <source>Indicates if Twinkle should use an outbound proxy. If an outbound proxy is used then all SIP requests are sent to this proxy. Without an outbound proxy, Twinkle will try to resolve the SIP address that you type for a call invitation for example to an IP address and send the SIP request there.</source>
-        <translation type="unfinished"/>
+        <translation>Указывает, должен ли Twinkle автоматически регистрироваться при запуске этого профиля. Вы должны отключить это, если хотите совершать прямые вызовы между IP-адресами без прокси-сервера SIP.</translation>
     </message>
     <message>
         <source>Outbound &amp;proxy:</source>
@@ -4016,7 +4033,7 @@ This field is mandatory.</source>
     </message>
     <message>
         <source>SIP requests within a SIP dialog are normally sent to the address in the contact-headers exchanged during call setup. If you tick this box, that address is ignored and in-dialog request are also sent to the outbound proxy.</source>
-        <translation type="unfinished"/>
+        <translation>Запросы SIP обычно отправляются на адрес в контактах, которыми обмениваются во время разговора. Если это поле отмечено, то этот адрес игнорируется, и все запросы также отправляются на исходящие прокси.</translation>
     </message>
     <message>
         <source>&amp;Don&apos;t send a request to proxy if its destination can be resolved locally.</source>
@@ -4123,7 +4140,10 @@ This field is mandatory.</source>
 For incoming calls, follow the preference from the far-end (SDP offer). Pick the first codec from the SDP offer that is also in the list of active codecs.
 &lt;p&gt;
 If you disable this option, then the first codec from the active codecs that is also in the SDP offer is picked.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Если включено, Twinkle будет отдавать приоритет предложениям SDP при входящих вызовах. В частности, первый кодек, предлагаемый контрагентом, также входит в список локальных кодеков.
+&lt;p&gt;
+Если отключено, Twinkle использует первый кодек в своем собственном списке, который также поддерживается контрагентом.</translation>
     </message>
     <message>
         <source>Follow codec &amp;preference from far end on outgoing calls</source>
@@ -4138,7 +4158,8 @@ If you disable this option, then the first codec from the active codecs that is 
 For outgoing calls, follow the preference from the far-end (SDP answer). Pick the first codec from the SDP answer that is also in the list of active codecs.
 &lt;p&gt;
 If you disable this option, then the first codec from the active codecs that is also in the SDP answer is picked.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle будет управлять исходящим вызовом со списком предпочтительных кодеков у контрагента (ответ SDP). В частности, первый кодек будет использоваться в списке предпочтительных кодеков-контрагентов, который также поддерживается текущим языком Twinkle.
+Если отключено, Twinkle использует первый кодек из своего собственного списка, который также поддерживается контрагентом. То есть. указан в списке SDP-ответов.</translation>
     </message>
     <message>
         <source>&amp;iLBC</source>
@@ -4190,7 +4211,7 @@ If you disable this option, then the first codec from the active codecs that is 
     </message>
     <message>
         <source>Perceptual enhancement is a part of the decoder which, when turned on, tries to reduce (the perception of) the noise produced by the coding/decoding process. In most cases, perceptual enhancement make the sound further from the original objectively (if you use SNR), but in the end it still sounds better (subjective improvement).</source>
-        <translation type="unfinished"/>
+        <translation>Улучшение воспринимаемого качества звука является частью декодера, который пытается уменьшить (воспринимаемый) шум, создаваемый процессом кодирования/декодирования. В большинстве случаев эта функция приводит к большему объективно отклоняющемуся звуку от оригинала (SNR), но она по-прежнему звучит лучше (субъективные улучшения).</translation>
     </message>
     <message>
         <source>&amp;Ultra wide band payload type:</source>
@@ -4210,7 +4231,7 @@ If you disable this option, then the first codec from the active codecs that is 
     </message>
     <message>
         <source>Variable bit-rate (VBR) allows a codec to change its bit-rate dynamically to adapt to the &quot;difficulty&quot; of the audio being encoded. In the example of Speex, sounds like vowels and high-energy transients require a higher bit-rate to achieve good quality, while fricatives (e.g. s,f sounds) can be coded adequately with less bits. For this reason, VBR can achieve a lower bit-rate for the same quality, or a better quality for a certain bit-rate. Despite its advantages, VBR has two main drawbacks: first, by only specifying quality, there&apos;s no guarantee about the final average bit-rate. Second, for some real-time applications like voice over IP (VoIP), what counts is the maximum bit-rate, which must be low enough for the communication channel.</source>
-        <translation type="unfinished"/>
+        <translation>Переменная полоса пропускания (VBR) позволяет кодеку настраивать объём данных, необходимых для передачи вызова персонажу аудиосигнала. В то время как, например, некоторые резкие гласные или очень переменные проходы нуждаются в большой частоте дискретизации и высокой битовой скорости, поэтому достаточно мягких согласных с небольшим количеством потока данных. Благодаря VBR можно добиться лучшего качества звука с заданной скоростью передачи данных или с более низкой скоростью передачи данных для данного качества связи. Недостатком является то, что с качеством вы не можете предсказать, какой большой битрейт будет на самом деле. А также в приложениях реального времени (таких как VoIP) максимальная пропускная способность, которую должен обрабатывать канал связи, является решающей.</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for speex wide band.</source>
@@ -4222,7 +4243,7 @@ If you disable this option, then the first codec from the active codecs that is 
     </message>
     <message>
         <source>Discontinuous transmission is an addition to VAD/VBR operation, that allows one to stop transmitting completely when the background noise is stationary.</source>
-        <translation type="unfinished"/>
+        <translation>Непоследовательное вещание - это расширение функций VAD/VBR, когда можно полностью прекратить отправку данных в случае молчания.</translation>
     </message>
     <message>
         <source>The dynamic type value (96 or higher) to be used for speex narrow band.</source>
@@ -4230,7 +4251,7 @@ If you disable this option, then the first codec from the active codecs that is 
     </message>
     <message>
         <source>With Speex, it is possible to vary the complexity allowed for the encoder. This is done by controlling how the search is performed with an integer ranging from 1 to 10 in a way that&apos;s similar to the -1 to -9 options to gzip and bzip2 compression utilities. For normal use, the noise level at complexity 1 is between 1 and 2 dB higher than at complexity 10, but the CPU requirements for complexity 10 is about 5 times higher than for complexity 1. In practice, the best trade-off is between complexity 2 and 4, though higher settings are often useful when encoding non-speech sounds like DTMF tones.</source>
-        <translation type="unfinished"/>
+        <translation>В случае Speex можно изменить сложность кодировщика. Он используется для определения глубины поиска в диапазоне от 1 до 10. Аналогичный принцип вводится в программах сжатия gzip и bzip2 с выбором от -1 до -9. В нормальных условиях шум при сложности составляет от 1 до 1 дБ, выше, чем комплекс 10. Однако загрузка процессора примерно в 5 раз выше, чем сложность 1. На практике установка между 2 и 4. хороша. Более высокие настройки подходят для передачи тонов DTMF или музыкального сигнала.</translation>
     </message>
     <message>
         <source>&amp;Narrow band payload type:</source>
@@ -4286,7 +4307,7 @@ If you disable this option, then the first codec from the active codecs that is 
     </message>
     <message>
         <source>There are 2 standards to pack the G.726 codewords into an RTP packet. RFC 3551 is the default packing method. Some SIP devices use ATM AAL2 however. If you experience bad quality using G.726 with RFC 3551 packing, then try ATM AAL2 packing.</source>
-        <translation type="unfinished"/>
+        <translation>Существует два метода упаковки пакетов данных G.726 в пакет RTP. По умолчанию это RFC 3551. Некоторые провайдеры SIP используют ATM AAL2. Если передача звука скомпрометирована при использовании кодека G.726, вы можете попробовать различные настройки здесь.</translation>
     </message>
     <message>
         <source>DT&amp;MF</source>
@@ -4364,7 +4385,17 @@ If you disable this option, then the first codec from the active codecs that is 
 &lt;p&gt;
 Send DTMF out-of-band via a SIP INFO request.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h2&gt;RFC 2833&lt;/h2&gt;
+&lt;p&gt;Отправляет тональные сигналы DTMF в виде телефонных событий в соответствии с RFC 2833.&lt;/p&gt;
+&lt;h2&gt;Аудио&lt;/h2&gt;
+&lt;p&gt;Он передает DTMF-диапазон (фактические тона, которые Twinkle добавляет к аудиосигналу).&lt;/p&gt;
+&lt;h2&gt;Авто&lt;/h2&gt;
+&lt;p&gt;Если контрагент поддерживает RFC 2833, тональные сигналы DTMF используются в соответствии со стандартом RFC 2833, в противном случае как в полосе.
+&lt;/p&gt;
+&lt;h2&gt;SIP INFO&lt;/h2&gt;
+&lt;p&gt;
+Отправляет DTMF вне диапазона по запросу SIP INFO.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>General</source>
@@ -4388,7 +4419,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>Indicates if RFC 2543 (set media IP address in SDP to 0.0.0.0) or RFC 3264 (use direction attributes in SDP) is used to put a call on-hold.</source>
-        <translation type="unfinished"/>
+        <translation>Указывает, используется ли RFC 2543 (настройка IP-адреса в SDP до 0.0.0.0) или RFC 3264 (используйте направленные атрибуты в SDP) для удержания вызова.</translation>
     </message>
     <message>
         <source>Allow m&amp;issing Contact header in 200 OK on REGISTER</source>
@@ -4400,7 +4431,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>A 200 OK response on a REGISTER request must contain a Contact header. Some registrars however, do not include a Contact header or include a wrong Contact header. This option allows for such a deviation from the specs.</source>
-        <translation type="unfinished"/>
+        <translation>Ответ 200 OK для запроса REGISTER должен содержать заголовок Contact. Некоторые поставщики либо не отправляют заголовок Contact, либо ошибаются. Эта опция допускает такое отклонение от спецификаций.</translation>
     </message>
     <message>
         <source>&amp;Max-Forwards header is mandatory</source>
@@ -4412,7 +4443,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>According to RFC 3261 the Max-Forwards header is mandatory. But many implementations do not send this header. If you tick this box, Twinkle will reject a SIP request if Max-Forwards is missing.</source>
-        <translation type="unfinished"/>
+        <translation>Согласно RFC3261, требуется заголовок Max-Forward. Часто, однако, он не отправляется. Если включено, Twinkle отклонит запросы SIP, которые не содержит заголовок Max-Forward.</translation>
     </message>
     <message>
         <source>Put &amp;registration expiry time in contact header</source>
@@ -4424,7 +4455,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>In a REGISTER message the expiry time for registration can be put in the Contact header or in the Expires header. If you tick this box it will be put in the Contact header, otherwise it goes in the Expires header.</source>
-        <translation type="unfinished"/>
+        <translation>Время истечения срока регистрации в запросе REGISTER может передаваться как в заголовке Contact, так и в заголовке Expires. Если включено, Twinkle отправляет его в заголовок Contact, иначе в заголовке Expires.</translation>
     </message>
     <message>
         <source>&amp;Use compact header names</source>
@@ -4432,7 +4463,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>Indicates if compact header names should be used for headers that have a compact form.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, короткая форма будет использоваться для заголовков, если таковые имеются.</translation>
     </message>
     <message>
         <source>Allow SDP change during call setup</source>
@@ -4441,7 +4472,8 @@ Send DTMF out-of-band via a SIP INFO request.
     <message>
         <source>&lt;p&gt;A SIP UAS may send SDP in a 1XX response for early media, e.g. ringing tone. When the call is answered the SIP UAS should send the same SDP in the 200 OK response according to RFC 3261. Once SDP has been received, SDP in subsequent responses should be discarded.&lt;/p&gt;
 &lt;p&gt;By allowing SDP to change during call setup, Twinkle will not discard SDP in subsequent responses and modify the media stream if the SDP is changed. When the SDP in a response is changed, it must have a new version number in the o= line.&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;SIP UAS может отправлять SDP в 1XX-ответе на звук вызова, например мелодию звонка. Если вызов получен, SIP UAS согласно RFC 3261 должен отправить тот же SDP в ответ 200 OK. После того, как SDP будет принят, все ответы SDP должны быть отброшены.&lt;/p&gt;
+&lt;p&gt;Если SDP разрешено изменять во время вызова, Twinkle не будет игнорировать SDP в следующих ответах, но при необходимости изменит свойства потока RTP. Изменённый SDP должен иметь новый номер версии в строке «o =».&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Use domain &amp;name to create a unique contact header value</source>
@@ -4470,7 +4502,23 @@ Some proxies do not handle a contact header value like this. You can disable thi
 &lt;p&gt;
 This format is what most SIP phones use.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;Если включено, Twinkle создаёт уникальное значение для заголовка контакта, используя комбинацию имени пользователя SIP и имени домена:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;tt&gt;&amp;nbsp;user_domain@local_ip&lt;/tt&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Это позволяет использовать несколько профилей пользователей с одним и тем же именем пользователя, но с разными доменами, которые затем имеют разные контактные адреса, и поэтому эти профили могут использоваться одновременно.
+&lt;/p&gt;
+&lt;p&gt;
+Некоторые прокси-серверы не могут обрабатывать такие заголовки контактов. Если этот параметр отключен, Twinkle отправляет заголовок контакта в следующем формате:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;tt&gt;&amp;nbsp;user@local_ip&lt;/tt&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Этот формат используется большинством SIP-телефонов.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Encode Via, Route, Record-Route as list</source>
@@ -4478,7 +4526,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>The Via, Route and Record-Route headers can be encoded as a list of comma separated values or as multiple occurrences of the same header.</source>
-        <translation type="unfinished"/>
+        <translation>Via, Route and Record-Route-заголовки могут быть закодированы как список значений, разделённых запятыми, или как одно значение, каждое в своем заголовке.</translation>
     </message>
     <message>
         <source>Redirection</source>
@@ -4494,7 +4542,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should redirect a request if a 3XX response is received.</source>
-        <translation type="unfinished"/>
+        <translation>Указывает, должен ли Twinkle перенаправить запрос на 3XX-ответ.</translation>
     </message>
     <message>
         <source>Ask user &amp;permission to redirect</source>
@@ -4502,7 +4550,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should ask the user before redirecting a request when a 3XX response is received.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle спрашивает, запрашивает ли пользователь 3XX, чтобы исходящий вызов был перенаправлен на новый пункт назначения.</translation>
     </message>
     <message>
         <source>Max re&amp;directions:</source>
@@ -4510,7 +4558,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>The number of redirect addresses that Twinkle tries at a maximum before it gives up redirecting a request. This prevents a request from getting redirected forever.</source>
-        <translation type="unfinished"/>
+        <translation>Номер переадресации исходящих вызовов, после которого Twinkle прекращает попытки установить соединение. Предотвращает перегрузку при перенаправлении.</translation>
     </message>
     <message>
         <source>SIP extensions</source>
@@ -4541,7 +4589,14 @@ This format is what most SIP phones use.
 &lt;b&gt;required&lt;/b&gt;: 100rel is required (it is put in the require header of an outgoing INVITE). If an incoming INVITE indicates that it supports 100rel, then Twinkle will require a PRACK when sending a 1xx response. A call will fail when the far-end does not support 100rel.
 &lt;br&gt;&lt;br&gt;
 &lt;b&gt;preferred&lt;/b&gt;: Similar to required, but if a call fails because the far-end indicates it does not support 100rel (420 response) then the call will be re-attempted without the 100rel requirement.</source>
-        <translation type="unfinished"/>
+        <translation>Определяет, как продвигать расширение 100rel (PRACK):&lt;br&gt;&lt;br&gt;
+&lt;b&gt;выключено&lt;/b&gt;: расширение 100rel не поддерживается
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;включено&lt;/b&gt;: поддерживается 100rel (добавлено в исходящий INVITE в качестве поддерживаемого заголовка). Затем контрагент может запросить PRACK для ответа 1xx.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;требуется&lt;/b&gt;: требуется 100rel. Запрос вставляется в требуемый заголовок в исходящем INVITE. Если INVITE отмечен как «100rel», тогда Twinkle будет требовать PRACK в ответе 1xx, если 100rel-копия не поддерживает соединение.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;предпочитаемый&lt;/b&gt;. Также как «требуется», на всякий случай, если вызов завершился неудачно, потому что партнер не поддерживает 100rel (ответ 420), тогда Twinkle пытается повторно подключить вызов, не требуя 100rel.</translation>
     </message>
     <message>
         <source>&amp;100 rel (PRACK):</source>
@@ -4553,7 +4608,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if the Replaces-extenstion is supported.</source>
-        <translation type="unfinished"/>
+        <translation>Указывает, поддерживается ли расширение Replaces.</translation>
     </message>
     <message>
         <source>REFER</source>
@@ -4569,7 +4624,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should transfer a call if a REFER request is received.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle следует за обратным запросом (REFER), чтобы перенаправить вызов на другой адрес.</translation>
     </message>
     <message>
         <source>As&amp;k user permission to transfer</source>
@@ -4581,7 +4636,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should ask the user before transferring a call when a REFER request is received.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle запрашивает запрос пересылки при получении запроса (REFER).</translation>
     </message>
     <message>
         <source>Hold call &amp;with referrer while setting up call to transfer target</source>
@@ -4593,7 +4648,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should put the current call on hold when a REFER request to transfer a call is received.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle удерживает существующий вызов, когда входящий запрос REFER при перенаправлении.</translation>
     </message>
     <message>
         <source>Ho&amp;ld call with referee before sending REFER</source>
@@ -4605,7 +4660,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if Twinkle should put the current call on hold when you transfer a call.</source>
-        <translation type="unfinished"/>
+        <translation>Указывает, должен ли Twinkle удерживать вызов при пересылке.</translation>
     </message>
     <message>
         <source>Auto re&amp;fresh subscription to refer event while call transfer is not finished</source>
@@ -4613,7 +4668,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>While a call is being transferred, the referee sends NOTIFY messages to the referrer about the progress of the transfer. These messages are only sent for a short interval which length is determined by the referee. If you tick this box, the referrer will automatically send a SUBSCRIBE to lengthen this interval if it is about to expire and the transfer has not yet been completed.</source>
-        <translation type="unfinished"/>
+        <translation>Во время переадресации вызова агент пересылки отправляет сообщение NOTIFY на маршруте пересылки на тот, чей вызов переадресован. Но только на короткое время. Это определяется тем, кто перенаправляется. Если этот параметр включен, (Twinkle) автоматически отправляет SUBCRIBE, чтобы продлить это время до завершения процесса перенаправления.</translation>
     </message>
     <message>
         <source>Attended refer to AoR (Address of Record)</source>
@@ -4621,7 +4676,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endoint.</source>
-        <translation type="unfinished"/>
+        <translation>Приходящая передача вызова должна использовать URI контакта в качестве адресата для связи нового соединения, перенаправленного на контрагента. Однако этот адрес не может быть глобально действительным. В качестве альтернативы можно использовать AoR (адрес записи). Недостатком является то, что с несколькими конечными устройствами AoR однозначен, тогда как URI контакта направляется на одно устройство.</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -4637,7 +4692,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Include a P-Preferred-Identity header with your identity in an INVITE request for a call with identity hiding.</source>
-        <translation type="unfinished"/>
+        <translation>Включать заголовок P-Preferred-Identity с вашей личностью в запросе INVITE для вызова со скрытием личности.</translation>
     </message>
     <message>
         <source>SIP transport</source>
@@ -4653,7 +4708,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Transport mode for SIP. In auto mode, the size of a message determines which transport protocol is used. Messages larger than the UDP threshold are sent via TCP. Smaller messages are sent via UDP.</source>
-        <translation type="unfinished"/>
+        <translation>Режим передачи для SIP. В автоматическом режиме размер сообщения определяет, какой транспортный протокол используется. Сообщения, превышающие границы UDP, отправляются через TCP. Меньшие сообщения отправляются через UDP.</translation>
     </message>
     <message>
         <source>T&amp;ransport protocol:</source>
@@ -4665,7 +4720,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Messages larger than the threshold are sent via TCP. Smaller messages are sent via UDP.</source>
-        <translation type="unfinished"/>
+        <translation>Сообщения, превышающие указанную границу, отправляются через TCP. Меньшие сообщения через UDP.</translation>
     </message>
     <message>
         <source>NAT traversal</source>
@@ -4677,7 +4732,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Choose this option when there is no NAT device between you and your SIP proxy or when your SIP provider offers hosted NAT traversal.</source>
-        <translation type="unfinished"/>
+        <translation>Выберите этот вариант, если между Twinkle и вашим SIP-прокси отсутствует NAT, или если ваш провайдер может самостоятельно преодолеть NAT.</translation>
     </message>
     <message>
         <source>&amp;Use statically configured public IP address inside SIP messages</source>
@@ -4686,7 +4741,8 @@ This format is what most SIP phones use.
     <message>
         <source>Indicates if Twinkle should use the public IP address specified in the next field inside SIP message, i.e. in SIP headers and SDP body instead of the IP address of your network interface.&lt;br&gt;&lt;br&gt;
 When you choose this option you have to create static address mappings in your NAT device as well. You have to map the RTP ports on the public IP address to the same ports on the private IP address of your PC.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle будет использовать общедоступный IP-адрес внутри сообщений SIP (в заголовке SIP и теле SDP) вместо IP-адреса вашего сетевого интерфейса.&lt;br&gt;&lt;br&gt;
+Если вы выберете эту опцию, вам также необходимо направить соответствующие порты RTP на ваш компьютер на устройстве NAT.</translation>
     </message>
     <message>
         <source>Use &amp;STUN (does not work for incoming TCP)</source>
@@ -4722,7 +4778,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>If a URI indicates a telephone number, then only display the user part. E.g. if a call comes in from sip:123456@twinklephone.com then display only &quot;123456&quot; to the user. A URI indicates a telephone number if it contains the &quot;user=phone&quot; parameter or when it has a numerical user part and you ticked the next option.</source>
-        <translation type="unfinished"/>
+        <translation>Если URI указывает номер телефона, отображается только пользовательская часть адреса. К примеру, если звонок поступает из sip: 12345@voipprovider.com, Twinkle будет отображать только как «12345». URI считается номером телефона, если он содержит параметр «пользователь=телефон» или если активна следующая опция, а пользовательская часть адреса является числовой.</translation>
     </message>
     <message>
         <source>&amp;URI with numerical user part is a telephone number</source>
@@ -4730,7 +4786,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>If you tick this option, then Twinkle considers a SIP address that has a user part that consists of digits, *, #, + and special symbols only as a telephone number. In an outgoing message, Twinkle will add the &quot;user=phone&quot; parameter to such a URI.</source>
-        <translation type="unfinished"/>
+        <translation>Если этот параметр включен, Twinkle рассматривает каждый SIP-адрес в качестве номера телефона, если он содержит только цифры, *, #, + и специальные символы в исходящем сообщении. В исходящих SIP-сообщениях Twinkle отмечает такие адреса с параметром «пользователь=телефон».</translation>
     </message>
     <message>
         <source>&amp;Remove special symbols from numerical dial strings</source>
@@ -4738,7 +4794,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>Telephone numbers are often written with special symbols like dashes and brackets to make them readable to humans. When you dial such a number the special symbols must not be dialed. To allow you to simply copy/paste such a number into Twinkle, Twinkle can remove these symbols when you hit the dial button.</source>
-        <translation type="unfinished"/>
+        <translation>Чтобы упростить чтение чисел, их часто печатают с использованием специальных символов, таких как «(», «)», «» (пустой символ), «-». При наборе номера, особенно любых SIP-адресах, эти символы могут не передаваться. Чтобы упростить набор для копирования/вставки, Twinkle может автоматически удалять эти символы при наборе.</translation>
     </message>
     <message>
         <source>&amp;Special symbols:</source>
@@ -4762,7 +4818,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>&lt;p&gt;
-Often the format of the telphone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects '00' instead of the '+', or you are at the office and all your numbers need to be prefixed with a '9' to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
+Often the format of the telphone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects &apos;00&apos; instead of the &apos;+&apos;, or you are at the office and all your numbers need to be prefixed with a &apos;9&apos; to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
 &lt;/p&gt;
 &lt;p&gt;
 For each number you dial, Twinkle will try to find a match in the list of match expressions. For the first match it finds, the number will be replaced with the format string. If no match is found, the number stays unchanged.
@@ -4772,7 +4828,7 @@ The number conversion rules are also applied to incoming calls, so the numbers a
 &lt;/p&gt;
 &lt;h3&gt;Example 1&lt;/h3&gt;
 &lt;p&gt;
-Assume your country code is 31 and you have stored all numbers in your address book in full international number format, e.g. +318712345678. For dialling numbers in your own country you want to strip of the '+31' and replace it by a '0'. For dialling numbers abroad you just want to replace the '+' by '00'.
+Assume your country code is 31 and you have stored all numbers in your address book in full international number format, e.g. +318712345678. For dialling numbers in your own country you want to strip of the &apos;+31&apos; and replace it by a &apos;0&apos;. For dialling numbers abroad you just want to replace the &apos;+&apos; by &apos;00&apos;.
 &lt;/p&gt;
 &lt;p&gt;
 The following rules will do the trick:
@@ -4792,7 +4848,40 @@ You are at work and all telephone numbers starting with a 0 should be prefixed w
 Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
 &lt;/tt&gt;
 &lt;/blockquote&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Часто количество телефонных номеров, ожидаемых от провайдера VoIP, не совпадает с количеством, сохранённым в каталоге. К примеру, для номеров, начинающихся с «+» и национального кода страны, ваш провайдер ожидает «+» вместо «00». Или, если вы подключены к локальной сети SIP, вам необходимо предварительно указать номер доступа.
+Можно установить общепринятые правила для преобразования телефонных номеров с использованием шаблонов поиска и свопинга (с помощью регулярных выражений и языка Perl).
+&lt;/p&gt;
+&lt;p&gt;
+Каждый раз, когда вы набираете номер, Twinkle пытается найти соответствующие номера в списке шаблонов поиска для чисел со стороны пользователя SIP-адреса. Первое найденное совпадающее выражение - это исходное число, а позиция в («») в поисковом выражении (например, «([0-9] *)» для «любого числа чисел» заменяется символами соответствующих переменных. К примеру, «1 доллар» для первой позиции. См. также `man 7 regex` или konqueror:«#regex». Если совпадающий шаблон не найден, число остаётся неизменным.
+&lt;/p&gt;
+&lt;p&gt;
+Правила будут также применяться к номерам входящих вызовов. В зависимости от установленных правил они будут преобразованы в нужный формат.
+&lt;/p&gt;
+&lt;h3&gt;1. пример&lt;/h3&gt;
+&lt;p&gt;
+К примеру, ваш национальный код «420» для Чешской Республики, и в вашем каталоге у вас также есть много национальных номеров, хранящихся в международном формате. Например, позвоните по телефону +420 777 2345678. Тем не менее, провайдер VoIP ожидает по национальному звонку 0577 2345678. Вы хотите заменить «+420» на «0» и заменить «+» на «00» на внешние вызовы.
+&lt;/p&gt;
+&lt;p&gt;
+В этом порядке требуются следующие правила:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Поисковый запрос = \ +49 ([0-9] *), Замена = 0 $ 1&lt;br&gt;
+Поисковый запрос = \ + ([0-9] *), Замена = 00 $ 1&lt;/br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2. пример&lt;/h3&gt;
+&lt;p&gt;
+Вы находитесь на телефонной станции, и все номера с 0 в качестве первой цифры должны быть пронумерованы 9.
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Поисковый запрос = 0 [0-9] *, Замена = 9 $ &amp;&lt;br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+($&amp; - специальная переменная, в которой хранится весь исходный номер)&lt;br&gt;
+Примечание. Это правило нельзя задать просто как третье правило для двух правил в предыдущем примере. Это будет использовать только первое, чтобы соответствовать поиску. Вместо этого замена в Правилах 1 и 2 должна быть изменена - «57$1» и «577$1»,</translation>
     </message>
     <message>
         <source>Move the selected number conversion rule upwards in the list.</source>
@@ -4840,7 +4929,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
     </message>
     <message>
         <source>When an incoming call is received, this timer is started. If the user answers the call, the timer is stopped. If the timer expires before the user answers the call, then Twinkle will reject the call with a &quot;480 User Not Responding&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Этот таймер запускается при приёме входящего вызова. Если вызов не получен до конца времени задержки, то Twinkle отклоняет вызов с сообщением «480 пользователь не отвечает».</translation>
     </message>
     <message>
         <source>NAT &amp;keep alive:</source>
@@ -4869,7 +4958,12 @@ Specify the file name of a .wav file that you want to be played as ring back ton
 &lt;p&gt;
 This ring back tone overrides the ring back tone settings in the system settings.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Введите имя .wav для звонка, вызываемого для этого пользователя.
+&lt;/p&gt;
+&lt;p&gt;
+Этот тон заменяет мелодию звонка для вызывающего абонента из системной настройки.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -4878,7 +4972,12 @@ Specify the file name of a .wav file that you want to be played as ring tone for
 &lt;p&gt;
 This ring tone overrides the ring tone settings in the system settings.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Введите имя .wav-файла для мелодии звонка в этом профиле пользователя.
+&lt;/p&gt;
+&lt;p&gt;
+Этот параметр заменяет мелодию звонка на системные настройки.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Ring tone:</source>
@@ -4894,7 +4993,18 @@ The values of all SIP headers of the outgoing SIP BYE request are passed in envi
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=local_release&lt;/b&gt;. &lt;b&gt;SIPREQUEST_METHOD=BYE&lt;/b&gt;. &lt;b&gt;SIPREQUEST_URI&lt;/b&gt; contains the request-URI of the BYE.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет запущен, если вызов будет завершён вами.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех заголовков SIP, отправленных на запросы SIP BYE, будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=local_release&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_METHOD=BYE&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_URI&lt;/b&gt; содержит запрос-URI метода BYE.
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>Select script file.</source>
@@ -4910,7 +5020,18 @@ The values of all SIP headers of the outgoing SIP failure response are passed in
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=in_call_failed&lt;/b&gt;. &lt;b&gt;SIPSTATUS_CODE&lt;/b&gt; contains the status code of the failure response. &lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; contains the reason phrase.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет запущен, если входящий вызов не будет принят. То есть. звон заканчивается без «снятия».
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех заголовков SIP, отправленных в ответ на отказ SIP, будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=in_call_failed&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_CODE&lt;/b&gt; содержит код состояния, отправленный в ответ на отказ SIP.
+&lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; содержит «фразу причины», которая является причиной ошибки с использованием обычного текста.
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -4922,7 +5043,18 @@ The values of all SIP headers of the incoming SIP BYE request are passed in envi
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=remote_release&lt;/b&gt;. &lt;b&gt;SIPREQUEST_METHOD=BYE&lt;/b&gt;. &lt;b&gt;SIPREQUEST_URI&lt;/b&gt; contains the request-URI of the BYE.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт запускается, когда вызов завершается контрагентом.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех SIP-записей SIP запросов SIP будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=remote_release&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_METHOD=BYE&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_URI&lt;/b&gt; содержит сигнал запроса-URI.
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -4977,7 +5109,58 @@ The values of all SIP headers in the incoming INVITE message are passed in envir
 &lt;/p&gt;
 &lt;p&gt;
 TWINKLE_TRIGGER=in_call. SIPREQUEST_METHOD=INVITE. The request-URI of the INVITE will be passed in &lt;b&gt;SIPREQUEST_URI&lt;/b&gt;. The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Здесь вы можете редактировать, как Twinkle выполняет входящие звонки. Twinkle может запускать скрипт при входящих вызовах. В зависимости от вывода Twinkle он принимает, отклоняет или перенаправляет вызов. Сценарий также может повлиять на мелодию звонка. Это может быть любая исполняемая программа.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;Примечание.&lt;/b&gt; Twinkle перестанет работать во время запуска скрипта. Мы рекомендуем, чтобы сценарий не запускался более 200 мс. Если вам нужно больше времени, вы можете отправить &lt;b&gt;end&lt;/b&gt; после отправки параметров и продолжения работы. Twinkle будет продолжать работать сам после принятия параметра &lt;b&gt;end&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+action=[ continue | reject | dnd | redirect | autoanswer ]&lt;br&gt;
+reason=&amp;lt;строка&amp;gt;&lt;br&gt;
+contact=&amp;lt;адрес для перенаправления&amp;gt;&lt;br&gt;
+caller_name=&amp;lt;имя вызывающего абонента для отображения&amp;gt;&lt;br&gt;
+ringtone=&amp;lt;имя файла .wav&amp;gt;&lt;br&gt;
+display_msg=&amp;lt;сообщение для отображения на дисплее&amp;gt;&lt;br&gt;
+end&lt;br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+&lt;/p&gt;
+&lt;h2&gt;Параметры&lt;/h2&gt;
+&lt;h3&gt;action&lt;/h3&gt;
+&lt;p&gt;
+&lt;b&gt;continue&lt;/b&gt; - продолжить обычную обработку вызовов (по умолчанию)&lt;br&gt;
+&lt;b&gt;reject&lt;/b&gt; - отклонить вызов
+&lt;b&gt;dnd&lt;/b&gt; - отклонить вызов, используя «не беспокоить»&lt;br&gt;
+&lt;b&gt;redirect&lt;/b&gt; - перенаправление вызовов на &lt;b&gt;контакт&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;autoanswer&lt;/b&gt; - автоматически принимать вызовы&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Когда сценарий не записывает действие в stdout, действие по умолчанию продолжается.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;reason: &lt;/b&gt;
+С параметром reason вы можете установить строку причины для отклонения или dnd. Это может быть показано дальнему конечному пользователю.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;caller_name: &lt;/b&gt;
+Этот параметр переопределит отображаемое имя вызывающего абонента.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;ringtone: &lt;/b&gt;
+Параметр ringtone указывает файл .wav, который будет воспроизводиться в качестве мелодии звонка, когда действие будет продолжено.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Значения всех входящих INVITE SIP-заголовков будут переданы этому скрипту. Структура переменных: &lt;b&gt;SIP_&amp;lt;HEADER_NAME&amp;gt;&lt;/b&gt;. Например, SIP_FROM содержит значение «from header».
+&lt;/p&gt;
+&lt;p&gt;
+TWINKLE_TRIGGER=in_call.&lt;br&gt;
+SIPREQUEST_METHOD=INVITE.&lt;br&gt;
+SIPREQUEST_URI содержит URI запроса INVITE&lt;br&gt;
+TWINKLE_USER_PROFILE содержит имя профиля пользователя, для которого определяется входящий вызов.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -4989,7 +5172,18 @@ The values of all SIP headers of the incoming 200 OK are passed in environment v
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=out_call_answered&lt;/b&gt;. &lt;b&gt;SIPSTATUS_CODE=200&lt;/b&gt;. &lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; contains the reason phrase.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет запущен, если вызов будет принят контрагентом.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех заголовков SIP, входящих в сообщение «200 OK», будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=out_call_answered&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_CODE=200&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; содержит &quot;фразу причины&quot;
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5001,7 +5195,18 @@ The values of all SIP headers of the outgoing 200 OK are passed in environment v
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=in_call_answered&lt;/b&gt;. &lt;b&gt;SIPSTATUS_CODE=200&lt;/b&gt;. &lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; contains the reason phrase.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет запущен, если будет получен входящий вызов.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h3&gt;
+&lt;p&gt;
+Содержимое всех исходящих ответов «200 OK» заголовка SIP будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=in_call_answered&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_CODE=200&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; содержит &quot;фразу причины&quot;
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>Call released locall&amp;y:</source>
@@ -5017,7 +5222,18 @@ The values of all SIP headers of the incoming SIP failure response are passed in
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=out_call_failed&lt;/b&gt;. &lt;b&gt;SIPSTATUS_CODE&lt;/b&gt; contains the status code of the failure response. &lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; contains the reason phrase.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет работать, если исходящие вызовы не могут быть выполнены. Например, из-за таймаута, DND,
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех SIP-заголовков полученных ответов SIP будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=out_call_failed&lt;/b&gt;.
+&lt;b&gt;SIPSTATUS_CODE&lt;/b&gt; содержит код состояния, отправленный сбойным ответом SIP.
+&lt;b&gt;SIPSTATUS_REASON&lt;/b&gt; включает в себя «фразу причины», сообщение об ошибке обычного текста.
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5029,7 +5245,18 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
 &lt;/p&gt;
 &lt;p&gt;
 &lt;b&gt;TWINKLE_TRIGGER=out_call&lt;/b&gt;. &lt;b&gt;SIPREQUEST_METHOD=INVITE&lt;/b&gt;. &lt;b&gt;SIPREQUEST_URI&lt;/b&gt; contains the request-URI of the INVITE.  The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;p&gt;
+Этот скрипт будет запущен, если будут сделаны какие-либо вызовы.
+&lt;/p&gt;
+&lt;h2&gt;Системные переменные&lt;/h2&gt;
+&lt;p&gt;
+Содержимое всех заголовков SIP, отправленных запросами SIP INVITE, будет передано этому скрипту с использованием следующих системных переменных:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;TWINKLE_TRIGGER=out_call&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_METHOD=INVITE&lt;/b&gt;.
+&lt;b&gt;SIPREQUEST_URI&lt;/b&gt; содержит запрос запроса запроса INVITE.
+&lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt; содержит имя активного профиля пользователя.</translation>
     </message>
     <message>
         <source>Outgoing call a&amp;nswered:</source>
@@ -5065,7 +5292,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle пытается зашифровать аудиоданные во всех исходящих и входящих вызовах. Для того, чтобы вызов был зашифрован, контрагент должен также поддерживать шифрование ZRTP / SRTP. В противном случае вызов остаётся незашифрованным.</translation>
     </message>
     <message>
         <source>ZRTP settings</source>
@@ -5077,7 +5304,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>A SIP endpoint supporting ZRTP may indicate ZRTP support during call setup in its signalling. Enabling this option will cause Twinkle only to encrypt calls when the remote party indicates ZRTP support.</source>
-        <translation type="unfinished"/>
+        <translation>Контрагент, поддерживающий ZRTP, может сообщить об этом в начале разговора. Если этот параметр включен, Twinkle пытается использовать шифрованную передачу вызова в таких случаях.</translation>
     </message>
     <message>
         <source>&amp;Indicate ZRTP support in SDP</source>
@@ -5085,7 +5312,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>Twinkle will indicate ZRTP support during call setup in its signalling.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle сообщает контрагенту при вызове вызов SDP, который поддерживает ZRTP.</translation>
     </message>
     <message>
         <source>&amp;Popup warning when remote party disables encryption during call</source>
@@ -5093,7 +5320,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>A remote party of an encrypted call may send a ZRTP go-clear command to stop encryption. When Twinkle receives this command it will popup a warning if this option is enabled.</source>
-        <translation type="unfinished"/>
+        <translation>Контрагент может отправить команду ZRTP-go-clear во время зашифрованного вызова для отмены шифрования. Если этот параметр включен, Twinkle немедленно предупреждает вас об этой проблеме безопасности.</translation>
     </message>
     <message>
         <source>&amp;Voice mail address:</source>
@@ -5124,7 +5351,18 @@ Asterisk provides unsollicited message waiting indication.
 &lt;p&gt;
 Sollicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;H2&gt;Тип отображения ожидающего сообщения&lt;/H2&gt;
+&lt;p&gt;
+Если ваш SIP-провайдер предлагает оповещения о сохранённых сообщениях в вашей голосовой почте, Twinkle может рассказать вам о новых и уже услышанных сообщениях в вашей голосовой почте. Спросите своего провайдера, какой тип ожидающего сообщения используется
+&lt;/p&gt;
+&lt;H3&gt;Нежелательный&lt;/H3&gt;
+&lt;p&gt;
+Asterisk поддерживает нежелательные ожидающие сообщения.
+&lt;/p&gt;
+&lt;H3&gt;Запрошенный&lt;/H3&gt;
+&lt;p&gt;
+Запрошенная индикация ожидающего сообщения в соответствии с RFC 3842.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;MWI type:</source>
@@ -5148,7 +5386,7 @@ Sollicited message waiting indication as specified by RFC 3842.
     </message>
     <message>
         <source>For sollicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
-        <translation type="unfinished"/>
+        <translation>Согласно спецификации MWI, конечное устройство сообщает серверу о получении сообщения в течение определённого периода времени, и до истечения этого времени регистрация должна возобновиться.</translation>
     </message>
     <message>
         <source>Your user name for accessing your voice mailbox.</source>
@@ -5164,7 +5402,7 @@ Sollicited message waiting indication as specified by RFC 3842.
     </message>
     <message>
         <source>Check this option if Twinkle should send SIP messages to the mailbox server via the outbound proxy.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, Twinkle отправляет SIP-сообщения на сервер голосовой почты через исходящие прокси.</translation>
     </message>
     <message>
         <source>&amp;Maximum number of sessions:</source>
@@ -5242,7 +5480,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>You must fill in a mailbox server</source>
-        <translation>Вы должны заполнить сервер почтового ящика.</translation>
+        <translation>Вы должны заполнить сервер почтового ящика</translation>
     </message>
     <message>
         <source>Invalid mailbox server.</source>
@@ -5320,7 +5558,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Keep the TCP connection established during registration open such that the SIP proxy can reuse this connection to send incoming requests. Application ping packets are sent to test if the connection is still alive.</source>
-        <translation type="unfinished"/>
+        <translation>Храните открытые TCP-соединения, созданные во время регистрации, чтобы прокси-сервер SIP мог использовать это соединение для передачи входящих запросов. Приложение отправляет пакеты ping для определения того, продолжает ли соединение оставаться активным.</translation>
     </message>
     <message>
         <source>&amp;Send composing indications when typing a message.</source>
@@ -5340,11 +5578,11 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Authentication management field for AKAv1-MD5 authentication.</source>
-        <translation type="unfinished"/>
+        <translation>Параметры управления аутентификацией для аутентификации AKAv1-MD5.</translation>
     </message>
     <message>
         <source>Operator variant key for AKAv1-MD5 authentication.</source>
-        <translation type="unfinished"/>
+        <translation>Операционная версия ключа аутентификации AKAv1-MD5.</translation>
     </message>
     <message>
         <source>Prepr&amp;ocessing</source>
@@ -5360,7 +5598,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Automatic gain control (AGC) is a feature that deals with the fact that the recording volume may vary by a large amount between different setups. The AGC provides a way to adjust a signal to a reference volume. This is useful because it removes the need for manual adjustment of the microphone gain. A secondary advantage is that by setting the microphone gain to a conservative (low) level, it is easier to avoid clipping.</source>
-        <translation type="unfinished"/>
+        <translation>Из-за большой разницы в громкости записи в разных настройках была введена функция автоматического регулирования усиления (AGC). AGC позволяет установить уровень сигнала на заданное значение. Это не требует ручной регулировки громкости микрофона вручную. Другим преимуществом является то, что настройка громкости микрофона обычно находится на более низком (консервативном) уровне, предотвращая вырезание большого количества звука.</translation>
     </message>
     <message>
         <source>Automatic gain control &amp;level:</source>
@@ -5368,7 +5606,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Automatic gain control level represents percentual value of automatic gain setting of a microphone. Recommended value is about 25%.</source>
-        <translation type="unfinished"/>
+        <translation>Уровень автоматического регулирования громкости - это процент от максимального объёма микрофона. Рекомендуемое значение составляет около 25%.</translation>
     </message>
     <message>
         <source>&amp;Voice activity detection</source>
@@ -5376,7 +5614,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>When enabled, voice activity detection detects whether the input signal represents a speech or a silence/background noise.</source>
-        <translation type="unfinished"/>
+        <translation>Если включено, распознавание голоса определяет, есть ли на аудиовходе голос или фоновый шум/шум.</translation>
     </message>
     <message>
         <source>&amp;Noise reduction</source>
@@ -5384,7 +5622,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>The noise reduction can be used to reduce the amount of background noise present in the input signal. This provides higher quality speech.</source>
-        <translation type="unfinished"/>
+        <translation>Подавление помех может использоваться для уменьшения помех во входном сигнале. Это приводит к улучшению качества речи.</translation>
     </message>
     <message>
         <source>Acoustic &amp;Echo Cancellation</source>
@@ -5392,7 +5630,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>In any VoIP communication, if a speech from the remote end is played in the local loudspeaker, then it propagates in the room and is captured by the microphone. If the audio captured from the microphone is sent directly to the remote end, then the remote user hears an echo of his voice. An acoustic echo cancellation is designed to remove the acoustic echo before it is sent to the remote end. It is important to understand that the echo canceller is meant to improve the quality on the remote end.</source>
-        <translation type="unfinished"/>
+        <translation>Если при любой VoIP коммуникации звук воспроизводится на громкоговорителях громкой связи, он может развернуться в комнате и вернуться в микрофон. Если этот сигнал отправляется обратно вызывающему абоненту, он слышит эхо своего голоса. Функция подавления акустического эха предназначена для подавления этих звуков перед их отправкой вызывающему абоненту. Важно отметить, что эта функция предназначена для повышения качества передачи голоса, с другой стороны.</translation>
     </message>
     <message>
         <source>Variable &amp;bit-rate</source>
@@ -5408,7 +5646,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Speex is a lossy codec, which means that it achieves compression at the expense of fidelity of the input speech signal. Unlike some other speech codecs, it is possible to control the tradeoff made between quality and bit-rate. The Speex encoding process is controlled most of the time by a quality parameter that ranges from 0 to 10.</source>
-        <translation type="unfinished"/>
+        <translation>Speex - это кодек потерь, что означает, что за счёт качества достигается снижение потока данных. В отличие от других голосовых кодеков, можно установить компромисс между качеством и битрейтом. Процесс кодирования для этого кодека обычно контролируется установкой параметра качества в диапазоне от 0 до 10.</translation>
     </message>
     <message>
         <source>bytes</source>
@@ -5420,7 +5658,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Expand a dialed telephone number to a tel-URI instead of a sip-URI.</source>
-        <translation type="unfinished"/>
+        <translation>Увеличьте номер телефона удалённого доступа до tel-URI, а не sip-URI.</translation>
     </message>
     <message>
         <source>Accept call &amp;transfer request (incoming REFER)</source>
@@ -5432,7 +5670,7 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>When you perform an attended call transfer, you normally transfer the call after you established a consultation call. If you enable this option you can transfer the call while the consultation call is still in progress. This is a non-standard implementation and may not work with all SIP devices.</source>
-        <translation type="unfinished"/>
+        <translation>Если вы выполняете вспомогательную передачу, вы обычно переключаете вызов после консультации с контрагентом. После включения этой опции вы можете передать вызов, пока консультация всё ещё продолжается. Это нестандартная реализация, которая может не работать должным образом со всеми устройствами SIP.</translation>
     </message>
     <message>
         <source>Enable NAT &amp;keep alive</source>
@@ -5440,11 +5678,11 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     </message>
     <message>
         <source>Send UDP NAT keep alive packets.</source>
-        <translation type="unfinished"/>
+        <translation>Отправлять UDP-пакеты для поддержки соединения через NAT.</translation>
     </message>
     <message>
         <source>If you have enabled STUN or NAT keep alive, then Twinkle will send keep alive packets at this interval rate to keep the address bindings in your NAT device alive.</source>
-        <translation type="unfinished"/>
+        <translation>Если у вас включен STUN или NAT, то Twinkle отправит пакеты обслуживания на этот интервал, чтобы сохранить отображение на вашем NAT.</translation>
     </message>
 </context>
 <context>
