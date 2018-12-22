@@ -36,8 +36,9 @@ public:
 	KContactsTableModel(QObject *parent, const list<t_address_card>& data = list<t_address_card>());
 	virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
-	void replaceAddresses(const list<t_address_card>& data);
+	void loadContacts(const KContacts::Addressee::List& data, bool sip_only = false);
 
+private:
 	static t_address_card addressCard(const KContacts::Addressee& contact, const KContacts::PhoneNumber& phone_number);
 };
 

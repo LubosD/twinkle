@@ -122,20 +122,7 @@ void GetAddressForm::show()
 void GetAddressForm::loadAddresses()
 {
 #ifdef HAVE_AKONADI
-	list<t_address_card> data;
-	for (const KContacts::Addressee& contact : ABOOK->get_contacts())
-	{
-		for (const KContacts::PhoneNumber& phone_number : contact.phoneNumbers())
-		{
-			QString phone = phone_number.number();
-			if (!sys_config->get_ab_show_sip_only() ||
-			    phone.startsWith("sip:"))
-			{
-				data.push_back(KContactsTableModel::addressCard(contact, phone_number));
-			}
-		}
-	}
-	k_model->replaceAddresses(data);
+	k_model->loadContacts(ABOOK->get_contacts(), sys_config->get_ab_show_sip_only());
 	
 	addressListView->sortByColumn(addressListView->horizontalHeader()->sortIndicatorSection(), addressListView->horizontalHeader()->sortIndicatorOrder());
 #endif

@@ -37,10 +37,18 @@ QVariant KContactsTableModel::headerData(int section, Qt::Orientation orientatio
 }
 
 // Replace the current list with a new one
-void KContactsTableModel::replaceAddresses(const list<t_address_card>& data)
+void KContactsTableModel::loadContacts(const KContacts::Addressee::List& data, bool sip_only)
 {
 	beginResetModel();
-	m_data = QList<t_address_card>::fromStdList(data);
+	m_data.clear();
+	for (const KContacts::Addressee& contact : data)
+	{
+		for (const KContacts::PhoneNumber& phone_number : contact.phoneNumbers())
+		{
+			if (!sip_only || phone_number.number().startsWith("sip:"))
+				m_data.append(addressCard(contact, phone_number));
+		}
+	}
 	endResetModel();
 }
 
