@@ -19,22 +19,26 @@
 #include "gui.h"
 #include "log.h"
 
+#ifdef HAVE_AKONADI
+#include <KContacts/Addressee>
+#include <KContacts/PhoneNumber>
+#endif
+
 t_address_finder *t_address_finder::instance = NULL;
 t_mutex t_address_finder::mtx_instance;
 
 t_address_finder::t_address_finder() {
-#ifdef HAVE_KDE
-	// Load KAddressbook asynchronously. An LDAP address book
-	// may take a while to load completely. This should not block
-	// an incoming call. For the first call it may happen that an
+#ifdef HAVE_AKONADI
+	// Load Akonadi address book asynchronously.
+	// For the first call it may happen that an
 	// address cannot be found as loading is still in progress.
 	// This is an inconvenience, but will not harm the call.
-	abook = KABC::StdAddressBook::self(true);
+	abook = AkonadiAddressBook::self();
 	connect(abook, 
-		SIGNAL(addressBookChanged(AddressBook *)),
+		SIGNAL(addressBookChanged()),
 		this, SLOT(invalidate_cache()));
 	
-	log_file->write_report("Preload KAddressbook.", "t_address_finder::t_address_finder");
+	log_file->write_report("Preload Akonadi contacts.", "t_address_finder::t_address_finder");
 #endif
 }
 
@@ -46,20 +50,18 @@ void t_address_finder::find_address(t_user *user_config, const t_url &u)
 	last_name.clear();
 	last_photo = QImage();
 	
-#ifdef HAVE_KDE
-	for (KABC::AddressBook::Iterator i = abook->begin(); i != abook->end(); i++)
+#ifdef HAVE_AKONADI
+	for (const KContacts::Addressee& contact : abook->get_contacts())
 	{
 		// Normalize url using number conversion rules
 		t_url u_normalized(u);
 		u_normalized.apply_conversion_rules(user_config);
 		
-		KABC::PhoneNumber::List phoneNrs = i->phoneNumbers();
-		for (KABC::PhoneNumber::List::iterator j = phoneNrs.begin();
-		j != phoneNrs.end(); j++)
+		for (const KContacts::PhoneNumber& phone_number : contact.phoneNumbers())
 		{
-			QString phone = (*j).number();
+			QString phone = phone_number.number();
 			string full_address = ui->expand_destination(
-					user_config, phone.ascii(), u_normalized.get_scheme());
+					user_config, phone.toStdString(), u_normalized.get_scheme());
 			
 			t_url url_phone(full_address);
 			if (!url_phone.is_valid()) continue;
@@ -68,9 +70,9 @@ void t_address_finder::find_address(t_user *user_config, const t_url &u)
 				user_config->get_remove_special_phone_symbols(),
 				user_config->get_special_phone_symbols()))
 			{
-				last_name = i->realName().ascii();
-				last_photo = i->photo().data();
-				last_photo.detach(); // avoid sharing of QImage with kabc
+				last_name = contact.realName().toStdString();
+				last_photo = contact.photo().data();
+				last_photo.detach(); // avoid sharing of QImage with KContacts::Addressee
 				return;
 			}
 		}

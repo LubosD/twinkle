@@ -27,12 +27,8 @@
 #include "qobject.h"
 #include "qimage.h"
 
-#ifdef HAVE_KDE
-#include <kabc/addressbook.h>
-#include <kabc/addressee.h>
-#include <kabc/addresseelist.h>
-#include <kabc/phonenumber.h>
-#include <kabc/stdaddressbook.h>
+#ifdef HAVE_AKONADI
+#include "akonadiaddressbook.h"
 #endif
 
 using namespace std;
@@ -44,8 +40,8 @@ private:
 	static t_mutex mtx_instance;
 	
 	t_mutex	mtx_finder;
-#ifdef HAVE_KDE
-	KABC::AddressBook *abook;
+#ifdef HAVE_AKONADI
+	AkonadiAddressBook *abook;
 #endif
 	
 	// Cached data for the last looked up URL.
@@ -60,7 +56,7 @@ private:
 	void find_address(t_user *user_config, const t_url &u);
 	
 public:
-	// Preload KAddressbook
+	// Preload Akonadi address book
 	static void preload(void);
 	
 	static t_address_finder *get_instance(void);

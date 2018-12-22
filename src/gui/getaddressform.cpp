@@ -24,17 +24,14 @@
 #include "addresstablemodel.h"
 #include "addresscardform.h"
 #include "audits/memman.h"
-#define TAB_KABC	0
+#define TAB_AKONADI	0
 #define TAB_LOCAL	1
 
-#ifdef HAVE_KDE
-#include <kabc/addressbook.h>
-#include <kabc/addressee.h>
-#include <kabc/addresseelist.h>
-#include <kabc/phonenumber.h>
-#include <kabc/stdaddressbook.h>
+#ifdef HAVE_AKONADI
+#include "akonadiaddressbook.h"
+#include "kcontactstablemodel.h"
 
-#define ABOOK	((KABC::AddressBook *)addrBook)
+#define ABOOK  ((AkonadiAddressBook *)addrBook)
 
 // Column numbers
 #define AB_COL_NAME	0
@@ -45,14 +42,21 @@ GetAddressForm::GetAddressForm(QWidget *parent)
     : QDialog(parent)
 {
 	setupUi(this);
-	init();
 
 	m_model = new AddressTableModel(this, ab_local->get_address_list());
 	localListView->setModel(m_model);
+#ifdef HAVE_AKONADI
+	k_model = new KContactsTableModel(this);
+	addressListView->setModel(k_model);
+#endif
+
+	init();
 
 	localListView->sortByColumn(COL_ADDR_NAME, Qt::AscendingOrder);
+	addressListView->sortByColumn(COL_ADDR_NAME, Qt::AscendingOrder);
 
 	localListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	addressListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 GetAddressForm::~GetAddressForm()
@@ -62,32 +66,32 @@ GetAddressForm::~GetAddressForm()
 
 void GetAddressForm::init() 
 {
-#ifdef HAVE_KDE
-	addrBook = (void *)KABC::StdAddressBook::self(false);
+#ifdef HAVE_AKONADI
+	addrBook = (void *)AkonadiAddressBook::self();
 	loadAddresses();
 	
 	connect(ABOOK, 
-		SIGNAL(addressBookChanged(AddressBook *)),
+		SIGNAL(addressBookChanged()),
 		this, SLOT(loadAddresses()));
 	
 	sipOnlyCheckBox->setChecked(sys_config->get_ab_show_sip_only());
 #else
-    addressTabWidget->setTabEnabled(addressTabWidget->indexOf(tabKABC), false);
+    addressTabWidget->setTabEnabled(addressTabWidget->indexOf(tabAkonadi), false);
     addressTabWidget->setCurrentIndex(TAB_LOCAL);
 #endif
 }
 
 void GetAddressForm::reload()
 {
-#ifdef HAVE_KDE
-	ABOOK->disconnect();
-	KABC::StdAddressBook::close();
-	addrBook = (void *)KABC::StdAddressBook::self(false);
-	loadAddresses();
-	
-	connect(ABOOK, 
-		SIGNAL(addressBookChanged(AddressBook *)),
-		this, SLOT(loadAddresses()));
+#ifdef HAVE_AKONADI
+	ABOOK->reload();
+#endif
+}
+
+void GetAddressForm::synchronize()
+{
+#ifdef HAVE_AKONADI
+	ABOOK->synchronize();
 #endif
 }
 
@@ -95,21 +99,21 @@ void GetAddressForm::show()
 {
 	QDialog::show();
 	
-#ifdef HAVE_KDE
-	if (addressListView->childCount() == 0) {
-		if (localListView->childCount() == 0) {
+#ifdef HAVE_AKONADI
+	if (k_model->rowCount() == 0) {
+		if (m_model->rowCount() == 0) {
 			QMessageBox::information(this, PRODUCT_NAME, tr(
 				"<p>"
 				"You seem not to have any contacts with a phone number "
-				"in <b>KAddressBook</b>, KDE's address book application. "
+				"in <b>Akonadi</b>, KDE's PIM Storage Service. "
 				"Twinkle retrieves all contacts with a phone number from "
-				"KAddressBook. To manage your contacts you have to "
-				"use KAddressBook."
+				"Akonadi. To manage your contacts you have to "
+				"use another application such as KAddressBook or Kontact."
 				"<p>"
 				"As an alternative you may use Twinkle's local address book."
 				"</p>"));
 		} else {
-			addressTabWidget->setCurrentPage(TAB_LOCAL);
+			addressTabWidget->setCurrentIndex(TAB_LOCAL);
 		}
 	}
 #endif
@@ -117,55 +121,47 @@ void GetAddressForm::show()
 
 void GetAddressForm::loadAddresses()
 {
-#ifdef HAVE_KDE
-	// Explicit loading of address book is not needed as it is 
-	// automatically loaded.
-	// if (!ABOOK->load()) return;
-	
-	addressListView->clear();
-	for (KABC::AddressBook::Iterator i = ABOOK->begin(); i != ABOOK->end(); i++)
+#ifdef HAVE_AKONADI
+	list<t_address_card> data;
+	for (const KContacts::Addressee& contact : ABOOK->get_contacts())
 	{
-		KABC::PhoneNumber::List phoneNrs = i->phoneNumbers();
-		for (KABC::PhoneNumber::List::iterator j = phoneNrs.begin();
-		j != phoneNrs.end(); j++)
+		for (const KContacts::PhoneNumber& phone_number : contact.phoneNumbers())
 		{
-			QString phone = (*j).number();
+			QString phone = phone_number.number();
 			if (!sys_config->get_ab_show_sip_only() ||
 			    phone.startsWith("sip:"))
 			{
-				new Q3ListViewItem(addressListView, i->realName(),
-					  (*j).typeLabel(), phone);
+				data.push_back(KContactsTableModel::addressCard(contact, phone_number));
 			}
 		}
 	}
+	k_model->replaceAddresses(data);
 	
-	Q3ListViewItem *first = addressListView->firstChild();
-	if (first) addressListView->setSelected(first, true);
+	addressListView->sortByColumn(addressListView->horizontalHeader()->sortIndicatorSection(), addressListView->horizontalHeader()->sortIndicatorOrder());
 #endif
 }
 
 void GetAddressForm::selectAddress()
 {
-    if (addressTabWidget->currentIndex() == TAB_KABC) {
-		selectKABCAddress();
+    if (addressTabWidget->currentIndex() == TAB_AKONADI) {
+		selectAkonadiAddress();
 	} else {
 		selectLocalAddress();
 	}
 }
 
-void GetAddressForm::selectKABCAddress()
+void GetAddressForm::selectAkonadiAddress()
 {
-#ifdef HAVE_KDE
-	Q3ListViewItem *item = addressListView->selectedItem();
-	if (item) {
-		QString name(item->text(AB_COL_NAME));
-		QString phone(item->text(AB_COL_PHONE));
-		phone = phone.stripWhiteSpace();
-			
-		emit address(name, phone);
+#ifdef HAVE_AKONADI
+	QModelIndexList sel = addressListView->selectionModel()->selectedRows();
+	if (!sel.isEmpty())
+	{
+		t_address_card card = k_model->getAddress(sel[0].row());
+		emit address(QString::fromStdString(card.get_display_name()),
+				QString::fromStdString(card.sip_address));
 		
 		// Signal display name and url combined.
-		t_display_url du(t_url(phone.ascii()), name.ascii());
+		t_display_url du(t_url(card.sip_address), card.get_display_name());
 		emit address(du.encode().c_str());
 	}
 	
@@ -191,7 +187,7 @@ void GetAddressForm::selectLocalAddress()
 
 void GetAddressForm::toggleSipOnly(bool on)
 {
-#ifdef HAVE_KDE
+#ifdef HAVE_AKONADI
 	string msg;
 	
 	sys_config->set_ab_show_sip_only(on);
