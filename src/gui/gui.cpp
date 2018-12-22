@@ -2846,7 +2846,7 @@ string t_gui::get_name_from_abook(t_user *user_config, const t_url &u) {
 	// Search local address book first
 	name = t_userintf::get_name_from_abook(user_config, u);
 	
-	// Search KAddressBook
+	// Search Akonadi address book
 	if (name.empty()) {
 		t_address_finder *af = t_address_finder::get_instance();
 		name = af->find_name(user_config, u);

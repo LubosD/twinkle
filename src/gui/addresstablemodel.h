@@ -29,7 +29,7 @@
 
 class AddressTableModel : public QAbstractTableModel
 {
-private:
+protected:
 	QList<t_address_card>	m_data;
 	
 public:
