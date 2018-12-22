@@ -37,7 +37,6 @@ signals:
 	void address(const QString &, const QString &);
 	void address(const QString &);
 private:
-	void *addrBook;
 	AddressTableModel* m_model;
 #ifdef HAVE_AKONADI
 	KContactsTableModel* k_model;

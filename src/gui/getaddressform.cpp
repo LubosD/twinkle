@@ -31,8 +31,6 @@
 #include "akonadiaddressbook.h"
 #include "kcontactstablemodel.h"
 
-#define ABOOK  ((AkonadiAddressBook *)addrBook)
-
 // Column numbers
 #define AB_COL_NAME	0
 #define AB_COL_PHONE	2
@@ -67,10 +65,9 @@ GetAddressForm::~GetAddressForm()
 void GetAddressForm::init() 
 {
 #ifdef HAVE_AKONADI
-	addrBook = (void *)AkonadiAddressBook::self();
 	loadAddresses();
 	
-	connect(ABOOK, 
+	connect(AkonadiAddressBook::self(),
 		SIGNAL(addressBookChanged()),
 		this, SLOT(loadAddresses()));
 	
@@ -84,14 +81,14 @@ void GetAddressForm::init()
 void GetAddressForm::reload()
 {
 #ifdef HAVE_AKONADI
-	ABOOK->reload();
+	AkonadiAddressBook::self()->reload();
 #endif
 }
 
 void GetAddressForm::synchronize()
 {
 #ifdef HAVE_AKONADI
-	ABOOK->synchronize();
+	AkonadiAddressBook::self()->synchronize();
 #endif
 }
 
@@ -122,7 +119,8 @@ void GetAddressForm::show()
 void GetAddressForm::loadAddresses()
 {
 #ifdef HAVE_AKONADI
-	k_model->loadContacts(ABOOK->get_contacts(), sys_config->get_ab_show_sip_only());
+	k_model->loadContacts(AkonadiAddressBook::self()->get_contacts(),
+			      sys_config->get_ab_show_sip_only());
 	
 	addressListView->sortByColumn(addressListView->horizontalHeader()->sortIndicatorSection(), addressListView->horizontalHeader()->sortIndicatorOrder());
 #endif
