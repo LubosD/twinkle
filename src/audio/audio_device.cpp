@@ -540,7 +540,6 @@ bool t_alsa_io::open(const string& device, bool playback, bool capture, bool blo
 	// Note: The buffersize is in FRAMES, not BYTES (one frame = sizeof(sample) * channels)
 	snd_pcm_uframes_t buffersize;
 	unsigned int periods = 8; // Double buffering
-	int dir = 1;
 	
 	// Set the size of one period in samples
 	if (short_latency) {
@@ -553,7 +552,7 @@ bool t_alsa_io::open(const string& device, bool playback, bool capture, bool blo
 		buffersize = 1024;
 	}
 	if ((err = snd_pcm_hw_params_set_period_size_near (pcm_ptr, hw_params, 
-			&buffersize, &dir)) < 0) 
+			&buffersize, nullptr)) < 0)
 	{
 		HANDLE_ALSA_ERROR("snd_pcm_hw_params_set_period_size_near");
 	}
@@ -569,10 +568,9 @@ bool t_alsa_io::open(const string& device, bool playback, bool capture, bool blo
 		periods *= 4;
 	}
 	
-	dir = 1;
-	if ((err = snd_pcm_hw_params_set_periods(pcm_ptr, hw_params, periods, dir)) < 0) {
+	if ((err = snd_pcm_hw_params_set_periods(pcm_ptr, hw_params, periods, 1)) < 0) {
 		if ((err = snd_pcm_hw_params_set_periods_near(pcm_ptr, hw_params, 
-				&periods, &dir)) < 0) 
+				&periods, nullptr)) < 0)
 		{
 			HANDLE_ALSA_ERROR("snd_pcm_hw_params_set_periods");
 		}

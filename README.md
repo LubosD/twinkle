@@ -265,7 +265,7 @@ send a REGISTER on startup of the profile.
 
 ## Addressing
 
-When you invite someone to a call you have to enter an an address.
+When you invite someone to a call you have to enter an address.
 A SIP address has the following form:
 
 	sip:<user>@<host-part>
