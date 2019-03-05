@@ -23,6 +23,7 @@ set(twinkle_ui_SRC
 	mphoneform.ui
 	numberconversionform.ui
 	redirectform.ui
+	selectcollectionsform.ui
 	selectnicform.ui
 	selectprofileform.ui
 	selectuserform.ui
@@ -75,6 +76,7 @@ set(TWINKLE_GUI-SRCS
 	transferform.cpp
 	syssettingsform.cpp
 	historyform.cpp
+	selectcollectionsform.cpp
 	selectuserform.cpp
 	selectprofileform.cpp
 	buddyform.cpp

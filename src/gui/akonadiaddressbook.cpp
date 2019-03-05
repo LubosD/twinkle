@@ -38,6 +38,10 @@
 #include "log.h"
 #include "userintf.h"
 
+#include <chrono>
+#include <thread>
+#include "selectcollectionsform.h"
+
 
 AkonadiAddressBook::AkonadiAddressBook()
 {
@@ -92,11 +96,17 @@ void AkonadiAddressBook::synchronizeCollections(const Akonadi::Collection::List&
 	if (onDemand)
 		return;
 
-	// Now that the list of collections we asked for in synchronize() has
-	// arrived, we can actually sync them.
-	for (const Akonadi::Collection &collection : collections)
+	SelectCollectionsForm selectCollectionsForm;
+	selectCollectionsForm.setModal(true);
+	selectCollectionsForm.exec(collections);
+
+	unsigned int interval = selectCollectionsForm.interval();
+
+	for (int i : selectCollectionsForm.selected_list)
 	{
-		Akonadi::AgentManager::self()->synchronizeCollection(collection);
+		if (i && interval)
+			std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+		Akonadi::AgentManager::self()->synchronizeCollection(collections.at(i));
 	}
 }
 
