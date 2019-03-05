@@ -56,7 +56,7 @@ AkonadiAddressBook::AkonadiAddressBook()
 	// Load the list of contacts asynchronously
 	reload();
 	// Synchronize all collections marked as syncOnDemand on startup
-	synchronize(true);
+	//synchronize(true);
 }
 
 AkonadiAddressBook *AkonadiAddressBook::self()
@@ -89,12 +89,14 @@ void AkonadiAddressBook::synchronize(bool onDemand)
 // Synchronize all collections (back end)
 void AkonadiAddressBook::synchronizeCollections(const Akonadi::Collection::List& collections, bool onDemand)
 {
+	if (onDemand)
+		return;
+
 	// Now that the list of collections we asked for in synchronize() has
 	// arrived, we can actually sync them.
 	for (const Akonadi::Collection &collection : collections)
 	{
-		if (!onDemand || collection.cachePolicy().syncOnDemand())
-			Akonadi::AgentManager::self()->synchronizeCollection(collection);
+		Akonadi::AgentManager::self()->synchronizeCollection(collection);
 	}
 }
 
