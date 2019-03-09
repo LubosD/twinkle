@@ -76,7 +76,6 @@ set(TWINKLE_GUI-SRCS
 	transferform.cpp
 	syssettingsform.cpp
 	historyform.cpp
-	selectcollectionsform.cpp
 	selectuserform.cpp
 	selectprofileform.cpp
 	buddyform.cpp
@@ -120,7 +119,8 @@ if (WITH_AKONADI)
 		KF5::Contacts)
 	list(APPEND TWINKLE_GUI-SRCS
 		akonadiaddressbook.cpp
-		kcontactstablemodel.cpp)
+		kcontactstablemodel.cpp
+		selectcollectionsform.cpp)
 endif (WITH_AKONADI)
 
 add_executable(twinkle ${TWINKLE_GUI-SRCS})
