@@ -542,19 +542,30 @@ uint16 t_g729a_audio_decoder::get_ptime(uint16 payload_size) const
 uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 		int16 *pcm_buf, uint16 pcm_buf_size)
 {
+#ifdef HAVE_BCG729_API_1_0_2	
+	int frame_size;
+	uint8 *encoded_data_ptr = payload;
+	int16 *decoded_data_ptr = pcm_buf;
+	uint32 new_len = 0;
+	for (uint16 done = 0; done < payload_size && new_len < pcm_buf_size; done += frame_size)
+	{
+		uint8 is_sid = (payload_size - done < 8) ? 1 : 0;
+		frame_size = (is_sid == 1) ? 2 : 10;
+		bcg729Decoder(_context, encoded_data_ptr, payload_size, false, is_sid, false, decoded_data_ptr);
+		encoded_data_ptr += frame_size;
+		decoded_data_ptr += 80;
+		new_len += 80;
+	}
+	return new_len;
+#else
 	assert((payload_size % 10) == 0);
 	assert(pcm_buf_size >= payload_size*8);
-
 	for (uint16 done = 0; done < payload_size; done += 10)
 	{
-#ifdef HAVE_BCG729_API_1_0_2
-		bcg729Decoder(_context, &payload[done], 0, false, false, false, &pcm_buf[done * 8]);
-#else
 		bcg729Decoder(_context, &payload[done], false, &pcm_buf[done * 8]);
-#endif
 	}
-
 	return payload_size * 8;
+#endif	
 }
 
 bool t_g729a_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const

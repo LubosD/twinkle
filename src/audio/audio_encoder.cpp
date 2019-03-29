@@ -452,17 +452,27 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 	assert (payload_size >= (nsamples/8));
 
 	silence = false;
-
+#ifdef HAVE_BCG729_API_1_0_2
+	uint16 new_len = 0;
+	int16 *decoded_data_ptr = sample_buf;
+	uint8 *encoded_data_ptr = payload;
+	uint8 frame_size;
+	int loops = (int)nsamples / 80;
+	for (uint16 done = 0; done < loops; done ++)
+	{
+		bcg729Encoder(_context, decoded_data_ptr, encoded_data_ptr, &frame_size);
+		encoded_data_ptr += frame_size;
+		decoded_data_ptr += frame_size * 8;
+		new_len += frame_size;
+	}
+	return new_len;
+#else
 	for (uint16 done = 0; done < nsamples; done += 80)
 	{
-#ifdef HAVE_BCG729_API_1_0_2
-		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8], 0);
-#else
 		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8]);
-#endif
 	}
-
 	return nsamples / 8;
+#endif
 }
 
 #endif
