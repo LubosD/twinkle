@@ -21,8 +21,7 @@ env:
     - FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF" PACKAGES=""
 
     # Test building with bcg729
-    # (Twinkle does not currently build with the master branch, see issue #104)
-    #- BUILD_BCG729="master" FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON" PACKAGES="git ca-certificates pkg-config libtool automake autoconf"
+    - BUILD_BCG729="master" FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON" PACKAGES="git ca-certificates pkg-config libtool automake autoconf"
     # Also test the old pre-1.0.2 API (issue #104)
     - BUILD_BCG729="1.0.1" FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON" PACKAGES="git ca-certificates pkg-config libtool automake autoconf"
 
