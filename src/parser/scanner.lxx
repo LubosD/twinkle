@@ -131,7 +131,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 ^User-Agent		{ return T_HDR_USER_AGENT; }
 ^(Via)|v		{ return T_HDR_VIA; }
 ^Warning		{ return T_HDR_WARNING; }
-^WWW-Authenticate	{ return T_HDR_WWW_AUTHENTICATE; }
+^[Ww][Ww][Ww]-[Aa]uthenticate	{ return T_HDR_WWW_AUTHENTICATE; }
 ^{TOKEN_SYM}+		{ yylval.yyt_str = new string(yytext);
 			  MEMMAN_NEW(yylval.yyt_str);
 			  return T_HDR_UNKNOWN; }
