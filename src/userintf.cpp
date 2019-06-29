@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
 #include "address_book.h"
 #include "events.h"
 #include "line.h"
@@ -109,6 +110,14 @@ static void tw_readline_cb(char *line)
 		}
 		free(line);
 	}
+}
+
+// SIGWINCH handler to help us relay that information to Readline
+static int sigwinch_received;
+static void sigwinch_handler(int signum)
+{
+	sigwinch_received = 1;
+	signal(SIGWINCH, sigwinch_handler);
 }
 
 /////////////////////////////
@@ -2215,13 +2224,20 @@ void t_userintf::run(void) {
 
 	// Additional stuff for using the Readline callback interface
 	cb_user_intf = this;
+	signal(SIGWINCH, sigwinch_handler);
 	rl_callback_handler_install(CLI_PROMPT, tw_readline_cb);
 
 	while (!end_interface) {
+		// Relay any SIGWINCH to Readline
+		if (sigwinch_received) {
+			rl_resize_terminal();
+			sigwinch_received = 0;
+		}
 		rl_callback_read_char();
 	}
 
 	rl_callback_handler_remove();
+	signal(SIGWINCH, SIG_DFL);
 	
 	// Terminate phone functions
 	write_history(sys_config->get_history_file().c_str());
