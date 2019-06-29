@@ -86,22 +86,29 @@ char * tw_command_generator (const char *text, int state)
 	return ((char *)NULL);
 }
 
-char *tw_readline(const char *prompt)
+// Ugly hack to allow invoking methods on our object from within a C-style
+// callback function.  This relies on the object being a singleton.
+static t_userintf *cb_user_intf;
+// Callback method (a.k.a. "line handler") that will be invoked by Readline
+// once a complete line has been read.
+static void tw_readline_cb(char *line)
 {
-	static char *line = NULL;
-	
 	if (!line) {
+		// EOF
+		cout << endl;
+		// Calling this from the line handler prevents one extra
+		// prompt from being displayed.  (The duplicate call later on
+		// will not be an issue.)
+		rl_callback_handler_remove();
+
+		cb_user_intf->cmd_quit();
+	} else {
+		if (*line) {
+			add_history(line);
+			cb_user_intf->exec_command(line);
+		}
 		free(line);
-		line = NULL;
 	}
-	
-	line = readline(prompt);
-	
-	if (line && *line) {
-		add_history(line);
-	}
-	
-	return line;
 }
 
 /////////////////////////////
@@ -2206,16 +2213,15 @@ void t_userintf::run(void) {
 	read_history(sys_config->get_history_file().c_str());
 	stifle_history(CLI_MAX_HISTORY_LENGTH);
 
+	// Additional stuff for using the Readline callback interface
+	cb_user_intf = this;
+	rl_callback_handler_install(CLI_PROMPT, tw_readline_cb);
 
 	while (!end_interface) {
-		char *command_line = tw_readline(CLI_PROMPT);
-		if (!command_line){
-			cout << endl;
-			break;
-		}
-		
-		exec_command(command_line);
+		rl_callback_read_char();
 	}
+
+	rl_callback_handler_remove();
 	
 	// Terminate phone functions
 	write_history(sys_config->get_history_file().c_str());
