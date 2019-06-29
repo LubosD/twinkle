@@ -18,12 +18,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <errno.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
 #include <stdio.h>
 #include <string>
 #include <sys/select.h>
+#include <unistd.h>
 #include "address_book.h"
 #include "events.h"
 #include "line.h"
@@ -1483,6 +1485,10 @@ bool t_userintf::exec_quit(const list<string> command_list) {
 
 void t_userintf::do_quit(void) {
 	end_interface = true;
+	// Signal the main thread that it should interrupt Readline
+	if (break_readline_loop_pipe[1] != -1) {
+		write(break_readline_loop_pipe[1], "X", 1);
+	}
 }
 
 bool t_userintf::exec_help(const list<string> command_list) {
@@ -2220,6 +2226,27 @@ void t_userintf::run(void) {
 	// Initialize phone functions
 	phone->init();
 
+	// Set up the self-pipe used to interrupt Readline
+	if (pipe(break_readline_loop_pipe) == 0) {
+		// Mark both file descriptors as close-on-exec for good measure
+		for (int i = 0; i < 2; i++) {
+			int flags = fcntl(break_readline_loop_pipe[i], F_GETFD);
+			if (flags != -1) {
+				flags |= FD_CLOEXEC;
+				fcntl(break_readline_loop_pipe[i], F_SETFD, flags);
+			}
+		}
+	} else {
+		// Not fatal -- we just won't be able to interrupt Readline
+		string msg("pipe() failed: ");
+		msg += get_error_str(errno);
+		ui->cb_show_msg(msg, MSG_WARNING);
+
+		// Mark both file descriptors as invalid
+		break_readline_loop_pipe[0] = -1;
+		break_readline_loop_pipe[1] = -1;
+	}
+
 	//Initialize GNU readline functions
 	rl_attempted_completion_function = tw_completion;
 	using_history();
@@ -2232,9 +2259,13 @@ void t_userintf::run(void) {
 	rl_callback_handler_install(CLI_PROMPT, tw_readline_cb);
 
 	while (!end_interface) {
+		// File descriptors we are watching (stdin + self-pipe)
 		fd_set fds;
 		FD_ZERO(&fds);
 		FD_SET(fileno(rl_instream), &fds);
+		if (break_readline_loop_pipe[0] != -1) {
+			FD_SET(break_readline_loop_pipe[0], &fds);
+		}
 
 		int ret = select(FD_SETSIZE, &fds, NULL, NULL, NULL);
 		if ((ret == -1) && (errno != EINTR)) {
