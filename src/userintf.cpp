@@ -17,9 +17,13 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <errno.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
+#include <stdio.h>
+#include <string>
+#include <sys/select.h>
 #include "address_book.h"
 #include "events.h"
 #include "line.h"
@@ -2228,12 +2232,30 @@ void t_userintf::run(void) {
 	rl_callback_handler_install(CLI_PROMPT, tw_readline_cb);
 
 	while (!end_interface) {
+		fd_set fds;
+		FD_ZERO(&fds);
+		FD_SET(fileno(rl_instream), &fds);
+
+		int ret = select(FD_SETSIZE, &fds, NULL, NULL, NULL);
+		if ((ret == -1) && (errno != EINTR)) {
+			string msg("select() failed: ");
+			msg += get_error_str(errno);
+			ui->cb_show_msg(msg, MSG_CRITICAL);
+			break;
+		}
 		// Relay any SIGWINCH to Readline
 		if (sigwinch_received) {
 			rl_resize_terminal();
 			sigwinch_received = 0;
 		}
-		rl_callback_read_char();
+		if (ret == -1) {
+			// errno == EINTR
+			continue;
+		}
+
+		if (FD_ISSET(fileno(rl_instream), &fds)) {
+			rl_callback_read_char();
+		}
 	}
 
 	rl_callback_handler_remove();
