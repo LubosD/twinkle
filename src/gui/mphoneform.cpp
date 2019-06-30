@@ -3239,12 +3239,7 @@ void MphoneForm::whatsThis()
 void MphoneForm::sysTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
 {
 	if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
-	{
-		if (sys_config->get_gui_hide_on_close())
-			setVisible(!isVisible());
-		else
-			activateWindow();
-	}
+		setVisible(!isVisible());
 }
 
 bool MphoneForm::event(QEvent * event)
