@@ -200,6 +200,12 @@ void MphoneForm::init()
 
 		connect(sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 				this, SLOT(sysTrayIconClicked(QSystemTrayIcon::ActivationReason)));
+		connect(menu, &QMenu::aboutToShow, this, &MphoneForm::updateTrayIconMenu);
+
+		// Toggle window visibility
+		menu->addAction(toggleWindowAction);
+
+		menu->addSeparator();
 		
 		// Call menu
         menu->addAction(callInvite);
@@ -3239,7 +3245,20 @@ void MphoneForm::whatsThis()
 void MphoneForm::sysTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
 {
 	if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick)
-		setVisible(!isVisible());
+		toggleWindow();
+}
+
+void MphoneForm::toggleWindow()
+{
+	setVisible(!isVisible());
+}
+
+void MphoneForm::updateTrayIconMenu()
+{
+	if (isVisible())
+		toggleWindowAction->setText(tr("Hide window"));
+	else
+		toggleWindowAction->setText(tr("Show window"));
 }
 
 bool MphoneForm::event(QEvent * event)
