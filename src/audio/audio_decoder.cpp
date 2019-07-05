@@ -572,22 +572,31 @@ t_g729a_audio_decoder::~t_g729a_audio_decoder()
 
 uint16 t_g729a_audio_decoder::get_ptime(uint16 payload_size) const
 {
-	return ((payload_size / 10) * 80) / (audio_sample_rate(_codec) / 1000);
+	// Account for a possible 2-byte SID frame that will expand to 80
+	// samples juste like any other frame.  The (size+8)/10 expression,
+	// rounded down, results in the total number of frames, SID or not.
+	return (((payload_size + 8) / 10) * 80) / (audio_sample_rate(_codec) / 1000);
 }
 
 uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 		int16 *pcm_buf, uint16 pcm_buf_size)
 {
-	assert((payload_size % 10) == 0);
-	assert(pcm_buf_size >= ((payload_size / 10) * 80));
+	// Allow for a 2-byte SID frame at the end of the RTP packet
+	assert(((payload_size % 10) == 0) || ((payload_size % 10) == 2));
+	// See get_ptime() above for an explanation of this expression
+	assert(pcm_buf_size >= (((payload_size + 8) / 10) * 80));
 
 	uint8 frame_size = 10;
 	uint16 result_size = 0;
 
 	for (uint16 done = 0; done < payload_size; done += frame_size)
 	{
+		// RFC 3551 mandates that a SID frame be the last in the packet;
+		// its presence can thus be deduced from the payload size.
+		bool is_sid = ((payload_size - done) == 2);
+		frame_size = (is_sid ? 2 : 10);
 #ifdef HAVE_BCG729_ANNEX_B
-		bcg729Decoder(_context, &payload[done], 0, false, false, false, &pcm_buf[result_size]);
+		bcg729Decoder(_context, &payload[done], 0, false, is_sid, false, &pcm_buf[result_size]);
 #else
 		bcg729Decoder(_context, &payload[done], false, &pcm_buf[result_size]);
 #endif
@@ -599,7 +608,9 @@ uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 
 bool t_g729a_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const
 {
-	return payload_size > 0 && (payload_size % 10) == 0;
+	// Allow for a 2-byte SID frame at the end of the RTP packet
+	return (payload_size > 0) &&
+		(((payload_size % 10) == 0) || ((payload_size % 10) == 2));
 }
 
 uint16 t_g729a_audio_decoder::conceal(int16 *pcm_buf, uint16 pcm_buf_size)

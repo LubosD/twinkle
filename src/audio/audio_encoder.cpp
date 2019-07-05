@@ -476,6 +476,7 @@ t_g729a_audio_encoder::t_g729a_audio_encoder(uint16 payload_id, uint16 ptime, t_
 	: t_audio_encoder(payload_id, ptime, user_config)
 {
 #ifdef HAVE_BCG729_ANNEX_B
+	// Disable G.729B features for the time being
 	_context = initBcg729EncoderChannel(false);
 #else
 	_context = initBcg729EncoderChannel();
@@ -496,6 +497,9 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 	uint8 frame_size = 10;
 	uint16 result_size = 0;
 
+	// G.729B TODO: RFC 3551 mandates that a SID frame be the last in the
+	// packet; this could require us to only encode a portion of the
+	// samples, which the current interface does not allow for.
 	for (uint16 done = 0; done < nsamples; done += 80)
 	{
 #ifdef HAVE_BCG729_ANNEX_B
@@ -506,8 +510,13 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 		result_size += frame_size;
 	}
 
-	silence = false;
+	silence = (result_size == 0);
 
+	// G.729B TODO: In the event that the encoding only resulted in
+	// untransmitted frames, we would return 0 bytes; the caller should be
+	// ready for that outcome.  (At the moment, when sending a keepalive
+	// packet, it would call putData() with len = 0, which is interpreted as
+	// "a default by payload type".)
 	return result_size;
 }
 
