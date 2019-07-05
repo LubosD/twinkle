@@ -491,7 +491,7 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 		uint8 *payload, uint16 payload_size, bool &silence)
 {
 	assert ((nsamples % 80) == 0);
-	assert (payload_size >= (nsamples/8));
+	assert (payload_size >= ((nsamples / 80) * 10));
 
 	silence = false;
 

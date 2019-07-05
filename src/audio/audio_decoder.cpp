@@ -572,14 +572,14 @@ t_g729a_audio_decoder::~t_g729a_audio_decoder()
 
 uint16 t_g729a_audio_decoder::get_ptime(uint16 payload_size) const
 {
-	return (payload_size * 8) / (audio_sample_rate(_codec) / 1000);
+	return ((payload_size / 10) * 80) / (audio_sample_rate(_codec) / 1000);
 }
 
 uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 		int16 *pcm_buf, uint16 pcm_buf_size)
 {
 	assert((payload_size % 10) == 0);
-	assert(pcm_buf_size >= payload_size*8);
+	assert(pcm_buf_size >= ((payload_size / 10) * 80));
 
 	uint8 frame_size = 10;
 	uint16 result_size = 0;
