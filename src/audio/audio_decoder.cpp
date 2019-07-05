@@ -581,9 +581,10 @@ uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 	assert((payload_size % 10) == 0);
 	assert(pcm_buf_size >= payload_size*8);
 
+	uint8 frame_size = 10;
 	uint16 result_size = 0;
 
-	for (uint16 done = 0; done < payload_size; done += 10)
+	for (uint16 done = 0; done < payload_size; done += frame_size)
 	{
 #ifdef HAVE_BCG729_ANNEX_B
 		bcg729Decoder(_context, &payload[done], 0, false, false, false, &pcm_buf[result_size]);
