@@ -29,6 +29,7 @@ public slots:
 signals:
 	void address(const QString &, const QString &);
 	void address(const QString &);
+    void leavehere();
 private:
 	void *addrBook;
 	AddressTableModel* m_model;

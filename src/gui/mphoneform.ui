@@ -41,40 +41,68 @@
   <property name="usesTextLabel" stdset="0">
    <bool>true</bool>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <layout class="QGridLayout">
+  <widget class="QWidget" name="layoutWidget1">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTreeWidget" name="buddyListView">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>150</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::CustomContextMenu</enum>
-       </property>
-       <property name="whatsThis">
-        <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
-       </property>
-       <property name="rootIsDecorated">
-        <bool>true</bool>
-       </property>
-       <column>
-        <property name="text">
-         <string>Buddy list</string>
-        </property>
-       </column>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTreeWidget" name="buddyListView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>150</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
+          <property name="whatsThis">
+           <string>You can create a separate buddy list for each user profile. You can only see availability of your buddies and publish your own availability if your provider offers a presence server.</string>
+          </property>
+          <property name="rootIsDecorated">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Buddy list</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableView" name="addressListView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>150</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="layout13">
        <layout class="QVBoxLayout">
@@ -1058,7 +1086,7 @@
      <x>0</x>
      <y>0</y>
      <width>733</width>
-     <height>17</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="fileMenu">
@@ -1135,6 +1163,7 @@
     <addaction name="viewLogAction"/>
     <addaction name="viewDisplayAction"/>
     <addaction name="viewBuddyListAction"/>
+    <addaction name="viewAddressListAction"/>
    </widget>
    <widget class="QMenu" name="Diamondcard">
     <property name="title">
@@ -1792,6 +1821,17 @@
     <cstring>diamondcardSign_upAction</cstring>
    </property>
   </action>
+  <action name="viewAddressListAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Address book</string>
+   </property>
+  </action>
   <actiongroup name="actgrActivateLine">
    <action name="actionLine1">
     <property name="checkable">
@@ -2286,8 +2326,8 @@
    <slot>line2rbChangedState(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>597</y>
+     <x>356</x>
+     <y>595</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -2302,8 +2342,8 @@
    <slot>line1rbChangedState(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>491</y>
+     <x>356</x>
+     <y>489</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -2478,8 +2518,8 @@
    <slot>doMessageBuddy(QTreeWidgetItem*)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>206</y>
+     <x>279</x>
+     <y>268</y>
     </hint>
     <hint type="destinationlabel">
      <x>3</x>
@@ -2494,8 +2534,8 @@
    <slot>showBuddyListPopupMenu(QPoint)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
-     <y>285</y>
+     <x>264</x>
+     <y>268</y>
     </hint>
     <hint type="destinationlabel">
      <x>3</x>
@@ -2503,9 +2543,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>addressListView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>selectLocalAddress()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>113</x>
+     <y>354</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>376</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addressListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>quickCall()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>352</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doMessageBuddy(QTreeWidgetItem*)</slot>
   <slot>showBuddyListPopupMenu(QPoint)</slot>
+  <slot>selectLocalAddress()</slot>
+  <slot>quickCall()</slot>
  </slots>
 </ui>

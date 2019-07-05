@@ -23,11 +23,14 @@
 #include "buddylistview.h"
 #include "diamondcard.h"
 
+#include "addresstablemodel.h"
+
 class t_phone;
 extern t_phone *phone;
 
 class OSD;
 class IncomingCallPopup;
+
 
 class MphoneForm : public QMainWindow, public Ui::MphoneForm
 {
@@ -41,6 +44,7 @@ public:
 	QSystemTrayIcon * getSysTray();
 	bool getViewDisplay();
 	bool getViewBuddyList();
+    bool getViewAddressList();
 	bool getViewCompactLineStatus();
 protected:
 	virtual void closeEvent( QCloseEvent * e ) override;
@@ -150,10 +154,12 @@ public slots:
 	void processCryptLabelClick( int line );
 	void popupMenuVoiceMail( const QPoint & pos );
 	void popupMenuVoiceMail( void );
-	void showDisplay( bool on );
+    void showDisplay( bool on );
 	void showBuddyList( bool on );
+    void showAddressList( bool on );
 	void showCompactLineStatus( bool on );
-	void populateBuddyList();
+    void populateBuddyList();
+    void populateAddressList();
     void showBuddyListPopupMenu( const QPoint & pos );
 	void doCallBuddy();
     void doMessageBuddy( QTreeWidgetItem * qitem );
@@ -174,6 +180,10 @@ public slots:
 	void sysTrayIconClicked(QSystemTrayIcon::ActivationReason);
 
 	void osdMuteClicked();
+    void selectLocalAddress();
+
+private slots:
+    void on_viewAddressListAction_triggered(bool checked);
 
 private:
 	void init();
@@ -181,7 +191,7 @@ private:
 	bool shouldDisplayOSD();
 	void updateOSD();
 	QString lineSubstate2str( int line );
-
+    AddressTableModel* m_model;
 private:
 	QTimer tmrFlashMWI;
 	GetAddressForm *getAddressForm;
@@ -210,6 +220,7 @@ private:
     QMenu *buddyListPopupMenu;
     QMenu *changeAvailabilityPopupMenu;
 	bool viewBuddyList;
+    bool viewAddressList;
 	OSD	*osdWindow;
 	IncomingCallPopup *incomingCallPopup;
 };

@@ -867,7 +867,7 @@ void t_gui::run(void) {
 	
 	// Populate buddy list
 	mainWindow->populateBuddyList();
-	
+    mainWindow->populateAddressList();
 	// Set width of window to width of tool bar
 	// int widthToolBar = mainWindow->callToolbar->width();
 	// QSize sizeMainWin = mainWindow->size();

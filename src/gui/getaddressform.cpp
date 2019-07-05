@@ -185,7 +185,7 @@ void GetAddressForm::selectLocalAddress()
 		t_display_url du(t_url(card.sip_address), card.get_display_name());
 		emit address(du.encode().c_str());
 	}
-	
+    emit leavehere();
 	accept();
 }
 
@@ -227,7 +227,7 @@ void GetAddressForm::deleteLocalAddress()
 {
 	QModelIndexList sel = localListView->selectionModel()->selectedRows();
 	if (sel.isEmpty())
-		return;
+        return;https://github.com/LubosD/twinkle.git
 
 	t_address_card card = m_model->getAddress(sel[0].row());
 
