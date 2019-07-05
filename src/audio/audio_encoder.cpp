@@ -493,8 +493,6 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 	assert ((nsamples % 80) == 0);
 	assert (payload_size >= ((nsamples / 80) * 10));
 
-	silence = false;
-
 	uint8 frame_size = 10;
 	uint16 result_size = 0;
 
@@ -507,6 +505,8 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 #endif
 		result_size += frame_size;
 	}
+
+	silence = false;
 
 	return result_size;
 }
