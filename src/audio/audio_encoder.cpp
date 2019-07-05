@@ -495,18 +495,21 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 
 	silence = false;
 
+	uint16 result_size = 0;
+
 	for (uint16 done = 0; done < nsamples; done += 80)
 	{
 #ifdef HAVE_BCG729_ANNEX_B
 		uint8 frame_size = 10;
-		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8], &frame_size);
+		bcg729Encoder(_context, &sample_buf[done], &payload[result_size], &frame_size);
 		assert(frame_size == 10);
 #else
-		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8]);
+		bcg729Encoder(_context, &sample_buf[done], &payload[result_size]);
 #endif
+		result_size += 10;
 	}
 
-	return nsamples / 8;
+	return result_size;
 }
 
 #endif
