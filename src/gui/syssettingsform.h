@@ -31,6 +31,7 @@ public slots:
 	virtual void playRingBackToneCheckBoxToggles( bool on );
 
 signals:
+	void inhibitIdleSessionChanged();
 	void sipUdpPortChanged();
 	void rtpPortChanged();
 

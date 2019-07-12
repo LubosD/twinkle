@@ -56,6 +56,7 @@
 #include "yesnodialog.h"
 #include "command_args.h"
 #include "im/msg_session.h"
+#include "idlesession_manager.h"
 
 #include "qcombobox.h"
 #include "qlabel.h"
@@ -783,6 +784,12 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	qRegisterMetaType<t_cf_type>("t_cf_type");
 	qRegisterMetaType<string>("string");
 	qRegisterMetaType<std::list<std::string>>("std::list<std::string>");
+
+	m_idle_session_manager = new IdleSessionManager(this);
+	updateInhibitIdleSession();
+	connect(this, &t_gui::update_state,
+			this, &t_gui::updateIdleSessionState,
+			Qt::QueuedConnection);
 	
     mainWindow = new MphoneForm;
 #ifdef HAVE_KDE
@@ -3173,6 +3180,19 @@ void t_gui::updateTimersMessageSessions() {
 		(*it)->dec_local_composing_timeout();
 		(*it)->dec_remote_composing_timeout();
 	}
+}
+
+void t_gui::updateInhibitIdleSession() {
+	m_idle_session_manager->setEnabled(sys_config->get_inhibit_idle_session());
+}
+
+void t_gui::updateIdleSessionState() {
+	bool busy = false;
+	for (int i = 0; i < NUM_USER_LINES; i++) {
+		if (phone->get_line_state(i) == LS_BUSY)
+			busy = true;
+	}
+	m_idle_session_manager->setActivityState(busy);
 }
 
 string t_gui::mime2file_extension(t_media media) {

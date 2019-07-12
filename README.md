@@ -38,6 +38,7 @@ First of all, choose which options you want to have enabled.
 All possible options are:
 
 * Qt 5 GUI: `-DWITH_QT5=On` (on by default)
+* D-Bus use: `-DWITH_DBUS=On` (on by default, requires `WITH_QT5`)
 * ALSA support: `-DWITH_ALSA=On` (on by default)
 * ZRTP support: `-DWITH_ZRTP=On`
 * G.729A codec support: `-DWITH_G729=On`

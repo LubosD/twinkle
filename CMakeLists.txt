@@ -6,12 +6,15 @@ set(PRODUCT_VERSION "1.10.2")
 set(PRODUCT_DATE    "February 14, 2018")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+include(CMakeDependentOption)
+
 OPTION(WITH_ZRTP		"Enable ZRTP encrypted calls" OFF)
 OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
 OPTION(WITH_ILBC		"Enable the iLBC codec" OFF)
 OPTION(WITH_ALSA		"Enable ALSA support" ON)
 OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" OFF)
 OPTION(WITH_QT5			"Enable Qt 5 GUI" ON)
+CMAKE_DEPENDENT_OPTION(WITH_DBUS "Enable use of QtDBus (GUI only)" ON "WITH_QT5" OFF)
 OPTION(WITH_G729		"Enable G.729A support" OFF)
 OPTION(WITH_GSM			"Use external GSM library" OFF)
 
@@ -37,6 +40,11 @@ if (WITH_QT5)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} ${Qt5Quick_EXECUTABLE_COMPILE_FLAGS}")
 	include_directories(${Qt5Widgets_INCLUDES} ${Qt5Quick_INCLUDES})
 	add_definitions(${Qt5Widgets_DEFINITIONS} ${Qt5Quick_DEFINITIONS})
+
+	if (WITH_DBUS)
+		find_package(Qt5DBus REQUIRED)
+		set(HAVE_DBUS TRUE)
+	endif (WITH_DBUS)
 endif (WITH_QT5)
 
 include_directories(${LIBXML2_INCLUDE_DIR})

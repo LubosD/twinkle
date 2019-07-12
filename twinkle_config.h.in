@@ -9,6 +9,7 @@
 #cmakedefine HAVE_LINUX_TYPES_H
 #cmakedefine HAVE_LINUX_ERRQUEUE_H
 #cmakedefine HAVE_LIBASOUND
+#cmakedefine HAVE_DBUS
 
 #define VERSION		"${PRODUCT_VERSION}"
 #define VERSION_DATE	"${PRODUCT_DATE}"
