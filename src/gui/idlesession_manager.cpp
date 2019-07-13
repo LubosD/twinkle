@@ -25,6 +25,10 @@
 #include "idlesession_inhibitor.h"
 #endif
 
+#include "log.h"
+
+#include <assert.h>
+
 IdleSessionManager::IdleSessionManager(QObject *parent)
 	: QObject(parent)
 {
@@ -38,6 +42,9 @@ IdleSessionManager::IdleSessionManager(QObject *parent)
 
 void IdleSessionManager::setEnabled(bool enabled)
 {
+	// Make sure logging has been made available at this point
+	assert(log_file);
+
 #ifdef HAVE_DBUS
 	// Create our inhibitor if enabling for the first time
 	if (enabled && !m_inhibitor)

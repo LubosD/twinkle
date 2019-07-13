@@ -67,6 +67,9 @@ private:
 
 	// Send an (un)inhibit request via D-Bus
 	void sendRequest(bool inhibit);
+
+	// Display and log a warning
+	void issueWarning(const QString &msg) const;
 };
 
 #endif // IDLESESSION_INHIBITOR_H

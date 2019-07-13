@@ -20,19 +20,15 @@
 
 #include "idlesession_inhibitor.h"
 
+#include "log.h"
+#include "userintf.h"
+
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
 #include <QDBusMessage>
 #include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
-
-#include <QtGlobal>
-
-// qUtf8Printable() was introduced in Qt 5.4
-#if QT_VERSION < 0x050400
-#define qUtf8Printable(string) QString(string).toUtf8().constData()
-#endif
 
 // There are various standards for session/power management out there.
 // Fortunately, most of them are either obsolete or redundant; the following
@@ -72,7 +68,7 @@ IdleSessionInhibitor::IdleSessionInhibitor(QObject *parent)
 	: QObject(parent)
 {
 	if (!QDBusConnection::sessionBus().isConnected()) {
-		qWarning("D-Bus: Could not connect to session bus");
+		issueWarning(tr("D-Bus: Could not connect to session bus"));
 		m_state = error;
 		return;
 	}
@@ -83,7 +79,7 @@ IdleSessionInhibitor::IdleSessionInhibitor(QObject *parent)
 	} else if (interface->isServiceRegistered(GSM_SERVICE)) {
 		m_use_gsm = true;
 	} else {
-		qWarning("D-Bus: No supported session/power management service found");
+		issueWarning(tr("D-Bus: No supported session/power management service found"));
 		m_state = error;
 		return;
 	}
@@ -158,7 +154,7 @@ void IdleSessionInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 		QDBusPendingReply<> reply = *call;
 
 		if (reply.isError()) {
-			qWarning("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
+			issueWarning(tr("D-Bus: Reply: Error: %1").arg(reply.error().message()));
 			m_state = error;
 		} else {
 			m_state = idle;
@@ -173,7 +169,7 @@ void IdleSessionInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 		QDBusPendingReply<uint> reply = *call;
 
 		if (reply.isError()) {
-			qWarning("D-Bus: Reply: Error: %s", qUtf8Printable(reply.error().message()));
+			issueWarning(tr("D-Bus: Reply: Error: %1").arg(reply.error().message()));
 			m_state = error;
 		} else {
 			m_state = busy;
@@ -185,9 +181,16 @@ void IdleSessionInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 		break;
 	}
 	default:
-		qWarning("D-Bus: Unexpected reply in state %d", m_state);
+		issueWarning(tr("D-Bus: Unexpected reply in state %1").arg(m_state));
 		m_state = error;
 	}
 
 	call->deleteLater();
+}
+
+void IdleSessionInhibitor::issueWarning(const QString &msg) const
+{
+	log_file->write_report(msg.toStdString(), "IdleSessionInhibitor",
+			LOG_NORMAL, LOG_WARNING);
+	ui->cb_display_msg(msg.toStdString(), MSG_WARNING);
 }

@@ -786,7 +786,6 @@ t_gui::t_gui(t_phone *_phone) : t_userintf(_phone), timerUpdateMessageSessions(N
 	qRegisterMetaType<std::list<std::string>>("std::list<std::string>");
 
 	m_idle_session_manager = new IdleSessionManager(this);
-	updateInhibitIdleSession();
 	connect(this, &t_gui::update_state,
 			this, &t_gui::updateIdleSessionState,
 			Qt::QueuedConnection);
@@ -825,6 +824,8 @@ void t_gui::run(void) {
 	thr_process_events = new t_thread(process_events_main, NULL);
 	MEMMAN_NEW(thr_process_events);
 	
+	updateInhibitIdleSession();
+
 	QString s;
 	list<t_user *> user_list = phone->ref_users();
 	
