@@ -241,11 +241,30 @@ int main(int argc, char *argv[]) {
 	// Take default user profile if there are is no default is sys settings
 	if (config_files.empty()) config_files.push_back(USER_CONFIG_FILE);
 
-	// Read user configurations.
 	if (argc >= 2) {
 		config_files.clear();
-		for (int i = 1; i < argc; i++) {
+		for (int i = 1; i < argc && i < 2; i++) {
 			config_files.push_back(argv[i]);
+		}
+	}
+
+	for (int i = 1; i < argc; i++) {
+	if (strcmp(argv[i], "--sip-port") == 0) {
+			if (i < argc - 1) {
+				i++;
+				sys_config->set_override_sip_port(atoi(argv[i]));
+			} else {
+				cout << argv[0] << ": ";
+				cout << "Port missing for option '--sip-port'\n";
+			}
+		} else if (strcmp(argv[i], "--rtp-port") == 0) {
+			if (i < argc - 1) {
+				i++;
+				sys_config->set_override_rtp_port(atoi(argv[i]));
+			} else {
+				cout << argv[0] << ": ";
+				cout << "Port missing for option '--rtp-port'\n";
+			}
 		}
 	}
 
