@@ -17,10 +17,23 @@
 
 #include "hdr_www_authenticate.h"
 #include "definitions.h"
+#include "util.h"
 
 t_hdr_www_authenticate::t_hdr_www_authenticate() : t_header("WWW-Authenticate") {}
 
 void t_hdr_www_authenticate::set_challenge(const t_challenge &c) {
+	// The server may send multiple WWW-Authenticate/Proxy-Authenticate
+	// headers, with different digest algorithms, in decreasing order of
+	// preference.  We must therefore avoid overwriting any supported
+	// challenge once we've got a hold of one.  (We don't simply ignore
+	// all unsupported challenges, however, just in case the server forgot
+	// to include a Digest challenge.)
+	if (populated) {
+		// Don't overwrite the previous challenge if it was supported
+		if (cmp_nocase(challenge.auth_scheme, AUTH_DIGEST) == 0) {
+			return;
+		}
+	}
 	populated = true;
 	challenge = c;
 }
