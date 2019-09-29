@@ -1871,7 +1871,7 @@ void t_phone::recvd_refer_permission(bool permission) {
 	t_phone_user *pu = incoming_refer_data->get_phone_user();
 	t_user *user_config = pu->get_user_profile();
 			
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 	lines[i]->recvd_refer_permission(permission, r);
 	
 	if (!permission) {
