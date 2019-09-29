@@ -905,7 +905,7 @@ void t_phone::post_process_response(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_invite(t_request *r, t_tid tid) {
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 
 	// Check if this INVITE is a retransmission.
 	// Once the TU sent a 2XX repsonse on an INVITE it has to deal
