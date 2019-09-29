@@ -1704,7 +1704,7 @@ void t_phone::recvd_notify(t_request *r, t_tid tid) {
 	}
 
 	// REFER notification
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
 			lines[i]->recvd_notify(r, tid);
