@@ -339,7 +339,7 @@ void t_phone::refer(const t_url &uri, const string &display) {
 
 void t_phone::refer(unsigned short lineno_from, unsigned short lineno_to) 
 {
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 
 	// The nicest transfer is an attended transfer. An attended transfer
 	// is only possible of the transfer target supports the 'replaces'
