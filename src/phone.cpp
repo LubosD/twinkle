@@ -279,8 +279,6 @@ void t_phone::end_call(void) {
 			move_line_to_background(lineno1);
 			move_line_to_background(lineno2);
 		} else {
-			t_rwmutex_reader x(lines_mtx);
-
 			// Hangup the active line, and make the next
 			// line active.
 			int l = active_line;
