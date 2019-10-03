@@ -99,28 +99,16 @@ class t_rwmutex_reader {
 private:
 	t_rwmutex& _mutex;
 public:
-	t_rwmutex_reader(t_rwmutex& mutex) : _mutex(mutex) {
-		// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
-		_mutex.lockRead();
-	}
-	~t_rwmutex_reader() {
-		// std::cout << "mtx rd unlock " << (void*)&_mutex << std::endl;
-		_mutex.unlock();
-	}
+	t_rwmutex_reader(t_rwmutex& mutex);
+	~t_rwmutex_reader();
 };
 
 class t_rwmutex_writer {
 private:
 	t_rwmutex& _mutex;
 public:
-	t_rwmutex_writer(t_rwmutex& mutex) : _mutex(mutex) {
-		// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
-		_mutex.lockWrite();
-	}
-	~t_rwmutex_writer() {
-		// std::cout << "mtx wr unlock " << (void*)&_mutex << std::endl;
-		_mutex.unlock();
-	}
+	t_rwmutex_writer(t_rwmutex& mutex);
+	~t_rwmutex_writer();
 };
 
 

@@ -124,3 +124,31 @@ void t_rwmutex::unlock()
 {
 	pthread_rwlock_unlock(&_lock);
 }
+
+///////////////////////////
+// t_rwmutex_guard
+///////////////////////////
+
+t_rwmutex_reader::t_rwmutex_reader(t_rwmutex& mutex) : _mutex(mutex)
+{
+	// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
+	_mutex.lockRead();
+}
+
+t_rwmutex_reader::~t_rwmutex_reader()
+{
+	// std::cout << "mtx rd unlock " << (void*)&_mutex << std::endl;
+	_mutex.unlock();
+}
+
+t_rwmutex_writer::t_rwmutex_writer(t_rwmutex& mutex) : _mutex(mutex)
+{
+	// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
+	_mutex.lockWrite();
+}
+
+t_rwmutex_writer::~t_rwmutex_writer()
+{
+	// std::cout << "mtx wr unlock " << (void*)&_mutex << std::endl;
+	_mutex.unlock();
+}
