@@ -95,17 +95,22 @@ public:
 	void unlock();
 };
 
-class t_rwmutex_reader {
-private:
+// Base (abstract) class
+class t_rwmutex_guard {
+protected:
 	t_rwmutex& _mutex;
+
+	// A protected constructor to keep this class abstract
+	t_rwmutex_guard(t_rwmutex& mutex);
+};
+
+class t_rwmutex_reader : public t_rwmutex_guard {
 public:
 	t_rwmutex_reader(t_rwmutex& mutex);
 	~t_rwmutex_reader();
 };
 
-class t_rwmutex_writer {
-private:
-	t_rwmutex& _mutex;
+class t_rwmutex_writer : public t_rwmutex_guard {
 public:
 	t_rwmutex_writer(t_rwmutex& mutex);
 	~t_rwmutex_writer();

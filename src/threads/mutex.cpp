@@ -129,7 +129,13 @@ void t_rwmutex::unlock()
 // t_rwmutex_guard
 ///////////////////////////
 
-t_rwmutex_reader::t_rwmutex_reader(t_rwmutex& mutex) : _mutex(mutex)
+t_rwmutex_guard::t_rwmutex_guard(t_rwmutex& mutex) :
+	_mutex(mutex)
+{
+}
+
+t_rwmutex_reader::t_rwmutex_reader(t_rwmutex& mutex) :
+	t_rwmutex_guard(mutex)
 {
 	// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
 	_mutex.lockRead();
@@ -141,7 +147,8 @@ t_rwmutex_reader::~t_rwmutex_reader()
 	_mutex.unlock();
 }
 
-t_rwmutex_writer::t_rwmutex_writer(t_rwmutex& mutex) : _mutex(mutex)
+t_rwmutex_writer::t_rwmutex_writer(t_rwmutex& mutex) :
+	t_rwmutex_guard(mutex)
 {
 	// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
 	_mutex.lockWrite();
