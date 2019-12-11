@@ -90,6 +90,11 @@ enum t_audio_codec {
 
 // Return the sampling rate for a codec
 unsigned short audio_sample_rate(t_audio_codec codec);
+// Some codecs (namely G.722 as far as we are concerned) are required to have
+// an RTP clock rate that differs from the actual sampling rate
+unsigned short audio_sample_rate_rtp(t_audio_codec codec);
+// Ratio of sampling clock rate to RTP clock rate
+unsigned short audio_sample_rate_rtp_ratio(t_audio_codec codec);
 
 // Returns true if the codec is a speex codec
 bool is_speex_codec(t_audio_codec codec);

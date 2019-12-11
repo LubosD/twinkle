@@ -55,6 +55,14 @@ uint16 t_audio_encoder::get_sample_rate(void) const {
 	return audio_sample_rate(_codec);
 }
 
+uint16 t_audio_encoder::get_sample_rate_rtp(void) const {
+	return audio_sample_rate_rtp(_codec);
+}
+
+uint16 t_audio_encoder::get_sample_rate_rtp_ratio(void) const {
+	return audio_sample_rate_rtp_ratio(_codec);
+}
+
 uint16 t_audio_encoder::get_max_payload_size(void) const {
 	return _max_payload_size;
 }

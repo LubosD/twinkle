@@ -42,6 +42,14 @@ unsigned short audio_sample_rate(t_audio_codec codec) {
 	}
 }
 
+unsigned short audio_sample_rate_rtp(t_audio_codec codec) {
+	return audio_sample_rate(codec);
+}
+
+unsigned short audio_sample_rate_rtp_ratio(t_audio_codec codec) {
+	return audio_sample_rate(codec) / audio_sample_rate_rtp(codec);
+}
+
 bool is_speex_codec(t_audio_codec codec) {
 	return (codec == CODEC_SPEEX_NB ||
 		codec == CODEC_SPEEX_WB ||

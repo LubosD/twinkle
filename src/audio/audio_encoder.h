@@ -71,6 +71,8 @@ public:
 	uint16 get_payload_id(void) const;
 	uint16 get_ptime(void) const;
 	uint16 get_sample_rate(void) const;
+	uint16 get_sample_rate_rtp(void) const;
+	uint16 get_sample_rate_rtp_ratio(void) const;
 	uint16 get_max_payload_size(void) const;
 	
 	// Encode a 16-bit PCM sample buffer to a encoded payload

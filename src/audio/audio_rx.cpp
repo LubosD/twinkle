@@ -173,7 +173,8 @@ bool t_audio_rx::get_sound_samples(unsigned short &sound_payload_size, bool &sil
 #endif
 
 	// encoding
-	sound_payload_size = audio_encoder->encode(sb, nsamples, payload, payload_size, silence);	
+	unsigned short nsamples_real = nsamples * audio_encoder->get_sample_rate_rtp_ratio();
+	sound_payload_size = audio_encoder->encode(sb, nsamples_real, payload, payload_size, silence);
 
 	// recognizing silence (both from preprocessing and encoding)
 	silence = silence || preprocessing_silence;
@@ -215,7 +216,7 @@ bool t_audio_rx::get_dtmf_event(void) {
 	} else {
 		// The telephone events may have a different sampling rate than
 		// the audio codec. Change nsamples accordingly.
-		nsamples = audio_sample_rate(CODEC_TELEPHONE_EVENT)/1000 *
+		nsamples = audio_sample_rate_rtp(CODEC_TELEPHONE_EVENT)/1000 *
 				audio_encoder->get_ptime();
 		
 		dtmf_player = new t_rtp_event_dtmf_player(this, audio_encoder, user_config,
@@ -240,8 +241,8 @@ bool t_audio_rx::get_dtmf_event(void) {
 		//       changes. When the sample rate of the audio codec is kept
 		//       on the ccRTP session settings, then all works fine.
 		rtp_session->setPayloadFormat(DynamicPayloadFormat(pt_telephone_event,
-				audio_encoder->get_sample_rate()));
-				// should be this: audio_sample_rate(CODEC_TELEPHONE_EVENT)
+				audio_encoder->get_sample_rate_rtp()));
+				// should be this: audio_sample_rate_rtp(CODEC_TELEPHONE_EVENT)
 	
 		// As all RTP event contain the same timestamp, the ccRTP stack will
 		// discard packets when the timestamp gets to old.
@@ -254,9 +255,9 @@ bool t_audio_rx::get_dtmf_event(void) {
 }
 
 void t_audio_rx::set_sound_payload_format(void) {
-	nsamples = audio_encoder->get_sample_rate()/1000 * audio_encoder->get_ptime();
+	nsamples = audio_encoder->get_sample_rate_rtp()/1000 * audio_encoder->get_ptime();
 	rtp_session->setPayloadFormat(DynamicPayloadFormat(audio_encoder->get_payload_id(),
-			audio_encoder->get_sample_rate()));
+			audio_encoder->get_sample_rate_rtp()));
 }
 
 //////////
@@ -358,7 +359,7 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 
 	payload = new unsigned char[payload_size];
 	MEMMAN_NEW_ARRAY(payload);
-	nsamples = audio_encoder->get_sample_rate()/1000 * audio_encoder->get_ptime();
+	nsamples = audio_encoder->get_sample_rate_rtp()/1000 * audio_encoder->get_ptime();
 
 	// Initialize 3-way settings to 'null'
 	media_3way_peer_tx = NULL;
@@ -370,7 +371,8 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 
 #ifdef HAVE_SPEEX
 	// initializing speex preprocessing state
-	speex_preprocess_state = speex_preprocess_state_init(nsamples, audio_encoder->get_sample_rate());
+	unsigned short nsamples_real = nsamples * audio_encoder->get_sample_rate_rtp_ratio();
+	speex_preprocess_state = speex_preprocess_state_init(nsamples_real, audio_encoder->get_sample_rate());
 
 	int arg;
 	float farg;
@@ -473,7 +475,7 @@ void t_audio_rx::run(void) {
 	// The start of a new stream is assumed to start in silence, such
 	// that the very first RTP packet will be marked.
 	bool silence_period = true;
-	uint64 silence_nsamples = 0; // duration in samples
+	uint64 silence_nsamples = 0; // duration in (real) samples
 	
 	// This flag indicates if a sound frame can be suppressed
 	bool suppress_samples = false;

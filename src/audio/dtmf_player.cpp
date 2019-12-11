@@ -135,13 +135,14 @@ t_inband_dtmf_player::t_inband_dtmf_player(t_audio_rx *audio_rx,
 uint16 t_inband_dtmf_player::get_payload(uint8 *payload, 
 		uint16 payload_size, uint32 timestamp, uint32 &rtp_timestamp)
 {
-	int16 sample_buf[_nsamples];
+	uint16 nsamples_real = _nsamples * _audio_encoder->get_sample_rate_rtp_ratio();
+	int16 sample_buf[nsamples_real];
 
 	if (_dtmf_pause) {
 		int pause_duration = timestamp - _dtmf_timestamp - _dtmf_duration +
 				     _nsamples;
 				     
-		memset(sample_buf, 0, _nsamples * 2);
+		memset(sample_buf, 0, nsamples_real * 2);
 				     
 		if (pause_duration / _nsamples * _audio_encoder->get_ptime() >=
 					_user_config->get_dtmf_pause())
@@ -159,9 +160,10 @@ uint16 t_inband_dtmf_player::get_payload(uint8 *payload,
 		}
 	} else {
 		// Timestamp and interval for _freq_gen must be in usec
-		uint32 ts_start = (timestamp - _dtmf_timestamp) * 1000000 /
+		uint32 ts_start = (timestamp - _dtmf_timestamp) * 1000000 *
+					_audio_encoder->get_sample_rate_rtp_ratio() /
 					_audio_encoder->get_sample_rate();
-		_freq_gen.get_samples(sample_buf, _nsamples, ts_start, 
+		_freq_gen.get_samples(sample_buf, nsamples_real, ts_start,
 			1000000.0 / _audio_encoder->get_sample_rate());
 		
 		// The duration counts from the start of the tone.
@@ -178,5 +180,5 @@ uint16 t_inband_dtmf_player::get_payload(uint8 *payload,
 	// Encode audio samples
 	bool silence;
 	rtp_timestamp = timestamp;
-	return _audio_encoder->encode(sample_buf, _nsamples, payload, payload_size, silence);
+	return _audio_encoder->encode(sample_buf, nsamples_real, payload, payload_size, silence);
 }

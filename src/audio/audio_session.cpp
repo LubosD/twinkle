@@ -232,7 +232,7 @@ t_audio_session::t_audio_session(t_session *_session,
 	assert(it != send_ac2payload.end());
 	unsigned short payload_id = it->second;
 	rtp_session->setPayloadFormat(DynamicPayloadFormat(
-			payload_id, audio_sample_rate(codec)));
+			payload_id, audio_sample_rate_rtp(codec)));
 
 	// Open and initialize sound card
 	t_audio_session *as_peer;
