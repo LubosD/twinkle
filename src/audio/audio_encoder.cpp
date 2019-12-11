@@ -284,6 +284,40 @@ uint16 t_ilbc_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 #endif
 
 //////////////////////////////////////////
+// class t_g722_audio_encoder
+//////////////////////////////////////////
+
+t_g722_audio_encoder::t_g722_audio_encoder(uint16 payload_id, uint16 ptime,
+		t_user *user_config) :
+	t_audio_encoder(payload_id, ptime, user_config)
+{
+	_codec = CODEC_G722;
+	if (ptime == 0) _ptime = PTIME_G722;
+	_max_payload_size = audio_sample_rate(_codec)/1000 * _ptime / G722_SAMPLES_PAYLOAD_RATIO;
+
+	_state = g722_encode_init(NULL, 64000, 0);
+}
+
+t_g722_audio_encoder::~t_g722_audio_encoder()
+{
+	g722_encode_release(_state);
+}
+
+uint16 t_g722_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
+			uint8 *payload, uint16 payload_size, bool &silence)
+{
+	assert((nsamples % G722_SAMPLES_PAYLOAD_RATIO) == 0);
+	assert(payload_size >= (nsamples / G722_SAMPLES_PAYLOAD_RATIO));
+
+	silence = false;
+
+	int nbytes = g722_encode(_state, payload, sample_buf, nsamples);
+
+	return nbytes;
+}
+
+
+//////////////////////////////////////////
 // class t_g726_encoder
 //////////////////////////////////////////
 

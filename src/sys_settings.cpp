@@ -1077,6 +1077,10 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 	
+	s += TRANSLATE("* G.722 codec from Steve Underwood (public domain)");
+	if (html) s += "<BR>";
+	s += "\n";
+
 #ifdef HAVE_ILBC
 	s += TRANSLATE("* iLBC implementation from RFC 3951 (www.ilbcfreeware.org)");	
 	if (html) s += "<BR>";

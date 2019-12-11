@@ -33,6 +33,7 @@
 #define SDP_FORMAT_G711_ULAW	0
 #define SDP_FORMAT_GSM		3
 #define SDP_FORMAT_G711_ALAW	8
+#define SDP_FORMAT_G722		9
 #define SDP_FORMAT_G729			18
 
 // rtpmap values
@@ -43,6 +44,7 @@
 #define SDP_RTPMAP_SPEEX_WB	"speex/16000"
 #define SDP_RTPMAP_SPEEX_UWB	"speex/32000"
 #define SDP_RTPMAP_ILBC		"iLBC/8000"
+#define SDP_RTPMAP_G722		"G722/8000"
 #define SDP_RTPMAP_G726_16	"G726-16/8000"
 #define SDP_RTPMAP_G726_24	"G726-24/8000"
 #define SDP_RTPMAP_G726_32	"G726-32/8000"
@@ -56,6 +58,7 @@
 #define SDP_AC_NAME_GSM			"GSM"
 #define SDP_AC_NAME_SPEEX		"speex"
 #define SDP_AC_NAME_ILBC		"iLBC"
+#define SDP_AC_NAME_G722		"G722"
 #define SDP_AC_NAME_G726_16		"G726-16"
 #define SDP_AC_NAME_G726_24		"G726-24"
 #define SDP_AC_NAME_G726_32		"G726-32"

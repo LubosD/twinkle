@@ -37,6 +37,11 @@ extern "C" {
 #include <speex/speex_preprocess.h> 
 #endif
 
+extern "C" {
+#	include "g722.h"
+#	include "g722_local.h"
+}
+
 #ifdef HAVE_BCG729
 extern "C" {
 #	include <bcg729/decoder.h>
@@ -174,6 +179,21 @@ public:
 };
 
 #endif
+
+// G.722
+class t_g722_audio_decoder : public t_audio_decoder {
+private:
+	g722_decode_state_t *_state;
+
+public:
+	t_g722_audio_decoder(uint16 default_ptime, t_user *user_config);
+	~t_g722_audio_decoder();
+
+	virtual uint16 get_ptime(uint16 payload_size) const;
+	virtual uint16 decode(uint8 *payload, uint16 payload_size,
+			int16 *pcm_buf, uint16 pcm_buf_size);
+	virtual bool valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const;
+};
 
 // G.726
 class t_g726_audio_decoder : public t_audio_decoder {

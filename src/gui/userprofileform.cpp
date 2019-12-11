@@ -77,6 +77,7 @@
 #define labelCodecSpeexWb	"speex-wb (16 kHz)"
 #define labelCodecSpeexUwb	"speex-uwb (32 kHz)"
 #define labelCodecIlbc		"iLBC"
+#define labelCodecG722		"G.722"
 #define labelCodecG726_16		"G.726 16 kbps"
 #define labelCodecG726_24		"G.726 24 kbps"
 #define labelCodecG726_32		"G.726 32 kbps"
@@ -245,6 +246,8 @@ t_audio_codec UserProfileForm::label2codec(const QString &label) {
 		return CODEC_SPEEX_UWB;
 	} else if (label == labelCodecIlbc) {
 		return CODEC_ILBC;
+	} else if (label == labelCodecG722) {
+		return CODEC_G722;
 	} else if (label == labelCodecG726_16) {
 		return CODEC_G726_16;
 	} else if (label == labelCodecG726_24) {
@@ -276,6 +279,8 @@ QString UserProfileForm::codec2label(t_audio_codec &codec) {
 		return labelCodecSpeexUwb;
 	case CODEC_ILBC:
 		return labelCodecIlbc;
+	case CODEC_G722:
+		return labelCodecG722;
 	case CODEC_G726_16:
 		return labelCodecG726_16;
 	case CODEC_G726_24:
@@ -419,6 +424,7 @@ void UserProfileForm::populate()
 #ifdef HAVE_ILBC
 	allCodecs.append(labelCodecIlbc);
 #endif
+	allCodecs.append(labelCodecG722);
 	allCodecs.append(labelCodecG726_16);
 	allCodecs.append(labelCodecG726_24);
 	allCodecs.append(labelCodecG726_32);
@@ -436,7 +442,7 @@ void UserProfileForm::populate()
 	availCodecListBox->clear();
     if (!allCodecs.empty()) availCodecListBox->addItems(allCodecs);
 	
-	// G.711/G.726 ptime
+	// G.711/G.722/G.726 ptime
 	ptimeSpinBox->setValue(current_profile->get_ptime());
 	
 	// Codec preference
@@ -1060,7 +1066,7 @@ bool UserProfileForm::validateValues()
 	}
 	current_profile->set_codecs(audio_codecs);
 	
-	// G.711/G.726 ptime
+	// G.711/G.722/G.726 ptime
 	current_profile->set_ptime(ptimeSpinBox->value());
 	
 	// Codec preference

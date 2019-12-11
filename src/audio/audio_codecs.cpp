@@ -32,6 +32,7 @@ unsigned short audio_sample_rate(t_audio_codec codec) {
 	case CODEC_G726_40:
 	case CODEC_TELEPHONE_EVENT:
 		return 8000;
+	case CODEC_G722:
 	case CODEC_SPEEX_WB:
 		return 16000;
 	case CODEC_SPEEX_UWB:
@@ -43,7 +44,13 @@ unsigned short audio_sample_rate(t_audio_codec codec) {
 }
 
 unsigned short audio_sample_rate_rtp(t_audio_codec codec) {
-	return audio_sample_rate(codec);
+	switch(codec) {
+	case CODEC_G722:
+		// RFC 3551 (s. 4.5.2) requires the RTP clock rate to be 8 kHz
+		return 8000;
+	default:
+		return audio_sample_rate(codec);
+	}
 }
 
 unsigned short audio_sample_rate_rtp_ratio(t_audio_codec codec) {

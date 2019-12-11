@@ -2267,6 +2267,8 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 				} else if (codec == "ilbc") {
 					codecs.push_back(CODEC_ILBC);
 #endif
+				} else if (codec == "g722") {
+					codecs.push_back(CODEC_G722);
 				} else if (codec == "g726-16") {
 					codecs.push_back(CODEC_G726_16);
 				} else if (codec == "g726-24") {
@@ -2685,6 +2687,9 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 			break;
 		case CODEC_ILBC:
 			config << "ilbc";
+			break;
+		case CODEC_G722:
+			config << "g722";
 			break;
 		case CODEC_G726_16:
 			config << "g726-16";

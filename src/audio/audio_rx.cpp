@@ -321,6 +321,10 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 		MEMMAN_NEW(audio_encoder);
 		break;
 #endif
+	case CODEC_G722:
+		audio_encoder = new t_g722_audio_encoder(_payload_id, _ptime, user_config);
+		MEMMAN_NEW(audio_encoder);
+		break;
 	case CODEC_G726_16:
 		audio_encoder = new t_g726_audio_encoder(_payload_id, _ptime,
 				t_g726_audio_encoder::BIT_RATE_16, user_config);

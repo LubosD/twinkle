@@ -32,6 +32,7 @@ enum t_audio_codec {
 	CODEC_SPEEX_WB,
 	CODEC_SPEEX_UWB,
 	CODEC_ILBC,
+	CODEC_G722,
 	CODEC_G726_16,
 	CODEC_G726_24,
 	CODEC_G726_32,
@@ -43,6 +44,7 @@ enum t_audio_codec {
 // Default ptime values (ms) for audio codecs
 #define PTIME_G711_ALAW		20
 #define PTIME_G711_ULAW		20
+#define PTIME_G722		20
 #define PTIME_G726		20
 #define PTIME_GSM		20
 #define PTIME_SPEEX		20
