@@ -67,7 +67,8 @@
 #define idxRtpPreprocessing 1
 #define idxRtpIlbc	    2
 #define idxRtpSpeex	    3
-#define idxRtpDtmf	    4
+#define idxRtpG726	    4
+#define idxRtpDtmf	    5
 
 // Codec labels
 #define labelCodecG711a		"G.711 A-law"
