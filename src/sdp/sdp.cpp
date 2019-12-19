@@ -640,6 +640,10 @@ t_audio_codec t_sdp::get_rtpmap_codec(const string &rtpmap) const {
 		
 	string codec_name = trim(rtpmap_elems[0]);
 	int sample_rate = atoi(trim(rtpmap_elems[1]).c_str());
+	int channels = 1;
+	if (rtpmap_elems.size() >= 3) {
+		channels = atoi(trim(rtpmap_elems[2]).c_str());
+	}
 	
 	if (cmp_nocase(codec_name, SDP_AC_NAME_G711_ULAW) == 0 && sample_rate == 8000) {
 		return CODEC_G711_ULAW;
