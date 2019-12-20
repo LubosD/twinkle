@@ -282,6 +282,8 @@ public:
 	void set_fmtp(t_sdp_media_type media_type, unsigned short codec, const string &fmtp);
 	void set_fmtp_int_param(t_sdp_media_type media_type, unsigned short codec,
 			const string &param, int value);
+	void set_fmtp_int_params(t_sdp_media_type media_type, unsigned short codec,
+			const std::map<std::string, int> &params);
 	void set_zrtp_support(t_sdp_media_type media_type);
 
 	// Returns a pointer to the first media stream in the list of media

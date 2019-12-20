@@ -803,6 +803,26 @@ void t_sdp::set_fmtp_int_param(t_sdp_media_type media_type, unsigned short codec
 	set_fmtp(media_type, codec, fmtp);
 }
 
+void t_sdp::set_fmtp_int_params(t_sdp_media_type media_type, unsigned short codec,
+			const std::map<std::string, int> &params)
+{
+	if (params.empty()) return;
+
+	std::string fmtp;
+	bool first_param = true;
+
+	for (const std::pair<std::string, int> &param : params) {
+		fmtp += (first_param ? "" : "; ");
+		first_param = false;
+
+		fmtp += param.first;
+		fmtp += '=';
+		fmtp += int2str(param.second);
+	}
+
+	set_fmtp(media_type, codec, fmtp);
+}
+
 void t_sdp::set_zrtp_support(t_sdp_media_type media_type) {
 	t_sdp_media *m = const_cast<t_sdp_media *>(get_first_media(media_type));
 	assert(m != NULL);
