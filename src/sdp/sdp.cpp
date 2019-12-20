@@ -722,7 +722,9 @@ string t_sdp::get_fmtp(t_sdp_media_type media_type, unsigned short codec) const 
 	{
 		vector<string> l = split_ws((*i)->value);
 		if (atoi(l.front().c_str()) == codec) {
-			return l.back();
+			// Reconstruct the fmtp parameters string
+			vector<string> params((l.begin() + 1), l.end());
+			return join_strings(params, " ");
 		}
 	}
 
