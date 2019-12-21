@@ -41,6 +41,11 @@ enum t_audio_codec {
 	CODEC_G729A
 };
 
+// Format specific parameters, received on a "a=fmtp:" line during the SDP
+// negotiation, to be passed to the corresponding encoder/decoder
+struct t_codec_sdp_params {
+};
+
 // Default ptime values (ms) for audio codecs
 #define PTIME_G711_ALAW		20
 #define PTIME_G711_ULAW		20

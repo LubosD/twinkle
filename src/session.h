@@ -112,6 +112,8 @@ public:
 	unsigned short		send_dtmf_pt;	// payload type for DTMF sending
 	t_sdp			recvd_sdp_offer;
 
+	t_codec_sdp_params	codec_sdp_params;  // SDP format parameters
+
 	t_session(t_dialog *_dialog, string _receive_host,
 		  unsigned short _receive_port);
 
