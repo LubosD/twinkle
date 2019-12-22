@@ -10,6 +10,7 @@ env:
     -DWITH_ALSA=ON
     -DWITH_DIAMONDCARD=ON
     -DWITH_GSM=ON
+    -DWITH_OPUS=ON
     -DWITH_SPEEX=ON
     -DWITH_ZRTP=OFF
   # Essential packages required by all builds
@@ -19,6 +20,7 @@ env:
     flex
     libccrtp-dev
     libmagic-dev
+    libopus-dev
     libreadline-dev
     libsndfile1-dev
     libucommon-dev
@@ -78,6 +80,7 @@ jobs:
               -DWITH_QT5=OFF
               -DWITH_ALSA=OFF
               -DWITH_GSM=OFF
+              -DWITH_OPUS=OFF
               -DWITH_SPEEX=OFF
               -DWITH_ZRTP=OFF
             # The empty string would evaluate to false and fail to override

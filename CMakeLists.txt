@@ -14,6 +14,7 @@ include(CMakeDependentOption)
 
 OPTION(WITH_ZRTP		"Enable ZRTP encrypted calls" OFF)
 OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
+OPTION(WITH_OPUS		"Enable the Opus codec" OFF)
 OPTION(WITH_ILBC		"Enable the iLBC codec" OFF)
 OPTION(WITH_ALSA		"Enable ALSA support" ON)
 CMAKE_DEPENDENT_OPTION(WITH_DIAMONDCARD	"Enable Diamondcard integration" ON "WITH_QT5" OFF)
@@ -39,6 +40,8 @@ include (CheckSymbolExists)
 include (CMakePushCheckState)
 include (CheckCXXSourceCompiles)
 include (TestBigEndian)
+
+find_package(PkgConfig REQUIRED)
 
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
@@ -109,6 +112,11 @@ if (WITH_SPEEX)
 		message(FATAL_ERROR "Speex not found!")
 	endif (SPEEX_FOUND)
 endif (WITH_SPEEX)
+
+if (WITH_OPUS)
+	pkg_check_modules(Opus REQUIRED IMPORTED_TARGET opus)
+	set(HAVE_OPUS TRUE)
+endif (WITH_OPUS)
 
 if (WITH_ILBC)
 	find_package(Ilbc)

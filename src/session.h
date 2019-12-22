@@ -74,6 +74,10 @@ private:
 	// Set the list of received codecs from the SDP.
 	// Create the send_ac2paylaod and send_payload2ac mappings.
 	void set_recvd_codecs(t_sdp *sdp);
+
+	// Opus-related sections common to both offer/answer methods
+	void process_sdp_opus(t_sdp *sdp, int &warn_code, std::string &warn_text);
+	void create_sdp_opus(t_sip_message *m, const std::string &user);
 	
 	// Returns if this session is part of a 3-way conference
 	bool is_3way(void) const;

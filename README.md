@@ -32,6 +32,7 @@ The following tools are also required:
 * libzrtpcpp (version >= 0.9.0) [ZRTP library, ccRTP support must be enabled](https://www.gnu.org/software/ccrtp/zrtp.html)
 * bcg729 [G.729A codec library](http://www.linphone.org/technical-corner/bcg729)
 * Speex and SpeexDSP [Speex codec library](http://www.speex.org/)
+* libopus [Opus codec library](http://opus-codec.org/)
 * iLBC [iLBC codec library](http://www.ilbcfreeware.org/)
 * [Akonadi](https://community.kde.org/KDE_PIM/Akonadi) (specifically, the `core` library) and [KContacts](https://cgit.kde.org/kcontacts.git)
 
@@ -47,6 +48,7 @@ All possible options are:
 * ZRTP support: `-DWITH_ZRTP=On`
 * G.729A codec support: `-DWITH_G729=On`
 * Speex codec support: `-DWITH_SPEEX=On`
+* Opus codec support: `-DWITH_OPUS=On`
 * iLBC codec support: `-DWITH_ILBC=On`
 * Diamondcard support: `-DWITH_DIAMONDCARD=On`
 * Akonadi support: `-DWITH_AKONADI=On` (requires `WITH_QT5`)
