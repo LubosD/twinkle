@@ -1,10 +1,14 @@
 project(twinkle)
 
-cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
 
 set(PRODUCT_VERSION "1.10.2")
 set(PRODUCT_DATE    "February 14, 2018")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# Add -DDEBUG for non-release builds, or uCommon will unilaterally define NDEBUG
+# (https://lists.gnu.org/archive/html/bug-commoncpp/2019-12/msg00000.html)
+set_directory_properties(PROPERTIES
+	COMPILE_DEFINITIONS $<$<OR:$<CONFIG:>,$<CONFIG:Debug>>:DEBUG>)
 
 OPTION(WITH_ZRTP		"Enable ZRTP encrypted calls" OFF)
 OPTION(WITH_SPEEX		"Enable the Speex codec" OFF)
