@@ -94,7 +94,13 @@ t_mutex_guard::~t_mutex_guard() {
 // t_rwmutex
 ///////////////////////////
 
-t_rwmutex::t_rwmutex()
+// Equivalent of an invalid thread ID, to be used when initializing t_rwmutex
+// or when releasing upgrade ownership; the use of pthread_self() is only to
+// provide a dummy value of the appropriate type.
+static const optional_pthread_t invalid_thread_id = { false, pthread_self() };
+
+t_rwmutex::t_rwmutex() :
+	_up_mutex_thread( invalid_thread_id )
 {
 	int ret = pthread_rwlock_init(&_lock, nullptr);
 	if (ret != 0) throw string(
@@ -106,23 +112,103 @@ t_rwmutex::~t_rwmutex()
 	pthread_rwlock_destroy(&_lock);
 }
 
-void t_rwmutex::lockRead()
+void t_rwmutex::getUpgradeOwnership()
+{
+	_up_mutex.lock();
+	_up_mutex_thread = { true, pthread_self() };
+}
+
+void t_rwmutex::releaseUpgradeOwnership()
+{
+	_up_mutex_thread = invalid_thread_id;
+	_up_mutex.unlock();
+}
+
+bool t_rwmutex::isUpgradeOwnershipOurs() const
+{
+	// Note that we don't need a mutex over _up_mutex_thread, being atomic
+	// is enough for our purposes.  (We don't care about *who* owns
+	// _up_mutex, only about whether or not *we* own it, a fact which only
+	// our own thread can modify.)
+	optional_pthread_t lockOwner = _up_mutex_thread;
+	return lockOwner.has_value && pthread_equal(lockOwner.value, pthread_self());
+}
+
+void t_rwmutex::_lockRead()
 {
 	int err = pthread_rwlock_rdlock(&_lock);
 	if (err != 0)
 		throw std::logic_error("Mutex lock failed");
 }
 
-void t_rwmutex::lockWrite()
+void t_rwmutex::_lockWrite()
 {
 	int err = pthread_rwlock_wrlock(&_lock);
 	if (err != 0)
 		throw std::logic_error("Mutex lock failed");
 }
 
-void t_rwmutex::unlock()
+void t_rwmutex::_unlock()
 {
 	pthread_rwlock_unlock(&_lock);
+}
+
+void t_rwmutex::lockRead()
+{
+	if (isUpgradeOwnershipOurs()) {
+		throw std::logic_error("Acquiring read lock while holding update/write lock is not supported");
+	}
+
+	_lockRead();
+}
+
+void t_rwmutex::lockUpdate()
+{
+	if (isUpgradeOwnershipOurs()) {
+		throw std::logic_error("Acquiring update lock while holding update/write lock is not supported");
+	}
+
+	getUpgradeOwnership();
+	_lockRead();
+}
+
+void t_rwmutex::lockWrite()
+{
+	if (isUpgradeOwnershipOurs()) {
+		throw std::logic_error("Acquiring write lock while holding update/write lock is not supported");
+	}
+
+	getUpgradeOwnership();
+	_lockWrite();
+}
+
+void t_rwmutex::unlock()
+{
+	_unlock();
+
+	if (isUpgradeOwnershipOurs()) {
+		releaseUpgradeOwnership();
+	}
+}
+
+void t_rwmutex::upgradeLock()
+{
+	if (!isUpgradeOwnershipOurs()) {
+		throw std::logic_error("Attempting to upgrade a lock without upgrade ownership");
+	}
+
+	_unlock();
+	_lockWrite();
+}
+
+void t_rwmutex::downgradeLock()
+{
+	if (!isUpgradeOwnershipOurs()) {
+		throw std::logic_error("Attempting to downgrade a lock without upgrade ownership");
+	}
+
+	_unlock();
+	_lockRead();
 }
 
 ///////////////////////////
@@ -130,32 +216,63 @@ void t_rwmutex::unlock()
 ///////////////////////////
 
 t_rwmutex_guard::t_rwmutex_guard(t_rwmutex& mutex) :
-	_mutex(mutex)
+	_mutex(mutex),
+	_previously_owned_upgrade(_mutex.isUpgradeOwnershipOurs())
 {
 }
 
 t_rwmutex_reader::t_rwmutex_reader(t_rwmutex& mutex) :
 	t_rwmutex_guard(mutex)
 {
-	// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
-	_mutex.lockRead();
+	// No-op if we are nested within a writer/future_writer guard
+	if (!_previously_owned_upgrade) {
+		_mutex.lockRead();
+	}
 }
 
 t_rwmutex_reader::~t_rwmutex_reader()
 {
-	// std::cout << "mtx rd unlock " << (void*)&_mutex << std::endl;
-	_mutex.unlock();
+	// No-op if we are nested within a writer/future_writer guard
+	if (!_previously_owned_upgrade) {
+		_mutex.unlock();
+	}
+}
+
+t_rwmutex_future_writer::t_rwmutex_future_writer(t_rwmutex& mutex) :
+	t_rwmutex_guard(mutex)
+{
+	// No-op if we are nested within a future_writer guard
+	if (!_previously_owned_upgrade) {
+		_mutex.lockUpdate();
+	}
+}
+
+t_rwmutex_future_writer::~t_rwmutex_future_writer() {
+	// No-op if we are nested within a future_writer guard
+	if (!_previously_owned_upgrade) {
+		_mutex.unlock();
+	}
 }
 
 t_rwmutex_writer::t_rwmutex_writer(t_rwmutex& mutex) :
 	t_rwmutex_guard(mutex)
 {
-	// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
-	_mutex.lockWrite();
+	if (_previously_owned_upgrade) {
+		// Writer nested inside a future_writer: upgrade lock
+		_mutex.upgradeLock();
+	} else {
+		// Stand-alone writer guard
+		_mutex.lockWrite();
+	}
 }
 
 t_rwmutex_writer::~t_rwmutex_writer()
 {
-	// std::cout << "mtx wr unlock " << (void*)&_mutex << std::endl;
-	_mutex.unlock();
+	if (_previously_owned_upgrade) {
+		// We were nested within a future_writer guard, so return
+		// the mutex to its previous state
+		_mutex.downgradeLock();
+	} else {
+		_mutex.unlock();
+	}
 }
