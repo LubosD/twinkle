@@ -18,6 +18,8 @@ env:
     - PACKAGES_ADD="clang-4.0" MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
     - PACKAGES_ADD="clang-5.0" MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
     - PACKAGES_ADD="clang-6.0" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+    - PACKAGES_ADD="clang-7"   MATRIX_EVAL="CC=clang-7   && CXX=clang++-7"
+    - PACKAGES_ADD="clang-8"   MATRIX_EVAL="CC=clang-8   && CXX=clang++-8"
     # Test with all options disabled
     - FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF" PACKAGES=""
 
