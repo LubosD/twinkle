@@ -9,11 +9,15 @@ env:
     - PACKAGES="libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools"
   matrix:
     # Test various compiler versions
-    - PACKAGES_ADD="g++-5"   MATRIX_EVAL="CC=gcc-5   && CXX=g++-5"
-    - PACKAGES_ADD="g++-6"   MATRIX_EVAL="CC=gcc-6   && CXX=g++-6"
-    - PACKAGES_ADD="g++-7"   MATRIX_EVAL="CC=gcc-7   && CXX=g++-7"
-    - PACKAGES_ADD="g++-8"   MATRIX_EVAL="CC=gcc-8   && CXX=g++-8"
-    - PACKAGES_ADD="g++-9"   MATRIX_EVAL="CC=gcc-9   && CXX=g++-9"
+    - PACKAGES_ADD="g++-5"     MATRIX_EVAL="CC=gcc-5     && CXX=g++-5"
+    - PACKAGES_ADD="g++-6"     MATRIX_EVAL="CC=gcc-6     && CXX=g++-6"
+    - PACKAGES_ADD="g++-7"     MATRIX_EVAL="CC=gcc-7     && CXX=g++-7"
+    - PACKAGES_ADD="g++-8"     MATRIX_EVAL="CC=gcc-8     && CXX=g++-8"
+    - PACKAGES_ADD="g++-9"     MATRIX_EVAL="CC=gcc-9     && CXX=g++-9"
+    - PACKAGES_ADD="clang-3.9" MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+    - PACKAGES_ADD="clang-4.0" MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+    - PACKAGES_ADD="clang-5.0" MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+    - PACKAGES_ADD="clang-6.0" MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
     # Test with all options disabled
     - FLAGS="-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF" PACKAGES=""
 
