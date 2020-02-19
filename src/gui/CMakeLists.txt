@@ -37,6 +37,7 @@ set (twinkle_lang_SRC
 	lang/twinkle_fr.ts
 	lang/twinkle_nl.ts
 	lang/twinkle_ru.ts
+	lang/twinkle_sk.ts
 	lang/twinkle_sv.ts
 )
 
