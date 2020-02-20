@@ -236,7 +236,7 @@ void MphoneForm::init()
 		
 		// View menu
         menu->addAction(viewCall_HistoryAction);
-		
+
         menu->addSeparator();
 		
 #ifdef WITH_DIAMONDCARD
@@ -256,14 +256,14 @@ void MphoneForm::init()
 
 	restoreState(g_gui_state->value("mainwindow/state").toByteArray());
 	restoreGeometry(g_gui_state->value("mainwindow/geometry").toByteArray());
-	splitter2->restoreState(g_gui_state->value("mainwindow/mainsplitter").toByteArray());
+    splitter2->restoreState(g_gui_state->value("mainwindow/mainsplitter").toByteArray());
 }
 
 void MphoneForm::destroy()
 {
 	g_gui_state->setValue("mainwindow/state", saveState());
 	g_gui_state->setValue("mainwindow/geometry", saveGeometry());
-	g_gui_state->setValue("mainwindow/mainsplitter", splitter2->saveState());
+    g_gui_state->setValue("mainwindow/mainsplitter", splitter2->saveState());
 
 	if (dtmfForm) {
 		MEMMAN_DELETE(dtmfForm);
@@ -2353,7 +2353,9 @@ void MphoneForm::selectProfile()
 		connect(selectProfileForm, SIGNAL(profileRenamed()),
 			this, SLOT(updateUserComboBox()));
 		connect(selectProfileForm, SIGNAL(profileRenamed()),
-			this, SLOT(populateBuddyList()));
+            this, SLOT(populateBuddyList()));
+        connect(selectProfileForm, SIGNAL(profileRenamed()),
+            this, SLOT(populateAddressList()));
 	}
 	
 	selectProfileForm->showForm(this);
@@ -2493,6 +2495,7 @@ void MphoneForm::newUsers(const list<string> &profiles)
     progress.setValue(add_profile_list.size());
 	
 	populateBuddyList();
+    populateAddressList();
 	updateUserComboBox();
 	updateRegStatus();
 	updateMwi();
@@ -2675,7 +2678,10 @@ void MphoneForm::showAddressBook()
 	connect(getAddressForm, 
 		SIGNAL(address(const QString &)),
 		this, SLOT(selectedAddress(const QString &)));
-	
+    connect(getAddressForm,
+        SIGNAL(leavehere()),
+        this, SLOT(populateAddressList()));
+
 	getAddressForm->show();
 }
 
@@ -2963,6 +2969,18 @@ void MphoneForm::showBuddyList(bool on)
     viewBuddyListAction->setChecked(on);
 }
 
+void MphoneForm::showAddressList(bool on)
+{
+    if (on) {
+        addressListView->show();
+    } else {
+        addressListView->hide();
+    }
+
+    viewAddressList = on;
+    viewAddressListAction->setChecked(on);
+}
+
 void MphoneForm::showCompactLineStatus(bool on)
 {
 	if (on) {
@@ -3021,6 +3039,11 @@ bool MphoneForm::getViewBuddyList()
 	return viewBuddyList;
 }
 
+bool MphoneForm::getViewAddressList()
+{
+    return viewAddressList;
+}
+
 bool MphoneForm::getViewCompactLineStatus()
 {
 	return viewCompactLineStatus;
@@ -3047,6 +3070,16 @@ void MphoneForm::populateBuddyList()
         // profileItem->setOpen(true);
 	}
     buddyListView->expandAll();
+}
+
+void MphoneForm::populateAddressList()
+{
+    m_model = new AddressTableModel(this, ab_local->get_address_list());
+    addressListView->setModel(m_model);
+
+    addressListView->sortByColumn(COL_ADDR_NAME, Qt::AscendingOrder);
+
+    addressListView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void MphoneForm::showBuddyListPopupMenu(const QPoint &pos)
@@ -3331,4 +3364,30 @@ void MphoneForm::osdMuteClicked()
 {
 	((t_gui *)ui)->action_mute(!phone->is_line_muted(phone->get_active_line()));
 	updateState();
+}
+
+void MphoneForm::on_viewAddressListAction_triggered(bool on)
+{
+        if (on) {
+            addressListView->show();
+        } else {
+            addressListView->hide();
+        }
+
+        viewAddressList = on;
+        viewAddressListAction->setChecked(on);
+}
+
+void MphoneForm::selectLocalAddress()
+{
+    qDebug()<<"Enter!";
+    QModelIndexList sel = addressListView->selectionModel()->selectedRows();
+    if (!sel.isEmpty())
+    {
+        t_address_card card = m_model->getAddress(sel[0].row());
+        QString address = '"' +QString::fromStdString(card.get_display_name()) + '"' + " <" + QString::fromStdString(card.sip_address) + '>';
+        addToCallComboBox(address);
+        selectedAddress(address);
+        qDebug()<<address;
+    }
 }
