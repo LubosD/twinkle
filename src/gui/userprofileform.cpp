@@ -102,8 +102,8 @@
 #define colReplace		1
 
 // MWI type indices
-#define idxMWIUnsollicited	0
-#define idxMWISollicited	1
+#define idxMWIUnsolicited	0
+#define idxMWISolicited	1
 
 // SIP transport protocol indices
 #define idxSipTransportAuto	0
@@ -383,12 +383,12 @@ void UserProfileForm::populate()
 	
 	// VOICE MAIL
 	vmAddressLineEdit->setText(current_profile->get_mwi_vm_address().c_str());
-	if (current_profile->get_mwi_sollicited()) {
-        mwiTypeComboBox->setCurrentIndex(idxMWISollicited);
-		mwiSollicitedGroupBox->setEnabled(true);
+	if (current_profile->get_mwi_solicited()) {
+        mwiTypeComboBox->setCurrentIndex(idxMWISolicited);
+		mwiSolicitedGroupBox->setEnabled(true);
 	} else {
-        mwiTypeComboBox->setCurrentIndex(idxMWIUnsollicited);
-		mwiSollicitedGroupBox->setEnabled(false);
+        mwiTypeComboBox->setCurrentIndex(idxMWIUnsolicited);
+		mwiSolicitedGroupBox->setEnabled(false);
 	}
 	mwiUserLineEdit->setText(current_profile->get_mwi_user().c_str());
 	mwiServerLineEdit->setText(current_profile->
@@ -809,7 +809,7 @@ bool UserProfileForm::validateValues()
 	
 
 	// Validity check voice mail page
-    if (mwiTypeComboBox->currentIndex() == idxMWISollicited) {
+    if (mwiTypeComboBox->currentIndex() == idxMWISolicited) {
 		// Mailbox user name is mandatory
 		if (mwiUserLineEdit->text().isEmpty()) {
             categoryListBox->setCurrentRow(idxCatVoiceMail);
@@ -921,8 +921,8 @@ bool UserProfileForm::validateValues()
 		proxyLineEdit->clear();
 	}
 	
-	// Clear sollicited MWI settings if unsollicited MWI is used
-    if (mwiTypeComboBox->currentIndex() == idxMWIUnsollicited) {
+	// Clear solicited MWI settings if unsolicited MWI is used
+    if (mwiTypeComboBox->currentIndex() == idxMWIUnsolicited) {
 		t_user user_default;
 		mwiUserLineEdit->clear();
 		mwiServerLineEdit->clear();
@@ -1002,10 +1002,10 @@ bool UserProfileForm::validateValues()
     current_profile->set_mwi_vm_address(vmAddressLineEdit->text().toStdString());
 	
 	bool mustTriggerMWISubscribe = false;
-    bool mwiSollicited = (mwiTypeComboBox->currentIndex() == idxMWISollicited);
-	if (mwiSollicited) {
-		if (!current_profile->get_mwi_sollicited()) {
-			// Sollicited MWI now enabled. Subscribe after all MWI
+    bool mwiSolicited = (mwiTypeComboBox->currentIndex() == idxMWISolicited);
+	if (mwiSolicited) {
+		if (!current_profile->get_mwi_solicited()) {
+			// Solicited MWI now enabled. Subscribe after all MWI
 			// settings have been changed.
 			mustTriggerMWISubscribe = true;
 		} else {
@@ -1015,7 +1015,7 @@ bool UserProfileForm::validateValues()
                 t_url(s.toStdString()) != current_profile->get_mwi_server() ||
 			    mwiViaProxyCheckBox->isChecked() != current_profile->get_mwi_via_proxy())
 			{
-				// Sollicited MWI settings changed. Trigger unsubscribe
+				// Solicited MWI settings changed. Trigger unsubscribe
 				// of current MWI subscription.
 				emit mwiChangeUnsubscribe(current_profile);
 				
@@ -1024,14 +1024,14 @@ bool UserProfileForm::validateValues()
 			}
 		}
 	} else {
-		if (current_profile->get_mwi_sollicited()) {
-			// MWI type changes to unsollicited. Trigger unsubscribe of
+		if (current_profile->get_mwi_solicited()) {
+			// MWI type changes to unsolicited. Trigger unsubscribe of
 			// current MWI subscription.
 			emit mwiChangeUnsubscribe(current_profile);
 		}
 	}
 	
-	current_profile->set_mwi_sollicited(mwiSollicited);
+	current_profile->set_mwi_solicited(mwiSolicited);
     current_profile->set_mwi_user(mwiUserLineEdit->text().toStdString());
 	s = USER_SCHEME;
 	s.append(':').append(mwiServerLineEdit->text());
@@ -1521,8 +1521,8 @@ void UserProfileForm::testConversion() {
 }
 
 void UserProfileForm::changeMWIType(int idxMWIType) {
-	if (idxMWIType == idxMWISollicited) {
-		mwiSollicitedGroupBox->setEnabled(true);
+	if (idxMWIType == idxMWISolicited) {
+		mwiSolicitedGroupBox->setEnabled(true);
 		
 		// Set defaults
 		if (mwiUserLineEdit->text().isEmpty()) {
@@ -1533,7 +1533,7 @@ void UserProfileForm::changeMWIType(int idxMWIType) {
 			mwiViaProxyCheckBox->setChecked(useProxyCheckBox->isChecked());
 		}
 	} else {
-		mwiSollicitedGroupBox->setEnabled(false);
+		mwiSolicitedGroupBox->setEnabled(false);
 	}
 }
 

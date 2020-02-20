@@ -280,11 +280,11 @@ public:
 	bool is_mwi_terminated(void) const;
 	
 	/**
-	 * Process an unsollicited NOTIFY for MWI.
+	 * Process an unsolicited NOTIFY for MWI.
 	 * @param r [in] The NOTIFY request.
 	 * @param tid [in] Transaction identifier of the NOTIFY transaction.
 	 */
-	void handle_mwi_unsollicited(t_request *r, t_tid tid);
+	void handle_mwi_unsolicited(t_request *r, t_tid tid);
 	//@}
 	
 	/** @name Presence */

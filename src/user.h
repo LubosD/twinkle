@@ -487,10 +487,10 @@ private:
 	bool		zrtp_send_if_supported;
 	
 	// MWI
-	// Indicate if MWI is sollicited or unsollicited.
-	// RFC 3842 specifies that MWI must be sollicited (SUBSCRIBE).
-	// Asterisk however only supported non-standard unsollicited MWI.
-	bool		mwi_sollicited;
+	// Indicate if MWI is solicited or unsolicited.
+	// RFC 3842 specifies that MWI must be solicited (SUBSCRIBE).
+	// Asterisk however only supported non-standard unsolicited MWI.
+	bool		mwi_solicited;
 	
 	// User name for subscribing to the mailbox
 	string		mwi_user;
@@ -659,7 +659,7 @@ public:
 	bool get_zrtp_goclear_warning(void) const;
 	bool get_zrtp_sdp(void) const;
 	bool get_zrtp_send_if_supported(void) const;
-	bool get_mwi_sollicited(void) const;
+	bool get_mwi_solicited(void) const;
 	string get_mwi_user(void) const;
 	t_url get_mwi_server(void) const;
 	bool get_mwi_via_proxy(void) const;
@@ -778,7 +778,7 @@ public:
 	void set_zrtp_goclear_warning(bool b);
 	void set_zrtp_sdp(bool b);
 	void set_zrtp_send_if_supported(bool b);
-	void set_mwi_sollicited(bool b);
+	void set_mwi_solicited(bool b);
 	void set_mwi_user(const string &user);
 	void set_mwi_server(const t_url &url);
 	void set_mwi_via_proxy(bool b);

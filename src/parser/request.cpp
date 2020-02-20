@@ -505,9 +505,9 @@ bool t_request::is_valid(bool &fatal, std::string &reason) const {
 		
 		// RFC 3265 7.2
 		// Subscription-State header is mandatory
-		// As an exception Twinkle allows an unsollicited NOTIFY for MWI
+		// As an exception Twinkle allows an unsolicited NOTIFY for MWI
 		// without a Subscription-State header. Asterisk sends
-		// unsollicited NOTIFY requests.
+		// unsolicited NOTIFY requests.
 		if (!hdr_to.tag.empty() || 
 		    hdr_event.event_type != SIP_EVENT_MSG_SUMMARY)
 		{
@@ -519,7 +519,7 @@ bool t_request::is_valid(bool &fatal, std::string &reason) const {
 
 		// The Subscription-State header is mandatory.
 		// However, Asterisk uses an expired draft for sending
-		// unsollicitied NOTIFY messages without a Subscription-State
+		// unsolicitied NOTIFY messages without a Subscription-State
 		// header. As Asterisk is popular, Twinkle allows this.
 		break;
 	case REFER:

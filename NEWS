@@ -267,8 +267,8 @@ Other
 =================
 - Local address book
 - Message waiting indication (MWI)
-  * Sollicted MWI as specified by RFC 3842
-  * Unsollicited MWI as implemented by Asterisk
+  * Solicited MWI as specified by RFC 3842
+  * Unsolicited MWI as implemented by Asterisk
 - Voice mail speed dial
 - Call transfer with consultation
   * This is a combination of a consultation call on the other line

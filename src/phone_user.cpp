@@ -769,10 +769,10 @@ void t_phone_user::handle_response_register(t_response *r, bool &re_register) {
 			phone->start_timer(PTMR_TCP_PING, this);
 		}
 		
-		// Registration succeeded. If sollicited MWI is provisioned
+		// Registration succeeded. If solicited MWI is provisioned
 		// and no MWI subscription is established yet, then subscribe
 		// to MWI.
-		if (user_config->get_mwi_sollicited() && !mwi_auto_resubscribe) {
+		if (user_config->get_mwi_solicited() && !mwi_auto_resubscribe) {
 			subscribe_mwi();
 		}
 		
@@ -978,9 +978,9 @@ bool t_phone_user::is_mwi_terminated(void) const {
 	return mwi_dialog == NULL;
 }
 
-void t_phone_user::handle_mwi_unsollicited(t_request *r, t_tid tid) {
-	if (user_config->get_mwi_sollicited()) {
-		// Unsollicited MWI is not supported
+void t_phone_user::handle_mwi_unsolicited(t_request *r, t_tid tid) {
+	if (user_config->get_mwi_solicited()) {
+		// Unsolicited MWI is not supported
 		t_response *resp = r->create_response(R_403_FORBIDDEN);
 		phone->send_response(resp, 0, tid);
 		MEMMAN_DELETE(resp);
@@ -1186,13 +1186,13 @@ void t_phone_user::recvd_notify(t_request *r, t_tid tid) {
 	bool partial_match = false;
 	
 	if (r->hdr_to.tag.empty()) {
-		// Unsollicited NOTIFY
-		handle_mwi_unsollicited(r, tid);
+		// Unsolicited NOTIFY
+		handle_mwi_unsolicited(r, tid);
 		return;
 	}
 	
 	if (mwi_dialog && mwi_dialog->match_request(r, partial_match)) {
-		// Sollicited NOTIFY
+		// Solicited NOTIFY
 		mwi_dialog->recvd_request(r, 0, tid);
 		cleanup_mwi_dialog();
 		return;

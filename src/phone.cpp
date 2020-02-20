@@ -3322,7 +3322,7 @@ void t_phone::init(void) {
 
 void t_phone::init_extensions(t_user *user_config) {
 	// Subscribe to MWI
-	if (user_config->get_mwi_sollicited()) {
+	if (user_config->get_mwi_solicited()) {
 		pub_subscribe_mwi(user_config);
 	}
 	
