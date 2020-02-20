@@ -97,6 +97,10 @@ if (WITH_G729)
 	if (G729_FOUND)
 		message(STATUS "bcg729 OK")
 		set(HAVE_BCG729 TRUE)
+
+		if (G729_ANNEX_B)
+			set(HAVE_BCG729_ANNEX_B TRUE)
+		endif (G729_ANNEX_B)
 		
 		include_directories(${G729_INCLUDE_DIR})
 	else (G729_FOUND)
