@@ -2494,7 +2494,7 @@ This format is what most SIP phones use.
               <item row="1" column="0">
                <widget class="QCheckBox" name="extReplacesCheckBox">
                 <property name="whatsThis">
-                 <string>Indicates if the Replaces-extenstion is supported.</string>
+                 <string>Indicates if the Replaces-extension is supported.</string>
                 </property>
                 <property name="text">
                  <string>Replaces</string>
@@ -2585,7 +2585,7 @@ This format is what most SIP phones use.
               <item>
                <widget class="QCheckBox" name="referAorCheckBox">
                 <property name="whatsThis">
-                 <string>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endoint.</string>
+                 <string>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endpoint.</string>
                 </property>
                 <property name="text">
                  <string>Attended refer to AoR (Address of Record)</string>
@@ -3079,7 +3079,7 @@ When you choose this option you have to create static address mappings in your N
              <widget class="QTableWidget" name="conversionListView">
               <property name="whatsThis">
                <string>&lt;p&gt;
-Often the format of the telphone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects '00' instead of the '+', or you are at the office and all your numbers need to be prefixed with a '9' to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
+Often the format of the telephone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects '00' instead of the '+', or you are at the office and all your numbers need to be prefixed with a '9' to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
 &lt;/p&gt;
 &lt;p&gt;
 For each number you dial, Twinkle will try to find a match in the list of match expressions. For the first match it finds, the number will be replaced with the format string. If no match is found, the number stays unchanged.
@@ -4076,7 +4076,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
        <item>
         <widget class="QCheckBox" name="zrtpEnabledCheckBox">
          <property name="whatsThis">
-          <string>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</string>
+          <string>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unencrypted.</string>
          </property>
          <property name="text">
           <string>&amp;Enable ZRTP/SRTP encryption</string>
@@ -4206,23 +4206,23 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
 &lt;p&gt;
 If your provider offers the message waiting indication service, then Twinkle can show you when new voice mail messages are waiting. Ask your provider which type of message waiting indication is offered.
 &lt;/p&gt;
-&lt;H3&gt;Unsollicited&lt;/H3&gt;
+&lt;H3&gt;Unsolicited&lt;/H3&gt;
 &lt;p&gt;
-Asterisk provides unsollicited message waiting indication.
+Asterisk provides unsolicited message waiting indication.
 &lt;/p&gt;
-&lt;H3&gt;Sollicited&lt;/H3&gt;
+&lt;H3&gt;Solicited&lt;/H3&gt;
 &lt;p&gt;
-Sollicited message waiting indication as specified by RFC 3842.
+Solicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</string>
              </property>
              <item>
               <property name="text">
-               <string>Unsollicited</string>
+               <string>Unsolicited</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Sollicited</string>
+               <string>Solicited</string>
               </property>
              </item>
             </widget>
@@ -4261,9 +4261,9 @@ Sollicited message waiting indication as specified by RFC 3842.
         </layout>
        </item>
        <item>
-        <widget class="QGroupBox" name="mwiSollicitedGroupBox">
+        <widget class="QGroupBox" name="mwiSolicitedGroupBox">
          <property name="title">
-          <string>Sollicited MWI</string>
+          <string>Solicited MWI</string>
          </property>
          <layout class="QVBoxLayout">
           <item>
@@ -4328,7 +4328,7 @@ Sollicited message waiting indication as specified by RFC 3842.
                  </size>
                 </property>
                 <property name="whatsThis">
-                 <string>For sollicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</string>
+                 <string>For solicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</string>
                 </property>
                 <property name="maximum">
                  <number>999999</number>
