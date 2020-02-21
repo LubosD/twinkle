@@ -29,6 +29,7 @@ The following tools are also required:
 * libzrtpcpp (version >= 0.9.0) [ZRTP library, ccRTP support must be enabled](http://www.gnutelephony.org/index.php/GNU_ZRTP)
 * bcg729 [G.729A codec library](http://www.linphone.org/technical-corner/bcg729/overview)
 * Speex and SpeexDSP [Speex codec library](http://www.speex.org/)
+* libopus [Opus codec library](http://opus-codec.org/)
 * iLBC [iLBC codec library](http://www.ilbcfreeware.org/)
 
 ## Build
@@ -42,6 +43,7 @@ All possible options are:
 * ZRTP support: `-DWITH_ZRTP=On`
 * G.729A codec support: `-DWITH_G729=On`
 * Speex codec support: `-DWITH_SPEEX=On`
+* Opus codec support: `-DWITH_OPUS=On`
 * iLBC codec support: `-DWITH_ILBC=On`
 * Diamondcard support: `-DWITH_DIAMONDCARD=On`
 

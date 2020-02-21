@@ -407,6 +407,9 @@ void t_event_ui::set_display_msg(const string &_msg, t_msg_priority &_msg_priori
 
 void t_event_ui::exec(t_userintf *user_intf) {
 	switch (type) {
+	case TYPE_UI_CB_DISPLAY_MSG:
+		ui->cb_display_msg(msg, msg_priority);
+		break;
 	case TYPE_UI_CB_DTMF_DETECTED:
 		ui->cb_dtmf_detected(line, dtmf_event);
 		break;
