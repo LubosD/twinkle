@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1" language="de" sourcelanguage="en">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -2419,7 +2419,7 @@ Um den Online-Status eines Buddies abzufragen, muss &lt;i&gt;dessen&lt;/i&gt; Pr
     </message>
     <message>
         <source>Reject</source>
-        <translation >Abweisen</translation>
+        <translation>Abweisen</translation>
     </message>
     <message>
         <source>&amp;Hold</source>

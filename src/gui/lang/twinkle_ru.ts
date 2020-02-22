@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ru">
 <context>
     <name>AddressCardForm</name>
     <message>
@@ -916,6 +918,14 @@
     <message>
         <source>&lt;p&gt;You seem not to have any contacts with a phone number in &lt;b&gt;KAddressBook&lt;/b&gt;, KDE&apos;s address book application. Twinkle retrieves all contacts with a phone number from KAddressBook. To manage your contacts you have to use KAddressBook.&lt;p&gt;As an alternative you may use Twinkle&apos;s local address book.&lt;/p&gt;</source>
         <translation>&lt;p&gt;У Вас нет ни одного контакта с телефонным номером в  &lt;b&gt;KAddressBook&lt;/b&gt;(приложении KDE адресная книга). Twinkle получает все контакты с телефонными номерами из Адресной книги KDE. Для управления вашими контактами вы должны использовать KAddressBook.&lt;p&gt;Как альтернативу вы можете использовать локальную адресную книгу Twinkle.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete contact</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3891,11 +3901,11 @@ STUN не работает.
     </message>
     <message>
         <source>&amp;Domain*:</source>
-        <translation>&amp;Домен*:</translation>
+        <translation type="vanished">&amp;Домен*:</translation>
     </message>
     <message>
         <source>Or&amp;ganization:</source>
-        <translation>Ор&amp;ганизация:</translation>
+        <translation type="vanished">Ор&amp;ганизация:</translation>
     </message>
     <message>
         <source>The SIP user name given to you by your provider. It is the user part in your SIP address, &lt;b&gt;username&lt;/b&gt;@domain.com This could be a telephone number.
@@ -3967,7 +3977,7 @@ This field is mandatory.</source>
     </message>
     <message>
         <source>&amp;Expiry:</source>
-        <translation>&amp;Устаревание:</translation>
+        <translation type="vanished">&amp;Устаревание:</translation>
     </message>
     <message>
         <source>The registration expiry time that Twinkle will request.</source>
@@ -4406,7 +4416,7 @@ Send DTMF out-of-band via a SIP INFO request.
     </message>
     <message>
         <source>Call &amp;Hold variant:</source>
-        <translation>&amp;Вариант удержания вызова:</translation>
+        <translation type="vanished">&amp;Вариант удержания вызова:</translation>
     </message>
     <message>
         <source>RFC 2543</source>
@@ -4553,7 +4563,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Max re&amp;directions:</source>
-        <translation>&amp;Максимум перенаправлений:</translation>
+        <translation type="vanished">&amp;Максимум перенаправлений:</translation>
     </message>
     <message>
         <source>The number of redirect addresses that Twinkle tries at a maximum before it gives up redirecting a request. This prevents a request from getting redirected forever.</source>
@@ -4607,7 +4617,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>Indicates if the Replaces-extenstion is supported.</source>
-        <translation>Указывает, поддерживается ли расширение Replaces.</translation>
+        <translation type="vanished">Указывает, поддерживается ли расширение Replaces.</translation>
     </message>
     <message>
         <source>REFER</source>
@@ -4675,7 +4685,7 @@ This format is what most SIP phones use.
     </message>
     <message>
         <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endoint.</source>
-        <translation>Приходящая передача вызова должна использовать URI контакта в качестве адресата для связи нового соединения, перенаправленного на контрагента. Однако этот адрес не может быть глобально действительным. В качестве альтернативы можно использовать AoR (адрес записи). Недостатком является то, что с несколькими конечными устройствами AoR однозначен, тогда как URI контакта направляется на одно устройство.</translation>
+        <translation type="vanished">Приходящая передача вызова должна использовать URI контакта в качестве адресата для связи нового соединения, перенаправленного на контрагента. Однако этот адрес не может быть глобально действительным. В качестве альтернативы можно использовать AoR (адрес записи). Недостатком является то, что с несколькими конечными устройствами AoR однозначен, тогда как URI контакта направляется на одно устройство.</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -4745,7 +4755,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>Use &amp;STUN (does not work for incoming TCP)</source>
-        <translation>Использовать &amp;STUN (не работает для входящего TCP)</translation>
+        <translation type="vanished">Использовать &amp;STUN (не работает для входящего TCP)</translation>
     </message>
     <message>
         <source>Choose this option when your SIP provider offers a STUN server for NAT traversal.</source>
@@ -4753,7 +4763,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>S&amp;TUN server:</source>
-        <translation>S&amp;TUN сервер:</translation>
+        <translation type="vanished">S&amp;TUN сервер:</translation>
     </message>
     <message>
         <source>The hostname, domain name or IP address of the STUN server.</source>
@@ -4817,7 +4827,7 @@ When you choose this option you have to create static address mappings in your N
     </message>
     <message>
         <source>&lt;p&gt;
-Often the format of the telphone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects '00' instead of the '+', or you are at the office and all your numbers need to be prefixed with a '9' to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
+Often the format of the telphone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects &apos;00&apos; instead of the &apos;+&apos;, or you are at the office and all your numbers need to be prefixed with a &apos;9&apos; to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
 &lt;/p&gt;
 &lt;p&gt;
 For each number you dial, Twinkle will try to find a match in the list of match expressions. For the first match it finds, the number will be replaced with the format string. If no match is found, the number stays unchanged.
@@ -4827,7 +4837,7 @@ The number conversion rules are also applied to incoming calls, so the numbers a
 &lt;/p&gt;
 &lt;h3&gt;Example 1&lt;/h3&gt;
 &lt;p&gt;
-Assume your country code is 31 and you have stored all numbers in your address book in full international number format, e.g. +318712345678. For dialling numbers in your own country you want to strip of the '+31' and replace it by a '0'. For dialling numbers abroad you just want to replace the '+' by '00'.
+Assume your country code is 31 and you have stored all numbers in your address book in full international number format, e.g. +318712345678. For dialling numbers in your own country you want to strip of the &apos;+31&apos; and replace it by a &apos;0&apos;. For dialling numbers abroad you just want to replace the &apos;+&apos; by &apos;00&apos;.
 &lt;/p&gt;
 &lt;p&gt;
 The following rules will do the trick:
@@ -4847,7 +4857,7 @@ You are at work and all telephone numbers starting with a 0 should be prefixed w
 Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
 &lt;/tt&gt;
 &lt;/blockquote&gt;</source>
-        <translation>&lt;p&gt;
+        <translation type="vanished">&lt;p&gt;
 Часто количество телефонных номеров, ожидаемых от провайдера VoIP, не совпадает с количеством, сохранённым в каталоге. К примеру, для номеров, начинающихся с «+» и национального кода страны, ваш провайдер ожидает «+» вместо «00». Или, если вы подключены к локальной сети SIP, вам необходимо предварительно указать номер доступа.
 Можно установить общепринятые правила для преобразования телефонных номеров с использованием шаблонов поиска и свопинга (с помощью регулярных выражений и языка Perl).
 &lt;/p&gt;
@@ -5291,7 +5301,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unecrypted.</source>
-        <translation>Если включено, Twinkle пытается зашифровать аудиоданные во всех исходящих и входящих вызовах. Для того, чтобы вызов был зашифрован, контрагент должен также поддерживать шифрование ZRTP / SRTP. В противном случае вызов остаётся незашифрованным.</translation>
+        <translation type="vanished">Если включено, Twinkle пытается зашифровать аудиоданные во всех исходящих и входящих вызовах. Для того, чтобы вызов был зашифрован, контрагент должен также поддерживать шифрование ZRTP / SRTP. В противном случае вызов остаётся незашифрованным.</translation>
     </message>
     <message>
         <source>ZRTP settings</source>
@@ -5331,11 +5341,11 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
     </message>
     <message>
         <source>Unsollicited</source>
-        <translation>Незапрошен</translation>
+        <translation type="vanished">Незапрошен</translation>
     </message>
     <message>
         <source>Sollicited</source>
-        <translation>Запрошен</translation>
+        <translation type="vanished">Запрошен</translation>
     </message>
     <message>
         <source>&lt;H2&gt;Message waiting indication type&lt;/H2&gt;
@@ -5350,7 +5360,7 @@ Asterisk provides unsollicited message waiting indication.
 &lt;p&gt;
 Sollicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</source>
-        <translation>&lt;H2&gt;Тип отображения ожидающего сообщения&lt;/H2&gt;
+        <translation type="vanished">&lt;H2&gt;Тип отображения ожидающего сообщения&lt;/H2&gt;
 &lt;p&gt;
 Если ваш SIP-провайдер предлагает оповещения о сохранённых сообщениях в вашей голосовой почте, Twinkle может рассказать вам о новых и уже услышанных сообщениях в вашей голосовой почте. Спросите своего провайдера, какой тип ожидающего сообщения используется
 &lt;/p&gt;
@@ -5369,7 +5379,7 @@ Asterisk поддерживает нежелательные ожидающие 
     </message>
     <message>
         <source>Sollicited MWI</source>
-        <translation>Запрошенный MWI</translation>
+        <translation type="vanished">Запрошенный MWI</translation>
     </message>
     <message>
         <source>Subscription &amp;duration:</source>
@@ -5385,7 +5395,7 @@ Asterisk поддерживает нежелательные ожидающие 
     </message>
     <message>
         <source>For sollicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
-        <translation>Согласно спецификации MWI, конечное устройство сообщает серверу о получении сообщения в течение определённого периода времени, и до истечения этого времени регистрация должна возобновиться.</translation>
+        <translation type="vanished">Согласно спецификации MWI, конечное устройство сообщает серверу о получении сообщения в течение определённого периода времени, и до истечения этого времени регистрация должна возобновиться.</translation>
     </message>
     <message>
         <source>Your user name for accessing your voice mailbox.</source>
@@ -5682,6 +5692,119 @@ This could be the hostname or IP address of your PC if you want direct PC to PC 
     <message>
         <source>If you have enabled STUN or NAT keep alive, then Twinkle will send keep alive packets at this interval rate to keep the address bindings in your NAT device alive.</source>
         <translation>Если у вас включен STUN или NAT, то Twinkle отправит пакеты обслуживания на этот интервал, чтобы сохранить отображение на вашем NAT.</translation>
+    </message>
+    <message>
+        <source>Do&amp;main*:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organi&amp;zation:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E&amp;xpiry:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Hold &amp;variant:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Max redirections:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indicates if the Replaces-extension is supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endpoint.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include a P-Asserted-Identity header with your identity in an INVITE request for a call with identity hiding.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Send P-Asserted-Identity header when hiding user identity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use STUN (does not wor&amp;k for incoming TCP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>STUN ser&amp;ver:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;
+Often the format of the telephone numbers you need to dial is different from the format of the telephone numbers stored in your address book, e.g. your numbers start with a +-symbol followed by a country code, but your provider expects &apos;00&apos; instead of the &apos;+&apos;, or you are at the office and all your numbers need to be prefixed with a &apos;9&apos; to access an outside line. Here you can specify number format conversion using Perl style regular expressions and format strings.
+&lt;/p&gt;
+&lt;p&gt;
+For each number you dial, Twinkle will try to find a match in the list of match expressions. For the first match it finds, the number will be replaced with the format string. If no match is found, the number stays unchanged.
+&lt;/p&gt;
+&lt;p&gt;
+The number conversion rules are also applied to incoming calls, so the numbers are displayed in the format you want.
+&lt;/p&gt;
+&lt;h3&gt;Example 1&lt;/h3&gt;
+&lt;p&gt;
+Assume your country code is 31 and you have stored all numbers in your address book in full international number format, e.g. +318712345678. For dialling numbers in your own country you want to strip of the &apos;+31&apos; and replace it by a &apos;0&apos;. For dialling numbers abroad you just want to replace the &apos;+&apos; by &apos;00&apos;.
+&lt;/p&gt;
+&lt;p&gt;
+The following rules will do the trick:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Match expression = \+31([0-9]*) , Replace =  0$1&lt;br&gt;
+Match expression = \+([0-9]*) , Replace = 00$1&lt;/br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Example 2&lt;/h3&gt;
+&lt;p&gt;
+You are at work and all telephone numbers starting with a 0 should be prefixed with a 9 for an outside line.
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unencrypted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;H2&gt;Message waiting indication type&lt;/H2&gt;
+&lt;p&gt;
+If your provider offers the message waiting indication service, then Twinkle can show you when new voice mail messages are waiting. Ask your provider which type of message waiting indication is offered.
+&lt;/p&gt;
+&lt;H3&gt;Unsolicited&lt;/H3&gt;
+&lt;p&gt;
+Asterisk provides unsolicited message waiting indication.
+&lt;/p&gt;
+&lt;H3&gt;Solicited&lt;/H3&gt;
+&lt;p&gt;
+Solicited message waiting indication as specified by RFC 3842.
+&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsolicited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Solicited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Solicited MWI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For solicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
