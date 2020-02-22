@@ -957,11 +957,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat kontakt &apos;%1&apos; z místního adresáře?</translation>
     </message>
     <message>
         <source>Delete contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat kontakt</translation>
     </message>
 </context>
 <context>
@@ -4173,7 +4173,7 @@ a na vašem NATu namapovat (UDP) porty.</translation>
         <source>The SIP user name given to you by your provider. It is the user part in your SIP address, &lt;b&gt;username&lt;/b&gt;@domain.com This could be a telephone number.
 &lt;br&gt;&lt;br&gt;
 This field is mandatory.</source>
-        <translation>Uživatelské jméno, které vám bylo přiděleno vaším poskytovatelem,.je první částí vaší úplné SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com
+        <translation>Uživatelské jméno, které vám bylo přiděleno vaším poskytovatelem, je první částí vaší úplné SIP adresy &lt;b&gt;uzivatel&lt;/b&gt;@domain.com.
 Může se jednat o telefonní číslo.
 &lt;br&gt;&lt;br&gt;
 Toto pole je povinné.</translation>
@@ -5794,7 +5794,7 @@ Vyžádaná indikace čekajících zpráv dle RFC 3842.
     </message>
     <message>
         <source>The q-value is a value between 0.000 and 1.000. A higher value means a higher priority.</source>
-        <translation>Hodnota &apos;q&apos; je mezi 0.000 and 1.000  Vyšší hodnota znamená vyšší prioritu.</translation>
+        <translation>Hodnota &apos;q&apos; je mezi 0.000 and 1.000. Vyšší hodnota znamená vyšší prioritu.</translation>
     </message>
     <message>
         <source>SIP transport</source>
@@ -5962,47 +5962,47 @@ Vyžádaná indikace čekajících zpráv dle RFC 3842.
     </message>
     <message>
         <source>Do&amp;main*:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Doména*:</translation>
     </message>
     <message>
         <source>Organi&amp;zation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Or&amp;ganizace:</translation>
     </message>
     <message>
         <source>E&amp;xpiry:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Platnost:</translation>
     </message>
     <message>
         <source>Call Hold &amp;variant:</source>
-        <translation type="unfinished"></translation>
+        <translation>Způsob přidržení &amp;hovoru:</translation>
     </message>
     <message>
         <source>&amp;Max redirections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. počet &amp;přesměrování:</translation>
     </message>
     <message>
         <source>Indicates if the Replaces-extension is supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indikuje, zda je rozšíření Replaces podporováno.</translation>
     </message>
     <message>
         <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endpoint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistované přepojení by mělo používat Contact-URI jako cílovou adresu pro sdělení nového spojení přesměrovávané protistraně. Tato adresa nemusí být ovšem globálně platná. Alternativně se může použít AoR (Address of Record). Nevýhodou je, že při více koncových zařízeních není AoR jednoznačné, zatímco URI kontaktu směřuje na jediné zařízení.</translation>
     </message>
     <message>
         <source>Include a P-Asserted-Identity header with your identity in an INVITE request for a call with identity hiding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je vybráno a je aktivována volba &quot;skrýt odesilatele&quot;, bude spolu s údajem odesilatele odeslána při požadavku INVITE hlavička P-Preferred-Identity.</translation>
     </message>
     <message>
         <source>&amp;Send P-Asserted-Identity header when hiding user identity</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Posílat hlavičku P-Preferred-Identity při skrývání identity uživatele</translation>
     </message>
     <message>
         <source>Use STUN (does not wor&amp;k for incoming TCP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít &amp;STUN (nefunguje pro příchozí TCP)</translation>
     </message>
     <message>
         <source>STUN ser&amp;ver:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa S&amp;TUN serveru:</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -6036,11 +6036,44 @@ You are at work and all telephone numbers starting with a 0 should be prefixed w
 Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
 &lt;/tt&gt;
 &lt;/blockquote&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+Často není formát telefonních čísel, které jsou očekávány od VoIP poskytovatele, shodný s formátem čísel uložených v adresáři. Např. u čísel začínajících na &quot;+&quot; a národním kódem země očekává váš poskytovatel namísto &quot;00&quot; znak &quot;+&quot;. Nebo jste-li napojeni na místní SIP síť a je nutné předtočit nejdříve číslo k přístupu ven.
+Zde je možné za použití vyhledávacích a zaměňovacích vzorů (podle způsobu regulárních výrazů a la Perl) nastavit obecně platné pravidla pro konverzi telefonních čísel.
+&lt;/p&gt;
+&lt;p&gt;
+Při každém vytáčení se Twinkle pokusí najít pro čísla z uživatelské části SIP adresy odpovídají výraz v seznamu hledaných vzorů. S prvním nalezeným vyhovujícím výrazem je provedena úprava originálního čísla, přičemž pozice v &quot;(&quot; &quot;)&quot; v hledaném výrazu (např. &quot;([0-9]*)&quot; pro &quot;jakkoliv mnoho čísel&quot;) je nahrazena znaky v odpovídajících proměnných. Např. &quot;$1&quot; pro první pozici. Viz též `man 7 regex` nebo konqueror:&quot;#regex&quot;. Pokud není nalezen žádný odpovídající hledaný vzor, zůstane číslo nezměněno.
+&lt;/p&gt;
+&lt;p&gt;
+Pravidla budou rovněž použita na čísla v příchozích voláních. Podle nastavených pravidel budou tato přetransformována do žádaného formátu.
+&lt;/p&gt;
+&lt;h3&gt;1. příklad&lt;/h3&gt;
+&lt;p&gt;
+Např. váš národní kód je &quot;420&quot; pro českou republiku a ve vašem adresáři máte také mnoho vnitrostátních čísel uložených v mezinárodním formátu. Např.. +420 577 2345678. Avšak VoIP poskytovatel očekává pro vnitrostátní hovor 0577 2345678. Chcete tedy nahradit &apos;+420&apos; za &apos;0&apos; a zároveň pro zahraniční hovory nahradit &apos;+&apos; za &apos;00&apos;.
+&lt;/p&gt;
+&lt;p&gt;
+K tomu jsou potřebné následující pravidla uvedená v tomto pořadí:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Hledaný výraz = \+420([0-9]*) , Náhrada = 0$1&lt;br&gt;
+Hledaný výraz = \+([0-9]*) , Náhrada = 00$1&lt;/br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2. příklad&lt;/h3&gt;
+&lt;p&gt;
+Nacházíte se na telefonní ústředně a všem číslům s 0 jako první číslicí, má být předřazeno číslo 9. 
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Hledaný výraz = 0[0-9]* , Náhrada = 9$&amp;&lt;br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+( $&amp; je speciální proměnná, do které je uloženo celé originální číslo)&lt;br&gt;
+Poznámka: Toto pravidlo nelze nastavit jednoduše jako třetí pravidlo ke dvou pravidlům z předcházejícího příkladu. Bude totiž použito vždy jen to první, které vyhledávání vyhoví. Namísto toho by muselo být změněno nahrazování v pravidlech 1 a 2 - &quot;57$1&quot; a &quot;577$1&quot;</translation>
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unencrypted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je aktivováno, pokusí se Twinkle při všech odchozích a příchozích hovorech zašifrovat zvuková data. Aby byl hovor opravdu zašifrován musí i protistrana podporovat šifrování ZRTP/SRTP. Jinak zůstane hovor nešifrovaný.</translation>
     </message>
     <message>
         <source>&lt;H2&gt;Message waiting indication type&lt;/H2&gt;
@@ -6055,23 +6088,34 @@ Asterisk provides unsolicited message waiting indication.
 &lt;p&gt;
 Solicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;H2&gt;Typ indikace čekajících zpráv&lt;/H2&gt;
+&lt;p&gt;
+Pokud váš SIP poskytovatel nabízí upozornění na uložené zprávy v hlasové schránce, může vás Twinkle informovat o nových i již vyslechnutých zprávách ve vaší hlasové schránce. Zeptejte se vašeho poskytovatele, jaký typ indikace čekajících zpráv je používán
+&lt;/p&gt;
+&lt;H3&gt;Nevyžádané&lt;/H3&gt;
+&lt;p&gt;
+Asterisk podporuje nevyžádané indikování čekajících zpráv.
+&lt;/p&gt;
+&lt;H3&gt;Vyžádané&lt;/H3&gt;
+&lt;p&gt;
+Vyžádaná indikace čekajících zpráv dle RFC 3842.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Unsolicited</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevyžádané</translation>
     </message>
     <message>
         <source>Solicited</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžádané</translation>
     </message>
     <message>
         <source>Solicited MWI</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžádané MWI</translation>
     </message>
     <message>
         <source>For solicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dle specifikace MWI se koncové zařízení hlásí na serveru k příjmu zpráv na určitou dobu a před vypršením této doby by se přihlášení mělo znovu obnovit.</translation>
     </message>
 </context>
 <context>
