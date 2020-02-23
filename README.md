@@ -12,7 +12,7 @@ To compile Twinkle you need the following libraries:
 * libsndfile
 * libmagic
 * libreadline
-* Qt 5 -- more specifically, the following submodules:
+* Qt 5 – more specifically, the following submodules:
   * base
   * declarative
   * tools
@@ -44,7 +44,7 @@ All possible options are:
 * G.729A codec support: `-DWITH_G729=On`
 * Speex codec support: `-DWITH_SPEEX=On`
 * iLBC codec support: `-DWITH_ILBC=On`
-* Diamondcard support: `-DWITH_DIAMONDCARD=On`
+* Diamondcard support: `-DWITH_DIAMONDCARD=On` (currently broken)
 
 ### Build instructions
 
@@ -74,24 +74,24 @@ The typical default value for `CMAKE_INSTALL_PREFIX` is `/usr/local`.
 If you want to create an application link on your desktop you
 can find an application icon in the shared user data directory:
 
-*	twinkle16.png	(16x16 icon)
-*	twinkle32.png	(32x32 icon)
-*	twinkle48.png	(48x48 icon)
+*	`twinkle16.png`	(16x16 icon)
+*	`twinkle32.png`	(32x32 icon)
+*	`twinkle48.png`	(48x48 icon)
 
 ## User data
 
 On first run Twinkle will create the `.twinkle` directory in your home
 directory. In this directory all user data will be put:
 
-* user profiles (.cfg)
-* log files (.log)
-* system settings (twinkle.sys)
-* call history (twinkle.ch)
-* lock file (twinkle.lck)
+* user profiles (`.cfg`)
+* log files (`.log`)
+* system settings (`twinkle.sys`)
+* call history (`twinkle.ch`)
+* lock file (`twinkle.lck`)
 
 ## Starting Twinkle
 
-Give the command: twinkle
+Give the command: `twinkle`
 
 `twinkle -h` will show you some command line options you may use.
 
@@ -109,7 +109,7 @@ existing configuration file. See below for some hints on
 settings to be made with the profile configuration editor.
 
 If you specify a configuration file name, then Twinkle will
-such for this configuration file in your .twinkle directory.
+such for this configuration file in your `.twinkle` directory.
 If you have put your configuration file in another location
 you have to specify the full path name for the file, i.e.
 starting with a slash.
@@ -161,14 +161,14 @@ to change the port forwarding rules likewise.
 During execution Twinkle will create the following log files in
 your .twinkle directory:
 
-* twinkle.log (latest log file)
-* twinkle.log.old (previous log file)
+* `twinkle.log` (latest log file)
+* `twinkle.log.old` (previous log file)
 
-When twinkle.log is full (default is 5 MB) then it is moved to 
-twinkle.log.old and a new twinkle.log is created.
+When `twinkle.log` is full (default is 5 MB) then it is moved to 
+`twinkle.log.old` and a new `twinkle.log` is created.
 
-On startup an existing twinkle.log is moved to twinkle.log.old and a
-new twinkle.log is created.
+On startup an existing `twinkle.log` is moved to `twinkle.log.old` and a
+new `twinkle.log` is created.
 
 ## User profile configuration
 
@@ -181,11 +181,11 @@ When you create a new profile you first give it a name and
 then you can make the appropriate settings. The name of the
 profile is what later on appears in the selection box
 when you start Twinkle again. Or you can give the name.cfg
-at the command line (-f option) to immediately start that
+at the command line (`-f` option) to immediately start that
 profile.
 
-The user profile is stored as '<name>.cfg' in the .twinkle
-directory where <name> is the name you gave to the profile.
+The user profile is stored as `<name>.cfg` in the `.twinkle`
+directory where `<name>` is the name you gave to the profile.
 
 At a minimum you have to specify the following:
 
@@ -274,10 +274,10 @@ A SIP address has the following form:
 Where 'user' is a user name or a phone number
 and 'host-part' is a domain name, FQDN or IP address
 
-The only mandatory part for you to enter is the <user>. Twinkle
+The only mandatory part for you to enter is the `<user>`. Twinkle
 will fill in the other parts if you do not provide them.
 For the host-part, Twinkle will fill in the value you configured
-as your 'domain'.
+as your `domain`.
 
 Currently `sip:` is the only addressing scheme supported by Twinkle.
 
