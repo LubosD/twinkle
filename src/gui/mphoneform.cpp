@@ -816,7 +816,8 @@ void MphoneForm::updateState()
 				name = cr.from_uri.encode_no_params_hdrs(false);
 
 			incomingCallPopup->setCallerName(QString::fromStdString(name));
-			showIncomingCallPopup = true;
+			if (sys_config->get_gui_show_incoming_popup())
+				showIncomingCallPopup = true;
 
 			break;
 		}
