@@ -172,6 +172,8 @@ public slots:
     void DiamondcardAdminCenter();
     void whatsThis();
 	void sysTrayIconClicked(QSystemTrayIcon::ActivationReason);
+	void toggleWindow();
+	void updateTrayIconMenu();
 
 	void osdMuteClicked();
 

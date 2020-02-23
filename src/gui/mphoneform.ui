@@ -1822,6 +1822,11 @@
     <cstring>actgrActivateLine</cstring>
    </property>
   </actiongroup>
+  <action name="toggleWindowAction">
+   <property name="text">
+    <string>Toggle window visibility</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
@@ -2502,6 +2507,12 @@
      <y>301</y>
     </hint>
    </hints>
+  </connection>
+  <connection>
+   <sender>toggleWindowAction</sender>
+   <signal>triggered()</signal>
+   <receiver>MphoneForm</receiver>
+   <slot>toggleWindow()</slot>
   </connection>
  </connections>
  <slots>
