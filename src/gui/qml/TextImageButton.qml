@@ -12,6 +12,12 @@ Rectangle {
     signal clicked
 
     color: "red"
+    // Pre-compute this to avoid binding color to itself
+    property color darkerColor
+    Component.onCompleted: {
+	    darkerColor = Qt.darker(color)
+    }
+
     z: 2
 
     Image {
@@ -53,7 +59,7 @@ Rectangle {
 
     states: State {
         name: "pressed"; when: mouseArea.pressed
-        PropertyChanges { target: backgroundRect; color: Qt.darker(color) }
+        PropertyChanges { target: backgroundRect; color: darkerColor }
     }
 }
 
