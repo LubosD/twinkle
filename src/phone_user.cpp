@@ -1499,7 +1499,7 @@ bool t_phone_user::get_last_reg_failed(void) const {
 
 string t_phone_user::get_ip_sip(const string &auto_ip) const {
 	if (stun_public_ip_sip) return h_ip2str(stun_public_ip_sip);
-	if (user_config->get_use_nat_public_ip()) return user_config->get_nat_public_ip();
+	if (user_config->get_use_nat_public_ip()) return h_ip2str(gethostbyname(user_config->get_nat_public_ip()));
 	if (LOCAL_IP == AUTO_IP4_ADDRESS) return auto_ip;
 	return LOCAL_IP;
 }
