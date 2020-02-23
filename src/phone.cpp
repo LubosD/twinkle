@@ -339,7 +339,7 @@ void t_phone::refer(const t_url &uri, const string &display) {
 
 void t_phone::refer(unsigned short lineno_from, unsigned short lineno_to) 
 {
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 
 	// The nicest transfer is an attended transfer. An attended transfer
 	// is only possible of the transfer target supports the 'replaces'
@@ -905,7 +905,7 @@ void t_phone::post_process_response(t_response *r, t_tuid tuid, t_tid tid) {
 }
 
 void t_phone::recvd_invite(t_request *r, t_tid tid) {
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 
 	// Check if this INVITE is a retransmission.
 	// Once the TU sent a 2XX repsonse on an INVITE it has to deal
@@ -1704,7 +1704,7 @@ void t_phone::recvd_notify(t_request *r, t_tid tid) {
 	}
 
 	// REFER notification
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 	for (unsigned short i = 0; i < lines.size(); i++) {
 		if (lines[i]->match(r)) {
 			lines[i]->recvd_notify(r, tid);
@@ -1871,7 +1871,7 @@ void t_phone::recvd_refer_permission(bool permission) {
 	t_phone_user *pu = incoming_refer_data->get_phone_user();
 	t_user *user_config = pu->get_user_profile();
 			
-	t_rwmutex_reader x(lines_mtx);
+	t_rwmutex_future_writer x(lines_mtx);
 	lines[i]->recvd_refer_permission(permission, r);
 	
 	if (!permission) {

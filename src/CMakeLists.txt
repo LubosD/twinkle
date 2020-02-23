@@ -81,6 +81,7 @@ add_executable(twinkle-console
 )
 
 set(twinkle_LIBS
+	-latomic
 	-lpthread
 	-lresolv
 	${LibMagic_LIBRARY}

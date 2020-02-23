@@ -21,6 +21,7 @@
 #include <errno.h>
 #include <pthread.h>
 // #include <iostream>
+#include <atomic>
 
 /**
  * @file
@@ -83,44 +84,104 @@ public:
 	~t_mutex_guard();
 };
 
+
+// Read-write-update lock
+//
+// Read-write lock with an additional "update" type of lock, which can later
+// be upgraded to "write" (and downgraded back to "update" again).  An update
+// lock can co-exist with other read locks, but only one update lock can be
+// held at any time, representing ownership of upgrade rights.
+//
+// See https://stackoverflow.com/a/18785300 for details and further references.
+//
+// Note that our version is rather simplistic, and does not allow downgrading
+// from update/write to read.
+
+// A cheap substitute for std::optional<pthread_t>, only available in C++14.
+// Unfortunately, POSIX.1-2004 no longer requires pthread_t to be an arithmetic
+// type, so we can't simply use 0 as an (unofficial) invalid thread ID.
+struct optional_pthread_t {
+	bool has_value;
+	pthread_t value;
+};
+
 class t_rwmutex {
 protected:
+	// Standard read-write lock
 	pthread_rwlock_t _lock;
+	// Mutex for upgrade ownership
+	t_mutex _up_mutex;
+	// Thread ID that currently owns the _up_mutex lock, if any
+	std::atomic<optional_pthread_t> _up_mutex_thread;
+
+	// Get/release upgrade ownership
+	void getUpgradeOwnership();
+	void releaseUpgradeOwnership();
+
+	// Internal methods to manipulate _lock directly
+	void _lockRead();
+	void _lockWrite();
+	void _unlock();
 public:
 	t_rwmutex();
 	~t_rwmutex();
 
+	// Returns true if the calling thread currently owns the _up_mutex lock
+	bool isUpgradeOwnershipOurs() const;
+
+	// The usual methods for obtaining/releasing locks
 	void lockRead();
+	void lockUpdate();
 	void lockWrite();
 	void unlock();
+
+	// Upgrade an update lock to a write lock, or downgrade in the
+	// opposite direction.  Note that this does not count as an additional
+	// lock, so only one unlock() call will be needed at the end.
+	void upgradeLock();
+	void downgradeLock();
 };
 
-class t_rwmutex_reader {
-private:
+
+// Equivalent of t_mutex_guard for t_rwmutex
+//
+// These can be nested as indicated below.  Note that nesting a weaker guard
+// will not downgrade the lock; for example, a Reader guard within a Writer
+// guard will maintain the write lock.
+
+// Base (abstract) class
+class t_rwmutex_guard {
+protected:
+	// The lock itself
 	t_rwmutex& _mutex;
-public:
-	t_rwmutex_reader(t_rwmutex& mutex) : _mutex(mutex) {
-		// std::cout << "mtx rd lock " << (void*)&_mutex << std::endl;
-		_mutex.lockRead();
-	}
-	~t_rwmutex_reader() {
-		// std::cout << "mtx rd unlock " << (void*)&_mutex << std::endl;
-		_mutex.unlock();
-	}
+
+	// Whether or not we had upgrade ownership beforehand, indicating that
+	// we are nested within the scope of a writer/future_writer guard
+	bool _previously_owned_upgrade;
+
+	// A protected constructor to keep this class abstract
+	t_rwmutex_guard(t_rwmutex& mutex);
 };
 
-class t_rwmutex_writer {
-private:
-	t_rwmutex& _mutex;
+// Reader: Can be nested within the scope of any guard
+class t_rwmutex_reader : public t_rwmutex_guard {
 public:
-	t_rwmutex_writer(t_rwmutex& mutex) : _mutex(mutex) {
-		// std::cout << "mtx wr lock " << (void*)&_mutex << std::endl;
-		_mutex.lockWrite();
-	}
-	~t_rwmutex_writer() {
-		// std::cout << "mtx wr unlock " << (void*)&_mutex << std::endl;
-		_mutex.unlock();
-	}
+	t_rwmutex_reader(t_rwmutex& mutex);
+	~t_rwmutex_reader();
+};
+
+// Future writer: Can be nested within the scope of a future_writer guard
+class t_rwmutex_future_writer : public t_rwmutex_guard {
+public:
+	t_rwmutex_future_writer(t_rwmutex& mutex);
+	~t_rwmutex_future_writer();
+};
+
+// Writer: Can be nested within the scope of a future_writer guard
+class t_rwmutex_writer : public t_rwmutex_guard {
+public:
+	t_rwmutex_writer(t_rwmutex& mutex);
+	~t_rwmutex_writer();
 };
 
 
