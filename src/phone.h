@@ -130,7 +130,7 @@ private:
 	bool			is_3way;	// indicates an acitive 3-way
 	t_line			*line1_3way;	// first line in 3-way conf
 	t_line			*line2_3way;	// second line in 3-way conf
-	mutable t_mutex mutex_3way;
+	mutable t_recursive_mutex mutex_3way;
 	
 	// Call transfer data. When a REFER comes in, the user has
 	// to give permission before the triggered INVITE can be sent.
