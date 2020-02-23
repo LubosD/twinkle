@@ -636,6 +636,7 @@ bool t_sys_settings::get_show_buddy_list(void) const {
 }
 
 bool t_sys_settings::get_gui_show_call_osd() const {
+	t_mutex_guard guard(mtx_sys);
 	return gui_show_call_osd;
 }
 
@@ -973,8 +974,7 @@ void t_sys_settings::set_warn_hide_user(bool b) {
 }
 
 void t_sys_settings::set_gui_show_call_osd(bool b) {
-	// Using mutexes in primitive type getters/setters doesn't make any sense.
-	// TODO: remove t_mutex_guard from other getters/setters like this one.
+	t_mutex_guard guard(mtx_sys);
 	gui_show_call_osd = b;
 }
 
