@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>&amp;User name:</source>
-        <translation>Použí&amp;vateľské meno:</translation>
+        <translation>Meno &amp;používateľa:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -941,11 +941,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
-        <translation type="unfinished"></translation>
+        <translation>Naozaj odstrániť kontakt &apos;%1&apos; z miestneho adresára?</translation>
     </message>
     <message>
         <source>Delete contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť kontakt</translation>
     </message>
 </context>
 <context>
@@ -2466,7 +2466,7 @@ With this option you request your SIP provider to hide your identity from the ca
     </message>
     <message>
         <source>Select user profile(s) to run:</source>
-        <translation>Vyberte používateľské profily, ktoré majú byť aktivované:</translation>
+        <translation>Vyberte profily používateľov, ktoré majú byť aktivované:</translation>
     </message>
     <message>
         <source>Tick the check boxes of the user profiles that you want to run and press run.</source>
@@ -5675,47 +5675,47 @@ Vyžiadaná indikácia čakajúcich správ podľa RFC 3842.
     </message>
     <message>
         <source>Do&amp;main*:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Doména*:</translation>
     </message>
     <message>
         <source>Organi&amp;zation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Or&amp;ganizácia:</translation>
     </message>
     <message>
         <source>E&amp;xpiry:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Platnosť:</translation>
     </message>
     <message>
         <source>Call Hold &amp;variant:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spôsob pridržania &amp;hovoru:</translation>
     </message>
     <message>
         <source>&amp;Max redirections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. počet &amp;presmerovaní:</translation>
     </message>
     <message>
         <source>Indicates if the Replaces-extension is supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indikuje, či je podporované rozšírenie Replaces.</translation>
     </message>
     <message>
         <source>An attended call transfer should use the contact URI as a refer target. A contact URI may not be globally routable however. Alternatively the AoR (Address of Record) may be used. A disadvantage is that the AoR may route to multiple endpoints in case of forking whereas the contact URI routes to a single endpoint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistované prepojenie by malo používať Contact URI ako cieľovú adresu pre informovanie presmerovávanej strany o novom spojení. Táto adresa nemusí však globálne platiť. Ako alternatívu je možné použiť AoR (Address of Record). Nevýhodou je, že pri viacerých koncových zariadeniach nie je AoR jednoznačné, no URI kontaktu vždy ukazuje na jediné zariadenie.</translation>
     </message>
     <message>
         <source>Include a P-Asserted-Identity header with your identity in an INVITE request for a call with identity hiding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak je vybrané a zároveň je aktívna voľba &quot;skryť odosielateľa&quot;, bude spolu s údajom odosielateľa odoslaná pri požiadavke INVITE hlavička P-Preferred-Identity.</translation>
     </message>
     <message>
         <source>&amp;Send P-Asserted-Identity header when hiding user identity</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Posielať hlavičku P-Preferred-Identity pri skrývaní identity používateľa</translation>
     </message>
     <message>
         <source>Use STUN (does not wor&amp;k for incoming TCP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť &amp;STUN (nefunguje pre prichádzajúce TCP)</translation>
     </message>
     <message>
         <source>STUN ser&amp;ver:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa S&amp;TUN servera:</translation>
     </message>
     <message>
         <source>&lt;p&gt;
@@ -5749,11 +5749,44 @@ You are at work and all telephone numbers starting with a 0 should be prefixed w
 Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
 &lt;/tt&gt;
 &lt;/blockquote&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;
+Často sa formát telefónnych čísiel, ktoré očakáva poskytovateľ VoIP nezhoduje s formátom čísiel uložených v adresári. Napr. pri číslach začínajúcich na &quot;+&quot; a národným kódom krajiny očakáva váš poskytovateľ miesto &quot;00&quot; znak &quot;+&quot;. Alebo ste pripojený na miestnu sieť SIP a je potrebné najprv zadať predvoľbu pre volania smerom von.
+Tu je možné pomocou vyhľadávacích a nahradzovaných vzorov (podľa štýlu regulárnych výrazov so syntaxom jazyku Perl) nastaviť všeobecne platné pravidlá pre konverziu telefónnych čísiel.
+&lt;/p&gt;
+&lt;p&gt;
+Pri každom vytáčaní sa Twinkle pokúsi nájsť pre čísla z používateľskej časti adresy SIP zodpovedajúci výraz v zozname hľadaných vzorov. S prvým nájdeným vyhovujúcim výrazom je vykonaná úprava pôvodného čísla, pričom pozícia v &quot;(&quot; &quot;)&quot; v hľadanom výraze (napr. &quot;([0-9]*)&quot; pre &quot;ľubovoľný počet čísiel&quot;) je nahradená znakmi v zodpovedajúcich premenných. Napr. &quot;$1&quot; pre prvú pozíciu. Viď tiež `man 7 regex` alebo konqueror:&quot;#regex&quot;. Ak nie je nájdený žiaden zodpovedajúci hľadaný vzor, zostane číslo nezmenené.
+&lt;/p&gt;
+&lt;p&gt;
+Pravidlá budú tiež použité na čísla v prichádzajúcich hovoroch. Podľa nastavených pravidiel budú pretransformované do žiadaného formátu.
+&lt;/p&gt;
+&lt;h3&gt;1. príklad&lt;/h3&gt;
+&lt;p&gt;
+Napr. váš národní kód je &quot;421&quot; pre Slovenskú republiku a vo vašom adresári máte tiež veľa vnútroštátnych čísiel uložených v medzinárodnom formáte. Napr.. +421 2 123 456. Avšak poskytovateľ VoIP očakáva pre vnútroštátny hovor číslo 02 123456. Chcete teda nahradiť &apos;+421&apos; číslom &apos;0&apos; a zároveň pre zahraničné hovory nahradiť &apos;+&apos; predvoľbou &apos;00&apos;.
+&lt;/p&gt;
+&lt;p&gt;
+Na to sú potrebné nasledujúce pravidlá uvedené v tomto poradí:
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Hľadaný výraz = \+421([0-9]*) , Náhrada = 0$1&lt;br&gt;
+Hľadaný výraz = \+([0-9]*) , Náhrada = 00$1&lt;/br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2. príklad&lt;/h3&gt;
+&lt;p&gt;
+Nachádzate sa na telefónnej ústredni a všetkým číslam začínajúcim nulou má byť predradené číslo 9.
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;tt&gt;
+Hľadaný výraz = 0[0-9]* , Náhrada = 9$&amp;&lt;br&gt;
+&lt;/tt&gt;
+&lt;/blockquote&gt;
+( $&amp; je špeciálna premenná, v ktorej je uložené celé pôvodné číslo)&lt;br&gt;
+Poznámka: Toto pravidlo nie je možné nastaviť jednoducho ako tretie pravidlo k dvom pravidlám z príkladu č. 1. Bude totiž použité vždy len prvé pravidlo, ktoré vyhľadávaniu vyhovie. Miesto toho by muselo byť zmenené nahrádzanie v pravidlách 1 a 2</translation>
     </message>
     <message>
         <source>When ZRTP/SRTP is enabled, then Twinkle will try to encrypt the audio of each call you originate or receive. Encryption will only succeed if the remote party has ZRTP/SRTP support enabled. If the remote party does not support ZRTP/SRTP, then the audio channel will stay unencrypted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak je aktivované, Twinkle sa pokúsi pri všetkých odchádzajúcich a prichádzajúcich hovoroch šifrovať zvukové dáta. Aby bol hovor naozaj zašifrovaný musí aj protistrana podporovať šifrovanie ZRTP/SRTP. Inak ostane hovor nešifrovaný.</translation>
     </message>
     <message>
         <source>&lt;H2&gt;Message waiting indication type&lt;/H2&gt;
@@ -5768,23 +5801,35 @@ Asterisk provides unsolicited message waiting indication.
 &lt;p&gt;
 Solicited message waiting indication as specified by RFC 3842.
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;H2&gt;Typ indikácie čakajúcich správ&lt;/H2&gt;
+&lt;p&gt;
+Ak váš poskytovateľ SIP ponúka upozornenie na uložené správy v hlasovej schránke, môže vás Twinkle informovať o nových aj už vypočutých správach vo vašej hlasovej schránke. Spýtajte sa vášho poskytovateľa, aký typ indikácie čakajúcich správ je používaný
+
+&lt;/p&gt;
+&lt;H3&gt;Nevyžiadané&lt;/H3&gt;
+&lt;p&gt;
+Asterisk podporuje nevyžiadané indikovanie čakajúcich správ.
+&lt;/p&gt;
+&lt;H3&gt;Vyžiadané&lt;/H3&gt;
+&lt;p&gt;
+Vyžiadaná indikácia čakajúcich správ podľa RFC 3842.
+&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Unsolicited</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevyžiadané</translation>
     </message>
     <message>
         <source>Solicited</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžiadané</translation>
     </message>
     <message>
         <source>Solicited MWI</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžiadané MWI</translation>
     </message>
     <message>
         <source>For solicited MWI, an endpoint subscribes to the message status for a limited duration. Just before the duration expires, the endpoint should refresh the subscription.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podľa špecifikácie MWI sa koncové zariadenie prihlási na serveri k príjmu správ na určitú dobu. Pred vypršaním tejto doby by sa prihlásenie malo znovu obnoviť.</translation>
     </message>
 </context>
 <context>
@@ -5915,7 +5960,7 @@ V prípade priameho volania medzi IP adresami se môže jednať o meno hostiteľ
     </message>
     <message>
         <source>SIP pro&amp;xy:</source>
-        <translation type="unfinished"></translation>
+        <translation>SIP pro&amp;xy:</translation>
     </message>
 </context>
 <context>
