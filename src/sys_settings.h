@@ -159,6 +159,9 @@ private:
 	string		gui_browser_cmd;
 	//@}
 	
+	// Inhibit idle session
+	bool		inhibit_idle_session;
+
 	// Address book settings
 	bool		ab_show_sip_only;
 	bool		ab_lookup_name;
@@ -299,6 +302,7 @@ public:
 	int get_gui_auto_show_timeout(void) const;
 	string get_gui_browser_cmd(void) const;
 	bool get_gui_show_call_osd() const;
+	bool get_inhibit_idle_session() const;
 	bool get_ab_show_sip_only(void) const;
 	bool get_ab_lookup_name(void) const;
 	bool get_ab_override_display(void) const;
@@ -356,6 +360,7 @@ public:
 	void set_gui_auto_show_timeout(int timeout);
 	void set_gui_browser_cmd(const string &s);
 	void set_gui_show_call_osd(bool b);
+	void set_inhibit_idle_session(bool b);
 	void set_ab_show_sip_only(bool b);
 	void set_ab_lookup_name(bool b);
 	void set_ab_override_display(bool b);

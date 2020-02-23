@@ -14,6 +14,7 @@
 #cmakedefine HAVE_RES_INIT
 #cmakedefine WORDS_BIGENDIAN
 #cmakedefine HAVE_LIBASOUND
+#cmakedefine HAVE_DBUS
 
 #define VERSION		"${PRODUCT_VERSION}"
 #define VERSION_DATE	"${PRODUCT_DATE}"

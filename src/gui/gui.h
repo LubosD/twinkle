@@ -43,6 +43,7 @@ using namespace std;
 
 // Forward declaration
 class MphoneForm;
+class IdleSessionManager;
 
 // Length of redial list in combo boxes
 #define SIZE_REDIAL_LIST 10
@@ -65,6 +66,8 @@ class t_gui : public QObject, public t_userintf {
 	Q_OBJECT
 private:
 	MphoneForm	*mainWindow;
+
+	IdleSessionManager *m_idle_session_manager;
 	
 	// List of active instant messaging session.
 	list<im::t_msg_session *> messageSessions;
@@ -426,12 +429,19 @@ signals:
 	void mw_update_call_history();
 	void mw_update_missed_call_status(int num_missed_calls);
 	
+public slots:
+	// Apply the current "inhibit_idle_session" setting
+	void updateInhibitIdleSession();
+
 private slots:
 	/** 
             * Update timers associated with message sessions. This
 	 * function should be called every second.
 	 */
 	void updateTimersMessageSessions();
+
+	// Update the current idle/busy state
+	void updateIdleSessionState();
 
 	bool do_cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &destination,
 			const string &display);

@@ -2340,6 +2340,8 @@ void MphoneForm::editSysSettings()
         sysSettingsForm = new SysSettingsForm(this);
         sysSettingsForm->setModal(true);
 		MEMMAN_NEW(sysSettingsForm);
+		connect(sysSettingsForm, SIGNAL(inhibitIdleSessionChanged()),
+			(t_gui *)ui, SLOT(updateInhibitIdleSession()));
 		connect(sysSettingsForm, SIGNAL(sipUdpPortChanged()),
 			this, SLOT(updateSipUdpPort()));
 		connect(sysSettingsForm, SIGNAL(rtpPortChanged()),
