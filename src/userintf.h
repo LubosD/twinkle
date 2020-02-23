@@ -62,6 +62,7 @@ protected:
 	
 private:
         bool            end_interface; // indicates if interface loop should quit
+        int             break_readline_loop_pipe[2]; // pipe used to interrupt Readline
         list<string>    all_commands;  // list of all commands
         t_tone_gen      *tone_gen;     // tone generator for ringing
         

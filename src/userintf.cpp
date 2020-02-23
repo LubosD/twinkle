@@ -17,8 +17,15 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <errno.h>
+#include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
+#include <stdio.h>
+#include <string>
+#include <sys/select.h>
+#include <unistd.h>
 #include "address_book.h"
 #include "events.h"
 #include "line.h"
@@ -86,22 +93,37 @@ char * tw_command_generator (const char *text, int state)
 	return ((char *)NULL);
 }
 
-char *tw_readline(const char *prompt)
+// Ugly hack to allow invoking methods on our object from within a C-style
+// callback function.  This relies on the object being a singleton.
+static t_userintf *cb_user_intf;
+// Callback method (a.k.a. "line handler") that will be invoked by Readline
+// once a complete line has been read.
+static void tw_readline_cb(char *line)
 {
-	static char *line = NULL;
-	
 	if (!line) {
+		// EOF
+		cout << endl;
+		// Calling this from the line handler prevents one extra
+		// prompt from being displayed.  (The duplicate call later on
+		// will not be an issue.)
+		rl_callback_handler_remove();
+
+		cb_user_intf->cmd_quit();
+	} else {
+		if (*line) {
+			add_history(line);
+			cb_user_intf->exec_command(line);
+		}
 		free(line);
-		line = NULL;
 	}
-	
-	line = readline(prompt);
-	
-	if (line && *line) {
-		add_history(line);
-	}
-	
-	return line;
+}
+
+// SIGWINCH handler to help us relay that information to Readline
+static int sigwinch_received;
+static void sigwinch_handler(int signum)
+{
+	sigwinch_received = 1;
+	signal(SIGWINCH, sigwinch_handler);
 }
 
 /////////////////////////////
@@ -1463,6 +1485,10 @@ bool t_userintf::exec_quit(const list<string> command_list) {
 
 void t_userintf::do_quit(void) {
 	end_interface = true;
+	// Signal the main thread that it should interrupt Readline
+	if (break_readline_loop_pipe[1] != -1) {
+		write(break_readline_loop_pipe[1], "X", 1);
+	}
 }
 
 bool t_userintf::exec_help(const list<string> command_list) {
@@ -2200,22 +2226,71 @@ void t_userintf::run(void) {
 	// Initialize phone functions
 	phone->init();
 
+	// Set up the self-pipe used to interrupt Readline
+	if (pipe(break_readline_loop_pipe) == 0) {
+		// Mark both file descriptors as close-on-exec for good measure
+		for (int i = 0; i < 2; i++) {
+			int flags = fcntl(break_readline_loop_pipe[i], F_GETFD);
+			if (flags != -1) {
+				flags |= FD_CLOEXEC;
+				fcntl(break_readline_loop_pipe[i], F_SETFD, flags);
+			}
+		}
+	} else {
+		// Not fatal -- we just won't be able to interrupt Readline
+		string msg("pipe() failed: ");
+		msg += get_error_str(errno);
+		ui->cb_show_msg(msg, MSG_WARNING);
+
+		// Mark both file descriptors as invalid
+		break_readline_loop_pipe[0] = -1;
+		break_readline_loop_pipe[1] = -1;
+	}
+
 	//Initialize GNU readline functions
 	rl_attempted_completion_function = tw_completion;
 	using_history();
 	read_history(sys_config->get_history_file().c_str());
 	stifle_history(CLI_MAX_HISTORY_LENGTH);
 
+	// Additional stuff for using the Readline callback interface
+	cb_user_intf = this;
+	signal(SIGWINCH, sigwinch_handler);
+	rl_callback_handler_install(CLI_PROMPT, tw_readline_cb);
 
 	while (!end_interface) {
-		char *command_line = tw_readline(CLI_PROMPT);
-		if (!command_line){
-			cout << endl;
+		// File descriptors we are watching (stdin + self-pipe)
+		fd_set fds;
+		FD_ZERO(&fds);
+		FD_SET(fileno(rl_instream), &fds);
+		if (break_readline_loop_pipe[0] != -1) {
+			FD_SET(break_readline_loop_pipe[0], &fds);
+		}
+
+		int ret = select(FD_SETSIZE, &fds, NULL, NULL, NULL);
+		if ((ret == -1) && (errno != EINTR)) {
+			string msg("select() failed: ");
+			msg += get_error_str(errno);
+			ui->cb_show_msg(msg, MSG_CRITICAL);
 			break;
 		}
-		
-		exec_command(command_line);
+		// Relay any SIGWINCH to Readline
+		if (sigwinch_received) {
+			rl_resize_terminal();
+			sigwinch_received = 0;
+		}
+		if (ret == -1) {
+			// errno == EINTR
+			continue;
+		}
+
+		if (FD_ISSET(fileno(rl_instream), &fds)) {
+			rl_callback_read_char();
+		}
 	}
+
+	rl_callback_handler_remove();
+	signal(SIGWINCH, SIG_DFL);
 	
 	// Terminate phone functions
 	write_history(sys_config->get_history_file().c_str());
