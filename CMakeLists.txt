@@ -23,6 +23,10 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
+include (CheckSymbolExists)
+include (CMakePushCheckState)
+include (CheckCXXSourceCompiles)
+include (TestBigEndian)
 
 find_package(LibXml2 REQUIRED)
 find_package(LibMagic REQUIRED)
@@ -88,6 +92,9 @@ if (WITH_ILBC)
 	if (ILBC_FOUND)
 		message(STATUS "iLBC OK")
 		set(HAVE_ILBC TRUE)
+		if (ILBC_CPP)
+			set(HAVE_ILBC_CPP TRUE)
+		endif (ILBC_CPP)
 		
 		include_directories(${ILBC_INCLUDE_DIR})
 	else (ILBC_FOUND)
@@ -124,6 +131,34 @@ endif (WITH_GSM)
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(linux/types.h HAVE_LINUX_TYPES_H)
 check_include_files("sys/socket.h;linux/errqueue.h" HAVE_LINUX_ERRQUEUE_H)
+
+check_symbol_exists(strerror_r "string.h" HAVE_STRERROR_R)
+if (HAVE_STRERROR_R)
+	# Check whether the return type is (int) or (char *)
+	# Code taken from Apache Thrift's ConfigureChecks.cmake
+	check_cxx_source_compiles("
+		#include <string.h>
+		int main() {
+			char b;
+			char *a = strerror_r(0, &b, 0);
+			return 0;
+		}
+	" STRERROR_R_CHAR_P)
+endif (HAVE_STRERROR_R)
+
+cmake_push_check_state()
+list(APPEND CMAKE_REQUIRED_LIBRARIES "-lresolv")
+check_cxx_source_compiles("
+	#include <sys/types.h>
+	#include <netinet/in.h>
+	#include <arpa/nameser.h>
+	#include <resolv.h>
+
+	int main() { res_init(); return 0; }
+" HAVE_RES_INIT)
+cmake_pop_check_state()
+
+test_big_endian(WORDS_BIGENDIAN)
 
 set(datadir "${CMAKE_INSTALL_PREFIX}/share/twinkle")
 configure_file(twinkle_config.h.in twinkle_config.h)

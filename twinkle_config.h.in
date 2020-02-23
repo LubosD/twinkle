@@ -1,6 +1,7 @@
 #cmakedefine WITH_DIAMONDCARD
 #cmakedefine HAVE_SPEEX
 #cmakedefine HAVE_ILBC
+#cmakedefine HAVE_ILBC_CPP
 #cmakedefine HAVE_ZRTP
 #cmakedefine HAVE_BCG729
 #cmakedefine HAVE_GSM
@@ -8,6 +9,10 @@
 #cmakedefine HAVE_UNISTD_H
 #cmakedefine HAVE_LINUX_TYPES_H
 #cmakedefine HAVE_LINUX_ERRQUEUE_H
+#cmakedefine HAVE_STRERROR_R
+#cmakedefine STRERROR_R_CHAR_P
+#cmakedefine HAVE_RES_INIT
+#cmakedefine WORDS_BIGENDIAN
 #cmakedefine HAVE_LIBASOUND
 
 #define VERSION		"${PRODUCT_VERSION}"

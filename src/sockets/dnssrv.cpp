@@ -11,6 +11,7 @@
 #include <sys/time.h>
 #include <netinet/in.h>
 #include <arpa/nameser.h>
+#include "twinkle_config.h"
 #include <resolv.h>
 #include <errno.h>
 #include <stdlib.h>
