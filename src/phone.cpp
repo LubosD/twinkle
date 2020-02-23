@@ -3052,7 +3052,7 @@ bool t_phone::add_phone_user(const t_user &user_config, t_user **dup_user) {
 		// Check if there is already another profile having
 		// the same contact name.
 		if (user->get_contact_name() == user_config.get_contact_name() &&
-		    USER_HOST(user, AUTO_IP4_ADDRESS) == USER_HOST(&user_config, AUTO_IP4_ADDRESS) &&
+		    phone->get_ip_sip_locked(user, AUTO_IP4_ADDRESS) == phone->get_ip_sip_locked(&user_config, AUTO_IP4_ADDRESS) &&
 		    (*i)->is_active())
 		{
 			*dup_user = user;
@@ -3158,9 +3158,13 @@ t_presence_epa *t_phone::ref_presence_epa(t_user *user) {
 }
 
 string t_phone::get_ip_sip(const t_user *user, const string &auto_ip) const {
+	t_rwmutex_reader x(phone_users_mtx);
+	return get_ip_sip_locked(user, auto_ip);
+}
+
+string t_phone::get_ip_sip_locked(const t_user *user, const string &auto_ip) const {
 	string result;
 
-	t_rwmutex_reader x(phone_users_mtx);
 	t_phone_user *pu = find_phone_user(user->get_profile_name());
 	if (pu) {
 		result = pu->get_ip_sip(auto_ip);
