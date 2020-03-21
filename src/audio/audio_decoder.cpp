@@ -547,7 +547,7 @@ uint16 t_g729a_audio_decoder::decode(uint8 *payload, uint16 payload_size,
 
 	for (uint16 done = 0; done < payload_size; done += 10)
 	{
-		bcg729Decoder(_context, &payload[done], false, &pcm_buf[done * 8]);
+		bcg729Decoder(_context, &payload[done], 10, false, false, false, &pcm_buf[done * 8]);
 	}
 
 	return payload_size * 8;
@@ -562,7 +562,7 @@ uint16 t_g729a_audio_decoder::conceal(int16 *pcm_buf, uint16 pcm_buf_size)
 {
 	assert(pcm_buf_size >= 80);
 
-	bcg729Decoder(_context, nullptr, true, pcm_buf);
+	bcg729Decoder(_context, nullptr, 0, true, false, false, pcm_buf);
 	return 80;
 }
 

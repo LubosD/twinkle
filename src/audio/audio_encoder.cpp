@@ -433,7 +433,8 @@ uint16 t_g726_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 t_g729a_audio_encoder::t_g729a_audio_encoder(uint16 payload_id, uint16 ptime, t_user *user_config)
 	: t_audio_encoder(payload_id, ptime, user_config)
 {
-	_context = initBcg729EncoderChannel();
+	static const bool ENABLE_VAD = false;
+	_context = initBcg729EncoderChannel(ENABLE_VAD);
 }
 
 t_g729a_audio_encoder::~t_g729a_audio_encoder()
@@ -449,9 +450,11 @@ uint16 t_g729a_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 
 	silence = false;
 
+	uint8_t bitStreamLength;
 	for (uint16 done = 0; done < nsamples; done += 80)
 	{
-		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8]);
+		bcg729Encoder(_context, &sample_buf[done], &payload[done / 8], &bitStreamLength);
+		assert(bitStreamLength == 10);
 	}
 
 	return nsamples / 8;
