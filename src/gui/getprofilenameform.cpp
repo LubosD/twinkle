@@ -16,6 +16,7 @@ GetProfileNameForm::GetProfileNameForm(QWidget* parent)
     : QDialog(parent)
 {
 	setupUi(this);
+	init();
 }
 
 /*
