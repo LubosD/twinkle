@@ -35,6 +35,9 @@ void GetProfileNameForm::init()
 	// Set validators
 	// USER
 	profileLineEdit->setValidator(new QRegExpValidator(rxFilenameChars, this));
+
+	// Focus seems to default to OK button, despite tab order
+	profileLineEdit->setFocus();
 }
 
 void GetProfileNameForm::validate()
