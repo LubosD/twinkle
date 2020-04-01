@@ -2297,7 +2297,7 @@ void MphoneForm::aboutQt()
 
 void MphoneForm::manual()
 {
-	((t_gui *)ui)->open_url_in_browser("http://web.archive.org/web/20180217123024/http://www.twinklephone.com/");
+	((t_gui *)ui)->open_url_in_browser("https://web.archive.org/web/20180217123024/http://www.twinklephone.com/");
 }
 
 void MphoneForm::editUserProfile()
