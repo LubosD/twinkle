@@ -1015,6 +1015,9 @@
    </layout>
   </widget>
   <widget class="QToolBar" name="callToolbar">
+   <property name="windowTitle">
+    <string>Main Toolbar</string>
+   </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
