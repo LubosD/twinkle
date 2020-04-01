@@ -955,7 +955,7 @@ If before answering a call, the microphone or speaker appears to be invalid, a w
          </item>
         </layout>
        </item>
-       <item row="8" column="0">
+       <item row="9" column="0">
         <layout class="QHBoxLayout">
          <item>
           <widget class="QLabel" name="browserTextLabel">
