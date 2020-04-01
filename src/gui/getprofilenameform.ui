@@ -109,6 +109,30 @@ To remember your profiles easily you could use your SIP user name as a profile n
               </property>
             </widget>
           </item>
+          <item>
+            <widget class="QLabel" name="profileNoteLabel">
+              <property name="sizePolicy">
+                <sizepolicy>
+                  <hsizetype>5</hsizetype>
+                  <vsizetype>0</vsizetype>
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                </sizepolicy>
+              </property>
+              <property name="text">
+                <string>(Allowed characters: letters, digits, '-', '_', '.', '@')</string>
+              </property>
+              <property name="scaledContents">
+                <bool>false</bool>
+              </property>
+              <property name="alignment">
+                <set>Qt::AlignVCenter</set>
+              </property>
+              <property name="wordWrap">
+                <bool>false</bool>
+              </property>
+            </widget>
+          </item>
         </layout>
       </item>
     </layout>
