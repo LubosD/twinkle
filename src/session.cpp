@@ -44,7 +44,10 @@ void t_session::set_recvd_codecs(t_sdp *sdp) {
 		t_audio_codec ac = sdp->get_codec(SDP_AUDIO, *i);
 		if (ac > CODEC_UNSUPPORTED) {
 			recvd_codecs.push_back(ac);
-			send_ac2payload[ac] = *i;
+			// Don't overwrite any previous mapping for this codec
+			if (!send_ac2payload.count(ac)) {
+				send_ac2payload[ac] = *i;
+			}
 			send_payload2ac[*i] = ac;
 		}
 	}
