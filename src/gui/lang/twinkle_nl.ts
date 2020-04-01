@@ -111,11 +111,11 @@
     </message>
     <message>
         <source>&amp;Password:</source>
-        <translation>&amp;Paswoord:</translation>
+        <translation>W&amp;achtwoord:</translation>
     </message>
     <message>
         <source>Your password for authentication.</source>
-        <translation>Uw paswoord voor authenticatie.</translation>
+        <translation>Uw wachtwoord voor authenticatie.</translation>
     </message>
     <message>
         <source>Your SIP authentication name. Quite often this is the same as your SIP user name. It can be a different name though.</source>
@@ -260,7 +260,7 @@
     </message>
     <message>
         <source>request failed</source>
-        <translation>verzoel mislukt</translation>
+        <translation>verzoek mislukt</translation>
     </message>
     <message>
         <source>Click right to add a buddy.</source>
@@ -1005,11 +1005,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete contact &apos;%1&apos; from the local address book?</source>
-        <translation type="unfinished"></translation>
+        <translation>Weet je zeker dat je contact &apos;%1&apos; wilt verwijderen van je lokale adres boek?</translation>
     </message>
     <message>
         <source>Delete contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder contact</translation>
     </message>
 </context>
 <context>
@@ -1711,7 +1711,7 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Aflsuiten</translation>
+        <translation>&amp;Afsluiten</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -2406,7 +2406,7 @@ Als de SAS aan beide kanten hetzelfde is, dan moet u die bevestigen door op het 
     </message>
     <message>
         <source>&amp;Manual</source>
-        <translation>&amp;Handleinding</translation>
+        <translation>&amp;Handleiding</translation>
     </message>
     <message>
         <source>Sign up</source>
