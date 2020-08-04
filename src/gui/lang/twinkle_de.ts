@@ -1010,7 +1010,7 @@ Es bietet sich an, hier Ihre SIP-Adresse als Name zu verwenden, also &lt;b&gt;me
     </message>
     <message>
         <source>Time</source>
-        <translation>Uhreit</translation>
+        <translation>Uhrzeit</translation>
     </message>
     <message>
         <source>In/Out</source>
