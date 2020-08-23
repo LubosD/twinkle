@@ -1,5 +1,9 @@
 project(twinkle-gui)
 
+# Suppress deprecation warnings from Qt, as they often would require breaking
+# backwards compatibility.
+add_definitions(-DQT_NO_DEPRECATED_WARNINGS)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
