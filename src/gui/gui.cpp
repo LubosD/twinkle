@@ -284,9 +284,10 @@ void t_gui::do_bye(void) {
 	QMetaObject::invokeMethod(this, "gui_do_bye");
 }
 
-void t_gui::do_hold(void) {
+void t_gui::do_hold(bool toggle) {
 
-	QMetaObject::invokeMethod(this, "gui_do_hold");
+	QMetaObject::invokeMethod(this, "gui_do_hold",
+				  Q_ARG(bool, toggle));
 }
 
 void t_gui::do_retrieve(void) {
@@ -657,17 +658,21 @@ void t_gui::gui_do_bye(void)
 	}
 }
 
-void t_gui::gui_do_hold(void)
+void t_gui::gui_do_hold(bool toggle)
 {
-	if (mainWindow->callHold->isEnabled() && !mainWindow->callHold->isChecked()) {
-		mainWindow->phoneHold(true);
+	if (mainWindow->callHold->isEnabled()) {
+		if (toggle && mainWindow->callHold->isChecked())
+			mainWindow->phoneHold(false);
+		else
+			mainWindow->phoneHold(true);
 	}
 }
 
 void t_gui::gui_do_retrieve(void)
 {
-	if (mainWindow->callHold->isEnabled() && mainWindow->callHold->isChecked()) {
-		mainWindow->phoneHold(false);
+	if (mainWindow->callHold->isEnabled()) {
+		if (mainWindow->callHold->isChecked())
+			mainWindow->phoneHold(false);
 	}
 }
 

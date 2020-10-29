@@ -128,7 +128,7 @@ protected:
 	virtual void do_dnd(bool show_status, bool toggle, bool enable);
 	virtual void do_auto_answer(bool show_status, bool toggle, bool enable);
 	virtual void do_bye(void);
-	virtual void do_hold(void);
+	virtual void do_hold(bool toggle);
 	virtual void do_retrieve(void);
 	virtual bool do_refer(const string &destination,
 			      t_transfer_type transfer_type, bool immediate);
@@ -165,7 +165,7 @@ private slots:
 	void gui_do_dnd(bool toggle, bool enable);
 	void gui_do_auto_answer(bool toggle, bool enable);
 	void gui_do_bye(void);
-	void gui_do_hold(void);
+	void gui_do_hold(bool toggle);
 	void gui_do_retrieve(void);
 	void gui_do_refer(const QString &destination,
 			  t_transfer_type transfer_type, bool immediate);

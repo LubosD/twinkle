@@ -776,12 +776,35 @@ void t_userintf::do_bye(void) {
 }
 
 bool t_userintf::exec_hold(const list<string> command_list) {
-	do_hold();
+	list<t_command_arg> al;
+	bool toggle = false;
+
+	if (!parse_args(command_list, al)) {
+		exec_command("help hold");
+		return false;
+	}
+
+	for (list<t_command_arg>::iterator i = al.begin(); i != al.end(); i++) {
+		switch (i->flag) {
+		case 't':
+			toggle = true;
+			break;
+		default:
+			exec_command("help hold");
+			return false;
+			break;
+		}
+	}
+
+	do_hold(toggle);
 	return true;
 }
 
-void t_userintf::do_hold(void) {
-	phone->pub_hold();
+void t_userintf::do_hold(bool toggle) {
+	if (toggle && phone->is_line_on_hold(phone->get_active_line()))
+		phone->pub_retrieve();
+	else
+		phone->pub_hold();
 }
 
 bool t_userintf::exec_retrieve(const list<string> command_list) {
@@ -1668,9 +1691,13 @@ void t_userintf::do_help(const list<t_command_arg> &al) {
 	if (c == "hold") {
 		cout << endl;
 		cout << "Usage:\n";
-		cout << "\thold\n";
+		cout << "\thold [-t]\n";
 		cout << "Description:\n";
-		cout << "\tPut the current call on the acitve line on-hold.\n";
+		cout << "\tPut the current call on the active line on-hold.\n";
+		cout << "\tIf the -t flag is passed and the call is currently held,\n";
+		cout << "\tit will be retrieved instead.\n";
+		cout << "Arguments:\n";
+		cout << "\t-t		Toggle the on-hold status of a call.\n";
 		cout << endl;
 
 		return;
