@@ -1,0 +1,3 @@
+#!/bin/bash
+
+twinkle --call "`echo "$1" | sed s/tel://`"

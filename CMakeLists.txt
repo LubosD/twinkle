@@ -178,6 +178,9 @@ configure_file(twinkle.desktop.in twinkle.desktop)
 
 include_directories("${CMAKE_BINARY_DIR}")
 
+install(FILES "bin/twinkle-call"
+	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+	DESTINATION "bin")
 install(FILES
 	${CMAKE_CURRENT_SOURCE_DIR}/data/providers.csv
 	${CMAKE_CURRENT_SOURCE_DIR}/data/ringtone.wav
