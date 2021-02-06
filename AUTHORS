@@ -15,6 +15,8 @@ Twinkle contains the following 3rd party software packages:
 	see directory src/audio/gsm for more info
 - G.711/G.726 codec from Sun Microsystems
 	see src/audio/README_G711 for more info
+- G.722 codec from Steve Underwood
+	see src/audio/g722.h for more info
 - iLBC implementation from RFC 3951 (www.ilbcfreeware.org)
 - Parts of the STUN project from sourceforge
 	http://sourceforge.net/projects/stun

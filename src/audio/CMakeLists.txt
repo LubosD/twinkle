@@ -12,6 +12,8 @@ set(LIBTWINKLE_AUDIO-SRCS
 	freq_gen.cpp
 	g711.cpp
 	g721.cpp
+	g722_decode.c
+	g722_encode.c
 	g723_16.cpp
 	g723_24.cpp
 	g723_40.cpp

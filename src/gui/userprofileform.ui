@@ -786,7 +786,7 @@ This field is mandatory.</string>
              <item>
               <widget class="QLabel" name="ptimeTextLabel">
                <property name="text">
-                <string>&amp;G.711/G.726 payload size:</string>
+                <string>&amp;G.711/G.722/G.726 payload size:</string>
                </property>
                <property name="wordWrap">
                 <bool>false</bool>
@@ -817,7 +817,7 @@ This field is mandatory.</string>
                 </size>
                </property>
                <property name="whatsThis">
-                <string>The preferred payload size for the G.711 and G.726 codecs.</string>
+                <string>The preferred payload size for the G.711, G.722 and G.726 codecs.</string>
                </property>
                <property name="minimum">
                 <number>10</number>

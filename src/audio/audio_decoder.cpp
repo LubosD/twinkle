@@ -341,6 +341,42 @@ bool t_ilbc_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample
 #endif
 
 //////////////////////////////////////////
+// class t_g722_audio_decoder
+//////////////////////////////////////////
+t_g722_audio_decoder::t_g722_audio_decoder(uint16 default_ptime, t_user *user_config)
+	: t_audio_decoder(default_ptime, false, user_config)
+{
+	_codec = CODEC_G722;
+	_state = g722_decode_init(NULL, 64000, 0);
+}
+
+t_g722_audio_decoder::~t_g722_audio_decoder()
+{
+	g722_decode_release(_state);
+}
+
+uint16 t_g722_audio_decoder::get_ptime(uint16 payload_size) const
+{
+	return (payload_size * G722_SAMPLES_PAYLOAD_RATIO) /
+		(audio_sample_rate(_codec) / 1000);
+}
+
+uint16 t_g722_audio_decoder::decode(uint8 *payload, uint16 payload_size,
+		int16 *pcm_buf, uint16 pcm_buf_size)
+{
+	assert(pcm_buf_size >= (payload_size * G722_SAMPLES_PAYLOAD_RATIO));
+
+	int nsamples = g722_decode(_state, pcm_buf, payload, payload_size);
+
+	return nsamples;
+}
+
+bool t_g722_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const
+{
+	return (payload_size * G722_SAMPLES_PAYLOAD_RATIO) <= sample_buf_size;
+}
+
+//////////////////////////////////////////
 // class t_g726_audio_decoder
 //////////////////////////////////////////
 t_g726_audio_decoder::t_g726_audio_decoder(t_bit_rate bit_rate, uint16 default_ptime, 

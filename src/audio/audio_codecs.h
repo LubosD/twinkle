@@ -32,6 +32,7 @@ enum t_audio_codec {
 	CODEC_SPEEX_WB,
 	CODEC_SPEEX_UWB,
 	CODEC_ILBC,
+	CODEC_G722,
 	CODEC_G726_16,
 	CODEC_G726_24,
 	CODEC_G726_32,
@@ -43,6 +44,7 @@ enum t_audio_codec {
 // Default ptime values (ms) for audio codecs
 #define PTIME_G711_ALAW		20
 #define PTIME_G711_ULAW		20
+#define PTIME_G722		20
 #define PTIME_G726		20
 #define PTIME_GSM		20
 #define PTIME_SPEEX		20
@@ -90,6 +92,11 @@ enum t_audio_codec {
 
 // Return the sampling rate for a codec
 unsigned short audio_sample_rate(t_audio_codec codec);
+// Some codecs (namely G.722 as far as we are concerned) are required to have
+// an RTP clock rate that differs from the actual sampling rate
+unsigned short audio_sample_rate_rtp(t_audio_codec codec);
+// Ratio of sampling clock rate to RTP clock rate
+unsigned short audio_sample_rate_rtp_ratio(t_audio_codec codec);
 
 // Returns true if the codec is a speex codec
 bool is_speex_codec(t_audio_codec codec);

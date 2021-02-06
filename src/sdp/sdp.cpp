@@ -125,6 +125,9 @@ string get_rtpmap(unsigned format, t_audio_codec codec) {
 	case CODEC_ILBC:
 		rtpmap += SDP_RTPMAP_ILBC;
 		break;
+	case CODEC_G722:
+		rtpmap += SDP_RTPMAP_G722;
+		break;
 	case CODEC_G726_16:
 		rtpmap += SDP_RTPMAP_G726_16;
 		break;
@@ -652,6 +655,8 @@ t_audio_codec t_sdp::get_rtpmap_codec(const string &rtpmap) const {
 		return CODEC_SPEEX_UWB;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_ILBC) == 0 && sample_rate == 8000) {
 		return CODEC_ILBC;
+	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G722) == 0 && sample_rate == 8000) {
+		return CODEC_G722;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G726_16) == 0 && sample_rate == 8000) {
 		return CODEC_G726_16;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G726_24) == 0 && sample_rate == 8000) {
