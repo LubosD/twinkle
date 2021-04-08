@@ -24,6 +24,14 @@ OPTION(WITH_GSM			"Use external GSM library" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
+include (CheckCXX11Regex)
+check_cxx11_regex(HAVE_CXX11_REGEX)
+if (HAVE_CXX11_REGEX)
+	message(STATUS "C++11 regular expressions OK")
+else (HAVE_CXX11_REGEX)
+	message(FATAL_ERROR "C++11 regular expressions not supported!")
+endif (HAVE_CXX11_REGEX)
+
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
 include (CheckSymbolExists)
