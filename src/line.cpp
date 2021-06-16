@@ -1788,7 +1788,7 @@ void t_line::timeout(t_line_timer timer, t_object_id did) {
 				active_dialog->redirect(cf_dest,
 					R_302_MOVED_TEMPORARILY);
 			} else {
-				active_dialog->reject(R_480_TEMP_NOT_AVAILABLE,
+				active_dialog->reject(R_408_REQUEST_TIMEOUT,
 					REASON_480_NO_ANSWER);
 			}
 			
