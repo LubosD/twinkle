@@ -53,12 +53,29 @@ int AuthenticationForm::exec(t_user *user_config, const QString &realm, QString 
 {
 	int retval;
 	
-	profileValueTextLabel->setText(user_config->get_profile_name().c_str());
-	userValueTextLabel->setText(user_config->get_display_uri().c_str());
-	realmTextLabel->setText(realm);
-	usernameLineEdit->setText(username);
-	passwordLineEdit->setText(password);
-	if (!username.isEmpty()) passwordLineEdit->setFocus();
+    cout << "AuthenticationForm::exec()" << "\n";
+    cout << "profile parameter: " << user_config->get_profile_name() << "\n";
+    cout << "username parameter: " << username.toStdString() << "\n";
+    cout << "pw parameter: (suppressed)" /*<< password.toStdString()*/ << "\n";
+
+    userValueTextLabel->setText(user_config->get_display_uri().c_str());
+    realmTextLabel->setText(realm);
+    profileValueTextLabel->setText(user_config->get_profile_name().c_str());
+    if (username.isEmpty()) {
+        cout << "retrieving credentials from profile:\n";
+        string userFromProfile = user_config->get_auth_name();
+        string pwFromProfile = user_config->get_auth_pass();
+
+        cout << "user from profile: " << userFromProfile << "\n";
+        cout << "pw from profile: (suppressed)" /*<< pwFromProfile*/ << "\n";
+
+        passwordLineEdit->setText(pwFromProfile.c_str());
+        usernameLineEdit->setText(userFromProfile.c_str());
+    } else {
+        usernameLineEdit->setText(username);
+        passwordLineEdit->setText(password);
+        passwordLineEdit->setFocus();
+    }
 	retval = QDialog::exec();
 	username = usernameLineEdit->text();
 	password = passwordLineEdit->text();
