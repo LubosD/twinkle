@@ -16,6 +16,8 @@
 */
 
 #include "authenticationform.h"
+#include <QtDebug>
+
 /*
  *  Constructs a AuthenticationForm as a child of 'parent', with the
  *  name 'name' and widget flags set to 'f'.
@@ -52,22 +54,21 @@ int AuthenticationForm::exec(t_user *user_config, const QString &realm, QString 
 			     QString &password)
 {
 	int retval;
-	
-    cout << "AuthenticationForm::exec()" << "\n";
-    cout << "profile parameter: " << user_config->get_profile_name() << "\n";
-    cout << "username parameter: " << username.toStdString() << "\n";
-    cout << "pw parameter: (suppressed)" /*<< password.toStdString()*/ << "\n";
+
+    qDebug()  << "profile parameter: " << QString::fromStdString(user_config->get_profile_name());
+    qDebug()  << "username parameter: " << QString::fromStdString(username.toStdString());
+    qDebug()  << "pw parameter: (suppressed)" /*<< password.toStdString()*/;
 
     userValueTextLabel->setText(user_config->get_display_uri().c_str());
     realmTextLabel->setText(realm);
     profileValueTextLabel->setText(user_config->get_profile_name().c_str());
     if (username.isEmpty()) {
-        cout << "retrieving credentials from profile:\n";
+        qDebug()  << "retrieving credentials from profile:";
         string userFromProfile = user_config->get_auth_name();
         string pwFromProfile = user_config->get_auth_pass();
 
-        cout << "user from profile: " << userFromProfile << "\n";
-        cout << "pw from profile: (suppressed)" /*<< pwFromProfile*/ << "\n";
+        qDebug() << "user from profile: " << QString::fromStdString(userFromProfile);
+        qDebug()  << "pw from profile: (suppressed)" /*<< QString::fromStdString(pwFromProfile)*/;
 
         passwordLineEdit->setText(pwFromProfile.c_str());
         usernameLineEdit->setText(userFromProfile.c_str());
