@@ -10,7 +10,7 @@ BuildArch:	i586
 #BuildArch:	x86_64
 BuildRoot:	%{_tmppath}/making_of_%{name}_%{version}
 Packager:
-URL:		http://www.twinklephone.com
+URL:		https://mfnboer.home.xs4all.nl/twinkle/
 Requires:	alsa
 Requires:	ucommon
 Requires:	ccrtp >= 1.6.0

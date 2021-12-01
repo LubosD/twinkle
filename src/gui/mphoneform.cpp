@@ -2290,7 +2290,7 @@ void MphoneForm::aboutQt()
 
 void MphoneForm::manual()
 {
-	((t_gui *)ui)->open_url_in_browser("http://www.twinklephone.com");
+	((t_gui *)ui)->open_url_in_browser("https://mfnboer.home.xs4all.nl/twinkle/");
 }
 
 void MphoneForm::editUserProfile()
