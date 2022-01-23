@@ -35,8 +35,10 @@
    SIPSTATUS_REASON=<reason phrase of a response>
    SIP_FROM_USER=<user name of From header>
    SIP_FROM_HOST=<host part of From header>
+   SIP_FROM_DISPLAY=<display name of From header>
    SIP_TO_USER=<user name of To header>
    SIP_TO_HOST=<host part of To header>
+   SIP_TO_DISPLAY=<display name of To header>
    SIP_<header_name>=<header value>
 @endverbatim
  * 

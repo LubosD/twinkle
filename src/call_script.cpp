@@ -154,12 +154,20 @@ char **t_call_script::create_env(t_sip_message *m) const {
 		var_twinkle += m->hdr_from.uri.get_host();
 		l.push_back(var_twinkle);
 		
+		var_twinkle = "SIP_FROM_DISPLAY=";
+		var_twinkle += m->hdr_from.display;
+		l.push_back(var_twinkle);
+		
 		var_twinkle = "SIP_TO_USER=";
 		var_twinkle += m->hdr_to.uri.get_user();
 		l.push_back(var_twinkle);
 		
 		var_twinkle = "SIP_TO_HOST=";
 		var_twinkle += m->hdr_to.uri.get_host();
+		l.push_back(var_twinkle);
+		
+		var_twinkle = "SIP_TO_DISPLAY=";
+		var_twinkle += m->hdr_to.display;
 		l.push_back(var_twinkle);
 		
 		environ_size += l.size();
