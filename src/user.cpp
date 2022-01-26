@@ -392,7 +392,7 @@ t_user::t_user() {
 	encode_multi_values_as_list = true;
 	registration_time_in_contact = true;
 	use_domain_in_contact = false;
-	allow_sdp_change = false;
+	allow_sdp_change = true;
 	allow_redirection = true;
 	ask_user_to_redirect = true;
 	max_redirections = 5;
