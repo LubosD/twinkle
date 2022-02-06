@@ -24,7 +24,6 @@ env:
     linux-libc-dev
   # Additional packages required by default builds -- can be overridden by
   # matrix.packages
-  # (qttools5-dev-tools is explicitly included because of Debian bug #835295)
   PACKAGES: >
     libasound2-dev
     libgsm1-dev
@@ -32,7 +31,6 @@ env:
     libspeexdsp-dev
     qtdeclarative5-dev
     qttools5-dev
-    qttools5-dev-tools
 
 jobs:
   build:
