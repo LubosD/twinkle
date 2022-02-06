@@ -50,13 +50,14 @@ jobs:
 
           # Test building with bcg729
           - descr: 'w/ bcg729'
-            BUILD_BCG729: "master"
+            bcg729-branch: "master"
             FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
             PACKAGES: "git ca-certificates"
           # Also test the old pre-1.0.2 API (see issue #104)
           - descr: 'w/ bcg729 (old API)'
-            BUILD_BCG729: "1.0.1"
-            BUILD_BCG729_AUTOTOOLS: "Y"
+            bcg729-branch: "1.0.1"
+            # (bcg729 1.0.1 used Autotools instead of CMake)
+            bcg729-autotools: true
             FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
             PACKAGES: "git ca-certificates pkg-config libtool automake autoconf"
 
@@ -88,11 +89,23 @@ jobs:
           version: ${{ ((matrix.clang == 'default') && 'latest') || matrix.clang }}
 
       # Download and build bcg729 if necessary for this build
-      - name: Download and build bcg729
-        run: if [ "$BUILD_BCG729" ]; then git clone https://gitlab.linphone.org/BC/public/bcg729.git --branch "$BUILD_BCG729" && (cd bcg729 && if [ "$BUILD_BCG729_AUTOTOOLS" ]; then ./autogen.sh && ./configure; else cmake .; fi && make && sudo make install); fi
+      - name: Download and build bcg729 (${{ matrix.bcg729-branch || 'n/a' }})
+        if: ${{ matrix.bcg729-branch }}
+        run: |
+          git clone https://gitlab.linphone.org/BC/public/bcg729.git \
+                    --branch "$BCG729_BRANCH"
+          cd bcg729
+          if $BCG729_AUTOTOOLS; then
+            ./autogen.sh
+            ./configure
+          else
+            cmake .
+          fi
+          make
+          sudo make install
         env:
-          BUILD_BCG729:           ${{ matrix.BUILD_BCG729 }}
-          BUILD_BCG729_AUTOTOOLS: ${{ matrix.BUILD_BCG729_AUTOTOOLS }}
+          BCG729_BRANCH:    ${{ matrix.bcg729-branch }}
+          BCG729_AUTOTOOLS: ${{ (matrix.bcg729-autotools && 'true') || 'false' }}
 
       # Everything is now set up, ready to checkout/configure/build/install
 
