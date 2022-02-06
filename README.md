@@ -1,3 +1,5 @@
+[![Build](https://github.com/LubosD/twinkle/actions/workflows/main.yml/badge.svg?branch=twinkle-1.10.x)](https://github.com/LubosD/twinkle/actions/workflows/main.yml)
+
 # Twinkle
 
 Twinkle is a SIP-based VoIP client.
