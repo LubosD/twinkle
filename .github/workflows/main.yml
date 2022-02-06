@@ -9,6 +9,15 @@ env:
 
 jobs:
   build:
+    # Job name, including description and compiler if applicable
+    name: >
+      ${{ format('Build {0} {1}',
+        ((matrix.descr && format('({0})', matrix.descr)) || ''),
+        ((matrix.gcc && format('[GCC {0}]', matrix.gcc)) ||
+          (matrix.clang && format('[Clang {0}]', matrix.clang)) || '')
+      ) }}
+    # '  # Patch around Vim syntax bug
+
     runs-on: ${{ matrix.os || 'ubuntu-latest' }}
 
     strategy:
@@ -33,17 +42,20 @@ jobs:
             os: ubuntu-20.04
 
           # Test with all options disabled
-          - FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF"
+          - descr: 'All options disabled'
+            FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF"
             # The empty string would evaluate to false and fail to override
             # $PACKAGES, so we use this true-but-still-empty hack instead.
             PACKAGES: " "
 
           # Test building with bcg729
-          - BUILD_BCG729: "master"
+          - descr: 'w/ bcg729'
+            BUILD_BCG729: "master"
             FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
             PACKAGES: "git ca-certificates"
           # Also test the old pre-1.0.2 API (see issue #104)
-          - BUILD_BCG729: "1.0.1"
+          - descr: 'w/ bcg729 (old API)'
+            BUILD_BCG729: "1.0.1"
             BUILD_BCG729_AUTOTOOLS: "Y"
             FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
             PACKAGES: "git ca-certificates pkg-config libtool automake autoconf"
