@@ -14,7 +14,11 @@ jobs:
     strategy:
       matrix:
         include:
-          # Test some GCC/Clang versions, namely the lowest and highest
+          # Test building with GCC and Clang (current default version)
+          - gcc: default
+          - clang: default
+
+          # Test some other GCC/Clang versions, namely the lowest and highest
           # available at the moment, making sure to include at least one for
           # each Ubuntu release provided by GitHub Actions.
           #
@@ -61,12 +65,15 @@ jobs:
         if: ${{ matrix.gcc }}
         uses: egor-tensin/setup-gcc@v1
         with:
-          version: ${{ matrix.gcc }}
+          # Note that these actions use 'latest' to designate the (usually not
+          # latest) default version.  This would result in somewhat confusing
+          # output, so we use 'default' instead and perform our own renaming.
+          version: ${{ ((matrix.gcc == 'default') && 'latest') || matrix.gcc }}
       - name: Set up Clang (${{ matrix.clang || 'n/a' }})
         if: ${{ matrix.clang }}
         uses: egor-tensin/setup-clang@v1
         with:
-          version: ${{ matrix.clang }}
+          version: ${{ ((matrix.clang == 'default') && 'latest') || matrix.clang }}
 
       # Download and build bcg729 if necessary for this build
       - name: Download and build bcg729
