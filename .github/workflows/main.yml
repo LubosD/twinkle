@@ -4,11 +4,11 @@ on: [push, pull_request]
 
 env:
   # CMake flags used for default builds -- can be overridden by matrix.flags
-  FLAGS: "-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=OFF"
+  FLAGS: '-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=OFF'
   # Additional packages required by default builds -- can be overridden by
   # matrix.packages
   # (qttools5-dev-tools is explicitly included because of Debian bug #835295)
-  PACKAGES: "libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools"
+  PACKAGES: 'libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools'
 
 jobs:
   build:
@@ -46,23 +46,23 @@ jobs:
 
           # Test with all options disabled
           - descr: 'All options disabled'
-            flags: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF"
+            flags: '-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF'
             # The empty string would evaluate to false and fail to override
             # $PACKAGES, so we use this true-but-still-empty hack instead.
-            packages: " "
+            packages: ' '
 
           # Test building with bcg729
           - descr: 'w/ bcg729'
-            bcg729-branch: "master"
-            flags: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
-            packages: "git ca-certificates"
+            bcg729-branch: 'master'
+            flags: '-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON'
+            packages: 'git ca-certificates'
           # Also test the old pre-1.0.2 API (see issue #104)
           - descr: 'w/ bcg729 (old API)'
-            bcg729-branch: "1.0.1"
+            bcg729-branch: '1.0.1'
             # (bcg729 1.0.1 used Autotools instead of CMake)
             bcg729-autotools: true
-            flags: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
-            packages: "git ca-certificates pkg-config libtool automake autoconf"
+            flags: '-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON'
+            packages: 'git ca-certificates pkg-config libtool automake autoconf'
 
     steps:
       # Install all packages necessary for this build
