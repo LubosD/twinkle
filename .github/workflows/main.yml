@@ -1,0 +1,81 @@
+name: Build
+
+on: [push, pull_request]
+
+env:
+  FLAGS: "-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=OFF"
+  # (qttools5-dev-tools is explicitly included because of Debian bug #835295)
+  PACKAGES: "libasound2-dev libgsm1-dev libspeex-dev libspeexdsp-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools"
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        include:
+          # Test various compiler versions
+          - { PACKAGES_ADD: "g++-5",     CC: "gcc-5",     CXX: "g++-5"       }
+          - { PACKAGES_ADD: "g++-6",     CC: "gcc-6",     CXX: "g++-6"       }
+          - { PACKAGES_ADD: "g++-7",     CC: "gcc-7",     CXX: "g++-7"       }
+          - { PACKAGES_ADD: "g++-8",     CC: "gcc-8",     CXX: "g++-8"       }
+          - { PACKAGES_ADD: "g++-9",     CC: "gcc-9",     CXX: "g++-9"       }
+          - { PACKAGES_ADD: "clang-3.9", CC: "clang-3.9", CXX: "clang++-3.9" }
+          - { PACKAGES_ADD: "clang-4.0", CC: "clang-4.0", CXX: "clang++-4.0" }
+          - { PACKAGES_ADD: "clang-5.0", CC: "clang-5.0", CXX: "clang++-5.0" }
+          - { PACKAGES_ADD: "clang-6.0", CC: "clang-6.0", CXX: "clang++-6.0" }
+          - { PACKAGES_ADD: "clang-7",   CC: "clang-7",   CXX: "clang++-7"   }
+          - { PACKAGES_ADD: "clang-8",   CC: "clang-8",   CXX: "clang++-8"   }
+
+          # Test with all options disabled
+          - FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_GSM=OFF -DWITH_SPEEX=OFF -DWITH_ZRTP=OFF"
+            # The empty string would evaluate to false and fail to override
+            # $PACKAGES, so we use this true-but-still-empty hack instead.
+            PACKAGES: " "
+
+          # Test building with bcg729
+          - BUILD_BCG729: "master"
+            FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
+            PACKAGES: "git ca-certificates"
+          # Also test the old pre-1.0.2 API (see issue #104)
+          - BUILD_BCG729: "1.0.1"
+            BUILD_BCG729_AUTOTOOLS: "Y"
+            FLAGS: "-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON"
+            PACKAGES: "git ca-certificates pkg-config libtool automake autoconf"
+
+    steps:
+      # Install all packages necessary for this build
+      - name: Install packages
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+          sudo apt-get update
+          sudo apt-get -y install bison cmake flex libccrtp-dev libmagic-dev libreadline-dev libsndfile1-dev libucommon-dev libxml2-dev linux-libc-dev $PACKAGES $PACKAGES_ADD
+        env:
+          PACKAGES:     ${{ matrix.PACKAGES || env.PACKAGES }}
+          PACKAGES_ADD: ${{ matrix.PACKAGES_ADD }}
+
+      # Download and build bcg729 if necessary for this build
+      - name: Download and build bcg729
+        run: if [ "$BUILD_BCG729" ]; then git clone https://gitlab.linphone.org/BC/public/bcg729.git --branch "$BUILD_BCG729" && (cd bcg729 && if [ "$BUILD_BCG729_AUTOTOOLS" ]; then ./autogen.sh && ./configure; else cmake .; fi && make && sudo make install); fi
+        env:
+          BUILD_BCG729:           ${{ matrix.BUILD_BCG729 }}
+          BUILD_BCG729_AUTOTOOLS: ${{ matrix.BUILD_BCG729_AUTOTOOLS }}
+
+      # Everything is now set up, ready to checkout/configure/build/install
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure
+        run: cmake -B ${{github.workspace}}/build ${{env.FLAGS}}
+        env:
+          CC:    ${{ matrix.CC }}
+          CXX:   ${{ matrix.CXX }}
+          FLAGS: ${{ matrix.FLAGS || env.FLAGS }}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build
+
+      - name: Install
+        run: cmake --install ${{github.workspace}}/build
+                    --prefix ${{github.workspace}}/_install
