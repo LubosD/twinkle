@@ -5,6 +5,8 @@ on: [push, pull_request]
 env:
   # CMake flags used for default builds -- can be overridden by matrix.flags
   FLAGS: '-DWITH_QT5=ON -DWITH_ALSA=ON -DWITH_GSM=ON -DWITH_SPEEX=ON -DWITH_ZRTP=OFF'
+  # Essential packages required by all builds
+  PACKAGES_REQUIRED: 'bison cmake flex libccrtp-dev libmagic-dev libreadline-dev libsndfile1-dev libucommon-dev libxml2-dev linux-libc-dev'
   # Additional packages required by default builds -- can be overridden by
   # matrix.packages
   # (qttools5-dev-tools is explicitly included because of Debian bug #835295)
@@ -69,9 +71,10 @@ jobs:
       - name: Install packages
         run: |
           sudo apt-get update
-          sudo apt-get -y install bison cmake flex libccrtp-dev libmagic-dev libreadline-dev libsndfile1-dev libucommon-dev libxml2-dev linux-libc-dev $PACKAGES
+          sudo apt-get -y install $PACKAGES $PACKAGES_REQUIRED
         env:
-          PACKAGES:     ${{ matrix.packages || env.PACKAGES }}
+          PACKAGES:          ${{ matrix.packages || env.PACKAGES }}
+          PACKAGES_REQUIRED: ${{ env.PACKAGES_REQUIRED }}
 
       # Set up a specific version of GCC or Clang if matrix.gcc/clang is set
       #
