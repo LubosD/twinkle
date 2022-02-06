@@ -27,7 +27,7 @@ The following tools are also required:
 
 * alsa-lib (also known as libasound)
 * libzrtpcpp (version >= 0.9.0) [ZRTP library, ccRTP support must be enabled](http://www.gnutelephony.org/index.php/GNU_ZRTP)
-* bcg729 [G.729A codec library](http://www.linphone.org/technical-corner/bcg729/overview)
+* bcg729 [G.729A codec library](http://www.linphone.org/technical-corner/bcg729)
 * Speex and SpeexDSP [Speex codec library](http://www.speex.org/)
 * iLBC [iLBC codec library](http://www.ilbcfreeware.org/)
 
