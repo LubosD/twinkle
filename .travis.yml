@@ -41,7 +41,7 @@ install:
 
 script:
   # Download and build bcg729 if necessary
-  - if [ "$BUILD_BCG729" ]; then git clone git://git.linphone.org/bcg729.git --branch "$BUILD_BCG729" && (cd bcg729 && if [ "$BUILD_BCG729_AUTOTOOLS" ]; then ./autogen.sh && ./configure; else cmake .; fi && make && sudo make install); fi
+  - if [ "$BUILD_BCG729" ]; then git clone https://gitlab.linphone.org/BC/public/bcg729.git --branch "$BUILD_BCG729" && (cd bcg729 && if [ "$BUILD_BCG729_AUTOTOOLS" ]; then ./autogen.sh && ./configure; else cmake .; fi && make && sudo make install); fi
   - mkdir _build
   - cd _build
   - cmake -DCMAKE_INSTALL_PREFIX=../_install $FLAGS ..
