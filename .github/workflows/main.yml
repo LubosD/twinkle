@@ -14,44 +14,17 @@ jobs:
     strategy:
       matrix:
         include:
-          # Test various compiler versions
+          # Test some GCC/Clang versions, namely the lowest and highest
+          # available at the moment, making sure to include at least one for
+          # each Ubuntu release provided by GitHub Actions.
+          #
           # (GCC 4.8 is omitted due to issue #31)
           - gcc: 5
             os: ubuntu-18.04
-          - gcc: 6
-            os: ubuntu-18.04
-          - gcc: 7
-            os: ubuntu-20.04
-          - gcc: 8
-            os: ubuntu-20.04
-          - gcc: 9
-            os: ubuntu-20.04
-          - gcc: 10
-            os: ubuntu-20.04
           - gcc: 11
             os: ubuntu-20.04
           - clang: 3.9
             os: ubuntu-18.04
-          - clang: 4.0
-            os: ubuntu-18.04
-          - clang: 5.0
-            os: ubuntu-18.04
-          - clang: 6.0
-            os: ubuntu-20.04
-          - clang: 7
-            os: ubuntu-20.04
-          - clang: 8
-            os: ubuntu-20.04
-          - clang: 9
-            os: ubuntu-20.04
-          - clang: 10
-            os: ubuntu-20.04
-          - clang: 11
-            os: ubuntu-20.04
-          - clang: 12
-            os: ubuntu-20.04
-          - clang: 13
-            os: ubuntu-20.04
           - clang: 14
             os: ubuntu-20.04
 
