@@ -57,14 +57,14 @@ jobs:
           - descr: 'w/ bcg729'
             bcg729-branch: 'master'
             flags: '-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON'
-            packages: 'git ca-certificates'
+            packages: ' '  # true-but-empty value
           # Also test the old pre-1.0.2 API (see issue #104)
           - descr: 'w/ bcg729 (old API)'
             bcg729-branch: '1.0.1'
             # (bcg729 1.0.1 used Autotools instead of CMake)
             bcg729-autotools: true
             flags: '-DWITH_QT5=OFF -DWITH_ALSA=OFF -DWITH_G729=ON'
-            packages: 'git ca-certificates pkg-config libtool automake autoconf'
+            packages: 'pkg-config libtool automake autoconf'
 
     steps:
       # Install all packages necessary for this build
