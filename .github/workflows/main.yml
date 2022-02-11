@@ -1,0 +1,167 @@
+name: Build
+
+on: [push, pull_request]
+
+env:
+  # CMake flags used for default builds -- can be overridden by matrix.flags
+  FLAGS: >
+    -DWITH_QT5=ON
+    -DWITH_ALSA=ON
+    -DWITH_GSM=ON
+    -DWITH_SPEEX=ON
+    -DWITH_ZRTP=OFF
+  # Essential packages required by all builds
+  PACKAGES_REQUIRED: >
+    bison
+    cmake
+    flex
+    libccrtp-dev
+    libmagic-dev
+    libreadline-dev
+    libsndfile1-dev
+    libucommon-dev
+    libxml2-dev
+    linux-libc-dev
+  # Additional packages required by default builds -- can be overridden by
+  # matrix.packages
+  PACKAGES: >
+    libasound2-dev
+    libgsm1-dev
+    libspeex-dev
+    libspeexdsp-dev
+    qtdeclarative5-dev
+    qttools5-dev
+
+jobs:
+  build:
+    # Job name, including description and compiler if applicable
+    name: >
+      ${{ format('Build {0} {1}',
+        ((matrix.descr && format('({0})', matrix.descr)) || ''),
+        ((matrix.gcc && format('[GCC {0}]', matrix.gcc)) ||
+          (matrix.clang && format('[Clang {0}]', matrix.clang)) || '')
+      ) }}
+    # '  # Patch around Vim syntax bug
+
+    runs-on: ${{ matrix.os || 'ubuntu-latest' }}
+
+    strategy:
+      matrix:
+        include:
+          # Test building with GCC and Clang (current default version)
+          - gcc: default
+          - clang: default
+
+          # Test some other GCC/Clang versions, namely the lowest and highest
+          # available at the moment, making sure to include at least one for
+          # each Ubuntu release provided by GitHub Actions.
+          #
+          # (GCC 4.8 is omitted due to issue #31)
+          - gcc: 5
+            os: ubuntu-18.04
+          - gcc: 11
+            os: ubuntu-20.04
+          - clang: 3.9
+            os: ubuntu-18.04
+          - clang: 14
+            os: ubuntu-20.04
+
+          # Test with all options disabled
+          - descr: 'All options disabled'
+            flags: >
+              -DWITH_QT5=OFF
+              -DWITH_ALSA=OFF
+              -DWITH_GSM=OFF
+              -DWITH_SPEEX=OFF
+              -DWITH_ZRTP=OFF
+            # The empty string would evaluate to false and fail to override
+            # $PACKAGES, so we use this true-but-still-empty hack instead.
+            packages: ' '
+
+          # Test building with bcg729
+          - descr: 'w/ bcg729'
+            bcg729-branch: 'master'
+            flags: >
+              -DWITH_QT5=OFF
+              -DWITH_ALSA=OFF
+              -DWITH_G729=ON
+            packages: ' '  # true-but-empty value
+
+          # Also test the old pre-1.0.2 API (see issue #104)
+          - descr: 'w/ bcg729 (old API)'
+            bcg729-branch: '1.0.1'
+            # (bcg729 1.0.1 used Autotools instead of CMake)
+            bcg729-autotools: true
+            flags: >
+              -DWITH_QT5=OFF
+              -DWITH_ALSA=OFF
+              -DWITH_G729=ON
+            packages: >
+              autoconf
+              automake
+              libtool
+              pkg-config
+
+    steps:
+      # Install all packages necessary for this build
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install $PACKAGES $PACKAGES_REQUIRED
+        env:
+          PACKAGES:          ${{ matrix.packages || env.PACKAGES }}
+          PACKAGES_REQUIRED: ${{ env.PACKAGES_REQUIRED }}
+
+      # Set up a specific version of GCC or Clang if matrix.gcc/clang is set
+      #
+      # Note: This must come *after* `apt-get update` above, see:
+      #       https://github.com/egor-tensin/setup-clang/issues/5
+      - name: Set up GCC (${{ matrix.gcc || 'n/a' }})
+        if: ${{ matrix.gcc }}
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          # Note that these actions use 'latest' to designate the (usually not
+          # latest) default version.  This would result in somewhat confusing
+          # output, so we use 'default' instead and perform our own renaming.
+          version: ${{ ((matrix.gcc == 'default') && 'latest') || matrix.gcc }}
+      - name: Set up Clang (${{ matrix.clang || 'n/a' }})
+        if: ${{ matrix.clang }}
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: ${{ ((matrix.clang == 'default') && 'latest') || matrix.clang }}
+
+      # Download and build bcg729 if necessary for this build
+      - name: Download and build bcg729 (${{ matrix.bcg729-branch || 'n/a' }})
+        if: ${{ matrix.bcg729-branch }}
+        run: |
+          git clone https://gitlab.linphone.org/BC/public/bcg729.git \
+                    --branch "$BCG729_BRANCH"
+          cd bcg729
+          if $BCG729_AUTOTOOLS; then
+            ./autogen.sh
+            ./configure
+          else
+            cmake .
+          fi
+          make
+          sudo make install
+        env:
+          BCG729_BRANCH:    ${{ matrix.bcg729-branch }}
+          BCG729_AUTOTOOLS: ${{ (matrix.bcg729-autotools && 'true') || 'false' }}
+
+      # Everything is now set up, ready to checkout/configure/build/install
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure
+        run: cmake -B ${{github.workspace}}/build ${{env.FLAGS}}
+        env:
+          FLAGS: ${{ matrix.flags || env.FLAGS }}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build
+
+      - name: Install
+        run: cmake --install ${{github.workspace}}/build
+                    --prefix ${{github.workspace}}/_install
