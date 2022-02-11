@@ -1189,6 +1189,9 @@ bool t_userintf::exec_line(const list<string> command_list) {
 
 	for (list<t_command_arg>::iterator i = al.begin(); i != al.end(); i++) {
 		switch (i->flag) {
+		case 'o':
+			line = -1;
+			break;
 		case 0:
 			line = atoi(i->value.c_str());
 			break;
@@ -1199,7 +1202,7 @@ bool t_userintf::exec_line(const list<string> command_list) {
 		}
 	}
 
-	if (line < 0 || line > 2) {
+	if (line < -1 || line > 2) {
 		exec_command("help line");
 		return false;
 	}
@@ -1217,6 +1220,11 @@ void t_userintf::do_line(int line) {
 	}
 
 	int current = phone->get_active_line();
+
+	if (line == -1) {
+		int other = 1 - current;
+		line = other + 1;
+	}
 
 	if (line == current + 1) {
 		cout << endl;
@@ -1807,15 +1815,17 @@ void t_userintf::do_help(const list<t_command_arg> &al) {
 	if (c == "line") {
 		cout << endl;
 		cout << "Usage:\n";
-		cout << "\tline [lineno]\n";
+		cout << "\tline [-o] [lineno]\n";
 		cout << "Description:\n";
 		cout << "\tIf no argument is passed then the current active ";
-		cout << "line is shown\n";
+		cout << "line is shown.\n";
+		cout << "\tIf the -o flag is passed, switch to the other (inactive) line.\n";
 		cout << "\tOtherwise switch to another line. If the current active\n";
 		cout << "\thas a call, then this call will be put on-hold.\n";
 		cout << "\tIf the new active line has a held call, then this call\n";
 		cout << "\twill be retrieved.\n";
 		cout << "Arguments:\n";
+		cout << "\t-o		Switch to the current inactive line.\n";
 		cout << "\tlineno		Switch to another line (values = ";
 		cout << "1,2)\n";
 		cout << endl;
