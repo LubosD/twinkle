@@ -134,7 +134,7 @@ jobs:
       - name: Download and build bcg729 (${{ matrix.bcg729-branch || 'n/a' }})
         if: ${{ matrix.bcg729-branch }}
         run: |
-          git clone https://gitlab.linphone.org/BC/public/bcg729.git \
+          git clone https://github.com/BelledonneCommunications/bcg729.git \
                     --branch "$BCG729_BRANCH"
           cd bcg729
           if $BCG729_AUTOTOOLS; then
