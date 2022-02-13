@@ -188,14 +188,14 @@ bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
 			resp, fail_reason);
 }
 
-// authentication with MD5 algorithm
+// authentication with a given hash algorithm
 
-bool t_request::authorize_md5(const t_digest_challenge &dchlg,
+bool t_request::authorize_generic(const t_digest_challenge &dchlg,
+	const std::string &algo,
 	const std::string &username, const std::string &passwd, unsigned long nc,
 	const std::string &cnonce, const std::string &qop, std::string &resp,
 	std::string &fail_reason) const
 {
-	const std::string algo = "md5";
 	std::string A1, A2;
 	// RFC 2617 3.2.2.2
 	A1 = username + ":" + dchlg.realm + ":" + passwd;
@@ -247,6 +247,18 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 	resp = std::string(digest.str());
 
 	return true;
+}
+
+// authentication with MD5 algorithm
+
+bool t_request::authorize_md5(const t_digest_challenge &dchlg,
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
+{
+	const std::string algo = "md5";
+	return authorize_generic(dchlg, algo, username, passwd, nc, cnonce, qop,
+			resp, fail_reason);
 }
 
 bool t_request::authorize(const t_challenge &chlg, t_user *user_config,

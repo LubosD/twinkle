@@ -113,6 +113,26 @@ private:
 				const string &cnonce, const string &qop, string &resp, 
 				string &fail_reason) const;
 
+	/**
+	 * Calculate response based on the challenge for a given hash algorithm.
+	 * @param chlg [in] The challenge
+	 * @param algo [in] Hash algorithm name
+	 * @param username [in] User authentication name
+	 * @param passwd [in] Authentication password.
+	 * @param nc [in] Nonce count
+	 * @param cnonce [in] Client nonce
+	 * @param qop [in] Quality of protection
+	 * @param resp [out] Response on successful return.
+	 * @param fail_reason [out] Failure reason on failure return.
+	 * @return false, if authorization fails.
+	 * @return true, if authorization succeeded
+	 */
+	bool authorize_generic(const t_digest_challenge &dchlg,
+				const string &algo,
+				const string &username, const string &passwd, unsigned long nc,
+				const string &cnonce, const string &qop, string &resp,
+				string &fail_reason) const;
+
 
 public:
 	t_url		uri;
