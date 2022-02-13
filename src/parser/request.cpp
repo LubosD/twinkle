@@ -195,6 +195,7 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 	const std::string &cnonce, const std::string &qop, std::string &resp,
 	std::string &fail_reason) const
 {
+	const std::string algo = "md5";
 	std::string A1, A2;
 	// RFC 2617 3.2.2.2
 	A1 = username + ":" + dchlg.realm + ":" + passwd;
@@ -206,19 +207,19 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 		A2 = method2str(method, unknown_method) + ":" + uri.encode();
 		A2 += ":";
 		if (body) {
-			digest_t H_body("md5");
+			digest_t H_body(algo.c_str());
 			H_body.puts(body->encode().c_str());
 			A2 += std::string(H_body.str());
 		} else {
-			digest_t H_body("md5");
+			digest_t H_body(algo.c_str());
 			H_body.puts("");
 			A2 += std::string(H_body.str());
 		}
 	}
 	// RFC 2716 3.2.2.1
 	// Caculate digest
-	digest_t H_A1("md5");
-	digest_t H_A2("md5");
+	digest_t H_A1(algo.c_str());
+	digest_t H_A2(algo.c_str());
 
 	H_A1.puts(A1.c_str());
 	H_A2.puts(A2.c_str());
@@ -240,7 +241,7 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 		x += std::string(H_A2.str());
 	}
 
-	digest_t digest("md5");
+	digest_t digest(algo.c_str());
 	digest.puts(x.c_str());
 
 	resp = std::string(digest.str());
