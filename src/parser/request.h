@@ -74,7 +74,7 @@ private:
 		       string &fail_reason) const;
 
 	/**
-	 * Calculate MD5 response based on the challenge.
+	 * Calculate MD5/SHA-256 response based on the challenge.
 	 * @param chlg [in] The challenge
 	 * @param username [in] User authentication name
 	 * @param passwd [in] Authentication password.
@@ -89,6 +89,10 @@ private:
 	bool authorize_md5(const t_digest_challenge &dchlg,
 				const string &username, const string &passwd, unsigned long nc,
 				const string &cnonce, const string &qop, string &resp, 
+				string &fail_reason) const;
+	bool authorize_sha256(const t_digest_challenge &dchlg,
+				const string &username, const string &passwd, unsigned long nc,
+				const string &cnonce, const string &qop, string &resp,
 				string &fail_reason) const;
 
 	/**

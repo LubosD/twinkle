@@ -261,6 +261,18 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 			resp, fail_reason);
 }
 
+// authentication with SHA-256 algorithm
+
+bool t_request::authorize_sha256(const t_digest_challenge &dchlg,
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
+{
+	const std::string algo = "sha256";
+	return authorize_generic(dchlg, algo, username, passwd, nc, cnonce, qop,
+			resp, fail_reason);
+}
+
 bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
 	const std::string &username, const std::string &passwd, unsigned long nc,
 	const std::string &cnonce, t_credentials &cr, std::string &fail_reason) const
@@ -304,6 +316,9 @@ bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
 
 	if (cmp_nocase(dchlg.algorithm, ALG_MD5) == 0) {
 		ret = authorize_md5(dchlg, username, passwd, nc, cnonce, 
+				qop, resp, fail_reason);
+	} else if (cmp_nocase(dchlg.algorithm, ALG_SHA256) == 0) {
+		ret = authorize_sha256(dchlg, username, passwd, nc, cnonce,
 				qop, resp, fail_reason);
 	} else if (cmp_nocase(dchlg.algorithm, ALG_AKAV1_MD5) == 0) {
 		uint8 aka_op[AKA_OPLEN];
