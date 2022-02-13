@@ -144,6 +144,9 @@ void MphoneForm::init()
 	// Attach the MWI flash slot to the MWI flash timer
 	connect(&tmrFlashMWI, SIGNAL(timeout()), this, SLOT(flashMWI()));
 	
+	// Add "Main Toolbar" entry to the View menu
+	View->insertAction(nullptr, callToolbar->toggleViewAction());
+
 	// Set toolbar icons for disabled options.
 	setDisabledIcon(callInvite, "invite-disabled.png");
 	setDisabledIcon(callAnswer, "answer-disabled.png");
