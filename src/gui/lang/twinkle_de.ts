@@ -5620,7 +5620,7 @@ The values of all SIP headers in the incoming INVITE message are passed in envir
 TWINKLE_TRIGGER=in_call. SIPREQUEST_METHOD=INVITE. The request-URI of the INVITE will be passed in &lt;b&gt;SIPREQUEST_URI&lt;/b&gt;. The name of the user profile will be passed in &lt;b&gt;TWINKLE_USER_PROFILE&lt;/b&gt;.</source>
         <translation>&lt;p&gt;
 Dieses Script wird gerufen, wenn ein INVITE (Anruf) ankommt. &lt;br&gt;
-Bitte lesen Sie im Handbuch unter &quot;/usr/share/doc/packages/twinkle/...&quot; oder &quot;http://twinklephone.com&quot;  die ausführliche Beschreibung!
+Bitte lesen Sie im Handbuch unter &quot;/usr/share/doc/packages/twinkle/...&quot; oder &quot;https://mfnboer.home.xs4all.nl/twinkle/&quot; die ausführliche Beschreibung!
 &lt;/p&gt;
 &lt;h3&gt;Rückgabewerte&lt;/h3&gt; -   print nach STDOUT (z.B. `echo &quot;action=dnd&quot;`), ein Wert pro Zeile: &lt;br&gt;
 &lt;tt&gt;action=[ continue | reject | dnd | redirect | autoanswer ]&lt;br&gt;&lt;/tt&gt;
