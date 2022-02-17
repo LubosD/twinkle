@@ -145,29 +145,31 @@ bool t_auth::authorize(t_user *user_config, t_request *r, t_response *resp) {
 	const t_digest_challenge &dc = c.digest_challenge;
 	i = find_cache_entry(r->uri, dc.realm, proxy);
 
-	if (auth_failed(r, c, proxy)) {
+	// remove_credentials() will invalidate this condition, so keep a copy
+	bool _auth_failed = auth_failed(r, c, proxy);
+	if (_auth_failed) {
 		// The current credentials are wrong. Remove them and
 		// ask the user for a username and password.
 		remove_credentials(r, c, proxy);
-	} else {
-		// Determine user name and password
-		if (i != cache.end()) {
-			username = i->credentials.digest_response.username;
-			passwd = i->passwd;
-		} else if (dc.realm == user_config->get_auth_realm() ||
-		           user_config->get_auth_realm() == "") {
-			username = user_config->get_auth_name();
-			passwd = user_config->get_auth_pass();
-		}
+	}
 
-		if (dc.stale) {
-			// The current credentials are stale. Remove them.
-			remove_credentials(r, c, proxy);
-		}
+	// Determine user name and password
+	if (i != cache.end()) {
+		username = i->credentials.digest_response.username;
+		passwd = i->passwd;
+	} else if (dc.realm == user_config->get_auth_realm() ||
+		   user_config->get_auth_realm() == "") {
+		username = user_config->get_auth_name();
+		passwd = user_config->get_auth_pass();
+	}
+
+	if (dc.stale) {
+		// The current credentials are stale. Remove them.
+		remove_credentials(r, c, proxy);
 	}
 
 	// Ask user for username/password
-	if ((username == "" || passwd == "") && !re_register) {
+	if ((_auth_failed || username == "" || passwd == "") && !re_register) {
 		if (!ui->cb_ask_credentials(user_config, dc.realm, username, passwd)) {
 			log_file->write_report("Asking user name and password failed.",
 						"t_auth::authorize");
