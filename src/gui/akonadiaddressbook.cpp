@@ -17,11 +17,21 @@
 
 #include "akonadiaddressbook.h"
 
+#include <akonadi_version.h>
+#if AKONADI_VERSION >= QT_VERSION_CHECK(5, 18, 41)
+#include <Akonadi/AgentManager>
+#include <Akonadi/CachePolicy>
+#include <Akonadi/CollectionFetchJob>
+#include <Akonadi/ItemFetchScope>
+#include <Akonadi/RecursiveItemFetchJob>
+#else
 #include <AkonadiCore/AgentManager>
 #include <AkonadiCore/CachePolicy>
 #include <AkonadiCore/CollectionFetchJob>
 #include <AkonadiCore/ItemFetchScope>
 #include <AkonadiCore/RecursiveItemFetchJob>
+#endif
+
 #include <KContacts/Addressee>
 
 #include "events.h"

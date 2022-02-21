@@ -25,9 +25,17 @@
 #include <QObject>
 #include <QMap>
 
+#include <akonadi_version.h>
+#if AKONADI_VERSION >= QT_VERSION_CHECK(5, 18, 41)
+#include <Akonadi/Collection>
+#include <Akonadi/Item>
+#include <Akonadi/Monitor>
+#else
 #include <AkonadiCore/Collection>
 #include <AkonadiCore/Item>
 #include <AkonadiCore/Monitor>
+#endif
+
 #include <KContacts/Addressee>
 #include <KContacts/AddresseeList>
 
