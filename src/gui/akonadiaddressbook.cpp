@@ -19,11 +19,8 @@
 
 #include <AkonadiCore/AgentManager>
 #include <AkonadiCore/CachePolicy>
-#include <AkonadiCore/Collection>
 #include <AkonadiCore/CollectionFetchJob>
-#include <AkonadiCore/Item>
 #include <AkonadiCore/ItemFetchScope>
-#include <AkonadiCore/Monitor>
 #include <AkonadiCore/RecursiveItemFetchJob>
 #include <KContacts/Addressee>
 
