@@ -3,6 +3,7 @@
 #cmakedefine HAVE_ILBC
 #cmakedefine HAVE_ZRTP
 #cmakedefine HAVE_BCG729
+#cmakedefine HAVE_BCG729_ANNEX_B
 #cmakedefine HAVE_GSM
 
 #cmakedefine HAVE_UNISTD_H
