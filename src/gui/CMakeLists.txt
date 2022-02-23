@@ -117,4 +117,5 @@ add_executable(twinkle ${TWINKLE_GUI-SRCS})
 target_link_libraries(twinkle ${twinkle_LIBS} ${qt_LIBS})
 
 install(TARGETS twinkle DESTINATION bin)
+install(PROGRAMS twinkle-uri-handler DESTINATION bin)
 install(FILES ${twinkle_LANG} DESTINATION share/twinkle/lang)

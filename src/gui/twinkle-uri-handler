@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# Invoke Twinkle, relaying an optional URI to call (sip:, sips:, tel: or
+# callto:) passed as argument.  This is mostly meant to be used with a desktop
+# entry, since a URI may be present or not, and Twinkle must be invoked
+# differently in each case.  (That, and it currently cannot handle URIs in the
+# first place.)
+
+# Command to run (with optional arguments, if needed)
+TWINKLE="twinkle"
+
+if [ $# -gt 1 ]; then
+	echo "Usage: $0 [URI]" >&2
+	exit 1
+fi
+
+if [ $# -eq 0 ]; then
+	# No arguments, invoke Twinkle as-is
+	exec $TWINKLE
+else
+	# Convert a URI into a proper `--call` parameter
+	case "$1" in
+		sip:* | sips:*)
+			CALL_ARG="$1"
+			;;
+		tel:*)
+			CALL_ARG="${1#tel:}"
+			;;
+		callto:*)
+			CALL_ARG="${1#callto:}"
+			;;
+		*)
+			echo "Unrecognized URI: $1" >&2
+			exit 1
+			;;
+	esac
+	exec $TWINKLE --call "$CALL_ARG"
+fi
