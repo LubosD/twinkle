@@ -62,6 +62,7 @@ using namespace std;
 #define	R_416_UNSUPPORTED_URI_SCHEME 416
 #define	R_420_BAD_EXTENSION 420
 #define	R_421_EXTENSION_REQUIRED 421
+#define	R_422_SESSION_INTERVAL_TOO_SMALL 422
 #define	R_423_INTERVAL_TOO_BRIEF 423
 #define	R_480_TEMP_NOT_AVAILABLE 480
 #define	R_481_TRANSACTION_NOT_EXIST 481
@@ -132,6 +133,7 @@ using namespace std;
 #define REASON_416 "Unsupported URI Scheme"
 #define REASON_420 "Bad Extension"
 #define REASON_421 "Extension Required"
+#define REASON_422 "Session Interval Too Small"
 #define REASON_423 "Interval Too Brief"
 #define REASON_480 "Temporarily Not Available"
 #define REASON_481 "Call Leg/Transaction Does Not Exist"

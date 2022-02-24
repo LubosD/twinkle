@@ -78,6 +78,7 @@ enum t_dialog_state {
 enum t_reinvite_purpose {
 	REINVITE_HOLD,		/**< Re-invite for call hold */
 	REINVITE_RETRIEVE,	/**< Re-invite for call retrieve */
+	REINVITE_REFRESH,	/**< Refresh session */
 };
 
 /**
@@ -465,6 +466,17 @@ protected:
 	 */
 	void process_1xx_2xx_invite_resp(t_response *r);
 
+	/** Process an incoming session refresh request (i.e. (re-)INVITE) */
+	void process_session_refresh_request(t_request *req, t_response *resp,
+			bool is_reinvite);
+	/** Process an incoming 2xx response to our session refresh request */
+	void process_session_refresh_response(t_response *resp);
+	/** Generic portion common to both previous methods */
+	void process_session_refresh(t_sip_message *r);
+
+	/** Add headers to an outgoing (re-)INVITE request or a 2xx response */
+	void set_session_expires_headers(t_sip_message *r);
+
 	/**
 	 * Acknowledge a reveived 2xx response on an INVITE.
 	 * @param r The 2XX response.
@@ -509,6 +521,8 @@ public:
 	t_object_id		id_re_invite_guard;	/**< @ref LTMR_RE_INVITE_GUARD timer id */
 	t_object_id		id_glare_retry;		/**< @ref LTMR_GLARE_RETRY timer id */
 	t_object_id		id_cancel_guard;	/**< @ref LTMR_CANCEL_GUARD timer id */
+	t_object_id		id_session_refresh;	/**< @ref LTMR_SESSION_REFRESH timer id */
+	t_object_id		id_session_expire;	/**< @ref LTMR_SESSION_EXPIRE timer id */
 	//@}
 
 	/** @name RFC 3262 100rel timers */
@@ -517,6 +531,12 @@ public:
 	t_object_id		id_100rel_timeout;	/**< @ref LTMR_100REL_TIMEOUT timer id */
 	t_object_id		id_100rel_guard;	/**< @ref LTMR_100REL_GUARD timer id */
 	//@}
+
+	/** Session expiration (RFC 4028) */
+	unsigned long		session_interval;
+	unsigned long		session_min_se;
+	bool			is_session_refresher;
+
 
 	/** Indicates if last incoming REFER was accepted. */
 	bool			refer_accepted;
@@ -656,6 +676,9 @@ public:
 	
 	/** Retrieve call (send re-INVITE if needed). */
 	void retrieve(void);
+
+	/** Send a re-INVITE to act as session refresh request */
+	void send_session_refresh_request(void);
 	
 	/** Kill all RTP stream associated with this dialog. */
 	void kill_rtp(void);
@@ -793,6 +816,9 @@ public:
 	 */
 	void timeout_sub(t_subscribe_timer timer, const string &event_type,
 		const string &event_id);
+
+	/** Process refresh or expiration session timer timeout */
+	void timeout_session_refresh(t_line_timer timer);
 
 	/**
 	 * Get the phone that belongs to this dialog.

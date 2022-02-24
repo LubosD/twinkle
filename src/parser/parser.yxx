@@ -116,6 +116,7 @@ void yyerror(const char *s);
 %token			T_HDR_IN_REPLY_TO
 %token			T_HDR_MAX_FORWARDS
 %token			T_HDR_MIN_EXPIRES
+%token			T_HDR_MIN_SE
 %token			T_HDR_MIME_VERSION
 %token			T_HDR_ORGANIZATION
 %token			T_HDR_P_ASSERTED_IDENTITY
@@ -139,6 +140,7 @@ void yyerror(const char *s);
 %token			T_HDR_ROUTE
 %token			T_HDR_RSEQ
 %token			T_HDR_SERVER
+%token			T_HDR_SESSION_EXPIRES
 %token			T_HDR_SIP_ETAG
 %token			T_HDR_SIP_IF_MATCH
 %token			T_HDR_SUBJECT
@@ -343,6 +345,7 @@ header:		  hd_accept hdr_accept T_CRLF
 		| hd_in_reply_to hdr_in_reply_to T_CRLF
 		| hd_max_forwards hdr_max_forwards T_CRLF
 		| hd_min_expires hdr_min_expires T_CRLF
+		| hd_min_se hdr_min_se T_CRLF
 		| hd_mime_version hdr_mime_version T_CRLF
 		| hd_organization hdr_organization T_CRLF
 		| hd_p_asserted_identity hdr_p_asserted_identity T_CRLF
@@ -366,6 +369,7 @@ header:		  hd_accept hdr_accept T_CRLF
 		| hd_rseq hdr_rseq T_CRLF
 		| hd_server hdr_server T_CRLF
 		| hd_service_route hdr_service_route T_CRLF
+		| hd_session_expires hdr_session_expires T_CRLF
 		| hd_sip_etag hdr_sip_etag T_CRLF
 		| hd_sip_if_match hdr_sip_if_match T_CRLF
 		| hd_subject hdr_subject T_CRLF
@@ -432,6 +436,8 @@ header:		  hd_accept hdr_accept T_CRLF
 			{ PARSE_ERROR("Max-Forwards"); }
 		| hd_min_expires error T_CRLF
 			{ PARSE_ERROR("Min-Expires"); }
+		| hd_min_se error T_CRLF
+			{ PARSE_ERROR("Min-SE"); }
 		| hd_mime_version error T_CRLF
 			{ PARSE_ERROR("MIME-Version"); }
 		| hd_organization error T_CRLF
@@ -478,6 +484,8 @@ header:		  hd_accept hdr_accept T_CRLF
 			{ PARSE_ERROR("Server"); }
 		| hd_service_route error T_CRLF
 			{ PARSE_ERROR("Service-Route"); }
+		| hd_session_expires error T_CRLF
+			{ PARSE_ERROR("Session-Expires"); }
 		| hd_sip_etag error T_CRLF
 			{ PARSE_ERROR("SIP-ETag"); }
 		| hd_sip_if_match error T_CRLF
@@ -563,6 +571,8 @@ hd_max_forwards:	T_HDR_MAX_FORWARDS ':' { CTXT_NUM; }
 ;
 hd_min_expires:		T_HDR_MIN_EXPIRES ':' { CTXT_NUM; }
 ;
+hd_min_se:		T_HDR_MIN_SE ':' { CTXT_NUM; }
+;
 hd_mime_version:	T_HDR_MIME_VERSION ':'
 ;
 hd_organization:	T_HDR_ORGANIZATION ':' { CTXT_LINE; }
@@ -608,6 +618,8 @@ hd_rseq:		T_HDR_RSEQ ':' { CTXT_NUM; }
 hd_server:		T_HDR_SERVER ':'
 ;
 hd_service_route:	T_HDR_SERVICE_ROUTE ':' { CTXT_URI; }
+;
+hd_session_expires:	T_HDR_SESSION_EXPIRES ':' { CTXT_NUM; }
 ;
 hd_sip_etag:		T_HDR_SIP_ETAG ':'
 ;
@@ -1005,6 +1017,12 @@ hdr_min_expires:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } {
 			MSG->hdr_min_expires.set_time($2); }
 ;
 
+hdr_min_se:	{ CTXT_NUM; } T_NUM { CTXT_INITIAL; } parameters {
+			MSG->hdr_min_se.set_time($2);
+			MSG->hdr_min_se.set_params(*$4);
+			MEMMAN_DELETE($4); delete $4; }
+;
+
 hdr_mime_version: T_TOKEN {
 			MSG->hdr_mime_version.set_version(*$1);
 			MEMMAN_DELETE($1); delete $1; }
@@ -1181,6 +1199,19 @@ server:		  comment {
 			$$->comment = *$4;
 			MEMMAN_DELETE($1); delete $1;
 			MEMMAN_DELETE($3); delete $3;
+			MEMMAN_DELETE($4); delete $4; }
+;
+
+hdr_session_expires:	{ CTXT_NUM; } T_NUM { CTXT_INITIAL; } parameters {
+			MSG->hdr_session_expires.set_time($2);
+			list<t_parameter>::const_iterator i;
+			for (i = $4->begin(); i != $4->end(); i++) {
+				if (i->name == "refresher") {
+					MSG->hdr_session_expires.set_refresher(i->value);
+				} else {
+					MSG->hdr_session_expires.add_param(*i);
+				}
+			}
 			MEMMAN_DELETE($4); delete $4; }
 ;
 

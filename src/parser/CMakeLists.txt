@@ -36,6 +36,7 @@ set(LIBTWINKLE_PARSER-SRCS
 	hdr_in_reply_to.cpp
 	hdr_max_forwards.cpp
 	hdr_min_expires.cpp
+	hdr_min_se.cpp
 	hdr_mime_version.cpp
 	hdr_organization.cpp
 	hdr_priority.cpp
@@ -59,6 +60,7 @@ set(LIBTWINKLE_PARSER-SRCS
 	hdr_rseq.cpp
 	hdr_server.cpp
 	hdr_service_route.cpp
+	hdr_session_expires.cpp
 	hdr_sip_etag.cpp
 	hdr_sip_if_match.cpp
 	hdr_subject.cpp

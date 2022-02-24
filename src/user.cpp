@@ -3037,6 +3037,8 @@ bool t_user::check_required_ext(t_request *r, list<string> &unsupported) const {
 			if (ext_replaces) continue;
 		} else if (*i == EXT_NOREFERSUB) {
 			continue;
+		} else if (*i == EXT_TIMER) {
+			continue;
 		}
 
 		// Extension is not supported

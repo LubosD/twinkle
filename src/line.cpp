@@ -531,6 +531,32 @@ void t_line::start_timer(t_line_timer timer, t_object_id did) {
 		MEMMAN_NEW(t);
 		dialog->id_cancel_guard = t->get_object_id();
 		break;		
+	case LTMR_SESSION_REFRESH:
+		assert(dialog);
+		// Half the session interval is recommended (RFC 4028 7.2)
+		dur = (dialog->session_interval / 2) * 1000;
+		assert(dur > 0);
+		t = new t_tmr_line(dur, timer, get_object_id(), did);
+		MEMMAN_NEW(t);
+		dialog->id_session_refresh = t->get_object_id();
+		break;
+	case LTMR_SESSION_EXPIRE:
+		assert(dialog);
+		dur = dialog->session_interval * 1000;
+		assert(dur > 0);
+		if (!dialog->is_session_refresher) {
+			// The minimum of 32 seconds and one third of the
+			// session interval is recommended (RFC 4028 10)
+			unsigned long d1 = 32 * 1000;
+			unsigned long d2 = dur / 3;
+			unsigned long d = (d1 < d2) ? d1 : d2;
+			assert(dur > d);  // Prevent an underflow
+			dur -= d;
+		}
+		t = new t_tmr_line(dur, timer, get_object_id(), did);
+		MEMMAN_NEW(t);
+		dialog->id_session_expire = t->get_object_id();
+		break;
 	default:
 		assert(false);
 	}
@@ -589,6 +615,14 @@ void t_line::stop_timer(t_line_timer timer, t_object_id did) {
 			// Check if the open dialog has a CANCEL guard timer.
 			if (open_dialog) id = &open_dialog->id_cancel_guard;
 		}
+		break;
+	case LTMR_SESSION_REFRESH:
+		assert(dialog);
+		id = &dialog->id_session_refresh;
+		break;
+	case LTMR_SESSION_EXPIRE:
+		assert(dialog);
+		id = &dialog->id_session_expire;
 		break;
 	default:
 		assert(false);
@@ -1828,6 +1862,20 @@ void t_line::timeout(t_line_timer timer, t_object_id did) {
 		// If there is no dialog then ignore the timeout
 		if (dialog) {
 			dialog->id_cancel_guard = 0;
+			dialog->timeout(timer);
+		}
+		break;
+	case LTMR_SESSION_REFRESH:
+		// If there is no dialog then ignore the timeout
+		if (dialog) {
+			dialog->id_session_refresh = 0;
+			dialog->timeout(timer);
+		}
+		break;
+	case LTMR_SESSION_EXPIRE:
+		// If there is no dialog then ignore the timeout
+		if (dialog) {
+			dialog->id_session_expire = 0;
 			dialog->timeout(timer);
 		}
 		break;
