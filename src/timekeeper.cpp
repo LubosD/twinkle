@@ -220,6 +220,8 @@ string t_tmr_line::get_name(void) const {
 	case LTMR_100REL_GUARD:		return "LTMR_100REL_GUARD";
 	case LTMR_CANCEL_GUARD:		return "LTMR_CANCEL_GUARD";
 	case LTMR_GLARE_RETRY:		return "LTMR_GLARE_RETRY";
+	case LTMR_SESSION_REFRESH:	return "LTMR_SESSION_REFRESH";
+	case LTMR_SESSION_EXPIRE:	return "LTMR_SESSION_EXPIRE";
 	}
 
 	return "UNKNOWN";

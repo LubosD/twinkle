@@ -150,6 +150,9 @@ public:
 	 * @return The call-retrieve session.
 	 */
 	t_session *create_call_retrieve(void) const;
+
+	/** Create an identical copy for a session refresh re-INVITE */
+	t_session *create_session_refresh(void) const;
 	//@}
 
 	// Process incoming SDP offer. Return false if SDP is not

@@ -221,6 +221,7 @@ public:
 	void cb_unsupported_content_type(int line, const t_sip_message *r);
 	void cb_ack_timeout(int line);
 	void cb_100rel_timeout(int line);
+	void cb_session_expired(int line);
 	void cb_prack_failed(int line, const t_response *r);
 	void cb_provisional_resp_invite(int line, const t_response *r);
 	void cb_cancel_failed(int line, const t_response *r);

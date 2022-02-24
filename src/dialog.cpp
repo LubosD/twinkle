@@ -119,6 +119,11 @@ t_request *t_dialog::create_request(t_method m) {
 		r->hdr_privacy.add_privacy(PRIVACY_ID);
 	}
 
+	// Session-Expires header
+	if (m == INVITE) {
+		set_session_expires_headers(r);
+	}
+
 	return r;
 }
 
@@ -875,6 +880,9 @@ void t_dialog::state_confirmed(t_line_timer timer) {
 			// If re-INVITE fails then line->failed_retrieve will
 			// be called later.
 			break;
+		case REINVITE_REFRESH:
+			send_session_refresh_request();
+			break;
 		default:
 			assert(false);
 		}
@@ -1020,6 +1028,9 @@ void t_dialog::process_re_invite(t_request *r, t_tuid tuid, t_tid tid) {
 	t_contact_param contact;
 	contact.uri.set_url(line->create_user_contact(h_ip2str(resp_invite->get_local_ip())));
 	resp_invite->hdr_contact.add_contact(contact);
+
+	// A re-INVITE acts as session refresh request
+	process_session_refresh_request(r, resp_invite, true);
 
 	// Set Allow and Supported headers
 	SET_HDR_ALLOW(resp_invite->hdr_allow, user_config);
@@ -1410,6 +1421,9 @@ void t_dialog::state_w4invite_resp(t_response *r, t_tuid tuid, t_tid tid) {
 			line->ci_set_refer_supported(true);
 		}
 		
+		// This was a response to a session refresh request (INVITE)
+		process_session_refresh_response(r);
+
 		// Trigger call script
 		script_out_call_answered.exec_notify(r);
 
@@ -1830,6 +1844,9 @@ void t_dialog::state_w4re_invite_resp(t_response *r, t_tuid tuid, t_tid tid) {
 		ui->cb_reinvite_success(line->get_line_number(), r);
 		state = DS_CONFIRMED;
 
+		// This was a response to a session refresh request (re-INVITE)
+		process_session_refresh_response(r);
+
 		if (request_cancelled) {
 			// User indicated that the request should be cancelled,
 			// but no response was received yet. A final response
@@ -1882,6 +1899,13 @@ void t_dialog::state_w4re_invite_resp(t_response *r, t_tuid tuid, t_tid tid) {
 			line->failed_retrieve();
 			if (r->code != R_491_REQUEST_PENDING) {
 				ui->cb_retrieve_failed(line->get_line_number(), r);
+			}
+			break;
+		case REINVITE_REFRESH:
+			if (r->code != R_491_REQUEST_PENDING) {
+				log_file->write_report("Session refresh failed.",
+						"t_dialog::state_w4re_invite_resp",
+						LOG_NORMAL, LOG_WARNING);
 			}
 			break;
 		default:
@@ -2068,6 +2092,121 @@ void t_dialog::process_1xx_2xx_invite_resp(t_response *r) {
 	}
 }
 
+void t_dialog::process_session_refresh_request(t_request *req, t_response *resp,
+		bool is_reinvite) {
+	if (req->hdr_session_expires.is_populated()) {
+		// If no refresher was specified by the UAC, then we must
+		// choose one ourselves (RFC 4028 9)
+		if (req->hdr_session_expires.refresher == t_hdr_session_expires::REFRESHER_NONE) {
+			// If possible, let the UAC handle the refreshing,
+			// since they will probably do a better job than us.
+			// We put this value back into the request headers, so
+			// that process_session_refresh() can act on it.
+			req->hdr_session_expires.refresher =
+				req->hdr_supported.contains(EXT_TIMER) ?
+					t_hdr_session_expires::REFRESHER_UAC :
+					t_hdr_session_expires::REFRESHER_UAS;
+		}
+	}
+
+	// Remember the largest value among all Min-SE headers received within
+	// this dialog (i.e. excluding the INVITE request) (RFC 4028 7.4)
+	if (req->hdr_min_se.is_populated() && is_reinvite) {
+		if (req->hdr_min_se.time > session_min_se) {
+			session_min_se = req->hdr_min_se.time;
+		}
+	}
+
+	process_session_refresh(req);
+	set_session_expires_headers(resp);
+
+	if (session_interval) {
+		// Add a Require header if necessary/suggested (RFC 4028 9)
+		if (is_session_refresher) {
+			// Refresher is UAS, so require 'timer' if possible
+		       if (req->hdr_supported.contains(EXT_TIMER)) {
+				resp->hdr_require.add_feature(EXT_TIMER);
+		       }
+		} else {
+			// Refresher is UAC, so 'timer' is always required
+			resp->hdr_require.add_feature(EXT_TIMER);
+		}
+	}
+}
+
+void t_dialog::process_session_refresh_response(t_response *resp) {
+	process_session_refresh(resp);
+}
+
+void t_dialog::process_session_refresh(t_sip_message *r) {
+	// stop timers
+	line->stop_timer(LTMR_SESSION_REFRESH, get_object_id());
+	line->stop_timer(LTMR_SESSION_EXPIRE, get_object_id());
+
+	// Copy the Session-Expires value as-is (RFC 4028 7.2, 9)
+	// (If the header is missing, then session expiration is turned off.)
+	session_interval = r->hdr_session_expires.time;
+
+	if (session_interval) {
+		// Figure out whether the designated refresher is actually us
+		t_hdr_session_expires::t_refresher our_role =
+			(r->get_type() == MSG_REQUEST) ?
+				t_hdr_session_expires::REFRESHER_UAS :
+				t_hdr_session_expires::REFRESHER_UAC;
+		is_session_refresher = (r->hdr_session_expires.refresher == our_role);
+
+		// Prevent a rogue peer from tricking us into refreshing too
+		// fast.  (RFC 4028 s. 9 forbids us from raising this value,
+		// but such a value was already illegal to beging with.)
+		if (is_session_refresher && (session_interval < MIN_SESSION_INTERVAL)) {
+			log_file->write_header("t_dialog::process_session_refresh",
+					LOG_NORMAL, LOG_WARNING);
+			log_file->write_raw("Session-Expires value of ");
+			log_file->write_raw(session_interval);
+			log_file->write_raw(" seconds is below minimum value of ");
+			log_file->write_raw(MIN_SESSION_INTERVAL);
+			log_file->write_raw(" seconds.\n");
+			log_file->write_footer();
+
+			session_interval = MIN_SESSION_INTERVAL;
+		}
+
+		log_file->write_header("t_dialog::process_session_refresh",
+				LOG_NORMAL, LOG_INFO);
+		log_file->write_raw("Session refresh interval set to ");
+		log_file->write_raw(session_interval);
+		log_file->write_raw(" seconds.\n");
+
+		// Start timers
+		line->start_timer(LTMR_SESSION_EXPIRE, get_object_id());
+		if (is_session_refresher) {
+			log_file->write_raw("Refreshes will be performed by us.\n");
+			line->start_timer(LTMR_SESSION_REFRESH, get_object_id());
+		}
+
+		log_file->write_footer();
+	}
+}
+
+void t_dialog::set_session_expires_headers(t_sip_message *r) {
+	if (session_interval) {
+		// Figure our whether the refresher is the UAC or UAS
+		bool is_refresher_uac = (r->get_type() == MSG_REQUEST) ?
+			is_session_refresher : !is_session_refresher;
+
+		r->hdr_session_expires.set_time(session_interval);
+		r->hdr_session_expires.set_refresher(
+			is_refresher_uac ?
+				t_hdr_session_expires::REFRESHER_UAC :
+				t_hdr_session_expires::REFRESHER_UAS
+			);
+		// Only set Min-SE on request, not 2xx (RFC 4028 5)
+		if (session_min_se && (r->get_type() == MSG_REQUEST)) {
+			r->hdr_min_se.set_time(session_min_se);
+		}
+	}
+}
+
 void t_dialog::ack_2xx_invite(t_response *r) {
 	t_ip_port ip_port;
 	t_user *user_config = phone_user->get_user_profile();
@@ -2217,7 +2356,10 @@ void t_dialog::send_request(t_request *r, t_tuid tuid) {
 ////////////
 
 t_dialog::t_dialog(t_line *_line) :
-	t_abstract_dialog(_line->get_phone_user())
+	t_abstract_dialog(_line->get_phone_user()),
+	session_interval(0),
+	session_min_se(0),
+	is_session_refresher(false)
 {
 	line = _line;
 	
@@ -3015,6 +3157,23 @@ void t_dialog::retrieve(void) {
 	send_re_invite();
 }
 
+void t_dialog::send_session_refresh_request(void) {
+	// If we already sent another re-INVITE for any other purpose, it will
+	// also have refreshed the session (RFC 4028 7.2)
+	if (session_re_invite) {
+		return;
+	}
+
+	// Stop glare retry timer
+	if (id_glare_retry) {
+		line->stop_timer(LTMR_GLARE_RETRY, get_object_id());
+	}
+
+	reinvite_purpose = REINVITE_REFRESH;
+	session_re_invite = session->create_session_refresh();
+	send_re_invite();
+}
+
 void t_dialog::kill_rtp(void){
 	session->kill_rtp();
 	if (session_re_invite) session_re_invite->kill_rtp();
@@ -3533,6 +3692,9 @@ void t_dialog::answer(void) {
 	contact.uri.set_url(line->create_user_contact(h_ip2str(resp_invite->get_local_ip())));
 	resp_invite->hdr_contact.add_contact(contact);
 
+	// An INVITE acts as initial session refresh request
+	process_session_refresh_request(invite_req, resp_invite, false);
+
 	// Set Allow and Supported headers
 	SET_HDR_ALLOW(resp_invite->hdr_allow, user_config);
 	SET_HDR_SUPPORTED(resp_invite->hdr_supported, user_config);
@@ -3738,6 +3900,14 @@ t_dialog_state t_dialog::get_state(void) const {
 }
 
 void t_dialog::timeout(t_line_timer timer) {
+	// Session timers don't have anything to do with state -- we're just
+	// piggy-backing on the existing line timer architecture.
+	switch(timer) {
+	case LTMR_SESSION_REFRESH:
+	case LTMR_SESSION_EXPIRE:
+		return timeout_session_refresh(timer);
+	}
+
 	switch(state) {
 	case DS_W4INVITE_RESP:
 	case DS_W4INVITE_RESP2:
@@ -3786,6 +3956,24 @@ void t_dialog::timeout_sub(t_subscribe_timer timer, const string &event_type,
 		delete sub_refer;
 		sub_refer = NULL;
 		state = DS_TERMINATED;
+	}
+}
+
+void t_dialog::timeout_session_refresh(t_line_timer timer) {
+	switch (timer) {
+	case LTMR_SESSION_REFRESH:
+		log_file->write_report("Timer LTMR_SESSION_REFRESH expired, sending re-INVITE.",
+				"t_dialog::timeout_session_refresh", LOG_NORMAL, LOG_INFO);
+		send_session_refresh_request();
+		break;
+	case LTMR_SESSION_EXPIRE:
+		log_file->write_report("Timer LTMR_SESSION_EXPIRE expired.",
+				"t_dialog::timeout_session_refresh", LOG_NORMAL, LOG_WARNING);
+		send_bye();
+		ui->cb_session_expired(line->get_line_number());
+		break;
+	default:
+		assert(false);
 	}
 }
 

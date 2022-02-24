@@ -136,6 +136,8 @@ enum t_line_timer {
 	LTMR_100REL_GUARD,	/**< After this timer PRACK is lost for good */
 	LTMR_GLARE_RETRY,	/**< Waiting before retry re-INVITE after glare */
 	LTMR_CANCEL_GUARD,	/**< Guard for situation where CANCEL has been responded to, but 487 on INVITE is never received. */
+	LTMR_SESSION_REFRESH,	/**< Time to send a Session Refresh Request */
+	LTMR_SESSION_EXPIRE,	/**< Session Expiration */
 };
 
 /** Subscription timers. */
@@ -232,6 +234,9 @@ enum t_stun_timer {
 // that the subscription will be cleaned up.
 #define DUR_UNSUBSCRIBE_GUARD	4000
 
+// Minimum interval for Session-Expires
+#define MIN_SESSION_INTERVAL	90
+
 // RFC 3489
 // STUN retransmission timer intervals (ms)
 // The RFC states that the interval should start at 100ms. But that
@@ -314,6 +319,7 @@ enum t_stun_timer {
 					(h).add_feature(EXT_REPLACES);\
 				  }\
 				  (h).add_feature(EXT_NOREFERSUB);\
+				  (h).add_feature(EXT_TIMER);\
 				}
 
 // Set Accept header with accepted body types

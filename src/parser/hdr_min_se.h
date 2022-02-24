@@ -1,5 +1,6 @@
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+    Copyright (C) 2022       Frédéric Brière <fbriere@fbriere.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,35 +16,29 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// Supported header
+// Min-SE header (RFC 4028)
 
-#ifndef _H_HDR_SUPPORTED
-#define _H_HDR_SUPPORTED
+#ifndef _HDR_MIN_SE_H
+#define _HDR_MIN_SE_H
 
 #include <list>
 #include <string>
 #include "header.h"
+#include "parameter.h"
 
-#define EXT_100REL	"100rel"	// RFC 3262
-#define EXT_REPLACES	"replaces"	// RFC 3891
-#define EXT_TIMER	"timer"		// RFC 4028
-#define EXT_NOREFERSUB	"norefersub"	// RFC 4488
-
-class t_hdr_supported : public t_header {
+class t_hdr_min_se : public t_header {
 public:
-	list<string>	features;
+	unsigned long time; // expiry time in seconds
+	list<t_parameter> params;
 
-	t_hdr_supported();
-	void add_feature(const string &f);
-	void add_features(const list<string> &l);
+	t_hdr_min_se();
 
-	// Clear the list of features, but make the header 'populated'.
-	// An empty header will be in the message.
-	void set_empty(void);
+	void set_time(unsigned long t);
 
-	bool contains(const string &f) const;
-	
-	string encode_value(void) const;
+	void add_param(const t_parameter &p);
+	void set_params(const std::list<t_parameter> &l);
+
+	std::string encode_value(void) const;
 };
 
 #endif

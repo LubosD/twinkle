@@ -2558,6 +2558,18 @@ void t_userintf::cb_100rel_timeout(int line) {
 	cb_stop_call_notification(line);
 }
 
+void t_userintf::cb_session_expired(int line) {
+	if (line >= NUM_USER_LINES) return;
+
+	cout << endl;
+	cout << "Line " << line + 1 << ": ";
+	cout << "session has expired, call will be terminated.\n";
+	cout << endl;
+	cout.flush();
+
+	cb_stop_call_notification(line);
+}
+
 void t_userintf::cb_prack_failed(int line, const t_response *r) {
 	if (line >= NUM_USER_LINES) return;
 	
