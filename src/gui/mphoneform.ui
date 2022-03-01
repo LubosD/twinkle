@@ -76,7 +76,7 @@
         </property>
        </column>
       </widget>
-      <widget class="QWidget" name="layout13">
+      <widget class="QWidget">
        <layout class="QVBoxLayout">
         <item>
          <layout class="QGridLayout">

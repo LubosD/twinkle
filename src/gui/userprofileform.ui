@@ -4611,7 +4611,7 @@ Solicited message waiting indication as specified by RFC 3842.
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox25">
+        <widget class="QGroupBox">
          <property name="title">
           <string>Buddy presence</string>
          </property>

@@ -1407,7 +1407,7 @@ Depending on your SIP provider the network might provide ring back tone or an an
      <widget class="QWidget" name="pageAddressBook">
       <layout class="QVBoxLayout">
        <item>
-        <widget class="QLabel" name="ringtonesTitleTextLabel_2">
+        <widget class="QLabel">
          <property name="font">
           <font>
            <pointsize>21</pointsize>
