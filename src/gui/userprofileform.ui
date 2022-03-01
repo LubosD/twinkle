@@ -189,7 +189,7 @@
    <item row="2" column="0">
     <layout class="QHBoxLayout">
      <item>
-      <spacer name="spacer8">
+      <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -478,7 +478,7 @@ This field is mandatory.</string>
         </widget>
        </item>
        <item>
-        <spacer name="spacer9">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -589,7 +589,7 @@ This field is mandatory.</string>
              </widget>
             </item>
             <item>
-             <spacer name="spacer1">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -639,7 +639,7 @@ This field is mandatory.</string>
              </widget>
             </item>
             <item>
-             <spacer name="spacer48">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -734,7 +734,7 @@ This field is mandatory.</string>
         </widget>
        </item>
        <item>
-        <spacer name="spacer10">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -841,7 +841,7 @@ This field is mandatory.</string>
               </widget>
              </item>
              <item>
-              <spacer name="spacer24">
+              <spacer>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -891,7 +891,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item row="4" column="0">
-            <spacer name="spacer38">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -966,7 +966,7 @@ If you disable this option, then the first codec from the active codecs that is 
               <item>
                <layout class="QVBoxLayout">
                 <item>
-                 <spacer name="spacer17_2">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1010,7 +1010,7 @@ If you disable this option, then the first codec from the active codecs that is 
                  </widget>
                 </item>
                 <item>
-                 <spacer name="spacer18">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1051,7 +1051,7 @@ If you disable this option, then the first codec from the active codecs that is 
               <item>
                <layout class="QVBoxLayout">
                 <item>
-                 <spacer name="spacer19_2">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1095,7 +1095,7 @@ If you disable this option, then the first codec from the active codecs that is 
                  </widget>
                 </item>
                 <item>
-                 <spacer name="spacer20_2">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1217,7 +1217,7 @@ If you disable this option, then the first codec from the active codecs that is 
                </layout>
               </item>
               <item>
-               <spacer name="spacer24">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1236,7 +1236,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item>
-            <spacer name="spacer25">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1329,7 +1329,7 @@ If you disable this option, then the first codec from the active codecs that is 
                </layout>
               </item>
               <item>
-               <spacer name="spacer26">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1348,7 +1348,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item>
-            <spacer name="spacer29_2">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1550,7 +1550,7 @@ If you disable this option, then the first codec from the active codecs that is 
                </layout>
               </item>
               <item>
-               <spacer name="spacer23_2">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1569,7 +1569,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item>
-            <spacer name="spacer30_2">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1706,7 +1706,7 @@ If you disable this option, then the first codec from the active codecs that is 
                </layout>
               </item>
               <item row="0" column="1">
-               <spacer name="spacer31">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1754,7 +1754,7 @@ If you disable this option, then the first codec from the active codecs that is 
                  </widget>
                 </item>
                 <item>
-                 <spacer name="spacer40_2">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -1775,7 +1775,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item>
-            <spacer name="spacer32">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -1804,7 +1804,7 @@ If you disable this option, then the first codec from the active codecs that is 
              </property>
              <layout class="QGridLayout">
               <item row="1" column="1">
-               <spacer name="spacer17">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -2076,7 +2076,7 @@ Send DTMF out-of-band via a SIP INFO request.
                  </widget>
                 </item>
                 <item>
-                 <spacer name="spacer22_2">
+                 <spacer>
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -2097,7 +2097,7 @@ Send DTMF out-of-band via a SIP INFO request.
             </widget>
            </item>
            <item>
-            <spacer name="spacer23_3">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2149,7 +2149,7 @@ Send DTMF out-of-band via a SIP INFO request.
           </attribute>
           <layout class="QGridLayout">
            <item row="2" column="1">
-            <spacer name="spacer24_2">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2213,7 +2213,7 @@ Send DTMF out-of-band via a SIP INFO request.
                </widget>
               </item>
               <item row="0" column="2">
-               <spacer name="spacer4">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -2408,7 +2408,7 @@ This format is what most SIP phones use.
                </widget>
               </item>
               <item row="2" column="2">
-               <spacer name="spacer5">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -2606,7 +2606,7 @@ This format is what most SIP phones use.
             </widget>
            </item>
            <item>
-            <spacer name="spacer25">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2664,7 +2664,7 @@ This format is what most SIP phones use.
             </widget>
            </item>
            <item>
-            <spacer name="spacer40">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2686,7 +2686,7 @@ This format is what most SIP phones use.
       </layout>
      </widget>
      <widget class="QWidget" name="pageNat">
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="NatTitleTextLabel">
          <property name="font">
@@ -2737,7 +2737,7 @@ This format is what most SIP phones use.
            </widget>
           </item>
           <item row="0" column="3">
-           <spacer name="spacer46">
+           <spacer>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2798,7 +2798,7 @@ This format is what most SIP phones use.
            </widget>
           </item>
           <item row="1" column="2" colspan="2">
-           <spacer name="spacer47">
+           <spacer>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2821,7 +2821,7 @@ This format is what most SIP phones use.
          <property name="title">
           <string>NAT traversal</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QVBoxLayout">
           <item>
            <widget class="QRadioButton" name="natNoneRadioButton">
             <property name="whatsThis">
@@ -2850,7 +2850,7 @@ When you choose this option you have to create static address mappings in your N
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QHBoxLayout">
             <item>
              <widget class="QLabel" name="publicIPTextLabel">
               <property name="text">
@@ -2890,7 +2890,7 @@ When you choose this option you have to create static address mappings in your N
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout">
             <item>
              <widget class="QLabel" name="stunServerTextLabel">
               <property name="text">
@@ -2946,7 +2946,7 @@ When you choose this option you have to create static address mappings in your N
         </widget>
        </item>
        <item row="3" column="0">
-        <spacer name="spacer19">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -3140,7 +3140,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
             <item>
              <layout class="QVBoxLayout">
               <item>
-               <spacer name="spacer19_2_2">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -3184,7 +3184,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
                </widget>
               </item>
               <item>
-               <spacer name="spacer20_2_2">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -3245,7 +3245,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
              </widget>
             </item>
             <item>
-             <spacer name="spacer38_2">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -3290,7 +3290,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
         </widget>
        </item>
        <item>
-        <spacer name="spacer20">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -3438,7 +3438,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
           </layout>
          </item>
          <item>
-          <spacer name="spacer23">
+          <spacer>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -3456,7 +3456,7 @@ Match expression = 0[0-9]* , Replace =  9$&amp;&lt;br&gt;
         </layout>
        </item>
        <item>
-        <spacer name="spacer22">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -3585,7 +3585,7 @@ This ring tone overrides the ring tone settings in the system settings.
         </layout>
        </item>
        <item>
-        <spacer name="spacer30">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -4033,7 +4033,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
         </layout>
        </item>
        <item>
-        <spacer name="spacer29">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -4135,7 +4135,7 @@ The values of all SIP headers of the outgoing INVITE are passed in environment v
         </widget>
        </item>
        <item>
-        <spacer name="spacer33">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -4228,7 +4228,7 @@ Solicited message waiting indication as specified by RFC 3842.
             </widget>
            </item>
            <item>
-            <spacer name="spacer39">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -4269,7 +4269,7 @@ Solicited message waiting indication as specified by RFC 3842.
           <item>
            <layout class="QGridLayout">
             <item row="2" column="0">
-             <spacer name="spacer35">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -4349,7 +4349,7 @@ Solicited message waiting indication as specified by RFC 3842.
                </widget>
               </item>
               <item>
-               <spacer name="spacer36">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -4405,7 +4405,7 @@ Solicited message waiting indication as specified by RFC 3842.
         </widget>
        </item>
        <item>
-        <spacer name="spacer38_3">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -4471,7 +4471,7 @@ Solicited message waiting indication as specified by RFC 3842.
           </widget>
          </item>
          <item>
-          <spacer name="spacer42">
+          <spacer>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -4502,7 +4502,7 @@ Solicited message waiting indication as specified by RFC 3842.
         </widget>
        </item>
        <item>
-        <spacer name="spacer40_3">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -4590,7 +4590,7 @@ Solicited message waiting indication as specified by RFC 3842.
              </widget>
             </item>
             <item>
-             <spacer name="spacer43">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -4645,7 +4645,7 @@ Solicited message waiting indication as specified by RFC 3842.
              </widget>
             </item>
             <item>
-             <spacer name="spacer44">
+             <spacer>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -4666,7 +4666,7 @@ Solicited message waiting indication as specified by RFC 3842.
         </widget>
        </item>
        <item>
-        <spacer name="spacer45">
+        <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>

@@ -35,7 +35,7 @@
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer13">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>111</width>

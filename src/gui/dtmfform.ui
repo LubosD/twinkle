@@ -452,7 +452,7 @@ wxyz</string>
    <item>
     <layout class="QHBoxLayout">
      <item>
-      <spacer name="spacer20">
+      <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

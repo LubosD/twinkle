@@ -33,7 +33,7 @@
       <item row="1" column="0" rowspan="1" colspan="2">
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer41">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>81</width>
