@@ -217,6 +217,16 @@ t_session *t_session::create_call_retrieve(void) const {
 	return s;
 }
 
+t_session *t_session::create_session_refresh(void) const {
+	t_session *s = new t_session(*this);
+	MEMMAN_NEW(s);
+
+	// Do not copy the RTP session
+	s->set_audio_session(NULL);
+
+	return s;
+}
+
 t_session *t_session::create_clean_copy(void) const {
 	t_session *s = new t_session(*this);
 	MEMMAN_NEW(s);

@@ -1,5 +1,6 @@
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
+    Copyright (C) 2022       Frédéric Brière <fbriere@fbriere.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,35 +16,35 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// Supported header
+#include "definitions.h"
+#include "hdr_min_se.h"
+#include "util.h"
 
-#ifndef _H_HDR_SUPPORTED
-#define _H_HDR_SUPPORTED
+t_hdr_min_se::t_hdr_min_se() :
+	t_header("Min-SE"),
+	time(90)
+{
+}
 
-#include <list>
-#include <string>
-#include "header.h"
+void t_hdr_min_se::set_time(unsigned long t) {
+	populated = true;
+	time = t;
+}
 
-#define EXT_100REL	"100rel"	// RFC 3262
-#define EXT_REPLACES	"replaces"	// RFC 3891
-#define EXT_TIMER	"timer"		// RFC 4028
-#define EXT_NOREFERSUB	"norefersub"	// RFC 4488
+void t_hdr_min_se::add_param(const t_parameter &p) {
+	params.push_back(p);
+}
 
-class t_hdr_supported : public t_header {
-public:
-	list<string>	features;
+void t_hdr_min_se::set_params(const std::list<t_parameter> &l) {
+	params = l;
+}
 
-	t_hdr_supported();
-	void add_feature(const string &f);
-	void add_features(const list<string> &l);
+string t_hdr_min_se::encode_value(void) const {
+	if (!populated) return "";
 
-	// Clear the list of features, but make the header 'populated'.
-	// An empty header will be in the message.
-	void set_empty(void);
+	string s;
+	s += ulong2str(time);
+	s += param_list2str(params);
 
-	bool contains(const string &f) const;
-	
-	string encode_value(void) const;
-};
-
-#endif
+	return s;
+}

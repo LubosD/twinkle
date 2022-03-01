@@ -237,6 +237,7 @@ public:
 	virtual void cb_unsupported_content_type(int line, const t_sip_message *r);
         virtual void cb_ack_timeout(int line);
 	virtual void cb_100rel_timeout(int line);
+	virtual void cb_session_expired(int line);
 	virtual void cb_prack_failed(int line, const t_response *r);
         virtual void cb_provisional_resp_invite(int line, const t_response *r);
         virtual void cb_cancel_failed(int line, const t_response *r);

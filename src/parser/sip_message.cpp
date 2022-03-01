@@ -66,6 +66,7 @@ t_sip_message::t_sip_message(const t_sip_message& m) :
 		hdr_in_reply_to(m.hdr_in_reply_to),
 		hdr_max_forwards(m.hdr_max_forwards),
 		hdr_min_expires(m.hdr_min_expires),
+		hdr_min_se(m.hdr_min_se),
 		hdr_mime_version(m.hdr_mime_version),
 		hdr_organization(m.hdr_organization),
 		hdr_p_asserted_identity(m.hdr_p_asserted_identity),
@@ -89,6 +90,7 @@ t_sip_message::t_sip_message(const t_sip_message& m) :
 		hdr_rseq(m.hdr_rseq),
 		hdr_server(m.hdr_server),
 		hdr_service_route(m.hdr_service_route),
+		hdr_session_expires(m.hdr_session_expires),
 		hdr_sip_etag(m.hdr_sip_etag),
 		hdr_sip_if_match(m.hdr_sip_if_match),
 		hdr_subject(m.hdr_subject),
@@ -232,6 +234,7 @@ string t_sip_message::encode(bool add_content_length) {
 	s += hdr_expires.encode();
 	s += hdr_in_reply_to.encode();
 	s += hdr_min_expires.encode();
+	s += hdr_min_se.encode();
 	s += hdr_mime_version.encode();
 	s += hdr_organization.encode();
 	s += hdr_priority.encode();
@@ -246,6 +249,7 @@ string t_sip_message::encode(bool add_content_length) {
 	s += hdr_retry_after.encode();
 	s += hdr_rseq.encode();
 	s += hdr_server.encode();
+	s += hdr_session_expires.encode();
 	s += hdr_sip_etag.encode();
 	s += hdr_sip_if_match.encode();
 	s += hdr_subject.encode();
@@ -339,6 +343,7 @@ list<string> t_sip_message::encode_env(void) {
 	l.push_back(hdr_expires.encode_env());
 	l.push_back(hdr_in_reply_to.encode_env());
 	l.push_back(hdr_min_expires.encode_env());
+	l.push_back(hdr_min_se.encode_env());
 	l.push_back(hdr_mime_version.encode_env());
 	l.push_back(hdr_organization.encode_env());
 	l.push_back(hdr_priority.encode_env());
@@ -353,6 +358,7 @@ list<string> t_sip_message::encode_env(void) {
 	l.push_back(hdr_retry_after.encode_env());
 	l.push_back(hdr_rseq.encode_env());
 	l.push_back(hdr_server.encode_env());
+	l.push_back(hdr_session_expires.encode_env());
 	l.push_back(hdr_sip_etag.encode_env());
 	l.push_back(hdr_sip_if_match.encode_env());
 	l.push_back(hdr_subject.encode_env());

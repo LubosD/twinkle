@@ -48,6 +48,7 @@
 #include "hdr_in_reply_to.h"
 #include "hdr_max_forwards.h"
 #include "hdr_min_expires.h"
+#include "hdr_min_se.h"
 #include "hdr_mime_version.h"
 #include "hdr_organization.h"
 #include "hdr_p_asserted_identity.h"
@@ -71,6 +72,7 @@
 #include "hdr_rseq.h"
 #include "hdr_server.h"
 #include "hdr_service_route.h"
+#include "hdr_session_expires.h"
 #include "hdr_sip_etag.h"
 #include "hdr_sip_if_match.h"
 #include "hdr_subject.h"
@@ -143,6 +145,7 @@ public:
 	t_hdr_in_reply_to	hdr_in_reply_to;
 	t_hdr_max_forwards	hdr_max_forwards;
 	t_hdr_min_expires	hdr_min_expires;
+	t_hdr_min_se		hdr_min_se;
 	t_hdr_mime_version	hdr_mime_version;
 	t_hdr_organization	hdr_organization;
 	t_hdr_p_asserted_identity hdr_p_asserted_identity;
@@ -166,6 +169,7 @@ public:
 	t_hdr_rseq		hdr_rseq;
 	t_hdr_server		hdr_server;
 	t_hdr_service_route	hdr_service_route;
+	t_hdr_session_expires	hdr_session_expires;
 	t_hdr_sip_etag		hdr_sip_etag;
 	t_hdr_sip_if_match	hdr_sip_if_match;
 	t_hdr_subject		hdr_subject;

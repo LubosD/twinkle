@@ -97,6 +97,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 ^In-Reply-To		{ return T_HDR_IN_REPLY_TO; }
 ^Max-Forwards		{ return T_HDR_MAX_FORWARDS; }
 ^Min-Expires		{ return T_HDR_MIN_EXPIRES; }
+^Min-SE			{ return T_HDR_MIN_SE; }
 ^MIME-Version		{ return T_HDR_MIME_VERSION; }
 ^Organization		{ return T_HDR_ORGANIZATION; }
 ^P-Asserted-Identity	{ return T_HDR_P_ASSERTED_IDENTITY; }
@@ -120,6 +121,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 ^Route			{ return T_HDR_ROUTE; }
 ^RSeq			{ return T_HDR_RSEQ; }
 ^Server			{ return T_HDR_SERVER; }
+^(Session-Expires)|x	{ return T_HDR_SESSION_EXPIRES; }
 ^SIP-ETag		{ return T_HDR_SIP_ETAG; }
 ^SIP-If-Match		{ return T_HDR_SIP_IF_MATCH; }
 ^(Subject)|s		{ return T_HDR_SUBJECT; }

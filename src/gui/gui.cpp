@@ -1272,6 +1272,21 @@ void t_gui::cb_100rel_timeout(int line) {
 	unlock();
 }
 
+void t_gui::cb_session_expired(int line) {
+	if (line >= NUM_USER_LINES) return;
+
+	lock();
+	QString s;
+
+	emit mw_display_header();
+	s = qApp->translate("GUI", "Line %1: session has expired, call will be terminated.").arg(line + 1);
+	emit mw_display(s);
+
+	cb_stop_call_notification(line);
+
+	unlock();
+}
+
 void t_gui::cb_prack_failed(int line, const t_response *r) {
 	if (line >= NUM_USER_LINES) return;
 	
