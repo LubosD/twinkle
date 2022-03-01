@@ -2143,7 +2143,7 @@ Send DTMF out-of-band via a SIP INFO request.
        </item>
        <item row="1" column="0">
         <widget class="QTabWidget" name="sipProtoclTabWidget">
-         <widget class="QWidget" name="tab">
+         <widget class="QWidget">
           <attribute name="title">
            <string>General</string>
           </attribute>
@@ -2506,7 +2506,7 @@ This format is what most SIP phones use.
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tab">
+         <widget class="QWidget">
           <attribute name="title">
            <string>REFER</string>
           </attribute>
