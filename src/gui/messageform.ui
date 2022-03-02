@@ -95,7 +95,11 @@
             </property>
             <layout class="QGridLayout">
               <item row="0" column="0">
-                <widget class="TextBrowserNoAutoLink" name="conversationBrowser"/>
+                <widget class="TextBrowserNoAutoLink" name="conversationBrowser">
+                 <property name="sizePolicy">
+                  <sizepolicy vsizetype="Expanding" hsizetype="Expanding" />
+                 </property>
+                </widget>
               </item>
             </layout>
           </widget>
@@ -158,10 +162,6 @@
         <height>-1</height>
       </sizehint>
       <container>0</container>
-      <sizepolicy>
-        <hordata>7</hordata>
-        <verdata>7</verdata>
-      </sizepolicy>
       <pixmap>image0</pixmap>
     </customwidget>
   </customwidgets>
