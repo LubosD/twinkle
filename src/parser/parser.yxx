@@ -45,6 +45,9 @@ void yyerror(const char *s);
 //
 // %debug
 
+%expect 2
+/* See below for the expected shift/reduce conflicts. */
+
 %union {
 	int			yyt_int;
 	ulong			yyt_ulong;
@@ -181,6 +184,7 @@ void yyerror(const char *s);
 %type <yyt_str>		call_id
 %type <yyt_challenge>	challenge
 %type <yyt_str>		comment
+%type <yyt_str>		comment_opt
 %type <yyt_contact>	contact_addr
 %type <yyt_contact>	contact_param
 %type <yyt_contacts>	contacts
@@ -215,6 +219,7 @@ void yyerror(const char *s);
 %destructor { MEMMAN_DELETE($$); delete $$; }	call_id
 %destructor { MEMMAN_DELETE($$); delete $$; }	challenge
 %destructor { MEMMAN_DELETE($$); delete $$; }	comment
+%destructor { MEMMAN_DELETE($$); delete $$; }	comment_opt
 %destructor { MEMMAN_DELETE($$); delete $$; }	contact_addr
 %destructor { MEMMAN_DELETE($$); delete $$; }	contact_param
 %destructor { MEMMAN_DELETE($$); delete $$; }	contacts
@@ -1142,7 +1147,7 @@ hdr_require:	  T_TOKEN {
 			MEMMAN_DELETE($3); delete $3; }
 ;
 
-hdr_retry_after:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } comment parameters {
+hdr_retry_after:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } comment_opt parameters {
 			MSG->hdr_retry_after.set_time($2);
 			MSG->hdr_retry_after.set_comment(*$4);
 			list<t_parameter>::const_iterator i;
@@ -1158,8 +1163,12 @@ hdr_retry_after:  { CTXT_NUM; } T_NUM { CTXT_INITIAL; } comment parameters {
 			MEMMAN_DELETE($5); delete $5; }
 ;
 
-comment:	  /* empty */ { $$ = new string(); MEMMAN_NEW($$); }
-		| '(' { CTXT_COMMENT; } T_COMMENT { CTXT_INITIAL; } ')' {
+/* shift/reduce conflict: `T_TOKEN comment` can be parsed as 1 or 2 servers */
+comment_opt:	  /* empty */ { $$ = new string(); MEMMAN_NEW($$); }
+		| comment { $$ = $1; }
+;
+
+comment:	  '(' { CTXT_COMMENT; } T_COMMENT { CTXT_INITIAL; } ')' {
 			$$ = $3; }
 ;
 
@@ -1184,14 +1193,14 @@ server:		  comment {
 			MEMMAN_NEW($$);
 			$$->comment = *$1;
 			MEMMAN_DELETE($1); delete $1; }
-		| T_TOKEN comment {
+		| T_TOKEN comment_opt {
 			$$ = new t_server();
 			MEMMAN_NEW($$);
 			$$->product = *$1;
 			$$->comment = *$2;
 			MEMMAN_DELETE($1); delete $1;
 			MEMMAN_DELETE($2); delete $2; }
-		| T_TOKEN '/' T_TOKEN comment {
+		| T_TOKEN '/' T_TOKEN comment_opt {
 			$$ = new t_server();
 			MEMMAN_NEW($$);
 			$$->product = *$1;
