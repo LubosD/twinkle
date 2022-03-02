@@ -44,7 +44,7 @@
   <widget class="QWidget" name="layoutWidget">
    <layout class="QGridLayout">
     <item row="0" column="0">
-     <widget class="QSplitter" name="splitter2">
+     <widget class="QSplitter" name="layoutWidgetSplitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -1083,7 +1083,7 @@
     <property name="title">
      <string>C&amp;all</string>
     </property>
-    <widget class="QMenu" name="popupMenu_19">
+    <widget class="QMenu" name="activateLineMenu">
      <property name="title">
       <string>Activate line</string>
      </property>
@@ -1104,7 +1104,7 @@
     <addaction name="separator"/>
     <addaction name="callTermCap"/>
     <addaction name="callActivate_LineAction"/>
-    <addaction name="popupMenu_19"/>
+    <addaction name="activateLineMenu"/>
    </widget>
    <widget class="QMenu" name="Message">
     <property name="title">
@@ -1112,7 +1112,7 @@
     </property>
     <addaction name="actionSendMsg"/>
    </widget>
-   <widget class="QMenu" name="PopupMenu_2">
+   <widget class="QMenu" name="registrationMenu">
     <property name="title">
      <string>&amp;Registration</string>
     </property>
@@ -1121,7 +1121,7 @@
     <addaction name="regDeregisterAll"/>
     <addaction name="regShow"/>
    </widget>
-   <widget class="QMenu" name="PopupMenu_3">
+   <widget class="QMenu" name="servicesMenu">
     <property name="title">
      <string>&amp;Services</string>
     </property>
@@ -1159,8 +1159,8 @@
    <addaction name="Edit"/>
    <addaction name="Call"/>
    <addaction name="Message"/>
-   <addaction name="PopupMenu_2"/>
-   <addaction name="PopupMenu_3"/>
+   <addaction name="registrationMenu"/>
+   <addaction name="servicesMenu"/>
    <addaction name="View"/>
    <addaction name="Diamondcard"/>
    <addaction name="helpMenu"/>
