@@ -1,6 +1,6 @@
-project(twinkle)
+cmake_minimum_required(VERSION 2.8.10...3.22 FATAL_ERROR)
 
-cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
+project(twinkle)
 
 set(PRODUCT_VERSION "1.10.3")
 set(PRODUCT_DATE    "February 18, 2022")
