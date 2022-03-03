@@ -47,7 +47,7 @@ enum t_log_class {
 class t_log {
 private:
 	/** Maximum length of a logged string (bytes) */
-	static const string::size_type MAX_LEN_LOG_STRING = 1024;
+	static const string::size_type MAX_LEN_LOG_STRING = 4096;
 
         string          log_filename;
         ofstream        *log_stream;
