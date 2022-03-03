@@ -195,6 +195,7 @@ sess_attributes:  attributes {
 
 attributes:	  /* emtpy */	{ $$ = new list<t_sdp_attr>; MEMMAN_NEW($$); }
 		| attributes attribute {
+			$$ = $1;
 			$$->push_back(*$2);
 			MEMMAN_DELETE($2); delete $2; }
 ;
@@ -269,6 +270,7 @@ transport:	  T_TOKEN {
 // non-numerical formats are possible.
 formats:	  /* empty */	{ $$ = new list<string>; MEMMAN_NEW($$); }
 		| formats T_TOKEN {
+			$$ = $1;
 			$$->push_back(*$2);
 			MEMMAN_DELETE($2);
 			delete $2; }
