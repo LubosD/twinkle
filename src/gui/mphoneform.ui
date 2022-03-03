@@ -1103,7 +1103,6 @@
     <addaction name="callRedial"/>
     <addaction name="separator"/>
     <addaction name="callTermCap"/>
-    <addaction name="callActivate_LineAction"/>
     <addaction name="activateLineMenu"/>
    </widget>
    <widget class="QMenu" name="Message">
@@ -1678,20 +1677,6 @@
    </property>
    <property name="name" stdset="0">
     <cstring>helpWhats_ThisAction</cstring>
-   </property>
-  </action>
-  <action name="callActivate_LineAction">
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Activate line</string>
-   </property>
-   <property name="iconText">
-    <string>Activate line</string>
-   </property>
-   <property name="name" stdset="0">
-    <cstring>callActivate_LineAction</cstring>
    </property>
   </action>
   <action name="viewDisplayAction">
