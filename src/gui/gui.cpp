@@ -409,6 +409,12 @@ void t_gui::do_line(int line) {
 	// So return in this case.
 	if (line == 0) return;
 	
+	if (line == -1) {
+		int current = phone->get_active_line();
+		int other = 1 - current;
+		line = other + 1;
+	}
+
 	phone->pub_activate_line(line - 1);
 }
 
