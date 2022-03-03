@@ -188,9 +188,10 @@ bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
 			resp, fail_reason);
 }
 
-// authentication with MD5 algorithm
+// authentication with a given hash algorithm
 
-bool t_request::authorize_md5(const t_digest_challenge &dchlg,
+bool t_request::authorize_generic(const t_digest_challenge &dchlg,
+	const std::string &algo,
 	const std::string &username, const std::string &passwd, unsigned long nc,
 	const std::string &cnonce, const std::string &qop, std::string &resp,
 	std::string &fail_reason) const
@@ -206,46 +207,70 @@ bool t_request::authorize_md5(const t_digest_challenge &dchlg,
 		A2 = method2str(method, unknown_method) + ":" + uri.encode();
 		A2 += ":";
 		if (body) {
-			digest_t MD5body("md5");
-			MD5body.puts(body->encode().c_str());
-			A2 += std::string(MD5body.str());
+			digest_t H_body(algo.c_str());
+			H_body.puts(body->encode().c_str());
+			A2 += std::string(H_body.str());
 		} else {
-			digest_t MD5body("md5");
-			MD5body.puts("");
-			A2 += std::string(MD5body.str());
+			digest_t H_body(algo.c_str());
+			H_body.puts("");
+			A2 += std::string(H_body.str());
 		}
 	}
 	// RFC 2716 3.2.2.1
 	// Caculate digest
-	digest_t MD5A1("md5");
-	digest_t MD5A2("md5");
+	digest_t H_A1(algo.c_str());
+	digest_t H_A2(algo.c_str());
 
-	MD5A1.puts(A1.c_str());
-	MD5A2.puts(A2.c_str());
+	H_A1.puts(A1.c_str());
+	H_A2.puts(A2.c_str());
 
 	std::string x;
 
 	if (cmp_nocase(qop, QOP_AUTH) == 0 || cmp_nocase(qop, QOP_AUTH_INT) == 0) {
-	        x = std::string(MD5A1.str());
+	        x = std::string(H_A1.str());
 		x += ":";
 		x += dchlg.nonce + ":";
 		x += int2str(nc, "%08x") + ":";
 		x += cnonce + ":";
 		x += qop + ":";
-		x += std::string(MD5A2.str());
+		x += std::string(H_A2.str());
 	} else {
-		x = std::string(MD5A1.str());
+		x = std::string(H_A1.str());
 		x += ":";
 		x += dchlg.nonce + ":";
-		x += std::string(MD5A2.str());
+		x += std::string(H_A2.str());
 	}
 
-	digest_t digest("md5");
+	digest_t digest(algo.c_str());
 	digest.puts(x.c_str());
 
 	resp = std::string(digest.str());
 
 	return true;
+}
+
+// authentication with MD5 algorithm
+
+bool t_request::authorize_md5(const t_digest_challenge &dchlg,
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
+{
+	const std::string algo = "md5";
+	return authorize_generic(dchlg, algo, username, passwd, nc, cnonce, qop,
+			resp, fail_reason);
+}
+
+// authentication with SHA-256 algorithm
+
+bool t_request::authorize_sha256(const t_digest_challenge &dchlg,
+	const std::string &username, const std::string &passwd, unsigned long nc,
+	const std::string &cnonce, const std::string &qop, std::string &resp,
+	std::string &fail_reason) const
+{
+	const std::string algo = "sha256";
+	return authorize_generic(dchlg, algo, username, passwd, nc, cnonce, qop,
+			resp, fail_reason);
 }
 
 bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
@@ -291,6 +316,9 @@ bool t_request::authorize(const t_challenge &chlg, t_user *user_config,
 
 	if (cmp_nocase(dchlg.algorithm, ALG_MD5) == 0) {
 		ret = authorize_md5(dchlg, username, passwd, nc, cnonce, 
+				qop, resp, fail_reason);
+	} else if (cmp_nocase(dchlg.algorithm, ALG_SHA256) == 0) {
+		ret = authorize_sha256(dchlg, username, passwd, nc, cnonce,
 				qop, resp, fail_reason);
 	} else if (cmp_nocase(dchlg.algorithm, ALG_AKAV1_MD5) == 0) {
 		uint8 aka_op[AKA_OPLEN];

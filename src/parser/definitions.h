@@ -38,6 +38,7 @@ using namespace std;
 #define ALG_MD5		"MD5"
 #define ALG_AKAV1_MD5	"AKAV1-MD5"
 #define ALG_MD5_SESS	"MD5-sess"
+#define ALG_SHA256	"SHA-256"
 
 // Authentication QOP
 #define QOP_AUTH	"auth"

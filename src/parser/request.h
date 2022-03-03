@@ -74,7 +74,7 @@ private:
 		       string &fail_reason) const;
 
 	/**
-	 * Calculate MD5 response based on the challenge.
+	 * Calculate MD5/SHA-256 response based on the challenge.
 	 * @param chlg [in] The challenge
 	 * @param username [in] User authentication name
 	 * @param passwd [in] Authentication password.
@@ -89,6 +89,10 @@ private:
 	bool authorize_md5(const t_digest_challenge &dchlg,
 				const string &username, const string &passwd, unsigned long nc,
 				const string &cnonce, const string &qop, string &resp, 
+				string &fail_reason) const;
+	bool authorize_sha256(const t_digest_challenge &dchlg,
+				const string &username, const string &passwd, unsigned long nc,
+				const string &cnonce, const string &qop, string &resp,
 				string &fail_reason) const;
 
 	/**
@@ -111,6 +115,26 @@ private:
 				uint8 *op, uint8 *amf,
 				unsigned long nc,
 				const string &cnonce, const string &qop, string &resp, 
+				string &fail_reason) const;
+
+	/**
+	 * Calculate response based on the challenge for a given hash algorithm.
+	 * @param chlg [in] The challenge
+	 * @param algo [in] Hash algorithm name
+	 * @param username [in] User authentication name
+	 * @param passwd [in] Authentication password.
+	 * @param nc [in] Nonce count
+	 * @param cnonce [in] Client nonce
+	 * @param qop [in] Quality of protection
+	 * @param resp [out] Response on successful return.
+	 * @param fail_reason [out] Failure reason on failure return.
+	 * @return false, if authorization fails.
+	 * @return true, if authorization succeeded
+	 */
+	bool authorize_generic(const t_digest_challenge &dchlg,
+				const string &algo,
+				const string &username, const string &passwd, unsigned long nc,
+				const string &cnonce, const string &qop, string &resp,
 				string &fail_reason) const;
 
 
