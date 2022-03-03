@@ -142,7 +142,7 @@ protected:
 	virtual void do_dnd(bool show_status, bool toggle, bool enable);
 	virtual void do_auto_answer(bool show_status, bool toggle, bool enable);
 	virtual void do_bye(void);
-	virtual void do_hold(void);
+	virtual void do_hold(bool toggle);
 	virtual void do_retrieve(void);
 	virtual bool do_refer(const string &destination, t_transfer_type transfer_type, 
 		bool immediate);
