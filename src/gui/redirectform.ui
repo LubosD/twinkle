@@ -161,7 +161,7 @@
         </widget>
       </item>
       <item>
-        <spacer name="spacer14">
+        <spacer>
           <property name="sizeHint">
             <size>
               <width>20</width>
@@ -179,7 +179,7 @@
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer11">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>361</width>

@@ -62,7 +62,7 @@
         </layout>
       </item>
       <item>
-        <spacer name="spacer62">
+        <spacer>
           <property name="sizeHint">
             <size>
               <width>20</width>
@@ -80,7 +80,7 @@
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer61">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>71</width>

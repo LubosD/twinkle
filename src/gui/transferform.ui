@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Twinkle - Transfer</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="transferGroupBox">
      <property name="title">
@@ -109,7 +109,7 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <spacer name="spacer24">
+    <spacer>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -127,7 +127,7 @@
    <item row="5" column="0">
     <layout class="QHBoxLayout">
      <item>
-      <spacer name="spacer23">
+      <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

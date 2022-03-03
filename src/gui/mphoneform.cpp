@@ -262,14 +262,14 @@ void MphoneForm::init()
 
 	restoreState(g_gui_state->value("mainwindow/state").toByteArray());
 	restoreGeometry(g_gui_state->value("mainwindow/geometry").toByteArray());
-	splitter2->restoreState(g_gui_state->value("mainwindow/mainsplitter").toByteArray());
+	layoutWidgetSplitter->restoreState(g_gui_state->value("mainwindow/mainsplitter").toByteArray());
 }
 
 void MphoneForm::destroy()
 {
 	g_gui_state->setValue("mainwindow/state", saveState());
 	g_gui_state->setValue("mainwindow/geometry", saveGeometry());
-	g_gui_state->setValue("mainwindow/mainsplitter", splitter2->saveState());
+	g_gui_state->setValue("mainwindow/mainsplitter", layoutWidgetSplitter->saveState());
 
 	if (dtmfForm) {
 		MEMMAN_DELETE(dtmfForm);

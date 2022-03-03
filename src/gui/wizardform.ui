@@ -103,7 +103,7 @@ If you select one of the predefined SIP service providers then you only have to 
             </widget>
           </item>
           <item row="0" column="2">
-            <spacer name="spacer22">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>206</width>
@@ -212,7 +212,7 @@ This field is mandatory.</string>
         </layout>
       </item>
       <item>
-        <spacer name="spacer23">
+        <spacer>
           <property name="sizeHint">
             <size>
               <width>20</width>
@@ -230,7 +230,7 @@ This field is mandatory.</string>
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer20">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>371</width>

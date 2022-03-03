@@ -41,7 +41,7 @@
             </widget>
           </item>
           <item row="2" column="2">
-            <spacer name="spacer3">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>20</width>
@@ -86,7 +86,7 @@
             </widget>
           </item>
           <item row="0" column="2">
-            <spacer name="spacer24">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>20</width>
@@ -192,7 +192,7 @@ With this option you request your SIP provider to hide your identity from the ca
             </widget>
           </item>
           <item>
-            <spacer name="spacer5">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>181</width>
@@ -210,7 +210,7 @@ With this option you request your SIP provider to hide your identity from the ca
         </layout>
       </item>
       <item>
-        <spacer name="spacer12">
+        <spacer>
           <property name="sizeHint">
             <size>
               <width>20</width>
@@ -228,7 +228,7 @@ With this option you request your SIP provider to hide your identity from the ca
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer11">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>91</width>

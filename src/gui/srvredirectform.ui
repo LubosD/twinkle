@@ -62,7 +62,7 @@
 &lt;b&gt;No answer:&lt;/b&gt; redirect a call when the no-answer timer expires
 &lt;/p&gt;</string>
           </property>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget">
             <attribute name="title">
               <string>&amp;Unconditional</string>
             </attribute>
@@ -229,7 +229,7 @@
               </item>
             </layout>
           </widget>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget">
             <attribute name="title">
               <string>&amp;Busy</string>
             </attribute>
@@ -378,7 +378,7 @@
               </item>
             </layout>
           </widget>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget">
             <attribute name="title">
               <string>&amp;No answer</string>
             </attribute>
@@ -530,7 +530,7 @@
         </widget>
       </item>
       <item>
-        <spacer name="spacer14">
+        <spacer>
           <property name="sizeHint">
             <size>
               <width>20</width>
@@ -548,7 +548,7 @@
       <item>
         <layout class="QHBoxLayout">
           <item>
-            <spacer name="spacer13">
+            <spacer>
               <property name="sizeHint">
                 <size>
                   <width>261</width>
