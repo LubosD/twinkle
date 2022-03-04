@@ -101,7 +101,7 @@ if (WITH_GSM)
 	list(APPEND twinkle_LIBS ${GSM_LIBRARY})
 endif (WITH_GSM)
 if (WITH_OPUS)
-	list(APPEND twinkle_LIBS PkgConfig::Opus)
+	list(APPEND twinkle_LIBS ${Opus_LIBRARIES})
 endif (WITH_OPUS)
 
 if (WITH_QT5)

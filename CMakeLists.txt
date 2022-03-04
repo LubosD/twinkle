@@ -114,8 +114,9 @@ if (WITH_SPEEX)
 endif (WITH_SPEEX)
 
 if (WITH_OPUS)
-	pkg_check_modules(Opus REQUIRED IMPORTED_TARGET opus)
+	pkg_check_modules(Opus REQUIRED opus)
 	set(HAVE_OPUS TRUE)
+	include_directories(${Opus_INCLUDE_DIRS})
 endif (WITH_OPUS)
 
 if (WITH_ILBC)
