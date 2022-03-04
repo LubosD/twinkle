@@ -1590,23 +1590,23 @@ If you disable this option, then the first codec from the active codecs that is 
           <attribute name="title">
            <string>Opus</string>
           </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
+          <layout class="QVBoxLayout">
            <item>
             <widget class="QGroupBox" name="opusGroupBox">
              <property name="title">
               <string>Opus</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <layout class="QHBoxLayout">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <layout class="QVBoxLayout">
                 <item>
                  <widget class="QGroupBox" name="opusCommonGroupBox">
                   <property name="title">
                    <string>Common maximum parameters</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <layout class="QVBoxLayout">
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_3">
+                    <layout class="QHBoxLayout">
                      <item>
                       <widget class="QLabel" name="opusBitrateTextLabel">
                        <property name="text">
@@ -1668,7 +1668,7 @@ If you disable this option, then the first codec from the active codecs that is 
                     </layout>
                    </item>
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <layout class="QHBoxLayout">
                      <item>
                       <widget class="QLabel" name="opusBandwidthLabel">
                        <property name="text">
@@ -1714,15 +1714,15 @@ If you disable this option, then the first codec from the active codecs that is 
                  </widget>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <layout class="QHBoxLayout">
                   <item>
                    <widget class="QGroupBox" name="opusLocalGroupBox">
                     <property name="title">
                      <string>Local parameters</string>
                     </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_2">
+                    <layout class="QVBoxLayout">
                      <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <layout class="QHBoxLayout">
                        <item>
                         <widget class="QLabel" name="opusSignalTypeTextLabel">
                          <property name="text">
@@ -1752,7 +1752,7 @@ If you disable this option, then the first codec from the active codecs that is 
                       </layout>
                      </item>
                      <item>
-                      <layout class="QGridLayout" name="gridLayout_2">
+                      <layout class="QGridLayout">
                        <item row="1" column="1">
                         <widget class="QSpinBox" name="opusPacketLossSpinBox">
                          <property name="whatsThis">
@@ -1824,7 +1824,7 @@ If you disable this option, then the first codec from the active codecs that is 
                     <property name="title">
                      <string>Remote parameters</string>
                     </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_3">
+                    <layout class="QVBoxLayout">
                      <item>
                       <widget class="QCheckBox" name="opusCbrCheckBox">
                        <property name="whatsThis">
@@ -1864,7 +1864,7 @@ If you disable this option, then the first codec from the active codecs that is 
                  </layout>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <layout class="QHBoxLayout">
                   <item>
                    <widget class="QLabel" name="opusPayloadTextLabel">
                     <property name="text">
@@ -1896,7 +1896,7 @@ If you disable this option, then the first codec from the active codecs that is 
                </layout>
               </item>
               <item>
-               <spacer name="horizontalSpacer">
+               <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1912,7 +1912,7 @@ If you disable this option, then the first codec from the active codecs that is 
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer">
+            <spacer>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
