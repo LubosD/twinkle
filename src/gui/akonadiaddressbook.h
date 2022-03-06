@@ -56,8 +56,6 @@ private:
 
 	AkonadiAddressBook();
 
-	void synchronizeCollections(const Akonadi::Collection::List& collections, bool onDemand);
-
 	void insertItem(const Akonadi::Item &item);
 	void removeItem(const Akonadi::Item &item);
 
@@ -68,7 +66,6 @@ public:
 	AkonadiAddressBook(AkonadiAddressBook const&) = delete;
 	void operator=(AkonadiAddressBook const&) = delete;
 
-	void synchronize(bool onDemand = false);
 	void reload();
 
 	KContacts::AddresseeList get_contacts();

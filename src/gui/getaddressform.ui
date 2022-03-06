@@ -107,19 +107,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="synchronizePushButton">
-           <property name="whatsThis">
-            <string>Synchronize all Akonadi contacts.</string>
-           </property>
-           <property name="text">
-            <string>S&amp;ynchronize</string>
-           </property>
-           <property name="shortcut">
-            <string>Alt+Y</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -377,12 +364,6 @@
      <y>20</y>
     </hint>
    </hints>
-  </connection>
-  <connection>
-   <sender>synchronizePushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>GetAddressForm</receiver>
-   <slot>synchronize()</slot>
   </connection>
   <connection>
    <sender>addPushButton</sender>
