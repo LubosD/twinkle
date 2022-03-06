@@ -22,17 +22,20 @@
 #include <Akonadi/AgentManager>
 #include <Akonadi/CachePolicy>
 #include <Akonadi/CollectionFetchJob>
+#include <Akonadi/CollectionFetchScope>
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/RecursiveItemFetchJob>
 #else
 #include <AkonadiCore/AgentManager>
 #include <AkonadiCore/CachePolicy>
 #include <AkonadiCore/CollectionFetchJob>
+#include <AkonadiCore/CollectionFetchScope>
 #include <AkonadiCore/ItemFetchScope>
 #include <AkonadiCore/RecursiveItemFetchJob>
 #endif
 
 #include <KContacts/Addressee>
+#include <KContacts/ContactGroup>
 
 #include "events.h"
 #include "log.h"
@@ -77,6 +80,11 @@ void AkonadiAddressBook::synchronize(bool onDemand)
 		new Akonadi::CollectionFetchJob(
 				Akonadi::Collection::root(),
 				Akonadi::CollectionFetchJob::Recursive);
+
+	// Only include collections that can actually contain contacts
+	job->fetchScope().setContentMimeTypes(QStringList()
+			<< KContacts::Addressee::mimeType()
+			<< KContacts::ContactGroup::mimeType());
 
 	// Connect collectionsReceived to the back end.  The whole purpose
 	// of the lambda is to pass along the onDemand argument.
