@@ -35,7 +35,6 @@
 #endif
 
 #include <KContacts/Addressee>
-#include <KContacts/ContactGroup>
 
 #include "events.h"
 #include "log.h"
@@ -83,8 +82,7 @@ void AkonadiAddressBook::synchronize(bool onDemand)
 
 	// Only include collections that can actually contain contacts
 	job->fetchScope().setContentMimeTypes(QStringList()
-			<< KContacts::Addressee::mimeType()
-			<< KContacts::ContactGroup::mimeType());
+			<< KContacts::Addressee::mimeType());
 
 	// Connect collectionsReceived to the back end.  The whole purpose
 	// of the lambda is to pass along the onDemand argument.
