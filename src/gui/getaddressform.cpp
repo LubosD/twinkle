@@ -31,6 +31,13 @@
 #include "akonadiaddressbook.h"
 #include "kcontactstablemodel.h"
 
+#include <akonadi_version.h>
+#if AKONADI_VERSION >= QT_VERSION_CHECK(5, 18, 41)
+#include <Akonadi/ControlGui>
+#else
+#include <AkonadiWidgets/ControlGui>
+#endif
+
 // Column numbers
 #define AB_COL_NAME	0
 #define AB_COL_PHONE	2
@@ -72,6 +79,8 @@ void GetAddressForm::init()
 		this, SLOT(loadAddresses()));
 	
 	sipOnlyCheckBox->setChecked(sys_config->get_ab_show_sip_only());
+
+	Akonadi::ControlGui::widgetNeedsAkonadi(tabAkonadi);
 #else
     addressTabWidget->setTabEnabled(addressTabWidget->indexOf(tabAkonadi), false);
     addressTabWidget->setCurrentIndex(TAB_LOCAL);

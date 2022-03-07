@@ -115,6 +115,7 @@ endif (WITH_DBUS)
 if (WITH_AKONADI)
 	list(APPEND qt_LIBS
 		KF5::AkonadiCore
+		KF5::AkonadiWidgets
 		KF5::Contacts)
 	list(APPEND TWINKLE_GUI-SRCS
 		akonadiaddressbook.cpp
