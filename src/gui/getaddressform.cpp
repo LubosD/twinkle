@@ -85,13 +85,6 @@ void GetAddressForm::reload()
 #endif
 }
 
-void GetAddressForm::synchronize()
-{
-#ifdef HAVE_AKONADI
-	AkonadiAddressBook::self()->synchronize();
-#endif
-}
-
 void GetAddressForm::show()
 {
 	QDialog::show();

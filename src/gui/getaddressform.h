@@ -22,7 +22,6 @@ private:
 	// void destroy();
 public slots:
 	void reload();
-	void synchronize();
 	void show();
 	void loadAddresses();
 	void selectAddress();
