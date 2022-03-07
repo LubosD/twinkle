@@ -19,17 +19,9 @@
 
 #include <akonadi_version.h>
 #if AKONADI_VERSION >= QT_VERSION_CHECK(5, 18, 41)
-#include <Akonadi/AgentManager>
-#include <Akonadi/CachePolicy>
-#include <Akonadi/CollectionFetchJob>
-#include <Akonadi/CollectionFetchScope>
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/RecursiveItemFetchJob>
 #else
-#include <AkonadiCore/AgentManager>
-#include <AkonadiCore/CachePolicy>
-#include <AkonadiCore/CollectionFetchJob>
-#include <AkonadiCore/CollectionFetchScope>
 #include <AkonadiCore/ItemFetchScope>
 #include <AkonadiCore/RecursiveItemFetchJob>
 #endif
@@ -57,8 +49,6 @@ AkonadiAddressBook::AkonadiAddressBook()
 
 	// Load the list of contacts asynchronously
 	reload();
-	// Synchronize all collections marked as syncOnDemand on startup
-	synchronize(true);
 }
 
 AkonadiAddressBook *AkonadiAddressBook::self()
@@ -67,41 +57,6 @@ AkonadiAddressBook *AkonadiAddressBook::self()
 	static AkonadiAddressBook instance;
 
 	return &instance;
-}
-
-
-// Synchronize all collections (front end)
-void AkonadiAddressBook::synchronize(bool onDemand)
-{
-	// Calling synchronizeCollection(Collection::root()) doesn't work, so
-	// we have to fetch them all and sync them one by one.  <sigh>
-	Akonadi::CollectionFetchJob *job =
-		new Akonadi::CollectionFetchJob(
-				Akonadi::Collection::root(),
-				Akonadi::CollectionFetchJob::Recursive);
-
-	// Only include collections that can actually contain contacts
-	job->fetchScope().setContentMimeTypes(QStringList()
-			<< KContacts::Addressee::mimeType());
-
-	// Connect collectionsReceived to the back end.  The whole purpose
-	// of the lambda is to pass along the onDemand argument.
-	connect(job, &Akonadi::CollectionFetchJob::collectionsReceived,
-			[=] (const Akonadi::Collection::List& collections) {
-				synchronizeCollections(collections, onDemand);
-			});
-}
-
-// Synchronize all collections (back end)
-void AkonadiAddressBook::synchronizeCollections(const Akonadi::Collection::List& collections, bool onDemand)
-{
-	// Now that the list of collections we asked for in synchronize() has
-	// arrived, we can actually sync them.
-	for (const Akonadi::Collection &collection : collections)
-	{
-		if (!onDemand || collection.cachePolicy().syncOnDemand())
-			Akonadi::AgentManager::self()->synchronizeCollection(collection);
-	}
 }
 
 
