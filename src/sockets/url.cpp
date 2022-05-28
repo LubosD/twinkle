@@ -42,24 +42,24 @@ unsigned short get_default_port(const string &protocol) {
 	return 0;
 }
 
-unsigned long gethostbyname(const string &name) {
+IPaddr gethostbyname(const string &name) {
 	struct hostent *h;
 	
 	h = gethostbyname(name.c_str());
 	if (h == NULL) return 0;
-	return ntohl(*((unsigned long *)h->h_addr));
+	return ntohl(*((IPNaddr *)h->h_addr));
 }
 
-list<unsigned long> gethostbyname_all(const string &name) {
+list<IPaddr> gethostbyname_all(const string &name) {
 	struct hostent *h;
-	list<unsigned long> l;
+	list<IPaddr> l;
 	
 	h = gethostbyname(name.c_str());
 	if (h == NULL) return l;
 	
 	char **ipaddr = h->h_addr_list;
 	while (*ipaddr) {
-		l.push_back(ntohl(*((unsigned long *)(*ipaddr))));
+		l.push_back(ntohl(*((IPNaddr *)(*ipaddr))));
 		ipaddr++;
 	}
 	
@@ -83,7 +83,7 @@ string get_local_hostname(void) {
 	return h->h_name;
 }
 
-unsigned long get_src_ip4_address_for_dst(unsigned long dst_ip4) {
+IPaddr get_src_ip4_address_for_dst(IPaddr dst_ip4) {
 	string log_msg;
 	struct sockaddr_in addr;
 	int ret;
@@ -157,10 +157,10 @@ string display_and_url2str(const string &display, const string &url) {
 
 // t_ip_port
 
-t_ip_port::t_ip_port(unsigned long _ipaddr, unsigned short _port) :
+t_ip_port::t_ip_port(IPaddr _ipaddr, unsigned short _port) :
 	transport("udp"), ipaddr(_ipaddr), port(_port) {}
 	
-t_ip_port::t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port) :
+t_ip_port::t_ip_port(const string &proto, IPaddr _ipaddr, unsigned short _port) :
 	transport(proto), ipaddr(_ipaddr), port(_port) {}
 
 void t_ip_port::clear(void) {
@@ -511,7 +511,7 @@ int t_url::get_port(void) const {
 	return port;
 }
 
-unsigned long t_url::get_n_ip(void) const {
+IPNaddr t_url::get_n_ip(void) const {
 	struct hostent *h;
 
 	// TODO: handle multiple A RR's
@@ -520,16 +520,16 @@ unsigned long t_url::get_n_ip(void) const {
 	
 	h = gethostbyname(host.c_str());
 	if (h == NULL) return 0;
-	return *((unsigned long *)h->h_addr);
+	return *((IPNaddr *)h->h_addr);
 }
 
-unsigned long t_url::get_h_ip(void) const {
+IPaddr t_url::get_h_ip(void) const {
 	if (scheme == "tel") return 0;
 	return gethostbyname(host);
 }
 
-list<unsigned long> t_url::get_h_ip_all(void) const {
-	if (scheme == "tel") return list<unsigned long>();
+list<IPaddr> t_url::get_h_ip_all(void) const {
+	if (scheme == "tel") return list<IPaddr>();
 	return gethostbyname_all(host);
 }
 
@@ -548,7 +548,7 @@ string t_url::get_ip(void) const {
 list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 	list<t_ip_port> ip_list;
 	list<t_dns_result> srv_list;
-	list<unsigned long> ipaddr_list;
+	list<IPaddr> ipaddr_list;
 	
 	if (scheme == "tel") return list<t_ip_port>();
 		
@@ -566,7 +566,7 @@ list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 				// Get A RR's
 				t_ip_port ip_port;
 				ipaddr_list = gethostbyname_all(i->hostname);
-				for (list<unsigned long>::iterator j = ipaddr_list.begin();
+				for (list<IPaddr>::iterator j = ipaddr_list.begin();
 				     j != ipaddr_list.end(); j++)
 				{
 					ip_list.push_back(t_ip_port(transport, *j, i->port));
@@ -580,7 +580,7 @@ list<t_ip_port> t_url::get_h_ip_srv(const string &transport) const {
 	// No SRV RR's found, do an A RR lookup
 	t_ip_port ip_port;
 	ipaddr_list = get_h_ip_all();
-	for (list<unsigned long>::iterator j = ipaddr_list.begin();
+	for (list<IPaddr>::iterator j = ipaddr_list.begin();
 		j != ipaddr_list.end(); j++)
 	{
 		ip_list.push_back(t_ip_port(transport, *j, get_hport()));

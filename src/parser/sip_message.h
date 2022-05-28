@@ -87,6 +87,7 @@
 #include "hdr_www_authenticate.h"
 #include "parameter.h"
 #include "sip_body.h"
+#include "sockets/ipaddr.h"
 
 // Macro's to access the body of a message, eg msg.sdp_body
 #define SDP_BODY	((t_sdp *)body)
@@ -108,7 +109,7 @@ protected:
 	 * The local IP address can only be determined when the destination
 	 * of a SIP message is known (because of multi homing).
 	 */
-	unsigned long		local_ip_;
+	IPaddr		local_ip_;
 	
 public:
 	// The source IP address and port are only set for messages
@@ -267,7 +268,7 @@ public:
 	 * @return The local IP address.
 	 * @return 0, if the local IP address is not determined yet.
 	 */
-	unsigned long get_local_ip(void);
+	IPaddr get_local_ip(void);
 };
 
 #endif

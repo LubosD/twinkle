@@ -135,7 +135,7 @@ void t_connection_table::remove_connection(t_connection *connection) {
 	signal_modification_write();
 }
 
-t_connection *t_connection_table::get_connection(unsigned long remote_addr, 
+t_connection *t_connection_table::get_connection(IPaddr remote_addr, 
 		unsigned short remote_port)
 {
 	mtx_connections_.lock();
@@ -146,7 +146,7 @@ t_connection *t_connection_table::get_connection(unsigned long remote_addr,
 	for (list<t_connection *>::iterator it = connections_.begin();
 	     it != connections_.end(); ++it)
 	{
-		unsigned long addr;
+		IPaddr addr;
 		unsigned short port;
 
 		if ((*it)->may_reuse()) {
@@ -373,7 +373,7 @@ void t_connection_table::close_idle_connections(unsigned long interval, bool &te
 	for (list<t_connection *>::iterator it = expired_connections.begin();
 	     it != expired_connections.end(); ++it)
 	{
-		unsigned long ipaddr;
+		IPaddr ipaddr;
 		unsigned short port;
 		
 		(*it)->get_remote_address(ipaddr, port);

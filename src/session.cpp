@@ -21,6 +21,7 @@
 #include "phone.h"
 #include "phone_user.h"
 #include "session.h"
+#include "sockets/ipaddr.h"
 #include "util.h"
 #include "userintf.h"
 #include "audits/memman.h"
@@ -438,7 +439,7 @@ void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
 	
 	// Determine the IP address to receive the media streams
 	if (receive_host == AUTO_IP4_ADDRESS) {
-		unsigned local_ip = m->get_local_ip();
+		IPaddr local_ip = m->get_local_ip();
 		if (local_ip == 0) {
 			log_file->write_report("Cannot determine local IP address.",
 				"t_session::create_sdp_offer", LOG_NORMAL, LOG_CRITICAL);
@@ -511,8 +512,8 @@ void t_session::create_sdp_answer(t_sip_message *m, const string &user) {
 	
 	// Determine the IP address to receive the media streams
 	if (receive_host == AUTO_IP4_ADDRESS) {
-		unsigned long local_ip = 0;
-		unsigned long dst_ip = gethostbyname(dst_rtp_host);
+		IPaddr local_ip = 0;
+		IPaddr dst_ip = gethostbyname(dst_rtp_host);
 		
 		if (dst_ip != 0)
 		{

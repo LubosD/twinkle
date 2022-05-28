@@ -574,7 +574,7 @@ void t_phone_user::resend_request(t_request *req, bool is_register, t_client_req
 
 	// Create a new via-header. Otherwise the
 	// request will be seen as a retransmission
-	unsigned long local_ip = req->get_local_ip();
+	IPaddr local_ip = req->get_local_ip();
 	req->hdr_via.via_list.clear();
 	t_via via(USER_HOST(user_config, h_ip2str(local_ip)), PUBLIC_SIP_PORT(user_config));
 	req->hdr_via.add_via(via);
@@ -1442,7 +1442,7 @@ t_request *t_phone_user::create_request(t_method m, const t_url &request_uri) co
         // local IP address should be used.
 	
 	// Via
-	unsigned long local_ip = req->get_local_ip();
+	IPaddr local_ip = req->get_local_ip();
 	t_via via(USER_HOST(user_config, h_ip2str(local_ip)), PUBLIC_SIP_PORT(user_config));
 	req->hdr_via.add_via(via);
 

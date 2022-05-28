@@ -27,6 +27,7 @@
 #include <string>
 
 #include "socket.h"
+#include "sockets/ipaddr.h"
 #include "parser/request.h"
 #include "parser/sip_message.h"
 
@@ -163,7 +164,7 @@ public:
 	 * @param remote_addr [out] Source IPv4 address of the connection.
 	 * @param remote_port [out] Source port of the connection.
 	 */
-	void get_remote_address(unsigned long &remote_addr, unsigned short &remote_port);
+	void get_remote_address(IPaddr &remote_addr, unsigned short &remote_port);
 	
 	/**
 	 * Add an interval to the idle time.

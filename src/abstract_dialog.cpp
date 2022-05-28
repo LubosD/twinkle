@@ -22,6 +22,7 @@
 #include "log.h"
 #include "phone.h"
 #include "phone_user.h"
+#include "sockets/ipaddr.h"
 #include "util.h"
 #include "userintf.h"
 #include "audits/memman.h"
@@ -89,7 +90,7 @@ t_request *t_abstract_dialog::create_request(t_method m) {
         // local IP address should be used.
         
         // Via header
-        unsigned long local_ip = r->get_local_ip();
+        IPaddr local_ip = r->get_local_ip();
 	t_via via(USER_HOST(user_config, h_ip2str(local_ip)), PUBLIC_SIP_PORT(user_config));
 	r->hdr_via.add_via(via);
 
@@ -126,7 +127,7 @@ void t_abstract_dialog::resend_request(t_client_request *cr) {
 
 	// Create a new via-header. Otherwise the
 	// request will be seen as a retransmission
-	unsigned long local_ip = req->get_local_ip();
+	IPaddr local_ip = req->get_local_ip();
 	req->hdr_via.via_list.clear();
 	t_via via(USER_HOST(user_config, h_ip2str(local_ip)), PUBLIC_SIP_PORT(user_config));
 	req->hdr_via.add_via(via);
