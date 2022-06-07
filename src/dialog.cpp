@@ -1556,6 +1556,9 @@ void t_dialog::state_early(t_response *r, t_tuid tuid, t_tid tid) {
 			line->ci_set_refer_supported(true);
 		}
 		
+		// This was a response to a session refresh request (INVITE)
+		process_session_refresh_response(r);
+
 		// Trigger call script
 		script_out_call_answered.exec_notify(r);
 
