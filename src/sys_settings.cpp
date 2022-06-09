@@ -1111,7 +1111,7 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 
-	s += "* GNU uCommon C++ - http://www.gnutelephony.org/index.php/Category:Software";
+	s += "* GNU uCommon C++ - https://www.gnu.org/software/commoncpp/";
 	if (html) s += "<BR><BR>";
 	s += "\n\n";
 	
