@@ -72,68 +72,68 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 	}
 
 	/* Headers */
-^Accept			{ return T_HDR_ACCEPT; }
-^Accept-Encoding	{ return T_HDR_ACCEPT_ENCODING; }
-^Accept-Language	{ return T_HDR_ACCEPT_LANGUAGE; }
-^Alert-Info		{ return T_HDR_ALERT_INFO; }
-^Allow			{ return T_HDR_ALLOW; }
-^(Allow-Events)|u	{ return T_HDR_ALLOW_EVENTS; }
-^Authentication-Info	{ return T_HDR_AUTHENTICATION_INFO; }
-^Authorization		{ return T_HDR_AUTHORIZATION; }
-^(Call-ID)|i		{ return T_HDR_CALL_ID; }
-^Call-Info		{ return T_HDR_CALL_INFO; }
-^(Contact)|m		{ return T_HDR_CONTACT; }
-^Content-Disposition	{ return T_HDR_CONTENT_DISP; }
-^(Content-Encoding)|e	{ return T_HDR_CONTENT_ENCODING; }
-^Content-Language	{ return T_HDR_CONTENT_LANGUAGE; }
-^(Content-Length)|l	{ return T_HDR_CONTENT_LENGTH; }
-^(Content-Type)|c	{ return T_HDR_CONTENT_TYPE; }
-^CSeq			{ return T_HDR_CSEQ; }
-^Date			{ return T_HDR_DATE; }
-^Error-Info		{ return T_HDR_ERROR_INFO; }
-^(Event)|o		{ return T_HDR_EVENT; }
-^Expires		{ return T_HDR_EXPIRES; }
-^(From|f)		{ return T_HDR_FROM; }
-^In-Reply-To		{ return T_HDR_IN_REPLY_TO; }
-^Max-Forwards		{ return T_HDR_MAX_FORWARDS; }
-^Min-Expires		{ return T_HDR_MIN_EXPIRES; }
-^Min-SE			{ return T_HDR_MIN_SE; }
-^MIME-Version		{ return T_HDR_MIME_VERSION; }
-^Organization		{ return T_HDR_ORGANIZATION; }
-^P-Asserted-Identity	{ return T_HDR_P_ASSERTED_IDENTITY; }
-^P-Preferred-Identity	{ return T_HDR_P_PREFERRED_IDENTITY; }
-^Priority		{ return T_HDR_PRIORITY; }
-^Privacy		{ return T_HDR_PRIVACY; }
-^Proxy-Authenticate	{ return T_HDR_PROXY_AUTHENTICATE; }
-^Proxy-Authorization	{ return T_HDR_PROXY_AUTHORIZATION; }
-^Proxy-Require		{ return T_HDR_PROXY_REQUIRE; }
-^RAck			{ return T_HDR_RACK; }
-^Record-Route		{ return T_HDR_RECORD_ROUTE; }
-^Service-Route		{ return T_HDR_SERVICE_ROUTE; }
-^Refer-Sub		{ return T_HDR_REFER_SUB; }
-^(Refer-To)|r		{ return T_HDR_REFER_TO; }
-^(Referred-By)|b	{ return T_HDR_REFERRED_BY; }
-^Replaces		{ return T_HDR_REPLACES; }
-^Reply-To		{ return T_HDR_REPLY_TO; }
-^Require		{ return T_HDR_REQUIRE; }
-^(Request-Disposition)|d {return T_HDR_REQUEST_DISPOSITION; }
-^Retry-After		{ return T_HDR_RETRY_AFTER; }
-^Route			{ return T_HDR_ROUTE; }
-^RSeq			{ return T_HDR_RSEQ; }
-^Server			{ return T_HDR_SERVER; }
-^(Session-Expires)|x	{ return T_HDR_SESSION_EXPIRES; }
-^SIP-ETag		{ return T_HDR_SIP_ETAG; }
-^SIP-If-Match		{ return T_HDR_SIP_IF_MATCH; }
-^(Subject)|s		{ return T_HDR_SUBJECT; }
-^Subscription-State	{ return T_HDR_SUBSCRIPTION_STATE; }
-^(Supported)|k		{ return T_HDR_SUPPORTED; }
-^Timestamp		{ return T_HDR_TIMESTAMP; }
-^(To)|t			{ return T_HDR_TO; }
-^unsupported		{ return T_HDR_UNSUPPORTED; }
-^User-Agent		{ return T_HDR_USER_AGENT; }
-^(Via)|v		{ return T_HDR_VIA; }
-^Warning		{ return T_HDR_WARNING; }
-^[Ww][Ww][Ww]-[Aa]uthenticate	{ return T_HDR_WWW_AUTHENTICATE; }
+^(?i:Accept)			{ return T_HDR_ACCEPT; }
+^(?i:Accept-Encoding)		{ return T_HDR_ACCEPT_ENCODING; }
+^(?i:Accept-Language)		{ return T_HDR_ACCEPT_LANGUAGE; }
+^(?i:Alert-Info)		{ return T_HDR_ALERT_INFO; }
+^(?i:Allow)			{ return T_HDR_ALLOW; }
+^(?i:Allow-Events|u)		{ return T_HDR_ALLOW_EVENTS; }
+^(?i:Authentication-Info)	{ return T_HDR_AUTHENTICATION_INFO; }
+^(?i:Authorization)		{ return T_HDR_AUTHORIZATION; }
+^(?i:Call-ID|i)			{ return T_HDR_CALL_ID; }
+^(?i:Call-Info)			{ return T_HDR_CALL_INFO; }
+^(?i:Contact|m)			{ return T_HDR_CONTACT; }
+^(?i:Content-Disposition)	{ return T_HDR_CONTENT_DISP; }
+^(?i:Content-Encoding|e)	{ return T_HDR_CONTENT_ENCODING; }
+^(?i:Content-Language)		{ return T_HDR_CONTENT_LANGUAGE; }
+^(?i:Content-Length|l)		{ return T_HDR_CONTENT_LENGTH; }
+^(?i:Content-Type|c)		{ return T_HDR_CONTENT_TYPE; }
+^(?i:CSeq)			{ return T_HDR_CSEQ; }
+^(?i:Date)			{ return T_HDR_DATE; }
+^(?i:Error-Info)		{ return T_HDR_ERROR_INFO; }
+^(?i:Event|o)			{ return T_HDR_EVENT; }
+^(?i:Expires)			{ return T_HDR_EXPIRES; }
+^(?i:From|f)			{ return T_HDR_FROM; }
+^(?i:In-Reply-To)		{ return T_HDR_IN_REPLY_TO; }
+^(?i:Max-Forwards)		{ return T_HDR_MAX_FORWARDS; }
+^(?i:Min-Expires)		{ return T_HDR_MIN_EXPIRES; }
+^(?i:Min-SE)			{ return T_HDR_MIN_SE; }
+^(?i:MIME-Version)		{ return T_HDR_MIME_VERSION; }
+^(?i:Organization)		{ return T_HDR_ORGANIZATION; }
+^(?i:P-Asserted-Identity)	{ return T_HDR_P_ASSERTED_IDENTITY; }
+^(?i:P-Preferred-Identity)	{ return T_HDR_P_PREFERRED_IDENTITY; }
+^(?i:Priority)			{ return T_HDR_PRIORITY; }
+^(?i:Privacy)			{ return T_HDR_PRIVACY; }
+^(?i:Proxy-Authenticate)	{ return T_HDR_PROXY_AUTHENTICATE; }
+^(?i:Proxy-Authorization)	{ return T_HDR_PROXY_AUTHORIZATION; }
+^(?i:Proxy-Require)		{ return T_HDR_PROXY_REQUIRE; }
+^(?i:RAck)			{ return T_HDR_RACK; }
+^(?i:Record-Route)		{ return T_HDR_RECORD_ROUTE; }
+^(?i:Service-Route)		{ return T_HDR_SERVICE_ROUTE; }
+^(?i:Refer-Sub)			{ return T_HDR_REFER_SUB; }
+^(?i:Refer-To|r)		{ return T_HDR_REFER_TO; }
+^(?i:Referred-By|b)		{ return T_HDR_REFERRED_BY; }
+^(?i:Replaces)			{ return T_HDR_REPLACES; }
+^(?i:Reply-To)			{ return T_HDR_REPLY_TO; }
+^(?i:Require)			{ return T_HDR_REQUIRE; }
+^(?i:Request-Disposition|d)	{ return T_HDR_REQUEST_DISPOSITION; }
+^(?i:Retry-After)		{ return T_HDR_RETRY_AFTER; }
+^(?i:Route)			{ return T_HDR_ROUTE; }
+^(?i:RSeq)			{ return T_HDR_RSEQ; }
+^(?i:Server)			{ return T_HDR_SERVER; }
+^(?i:Session-Expires|x)		{ return T_HDR_SESSION_EXPIRES; }
+^(?i:SIP-ETag)			{ return T_HDR_SIP_ETAG; }
+^(?i:SIP-If-Match)		{ return T_HDR_SIP_IF_MATCH; }
+^(?i:Subject|s)			{ return T_HDR_SUBJECT; }
+^(?i:Subscription-State)	{ return T_HDR_SUBSCRIPTION_STATE; }
+^(?i:Supported|k)		{ return T_HDR_SUPPORTED; }
+^(?i:Timestamp)			{ return T_HDR_TIMESTAMP; }
+^(?i:To|t)			{ return T_HDR_TO; }
+^(?i:unsupported)		{ return T_HDR_UNSUPPORTED; }
+^(?i:User-Agent)		{ return T_HDR_USER_AGENT; }
+^(?i:Via|v)			{ return T_HDR_VIA; }
+^(?i:Warning)			{ return T_HDR_WARNING; }
+^(?i:WWW-Authenticate)		{ return T_HDR_WWW_AUTHENTICATE; }
 ^{TOKEN_SYM}+		{ yylval.yyt_str = new string(yytext);
 			  MEMMAN_NEW(yylval.yyt_str);
 			  return T_HDR_UNKNOWN; }
@@ -303,7 +303,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 <C_NEW>\n		{ return T_CRLF; }
 
 	/* Authorization scheme */
-<C_AUTH_SCHEME>[Dd][Ii][Gg][Ee][Ss][Tt]	{ return T_AUTH_DIGEST; }
+<C_AUTH_SCHEME>(?i:Digest)	{ return T_AUTH_DIGEST; }
 <C_AUTH_SCHEME>{TOKEN_SYM}+ 	{ yylval.yyt_str = new string(yytext);
 			 	  MEMMAN_NEW(yylval.yyt_str);
 				  return T_AUTH_OTHER; }
