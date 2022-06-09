@@ -39,8 +39,8 @@
 // t_icmp_msg
 /////////////////
 
-t_icmp_msg::t_icmp_msg(short _type, short _code, unsigned long _icmp_src_ipaddr,
-	unsigned long _ipaddr, unsigned short _port) :
+t_icmp_msg::t_icmp_msg(short _type, short _code, IPaddr _icmp_src_ipaddr,
+	IPaddr _ipaddr, unsigned short _port) :
 		type(_type), code(_code), icmp_src_ipaddr(_icmp_src_ipaddr),
 		ipaddr(_ipaddr), port(_port)
 {}
@@ -104,7 +104,7 @@ t_socket_udp::t_socket_udp(unsigned short port) {
 	if (ret < 0) throw errno;
 }
 
-int t_socket_udp::connect(unsigned long dest_addr, unsigned short dest_port) {
+int t_socket_udp::connect(IPaddr dest_addr, unsigned short dest_port) {
 	struct sockaddr_in addr;
 	int ret;
 
@@ -117,7 +117,7 @@ int t_socket_udp::connect(unsigned long dest_addr, unsigned short dest_port) {
 	return ret;
 }
 
-int t_socket_udp::sendto(unsigned long dest_addr, unsigned short dest_port,
+int t_socket_udp::sendto(IPaddr dest_addr, unsigned short dest_port,
 	           const char *data, int data_size) {
 	struct sockaddr_in addr;
 	int ret;
@@ -139,7 +139,7 @@ ssize_t t_socket_udp::send(const void *data, int data_size) {
 	return ret;
 }
 
-int t_socket_udp::recvfrom(unsigned long &src_addr, unsigned short &src_port,
+int t_socket_udp::recvfrom(IPaddr &src_addr, unsigned short &src_port,
 		     char *buf, int buf_size) {
 	struct sockaddr_in addr;
 	int ret, len_addr;
@@ -255,9 +255,9 @@ bool t_socket_udp::get_icmp(t_icmp_msg &icmp) {
 	return false;
 }
 
-string h_ip2str(unsigned long ipaddr) {
+string h_ip2str(IPaddr ipaddr) {
 	char buf[16];
-	unsigned long x = htonl(ipaddr);
+	IPNaddr x = htonl(ipaddr);
 	unsigned char *ipbuf = (unsigned char *)&x;
 
 	snprintf(buf, 16, "%u.%u.%u.%u", ipbuf[0], ipbuf[1], ipbuf[2],
@@ -307,7 +307,7 @@ void t_socket_tcp::listen(int backlog) {
 	if (ret < 0) throw errno;
 }
 
-t_socket_tcp *t_socket_tcp::accept(unsigned long &src_addr, unsigned short &src_port) {
+t_socket_tcp *t_socket_tcp::accept(IPaddr &src_addr, unsigned short &src_port) {
 	struct sockaddr_in addr;
 	socklen_t socklen = sizeof(addr);
 	int ret = ::accept(sd, (struct sockaddr *)&addr, &socklen);
@@ -321,7 +321,7 @@ t_socket_tcp *t_socket_tcp::accept(unsigned long &src_addr, unsigned short &src_
 	return sock;
 }
 
-void t_socket_tcp::connect(unsigned long dest_addr, unsigned short dest_port) {
+void t_socket_tcp::connect(IPaddr dest_addr, unsigned short dest_port) {
 	struct sockaddr_in addr;
 	int ret;
 
@@ -348,7 +348,7 @@ ssize_t t_socket_tcp::recv(void *buf, int buf_size) {
 	return ret;
 }
 
-void t_socket_tcp::get_remote_address(unsigned long &remote_addr, unsigned short &remote_port) {
+void t_socket_tcp::get_remote_address(IPaddr &remote_addr, unsigned short &remote_port) {
 	struct sockaddr_in addr;
 	socklen_t namelen = sizeof(addr);
 	

@@ -34,6 +34,7 @@
 #include "parser/response.h"
 #include "stun/stun.h"
 #include "presence/buddy.h"
+#include "sockets/ipaddr.h"
 
 using namespace std;
 using namespace im;
@@ -195,7 +196,7 @@ public:
 	//@{
 	bool		use_stun; 		/**< Indicates if STUN must be used. */
 	bool		use_nat_keepalive; 	/**< Send NAT keepalive ? */
-	unsigned long	stun_public_ip_sip; 	/**< Public IP for SIP */
+	IPaddr	stun_public_ip_sip; 	/**< Public IP for SIP */
 	unsigned short	stun_public_port_sip; 	/**< Public port for SIP */
 	
 	/** Number of presence subscriptions using the STUN binding. */

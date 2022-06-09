@@ -29,6 +29,7 @@
 #include <unistd.h>
 
 #include "connection.h"
+#include "sockets/ipaddr.h"
 #include "threads/mutex.h"
 
 using namespace std;
@@ -124,7 +125,7 @@ public:
 	 *       unlock the tbale when it is finished with the connection.
 	 * @note Only re-usable connections are considered.
 	 */
-	t_connection *get_connection(unsigned long remote_addr, unsigned short remote_port);
+	t_connection *get_connection(IPaddr remote_addr, unsigned short remote_port);
 	
 	/**
 	 * Wait for connections to become readable.

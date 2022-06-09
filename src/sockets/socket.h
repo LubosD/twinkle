@@ -29,6 +29,8 @@
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 
+#include "sockets/ipaddr.h"
+
 using namespace std;
 
 // ports and addresses should be in host order
@@ -40,15 +42,15 @@ public:
 	short		code;
 	
 	// ICMP source IP address
-	unsigned long	icmp_src_ipaddr;
+	IPaddr		icmp_src_ipaddr;
 	
 	// Destination IP address/port of packet causing the ICMP message.
-	unsigned long	ipaddr;
+	IPaddr		ipaddr;
 	unsigned short	port;
 	
 	t_icmp_msg() {};
-	t_icmp_msg(short _type, short _code, unsigned long _icmp_src_ipaddr,
-		unsigned long _ipaddr, unsigned short _port);
+	t_icmp_msg(short _type, short _code, IPaddr _icmp_src_ipaddr,
+		IPaddr _ipaddr, unsigned short _port);
 };
 
 /** Abstract socket */
@@ -106,17 +108,17 @@ public:
 	
 	// Connect a socket
 	// Throws an int exception if it fails (errno as set by 'sendto')
-	int connect(unsigned long dest_addr, unsigned short dest_port);
+	int connect(IPaddr dest_addr, unsigned short dest_port);
 
 	// Throws an int exception if it fails (errno as set by 'sendto')
-	int sendto(unsigned long dest_addr, unsigned short dest_port,
+	int sendto(IPaddr dest_addr, unsigned short dest_port,
 	           const char *data, int data_size);
 	virtual ssize_t send(const void *data, int data_size);
 
 	// Throws an int exception if it fails (errno as set by 'recvfrom')
 	// On success the length of the data in buf is returned. After the
 	// data in buf there will be a 0.
-	int recvfrom(unsigned long &src_addr, unsigned short &src_port,
+	int recvfrom(IPaddr &src_addr, unsigned short &src_port,
 		     char *buf, int buf_size);
 	
 	virtual ssize_t recv(void *buf, int buf_size);
@@ -170,7 +172,7 @@ public:
 	 * @return A socket for the new connection
 	 * @throw int Errno
 	 */
-	t_socket_tcp *accept(unsigned long &src_addr, unsigned short &src_port);
+	t_socket_tcp *accept(IPaddr &src_addr, unsigned short &src_port);
 	
 	/**
 	 * Connect to a destination
@@ -178,7 +180,7 @@ public:
 	 * @param dest_port [in] Destination port.
 	 * @throw int Errno
 	 */
-	void connect(unsigned long dest_addr, unsigned short dest_port);
+	void connect(IPaddr dest_addr, unsigned short dest_port);
 	
 	/** Send data */
 	virtual ssize_t send(const void *data, int data_size);
@@ -193,7 +195,7 @@ public:
 	 * @param remote_port [out] Source port of the connection.
 	 * @throw int Errno
 	 */
-	void get_remote_address(unsigned long &remote_addr, unsigned short &remote_port);
+	void get_remote_address(IPaddr &remote_addr, unsigned short &remote_port);
 };
 
 /** Local socket */
@@ -216,6 +218,6 @@ public:
 };
 
 // Convert an IP address in host order to a string.
-string h_ip2str(unsigned long ipaddr);
+string h_ip2str(IPaddr ipaddr);
 
 #endif

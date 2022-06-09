@@ -32,6 +32,7 @@
 #include "userintf.h"
 #include "util.h"
 #include "sockets/connection_table.h"
+#include "sockets/ipaddr.h"
 #include "sockets/socket.h"
 #include "parser/parse_ctrl.h"
 #include "parser/sip_message.h"
@@ -64,7 +65,7 @@ static int num_non_icmp_errors = 0;
 //
 // Returns true if the packet that failed to be sent, should still be sent.
 // Returns false if the packet that failed to be sent, should be discarded.
-static bool handle_socket_err(int err, unsigned long dst_addr, unsigned short dst_port) {
+static bool handle_socket_err(int err, IPaddr dst_addr, unsigned short dst_port) {
 	string log_msg;
 
 	// Check if an ICMP error has been received
@@ -184,7 +185,7 @@ static void send_sip_tcp(t_event *event) {
 	bool new_connection = false;
 	
 	e = (t_event_network *)event;
-	unsigned long dst_addr = e->dst_addr;
+	IPaddr dst_addr = e->dst_addr;
 	unsigned short dst_port = e->dst_port;
 	
 	assert(dst_addr != 0);
@@ -452,7 +453,7 @@ void *tcp_sender_loop(void *arg) {
 					continue;
 				}
 				
-				unsigned long remote_addr;
+				IPaddr remote_addr;
 				unsigned short remote_port;
 			
 				(*it)->get_remote_address(remote_addr, remote_port);
@@ -494,7 +495,7 @@ void *tcp_sender_loop(void *arg) {
 void *sender_loop(void *arg) {
 	t_event 	*event;
 	t_event_network	*ev_network;
-	unsigned long	local_ipaddr;
+	IPaddr	local_ipaddr;
 
 	bool quit = false;
 	while (!quit) {

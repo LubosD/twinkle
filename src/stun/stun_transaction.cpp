@@ -33,7 +33,7 @@ extern t_event_queue		*evq_sender;
 extern t_phone			*phone;
 
 
-bool get_stun_binding(t_user *user_config, unsigned short src_port, unsigned long &mapped_ip,
+bool get_stun_binding(t_user *user_config, unsigned short src_port, IPaddr &mapped_ip,
 	unsigned short &mapped_port, int &err_code, string &err_reason)
 {
 	list<t_ip_port> destinations = 

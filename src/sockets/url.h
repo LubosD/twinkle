@@ -21,6 +21,7 @@
 #include <list>
 #include <string>
 #include "parser/header.h"
+#include "sockets/ipaddr.h"
 
 /** @name Forward declarations */
 //@{
@@ -32,15 +33,17 @@ using namespace std;
 class t_ip_port {
 public:
 	string			transport;
-	unsigned long		ipaddr;
+	IPaddr			ipaddr;
 	unsigned short		port;
 	
 	t_ip_port() : transport("udp") {};
-	t_ip_port(unsigned long _ipaddr, unsigned short _port);
-	t_ip_port(const string &proto, unsigned long _ipaddr, unsigned short _port);
+	t_ip_port(IPaddr _ipaddr, unsigned short _port);
+	t_ip_port(const string &proto, IPaddr _ipaddr, unsigned short _port);
 	
 	void clear(void);
 	bool is_null(void) const;
+	// NOTE: Equality is used only by t_phone_user::send_nat_keepalive(),
+	// to avoid sending two keep-alives to the same host
 	bool operator==(const t_ip_port &other) const;
 	bool operator!=(const t_ip_port &other) const;
 	string tostring(void) const;
@@ -51,10 +54,10 @@ unsigned short get_default_port(const string &protocol);
 
 // Return the first IP address of host name.
 // Return 0 if no IP address can be found.
-unsigned long gethostbyname(const string &name);
+IPaddr gethostbyname(const string &name);
 
 // Return all IP address of host name
-list<unsigned long> gethostbyname_all(const string &name);
+list<IPaddr> gethostbyname_all(const string &name);
 
 /**
  * Get local host name.
@@ -69,7 +72,7 @@ string get_local_hostname(void);
  * @return The source IPv4 address.
  * @return 0 if the source address cannot be determined.
  */
-unsigned long get_src_ip4_address_for_dst(unsigned long dst_ip4);
+IPaddr get_src_ip4_address_for_dst(IPaddr dst_ip4);
 
 class t_url {
 private:
@@ -164,12 +167,12 @@ public:
 
 	// ip address network order. Return 0 if address not found
 	// DNS A RR lookup
-	unsigned long get_n_ip(void) const;
+	IPNaddr get_n_ip(void) const;
 
 	// ip address host order. Return 0 if address not found
 	// DNS A RR lookup
-	unsigned long get_h_ip(void) const;
-	list<unsigned long> get_h_ip_all(void) const;
+	IPaddr get_h_ip(void) const;
+	list<IPaddr> get_h_ip_all(void) const;
 
 	// DNS A RR lookup
 	string get_ip(void) const; // ip address as string

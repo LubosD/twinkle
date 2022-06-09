@@ -475,7 +475,7 @@ void t_sip_message::calc_local_ip(void) {
 	// Do nothing
 }
 
-unsigned long t_sip_message::get_local_ip(void) {
+IPaddr t_sip_message::get_local_ip(void) {
 	if (local_ip_ == 0) calc_local_ip();
 	return local_ip_;
 }
