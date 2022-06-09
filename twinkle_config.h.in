@@ -16,6 +16,7 @@
 #cmakedefine WORDS_BIGENDIAN
 #cmakedefine HAVE_LIBASOUND
 #cmakedefine HAVE_DBUS
+#cmakedefine HAVE_AKONADI
 
 #define VERSION		"${PRODUCT_VERSION}"
 #define VERSION_DATE	"${PRODUCT_DATE}"

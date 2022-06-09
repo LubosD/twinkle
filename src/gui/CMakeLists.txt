@@ -112,6 +112,15 @@ if (WITH_DBUS)
 	list(APPEND TWINKLE_GUI-SRCS
 		idlesession_inhibitor.cpp)
 endif (WITH_DBUS)
+if (WITH_AKONADI)
+	list(APPEND qt_LIBS
+		KF5::AkonadiCore
+		KF5::AkonadiWidgets
+		KF5::Contacts)
+	list(APPEND TWINKLE_GUI-SRCS
+		akonadiaddressbook.cpp
+		kcontactstablemodel.cpp)
+endif (WITH_AKONADI)
 
 add_executable(twinkle ${TWINKLE_GUI-SRCS})
 target_link_libraries(twinkle ${twinkle_LIBS} ${qt_LIBS})
