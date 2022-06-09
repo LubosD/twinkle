@@ -250,7 +250,7 @@ void MphoneForm::init()
 		
 #ifdef WITH_DIAMONDCARD
 		// Diamondcard menu
-		menu->insertItem("Diamondcard", Diamondcard);
+		menu->addMenu(Diamondcard);
         menu->addSeparator();
 #endif
 		

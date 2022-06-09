@@ -164,22 +164,8 @@ void DiamondcardProfileForm::validate()
 	accept();
 }
 
-// Handle mouse clicks on labels.
-void DiamondcardProfileForm::mouseReleaseEvent(QMouseEvent *e)
+void DiamondcardProfileForm::signUpLinkActivated()
 {
-	if (e->button() == Qt::LeftButton && e->type() == QEvent::MouseButtonRelease) {
-		processLeftMouseButtonRelease(e);
-	} else {
-		e->ignore();
-	}
-}
-
-void DiamondcardProfileForm::processLeftMouseButtonRelease(QMouseEvent *e)
-{
-    if (signUpTextLabel->testAttribute(Qt::WA_UnderMouse)) {
-		string url = diamondcard_url(DC_ACT_SIGNUP, "", "");
-		((t_gui *)ui)->open_url_in_browser(url.c_str());
-	} else {
-		e->ignore();
-	}
+	string url = diamondcard_url(DC_ACT_SIGNUP, "", "");
+	((t_gui *)ui)->open_url_in_browser(url.c_str());
 }

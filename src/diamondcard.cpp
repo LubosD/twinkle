@@ -95,7 +95,7 @@ void diamondcard_set_user_config(t_user &user, const string &displayName,
 	user.set_codecs(codecs);
 	
 	// Voice mail
-	user.set_mwi_vm_address("80");
+	user.set_mwi_vm_address("80#");
 	
 	// IM
 	user.set_im_send_iscomposing(false);
