@@ -25,6 +25,7 @@
 #include "transaction.h"
 #include "threads/mutex.h"
 #include "threads/thread.h"
+#include "sockets/ipaddr.h"
 #include "sockets/socket.h"
 #include "sockets/url.h"
 
@@ -32,7 +33,7 @@
 // Returns true on success. Returns false when the STUN server returned
 // an error. Throws an int exception (containing errno) when some
 // socket operation fails.
-bool get_stun_binding(t_user *user_config, unsigned short src_port, unsigned long &mapped_ip,
+bool get_stun_binding(t_user *user_config, unsigned short src_port, IPaddr &mapped_ip,
 	unsigned short &mapped_port, int &err_code, string &err_reason);
 	
 	

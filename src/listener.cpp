@@ -26,6 +26,7 @@
 #include "util.h"
 #include "im/im_iscomposing_body.h"
 #include "sockets/connection_table.h"
+#include "sockets/ipaddr.h"
 #include "sockets/socket.h"
 #include "parser/parse_ctrl.h"
 #include "parser/sip_message.h"
@@ -49,7 +50,7 @@ extern t_event_queue *evq_trans_layer;
 #define TCP_BACKLOG		5
 
 void recvd_stun_msg(char *datagram, int datagram_size, 
-	unsigned long src_addr, unsigned short src_port) 
+	IPaddr src_addr, unsigned short src_port) 
 {
 	StunMessage m;
 	
@@ -298,7 +299,7 @@ static void process_sip_msg(t_sip_message *msg, const string &raw_headers, const
 void *listen_udp(void *arg) {
 	char		buf[sys_config->get_sip_max_udp_size() + 1];
 	int		data_size;
-	unsigned long	src_addr;
+	IPaddr	src_addr;
 	unsigned short	src_port;
 	t_sip_message	*msg;
 	t_event_icmp	*ev_icmp;
@@ -474,7 +475,7 @@ void *listen_for_data_tcp(void *arg) {
 		{
 			string raw_headers;
 			string raw_body;
-			unsigned long remote_addr;
+			IPaddr remote_addr;
 			unsigned short remote_port;
 			
 			(*it)->get_remote_address(remote_addr, remote_port);
@@ -583,7 +584,7 @@ void *listen_for_data_tcp(void *arg) {
 }
 
 void *listen_for_conn_requests_tcp(void *arg) {
-	unsigned long dst_addr;
+	IPaddr dst_addr;
 	unsigned short dst_port;
 	string log_msg;
 

@@ -887,7 +887,7 @@ int main( int argc, char ** argv )
 		ui->cb_show_msg(error_msg, MSG_WARNING);
 	}
 	
-	// Preload the address finder (KABC is only available in GUI mode)
+	// Preload the address finder (Akonadi is only available in GUI mode)
 	if (!cli_mode) {
 		t_address_finder::preload();
 	}

@@ -218,7 +218,7 @@ void t_connection::remove_data(size_t nbytes) {
 	}
 }
 
-void t_connection::get_remote_address(unsigned long &remote_addr, unsigned short &remote_port) {
+void t_connection::get_remote_address(IPaddr &remote_addr, unsigned short &remote_port) {
 	remote_addr = 0;
 	remote_port = 0;
 

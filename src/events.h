@@ -30,6 +30,7 @@
 #include "audio/audio_codecs.h"
 #include "audio/rtp_telephone_event.h"
 #include "parser/sip_message.h"
+#include "sockets/ipaddr.h"
 #include "sockets/socket.h"
 #include "sockets/url.h"
 #include "threads/mutex.h"
@@ -93,9 +94,9 @@ private:
 	t_sip_message	*msg;
 
 public:
-	unsigned int	src_addr; /**< Source IP address of the SIP message (host order). */
+	IPaddr	src_addr; /**< Source IP address of the SIP message (host order). */
 	unsigned short	src_port; /**< Source port of the SIP message (host order). */
-	unsigned int	dst_addr; /**< Destination IP address of the SIP message (host order). */
+	IPaddr	dst_addr; /**< Destination IP address of the SIP message (host order). */
 	unsigned short	dst_port; /**< Destination port of the SIP message (host order). */
 	string		transport; /**< Transport protocol */
 
@@ -365,7 +366,7 @@ private:
 	t_user			*user_config;	/**< User profile associated with this request. */
 
 public:
-	unsigned int	dst_addr;	/**< Destination address of request (host order). */
+	IPaddr	dst_addr;	/**< Destination address of request (host order). */
 	unsigned short	dst_port;	/**< Destination port of request (host order). */
 	unsigned short	src_port;	/**< Source port for media event type (host order). */
 
@@ -429,7 +430,7 @@ public:
  */
 class t_event_nat_keepalive : public t_event {
 public:
-	unsigned int	dst_addr;	/**< Destination address for keepalive (host order) */
+	IPaddr	dst_addr;	/**< Destination address for keepalive (host order) */
 	unsigned short	dst_port;	/**< Destination port (host order) */
 	
 	t_event_type get_type(void) const;
@@ -611,19 +612,19 @@ private:
 	/** The user URI (AoR) for which the ping must be sent. */
 	t_url		user_uri_;
 	
-	unsigned int	dst_addr_;	/**< Destination address for ping (host order) */
+	IPaddr	dst_addr_;	/**< Destination address for ping (host order) */
 	unsigned short	dst_port_;	/**< Destination port (host order) */
 	
 public:
 	/** Constructor */
-	t_event_tcp_ping(const t_url &url, unsigned int dst_addr, unsigned short dst_port);
+	t_event_tcp_ping(const t_url &url, IPaddr dst_addr, unsigned short dst_port);
 	
 	t_event_type get_type(void) const;
 	
 	/** @name Getters */
 	//@{
 	t_url get_user_uri(void) const;
-	unsigned int get_dst_addr(void) const;
+	IPaddr get_dst_addr(void) const;
 	unsigned short get_dst_port(void) const;
 	//@}
 };
@@ -776,7 +777,7 @@ public:
 	 */
 	void push_stun_request(t_user *user_config, StunMessage *m, t_stun_event_type ev_type,
 		unsigned short tuid, unsigned short tid,
-		unsigned long ipaddr, unsigned short port, unsigned short src_port = 0);
+		IPaddr ipaddr, unsigned short port, unsigned short src_port = 0);
 		
 	/**
 	 * Create a STUN response event.
@@ -792,7 +793,7 @@ public:
 	 * @param ipaddr [in] Destination address (host order)
 	 * @param port [in] Destination port (host order)
 	 */
-	void push_nat_keepalive(unsigned long ipaddr, unsigned short port);
+	void push_nat_keepalive(IPaddr ipaddr, unsigned short port);
 	
 	/**
 	 * Create ICMP event.
@@ -818,7 +819,7 @@ public:
 	 * @param dst_addr [in] The destination IPv4 address for the ping.
 	 * @param dst_port [in] The destination TCP port for the ping.
 	 */
-	void push_tcp_ping(const t_url &user_uri, unsigned int dst_addr, unsigned short dst_port);
+	void push_tcp_ping(const t_url &user_uri, IPaddr dst_addr, unsigned short dst_port);
 
 	/**
 	 * Pop an event from the queue. 

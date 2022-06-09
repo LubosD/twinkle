@@ -482,7 +482,7 @@ t_url t_event_broken_connection::get_user_uri(void) const {
 // class t_event_tcp_ping
 ///////////////////////////////////////////////////////////
 
-t_event_tcp_ping::t_event_tcp_ping(const t_url &url, unsigned int dst_addr, unsigned short dst_port) :
+t_event_tcp_ping::t_event_tcp_ping(const t_url &url, IPaddr dst_addr, unsigned short dst_port) :
 	t_event(),
 	user_uri_(url),
 	dst_addr_(dst_addr),
@@ -497,7 +497,7 @@ t_url t_event_tcp_ping::get_user_uri(void) const {
 	return user_uri_;
 }
 
-unsigned int t_event_tcp_ping::get_dst_addr(void) const {
+IPaddr t_event_tcp_ping::get_dst_addr(void) const {
 	return dst_addr_;
 }
 
@@ -643,7 +643,7 @@ void t_event_queue::push_abort_trans(unsigned short tid) {
 void t_event_queue::push_stun_request(t_user *user_config, 
 		StunMessage *m, t_stun_event_type ev_type,
 		unsigned short tuid, unsigned short tid,
-		unsigned long ipaddr, unsigned short port, unsigned short src_port)
+		IPaddr ipaddr, unsigned short port, unsigned short src_port)
 {
 	t_event_stun_request *event = new t_event_stun_request(user_config, 
 		m, ev_type, tuid, tid);
@@ -663,7 +663,7 @@ void t_event_queue::push_stun_response(StunMessage *m,
 	push(event);
 }
 
-void t_event_queue::push_nat_keepalive(unsigned long ipaddr, unsigned short port) {
+void t_event_queue::push_nat_keepalive(IPaddr ipaddr, unsigned short port) {
 	t_event_nat_keepalive *event = new t_event_nat_keepalive();
 	MEMMAN_NEW(event);
 	event->dst_addr = ipaddr;
@@ -692,7 +692,7 @@ void t_event_queue::push_broken_connection(const t_url &user_uri) {
 	push(event);
 }
 
-void t_event_queue::push_tcp_ping(const t_url &user_uri, unsigned int dst_addr, unsigned short dst_port) 
+void t_event_queue::push_tcp_ping(const t_url &user_uri, IPaddr dst_addr, unsigned short dst_port) 
 {
 	t_event_tcp_ping *event = new t_event_tcp_ping(user_uri, dst_addr, dst_port);
 	MEMMAN_NEW(event);

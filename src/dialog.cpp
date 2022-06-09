@@ -32,6 +32,7 @@
 #include "audits/memman.h"
 #include "im/im_iscomposing_body.h"
 #include "sdp/sdp.h"
+#include "sockets/ipaddr.h"
 #include "sockets/socket.h"
 #include "stun/stun_transaction.h"
 
@@ -1556,6 +1557,9 @@ void t_dialog::state_early(t_response *r, t_tuid tuid, t_tid tid) {
 			line->ci_set_refer_supported(true);
 		}
 		
+		// This was a response to a session refresh request (INVITE)
+		process_session_refresh_response(r);
+
 		// Trigger call script
 		script_out_call_answered.exec_notify(r);
 
@@ -2638,7 +2642,7 @@ void t_dialog::send_invite(const t_url &to_uri, const string &to_display,
 	session->create_sdp_offer(&invite, SDP_O_USER);
 	
 	// Set Via header
-	unsigned long local_ip = invite.get_local_ip();
+	IPaddr local_ip = invite.get_local_ip();
 	t_via via(USER_HOST(user_config, h_ip2str(local_ip)), PUBLIC_SIP_PORT(user_config));
 	invite.hdr_via.add_via(via);
 	
@@ -3257,7 +3261,7 @@ bool t_dialog::stun_bind_media(void) {
 	t_user *user_config = phone_user->get_user_profile();
 	
 	try {
-		unsigned long mapped_ip;
+		IPaddr mapped_ip;
 		unsigned short mapped_port;
 		int stun_err_code;
 		string stun_err_reason;

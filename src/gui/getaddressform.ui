@@ -22,21 +22,24 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tabKABC">
+     <widget class="QWidget" name="tabAkonadi">
       <attribute name="title">
-       <string>&amp;KAddressBook</string>
+       <string>&amp;Akonadi contacts</string>
       </attribute>
       <layout class="QVBoxLayout">
        <item>
         <widget class="QTableView" name="addressListView">
          <property name="whatsThis">
-          <string>This list of addresses is taken from &lt;b&gt;KAddressBook&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook.</string>
+          <string>This list of addresses is taken from &lt;b&gt;Akonadi&lt;/b&gt;. Contacts for which you did not provide a phone number are not shown here. To add, delete or modify address information you have to use KAddressBook or Kontact.</string>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
          </property>
          <property name="columnCount" stdset="0">
           <number>3</number>
@@ -93,7 +96,7 @@
          <item>
           <widget class="QPushButton" name="reloadPushButton">
            <property name="whatsThis">
-            <string>Reload the list of addresses from KAddressbook.</string>
+            <string>Reload the list of contacts from Akonadi.</string>
            </property>
            <property name="text">
             <string>&amp;Reload</string>
@@ -318,7 +321,7 @@
    <sender>addressListView</sender>
    <signal>doubleClicked(QModelIndex)</signal>
    <receiver>GetAddressForm</receiver>
-   <slot>selectKABCAddress()</slot>
+   <slot>selectAkonadiAddress()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>33</x>
