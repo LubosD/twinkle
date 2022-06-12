@@ -64,6 +64,7 @@ void yyerror(const char *s);
 	t_contact_param		*yyt_contact;
 	t_error_param		*yyt_error_param;
 	t_identity		*yyt_from_addr;
+	t_reason		*yyt_reason;
 	t_route			*yyt_route;
 	t_server		*yyt_server;
 	t_via			*yyt_via;
@@ -132,6 +133,7 @@ void yyerror(const char *s);
 %token			T_HDR_RACK
 %token			T_HDR_RECORD_ROUTE
 %token			T_HDR_SERVICE_ROUTE
+%token			T_HDR_REASON
 %token			T_HDR_REFER_SUB
 %token			T_HDR_REFER_TO
 %token			T_HDR_REFERRED_BY
@@ -206,6 +208,7 @@ void yyerror(const char *s);
 %type <yyt_str>		parameter_val
 %type <yyt_params>	parameters
 %type <yyt_float>	q_factor
+%type <yyt_reason>	reason_param
 %type <yyt_route>	rec_route
 %type <yyt_via>		sent_protocol
 %type <yyt_server>	server
@@ -239,6 +242,7 @@ void yyerror(const char *s);
 %destructor { MEMMAN_DELETE($$); delete $$; }	parameter
 %destructor { MEMMAN_DELETE($$); delete $$; }	parameter_val
 %destructor { MEMMAN_DELETE($$); delete $$; }	parameters
+%destructor { MEMMAN_DELETE($$); delete $$; }	reason_param
 %destructor { MEMMAN_DELETE($$); delete $$; }	rec_route
 %destructor { MEMMAN_DELETE($$); delete $$; }	sent_protocol
 %destructor { MEMMAN_DELETE($$); delete $$; }	server
@@ -361,6 +365,7 @@ header:		  hd_accept hdr_accept T_CRLF
 		| hd_proxy_authorization hdr_proxy_authorization T_CRLF
 		| hd_proxy_require hdr_proxy_require T_CRLF
 		| hd_rack hdr_rack T_CRLF
+		| hd_reason hdr_reason T_CRLF
 		| hd_record_route hdr_record_route T_CRLF
 		| hd_refer_sub hdr_refer_sub T_CRLF
 		| hd_refer_to hdr_refer_to T_CRLF
@@ -463,6 +468,8 @@ header:		  hd_accept hdr_accept T_CRLF
 			{ PARSE_ERROR("Proxy-Require"); }
 		| hd_rack error T_CRLF
 			{ PARSE_ERROR("RAck"); }
+		| hd_reason error T_CRLF
+			{ PARSE_ERROR("Reason"); }
 		| hd_record_route error T_CRLF
 			{ PARSE_ERROR("Record-Route"); }
 		| hd_refer_sub error T_CRLF
@@ -597,6 +604,8 @@ hd_proxy_authorization:	T_HDR_PROXY_AUTHORIZATION ':' { CTXT_AUTH_SCHEME; }
 hd_proxy_require:	T_HDR_PROXY_REQUIRE ':'
 ;
 hd_rack:		T_HDR_RACK ':' { CTXT_NUM; }
+;
+hd_reason:		T_HDR_REASON ':'
 ;
 hd_record_route:	T_HDR_RECORD_ROUTE ':' { CTXT_URI; }
 ;
@@ -1073,6 +1082,29 @@ hdr_proxy_require:   T_TOKEN {
 		   | hdr_proxy_require ',' T_TOKEN {
 			MSG->hdr_proxy_require.add_feature(tolower(*$3));
 			MEMMAN_DELETE($3); delete $3; }
+;
+
+hdr_reason:	  reason_param {
+			MSG->hdr_reason.add_reason(*$1);
+			MEMMAN_DELETE($1); delete $1; }
+		| hdr_reason ',' reason_param {
+			MSG->hdr_reason.add_reason(*$3);
+			MEMMAN_DELETE($3); delete $3; }
+;
+
+reason_param:	  T_TOKEN parameters {
+			$$ = new t_reason(*$1);
+			MEMMAN_NEW($$);
+			for (const auto &param : *$2) {
+				if (param.name == "cause") {
+					$$->set_cause(param.value);
+				} else if (param.name == "text") {
+					$$->set_text(param.value);
+				} else {
+					$$->add_extension(param);
+				}
+			}
+			MEMMAN_DELETE($2); delete $2; }
 ;
 
 hdr_record_route:   rec_route {

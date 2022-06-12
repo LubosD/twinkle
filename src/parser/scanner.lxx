@@ -108,6 +108,7 @@ WORD_SYM	[[:alnum:]\-\.!%\*_\+\`\'~\(\)<>:\\\"\/\[\]\?\{\}]
 ^(?i:Proxy-Authorization)	{ return T_HDR_PROXY_AUTHORIZATION; }
 ^(?i:Proxy-Require)		{ return T_HDR_PROXY_REQUIRE; }
 ^(?i:RAck)			{ return T_HDR_RACK; }
+^(?i:Reason)			{ return T_HDR_REASON; }
 ^(?i:Record-Route)		{ return T_HDR_RECORD_ROUTE; }
 ^(?i:Service-Route)		{ return T_HDR_SERVICE_ROUTE; }
 ^(?i:Refer-Sub)			{ return T_HDR_REFER_SUB; }

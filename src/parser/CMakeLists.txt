@@ -47,6 +47,7 @@ set(LIBTWINKLE_PARSER-SRCS
 	hdr_proxy_authorization.cpp
 	hdr_proxy_require.cpp
 	hdr_rack.cpp
+	hdr_reason.cpp
 	hdr_record_route.cpp
 	hdr_refer_sub.cpp
 	hdr_refer_to.cpp

@@ -248,6 +248,8 @@ protected:
 
 	/** Indication that the dialog must be terminated after ACK. */
 	bool end_after_ack;
+	/** Optional reason provided by the far end. */
+	std::string end_after_ack_reason;
 
 	/**
 	 * Indication that the user wants to answer the call.

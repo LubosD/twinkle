@@ -2496,24 +2496,30 @@ void t_userintf::cb_incoming_call(t_user *user_config, int line, const t_request
 	cb_notify_call(line, from_party);
 }
 
-void t_userintf::cb_call_cancelled(int line) {
+void t_userintf::cb_call_cancelled(int line, const std::string &reason) {
 	if (line >= NUM_USER_LINES) return;
 	
 	cout << endl;
 	cout << "Line " << line + 1 << ": ";
 	cout << "far end cancelled call.\n";
+	if (!reason.empty()) {
+		cout << reason << endl;
+	}
 	cout << endl;
 	cout.flush();
 
 	cb_stop_call_notification(line);
 }
 
-void t_userintf::cb_far_end_hung_up(int line) {
+void t_userintf::cb_far_end_hung_up(int line, const std::string &reason) {
 	if (line >= NUM_USER_LINES) return;
 	
 	cout << endl;
 	cout << "Line " << line + 1 << ": ";
 	cout << "far end ended call.\n";
+	if (!reason.empty()) {
+		cout << reason << endl;
+	}
 	cout << endl;
 	cout.flush();
 
