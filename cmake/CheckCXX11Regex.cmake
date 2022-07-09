@@ -10,6 +10,16 @@ include(CMakePushCheckState)
 include(CheckCXXSourceRuns)
 
 function(check_cxx11_regex result_var)
+	# When cross-compiling, check_cxx_source_runs() below will cause the
+	# build to fail.  Since libstdc++ 4.8 is pretty much obsolete by now,
+	# we may as well assume that everything is working fine.
+	if(CMAKE_CROSSCOMPILING)
+		message(STATUS "Skipping C++11 regular expressions check due to cross-compilation")
+		# Returning a true value that we could recognize if needed
+		set(${result_var} 42 PARENT_SCOPE)
+		return()
+	endif()
+
 	cmake_push_check_state()
 	set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -std=c++11")
 
