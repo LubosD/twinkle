@@ -17,6 +17,7 @@
 
 #include "addresstablemodel.h"
 #include <QtDebug>
+#include <algorithm>
 
 AddressTableModel::AddressTableModel(QObject *parent, const list<t_address_card>& data)
 	: QAbstractTableModel(parent)
@@ -97,7 +98,7 @@ void AddressTableModel::modifyAddress(int index, const t_address_card& card)
 
 void AddressTableModel::sort(int column, Qt::SortOrder order)
 {
-	qSort(m_data.begin(), m_data.end(), [=](const t_address_card& a1, const t_address_card& a2) -> bool {
+	std::sort(m_data.begin(), m_data.end(), [=](const t_address_card& a1, const t_address_card& a2) -> bool {
 		bool retval = false;
 
 		switch (column)
