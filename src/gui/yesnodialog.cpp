@@ -48,7 +48,7 @@ YesNoDialog::YesNoDialog(QWidget *parent, const QString &caption, const QString 
     setWindowTitle(caption);
 
     QBoxLayout *vb = new QVBoxLayout(this);
-    vb->setMargin(11);
+    vb->setContentsMargins(11, 11, 11, 11);
     vb->setSpacing(6);
 	QLabel *lblQuestion = new QLabel(text, this);
 	vb->addWidget(lblQuestion);
