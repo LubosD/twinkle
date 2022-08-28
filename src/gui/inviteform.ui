@@ -120,9 +120,6 @@
               <property name="insertPolicy">
                 <enum>QComboBox::NoInsert</enum>
               </property>
-              <property name="autoCompletion">
-                <bool>true</bool>
-              </property>
               <property name="whatsThis" stdset="0">
                 <string>The address that you want to call. This can be a full SIP address like &lt;b&gt;sip:example@example.com&lt;/b&gt; or just the user part or telephone number of the full address. When you do not specify a full address, then Twinkle will complete the address by using the domain value of your user profile.</string>
               </property>
