@@ -1,6 +1,6 @@
 #include "numberconversionform.h"
 
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "gui.h"
 
 /*
@@ -26,10 +26,10 @@ NumberConversionForm::~NumberConversionForm()
 
 void NumberConversionForm::init()
 {
-	QRegExp rxNoAtSign("[^@]*");
+	QRegularExpression rxNoAtSign("[^@]*");
 
-	exprLineEdit->setValidator(new QRegExpValidator(rxNoAtSign, this));
-	replaceLineEdit->setValidator(new QRegExpValidator(rxNoAtSign, this));
+	exprLineEdit->setValidator(new QRegularExpressionValidator(rxNoAtSign, this));
+	replaceLineEdit->setValidator(new QRegularExpressionValidator(rxNoAtSign, this));
 }
 
 int NumberConversionForm::exec(QString &expr, QString &replace)

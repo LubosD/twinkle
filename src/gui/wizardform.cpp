@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QLineEdit>
 #include <QLabel>
 #include <QValidator>
@@ -23,7 +23,7 @@
 #include <QTextStream>
 #include "gui.h"
 #include <QFile>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "wizardform.h"
 
 #define PROV_NONE	QT_TRANSLATE_NOOP("WizardForm", "None (direct IP to IP calls)")
@@ -70,13 +70,13 @@ void WizardForm::languageChange()
 
 void WizardForm::init()
 {
-	QRegExp rxNoSpace("\\S*");
+	QRegularExpression rxNoSpace("\\S*");
 	
 	// Set validators
-	usernameLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	domainLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	authNameLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	proxyLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
+	usernameLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	domainLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	authNameLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	proxyLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
 	
 	initProviders();
     serviceProviderComboBox->setCurrentIndex(serviceProviderComboBox->count() - 1);

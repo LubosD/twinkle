@@ -1,7 +1,7 @@
 #include "getprofilenameform.h"
 #include <QDir>
 #include <QMessageBox>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "user.h"
 #include "protocol.h"
 
@@ -30,11 +30,11 @@ GetProfileNameForm::~GetProfileNameForm()
 void GetProfileNameForm::init()
 {
 	// Letters, digits, underscore, minus, "@" and period
-	QRegExp rxFilenameChars("[\\w\\-@\\.]*");
+	QRegularExpression rxFilenameChars("[\\w\\-@\\.]*");
 
 	// Set validators
 	// USER
-	profileLineEdit->setValidator(new QRegExpValidator(rxFilenameChars, this));
+	profileLineEdit->setValidator(new QRegularExpressionValidator(rxFilenameChars, this));
 
 	// Focus seems to default to OK button, despite tab order
 	profileLineEdit->setFocus();
@@ -47,8 +47,8 @@ void GetProfileNameForm::validate()
 	if (profileName.isEmpty()) return;
 
 	// Check for anything that was let through by the validator
-	QRegExp rxFilename("^[\\w\\-][\\w\\-@\\.]*$");
-	if (!rxFilename.exactMatch(profileName)) {
+	QRegularExpression rxFilename("^[\\w\\-][\\w\\-@\\.]*$");
+	if (!rxFilename.match(profileName).hasMatch()) {
 		QMessageBox::critical(this, PRODUCT_NAME,
 			tr("Invalid profile name: %1").arg(profileName)
 			// While this would be better suited as informativeText,

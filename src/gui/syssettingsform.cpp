@@ -28,9 +28,9 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include "twinkle_config.h"
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QValidator>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "syssettingsform.h"
 /*
  *  Constructs a SysSettingsForm as a child of 'parent', with the
@@ -85,9 +85,9 @@ void SysSettingsForm::init()
             QIcon::Disabled);
     openRingbackToolButton->setIcon(i);
 	
-	QRegExp rxNumber("[0-9]+");
-	maxUdpSizeLineEdit->setValidator(new QRegExpValidator(rxNumber, this));
-	maxTcpSizeLineEdit->setValidator(new QRegExpValidator(rxNumber, this));
+	QRegularExpression rxNumber("[0-9]+");
+	maxUdpSizeLineEdit->setValidator(new QRegularExpressionValidator(rxNumber, this));
+	maxTcpSizeLineEdit->setValidator(new QRegularExpressionValidator(rxNumber, this));
 }
 
 void SysSettingsForm::showCategory( int index )
