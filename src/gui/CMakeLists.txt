@@ -98,7 +98,6 @@ set(TWINKLE_GUI-SRCS
 	numberconversionform.cpp
 	twinkleapplication.cpp
 	yesnodialog.cpp
-	textbrowsernoautolink.cpp
 	osd.cpp
 	incoming_call_popup.cpp
 	idlesession_manager.cpp
