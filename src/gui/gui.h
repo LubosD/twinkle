@@ -213,8 +213,8 @@ public:
 	
 	// Call back functions
 	void cb_incoming_call(t_user *user_config, int line, const t_request *r);
-	void cb_call_cancelled(int line);
-	void cb_far_end_hung_up(int line);
+	void cb_call_cancelled(int line, const std::string &reason);
+	void cb_far_end_hung_up(int line, const std::string &reason);
 	void cb_answer_timeout(int line);
 	void cb_sdp_answer_not_supported(int line, const string &reason);
 	void cb_sdp_answer_missing(int line);

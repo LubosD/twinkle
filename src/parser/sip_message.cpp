@@ -77,6 +77,7 @@ t_sip_message::t_sip_message(const t_sip_message& m) :
 		hdr_proxy_authorization(m.hdr_proxy_authorization),
 		hdr_proxy_require(m.hdr_proxy_require),
 		hdr_rack(m.hdr_rack),
+		hdr_reason(m.hdr_reason),
 		hdr_record_route(m.hdr_record_route),
 		hdr_refer_sub(m.hdr_refer_sub),
 		hdr_refer_to(m.hdr_refer_to),
@@ -239,6 +240,7 @@ string t_sip_message::encode(bool add_content_length) {
 	s += hdr_organization.encode();
 	s += hdr_priority.encode();
 	s += hdr_rack.encode();
+	s += hdr_reason.encode();
 	s += hdr_refer_sub.encode();
 	s += hdr_refer_to.encode();
 	s += hdr_referred_by.encode();
@@ -348,6 +350,7 @@ list<string> t_sip_message::encode_env(void) {
 	l.push_back(hdr_organization.encode_env());
 	l.push_back(hdr_priority.encode_env());
 	l.push_back(hdr_rack.encode_env());
+	l.push_back(hdr_reason.encode_env());
 	l.push_back(hdr_refer_sub.encode_env());
 	l.push_back(hdr_refer_to.encode_env());
 	l.push_back(hdr_referred_by.encode_env());

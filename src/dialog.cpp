@@ -334,7 +334,8 @@ void t_dialog::state_w4answer(t_request *r, t_tuid tuid, t_tid tid) {
 		MEMMAN_DELETE(resp);
 		delete resp;
 
-		ui->cb_call_cancelled(line->get_line_number());
+		ui->cb_call_cancelled(line->get_line_number(),
+				r->hdr_reason.get_display_text());
 		state = DS_TERMINATED;
 		break;
 	case BYE:
@@ -358,7 +359,8 @@ void t_dialog::state_w4answer(t_request *r, t_tuid tuid, t_tid tid) {
 		MEMMAN_DELETE(resp);
 		delete resp;
 
-		ui->cb_far_end_hung_up(line->get_line_number());
+		ui->cb_far_end_hung_up(line->get_line_number(),
+				r->hdr_reason.get_display_text());
 		state = DS_TERMINATED;
 		break;
 	case PRACK:
@@ -543,7 +545,8 @@ void t_dialog::state_w4ack(t_request *r, t_tuid tuid, t_tid tid) {
 		}
 
 		if (end_after_ack) {
-			ui->cb_far_end_hung_up(line->get_line_number());
+			ui->cb_far_end_hung_up(line->get_line_number(),
+					end_after_ack_reason);
 			state = DS_TERMINATED;
 		} else {
 			state = DS_CONFIRMED;
@@ -570,6 +573,7 @@ void t_dialog::state_w4ack(t_request *r, t_tuid tuid, t_tid tid) {
 		// The session will be ended when an ACK has been
 		// received.
 		end_after_ack = true;
+		end_after_ack_reason = r->hdr_reason.get_display_text();
 		break;
 	case PRACK:
 		// RFC 3262 3
@@ -644,7 +648,8 @@ void t_dialog::state_w4ack_re_invite(t_request *r, t_tuid tuid, t_tid tid) {
 		}
 
 		if (end_after_ack) {
-			ui->cb_far_end_hung_up(line->get_line_number());
+			ui->cb_far_end_hung_up(line->get_line_number(),
+					end_after_ack_reason);
 			state = DS_TERMINATED;
 		} else {
 			state = DS_CONFIRMED;
@@ -672,6 +677,7 @@ void t_dialog::state_w4ack_re_invite(t_request *r, t_tuid tuid, t_tid tid) {
 		// The session will be ended when an ACK has been
 		// received.
 		end_after_ack = true;
+		end_after_ack_reason = r->hdr_reason.get_display_text();
 		break;
 	default:
 		// ACK has not been received. Handle other incoming request
@@ -753,7 +759,8 @@ void t_dialog::state_w4re_invite_resp(t_request *r, t_tuid tuid, t_tid tid) {
 		
 		MEMMAN_DELETE(resp);
 		delete resp;
-		ui->cb_far_end_hung_up(line->get_line_number());
+		ui->cb_far_end_hung_up(line->get_line_number(),
+				r->hdr_reason.get_display_text());
 		line->call_hist_record.end_call(true);
 
 		if (!sub_refer) {
@@ -817,7 +824,8 @@ void t_dialog::state_confirmed(t_request *r, t_tuid tuid, t_tid tid) {
 		
 		MEMMAN_DELETE(resp);
 		delete resp;
-		ui->cb_far_end_hung_up(line->get_line_number());
+		ui->cb_far_end_hung_up(line->get_line_number(),
+				r->hdr_reason.get_display_text());
 		line->call_hist_record.end_call(true);
 
 		if (!sub_refer) {
@@ -2378,6 +2386,7 @@ t_dialog::t_dialog(t_line *_line) :
 
 	request_cancelled = false;
 	end_after_ack = false;
+	end_after_ack_reason = "";
 	end_after_2xx_invite = false;
 	answer_after_prack = false;
 	ringing_received = false;

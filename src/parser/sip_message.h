@@ -59,6 +59,7 @@
 #include "hdr_proxy_authorization.h"
 #include "hdr_proxy_require.h"
 #include "hdr_rack.h"
+#include "hdr_reason.h"
 #include "hdr_record_route.h"
 #include "hdr_refer_sub.h"
 #include "hdr_refer_to.h"
@@ -157,6 +158,7 @@ public:
 	t_hdr_proxy_authorization hdr_proxy_authorization;
 	t_hdr_proxy_require	hdr_proxy_require;
 	t_hdr_rack		hdr_rack;
+	t_hdr_reason		hdr_reason;
 	t_hdr_record_route	hdr_record_route;
 	t_hdr_refer_sub		hdr_refer_sub;
 	t_hdr_refer_to		hdr_refer_to;

@@ -1160,7 +1160,7 @@ void t_gui::cb_incoming_call(t_user *user_config, int line, const t_request *r) 
 	unlock();
 }
 
-void t_gui::cb_call_cancelled(int line) {
+void t_gui::cb_call_cancelled(int line, const std::string &reason) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
@@ -1170,12 +1170,17 @@ void t_gui::cb_call_cancelled(int line) {
 	s = qApp->translate("GUI", "Line %1: far end cancelled call.").arg(line + 1);
 	emit mw_display(s);
 	
+	if (!reason.empty()) {
+		s = reason.c_str();
+		emit mw_display(s);
+	}
+
 	cb_stop_call_notification(line);
 	
 	unlock();
 }
 
-void t_gui::cb_far_end_hung_up(int line) {
+void t_gui::cb_far_end_hung_up(int line, const std::string &reason) {
 	if (line >= NUM_USER_LINES) return;
 	
 	lock();
@@ -1184,6 +1189,11 @@ void t_gui::cb_far_end_hung_up(int line) {
 	emit mw_display_header();
 	s = qApp->translate("GUI", "Line %1: far end released call.").arg(line + 1);
 	emit mw_display(s);
+
+	if (!reason.empty()) {
+		s = reason.c_str();
+		emit mw_display(s);
+	}
 
 	cb_stop_call_notification(line);
 	

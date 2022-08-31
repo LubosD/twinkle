@@ -229,8 +229,8 @@ public:
 
         // Call back functions
         virtual void cb_incoming_call(t_user *user_config, int line, const t_request *r);
-        virtual void cb_call_cancelled(int line);
-        virtual void cb_far_end_hung_up(int line);
+        virtual void cb_call_cancelled(int line, const std::string &reason);
+        virtual void cb_far_end_hung_up(int line, const std::string &reason);
         virtual void cb_answer_timeout(int line);
         virtual void cb_sdp_answer_not_supported(int line, const string &reason);
         virtual void cb_sdp_answer_missing(int line);
