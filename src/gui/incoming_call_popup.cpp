@@ -15,6 +15,10 @@ IncomingCallPopup::IncomingCallPopup(QObject *parent) : QObject(parent)
 	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/incoming_call.qml"));
 
+	if (!m_view->rootObject()) {
+		throw std::runtime_error("Could not load incoming_call.qml");
+	}
+
     // Place into the middle of the screen
 	positionWindow();
 

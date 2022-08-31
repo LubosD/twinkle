@@ -175,13 +175,23 @@ void MphoneForm::init()
     //to2Label->setPaletteBackgroundColor(paletteBackgroundColor());
     //subject2Label->setPaletteBackgroundColor(paletteBackgroundColor());
 
-	osdWindow = new OSD(this);
-	connect(osdWindow, SIGNAL(hangupClicked()), this, SLOT(phoneBye()));
-	connect(osdWindow, SIGNAL(muteClicked()), this, SLOT(osdMuteClicked()));
+	try {
+		osdWindow = new OSD(this);
+		connect(osdWindow, SIGNAL(hangupClicked()), this, SLOT(phoneBye()));
+		connect(osdWindow, SIGNAL(muteClicked()), this, SLOT(osdMuteClicked()));
+	} catch (const std::exception &e) {
+		osdWindow = nullptr;
+		qWarning() << e.what();
+	}
 
-	incomingCallPopup = new IncomingCallPopup(this);
-	connect(incomingCallPopup, SIGNAL(answerClicked()), this, SLOT(phoneAnswer()));
-	connect(incomingCallPopup, SIGNAL(rejectClicked()), this, SLOT(phoneReject()));
+	try {
+		incomingCallPopup = new IncomingCallPopup(this);
+		connect(incomingCallPopup, SIGNAL(answerClicked()), this, SLOT(phoneAnswer()));
+		connect(incomingCallPopup, SIGNAL(rejectClicked()), this, SLOT(phoneReject()));
+	} catch (const std::exception &e) {
+		incomingCallPopup = nullptr;
+		qWarning() << e.what();
+	}
 	
 	// A QComboBox accepts a new line through copy/paste.
 	QRegExp rxNoNewLine("[^\\n\\r]*");
@@ -818,7 +828,8 @@ void MphoneForm::updateState()
 			if (name.empty())
 				name = cr.from_uri.encode_no_params_hdrs(false);
 
-			incomingCallPopup->setCallerName(QString::fromStdString(name));
+			if (incomingCallPopup)
+				incomingCallPopup->setCallerName(QString::fromStdString(name));
 			if (sys_config->get_gui_show_incoming_popup())
 				showIncomingCallPopup = true;
 
@@ -896,7 +907,8 @@ void MphoneForm::updateState()
 			callRedial->setEnabled(ui->can_redial());
 	}
 
-	incomingCallPopup->setVisible(showIncomingCallPopup);
+	if (incomingCallPopup)
+		incomingCallPopup->setVisible(showIncomingCallPopup);
 	
 	// Set hold action in correct state
     callHold->setChecked(on_hold);
@@ -3270,7 +3282,8 @@ void MphoneForm::updateTrayIconMenu()
 bool MphoneForm::event(QEvent * event)
 {
 	if (event->type() == QEvent::WindowActivate || event->type() == QEvent::WindowDeactivate)
-		osdWindow->setVisible(shouldDisplayOSD());
+		if (osdWindow)
+			osdWindow->setVisible(shouldDisplayOSD());
 
 	return QMainWindow::event(event);
 }
@@ -3311,7 +3324,8 @@ void MphoneForm::updateOSD()
 	t_call_record cr;
 
 	osdDisplayed = shouldDisplayOSD();
-	osdWindow->setVisible(osdDisplayed);
+	if (osdWindow)
+		osdWindow->setVisible(osdDisplayed);
 
 	line = phone->get_active_line();
 	ss = phone->get_line_substate(line);
@@ -3325,12 +3339,15 @@ void MphoneForm::updateOSD()
 		gettimeofday(&t, nullptr);
 		duration = t.tv_sec - cr.time_answer;
 
-		osdWindow->setTime(QString::fromStdString(timer2str(duration)));
-		osdWindow->setMuted(phone->is_line_muted(line));
+		if (osdWindow) {
+			osdWindow->setTime(QString::fromStdString(timer2str(duration)));
+			osdWindow->setMuted(phone->is_line_muted(line));
+		}
 	}
 	else
 	{
-		osdWindow->setTime(lineSubstate2str(line));
+		if (osdWindow)
+			osdWindow->setTime(lineSubstate2str(line));
 	}
 
 	if (ss != LSSUB_IDLE && user_config != nullptr)
@@ -3343,7 +3360,8 @@ void MphoneForm::updateOSD()
 			 ui->format_sip_address(user_config,
 			  cr.to_display, cr.to_uri));
 
-		osdWindow->setCaller(QString::fromStdString(address));
+		if (osdWindow)
+			osdWindow->setCaller(QString::fromStdString(address));
 	}
 }
 
