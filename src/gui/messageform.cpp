@@ -344,7 +344,7 @@ void MessageForm::addMessage(const im::t_msg &msg, const QString &name)
 	if (msg.has_attachment) {
 		s += "<br>";
 		s += "<a href=\"";
-		s += msg.attachment_filename.c_str();
+		s += QUrl::fromLocalFile(msg.attachment_filename.c_str()).toString();
 		s += "\">";
 		
 		bool show_attachment_inline = false;
