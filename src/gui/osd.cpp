@@ -19,6 +19,10 @@ OSD::OSD(QObject* parent)
 	m_view->rootContext()->setContextProperty("viewerWidget", m_view);
 	m_view->setSource(QUrl("qrc:/qml/osd.qml"));
 
+	if (!m_view->rootObject()) {
+		throw std::runtime_error("Could not load osd.qml");
+	}
+
 	positionWindow();
 
 	QObject* buttonHangup;
