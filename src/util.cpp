@@ -180,7 +180,7 @@ string timer2str(unsigned long seconds) {
 	s = remainder % 60;
 	
 	char buf[16];
-	snprintf(buf, 16, "%01lu:%02lu:%02lu", h, m, s);
+	snprintf(buf, 16, "%01lu:%02lu:%02lu", (h % 1000), m, s);
 	return string(buf);
 }
 
