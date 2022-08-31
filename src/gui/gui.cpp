@@ -2654,6 +2654,17 @@ void t_gui::cb_mwi_terminated(t_user *user_config, const string &reason) {
 }
 
 bool t_gui::cb_message_request(t_user *user_config, t_request *r) {	
+	bool retval;
+	QMetaObject::invokeMethod(this, "do_cb_message_request",
+				  Qt::BlockingQueuedConnection,
+				  Q_RETURN_ARG(bool, retval),
+				  Q_ARG(t_user*, user_config),
+				  Q_ARG(t_request*, r));
+
+	return retval;
+}
+
+bool t_gui::do_cb_message_request(t_user *user_config, t_request *r) {
 	string text;
 	im::t_text_format text_format = im::TXT_PLAIN;
 	bool attachment = false;

@@ -454,6 +454,7 @@ private slots:
 			const string &refer_to_display,
 			const string &referred_by_uri_str,
 			const string &referred_by_display);
+	bool do_cb_message_request(t_user *user_config, t_request *r);
     void do_cb_register_inprog(t_user *user_config, t_register_type register_type);
 };
 
