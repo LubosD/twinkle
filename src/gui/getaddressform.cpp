@@ -215,15 +215,10 @@ void GetAddressForm::deleteLocalAddress()
 
 	QString card_name = QString::fromStdString(card.get_display_name());
 	QString msg = tr("Are you sure you want to delete contact '%1' from the local address book?").arg(card_name);
-	QMessageBox *mb = new QMessageBox(tr("Delete contact"), msg,
-			QMessageBox::Warning,
-			QMessageBox::Yes,
-			QMessageBox::No,
-			QMessageBox::NoButton,
-			this);
-	MEMMAN_NEW(mb);
+	int button = QMessageBox::warning(this, tr("Delete contact"), msg,
+			QMessageBox::Yes | QMessageBox::No);
 
-	if (mb->exec() == QMessageBox::Yes) {
+	if (button == QMessageBox::Yes) {
 		if (ab_local->del_address(card)) {
 			m_model->removeAddress(sel[0].row());
 
@@ -233,9 +228,6 @@ void GetAddressForm::deleteLocalAddress()
 			}
 		}
 	}
-
-	MEMMAN_DELETE(mb);
-	delete mb;
 }
 
 void GetAddressForm::editLocalAddress()

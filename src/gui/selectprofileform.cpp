@@ -379,14 +379,9 @@ void SelectProfileForm::deleteProfile()
     QListWidgetItem *item = profileListView->currentItem();
 	QString profile = item->text();
 	QString msg = tr("Are you sure you want to delete profile '%1'?").arg(profile);
-	QMessageBox *mb = new QMessageBox(tr("Delete profile"), msg,
-			QMessageBox::Warning,
-			QMessageBox::Yes,
-			QMessageBox::No,
-			QMessageBox::NoButton,
-			this);
-	MEMMAN_NEW(mb);
-	if (mb->exec() == QMessageBox::Yes) {
+	int button = QMessageBox::warning(this, tr("Delete profile"), msg,
+			QMessageBox::Yes | QMessageBox::No);
+	if (button == QMessageBox::Yes) {
 		// Delete file
 		QDir d = QDir::home();
 		d.cd(USER_DIR);
@@ -443,9 +438,6 @@ void SelectProfileForm::deleteProfile()
 			}
 		}
 	}
-	
-	MEMMAN_DELETE(mb);
-	delete mb;
 }
 
 void SelectProfileForm::renameProfile()
