@@ -115,9 +115,6 @@
               <property name="insertPolicy">
                <enum>QComboBox::NoInsert</enum>
               </property>
-              <property name="autoCompletion">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>

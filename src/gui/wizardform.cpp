@@ -94,7 +94,7 @@ void WizardForm::initProviders()
 	if (providersFile.open(QIODevice::ReadOnly)) {
 		QTextStream providersStream(&providersFile);
 		QString entry;
-		while ((entry = providersStream.readLine()) != QString::null) {
+		while (!(entry = providersStream.readLine()).isNull()) {
 			// Skip comment
 			if (entry[0] == '#') continue;
 			
