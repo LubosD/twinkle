@@ -106,7 +106,7 @@ int SelectProfileForm::execForm()
 			"Before you can use Twinkle, you must create a user "\
 			"profile.<br>Click OK to create a profile.</html>"));
 		
-		int newProfileMethod = QMessageBox::question(this, PRODUCT_NAME, tr(
+		QMessageBox mb(QMessageBox::Question, PRODUCT_NAME, tr(
 			"<html>"\
 			"You can use the profile editor to create a profile. "\
 			"With the profile editor you can change many settings "\
@@ -121,23 +121,29 @@ int SelectProfileForm::execForm()
             "calls to regular and cell phones and send SMS messages.<br><br>")
 #endif
             + tr("Choose what method you wish to use.</html>"),
-			tr("&Wizard"), tr("&Profile editor")
+			QMessageBox::NoButton, this);
+		QPushButton *wizardButton = mb.addButton(
+				tr("&Wizard"),
+				QMessageBox::AcceptRole);
+		QPushButton *editorButton = mb.addButton(
+				tr("&Profile editor"),
+				QMessageBox::AcceptRole);
 #ifdef WITH_DIAMONDCARD
-			, tr("&Diamondcard")
+		QPushButton *diamondCardButton = mb.addButton(
+				tr("&Diamondcard"),
+				QMessageBox::AcceptRole);
 #endif
-			);
+		mb.exec();
 		
-		switch (newProfileMethod) {
-		case 0:
+		if (mb.clickedButton() == wizardButton) {
 			wizardProfile(true);
-			break;
-		case 1:
+		} else if (mb.clickedButton() == editorButton) {
 			newProfile(true);
-			break;
-		case 2:
+#ifdef WITH_DIAMONDCARD
+		} else if (mb.clickedButton() == diamondCardButton) {
 			diamondcardProfile(true);
-			break;
-		default:
+#endif
+		} else {
 			return QDialog::Rejected;
 		}
 		
