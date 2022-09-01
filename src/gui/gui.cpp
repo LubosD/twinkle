@@ -2465,19 +2465,19 @@ bool t_gui::cb_ask_msg(QWidget *parent, const string &msg, t_msg_priority prio) 
 	switch (prio) {
 	case MSG_INFO:
 		button = QMessageBox::information(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	case MSG_WARNING:
 		button = QMessageBox::warning(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	case MSG_CRITICAL:
 	default:
 		button = QMessageBox::critical(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	}
 	
