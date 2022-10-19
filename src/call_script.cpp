@@ -27,6 +27,8 @@
 #include "userintf.h"
 #include "util.h"
 
+extern char **environ;
+
 extern t_phone *phone;
 
 // Maximum length of the reason value
