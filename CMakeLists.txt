@@ -50,6 +50,16 @@ find_package(Ucommon REQUIRED)
 find_package(Commoncpp REQUIRED)
 find_package(Ccrtp REQUIRED)
 
+include_directories(
+	${LIBXML2_INCLUDE_DIR}
+	${LibMagic_INCLUDE_DIR}
+	${LIBSNDFILE_INCLUDE_DIR}
+	${Readline_INCLUDE_DIR}
+	${UCOMMON_INCLUDE_DIR}
+	${COMMONCPP_INCLUDE_DIR}
+	${CCRTP_INCLUDE_DIR}
+)
+
 if (WITH_QT5)
 	find_package(Qt5Widgets REQUIRED)
 	find_package(Qt5LinguistTools REQUIRED)
@@ -61,6 +71,7 @@ if (WITH_QT5)
 	if (WITH_DBUS)
 		find_package(Qt5DBus REQUIRED)
 		set(HAVE_DBUS TRUE)
+		include_directories(${Qt5DBus_INCLUDES})
 	endif (WITH_DBUS)
 
 	if (WITH_AKONADI)
@@ -68,10 +79,9 @@ if (WITH_QT5)
 		find_package(KF5Contacts REQUIRED)
 		message(STATUS "Akonadi OK")
 		set(HAVE_AKONADI TRUE)
+		include_directories(${KF5Akonadi_INCLUDES} ${KF5Contacts_INCLUDES})
 	endif (WITH_AKONADI)
 endif (WITH_QT5)
-
-include_directories(${LIBXML2_INCLUDE_DIR})
 
 if (WITH_ALSA)
 	find_package(ALSA)
@@ -79,6 +89,8 @@ if (WITH_ALSA)
 	if (ALSA_FOUND)
 		message(STATUS "libasound OK")
 		set(HAVE_LIBASOUND TRUE)
+
+		include_directories(${ALSA_INCLUDE_DIR})
 	else (ALSA_FOUND)
 		message(FATAL_ERROR "libasound not found!")
 	endif (ALSA_FOUND)
