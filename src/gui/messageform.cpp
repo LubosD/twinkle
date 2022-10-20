@@ -649,7 +649,7 @@ void MessageForm::toAddressChanged(const QString &address)
 /** Show the size of the typed message */
 void MessageForm::showMessageSize()
 {
-	uint len = msgLineEdit->text().length();
+	unsigned int len = msgLineEdit->text().length();
 	
 	QString s(tr("Size"));
 	s += ": ";
