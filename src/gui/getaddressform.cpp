@@ -17,7 +17,6 @@
 
 #include "getaddressform.h"
 #include <QMessageBox>
-#include <QRegExp>
 #include "sys_settings.h"
 #include "gui.h"
 #include "address_book.h"

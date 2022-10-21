@@ -20,7 +20,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QSpinBox>
-#include <QRegExp>
+#include <QRegularExpression>
 #include "sdp/sdp.h"
 #include <QValidator>
 #include "protocol.h"
@@ -31,7 +31,7 @@
 #include <QStringList>
 #include "twinkle_config.h"
 #include <QListWidget>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "numberconversionform.h"
 #include "util.h"
 #include "userprofileform.h"
@@ -147,31 +147,31 @@ void UserProfileForm::languageChange()
 
 void UserProfileForm::init()
 {
-	QRegExp rxNoSpace("\\S*");
-	QRegExp rxNoAtSign("[^@]*");
-	QRegExp rxQvalue("(0\\.[0-9]{0,3})|(1\\.0{0,3})");
-	QRegExp rxAkaOpValue("[a-zA-Z0-9]{0,32}");
-	QRegExp rxAkaAmfValue("[a-zA-Z0-9]{0,4}");
+	QRegularExpression rxNoSpace("\\S*");
+	QRegularExpression rxNoAtSign("[^@]*");
+	QRegularExpression rxQvalue("(0\\.[0-9]{0,3})|(1\\.0{0,3})");
+	QRegularExpression rxAkaOpValue("[a-zA-Z0-9]{0,32}");
+	QRegularExpression rxAkaAmfValue("[a-zA-Z0-9]{0,4}");
 	
 	// Set validators
 	// USER
-	domainLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	authAkaOpLineEdit->setValidator(new QRegExpValidator(rxAkaOpValue, this));
-	authAkaAmfLineEdit->setValidator(new QRegExpValidator(rxAkaAmfValue, this));
+	domainLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	authAkaOpLineEdit->setValidator(new QRegularExpressionValidator(rxAkaOpValue, this));
+	authAkaAmfLineEdit->setValidator(new QRegularExpressionValidator(rxAkaAmfValue, this));
 	
 	// SIP SERVER
-	registrarLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	regQvalueLineEdit->setValidator(new QRegExpValidator(rxQvalue, this));
-	proxyLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
+	registrarLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	regQvalueLineEdit->setValidator(new QRegularExpressionValidator(rxQvalue, this));
+	proxyLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
 	
 	// Voice mail
-	mwiServerLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
+	mwiServerLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
 	
 	// NAT
-	publicIPLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
+	publicIPLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
 	
 	// Address format
-	testConversionLineEdit->setValidator(new QRegExpValidator(rxNoAtSign, this));
+	testConversionLineEdit->setValidator(new QRegularExpressionValidator(rxNoAtSign, this));
 	
 #ifndef HAVE_SPEEX
 	// Speex & (Speex) Preprocessing

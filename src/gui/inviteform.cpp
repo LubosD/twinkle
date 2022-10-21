@@ -5,9 +5,9 @@
 #include "util.h"
 #include "audits/memman.h"
 #include "sys_settings.h"
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QValidator>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 
 /*
     Copyright (C) 2005-2009  Michel de Boer <michel@twinklephone.com>
@@ -46,8 +46,8 @@ void InviteForm::init()
 	setDisabledIcon(addressToolButton, ":/icons/images/kontact_contacts-disabled.png");
 	
 	// A QComboBox accepts a new line through copy/paste.
-	QRegExp rxNoNewLine("[^\\n\\r]*");
-	inviteComboBox->setValidator(new QRegExpValidator(rxNoNewLine, this));
+	QRegularExpression rxNoNewLine("[^\\n\\r]*");
+	inviteComboBox->setValidator(new QRegularExpressionValidator(rxNoNewLine, this));
 }
 
 void InviteForm::destroy()

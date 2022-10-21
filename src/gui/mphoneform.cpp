@@ -51,10 +51,10 @@
 #include "util.h"
 #include <QTimer>
 #include <QCursor>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QValidator>
 #include <QSettings>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "buddyform.h"
 #include "diamondcardprofileform.h"
 #include "osd.h"
@@ -194,8 +194,8 @@ void MphoneForm::init()
 	}
 	
 	// A QComboBox accepts a new line through copy/paste.
-	QRegExp rxNoNewLine("[^\\n\\r]*");
-	callComboBox->setValidator(new QRegExpValidator(rxNoNewLine, this));
+	QRegularExpression rxNoNewLine("[^\\n\\r]*");
+	callComboBox->setValidator(new QRegularExpressionValidator(rxNoNewLine, this));
 	
 	if (sys_config->get_gui_use_systray()) {
 		// Create system tray icon

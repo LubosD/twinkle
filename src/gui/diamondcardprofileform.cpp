@@ -19,9 +19,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QValidator>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include "gui.h"
 #include "diamondcard.h"
 #include "getprofilenameform.h"
@@ -66,9 +66,9 @@ void DiamondcardProfileForm::init()
 	user_config = NULL;
 	destroy_user_config = false;
 	
-	QRegExp rxNoSpace("\\S*");
-	accountIdLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
-	pinCodeLineEdit->setValidator(new QRegExpValidator(rxNoSpace, this));
+	QRegularExpression rxNoSpace("\\S*");
+	accountIdLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
+	pinCodeLineEdit->setValidator(new QRegularExpressionValidator(rxNoSpace, this));
 }
 
 void DiamondcardProfileForm::destroy()
