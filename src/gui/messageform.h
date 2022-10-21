@@ -5,7 +5,6 @@
 #include "phone.h"
 #include <QLabel>
 #include <QtCore/QStringRef>
-#include "textbrowsernoautolink.h"
 #include "user.h"
 #include "ui_messageform.h"
 #include <QMainWindow>

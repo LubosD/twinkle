@@ -95,10 +95,13 @@
             </property>
             <layout class="QGridLayout">
               <item row="0" column="0">
-                <widget class="TextBrowserNoAutoLink" name="conversationBrowser">
+                <widget class="QTextBrowser" name="conversationBrowser">
                  <property name="sizePolicy">
                   <sizepolicy vsizetype="Expanding" hsizetype="Expanding" />
                  </property>
+                <property name="openLinks">
+                  <bool>false</bool>
+                </property>
                 </widget>
               </item>
             </layout>
@@ -152,18 +155,6 @@
     </action>
   </widget>
   <layoutdefault spacing="6" margin="11"/>
-  <customwidgets>
-    <customwidget>
-      <class>TextBrowserNoAutoLink</class>
-      <extends>QWidget</extends>
-      <header location="global">textbrowsernoautolink.h</header>
-      <sizehint>
-        <width>-1</width>
-        <height>-1</height>
-      </sizehint>
-      <container>0</container>
-    </customwidget>
-  </customwidgets>
   <includes>
     <include location="local">ui_getaddressform.h</include>
     <include location="local">qstring.h</include>
@@ -171,7 +162,6 @@
     <include location="local">im/msg_session.h</include>
     <include location="local">phone.h</include>
     <include location="local">qlabel.h</include>
-    <include location="local">textbrowsernoautolink.h</include>
   </includes>
   <connections>
     <connection>
