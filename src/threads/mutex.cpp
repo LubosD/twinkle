@@ -36,7 +36,7 @@ t_mutex::t_mutex(bool recursive) {
 	pthread_mutexattr_init(&attr);
 
 
-	int ret = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
+	int ret = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 	if (ret != 0) throw string(
 		"t_mutex::t_mutex failed to create a recursive mutex.");
 
