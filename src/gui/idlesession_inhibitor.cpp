@@ -166,7 +166,7 @@ void IdleSessionInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
 	}
 	case request_busy: {
 		// Reply to "Inhibit" has a cookie as return value
-		QDBusPendingReply<uint> reply = *call;
+		QDBusPendingReply<unsigned int> reply = *call;
 
 		if (reply.isError()) {
 			issueWarning(tr("D-Bus: Reply: Error: %1").arg(reply.error().message()));

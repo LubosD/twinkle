@@ -50,7 +50,7 @@ void yyerror(const char *s);
 
 %union {
 	int			yyt_int;
-	ulong			yyt_ulong;
+	unsigned long		yyt_ulong;
 	float			yyt_float;
 	string			*yyt_str;
 	t_parameter		*yyt_param;

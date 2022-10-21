@@ -44,7 +44,7 @@ string float2str(float f, int precision);
 string int2str(int i, const char *format);
 string int2str(int i);
 
-// Convert a ulong to a string. format is a printf format
+// Convert an unsigned long to a string. format is a printf format
 string ulong2str(unsigned long i, const char *format);
 string ulong2str(unsigned long i);
 
