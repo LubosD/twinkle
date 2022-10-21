@@ -81,9 +81,9 @@ add_executable(twinkle-console
 )
 
 set(twinkle_LIBS
-	-latomic
+	${ATOMIC_LIBRARY}
 	-lpthread
-	-lresolv
+	${RESOLV_LIBRARY}
 	${LibMagic_LIBRARY}
 	${LIBXML2_LIBRARIES}
 	${Readline_LIBRARY}
