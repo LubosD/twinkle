@@ -1,4 +1,13 @@
 FIND_PATH(GSM_INCLUDE_DIR gsm/gsm.h)
+# Some distributions only ship a top-level `gsm.h`
+IF (NOT GSM_INCLUDE_DIR)
+	FIND_PATH(GSM_INCLUDE_DIR gsm.h)
+	IF (GSM_INCLUDE_DIR)
+		# Let the caller know about this alternate location
+		SET(GSM_INCLUDE_TOP TRUE)
+	ENDIF (GSM_INCLUDE_DIR)
+ENDIF (NOT GSM_INCLUDE_DIR)
+
 FIND_LIBRARY(GSM_LIBRARY NAMES gsm)
 
 IF(GSM_INCLUDE_DIR AND GSM_LIBRARY)
@@ -7,7 +16,12 @@ ENDIF(GSM_INCLUDE_DIR AND GSM_LIBRARY)
 
 IF(GSM_FOUND)
 	IF (NOT Gsm_FIND_QUIETLY)
-		MESSAGE(STATUS "Found gsm includes:	${GSM_INCLUDE_DIR}/gsm/gsm.h")
+		IF (GSM_INCLUDE_TOP)
+			SET(gsm_include_file "gsm.h")
+		ELSE (GSM_INCLUDE_TOP)
+			SET(gsm_include_file "gsm/gsm.h")
+		ENDIF (GSM_INCLUDE_TOP)
+		MESSAGE(STATUS "Found gsm includes:	${GSM_INCLUDE_DIR}/${gsm_include_file}")
 		MESSAGE(STATUS "Found gsm library:	${GSM_LIBRARY}")
 	ENDIF (NOT Gsm_FIND_QUIETLY)
 ELSE(GSM_FOUND)

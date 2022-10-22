@@ -166,6 +166,12 @@ if (WITH_GSM)
 	if (GSM_FOUND)
 		message(STATUS "gsm OK")
 		set(HAVE_GSM TRUE)
+		# Whether we should include <gsm.h> or <gsm/gsm.h>
+		if (GSM_INCLUDE_TOP)
+			set(HAVE_GSM_H TRUE)
+		else (GSM_INCLUDE_TOP)
+			set(HAVE_GSM_GSM_H TRUE)
+		endif (GSM_INCLUDE_TOP)
 
 		include_directories(${GSM_INCLUDE_DIR})
 	else (GSM_FOUND)
