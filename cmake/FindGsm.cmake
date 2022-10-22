@@ -7,7 +7,7 @@ ENDIF(GSM_INCLUDE_DIR AND GSM_LIBRARY)
 
 IF(GSM_FOUND)
 	IF (NOT Gsm_FIND_QUIETLY)
-		MESSAGE(STATUS "Found gsm includes:	${GSM_INCLUDE_DIR}/gsm/config.h")
+		MESSAGE(STATUS "Found gsm includes:	${GSM_INCLUDE_DIR}/gsm/gsm.h")
 		MESSAGE(STATUS "Found gsm library:	${GSM_LIBRARY}")
 	ENDIF (NOT Gsm_FIND_QUIETLY)
 ELSE(GSM_FOUND)
