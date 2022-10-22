@@ -33,6 +33,23 @@ else (HAVE_CXX11_REGEX)
 	message(FATAL_ERROR "C++11 regular expressions not supported!")
 endif (HAVE_CXX11_REGEX)
 
+# Link against libatomic and libresolv on systems where they are present (e.g.
+# Linux), but not on systems that do not make use of them (e.g. FreeBSD).
+
+# Debian annoyingly does not ship a libatomic.so symlink, so we need to add
+# libatomic.so.1 to the list.  (https://bugs.debian.org/1010728)
+find_library(HAVE_LIBATOMIC NAMES atomic libatomic.so.1)
+if (HAVE_LIBATOMIC)
+	set(ATOMIC_LIBRARY ${HAVE_LIBATOMIC})
+	message(STATUS "libatomic: ${ATOMIC_LIBRARY}")
+endif (HAVE_LIBATOMIC)
+
+find_library(HAVE_LIBRESOLV resolv)
+if (HAVE_LIBRESOLV)
+	set(RESOLV_LIBRARY ${HAVE_LIBRESOLV})
+	message(STATUS "libresolv: ${RESOLV_LIBRARY}")
+endif (HAVE_LIBRESOLV)
+
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
 include (CheckSymbolExists)
@@ -175,7 +192,7 @@ if (HAVE_STRERROR_R)
 endif (HAVE_STRERROR_R)
 
 cmake_push_check_state()
-list(APPEND CMAKE_REQUIRED_LIBRARIES "-lresolv")
+list(APPEND CMAKE_REQUIRED_LIBRARIES ${RESOLV_LIBRARY})
 check_cxx_source_compiles("
 	#include <sys/types.h>
 	#include <netinet/in.h>
