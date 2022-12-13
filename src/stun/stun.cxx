@@ -1098,13 +1098,13 @@ bool stunEqualId(const StunMessage &m1, const StunMessage &m2) {
 string stunNatType2Str(NatType t) {
 	switch (t) {
 	case StunTypeUnknown:
-		return "Unknow";
+		return "Unknown";
 	case StunTypeOpen:
 		return "Open";
 	case StunTypeConeNat:
 		return "Full cone";
 	case StunTypeRestrictedNat:
-		return "Restriced cone";
+		return "Restricted cone";
 	case StunTypePortRestrictedNat:
 		return "Port restricted cone";
 	case StunTypeSymNat:
