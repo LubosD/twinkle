@@ -63,12 +63,12 @@ jobs:
           # each Ubuntu release provided by GitHub Actions.
           - gcc: 7
             os: ubuntu-20.04
-          - gcc: 11
-            os: ubuntu-20.04
+          - gcc: 12
+            os: ubuntu-22.04
           - clang: 6.0
             os: ubuntu-20.04
-          - clang: 14
-            os: ubuntu-20.04
+          - clang: 15
+            os: ubuntu-22.04
 
           # Test with all options disabled
           - descr: 'All options disabled'
