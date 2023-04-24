@@ -3919,6 +3919,9 @@ void t_dialog::timeout(t_line_timer timer) {
 	case LTMR_SESSION_REFRESH:
 	case LTMR_SESSION_EXPIRE:
 		return timeout_session_refresh(timer);
+	default:
+		// We're not dealing with a session timer, so carry on as usual
+		break;
 	}
 
 	switch(state) {
