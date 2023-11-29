@@ -1781,7 +1781,7 @@ Si le SAS est égal, vous devez le confirmer en cliquant sur le clavier pour une
     </message>
     <message>
         <source>&amp;Deregister</source>
-        <translation>Se &amp;déconnecté</translation>
+        <translation>Se &amp;déconnecter</translation>
     </message>
     <message>
         <source>Deregister this device</source>
