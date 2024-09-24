@@ -243,6 +243,232 @@ uint16 t_speex_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 }
 #endif
 
+#ifdef HAVE_OPUS
+//////////////////////////////////////////
+// class t_opus_audio_encoder
+//////////////////////////////////////////
+
+t_opus_audio_encoder::t_opus_audio_encoder(uint16 payload_id, uint16 ptime,
+		t_user *user_config, const t_codec_sdp_params &sdp_params) :
+	t_audio_encoder(payload_id, ptime, user_config)
+{
+	_codec = CODEC_OPUS;
+	if (_ptime == 0) {
+		_ptime = PTIME_OPUS;
+	}
+	// Value suggested by the Opus documentation (enough to hold 60 ms of
+	// a 510 kbps stream)
+	_max_payload_size = 4000;
+
+	int error;
+	enc = opus_encoder_create(audio_sample_rate(_codec), 1,  // (1 = mono)
+			OPUS_APPLICATION_VOIP, &error);
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot create encoder", error);
+		enc = NULL;
+		return;
+	}
+
+	// Encoder parameters
+
+	// Bandwidth
+	log_file->write_header("t_opus_audio_encoder::t_opus_audio_encoder", LOG_NORMAL, LOG_DEBUG);
+	log_file->write_raw("Determining bandwidth\n");
+	log_file->write_raw("(Values are OPUS_BANDWIDTH_* constants)\n");
+	opus_int32 bandwidth = _user_config->get_opus_bandwidth();
+	log_file->write_raw("Initial bandwidth = ");
+	log_file->write_raw(bandwidth);
+	log_file->write_endl();
+	// Apply maximum bandwidth according to "maxplaybackrate" (mandated by
+	// RFC 7587, s. 7.1)
+	unsigned int maxplaybackrate = sdp_params.opus_maxplaybackrate;
+	if (maxplaybackrate == 0) {
+		maxplaybackrate = 48000;  // Default value
+	}
+	if (maxplaybackrate < 48000) {
+		opus_int32 max_bandwidth;
+		if (maxplaybackrate <= OPUS_SAMPLE_RATE_NB) {
+			max_bandwidth = OPUS_BANDWIDTH_NARROWBAND;
+		} else if (maxplaybackrate <= OPUS_SAMPLE_RATE_MB) {
+			max_bandwidth = OPUS_BANDWIDTH_MEDIUMBAND;
+		} else if (maxplaybackrate <= OPUS_SAMPLE_RATE_WB) {
+			max_bandwidth = OPUS_BANDWIDTH_WIDEBAND;
+		} else if (maxplaybackrate <= OPUS_SAMPLE_RATE_SWB) {
+			max_bandwidth = OPUS_BANDWIDTH_SUPERWIDEBAND;
+		} else {
+			max_bandwidth = OPUS_BANDWIDTH_FULLBAND;
+		}
+		log_file->write_raw("Maximum bandwidth (");
+		log_file->write_raw(maxplaybackrate);
+		log_file->write_raw(") = ");
+		log_file->write_raw(max_bandwidth);
+		log_file->write_endl();
+		// FIXME: OPUS_BANDWIDTH_* are not *guaranteed* to be ordered
+		bandwidth = std::min(bandwidth, max_bandwidth);
+	}
+	log_file->write_raw("Final bandwidth = ");
+	log_file->write_raw(bandwidth);
+	log_file->write_endl();
+	log_file->write_footer();
+	error = opus_encoder_ctl(enc, OPUS_SET_MAX_BANDWIDTH(bandwidth));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set maximum bandwidth", error);
+	}
+
+	// Bitrate
+	log_file->write_header("t_opus_audio_encoder::t_opus_audio_encoder", LOG_NORMAL, LOG_DEBUG);
+	log_file->write_raw("Determining bitrate\n");
+	opus_int32 bitrate;
+	log_file->write_raw("Initial bitrate = ");
+	if (_user_config->get_opus_bitrate() == 0) {
+		bitrate = OPUS_AUTO;
+		log_file->write_raw("auto");
+	} else {
+		bitrate = _user_config->get_opus_bitrate();
+		log_file->write_raw(bitrate);
+	}
+	log_file->write_endl();
+	// maxaveragebitrate dictates the maximum avg. bitrate we can use
+	unsigned int maxaveragebitrate = sdp_params.opus_maxaveragebitrate;
+	log_file->write_raw("Initial maxaveragebitrate = ");
+	log_file->write_raw(maxaveragebitrate);
+	log_file->write_endl();
+	// If not provided, its value defaults to "the maximum value specified
+	// in Section 3.1.1 for the corresponding mode of Opus and
+	// corresponding maxplaybackrate", per RFC 7587, s. 6.1
+	if (maxaveragebitrate == 0) {
+		log_file->write_raw("Default maxaveragebitrate (");
+
+		switch (_user_config->get_opus_signal_type()) {
+		case OPUS_AUTO:
+		case OPUS_SIGNAL_VOICE:
+			log_file->write_raw("voice, ");
+			if (maxplaybackrate <= OPUS_SAMPLE_RATE_NB) {
+				log_file->write_raw("NB");
+				// 8-12 kbit/s for NB speech
+				maxaveragebitrate = 12000;
+			} else if (maxplaybackrate <= OPUS_SAMPLE_RATE_WB) {
+				log_file->write_raw("WB");
+				// 16-20 kbit/s for WB speech
+				maxaveragebitrate = 20000;
+			} else {
+				log_file->write_raw("FB");
+				// 28-40 kbit/s for FB speech
+				maxaveragebitrate = 40000;
+			}
+			break;
+		case OPUS_SIGNAL_MUSIC:
+			log_file->write_raw("music, FB");
+			// 48-64 kbit/s for FB mono music
+			maxaveragebitrate = 64000;
+			break;
+		default:
+			assert(false);
+		}
+
+		log_file->write_raw(") = ");
+		log_file->write_raw(maxaveragebitrate);
+		log_file->write_endl();
+	}
+	// When bitrate is "auto", we must take care not to raise its
+	// value if maxaveragebitrate happens to be higher than the
+	// actual bitrate, so we convert it to a real value
+	if (bitrate == OPUS_AUTO) {
+		// Formula copied from the libopus source code
+		const unsigned short Fs = audio_sample_rate(_codec);
+		const unsigned short frame_size = Fs * ptime / 1000;
+		const unsigned channels = 1;
+		bitrate = 60*Fs/frame_size + Fs*channels;
+
+		log_file->write_raw("Auto bitrate = ");
+		log_file->write_raw(bitrate);
+		log_file->write_endl();
+	}
+	bitrate = std::min(bitrate, (int)maxaveragebitrate);
+	log_file->write_raw("Final bitrate = ");
+	log_file->write_raw(bitrate);
+	log_file->write_endl();
+	log_file->write_footer();
+	error = opus_encoder_ctl(enc, OPUS_SET_BITRATE(bitrate));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set bitrate", error);
+	}
+
+	// Complexity
+	error = opus_encoder_ctl(enc, OPUS_SET_COMPLEXITY(_user_config->get_opus_complexity()));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set complexity", error);
+	}
+
+	// DTX
+	error = opus_encoder_ctl(enc, OPUS_SET_DTX(sdp_params.opus_usedtx ? 1 : 0));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set DTX", error);
+	}
+
+	// FEC
+	error = opus_encoder_ctl(enc, OPUS_SET_INBAND_FEC(sdp_params.opus_useinbandfec ? 1 : 0));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set FEC", error);
+	}
+
+	// Packet loss
+	error = opus_encoder_ctl(enc, OPUS_SET_PACKET_LOSS_PERC(_user_config->get_opus_packet_loss()));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set packet loss", error);
+	}
+
+	// Signal type
+	error = opus_encoder_ctl(enc, OPUS_SET_SIGNAL(_user_config->get_opus_signal_type()));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set signal type", error);
+	}
+
+	// Constant/variable bitrate
+	error = opus_encoder_ctl(enc, OPUS_SET_VBR(!sdp_params.opus_cbr ? 1 : 0));
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_encoder::t_opus_audio_encoder",
+				"Cannot set VBR", error);
+	}
+}
+
+t_opus_audio_encoder::~t_opus_audio_encoder() {
+	if (enc) {
+		opus_encoder_destroy(enc);
+	}
+}
+
+uint16 t_opus_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
+			uint8 *payload, uint16 payload_size, bool &silence)
+{
+	if (!enc) return 0;
+
+	assert(payload_size >= _max_payload_size);
+
+	silence = false;
+
+	int nbytes = opus_encode(enc, sample_buf, nsamples, payload, payload_size);
+
+	if (nbytes < 0) {
+		log_opus_error("t_opus_audio_encoder::encode",
+				"Error while encoding", nbytes);
+		return 0;
+	} else if (nbytes <= 2) {
+		silence = true;  // DTX
+	}
+
+	return nbytes;
+}
+#endif
+
 #ifdef HAVE_ILBC
 //////////////////////////////////////////
 // class t_ilbc_audio_encoder

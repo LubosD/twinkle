@@ -16,7 +16,9 @@
 */
 
 #include <cstdlib>
+#include <sstream>
 #include "audio_codecs.h"
+#include "userintf.h"
 
 unsigned short audio_sample_rate(t_audio_codec codec) {
 	switch(codec) {
@@ -37,6 +39,8 @@ unsigned short audio_sample_rate(t_audio_codec codec) {
 		return 16000;
 	case CODEC_SPEEX_UWB:
 		return 32000;
+	case CODEC_OPUS:
+		return 48000;
 	default:
 		// Use 8000 as default rate
 		return 8000;
@@ -112,3 +116,38 @@ short mix_linear_pcm(short pcm1, short pcm2) {
 
 	return short(mixed_sample);
 }
+
+#ifdef HAVE_OPUS
+unsigned short opus_adjusted_ptime(unsigned short ptime) {
+	if (ptime <= 10) {
+		return 10;
+	} else if (ptime <= 20) {
+		return 20;
+	} else if (ptime <= 40) {
+		return 40;
+	} else if (ptime <= 60) {
+		return 60;
+	} else {
+		// Maximum duration of an Opus frame
+		// (Although libopus v1.2+ allows for values up to 120 ms, it
+		// merely encodes multiple frames into a single Opus packet)
+		return 60;
+	}
+}
+
+void log_opus_error(
+		const std::string &func_name,
+		const std::string &msg,
+		int opus_error,
+		bool display_msg)
+{
+	std::stringstream ss;
+	ss << "Opus error: " << msg << ": " << opus_strerror(opus_error);
+	std::string s = ss.str();
+
+	log_file->write_report(s, func_name, LOG_NORMAL, LOG_CRITICAL);
+	if (display_msg) {
+		ui->cb_display_msg(s, MSG_CRITICAL);
+	}
+}
+#endif

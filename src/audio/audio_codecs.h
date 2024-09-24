@@ -18,8 +18,11 @@
 #ifndef _AUDIO_CODECS_H
 #define _AUDIO_CODECS_H
 
+#include <string>
+#include "twinkle_config.h"
 #include "g711.h"
 #include "g72x.h"
+#include "log.h"
 
 // Audio codecs
 enum t_audio_codec {
@@ -31,6 +34,7 @@ enum t_audio_codec {
 	CODEC_SPEEX_NB,
 	CODEC_SPEEX_WB,
 	CODEC_SPEEX_UWB,
+	CODEC_OPUS,
 	CODEC_ILBC,
 	CODEC_G722,
 	CODEC_G726_16,
@@ -41,6 +45,26 @@ enum t_audio_codec {
 	CODEC_G729A
 };
 
+enum t_opus_bandwidth_sample_rate {
+	OPUS_SAMPLE_RATE_NB  =  8000,
+	OPUS_SAMPLE_RATE_MB  = 12000,
+	OPUS_SAMPLE_RATE_WB  = 16000,
+	OPUS_SAMPLE_RATE_SWB = 24000,
+	OPUS_SAMPLE_RATE_FB  = 48000,
+};
+
+// Format specific parameters, received on a "a=fmtp:" line during the SDP
+// negotiation, to be passed to the corresponding encoder/decoder
+struct t_codec_sdp_params {
+#ifdef HAVE_OPUS
+	bool			opus_cbr = 0;
+	unsigned int		opus_maxplaybackrate = 0;
+	unsigned int		opus_maxaveragebitrate = 0;
+	bool			opus_useinbandfec = 0;
+	bool			opus_usedtx = 0;
+#endif
+};
+
 // Default ptime values (ms) for audio codecs
 #define PTIME_G711_ALAW		20
 #define PTIME_G711_ULAW		20
@@ -48,6 +72,7 @@ enum t_audio_codec {
 #define PTIME_G726		20
 #define PTIME_GSM		20
 #define PTIME_SPEEX		20
+#define PTIME_OPUS		20
 #define MIN_PTIME		10
 #define MAX_PTIME		80
 
@@ -110,5 +135,17 @@ int resample(short *input_buf, int input_len, int input_sample_rate,
 
 // Mix 2 16 bits signed linear PCM values
 short mix_linear_pcm(short pcm1, short pcm2);
+
+#ifdef HAVE_OPUS
+// Bump an arbitrary ptime to the next value allowed by the Opus codec
+unsigned short opus_adjusted_ptime(unsigned short ptime);
+
+// Log an Opus error
+void log_opus_error(
+		const std::string &func_name,
+		const std::string &msg,
+		int opus_error,
+		bool display_msg = true);
+#endif
 
 #endif

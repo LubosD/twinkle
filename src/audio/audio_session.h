@@ -164,6 +164,8 @@ public:
 	void set_zrtp_sas_confirmed(bool confirmed);
 	void set_srtp_cipher_mode(const string &cipher_mode);
 
+	t_codec_sdp_params get_codec_sdp_params(void) const;
+
 #ifdef HAVE_SPEEX
 	// speex acoustic echo cancellation (AEC) manipulations
 	bool get_do_echo_cancellation(void) const;

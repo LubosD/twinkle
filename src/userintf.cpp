@@ -2229,6 +2229,7 @@ string t_userintf::format_codec(t_audio_codec codec) const {
 	case CODEC_SPEEX_NB:	return "spx-nb";
 	case CODEC_SPEEX_WB:	return "spx-wb";
 	case CODEC_SPEEX_UWB:	return "spx-uwb";
+	case CODEC_OPUS:	return "opus";
 	case CODEC_ILBC:	return "ilbc";
 	case CODEC_G722:	return "g722";
 	case CODEC_G726_16:	return "g726-16";
