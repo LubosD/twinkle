@@ -44,3 +44,4 @@ Icon=twinkle
 StartupNotify=true
 Terminal=false
 Categories=Qt;Network;Telephony;
+Keywords=sip;voip;softphone;phone
