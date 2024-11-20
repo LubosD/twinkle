@@ -2319,16 +2319,9 @@ bool t_gui::do_cb_ask_user_to_redirect_invite(t_user *user_config, const t_url &
 	s.append(qApp->translate("GUI",
 		"If you don't want to be asked this anymore, then you must change "
 		"the settings in the SIP protocol section of the user profile."));
-	QMessageBox *mb = new QMessageBox(title, s,
-					  QMessageBox::Warning,
-					  QMessageBox::Yes,
-					  QMessageBox::No,
-					  QMessageBox::NoButton,
-					  mainWindow);
-	MEMMAN_NEW(mb);
-	bool permission = (mb->exec() == QMessageBox::Yes);
-	MEMMAN_DELETE(mb);
-	delete mb;
+	int button = QMessageBox::warning(mainWindow, title, s,
+			QMessageBox::Yes | QMessageBox::No);
+	bool permission = (button == QMessageBox::Yes);
 
 	return permission;
 }
@@ -2357,16 +2350,9 @@ bool t_gui::do_cb_ask_user_to_redirect_request(t_user *user_config, const t_url 
 	s.append(qApp->translate("GUI",
 		"If you don't want to be asked this anymore, then you must change "
 		"the settings in the SIP protocol section of the user profile."));
-	QMessageBox *mb = new QMessageBox(title, s,
-					  QMessageBox::Warning,
-					  QMessageBox::Yes,
-					  QMessageBox::No,
-					  QMessageBox::NoButton,
-					  mainWindow);
-	MEMMAN_NEW(mb);
-	bool permission = (mb->exec() == QMessageBox::Yes);
-	MEMMAN_DELETE(mb);
-	delete mb;
+	int button = QMessageBox::warning(mainWindow, title, s,
+			QMessageBox::Yes | QMessageBox::No);
+	bool permission = (button == QMessageBox::Yes);
 
 	return permission;
 }
@@ -2465,19 +2451,19 @@ bool t_gui::cb_ask_msg(QWidget *parent, const string &msg, t_msg_priority prio) 
 	switch (prio) {
 	case MSG_INFO:
 		button = QMessageBox::information(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	case MSG_WARNING:
 		button = QMessageBox::warning(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	case MSG_CRITICAL:
 	default:
 		button = QMessageBox::critical(parent, PRODUCT_NAME, msg.c_str(),
-			QMessageBox::Yes,
-			QMessageBox::No | QMessageBox::Escape | QMessageBox::Default);
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No /* default */);
 		break;
 	}
 	

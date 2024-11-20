@@ -2297,10 +2297,9 @@ void MphoneForm::about()
 {
 	QString s = sys_config->about(true).c_str();
 	
-	QMessageBox mbAbout(PRODUCT_NAME, s.replace(' ', "&nbsp;"), 
-		    QMessageBox::Information, 
-		    QMessageBox::Ok | QMessageBox::Default,
-		    QMessageBox::NoButton, QMessageBox::NoButton);
+	QMessageBox mbAbout(QMessageBox::Information,
+			PRODUCT_NAME, s.replace(' ', "&nbsp;"),
+			QMessageBox::Ok);
 	mbAbout.setIconPixmap(QPixmap(":/icons/images/twinkle48.png"));
 	mbAbout.exec();
 }
