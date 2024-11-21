@@ -75,6 +75,9 @@ string t_hdr_session_expires::encode_value(void) const {
 		case REFRESHER_UAC:
 			refresher_str = SE_REFRESHER_UAC;
 			break;
+		case REFRESHER_NONE:
+			// Leave refresher_str empty
+			break;
 	}
 	if (!refresher_str.empty()) {
 		t_parameter r("refresher", refresher_str);
