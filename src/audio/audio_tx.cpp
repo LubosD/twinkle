@@ -90,6 +90,10 @@ t_audio_tx::t_audio_tx(t_audio_session *_audio_session,
 			t_speex_audio_decoder::MODE_UWB, user_config);
 	MEMMAN_NEW(map_audio_decoder[CODEC_SPEEX_UWB]);
 #endif
+#ifdef HAVE_OPUS
+	map_audio_decoder[CODEC_OPUS] = new t_opus_audio_decoder(_ptime, user_config);
+	MEMMAN_NEW(map_audio_decoder[CODEC_OPUS]);
+#endif
 #ifdef HAVE_ILBC
 	map_audio_decoder[CODEC_ILBC] = new t_ilbc_audio_decoder(_ptime, user_config);
 	MEMMAN_NEW(map_audio_decoder[CODEC_ILBC]);
