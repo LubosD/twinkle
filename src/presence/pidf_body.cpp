@@ -26,6 +26,7 @@
 
 #define PIDF_XML_VERSION	"1.0"
 #define PIDF_NAMESPACE		"urn:ietf:params:xml:ns:pidf"
+#define SWYX_NAMESPACE "http://sip.lanphone.de/presence/"
 
 #define IS_PIDF_TAG(node, tag)	IS_XML_TAG(node, tag, PIDF_NAMESPACE)
 				
@@ -56,6 +57,7 @@ bool t_pidf_xml_body::extract_status(void) {
 	pres_entity.clear();
 	tuple_id.clear();
 	basic_status.clear();
+	user_status.clear();
 	
 	// Get presence entity
 	xmlChar *prop_entity = xmlGetProp(root_element, BAD_CAST "entity");
@@ -114,11 +116,29 @@ void t_pidf_xml_body::process_pidf_status(xmlNode *status) {
 	
 	xmlNode *child = status->children;
 	for (xmlNode *cur_node = child; cur_node; cur_node = cur_node->next) {
+		// Process user status
+		if (IS_XML_TAG(cur_node, "userstatus", SWYX_NAMESPACE)) {
+			process_pidf_userstatus(cur_node);
+		}
+
 		// Process status
 		if (IS_PIDF_TAG(cur_node, "basic")) {
 			process_pidf_basic(cur_node);
-			break;
 		}
+	}
+}
+
+void t_pidf_xml_body::process_pidf_userstatus(xmlNode *userstatus)
+{
+	assert(userstatus);
+
+	xmlNode *child = userstatus->children;
+	if (child && child->type == XML_TEXT_NODE) {
+		user_status = tolower((char *)child->content);
+	} else {
+		log_file->write_report("<userstatus> element has no content.",
+							   "t_pidf_xml_body::process_pidf_userstatus",
+							   LOG_NORMAL, LOG_WARNING);
 	}
 }
 
@@ -188,6 +208,10 @@ string t_pidf_xml_body::get_tuple_id(void) const {
 	return tuple_id;
 }
 
+string t_pidf_xml_body::get_user_status(void) const {
+	return user_status;
+}
+
 string t_pidf_xml_body::get_basic_status(void) const {
 	return basic_status;
 }
@@ -200,6 +224,11 @@ void t_pidf_xml_body::set_pres_entity(const string &_pres_entity) {
 void t_pidf_xml_body::set_tuple_id(const string &_tuple_id) {
 	clear_xml_doc();
 	tuple_id = _tuple_id;
+}
+
+void t_pidf_xml_body::set_user_status(const string &_user_status) {
+	clear_xml_doc();
+	user_status = _user_status;
 }
 
 void t_pidf_xml_body::set_basic_status(const string &_basic_status) {

@@ -42,6 +42,15 @@ public:
 		ST_BASIC_FAILED,  /**< Failed to determine basic state. */
 		ST_BASIC_REJECTED,/**< Subscription has been rejected. */
 	};
+
+	enum t_user_state {
+		ST_USER_UNKNOWN, /**< Presence state is unknown. */
+		ST_USER_ONLINE,	 /**< Online and free. */
+		ST_USER_OFFLINE, /**< Offline. */
+		ST_USER_TALKING, /**< On the phone (active). */
+		ST_USER_AFK,	 /**< Away (but available). */
+		ST_USER_BUSY,	 /**< Busy (unavailable). */
+	};
 	
 	/**
 	 * Convert a basic state to a string representation for internal usage.
@@ -49,6 +58,7 @@ public:
 	 * @return String representation of the basic state.
 	 */
 	static string basic_state2str(t_basic_state state);
+	static string user_state2str(t_user_state state);
 	
 	/**
 	 * Convert a basic state to a PIDF string representation.
@@ -56,6 +66,8 @@ public:
 	 * @return PIDF representation of the basic state.
 	 */
 	static string basic_state2pidf_str(t_basic_state state);
+	static string user_state2pidf_str(t_user_state state);
+	t_user_state pidf_str2user_state(string user_state);
 	
 private:
 	/** Mutex for concurrent access to the presence state. */
@@ -66,6 +78,7 @@ private:
 	
 	/** Basic presence state. */
 	t_basic_state	basic_state;
+	t_user_state	user_state;
 	
 	/** Detailed failure message */
 	string		failure_msg;
@@ -79,12 +92,14 @@ public:
 	
 	/** @name Getters */
 	//@{
+	t_user_state get_user_state(void) const;
 	t_basic_state get_basic_state(void) const;
 	string get_failure_msg(void) const;
 	//@}
 	
 	/** @name Setters */
 	//@{
+	void set_user_state(t_user_state state);
 	void set_basic_state(t_basic_state state);
 	void set_failure_msg(const string &msg);
 	//@}
