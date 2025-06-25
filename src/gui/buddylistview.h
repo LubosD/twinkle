@@ -31,7 +31,8 @@ protected:
 	QString		tip;
 	
 	// Set the presence icon to reflect the presence state
-	virtual void set_icon(t_presence_state::t_basic_state state);
+	virtual void set_icon(t_presence_state::t_basic_state basic_state,
+						  t_presence_state::t_user_state user_state);
 	
 public:
     AbstractBLVItem(QTreeWidgetItem *parent, const QString &text);
