@@ -175,7 +175,7 @@ bool t_request::authorize_akav1_md5(const t_digest_challenge &dchlg,
 
 	memcpy(rnd, nonce64, AKA_RANDLEN);
 	memcpy(sqnxoraka, nonce64 + AKA_RANDLEN, AKA_SQNLEN);
-	memcpy(k, passwd.c_str(), passwd.size());
+	hex2binary(passwd, k);
 
 	f2345(k, rnd, res, ck, ik, ak, op);
 	
