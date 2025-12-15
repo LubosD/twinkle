@@ -26,26 +26,50 @@
 #include "qsize.h"
 #include <QTextDocument>
 
-void AbstractBLVItem::set_icon(t_presence_state::t_basic_state state) {
-	switch (state) {
-	case t_presence_state::ST_BASIC_UNKNOWN:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
+
+void AbstractBLVItem::set_icon(	t_presence_state::t_basic_state basic_state,
+								t_presence_state::t_user_state user_state)
+{
+	switch (user_state)
+	{
+	case t_presence_state::ST_USER_TALKING:
+		setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_talking.png"));
 		break;
-	case t_presence_state::ST_BASIC_CLOSED:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_offline.png"));
+	case t_presence_state::ST_USER_AFK:
+		setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_afk.png"));
 		break;
-	case t_presence_state::ST_BASIC_OPEN:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_online.png"));
+	case t_presence_state::ST_USER_BUSY:
+		setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_busy.png"));
 		break;
-	case t_presence_state::ST_BASIC_FAILED:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_failed.png"));
+	case t_presence_state::ST_USER_ONLINE:
+		setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_online.png"));
 		break;
-	case t_presence_state::ST_BASIC_REJECTED:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_rejected.png"));
+	case t_presence_state::ST_USER_OFFLINE:
+		setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_offline.png"));
 		break;
 	default:
-        setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
-		break;
+		// fallback to SIP basic states
+		switch (basic_state)
+		{
+		case t_presence_state::ST_BASIC_UNKNOWN:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
+			break;
+		case t_presence_state::ST_BASIC_CLOSED:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_offline.png"));
+			break;
+		case t_presence_state::ST_BASIC_OPEN:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_online.png"));
+			break;
+		case t_presence_state::ST_BASIC_FAILED:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_failed.png"));
+			break;
+		case t_presence_state::ST_BASIC_REJECTED:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_rejected.png"));
+			break;
+		default:
+			setData(0, Qt::DecorationRole, QPixmap(":/icons/images/presence_unknown.png"));
+			break;
+		}
 	}
 }
 
@@ -78,7 +102,9 @@ void BuddyListViewItem::set_icon(void) {
 		QString failure;
 		t_presence_state::t_basic_state basic_state = buddy->
 					get_presence_state()->get_basic_state();
-		AbstractBLVItem::set_icon(basic_state);
+		t_presence_state::t_user_state user_state = buddy->
+					get_presence_state()->get_user_state();
+		AbstractBLVItem::set_icon(basic_state, user_state);
 		
 		tip += "<br>";
 		tip += "<b>";
@@ -155,6 +181,7 @@ t_buddy *BuddyListViewItem::get_buddy(void) {
 
 void BLViewUserItem::set_icon(void) {
 	t_presence_state::t_basic_state basic_state;
+	t_presence_state::t_user_state user_state;
 	QString failure;
     QString profile_name = QString::fromStdString(presence_epa->get_user_profile()->get_profile_name());
 	
@@ -180,7 +207,7 @@ void BLViewUserItem::set_icon(void) {
 		break;
 	case t_presence_epa::EPA_PUBLISHED:
 		basic_state = presence_epa->get_basic_state();
-		AbstractBLVItem::set_icon(basic_state);
+		AbstractBLVItem::set_icon(basic_state, t_presence_state::ST_USER_UNKNOWN);
 		
 		switch (presence_epa->get_basic_state()) {
 		case t_presence_state::ST_BASIC_CLOSED:
