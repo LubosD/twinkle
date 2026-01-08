@@ -122,6 +122,9 @@ string get_rtpmap(unsigned format, t_audio_codec codec) {
 	case CODEC_SPEEX_UWB:
 		rtpmap += SDP_RTPMAP_SPEEX_UWB;
 		break;
+	case CODEC_OPUS:
+		rtpmap += SDP_RTPMAP_OPUS;
+		break;
 	case CODEC_ILBC:
 		rtpmap += SDP_RTPMAP_ILBC;
 		break;
@@ -640,6 +643,10 @@ t_audio_codec t_sdp::get_rtpmap_codec(const string &rtpmap) const {
 		
 	string codec_name = trim(rtpmap_elems[0]);
 	int sample_rate = atoi(trim(rtpmap_elems[1]).c_str());
+	int channels = 1;
+	if (rtpmap_elems.size() >= 3) {
+		channels = atoi(trim(rtpmap_elems[2]).c_str());
+	}
 	
 	if (cmp_nocase(codec_name, SDP_AC_NAME_G711_ULAW) == 0 && sample_rate == 8000) {
 		return CODEC_G711_ULAW;
@@ -653,6 +660,8 @@ t_audio_codec t_sdp::get_rtpmap_codec(const string &rtpmap) const {
 		return CODEC_SPEEX_WB;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_SPEEX) == 0 && sample_rate == 32000) {
 		return CODEC_SPEEX_UWB;
+	} else if (cmp_nocase(codec_name, SDP_AC_NAME_OPUS) == 0 && sample_rate == 48000 && channels == 2) {
+		return CODEC_OPUS;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_ILBC) == 0 && sample_rate == 8000) {
 		return CODEC_ILBC;
 	} else if (cmp_nocase(codec_name, SDP_AC_NAME_G722) == 0 && sample_rate == 8000) {
@@ -718,7 +727,9 @@ string t_sdp::get_fmtp(t_sdp_media_type media_type, unsigned short codec) const 
 	{
 		vector<string> l = split_ws((*i)->value);
 		if (atoi(l.front().c_str()) == codec) {
-			return l.back();
+			// Reconstruct the fmtp parameters string
+			vector<string> params((l.begin() + 1), l.end());
+			return join_strings(params, " ");
 		}
 	}
 
@@ -794,6 +805,26 @@ void t_sdp::set_fmtp_int_param(t_sdp_media_type media_type, unsigned short codec
 	string fmtp(param);
 	fmtp += '=';
 	fmtp += int2str(value);
+	set_fmtp(media_type, codec, fmtp);
+}
+
+void t_sdp::set_fmtp_int_params(t_sdp_media_type media_type, unsigned short codec,
+			const std::map<std::string, int> &params)
+{
+	if (params.empty()) return;
+
+	std::string fmtp;
+	bool first_param = true;
+
+	for (const std::pair<std::string, int> &param : params) {
+		fmtp += (first_param ? "" : "; ");
+		first_param = false;
+
+		fmtp += param.first;
+		fmtp += '=';
+		fmtp += int2str(param.second);
+	}
+
 	set_fmtp(media_type, codec, fmtp);
 }
 

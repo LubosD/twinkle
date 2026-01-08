@@ -100,6 +100,9 @@ set(twinkle_LIBS
 if (WITH_GSM)
 	list(APPEND twinkle_LIBS ${GSM_LIBRARY})
 endif (WITH_GSM)
+if (WITH_OPUS)
+	list(APPEND twinkle_LIBS ${Opus_LIBRARIES})
+endif (WITH_OPUS)
 
 if (WITH_QT5)
 	add_subdirectory(gui)

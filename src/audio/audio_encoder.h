@@ -36,6 +36,10 @@ extern "C" {
 #include <speex/speex.h>
 #endif
 
+#ifdef HAVE_OPUS
+#include <opus/opus.h>
+#endif
+
 extern "C" {
 #	include "g722.h"
 #	include "g722_local.h"
@@ -143,6 +147,21 @@ public:
 	virtual ~t_speex_audio_encoder();
 	
 	virtual uint16 encode(int16 *sample_buf, uint16 nsamples, 
+			uint8 *payload, uint16 payload_size, bool &silence);
+};
+#endif
+
+#ifdef HAVE_OPUS
+class t_opus_audio_encoder : public t_audio_encoder {
+private:
+	OpusEncoder	*enc;
+
+public:
+	t_opus_audio_encoder(uint16 payload_id, uint16 ptime,
+		t_user *user_config, const t_codec_sdp_params &codec_sdp_params);
+	virtual ~t_opus_audio_encoder();
+
+	virtual uint16 encode(int16 *sample_buf, uint16 nsamples,
 			uint8 *payload, uint16 payload_size, bool &silence);
 };
 #endif

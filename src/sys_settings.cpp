@@ -1178,6 +1178,10 @@ string t_sys_settings::get_options_built(void) const {
 	if (!options_built.empty()) options_built += ", ";
 	options_built += "Speex";
 #endif
+#ifdef HAVE_OPUS
+	if (!options_built.empty()) options_built += ", ";
+	options_built += "Opus";
+#endif
 #ifdef HAVE_ILBC
 	if (!options_built.empty()) options_built += ", ";
 	options_built += "iLBC";
