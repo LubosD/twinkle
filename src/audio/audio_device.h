@@ -50,6 +50,10 @@ public:
 	virtual int read(unsigned char* buf, int len) = 0;
 	virtual int write(const unsigned char* buf, int len) = 0;
 	virtual int get_sample_rate(void) const;
+
+	// Called before waiting for audio threads to exit, to unblock any
+	// in-progress read/write so the threads can check their stop flags.
+	virtual void drop() {}
 	
 	static t_audio_io* open(const t_audio_device& dev, bool playback, 
 		bool capture, bool blocking, int channels, t_audio_sampleformat format, 
@@ -100,9 +104,10 @@ public:
 	bool play_buffer_underrun(void);
 	int read(unsigned char* buf, int len);
 	int write(const unsigned char* buf, int len);
+	void drop();
 protected:
-	bool open(const string& device, bool playback, bool capture, bool blocking, 
-		int channels, t_audio_sampleformat format, int sample_rate, 
+	bool open(const string& device, bool playback, bool capture, bool blocking,
+		int channels, t_audio_sampleformat format, int sample_rate,
 		bool short_latency);
 private:
 	struct _snd_pcm *pcm_play_ptr, *pcm_rec_ptr;
