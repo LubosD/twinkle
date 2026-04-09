@@ -31,6 +31,10 @@
 #include "threads/mutex.h"
 #include <regex>
 
+#ifdef HAVE_OPUS
+#include <opus/opus.h>
+#endif
+
 // Forward declaration
 class t_request;
 
@@ -211,6 +215,21 @@ private:
 	unsigned short		speex_complexity;
 	unsigned short		speex_quality; // quality measure (worst 0-10 best)
 	
+#ifdef HAVE_OPUS
+	// RTP dynamic payload type for Opus
+	unsigned short		opus_payload_type;
+
+	// Opus options
+	opus_int32		opus_bandwidth;
+	unsigned int		opus_bitrate;  // in bps, 0=auto
+	bool			opus_cbr;
+	unsigned short		opus_complexity;
+	bool			opus_dtx;
+	bool			opus_fec;
+	unsigned short		opus_packet_loss;
+	opus_int32		opus_signal_type;
+#endif
+
 	// RTP dynamic payload types for iLBC
 	unsigned short		ilbc_payload_type;
 	
@@ -534,6 +553,12 @@ private:
 	string bit_rate_type2str(t_bit_rate_type b) const;
 	t_dtmf_transport str2dtmf_transport(const string &s) const;
 	string dtmf_transport2str(t_dtmf_transport d) const;
+#ifdef HAVE_OPUS
+	opus_int32 str2opus_bandwidth(const string &s) const;
+	string opus_bandwidth2str(opus_int32 bandwidth) const;
+	opus_int32 str2opus_signal_type(const string &s) const;
+	string opus_signal_type2str(opus_int32 signal_type) const;
+#endif
 	t_g726_packing str2g726_packing(const string &s) const;
 	string g726_packing2str(t_g726_packing packing) const;
 	t_sip_transport str2sip_transport(const string &s) const;
@@ -594,6 +619,17 @@ public:
 	bool get_speex_dsp_aec(void) const;
 	bool get_speex_dsp_nrd(void) const;
 	unsigned short get_speex_dsp_agc_level(void) const;
+#ifdef HAVE_OPUS
+	unsigned int get_opus_bitrate(void) const;
+	opus_int32 get_opus_bandwidth(void) const;
+	bool get_opus_cbr(void) const;
+	unsigned short get_opus_complexity(void) const;
+	bool get_opus_dtx(void) const;
+	bool get_opus_fec(void) const;
+	unsigned short get_opus_packet_loss(void) const;
+	unsigned short get_opus_payload_type(void) const;
+	opus_int32 get_opus_signal_type(void) const;
+#endif
 	unsigned short get_ilbc_payload_type(void) const;
 	unsigned short get_ilbc_mode(void) const;
 	unsigned short get_g726_16_payload_type(void) const;
@@ -713,6 +749,17 @@ public:
 	void set_speex_dsp_aec(bool b);
 	void set_speex_dsp_nrd(bool b);
 	void set_speex_dsp_agc_level(unsigned short level);
+#ifdef HAVE_OPUS
+	void set_opus_bandwidth(opus_int32 bandwidth);
+	void set_opus_bitrate(unsigned int bitrate);
+	void set_opus_cbr(bool b);
+	void set_opus_complexity(unsigned short complexity);
+	void set_opus_dtx(bool b);
+	void set_opus_fec(bool b);
+	void set_opus_packet_loss(unsigned short packet_loss);
+	void set_opus_payload_type(unsigned short payload_type);
+	void set_opus_signal_type(opus_int32 signal_type);
+#endif
 	void set_ilbc_payload_type(unsigned short payload_type);
 	void set_g726_16_payload_type(unsigned short payload_type);
 	void set_g726_24_payload_type(unsigned short payload_type);

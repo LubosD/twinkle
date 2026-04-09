@@ -82,6 +82,15 @@ extern t_phone		*phone;
 #define FLD_SPEEX_DSP_AGC_LEVEL		"speex_dsp_agc_level"
 #define FLD_SPEEX_DSP_AEC		"speex_dsp_aec"
 #define FLD_SPEEX_DSP_NRD		"speex_dsp_nrd"
+#define FLD_OPUS_BANDWIDTH		"opus_bandwidth"
+#define FLD_OPUS_BITRATE		"opus_bitrate"
+#define FLD_OPUS_CBR			"opus_cbr"
+#define FLD_OPUS_COMPLEXITY		"opus_complexity"
+#define FLD_OPUS_DTX			"opus_dtx"
+#define FLD_OPUS_FEC			"opus_fec"
+#define FLD_OPUS_PACKET_LOSS		"opus_packet_loss"
+#define FLD_OPUS_PAYLOAD_TYPE		"opus_payload_type"
+#define FLD_OPUS_SIGNAL_TYPE		"opus_signal_type"
 #define FLD_ILBC_PAYLOAD_TYPE		"ilbc_payload_type"
 #define FLD_ILBC_MODE			"ilbc_mode"
 #define FLD_G726_16_PAYLOAD_TYPE	"g726_16_payload_type"
@@ -248,6 +257,48 @@ string t_user::dtmf_transport2str(t_dtmf_transport d) const {
 	return "";
 }
 
+#ifdef HAVE_OPUS
+opus_int32 t_user::str2opus_bandwidth(const string &s) const {
+	if (s == "nb") return OPUS_BANDWIDTH_NARROWBAND;
+	if (s == "mb") return OPUS_BANDWIDTH_MEDIUMBAND;
+	if (s == "wb") return OPUS_BANDWIDTH_WIDEBAND;
+	if (s == "swb") return OPUS_BANDWIDTH_SUPERWIDEBAND;
+	if (s == "fb") return OPUS_BANDWIDTH_FULLBAND;
+	return OPUS_BANDWIDTH_FULLBAND;
+}
+
+string t_user::opus_bandwidth2str(opus_int32 bandwidth) const {
+	switch (bandwidth) {
+	case OPUS_BANDWIDTH_NARROWBAND:		return "nb";
+	case OPUS_BANDWIDTH_MEDIUMBAND:		return "mb";
+	case OPUS_BANDWIDTH_WIDEBAND:		return "wb";
+	case OPUS_BANDWIDTH_SUPERWIDEBAND:	return "swb";
+	case OPUS_BANDWIDTH_FULLBAND:		return "fb";
+	default:
+		assert(false);
+	}
+	return "";
+}
+
+opus_int32 t_user::str2opus_signal_type(const string &s) const {
+	if (s == "auto") return OPUS_AUTO;
+	if (s == "voice") return OPUS_SIGNAL_VOICE;
+	if (s == "music") return OPUS_SIGNAL_MUSIC;
+	return OPUS_AUTO;
+}
+
+string t_user::opus_signal_type2str(opus_int32 signal_type) const {
+	switch (signal_type) {
+	case OPUS_AUTO:	return "auto";
+	case OPUS_SIGNAL_VOICE:	return "voice";
+	case OPUS_SIGNAL_MUSIC:	return "music";
+	default:
+		assert(false);
+	}
+	return "";
+}
+#endif
+
 t_g726_packing t_user::str2g726_packing(const string &s) const {
 	if (s == "rfc3551") return G726_PACK_RFC3551;
 	if (s == "aal2") return G726_PACK_AAL2;
@@ -366,6 +417,9 @@ t_user::t_user() {
 	codecs.push_back(CODEC_SPEEX_WB);
 	codecs.push_back(CODEC_SPEEX_NB);
 #endif
+#ifdef HAVE_OPUS
+	codecs.push_back(CODEC_OPUS);
+#endif
 #ifdef HAVE_ILBC
 	codecs.push_back(CODEC_ILBC);
 #endif
@@ -416,6 +470,17 @@ t_user::t_user() {
 	speex_dsp_aec = false;
 	speex_dsp_nrd = true;
 	speex_dsp_agc_level = 20;
+#ifdef HAVE_OPUS
+	opus_bandwidth = OPUS_BANDWIDTH_FULLBAND;
+	opus_bitrate = 0;
+	opus_cbr = false;
+	opus_complexity = 10;
+	opus_dtx = false;
+	opus_fec = false;
+	opus_packet_loss = 0;
+	opus_payload_type = 106;
+	opus_signal_type = OPUS_AUTO;
+#endif
 	ilbc_payload_type = 96;
 	ilbc_mode = 30;
 	g726_16_payload_type = 102;
@@ -513,6 +578,17 @@ t_user::t_user(const t_user &u) {
 	speex_dsp_agc_level = u.speex_dsp_agc_level;
 	speex_dsp_aec = u.speex_dsp_aec;
 	speex_dsp_nrd = u.speex_dsp_nrd;
+#ifdef HAVE_OPUS
+	opus_bandwidth = u.opus_bandwidth;
+	opus_bitrate = u.opus_bitrate;
+	opus_cbr = u.opus_cbr;
+	opus_complexity = u.opus_complexity;
+	opus_dtx = u.opus_dtx;
+	opus_fec = u.opus_fec;
+	opus_packet_loss = u.opus_packet_loss;
+	opus_payload_type = u.opus_payload_type;
+	opus_signal_type = u.opus_signal_type;
+#endif
 	ilbc_payload_type = u.ilbc_payload_type;
 	ilbc_mode = u.ilbc_mode;
 	g726_16_payload_type = u.g726_16_payload_type;
@@ -898,6 +974,80 @@ bool t_user::get_speex_dsp_nrd(void) const {
 	mtx_user.unlock();
 	return result;
 }
+
+#ifdef HAVE_OPUS
+opus_int32 t_user::get_opus_bandwidth(void) const {
+	opus_int32 result;
+	mtx_user.lock();
+	result = opus_bandwidth;
+	mtx_user.unlock();
+	return result;
+}
+
+unsigned int t_user::get_opus_bitrate(void) const {
+	unsigned int result;
+	mtx_user.lock();
+	result = opus_bitrate;
+	mtx_user.unlock();
+	return result;
+}
+
+bool t_user::get_opus_cbr(void) const {
+	bool result;
+	mtx_user.lock();
+	result = opus_cbr;
+	mtx_user.unlock();
+	return result;
+}
+
+unsigned short t_user::get_opus_complexity(void) const {
+	unsigned short result;
+	mtx_user.lock();
+	result = opus_complexity;
+	mtx_user.unlock();
+	return result;
+}
+
+bool t_user::get_opus_dtx(void) const {
+	bool result;
+	mtx_user.lock();
+	result = opus_dtx;
+	mtx_user.unlock();
+	return result;
+}
+
+bool t_user::get_opus_fec(void) const {
+	bool result;
+	mtx_user.lock();
+	result = opus_fec;
+	mtx_user.unlock();
+	return 0 && result;
+}
+
+unsigned short t_user::get_opus_packet_loss(void) const {
+	unsigned short result;
+	mtx_user.lock();
+	result = opus_packet_loss;
+	mtx_user.unlock();
+	return result;
+}
+
+unsigned short t_user::get_opus_payload_type(void) const {
+	unsigned short result;
+	mtx_user.lock();
+	result = opus_payload_type;
+	mtx_user.unlock();
+	return result;
+}
+
+opus_int32 t_user::get_opus_signal_type(void) const {
+	opus_int32 result;
+	mtx_user.lock();
+	result = opus_signal_type;
+	mtx_user.unlock();
+	return result;
+}
+#endif
 
 unsigned short t_user::get_ilbc_payload_type(void) const {
 	unsigned short result;
@@ -1692,6 +1842,62 @@ void t_user::set_speex_dsp_nrd(bool b) {
 	mtx_user.unlock();
 }
 
+#ifdef HAVE_OPUS
+void t_user::set_opus_bandwidth(opus_int32 bandwidth) {
+	mtx_user.lock();
+	opus_bandwidth = bandwidth;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_bitrate(unsigned int bitrate) {
+	mtx_user.lock();
+	opus_bitrate = bitrate;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_cbr(bool b) {
+	mtx_user.lock();
+	opus_cbr = b;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_complexity(unsigned short complexity) {
+	mtx_user.lock();
+	opus_complexity = complexity;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_dtx(bool b) {
+	mtx_user.lock();
+	opus_dtx = b;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_fec(bool b) {
+	mtx_user.lock();
+	opus_fec = b;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_packet_loss(unsigned short packet_loss) {
+	mtx_user.lock();
+	opus_packet_loss = packet_loss;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_payload_type(unsigned short payload_type) {
+	mtx_user.lock();
+	opus_payload_type = payload_type;
+	mtx_user.unlock();
+}
+
+void t_user::set_opus_signal_type(opus_int32 signal_type) {
+	mtx_user.lock();
+	opus_signal_type = signal_type;
+	mtx_user.unlock();
+}
+#endif
+
 void t_user::set_ilbc_payload_type(unsigned short payload_type) {
 	mtx_user.lock();
 	ilbc_payload_type = payload_type;
@@ -2263,6 +2469,10 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 				} else if (codec == "speex-uwb") {
 					codecs.push_back(CODEC_SPEEX_UWB);
 #endif
+#ifdef HAVE_OPUS
+				} else if (codec == "opus") {
+					codecs.push_back(CODEC_OPUS);
+#endif
 #ifdef HAVE_ILBC
 				} else if (codec == "ilbc") {
 					codecs.push_back(CODEC_ILBC);
@@ -2459,6 +2669,59 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 				mtx_user.unlock();
 				return false;	
 			}
+#ifdef HAVE_OPUS
+		} else if (parameter == FLD_OPUS_BANDWIDTH) {
+			opus_bandwidth = str2opus_bandwidth(value);
+		} else if (parameter == FLD_OPUS_BITRATE) {
+			opus_bitrate = atoi(value.c_str());
+			if ((opus_bitrate != 0) && (opus_bitrate < 500 || opus_bitrate > 512000)) {
+				error_msg = "Syntax error in file ";
+				error_msg += f;
+				error_msg += "\n";
+				error_msg += "Invalid value for Opus bitrate: ";
+				error_msg += to_string(opus_bitrate);
+				log_file->write_report(error_msg, "t_user::read_config",
+					LOG_NORMAL, LOG_CRITICAL);
+				mtx_user.unlock();
+				return false;
+			}
+		} else if (parameter == FLD_OPUS_CBR) {
+			opus_cbr = yesno2bool(value);
+		} else if (parameter == FLD_OPUS_COMPLEXITY) {
+			opus_complexity = atoi(value.c_str());
+			if (opus_complexity > 10) {
+				error_msg = "Syntax error in file ";
+				error_msg += f;
+				error_msg += "\n";
+				error_msg += "Invalid value for Opus complexity: ";
+				error_msg += value;
+				log_file->write_report(error_msg, "t_user::read_config",
+					LOG_NORMAL, LOG_CRITICAL);
+				mtx_user.unlock();
+				return false;
+			}
+		} else if (parameter == FLD_OPUS_DTX) {
+			opus_dtx = yesno2bool(value);
+		} else if (parameter == FLD_OPUS_FEC) {
+			opus_fec = yesno2bool(value);
+		} else if (parameter == FLD_OPUS_PACKET_LOSS) {
+			opus_packet_loss = atoi(value.c_str());
+			if (opus_packet_loss > 100) {
+				error_msg = "Syntax error in file ";
+				error_msg += f;
+				error_msg += "\n";
+				error_msg += "Invalid value for Opus packet loss: ";
+				error_msg += value;
+				log_file->write_report(error_msg, "t_user::read_config",
+					LOG_NORMAL, LOG_CRITICAL);
+				mtx_user.unlock();
+				return false;
+			}
+		} else if (parameter == FLD_OPUS_PAYLOAD_TYPE) {
+			opus_payload_type = atoi(value.c_str());
+		} else if (parameter == FLD_OPUS_SIGNAL_TYPE) {
+			opus_signal_type = str2opus_signal_type(value);
+#endif
 		} else if (parameter == FLD_ILBC_PAYLOAD_TYPE) {
 			ilbc_payload_type = atoi(value.c_str());
 		} else if (parameter == FLD_ILBC_MODE) {
@@ -2685,6 +2948,9 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 		case CODEC_SPEEX_UWB:
 			config << "speex-uwb";
 			break;
+		case CODEC_OPUS:
+			config << "opus";
+			break;
 		case CODEC_ILBC:
 			config << "ilbc";
 			break;
@@ -2730,6 +2996,17 @@ bool t_user::write_config(const string &filename, string &error_msg) {
 	config << FLD_SPEEX_DSP_AEC << '=' << bool2yesno(speex_dsp_aec) << endl;
 	config << FLD_SPEEX_DSP_NRD << '=' << bool2yesno(speex_dsp_nrd) << endl;
 	config << FLD_SPEEX_DSP_AGC_LEVEL << '=' << speex_dsp_agc_level << endl;
+#ifdef HAVE_OPUS
+	config << FLD_OPUS_BANDWIDTH << '=' << opus_bandwidth2str(opus_bandwidth) << endl;
+	config << FLD_OPUS_BITRATE << '=' << opus_bitrate << endl;
+	config << FLD_OPUS_CBR << '=' << bool2yesno(opus_cbr) << endl;
+	config << FLD_OPUS_COMPLEXITY << '=' << opus_complexity << endl;
+	config << FLD_OPUS_DTX << '=' << bool2yesno(opus_dtx) << endl;
+	config << FLD_OPUS_FEC << '=' << bool2yesno(opus_fec) << endl;
+	config << FLD_OPUS_PACKET_LOSS << '=' << opus_packet_loss << endl;
+	config << FLD_OPUS_PAYLOAD_TYPE << '=' << opus_payload_type << endl;
+	config << FLD_OPUS_SIGNAL_TYPE << '=' << opus_signal_type2str(opus_signal_type) << endl;
+#endif
 	config << FLD_ILBC_PAYLOAD_TYPE << '=' << ilbc_payload_type << endl;
 	config << FLD_ILBC_MODE << '=' << ilbc_mode << endl;
 	config << FLD_G726_16_PAYLOAD_TYPE << '=' << g726_16_payload_type << endl;
