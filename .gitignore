@@ -26,6 +26,7 @@ src/parser/scanner.cxx
 src/sdp/sdp_parser.cxx
 src/sdp/sdp_parser.hxx
 src/sdp/sdp_scanner.cxx
+/build
 
 # Qt Creator files
 CMakeLists.txt.user*
