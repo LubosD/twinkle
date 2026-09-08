@@ -151,52 +151,59 @@ void t_phone::move_releasing_lines_to_background(void) {
 }
 
 void t_phone::cleanup_3way_state(unsigned short lineno) {
-	assert(lineno < lines.size());
+    assert(lineno < lines.size());
 
-	t_mutex_guard x(mutex_3way);
+    t_mutex_guard x(mutex_3way);
 
-	// Clean up 3-way data if the line was involved in a 3-way
-	if (is_3way)
-	{
-		bool line_in_3way = false;
-		t_audio_session *as_peer;
-		t_line *line_peer;
+    // Clean up 3-way data if the line was involved in a 3-way
+    if (is_3way)
+    {
+        bool line_in_3way = false;
+        t_audio_session *as_peer;
+        t_line *line_peer;
 
-		if (lineno == line1_3way->get_line_number()) {
-			line_in_3way = true;
-			line_peer = line2_3way;
-		} else if (lineno == line2_3way->get_line_number()) {
-			line_in_3way = true;
-			line_peer = line1_3way;
-		}
+        if (lineno == line1_3way->get_line_number()) {
+            line_in_3way = true;
+            line_peer = line2_3way;
+        } else if (lineno == line2_3way->get_line_number()) {
+            line_in_3way = true;
+            line_peer = line1_3way;
+        }
 
-		if (line_in_3way) {
-			// Stop the 3-way mixing on the peer line
-			as_peer = line_peer->get_audio_session();
-			if (as_peer) as_peer->stop_3way();
+        if (line_in_3way) {
+            // Stop the 3-way mixing on the peer line.
+            // The peer line may already have been cleared while the
+            // conference is being torn down, so guard against a null
+            // audio session before touching it.
+            as_peer = line_peer ? line_peer->get_audio_session() : NULL;
+            if (as_peer) {
+                as_peer->stop_3way();
 
-			// Make the peer line the active line
-			set_active_line(line_peer->get_line_number());
-			
-			// If the 3-way was with mixed codec sample rates, then
-			// the remaining audio session might have a mismatch
-			// between the sound card sample rate and the codec
-			// sample rate. In that case clear the sample rate by
-			// toggling the audio session off and on.
-			if (!as_peer->matching_sample_rates()) {
-				log_file->write_report(
-					"Hold/retrieve call to align codec and sound card.",
-					"t_phone::line_cleared", LOG_NORMAL, LOG_DEBUG);
-				line_peer->hold(true);
-				line_peer->retrieve();
-			}
+                // If the 3-way was with mixed codec sample rates, then
+                // the remaining audio session might have a mismatch
+                // between the sound card sample rate and the codec
+                // sample rate. In that case clear the sample rate by
+                // toggling the audio session off and on.
+                if (!as_peer->matching_sample_rates()) {
+                    log_file->write_report(
+                        "Hold/retrieve call to align codec and sound card.",
+                        "t_phone::line_cleared", LOG_NORMAL, LOG_DEBUG);
+                    line_peer->hold(true);
+                    line_peer->retrieve();
+                }
+            }
 
-			is_3way = false;
-			line1_3way = NULL;
-			line2_3way = NULL;
-			ui->cb_line_state_changed();
-		}
-	}
+            // Make the peer line the active line if it still exists.
+            if (line_peer) {
+                set_active_line(line_peer->get_line_number());
+            }
+
+            is_3way = false;
+            line1_3way = NULL;
+            line2_3way = NULL;
+            ui->cb_line_state_changed();
+        }
+    }
 
 }
 
