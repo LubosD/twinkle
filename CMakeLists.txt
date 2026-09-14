@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.10...3.22 FATAL_ERROR)
 
 project(twinkle)
 
-set(PRODUCT_VERSION "1.10.3")
+set(PRODUCT_VERSION "1.11.0")
 set(PRODUCT_DATE    "February 18, 2022")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Add -DDEBUG for non-release builds, or uCommon will unilaterally define NDEBUG
