@@ -26,7 +26,11 @@
 
 #ifdef HAVE_GSM
 extern "C" {
+#ifdef HAVE_GSM_GSM_H
 #include <gsm/gsm.h>
+#else
+#include <gsm.h>
+#endif
 }
 #else
 #include "gsm/inc/gsm.h"
