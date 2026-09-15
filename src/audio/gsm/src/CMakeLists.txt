@@ -1,6 +1,7 @@
 project(libtwinkle-gsm)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc)
+# Add this directory *before* others, to avoid our own `gsm.h` being shadowed
+include_directories(BEFORE ${CMAKE_CURRENT_SOURCE_DIR}/../inc)
 
 set(LIBTWINKLE_GSM-SRCS
 	add.cpp
