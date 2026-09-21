@@ -1644,8 +1644,7 @@ Bei Übereinstimmung klicken Sie auf das Vorhängeschloss, und Twinkle merkt sic
     </message>
     <message>
         <source>Line &amp;2:</source>
-        <translation>Leitung &amp;2:
-</translation>
+        <translation>Leitung &amp;2:</translation>
     </message>
     <message>
         <source>Alt+2</source>
