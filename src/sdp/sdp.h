@@ -43,6 +43,7 @@
 #define SDP_RTPMAP_SPEEX_NB	"speex/8000"
 #define SDP_RTPMAP_SPEEX_WB	"speex/16000"
 #define SDP_RTPMAP_SPEEX_UWB	"speex/32000"
+#define SDP_RTPMAP_OPUS		"opus/48000/2"
 #define SDP_RTPMAP_ILBC		"iLBC/8000"
 #define SDP_RTPMAP_G722		"G722/8000"
 #define SDP_RTPMAP_G726_16	"G726-16/8000"
@@ -57,6 +58,7 @@
 #define SDP_AC_NAME_G711_ALAW		"PCMA"
 #define SDP_AC_NAME_GSM			"GSM"
 #define SDP_AC_NAME_SPEEX		"speex"
+#define SDP_AC_NAME_OPUS		"opus"
 #define SDP_AC_NAME_ILBC		"iLBC"
 #define SDP_AC_NAME_G722		"G722"
 #define SDP_AC_NAME_G726_16		"G726-16"
@@ -282,6 +284,8 @@ public:
 	void set_fmtp(t_sdp_media_type media_type, unsigned short codec, const string &fmtp);
 	void set_fmtp_int_param(t_sdp_media_type media_type, unsigned short codec,
 			const string &param, int value);
+	void set_fmtp_int_params(t_sdp_media_type media_type, unsigned short codec,
+			const std::map<std::string, int> &params);
 	void set_zrtp_support(t_sdp_media_type media_type);
 
 	// Returns a pointer to the first media stream in the list of media

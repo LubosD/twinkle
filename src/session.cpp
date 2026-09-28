@@ -16,6 +16,7 @@
 */
 
 #include <assert.h>
+#include "twinkle_config.h"
 #include "line.h"
 #include "log.h"
 #include "phone.h"
@@ -122,6 +123,9 @@ t_session::t_session(t_dialog *_dialog, string _receive_host,
 	recv_ac2payload[CODEC_SPEEX_NB] = user_config->get_speex_nb_payload_type();
 	recv_ac2payload[CODEC_SPEEX_WB] = user_config->get_speex_wb_payload_type();
 	recv_ac2payload[CODEC_SPEEX_UWB] = user_config->get_speex_uwb_payload_type();
+#ifdef HAVE_OPUS
+	recv_ac2payload[CODEC_OPUS] = user_config->get_opus_payload_type();
+#endif
 	recv_ac2payload[CODEC_ILBC] = user_config->get_ilbc_payload_type();
 	recv_ac2payload[CODEC_G726_16] = user_config->get_g726_16_payload_type();
 	recv_ac2payload[CODEC_G726_24] = user_config->get_g726_24_payload_type();
@@ -139,6 +143,9 @@ t_session::t_session(t_dialog *_dialog, string _receive_host,
 	recv_payload2ac[user_config->get_speex_nb_payload_type()] = CODEC_SPEEX_NB;
 	recv_payload2ac[user_config->get_speex_wb_payload_type()] = CODEC_SPEEX_WB;
 	recv_payload2ac[user_config->get_speex_uwb_payload_type()] = CODEC_SPEEX_UWB;
+#ifdef HAVE_OPUS
+	recv_payload2ac[user_config->get_opus_payload_type()] = CODEC_OPUS;
+#endif
 	recv_payload2ac[user_config->get_ilbc_payload_type()] = CODEC_ILBC;
 	recv_payload2ac[user_config->get_g726_16_payload_type()] = CODEC_G726_16;
 	recv_payload2ac[user_config->get_g726_24_payload_type()] = CODEC_G726_24;
@@ -357,6 +364,10 @@ bool t_session::process_sdp_offer(t_sdp *sdp, int &warn_code,
 		}
 	}
 
+	if (use_codec == CODEC_OPUS) {
+		process_sdp_opus(sdp, warn_code, warn_text);
+	}
+
 	return true;
 }
 
@@ -427,7 +438,47 @@ bool t_session::process_sdp_answer(t_sdp *sdp, int &warn_code,
 		}
 	}
 
+	if (use_codec == CODEC_OPUS) {
+		process_sdp_opus(sdp, warn_code, warn_text);
+	}
+
 	return true;
+}
+
+void t_session::process_sdp_opus(t_sdp *sdp, int &warn_code,
+		std::string &warn_text)
+{
+#ifdef HAVE_OPUS
+	int cbr = sdp->get_fmtp_int_param(SDP_AUDIO,
+			send_ac2payload[use_codec], "cbr");
+	if (cbr != -1) {
+		codec_sdp_params.opus_cbr = cbr;
+	}
+
+	int maxaveragebitrate = sdp->get_fmtp_int_param(SDP_AUDIO,
+			send_ac2payload[use_codec], "maxaveragebitrate");
+	if (maxaveragebitrate != -1) {
+		codec_sdp_params.opus_maxaveragebitrate = maxaveragebitrate;
+	}
+
+	int maxplaybackrate = sdp->get_fmtp_int_param(SDP_AUDIO,
+			send_ac2payload[use_codec], "maxplaybackrate");
+	if (maxplaybackrate != -1) {
+		codec_sdp_params.opus_maxplaybackrate = maxplaybackrate;
+	}
+
+	int useinbandfec = sdp->get_fmtp_int_param(SDP_AUDIO,
+			send_ac2payload[use_codec], "useinbandfec");
+	if (useinbandfec != -1) {
+		codec_sdp_params.opus_useinbandfec = useinbandfec;
+	}
+
+	int usedtx = sdp->get_fmtp_int_param(SDP_AUDIO,
+			send_ac2payload[use_codec], "usedtx");
+	if (usedtx != -1) {
+		codec_sdp_params.opus_usedtx = usedtx;
+	}
+#endif
 }
 
 void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
@@ -455,7 +506,7 @@ void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
 	MEMMAN_NEW(m->body);
 
 
-	// Set ptime for G.711/G.722/G.726 codecs
+	// Set ptime for G.711/G.722/G.726/Opus codecs
 	list<t_audio_codec>::iterator it_g7xx;
 	it_g7xx = find(offer_codecs.begin(), offer_codecs.end(), CODEC_G711_ALAW);
 	if (it_g7xx == offer_codecs.end()) {
@@ -476,10 +527,19 @@ void t_session::create_sdp_offer(t_sip_message *m, const string &user) {
 	if (it_g7xx == offer_codecs.end()) {
 		it_g7xx = find(offer_codecs.begin(), offer_codecs.end(), CODEC_G726_40);
 	}
+	if (it_g7xx == offer_codecs.end()) {
+		it_g7xx = find(offer_codecs.begin(), offer_codecs.end(), CODEC_OPUS);
+	}
 	if (it_g7xx != offer_codecs.end()) {
 		((t_sdp *)m->body)->set_ptime(SDP_AUDIO, ptime);
 	}
 	
+	list<t_audio_codec>::iterator it_opus;
+	it_opus = find(offer_codecs.begin(), offer_codecs.end(), CODEC_OPUS);
+	if (it_opus != offer_codecs.end()) {
+		create_sdp_opus(m, user);
+	}
+
 	// Set mode for iLBC codecs
 	list<t_audio_codec>::iterator it_ilbc;
 	it_ilbc = find(offer_codecs.begin(), offer_codecs.end(), CODEC_ILBC);
@@ -590,11 +650,18 @@ void t_session::create_sdp_answer(t_sip_message *m, const string &user) {
 
 	// Set audio attributes
 	
-	// Set ptime for G711 codecs
+	// Set ptime for G711/Opus codecs
 	if (use_codec == CODEC_G711_ALAW ||
-	    use_codec == CODEC_G711_ULAW)
+	    use_codec == CODEC_G711_ULAW ||
+	    use_codec == CODEC_OPUS)
 	{
 		((t_sdp *)m->body)->set_ptime(SDP_AUDIO, ptime);
+	}
+
+	list<t_audio_codec>::iterator it_opus;
+	it_opus = find(offer_codecs.begin(), offer_codecs.end(), CODEC_OPUS);
+	if (it_opus != offer_codecs.end()) {
+		create_sdp_opus(m, user);
 	}
 
 	// Set mode for iLBC codecs
@@ -614,6 +681,54 @@ void t_session::create_sdp_answer(t_sip_message *m, const string &user) {
 	if (user_config->get_zrtp_enabled() && user_config->get_zrtp_sdp()) {
 		((t_sdp *)m->body)->set_zrtp_support(SDP_AUDIO);
 	}
+}
+
+void t_session::create_sdp_opus(t_sip_message *m, const std::string &user) {
+#ifdef HAVE_OPUS
+	std::map<std::string, int> fmtp_params;
+
+	if (user_config->get_opus_cbr()) {
+		fmtp_params["cbr"] = 1;
+	}
+
+	unsigned int bitrate = user_config->get_opus_bitrate();
+	if (bitrate != 0) {
+		fmtp_params["maxaveragebitrate"] = bitrate;
+	}
+
+	t_opus_bandwidth_sample_rate bandwidth_sample_rate;
+	switch (user_config->get_opus_bandwidth()) {
+	case OPUS_BANDWIDTH_NARROWBAND:
+		bandwidth_sample_rate = OPUS_SAMPLE_RATE_NB;
+		break;
+	case OPUS_BANDWIDTH_MEDIUMBAND:
+		bandwidth_sample_rate = OPUS_SAMPLE_RATE_MB;
+		break;
+	case OPUS_BANDWIDTH_WIDEBAND:
+		bandwidth_sample_rate = OPUS_SAMPLE_RATE_WB;
+		break;
+	case OPUS_BANDWIDTH_SUPERWIDEBAND:
+		bandwidth_sample_rate = OPUS_SAMPLE_RATE_SWB;
+		break;
+	case OPUS_BANDWIDTH_FULLBAND:
+		bandwidth_sample_rate = OPUS_SAMPLE_RATE_FB;
+		break;
+	default:
+		assert(false);
+	}
+	if (bandwidth_sample_rate != OPUS_SAMPLE_RATE_FB) {
+		fmtp_params["maxplaybackrate"] = bandwidth_sample_rate;
+	}
+
+	// RFC 7587 recommends sending an explicit useinbandfec=0
+	fmtp_params["useinbandfec"] = (user_config->get_opus_fec() ? 1 : 0);
+
+	if (user_config->get_opus_dtx()) {
+		fmtp_params["usedtx"] = 1;
+	}
+
+	((t_sdp *)m->body)->set_fmtp_int_params(SDP_AUDIO, recv_ac2payload[CODEC_OPUS], fmtp_params);
+#endif
 }
 
 void t_session::start_rtp(void) {
@@ -663,6 +778,10 @@ void t_session::start_rtp(void) {
 	unsigned short audio_ptime;
 	if (use_codec == CODEC_ILBC) {
 		audio_ptime = ilbc_mode;
+#ifdef HAVE_OPUS
+	} else if (use_codec == CODEC_OPUS) {
+		audio_ptime = opus_adjusted_ptime(ptime);
+#endif
 	} else {
 		audio_ptime = ptime;
 	}

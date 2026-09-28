@@ -646,6 +646,10 @@ void t_audio_session::set_srtp_cipher_mode(const string &cipher_mode) {
 	mtx_zrtp_data.unlock();
 }
 
+t_codec_sdp_params t_audio_session::get_codec_sdp_params(void) const {
+	// Returning by copy, since *session is not guaranteed to be stable
+	return session->codec_sdp_params;
+}
 
 #ifdef HAVE_SPEEX
 bool t_audio_session::get_do_echo_cancellation(void) const {
