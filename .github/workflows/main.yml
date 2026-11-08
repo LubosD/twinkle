@@ -61,12 +61,12 @@ jobs:
           # each Ubuntu release provided by GitHub Actions.
           - gcc: 9
             os: ubuntu-22.04
-          - gcc: 12
-            os: ubuntu-22.04
+          - gcc: 16
+            os: ubuntu-26.04
           - clang: 11
             os: ubuntu-22.04
-          - clang: 15
-            os: ubuntu-22.04
+          - clang: 22
+            os: ubuntu-26.04
 
           # Test with all options disabled
           - descr: 'All options disabled'
