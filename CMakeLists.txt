@@ -85,6 +85,13 @@ if (WITH_QT5)
 	include_directories(${Qt5Widgets_INCLUDES} ${Qt5Quick_INCLUDES})
 	add_definitions(${Qt5Widgets_DEFINITIONS} ${Qt5Quick_DEFINITIONS})
 
+	# Qt requires PIC, and while its CMake package will make sure to enable
+	# it for src/gui, we need to do so for libtwinkle as well, since both
+	# will be linked into the final executable.  As this point, it's just
+	# easier to flip the switch for the whole project; any performance loss
+	# in twinkle-console will not likely be noticed by anyone.  :-)
+	set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+
 	if (WITH_DBUS)
 		find_package(Qt5DBus REQUIRED)
 		set(HAVE_DBUS TRUE)
