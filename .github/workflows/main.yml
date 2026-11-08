@@ -6,7 +6,7 @@ env:
   # CMake flags used for default builds -- can be overridden by matrix.flags
   FLAGS: >
     -DWITH_QT5=ON
-    -DWITH_AKONADI=ON
+    -DWITH_AKONADI=OFF
     -DWITH_ALSA=ON
     -DWITH_DIAMONDCARD=ON
     -DWITH_GSM=ON
@@ -31,8 +31,6 @@ env:
     gettext
     libasound2-dev
     libgsm1-dev
-    libkf5akonadi-dev
-    libkf5contacts-dev
     libspeex-dev
     libspeexdsp-dev
     qtdeclarative5-dev
@@ -82,18 +80,22 @@ jobs:
             # $PACKAGES, so we use this true-but-still-empty hack instead.
             packages: ' '
 
-          # Test with Qt enabled and Akonadi disabled
-          - descr: 'w/o Akonadi'
+          # Test with Akonadi enabled
+          - descr: 'w/ Akonadi'
             flags: >
               -DWITH_QT5=ON
-              -DWITH_AKONADI=OFF
+              -DWITH_AKONADI=ON
               -DWITH_ALSA=OFF
               -DWITH_GSM=OFF
               -DWITH_SPEEX=OFF
               -DWITH_ZRTP=OFF
             packages: >
+              libkf5akonadi-dev
+              libkf5contacts-dev
               qtdeclarative5-dev
               qttools5-dev
+            # Akonadi is compiled with Qt 6 starting with 26.04
+            os: ubuntu-24.04
 
           # Test building with bcg729
           - descr: 'w/ bcg729'
