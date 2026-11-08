@@ -52,6 +52,10 @@ jobs:
     strategy:
       matrix:
         include:
+          # Each entry in this list represents a combination of OS, compiler
+          # and options for a single test build.  If any of them triggers a
+          # failure, it can simply be commented out without impacting the rest.
+
           # Test building with GCC and Clang (current default version)
           - gcc: default
           - clang: default
