@@ -61,10 +61,14 @@ jobs:
           # each Ubuntu release provided by GitHub Actions.
           - gcc: 9
             os: ubuntu-22.04
+          - gcc: 10
+            os: ubuntu-24.04
           - gcc: 16
             os: ubuntu-26.04
           - clang: 11
             os: ubuntu-22.04
+          - clang: 14
+            os: ubuntu-24.04
           - clang: 22
             os: ubuntu-26.04
 
