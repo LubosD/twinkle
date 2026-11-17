@@ -158,6 +158,10 @@ t_audio_tx::~t_audio_tx() {
 	
 	if (is_running) {
 		stop_running = true;
+		// Unblock any in-progress snd_pcm_writei so the thread can check
+		// stop_running and exit; without this the nanosleep loop below
+		// spins forever when the ALSA-PulseAudio bridge deadlocks.
+		playback_device->drop();
 		do {
 			sleeptimer.tv_sec = 0;
 			sleeptimer.tv_nsec = 10000000;

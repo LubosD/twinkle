@@ -2659,7 +2659,20 @@ void t_dialog::send_invite(const t_url &to_uri, const string &to_display,
 	t_contact_param contact;
 	contact.uri.set_url(line->create_user_contact(h_ip2str(local_ip)));
 	invite.hdr_contact.add_contact(contact);
-	
+
+	// Pre-trim the destination list to match what the transaction manager would
+	// compute from the event copy.  calc_destinations() always adds both TCP and
+	// UDP entries for SIP_TRANS_AUTO, but the transaction manager removes TCP for
+	// messages small enough to fit in UDP.  If we skip this step the copy stored
+	// in req_out_invite retains [tcp, udp], so next_destination() succeeds on a
+	// 503 and failover_invite() re-sends the INVITE to the same destination
+	// (RFC 3263 failover is only meaningful when there is a genuinely different
+	// next hop).
+	{
+		t_ip_port discard;
+		invite.get_destination(discard, *user_config);
+	}
+
 	// Send INVITE
 	req_out_invite = new t_client_request(user_config, &invite, 0);
 	MEMMAN_NEW(req_out_invite);

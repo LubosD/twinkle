@@ -395,7 +395,7 @@ string t_url::escape_user_value(const string &user_value) {
 	// mark             =  "-" / "_" / "." / "!" / "~" / "*" / "'" / "(" / ")"
 
 	return escape_hex(user_value,
-		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"\
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"\
 		"-_.!~*'()&=+$,;?/");
 }
 
@@ -406,7 +406,7 @@ string t_url::escape_passwd_value(const string &passwd_value) {
 	// mark             =  "-" / "_" / "." / "!" / "~" / "*" / "'" / "(" / ")"
 	
 	return escape_hex(passwd_value,
-		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"\
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"\
 		"-_.!~*'()&=+$,");
 }
 
@@ -419,7 +419,7 @@ string t_url::escape_hnv(const string &hnv) {
 	// mark             =  "-" / "_" / "." / "!" / "~" / "*" / "'" / "(" / ")"
 	
 	return escape_hex(hnv,
-		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYX0123456789"\
+		"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"\
 		"-_.!~*'()[]/?:+$");
 }
 

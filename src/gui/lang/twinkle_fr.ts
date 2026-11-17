@@ -1660,8 +1660,7 @@ Si le SAS est égal, vous devez le confirmer en cliquant sur le clavier pour une
     </message>
     <message>
         <source>Line &amp;2:</source>
-        <translation>Ligne &amp;2:
-</translation>
+        <translation>Ligne &amp;2:</translation>
     </message>
     <message>
         <source>Alt+2</source>

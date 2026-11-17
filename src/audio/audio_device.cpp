@@ -383,7 +383,12 @@ t_alsa_io::~t_alsa_io() {
 }
 
 
-bool t_alsa_io::open(const string& device, bool playback, bool capture, bool blocking, int channels, t_audio_sampleformat format, int sample_rate, bool short_latency) 
+void t_alsa_io::drop() {
+	if (pcm_play_ptr) snd_pcm_drop(pcm_play_ptr);
+	if (pcm_rec_ptr) snd_pcm_drop(pcm_rec_ptr);
+}
+
+bool t_alsa_io::open(const string& device, bool playback, bool capture, bool blocking, int channels, t_audio_sampleformat format, int sample_rate, bool short_latency)
 {
 	t_audio_io::open(device, playback, capture, blocking, channels, format, sample_rate,
 		short_latency);

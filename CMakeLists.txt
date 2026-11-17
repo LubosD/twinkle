@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8.10...3.22 FATAL_ERROR)
 
 project(twinkle)
 
-set(PRODUCT_VERSION "1.11.0-beta")
-set(PRODUCT_DATE    "March 12, 2024")
+set(PRODUCT_VERSION "1.11.0-devel")
+set(PRODUCT_DATE    "February 18, 2022")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Add -DDEBUG for non-release builds, or uCommon will unilaterally define NDEBUG
 # (https://lists.gnu.org/archive/html/bug-commoncpp/2019-12/msg00000.html)
@@ -84,6 +84,13 @@ if (WITH_QT5)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} ${Qt5Quick_EXECUTABLE_COMPILE_FLAGS}")
 	include_directories(${Qt5Widgets_INCLUDES} ${Qt5Quick_INCLUDES})
 	add_definitions(${Qt5Widgets_DEFINITIONS} ${Qt5Quick_DEFINITIONS})
+
+	# Qt requires PIC, and while its CMake package will make sure to enable
+	# it for src/gui, we need to do so for libtwinkle as well, since both
+	# will be linked into the final executable.  As this point, it's just
+	# easier to flip the switch for the whole project; any performance loss
+	# in twinkle-console will not likely be noticed by anyone.  :-)
+	set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
 	if (WITH_DBUS)
 		find_package(Qt5DBus REQUIRED)
