@@ -29,13 +29,20 @@
 
 #define PIDF_STATUS_BASIC_OPEN		"open"
 #define PIDF_STATUS_BASIC_CLOSED	"closed"
+#define PIDF_STATUS_USER_ONLINE		"logged on"
+#define PIDF_STATUS_USER_OFFLINE	"logged off"
+#define PIDF_STATUS_USER_TALKING	"active"
+#define PIDF_STATUS_USER_AFK		"away"
+#define PIDF_STATUS_USER_BUSY		"donotdisturb"
+#define PIDF_STATUS_USER_UNKNOWN	"UNKNOWN"
 
 /** RFC 3863 pidf+xml body */
 class t_pidf_xml_body : public t_sip_body_xml {
 private:
-	string		pres_entity;		/**< Presence entity */
-	string		tuple_id;	/**< Id of tuple containing the basic status. */
+	string		pres_entity;	/**< Presence entity */
+	string		tuple_id;		/**< Id of tuple containing the basic status. */
 	string		basic_status;	/**< Value of basic-tag */
+	string		user_status;	/**< Vaue if ippbx:userstatus-tag */
 	
 	/**
 	 * Extract the status information from a PIDF document.
@@ -63,6 +70,12 @@ private:
 	 */
 	void process_pidf_basic(xmlNode *basic);
 	
+	/**
+	 * Process userstatus element.
+	 * @param userstatus [in] userstatus element.
+	 */
+	void process_pidf_userstatus(xmlNode *userstatus);
+
 protected:
 	/**
 	 * Create a pidf document from the values stored in the attributes.
@@ -81,6 +94,7 @@ public:
 	//@{
 	string get_pres_entity(void) const;
 	string get_tuple_id(void) const;
+	string get_user_status(void) const;
 	string get_basic_status(void) const;
 	//@}
 	
@@ -88,7 +102,8 @@ public:
 	//@{
 	void set_pres_entity(const string &_pres_entity);
 	void set_tuple_id(const string &_tuple_id);
-	void set_basic_status(const string &_basic_status);;
+	void set_user_status(const string &_user_status);
+	void set_basic_status(const string &_basic_status);
 	//@}
 	
 	/**

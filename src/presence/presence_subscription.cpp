@@ -52,6 +52,9 @@ bool t_presence_subscription::recv_notify(t_request *r, t_tuid tuid, t_tid tid) 
 	{
 		t_pidf_xml_body *body = dynamic_cast<t_pidf_xml_body *>(r->body);
 		assert(body);
+
+		string user = body->get_user_status();
+		presence_state->set_user_state(presence_state->pidf_str2user_state(user));
 		
 		string basic = body->get_basic_status();
 		if (basic == PIDF_STATUS_BASIC_OPEN) {
