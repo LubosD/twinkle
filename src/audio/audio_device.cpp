@@ -309,7 +309,7 @@ void t_oss_io::enable(bool enable_playback, bool enable_recording) {
 void t_oss_io::flush(bool playback_buffer, bool recording_buffer) {
 	for (int i = 0; i < 2; i++) {
 		// i == 0: flush playback buffer, 1: flush recording buffer
-		if (i == 0 && playback_buffer || i == 1 && recording_buffer) {
+		if ((i == 0 && playback_buffer) || (i == 1 && recording_buffer)) {
 			int skip_bytes = ( (i==0) ? play_buffersize : 
 				rec_buffersize) - get_buffer_space(i == 1);
 			if(skip_bytes <= 0) continue;

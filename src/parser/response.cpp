@@ -207,10 +207,10 @@ bool t_response::is_valid(bool &fatal, string &reason) const {
 }
 
 bool t_response::must_authenticate(void) const {
-	return (code == R_401_UNAUTHORIZED &&
-	        hdr_www_authenticate.is_populated() ||
-	        code == R_407_PROXY_AUTH_REQUIRED &&
-	        hdr_proxy_authenticate.is_populated());
+	return ((code == R_401_UNAUTHORIZED &&
+	         hdr_www_authenticate.is_populated()) ||
+	        (code == R_407_PROXY_AUTH_REQUIRED &&
+	         hdr_proxy_authenticate.is_populated()));
 }
 
 void t_response::get_destination(t_ip_port &ip_port) const {
