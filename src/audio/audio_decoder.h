@@ -37,6 +37,10 @@ extern "C" {
 #include <speex/speex_preprocess.h> 
 #endif
 
+#ifdef HAVE_OPUS
+#include <opus/opus.h>
+#endif
+
 extern "C" {
 #	include "g722.h"
 #	include "g722_local.h"
@@ -149,6 +153,25 @@ public:
 	t_speex_audio_decoder(t_mode mode, t_user *user_config);
 	virtual ~t_speex_audio_decoder();
 	
+	virtual uint16 get_ptime(uint16 payload_size) const;
+	virtual uint16 decode(uint8 *payload, uint16 payload_size,
+			int16 *pcm_buf, uint16 pcm_buf_size);
+	virtual uint16 conceal(int16 *pcm_buf, uint16 pcm_buf_size);
+	virtual bool valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const;
+};
+#endif
+
+#ifdef HAVE_OPUS
+// Opus
+class t_opus_audio_decoder : public t_audio_decoder {
+private:
+	OpusDecoder	*dec;
+	unsigned short	_frame_size;  // Number of samples per frame
+
+public:
+	t_opus_audio_decoder(uint16 default_ptime, t_user *user_config);
+	virtual ~t_opus_audio_decoder();
+
 	virtual uint16 get_ptime(uint16 payload_size) const;
 	virtual uint16 decode(uint8 *payload, uint16 payload_size,
 			int16 *pcm_buf, uint16 pcm_buf_size);

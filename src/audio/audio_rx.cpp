@@ -315,6 +315,12 @@ t_audio_rx::t_audio_rx(t_audio_session *_audio_session,
 		MEMMAN_NEW(audio_encoder);
 		break;
 #endif
+#ifdef HAVE_OPUS
+	case CODEC_OPUS:
+		audio_encoder = new t_opus_audio_encoder(_payload_id, _ptime, user_config, audio_session->get_codec_sdp_params());
+		MEMMAN_NEW(audio_encoder);
+		break;
+#endif
 #ifdef HAVE_ILBC
 	case CODEC_ILBC:
 		audio_encoder = new t_ilbc_audio_encoder(_payload_id, _ptime, user_config);

@@ -36,6 +36,10 @@
 #include "util.h"
 #include "userprofileform.h"
 
+#ifdef HAVE_OPUS
+#include <opus/opus.h>
+#endif
+
 
 // Indices of categories in the category list box
 #define idxCatUser	0
@@ -67,8 +71,9 @@
 #define idxRtpPreprocessing 1
 #define idxRtpIlbc	    2
 #define idxRtpSpeex	    3
-#define idxRtpG726	    4
-#define idxRtpDtmf	    5
+#define idxRtpOpus	    4
+#define idxRtpG726	    5
+#define idxRtpDtmf	    6
 
 // Codec labels
 #define labelCodecG711a		"G.711 A-law"
@@ -77,6 +82,7 @@
 #define labelCodecSpeexNb		"speex-nb (8 kHz)"
 #define labelCodecSpeexWb	"speex-wb (16 kHz)"
 #define labelCodecSpeexUwb	"speex-uwb (32 kHz)"
+#define labelCodecOpus		"Opus"
 #define labelCodecIlbc		"iLBC"
 #define labelCodecG722		"G.722"
 #define labelCodecG726_16		"G.726 16 kbps"
@@ -88,6 +94,18 @@
 // Indices of iLBC modes
 #define idxIlbcMode20	0
 #define idxIlbcMode30	1
+
+// Indices of Opus bandwidths
+#define idxOpusBandwidthNB	0
+#define idxOpusBandwidthMB	1
+#define idxOpusBandwidthWB	2
+#define idxOpusBandwidthSWB	3
+#define idxOpusBandwidthFB	4
+
+// Indices of Opus signal types
+#define idxOpusSignalTypeAuto	0
+#define idxOpusSignalTypeVoice	1
+#define idxOpusSignalTypeMusic	2
 
 // Indices of G.726 packing modes
 #define idxG726PackRfc3551	0
@@ -180,6 +198,11 @@ void UserProfileForm::init()
     rtpAudioTabWidget->setTabEnabled(idxRtpSpeex, false);
     rtpAudioTabWidget->setTabEnabled(idxRtpPreprocessing, false);
 #endif
+#ifndef HAVE_OPUS
+	// Opus
+	opusGroupBox->hide();
+	rtpAudioTabWidget->setTabEnabled(idxRtpOpus, false);
+#endif
 #ifndef HAVE_ILBC
 	// iLBC
 	ilbcGroupBox->hide();
@@ -245,6 +268,8 @@ t_audio_codec UserProfileForm::label2codec(const QString &label) {
 		return CODEC_SPEEX_WB;
 	} else if (label == labelCodecSpeexUwb) {
 		return CODEC_SPEEX_UWB;
+	} else if (label == labelCodecOpus) {
+		return CODEC_OPUS;
 	} else if (label == labelCodecIlbc) {
 		return CODEC_ILBC;
 	} else if (label == labelCodecG722) {
@@ -278,6 +303,8 @@ QString UserProfileForm::codec2label(t_audio_codec &codec) {
 		return labelCodecSpeexWb;
 	case CODEC_SPEEX_UWB:
 		return labelCodecSpeexUwb;
+	case CODEC_OPUS:
+		return labelCodecOpus;
 	case CODEC_ILBC:
 		return labelCodecIlbc;
 	case CODEC_G722:
@@ -422,6 +449,9 @@ void UserProfileForm::populate()
 	allCodecs.append(labelCodecSpeexWb);
 	allCodecs.append(labelCodecSpeexUwb);
 #endif
+#ifdef HAVE_OPUS
+	allCodecs.append(labelCodecOpus);
+#endif
 #ifdef HAVE_ILBC
 	allCodecs.append(labelCodecIlbc);
 #endif
@@ -469,6 +499,56 @@ void UserProfileForm::populate()
 	spxWbPayloadSpinBox->setValue(current_profile->get_speex_wb_payload_type());
 	spxUwbPayloadSpinBox->setValue(current_profile->get_speex_uwb_payload_type());
 	
+#ifdef HAVE_OPUS
+	// Opus
+	switch (current_profile->get_opus_bandwidth()) {
+	case OPUS_BANDWIDTH_NARROWBAND:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthNB);
+		break;
+	case OPUS_BANDWIDTH_MEDIUMBAND:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthMB);
+		break;
+	case OPUS_BANDWIDTH_WIDEBAND:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthWB);
+		break;
+	case OPUS_BANDWIDTH_SUPERWIDEBAND:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthSWB);
+		break;
+	case OPUS_BANDWIDTH_FULLBAND:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthFB);
+		break;
+	default:
+		opusBandwidthComboBox->setCurrentIndex(idxOpusBandwidthFB);
+		break;
+	}
+	if (current_profile->get_opus_bitrate() == 0) {
+		opusBitrateAutoRadioButton->setChecked(true);
+	} else {
+		opusBitrateValueRadioButton->setChecked(true);
+		opusBitrateValueSpinBox->setValue(current_profile->get_opus_bitrate() / 1000);
+	}
+	opusCbrCheckBox->setChecked(current_profile->get_opus_cbr());
+	opusComplexitySpinBox->setValue(current_profile->get_opus_complexity());
+	opusDtxCheckBox->setChecked(current_profile->get_opus_dtx());
+	opusFecCheckBox->setChecked(current_profile->get_opus_fec());
+	opusPacketLossSpinBox->setValue(current_profile->get_opus_packet_loss());
+	opusPayloadSpinBox->setValue(current_profile->get_opus_payload_type());
+	switch (current_profile->get_opus_signal_type()) {
+	case OPUS_AUTO:
+		opusSignalTypeComboBox->setCurrentIndex(idxOpusSignalTypeAuto);
+		break;
+	case OPUS_SIGNAL_VOICE:
+		opusSignalTypeComboBox->setCurrentIndex(idxOpusSignalTypeVoice);
+		break;
+	case OPUS_SIGNAL_MUSIC:
+		opusSignalTypeComboBox->setCurrentIndex(idxOpusSignalTypeMusic);
+		break;
+	default:
+		opusSignalTypeComboBox->setCurrentIndex(idxOpusSignalTypeAuto);
+		break;
+	}
+#endif
+
 	// iLBC
 	ilbcPayloadSpinBox->setValue(current_profile->get_ilbc_payload_type());
 	
@@ -889,6 +969,13 @@ bool UserProfileForm::validateValues()
 		return false;
 	}
 	
+#ifdef HAVE_OPUS
+	if (!check_dynamic_payload(opusPayloadSpinBox, checked_types)) {
+		rtpAudioTabWidget->setCurrentWidget(tabOpus);
+		return false;
+	}
+#endif
+
 	if (!check_dynamic_payload(ilbcPayloadSpinBox, checked_types)) {
         rtpAudioTabWidget->setCurrentWidget(tabIlbc);
 		return false;
@@ -1091,6 +1178,55 @@ bool UserProfileForm::validateValues()
 	current_profile->set_speex_wb_payload_type(spxWbPayloadSpinBox->value());
 	current_profile->set_speex_uwb_payload_type(spxUwbPayloadSpinBox->value());
 	
+#ifdef HAVE_OPUS
+	// Opus
+	switch (opusBandwidthComboBox->currentIndex()) {
+	case idxOpusBandwidthNB:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_NARROWBAND);
+		break;
+	case idxOpusBandwidthMB:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_MEDIUMBAND);
+		break;
+	case idxOpusBandwidthWB:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_WIDEBAND);
+		break;
+	case idxOpusBandwidthSWB:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_SUPERWIDEBAND);
+		break;
+	case idxOpusBandwidthFB:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_FULLBAND);
+		break;
+	default:
+		current_profile->set_opus_bandwidth(OPUS_BANDWIDTH_FULLBAND);
+		break;
+	}
+	if (opusBitrateAutoRadioButton->isChecked()) {
+		current_profile->set_opus_bitrate(0);
+	} else {
+		current_profile->set_opus_bitrate(opusBitrateValueSpinBox->value() * 1000);
+	}
+	current_profile->set_opus_cbr(opusCbrCheckBox->isChecked());
+	current_profile->set_opus_complexity(opusComplexitySpinBox->value());
+	current_profile->set_opus_dtx(opusDtxCheckBox->isChecked());
+	current_profile->set_opus_fec(opusFecCheckBox->isChecked());
+	current_profile->set_opus_packet_loss(opusPacketLossSpinBox->value());
+	current_profile->set_opus_payload_type(opusPayloadSpinBox->value());
+	switch (opusSignalTypeComboBox->currentIndex()) {
+	case idxOpusSignalTypeAuto:
+		current_profile->set_opus_signal_type(OPUS_AUTO);
+		break;
+	case idxOpusSignalTypeVoice:
+		current_profile->set_opus_signal_type(OPUS_SIGNAL_VOICE);
+		break;
+	case idxOpusSignalTypeMusic:
+		current_profile->set_opus_signal_type(OPUS_SIGNAL_MUSIC);
+		break;
+	default:
+		current_profile->set_opus_signal_type(OPUS_AUTO);
+		break;
+	}
+#endif
+
 	// iLBC
 	current_profile->set_ilbc_payload_type(ilbcPayloadSpinBox->value());
     switch (ilbcPayloadSizeComboBox->currentIndex()) {

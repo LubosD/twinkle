@@ -253,6 +253,80 @@ bool t_speex_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sampl
 }
 #endif
 
+#ifdef HAVE_OPUS
+//////////////////////////////////////////
+// class t_opus_audio_decoder
+//////////////////////////////////////////
+
+t_opus_audio_decoder::t_opus_audio_decoder(uint16 default_ptime, t_user *user_config) :
+	t_audio_decoder(default_ptime, true, user_config)
+{
+	_codec = CODEC_OPUS;
+	if (_default_ptime == 0) {
+		_default_ptime = PTIME_OPUS;
+	}
+	_frame_size = audio_sample_rate(_codec) * _default_ptime / 1000;
+
+	int error;
+	dec = opus_decoder_create(audio_sample_rate(_codec), 1, &error);
+	if (error != OPUS_OK) {
+		log_opus_error("t_opus_audio_decoder::t_opus_audio_decoder",
+				"Cannot create decoder", error);
+		dec = NULL;
+		return;
+	}
+}
+
+t_opus_audio_decoder::~t_opus_audio_decoder() {
+	if (dec) {
+		opus_decoder_destroy(dec);
+	}
+}
+
+uint16 t_opus_audio_decoder::get_ptime(uint16 payload_size) const {
+	return get_default_ptime();
+}
+
+uint16 t_opus_audio_decoder::decode(uint8 *payload, uint16 payload_size,
+		int16 *pcm_buf, uint16 pcm_buf_size)
+{
+	if (!dec) return 0;
+
+	assert(pcm_buf_size >= _frame_size);
+
+	int nsamples = opus_decode(dec, payload, payload_size, pcm_buf, pcm_buf_size, 0);
+
+	if (nsamples < 0) {
+		log_opus_error("t_opus_audio_decoder::decode",
+				"Error while decoding", nsamples);
+		return 0;
+	}
+
+	return nsamples;
+}
+
+uint16 t_opus_audio_decoder::conceal(int16 *pcm_buf, uint16 pcm_buf_size) {
+	if (!dec) return 0;
+
+	assert(pcm_buf_size >= _frame_size);
+
+	int nsamples = opus_decode(dec, NULL, 0, pcm_buf, _frame_size, 0);
+
+	if (nsamples < 0) {
+		log_opus_error("t_opus_audio_decoder::conceal",
+				"Error while concealing missing frame", nsamples);
+		return 0;
+	}
+
+	return nsamples;
+}
+
+bool t_opus_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample_buf_size) const
+{
+	return true;
+}
+#endif
+
 #ifdef HAVE_ILBC
 //////////////////////////////////////////
 // class t_ilbc_audio_decoder

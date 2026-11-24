@@ -1,5 +1,6 @@
 #cmakedefine WITH_DIAMONDCARD
 #cmakedefine HAVE_SPEEX
+#cmakedefine HAVE_OPUS
 #cmakedefine HAVE_ILBC
 #cmakedefine HAVE_ILBC_CPP
 #cmakedefine HAVE_ZRTP
