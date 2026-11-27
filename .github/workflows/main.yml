@@ -129,10 +129,6 @@ jobs:
               libtool
               pkg-config
 
-          # Test when G.722 files are purged
-          - descr: 'G.722 files purged'
-            g722-purged: true
-
     steps:
       # Install all packages necessary for this build
       - name: Install packages
@@ -184,12 +180,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v7
-
-      # Delete G.722 files if requested
-      - name: Delete G.722 files
-        if: ${{ matrix.g722-purged }}
-        run: |
-          rm ${{github.workspace}}/src/audio/g722_*
 
       - name: Configure
         run: cmake -B ${{github.workspace}}/build ${{env.FLAGS}}

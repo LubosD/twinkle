@@ -162,12 +162,6 @@ if (WITH_ILBC)
 	endif (ILBC_FOUND)
 endif (WITH_ILBC)
 
-# Allow distributions to remove all `g722_*` files w/o breaking the build
-if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/audio/g722_decode.c)
-	message(STATUS "G.722 OK")
-	set(HAVE_G722 TRUE)
-endif ()
-
 if (WITH_G729)
 	find_package(G729)
 	

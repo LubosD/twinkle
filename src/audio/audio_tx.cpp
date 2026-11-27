@@ -95,10 +95,8 @@ t_audio_tx::t_audio_tx(t_audio_session *_audio_session,
 	MEMMAN_NEW(map_audio_decoder[CODEC_ILBC]);
 #endif
 
-#ifdef HAVE_G722
 	map_audio_decoder[CODEC_G722] = new t_g722_audio_decoder(_ptime, user_config);
 	MEMMAN_NEW(map_audio_decoder[CODEC_G722]);
-#endif
 
 	map_audio_decoder[CODEC_G726_16] = new t_g726_audio_decoder(
 			t_g726_audio_decoder::BIT_RATE_16, _ptime, user_config);

@@ -283,7 +283,6 @@ uint16 t_ilbc_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 }
 #endif
 
-#ifdef HAVE_G722
 //////////////////////////////////////////
 // class t_g722_audio_encoder
 //////////////////////////////////////////
@@ -316,7 +315,6 @@ uint16 t_g722_audio_encoder::encode(int16 *sample_buf, uint16 nsamples,
 
 	return nbytes;
 }
-#endif
 
 
 //////////////////////////////////////////

@@ -1077,11 +1077,9 @@ string t_sys_settings::about(bool html) const {
 	if (html) s += "<BR>";
 	s += "\n";
 	
-#ifdef HAVE_G722
 	s += TRANSLATE("* G.722 codec from Steve Underwood (public domain)");
 	if (html) s += "<BR>";
 	s += "\n";
-#endif
 
 #ifdef HAVE_ILBC
 	s += TRANSLATE("* iLBC implementation from RFC 3951 (www.ilbcfreeware.org)");	
@@ -1183,10 +1181,6 @@ string t_sys_settings::get_options_built(void) const {
 #ifdef HAVE_ILBC
 	if (!options_built.empty()) options_built += ", ";
 	options_built += "iLBC";
-#endif
-#ifdef HAVE_G722
-	if (!options_built.empty()) options_built += ", ";
-	options_built += "G722";
 #endif
 #ifdef HAVE_BCG729
 	if (!options_built.empty()) options_built += ", ";
