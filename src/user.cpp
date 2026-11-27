@@ -2267,8 +2267,10 @@ bool t_user::read_config(const string &filename, string &error_msg) {
 				} else if (codec == "ilbc") {
 					codecs.push_back(CODEC_ILBC);
 #endif
+#ifdef HAVE_G722
 				} else if (codec == "g722") {
 					codecs.push_back(CODEC_G722);
+#endif
 				} else if (codec == "g726-16") {
 					codecs.push_back(CODEC_G726_16);
 				} else if (codec == "g726-24") {

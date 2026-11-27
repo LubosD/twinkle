@@ -340,6 +340,7 @@ bool t_ilbc_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample
 }
 #endif
 
+#ifdef HAVE_G722
 //////////////////////////////////////////
 // class t_g722_audio_decoder
 //////////////////////////////////////////
@@ -375,6 +376,7 @@ bool t_g722_audio_decoder::valid_payload_size(uint16 payload_size, uint16 sample
 {
 	return (payload_size * G722_SAMPLES_PAYLOAD_RATIO) <= sample_buf_size;
 }
+#endif
 
 //////////////////////////////////////////
 // class t_g726_audio_decoder

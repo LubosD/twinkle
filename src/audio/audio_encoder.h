@@ -36,10 +36,12 @@ extern "C" {
 #include <speex/speex.h>
 #endif
 
+#ifdef HAVE_G722
 extern "C" {
 #	include "g722.h"
 #	include "g722_local.h"
 }
+#endif
 
 #ifdef HAVE_BCG729
 extern "C" {
@@ -162,6 +164,7 @@ public:
 };
 #endif
 
+#ifdef HAVE_G722
 class t_g722_audio_encoder : public t_audio_encoder {
 private:
 	g722_encode_state_t *_state;
@@ -173,6 +176,7 @@ public:
 	virtual uint16 encode(int16 *sample_buf, uint16 nsamples,
 			uint8 *payload, uint16 payload_size, bool &silence);
 };
+#endif
 
 class t_g726_audio_encoder : public t_audio_encoder {
 public:
