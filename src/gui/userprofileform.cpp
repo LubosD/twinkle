@@ -425,7 +425,9 @@ void UserProfileForm::populate()
 #ifdef HAVE_ILBC
 	allCodecs.append(labelCodecIlbc);
 #endif
+#ifdef HAVE_G722
 	allCodecs.append(labelCodecG722);
+#endif
 	allCodecs.append(labelCodecG726_16);
 	allCodecs.append(labelCodecG726_24);
 	allCodecs.append(labelCodecG726_32);
